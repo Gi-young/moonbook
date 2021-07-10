@@ -9,6 +9,7 @@
 3. 해당 폴더에서 "https://github.com/Gi-young/khbook.git" 주소로 clone을 실행합니다.
 
     Git Bash 기준 설명
+    
     생성한 새폴더(khbook) 우클릭 -> Git Bash Here -> git clone https://github.com/Gi-young/khbook.git . 입력 -> 완료
 
 4. STS에서 해당 워크스페이스로 들어갑니다.
