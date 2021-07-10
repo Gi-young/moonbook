@@ -24,7 +24,7 @@
 
 6. pom.xml을 열고 기존에 가지고 있는 pom.xml 내용을 복사 붙여넣기 합니다.
 
-7. com.rar.khbook패키지 아래의 HomeController.java를 삭제합니다(메소드 매핑 중복)
+7. com.rar.khbook패키지 아래의 HomeController.java를 삭제합니다. (메소드 매핑 중복)
 
 8. 메이븐 업데이트를 통해서 자바 버전을 11로 맞춰줍니다. (프로젝트 우클릭 -> Maven -> Update Project)
 
