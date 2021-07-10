@@ -6,7 +6,7 @@
 
 2. 새폴더 "khbook"을 생성합니다(이름 무관)
 
-3. 해당 폴더에서 "https://github.com/Gi-young/khbook.git" 주소로 clone을 실행합니다.
+3. 해당 폴더에서 khbook 깃허브 HTTPS 주소로 clone을 실행합니다.
 
     Git Bash 기준 설명
     
