@@ -4,7 +4,7 @@
 ### 내 컴퓨터에서 실행시키기(클론)
 1. 윈도우 탐색기에서 khbook프로젝트를 생성할 워크스페이스로 이동합니다. (기존 워크스페이스 사용 가능)
 
-2. 새폴더 "khbook"을 생성합니다(이름 무관)
+2. 새폴더 "khbook"을 생성합니다 (이름 무관)
 
 3. 해당 폴더에서 khbook 깃허브 HTTPS 주소로 clone을 실행합니다.
 
@@ -14,7 +14,9 @@
 
 4. STS에서 해당 워크스페이스로 들어갑니다.
 
-5. 우클릭 -> new -> Spring Legacy Project (프로젝트 이름 무관)
+5. 우클릭 -> new -> Spring Legacy Project
+
+    Project name = khbook (이름 무관)
 
     Use default location을 체크 해제하고 Browse -> clone한 디렉토리 선택
     
