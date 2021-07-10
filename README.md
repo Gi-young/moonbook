@@ -17,7 +17,9 @@
 5. 우클릭 -> new -> Spring Legacy Project
 
     Use default location을 체크해제하고 Browse -> clone한 디렉토리 선택
+    
     Templates = Spring MVC Project
+    
     Top Level Package = com.rar.khbook (rar은 "round and round, 둥글게 둥글게"의 약자)
 
 6. pom.xml을 열고 기존에 가지고 있는 pom.xml 내용을 복사 붙여넣기 합니다.
