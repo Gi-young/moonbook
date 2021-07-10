@@ -14,7 +14,7 @@
 
 4. STS에서 해당 워크스페이스로 들어갑니다.
 
-5. 우클릭 -> new -> Spring Legacy Project
+5. 우클릭 -> new -> Spring Legacy Project (프로젝트 이름 무관)
 
     Use default location을 체크 해제하고 Browse -> clone한 디렉토리 선택
     
