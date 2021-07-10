@@ -20,7 +20,7 @@
     
     Templates = Spring MVC Project
     
-    Top Level Package = com.rar.khbook (rar은 "round and round, 둥글게 둥글게"의 약자)
+    Top Level Package = com.rar.khbook (rar은 "Round And Round, 둥글게 둥글게"의 약자)
 
 6. pom.xml을 열고 기존에 가지고 있는 pom.xml 내용을 복사 붙여넣기 합니다.
 
