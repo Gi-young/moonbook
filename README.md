@@ -10,7 +10,7 @@
 
     Git Bash 기준 설명
     
-    생성한 새폴더(khbook) 우클릭 -> Git Bash Here -> git clone https://github.com/Gi-young/khbook.git . 입력 -> 완료
+    생성한 새폴더(khbook) 우클릭 -> Git Bash Here -> git clone https://github.com/Gi-young/khbook.git . 입력 (맨 마지막의 "."은 현재폴더를 의미) -> 완료
 
 4. STS에서 해당 워크스페이스로 들어갑니다.
 
