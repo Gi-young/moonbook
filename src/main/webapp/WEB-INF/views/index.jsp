@@ -175,10 +175,6 @@
         </div>
     </div>
     </div>
-    
-    <%--     <script src="${path }/resources/js/header.js"></script>
-	<script src="${path }/resources/js/header(2).js"></script>
-	<script src="${path }/resources/js/jquery-3.6.0.min.js"></script> --%>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp">
 <jsp:param name="" value=""/>
