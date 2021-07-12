@@ -3,18 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 
-    <title>Document</title>
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+   <jsp:param name="" value=""/>
+</jsp:include>
 
-</head>
-<body>
     <div class="wrap">
     <div class="flex bannerwrap">
     <div class="mainbanner flex">
@@ -182,5 +175,7 @@
         </div>
     </div>
     </div>
-</body>
-</html>
+
+<jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:param name="" value=""/>
+</jsp:include>
