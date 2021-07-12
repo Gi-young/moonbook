@@ -29,6 +29,10 @@
                 </div>
             </div>     
         </div>
+        
+        <%-- <script src="${path }/resources/js/header.js"></script>
+		<script src="${path }/resources/js/header(2).js"></script>
+		<script src="${path }/resources/js/jquery-3.6.0.min.js"></script> --%>
 
 </body>
 </html>

@@ -11,9 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>header</title> 
     <link rel="stylesheet" href="${path }/resources/css/style.css">
-    <script src="${path }/resources/js/header.js"></script>
-	<script src="${path }/resources/js/header(2).js"></script>
-	<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+    
 </head>
 <body>
 <div class="header">
@@ -150,6 +148,8 @@
 </div>
 
 
-
+<script src="${path }/resources/js/header.js"></script>
+	<script src="${path }/resources/js/header(2).js"></script>
+	<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 
 
