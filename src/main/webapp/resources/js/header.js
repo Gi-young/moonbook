@@ -97,5 +97,5 @@
         slideList.style.transition = slideSpeed + "ms";
         slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 1)) + "px, 0px, 0px)";
       });
-    });
-  })();
+    })
+})();
