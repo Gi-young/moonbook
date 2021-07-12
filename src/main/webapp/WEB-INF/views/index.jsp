@@ -33,7 +33,7 @@
 
     <div class="todaybooks">
         <div class="flex">
-            <div class="todaybooks21">오늘의책오늘오늘하늘하늘</div>
+            <div class="todaybooks21">오늘의책</div>
             <div class="todaybooks22">더보기</div>
         </div>
         <div class="flex">
