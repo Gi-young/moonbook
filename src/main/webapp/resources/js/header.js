@@ -1,4 +1,4 @@
-(function () {
+
     const slideList = document.querySelector('.slide-list');  // 슬라이드 리스트 객체
     const slideContents = document.querySelectorAll('.slide-content');  // 슬라이드 컨텐츠 객체
     const slideBtnNext = document.querySelector('.slide-button-next'); // 다음 버튼
@@ -98,4 +98,3 @@
         slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 1)) + "px, 0px, 0px)";
       });
     });
-  })();
