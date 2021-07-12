@@ -13,6 +13,7 @@
     <div class="mainbanner flex">
         <div class="mainbanner_obj1">
             <div class="mainbanner_objleft btndown">
+            <img alt="banner1" src="${path }/resources/img/main/banner/banner.png">
             <div class="mainbanner_objcontainer flex ">
             </div>
         </div>
