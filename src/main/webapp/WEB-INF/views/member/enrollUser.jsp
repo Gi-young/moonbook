@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/login/reset.css">
+	href="${pageContext.request.contextPath }/resources/css/login/reset.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/login/enrollUser.css">
+	href="${pageContext.request.contextPath }/resources/css/login/enrollUser.css">
 
 <!DOCTYPE html>
 <html>

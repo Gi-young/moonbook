@@ -27,8 +27,8 @@
                 </div>
             </ul>
             <ul class="header-top-info2">
-                <li class="login"><a href="#">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+                <li class="login"><a href="${path }/member/login.do">로그인</a></li>
+                <li><a href="${path }/member/enrollPage.do">회원가입</a></li>
                 <li><a href="#">고객센터</a></li>
                 <li><a href="#">주문배송</a></li>
                 <li><a href="#"><img src="${path }/resources/images/baguni.svg" style="width: 24px; height: 24px;"></a></li>

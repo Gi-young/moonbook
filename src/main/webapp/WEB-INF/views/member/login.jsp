@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/login/reset.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/login/login.css">
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>KH문고 로그인</title>
-</head>
-<body>
-	
-	<div class="loginPage-container">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login/login.css">
+<jsp:include page="/WEB-INF/views/common/header.jsp">
+   <jsp:param name="" value=""/>
+</jsp:include>
+<div class="loginPage-container">
 		<div class="loginInfo">
 			<p>홈 > 로그인</p>
 			<hr class="hr1">
@@ -64,24 +58,24 @@
 			
 			<div class="login-ad">
 				<img alt="광고사진"
-					src="${pageContext.request.contextPath }/img/login/loginAd.PNG">
+					src="${pageContext.request.contextPath }/resources/img/login/loginAd.PNG">
 			</div>
 			
 			
 		</div>
 		<div class="login-box3">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/img/login/kh0.png">
+			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh0.png">
 		</div>
 		<div class="login-box4">
 		<p>KH문고가 더 좋은 이유</p>
-			<img alt="광고사진" src="${pageContext.request.contextPath }/img/login/kh1.PNG">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/img/login/kh2.PNG">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/img/login/kh3.png">
+			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh1.PNG">
+			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh2.PNG">
+			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh3.png">
 		</div>
 		<div class="login-box5">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/img/login/kh4.PNG">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/img/login/kh5.PNG">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/img/login/kh6.png">
+			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh4.PNG">
+			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh5.PNG">
+			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh6.png">
 		</div>
 		
 	</div>
@@ -105,5 +99,7 @@
 				location.replace("${pageContext.request.contextPath }/logout");
 			}
 	</script>
-</body>
-</html>
+	
+	<jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:param name="" value=""/>
+</jsp:include>
