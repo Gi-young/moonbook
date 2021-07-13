@@ -12,18 +12,29 @@
     <div class="flex bannerwrap">
     <div class="mainbanner flex">
         <div class="mainbanner_obj1">
-            <div class="mainbanner_objleft btndown">
-            <img alt="banner1" src="${path }/resources/img/main/banner/banner.png">
-            <div class="mainbanner_objcontainer flex ">
+        <div class="mainsearchBox-slideBox">
+            <div class="mainbanner_objleft btndown mainsearchBox-slideList">
+            	<div class="mainsearchBox-slideContent">
+            	<img alt="banner1" src="${path }/resources/img/main/banner/banner.png">
+            	</div>
+            	<div class="mainsearchBox-slideContent">
+            	<img alt="banner1" src="${path }/resources/img/main/banner/banner2.png">
+            	</div>
+            <!-- <div class="mainbanner_objcontainer flex ">
             </div>
+        	</div> -->
+	        <!-- <button class="mainbanner_objinner">버튼2</button>
+	        <button class="mainbanner_objinner">버튼3</button>
+	        <button class="mainbanner_objinner">버튼4</button>
+	        <button class="mainbanner_objinner">버튼5</button>
+	        <button class="mainbanner_objinner">버튼6</button>
+	        <button class="mainbanner_objinner">버튼7</button> -->
         </div>
-        <button class="mainbanner_objinner">버튼2</button>
-        <button class="mainbanner_objinner">버튼3</button>
-        <button class="mainbanner_objinner">버튼4</button>
-        <button class="mainbanner_objinner">버튼5</button>
-        <button class="mainbanner_objinner">버튼6</button>
-        <button class="mainbanner_objinner">버튼7</button>
         </div>
+        <div class="slide-pagination"></div>
+                <button class="searchBox-slideBtn-prev"><</button>
+                <button class="searchBox-slideBtn-next">></button>
+                </div>
         <div class="mainbanner_obj2">출판사 북캐스트</div>   
     </div>
     <div>
@@ -184,3 +195,5 @@
 <jsp:include page="/WEB-INF/views/common/footer.jsp">
 <jsp:param name="" value=""/>
 </jsp:include>
+
+<script src="${path }/resources/js/main.js"></script>

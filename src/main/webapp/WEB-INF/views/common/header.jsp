@@ -12,7 +12,6 @@
     <title>header</title> 
     <link rel="stylesheet" href="${path }/resources/css/style.css">
 	<script type="text/javascript" src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-
 </head>
 <body>
 <div class="header">
