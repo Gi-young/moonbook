@@ -2,12 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
 
-	<insert id="insertMember">
+	<!-- <insert id="insertMember">
 		INSERT INTO MEMBER VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},NULL,SYSDATE,DEFAULT)
-	</insert>
+	</insert> -->
 	
-	<select id="select" resultType="int">
-		SELECT count(*) from member
-	</select>
+
 	
+
+<select id = "select" resultType="int">
+select count(*) from member
+</select>
+
 </mapper>

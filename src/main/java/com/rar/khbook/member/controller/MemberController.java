@@ -1,6 +1,5 @@
 package com.rar.khbook.member.controller;
 
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +24,6 @@ public class MemberController {
 	private MemberService service;
 	@Autowired
 	private SqlSession session;
-	
-	@Autowired
-	private BCryptPasswordEncoder pwEncoder;
 	
 	@RequestMapping("/member/loginPage.do")
 	public String loginPage() {
@@ -79,4 +75,10 @@ public class MemberController {
 	
 	
 	
+	@RequestMapping("/member/myroom.do")
+	public String myroom() {
+		int result = session.selectOne("member.select");
+		System.out.println(result);
+		return "myroom/main";
+	}
 }
