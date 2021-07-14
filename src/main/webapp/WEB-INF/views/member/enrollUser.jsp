@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/login/reset.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/login/enrollUser.css">
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>KHBookUser 회원가입</title>
+<link rel="stylesheet"
+	href="${path}/resources/css/login/reset.css">
+<link rel="stylesheet"
+	href="${path}/resources/css/login/enrollUser.css">
+
 </head>
 <body>
 	<div class="enrollAgree-manual">
@@ -87,7 +88,7 @@
 			수집 및 이용안내 (필수)</label>
 		<p>입력하신 정보는 회원 유무 확인용으로 수집/이용 되며,가입 회원에 한해 입력하신 모든 정보가 저장되는데
 			동의합니다.</p>
-		<input class="enrollchoice3" type="button" value="다음" onclick="">
+		<input class="enrollchoice3" type="button" value="다음" onclick="location.replace('${path}/member/enrollUser2.do')">
 
 	</div>
 </body>
