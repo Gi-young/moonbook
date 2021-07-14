@@ -9,11 +9,11 @@ import com.rar.khbook.member.model.vo.Member;
 @Repository
 public class MemberDaoImpl implements MemberDao {
 
-	@Override
-	public int insertMember(SqlSession session, Member m) {
-		// TODO Auto-generated method stub
-		return session.insert("member.insertMember",m);
-	}
+//	@Override
+//	public int insertMember(SqlSession session, Member m) {
+//		// TODO Auto-generated method stub
+//		return session.insert("member.insertMember",m);
+//	}
 
 	
 }

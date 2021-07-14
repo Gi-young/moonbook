@@ -11,5 +11,5 @@ import com.rar.khbook.member.model.vo.Member;
 public interface MemberDao {
 
 	
-	int insertMember(SqlSession session ,Member m);
+//	int insertMember(SqlSession session ,Member m);
 }

@@ -1,13 +1,11 @@
 package com.rar.khbook.member.controller;
 
 
-import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.member.model.service.MemberService;
@@ -17,13 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-@SessionAttributes({"loginMember"})
+//@SessionAttributes({"loginMember"})
 public class MemberController {
 	
 	@Autowired
 	private MemberService service;
-	@Autowired
-	private SqlSession session;
 	
 	@RequestMapping("/member/loginPage.do")
 	public String loginPage() {
@@ -48,8 +44,8 @@ public class MemberController {
 	}
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m,Model model) {
-		int result=session.selectOne("member.select");
-		System.out.println(result);
+//		int result=session.selectOne("member.select");
+//		System.out.println(result);
 //		log.debug("암호화전 : {}", m.getMemberPw());
 //		log.debug("암호화 후 : {}", pwEncoder.encode(m.getMemberPw()));
 //		m.setMemberPw(pwEncoder.encode(m.getMemberPw()));
@@ -77,8 +73,8 @@ public class MemberController {
 	
 	@RequestMapping("/member/myroom.do")
 	public String myroom() {
-		int result = session.selectOne("member.select");
-		System.out.println(result);
+//		int result = session.selectOne("member.select");
+//		System.out.println(result);
 		return "myroom/main";
 	}
 }

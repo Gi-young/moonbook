@@ -23,7 +23,7 @@
 			<p>회원가입</p>
 		</div>
 		<div class="enrollInfo-box">
-			<form name="memberEnrollFrm" action="${path }/member/memberEnrollEnd.do" method="post">
+			<form action="${path }/member/memberEnrollEnd.do" method="post">
 			<hr>
 			<p class="enrollInfo-font">아이디</p>
 			<input type="text" name="id" placeholder="아이디입력" required>
