@@ -23,6 +23,7 @@
 			<p>회원가입</p>
 		</div>
 		<div class="enrollInfo-box">
+			<form name="memberEnrollFrm" action="${path }/member/memberEnrollEnd.do" method="post">
 			<hr>
 			<p class="enrollInfo-font">아이디</p>
 			<input type="text" name="id" placeholder="아이디입력" required>
@@ -58,9 +59,15 @@
 			</div>
 			<p class="enrollInfo-font">생년월일</p>
 				<input type="Date" name="birthDate" required>
+			<div>
+			<input class="enrollchoice3" type="submit" value="완료" >
+			</div>
+		</form>
 		</div>
-		<input class="enrollchoice3" type="button" value="완료" onclick="">
 	</div>
 
 </body>
 </html>
+<script>
+
+</script>
