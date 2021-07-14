@@ -1,0 +1,5 @@
+@charset "UTF-8";
+.content_middle{z-index:200;*zoom:1;
+position:relative}
+.content_middle:after{content:"";display:block;clear:both;}
+.myroom_snb{float:left;width:180px;}
