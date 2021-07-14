@@ -1,5 +1,6 @@
 package com.rar.khbook.member.controller;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
-	
+	@Autowired
+	private SqlSession session;
 	
 	@RequestMapping("/member/login.do")
 	public String loginPage() {
@@ -30,4 +32,10 @@ public class MemberController {
 		return "member/enrollUser2";
 	}
 	
+	@RequestMapping("/member/myroom.do")
+	public String myroom() {
+		int result = session.selectOne("member.select");
+		System.out.println(result);
+		return "myroom/main";
+	}
 }
