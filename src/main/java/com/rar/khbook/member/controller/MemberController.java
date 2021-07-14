@@ -23,7 +23,11 @@ public class MemberController {
 	}
 	@RequestMapping("/member/enrollUser.do")
 	public String enrollUser() {
-		return "member/enrollPage";
+		return "member/enrollUser";
+	}
+	@RequestMapping("/member/enrollUser2.do")
+	public String enrollUser2() {
+		return "member/enrollUser2";
 	}
 	
 }

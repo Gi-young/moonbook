@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login/reset.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login/login.css">
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+
 <jsp:include page="/WEB-INF/views/common/header.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/login/reset.css">
+<link rel="stylesheet" href="${path }/resources/css/login/login.css">
+
 <div class="loginPage-container">
 		<div class="loginInfo">
 			<p>홈 > 로그인</p>
@@ -23,7 +26,7 @@
 				</div>
 				<c:if test="${empty list }">
 					<form class="loginForm"
-						action="${pageContext.request.contextPath }/login" method="post"
+						action="${path }/login" method="post"
 						onsubmit="">
 						<div class="logintext4">
 							<div class="logintext1">
