@@ -59,7 +59,6 @@
       <aop:advisor advice-ref="txAdvice" pointcut-ref="txp"/>
    </aop:config>
    
-</beans>
 
    <tx:annotation-driven transaction-manager="transactionManager"/>
       

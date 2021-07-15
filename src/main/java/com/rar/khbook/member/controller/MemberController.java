@@ -30,6 +30,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
 	
 	@RequestMapping("/member/loginPage.do")
 	public String loginPage() {
@@ -39,11 +41,7 @@ public class MemberController {
 		//로그인할 내용
 		return "";
 	}
-	@RequestMapping("/member/login.do")
-	public ModelAndView login(ModelAndView mv) {
-		//이제 로그인 적어야 할 곳
-		return mv;
-	}
+	
 	@RequestMapping("/member/enrollPage.do")
 	public String enrollPage() {
 		return "member/enrollPage";
@@ -91,6 +89,6 @@ public class MemberController {
 		Member m=service.selectOneMember(param);
 		System.out.println("testtest : "+m);
 		new Gson().toJson(m==null? "true":"false",out);
-
+	}
 	
 }
