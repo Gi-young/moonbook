@@ -73,7 +73,7 @@
 			<p class="enrollInfo-font">생년월일</p>
 
 				<input type="Date" name="memberBirth" required>
-			<div>
+			<div class="enrollInfo-box4">
 			<input class="enrollchoice3" type="submit" value="완료" onclick="return fn_frmsubmit();" >
 
 			</div>

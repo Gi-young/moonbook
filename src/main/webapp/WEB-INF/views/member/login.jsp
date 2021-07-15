@@ -26,15 +26,13 @@
 				</div>
 				<c:if test="${empty list }">
 					<form class="loginForm"
-
-						action="${path }/member/login.do" method="post"
-						onsubmit="">
+						action="${path }/member/login.do" method="post">
 
 						<div class="logintext4">
 							<div class="logintext1">
-								<input type="text" name="loginId"
+								<input type="text" name="memberId"
 									placeholder="아이디를 대/소문자 구분하여 입력"> 
-									<input type="password" name="password" id="password"
+									<input type="password" name="memberPw" id="password"
 									placeholder="비밀번호를 대/소문자 구분하여 입력">
 							</div>
 							<div class="loginSubmit">

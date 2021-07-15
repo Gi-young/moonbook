@@ -68,7 +68,7 @@
 }
 .enrollchoice3{
 	width:350px; 
-	height:70px;
+	height:70px; 
 	font-size: 28px;
 	
 	border: 1px solid #56a900;
@@ -77,6 +77,11 @@
 	cursor:pointer;
 	margin-top:15px;
 	margin-bottom:15px;
+	
+}
+.enrollInfo-box4{
+	align-items: center;
+	text-align: center;
 }
 .enrollchoice3:hover{
 	color:#fff;

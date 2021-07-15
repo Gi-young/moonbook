@@ -6,17 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 import com.rar.khbook.member.model.service.MemberService;
@@ -26,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@SessionAttributes({"loginMember"})
 public class MemberController {
 	
 	@Autowired
@@ -37,9 +34,29 @@ public class MemberController {
 	public String loginPage() {
 		return "member/login";
 	}@RequestMapping("/member/login.do")
-	public String login() {
-		//로그인할 내용
-		return "";
+	public String login(@RequestParam Map param,Model model,HttpSession session) {
+		
+		
+		Member m=service.selectOneMember(param);
+		System.out.println(m);
+		String msg="";
+		if(m!=null) {
+			
+			if(pwEncoder.matches((String)param.get("memberPw"), m.getMemberPw())) {
+				session.setAttribute("loginMember", m);
+				msg="로그인 성공";
+				model.addAttribute("loc", "/");
+			}else {
+				msg="로그인 실패";
+				model.addAttribute("loc", "/member/loginPage.do");
+			}
+		}else {
+			msg="로그인 실패";
+		}
+		
+		model.addAttribute("msg",msg);
+		
+		return "common/msg";
 	}
 	
 	@RequestMapping("/member/enrollPage.do")
