@@ -1,5 +1,131 @@
 @charset "UTF-8";
-.content_middle{z-index:200;*zoom:1;
-position:relative}
-.content_middle:after{content:"";display:block;clear:both;}
-.myroom_snb{float:left;width:180px;}
+
+.content_middle {
+	z-index: 200;
+	*zoom: 1;
+	position: relative
+}
+
+.content_middle:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.myroom_snb {
+	float: left;
+	width: 180px;
+	margin: 0 10px 0 0px;
+}
+
+.cscenter_h2 {
+	height: 21px;
+	padding-bottom: 8px;
+	overflow: hidden;
+	border-bottom: 2px solid #565656;
+}
+
+h2>a {
+	font-size: 1.5em;
+}
+
+.cscenter_snb3 {
+	margin-top: 8px;
+}
+
+.cscenter_snb3 li strong {
+	display: block;
+	line-height: 12px;
+	padding: 9px 9px 7px;
+	font-weight: bold;
+	border-bottom: solid #ececec 1px;
+	color: #555;
+}
+
+.cscenter_snb3 ul {
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #ececec;
+	padding: 5px 0 4px;
+}
+
+.cscenter_snb3 ul li {
+	font-size: 11px;
+	_zoom: 1;
+	padding: 5px 10px 4px;
+}
+
+.myroom_contents {
+	color: #666666;
+	width: 33.3em;
+	/* font-family: 'Tahoma','Dotum',sans-serif;
+    *font-family: 'Dotum',sans-serif; */
+}
+
+.out_myroom_gradearea {
+	border: 1px solid #899bdb;
+	border-left: 0;
+	border-right: 0;
+	overflow: hidden;
+	margin-bottom: 30px;
+	color: #333333;
+}
+
+.out_myroom_gradearea .user_section, .out_myroom_gradearea .user_info_list td
+	{
+	height: 54px;
+}
+
+.out_myroom_gradearea .user_section {
+	background: #dde5ff;
+	float: left;
+	width: 201px;
+	padding-left: 20px;
+	border-right: 1px solid #c1cfff;
+}
+
+.out_myroom_gradearea .user_section .user_name {
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 3px;
+}
+
+.btn_small {
+	font-size: 12px !important;
+	padding: 3px 4px 2px;
+}
+
+.out_myroom_gradearea .user_info_list {
+	float: left;
+	border-spacing: 0;
+	margin-left: 2em;
+}
+
+.out_myroom_gradearea .user_info_list td .tit {
+	margin-bottom: 4px;
+	margin-top: 4px;
+}
+
+.out_myroom_gradearea .user_info_list td {
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.padding3 {
+	padding: 3px;
+}
+
+.bul_green20 {
+	
+	line-height: 16px;
+	margin-bottom: 9px;
+	padding-left: 15px;
+	font-size: 14px;
+	color: #222;
+	vertical-align: middle;
+}
+.bul_green20 span {
+    float: left;
+}
