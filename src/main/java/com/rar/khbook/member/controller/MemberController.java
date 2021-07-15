@@ -1,10 +1,12 @@
 package com.rar.khbook.member.controller;
 
+
 import java.io.Writer;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import org.springframework.web.servlet.ModelAndView;
+
 
 import com.google.gson.Gson;
 import com.rar.khbook.member.model.service.MemberService;
@@ -26,10 +31,6 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	@Autowired
-	private BCryptPasswordEncoder pwEncoder;
-	
-	
 	@RequestMapping("/member/loginPage.do")
 	public String loginPage() {
 		return "member/login";
@@ -37,6 +38,11 @@ public class MemberController {
 	public String login() {
 		//로그인할 내용
 		return "";
+	}
+	@RequestMapping("/member/login.do")
+	public ModelAndView login(ModelAndView mv) {
+		//이제 로그인 적어야 할 곳
+		return mv;
 	}
 	@RequestMapping("/member/enrollPage.do")
 	public String enrollPage() {
@@ -85,5 +91,6 @@ public class MemberController {
 		Member m=service.selectOneMember(param);
 		System.out.println("testtest : "+m);
 		new Gson().toJson(m==null? "true":"false",out);
-	}
+
+	
 }

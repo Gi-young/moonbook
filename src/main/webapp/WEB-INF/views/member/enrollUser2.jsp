@@ -24,7 +24,11 @@
 			<p>회원가입</p>
 		</div>
 		<div class="enrollInfo-box">
+
 			<form id="frm" action="${path }/member/memberEnrollEnd.do" method="post">
+
+			<form action="${path }/member/memberEnrollEnd.do" method="post">
+
 			<hr>
 			<p class="enrollInfo-font">아이디</p>
 		
@@ -67,9 +71,11 @@
 					<label for="genderF">여</label>
 			</div>
 			<p class="enrollInfo-font">생년월일</p>
+
 				<input type="Date" name="memberBirth" required>
 			<div>
 			<input class="enrollchoice3" type="submit" value="완료" onclick="return fn_frmsubmit();" >
+
 			</div>
 		</form>
 		</div>
@@ -78,6 +84,7 @@
 </body>
 </html>
 <script>
+
 	const fn_frmsubmit=()=>{
 		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none"){
 			let memberEmail=$("#localPart").val()+"@"+$("#domain").val();
@@ -133,4 +140,5 @@
 	})
 	
 	
+
 </script>

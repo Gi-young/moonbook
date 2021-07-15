@@ -26,8 +26,10 @@
 				</div>
 				<c:if test="${empty list }">
 					<form class="loginForm"
+
 						action="${path }/member/login.do" method="post"
 						onsubmit="">
+
 						<div class="logintext4">
 							<div class="logintext1">
 								<input type="text" name="loginId"
