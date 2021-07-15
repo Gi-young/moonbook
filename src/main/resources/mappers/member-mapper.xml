@@ -3,7 +3,7 @@
 <mapper namespace="member">
 
 	<insert id="insertMember">
-		INSERT INTO MEMBER VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,NULL)
+		INSERT INTO MEMBER VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,'프렌즈')
 	</insert> 
 	
 	<resultMap type="member" id="memberMap">

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.google.gson.Gson;
 import com.rar.khbook.member.model.service.MemberService;
@@ -57,6 +58,14 @@ public class MemberController {
 		model.addAttribute("msg",msg);
 		
 		return "common/msg";
+	}
+	@RequestMapping("/member/logout.do")
+	public String logout(SessionStatus ss) {
+		
+		if(!ss.isComplete()) {
+			ss.setComplete();
+		}
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/member/enrollPage.do")
