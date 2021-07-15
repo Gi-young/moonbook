@@ -3,8 +3,8 @@
 	display: flex;
     justify-content: center;
     flex-direction: column;
-	width:1920px; 
-	/* width:950px; */
+	width:100%; 
+	min-width:950px;
 	align-items:center;
 }
 

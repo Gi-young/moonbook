@@ -26,7 +26,7 @@
 				</div>
 				<c:if test="${empty list }">
 					<form class="loginForm"
-						action="${path }/login" method="post"
+						action="${path }/member/login.do" method="post"
 						onsubmit="">
 						<div class="logintext4">
 							<div class="logintext1">
@@ -46,7 +46,7 @@
 						</div>
 						<div class="logintext3">
 							<input type="button" name="naverLogin" value="네이버 Id로 가입/로그인">
-							<input type="button" name="enroll" value="KH문고 회원가입">
+							<input type="button" name="enroll" value="KH문고 회원가입" onclick="location.assign('${path}/member/enrollPage.do')">
 						</div>
 					</form>
 					

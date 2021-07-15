@@ -27,7 +27,7 @@
                 </div>
             </ul>
             <ul class="header-top-info2">
-                <li class="login"><a href="${path }/member/login.do">로그인</a></li>
+                <li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
                 <li><a href="${path }/member/enrollPage.do">회원가입</a></li>
                 <li><a href="#">고객센터</a></li>
                 <li><a href="#">주문배송</a></li>
