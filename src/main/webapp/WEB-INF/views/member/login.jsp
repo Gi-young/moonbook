@@ -30,7 +30,7 @@
 
 						<div class="logintext4">
 							<div class="logintext1">
-								<input type="text" name="memberId"
+								<input type="text" name="memberId" value="${cookie.saveId.value}"
 									placeholder="아이디를 대/소문자 구분하여 입력"> 
 									<input type="password" name="memberPw" id="password"
 									placeholder="비밀번호를 대/소문자 구분하여 입력">
@@ -41,8 +41,8 @@
 						</div>
 						<div class="logintext2">
 							<input type="checkbox" name="saveId" id="saveId"
-								${list.id ne null? "checked":""}> <label for="saveId">아이디저장</label>
-							<a class="searchIdPwd" href="">아이디/비밀번호찾기</a>
+								${cookie.saveId.value != null? "checked":""}> <label for="saveId">아이디저장</label>
+							<span class="searchIdPwd" onclick="fn_searchIdPw();">아이디/비밀번호찾기</span>
 						</div>
 						<div class="logintext3">
 							<input type="button" name="naverLogin" value="네이버 Id로 가입/로그인">
@@ -101,6 +101,14 @@
 			const fn_logout=()=>{
 				location.replace("${pageContext.request.contextPath }/logout");
 			}
+		const fn_searchIdPw=()=>{
+			
+			let searchIdPwPage="${path}/member/searchIdPwPage.do";
+			let name="로그인/비밀번호 찾기";
+			let option ="width=600,height=300";
+			
+			window.open(searchIdPwPage,name,option);
+		}
 	</script>
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp">

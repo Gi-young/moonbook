@@ -4,6 +4,8 @@ package com.rar.khbook.member.controller;
 import java.io.Writer;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +37,20 @@ public class MemberController {
 	public String loginPage() {
 		return "member/login";
 	}@RequestMapping("/member/login.do")
-	public String login(@RequestParam Map param,Model model,HttpSession session) {
+	public String login(@RequestParam Map param,Model model,HttpSession session,HttpServletResponse res) {
 		
+		
+		String saveId=(String)param.get("saveId");
+		String memberId=(String)param.get("memberId");
+		if(saveId !=null) {
+			Cookie c= new Cookie("saveId",memberId);
+			c.setMaxAge(7*24*60*60);
+			res.addCookie(c);
+		}else {
+			Cookie c=new Cookie("saveId","");
+			c.setMaxAge(0);
+			res.addCookie(c);
+		}
 		
 		Member m=service.selectOneMember(param);
 		System.out.println(m);
@@ -82,7 +96,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberEnrollEnd.do")
-	public String memberEnrollEnd(Member m,Model model,HttpSession sessiona) {
+	public String memberEnrollEnd(Member m,Model model,HttpSession session) {
 		
 		
 		log.debug("암호화전 : {}", m.getMemberPw());
@@ -98,7 +112,7 @@ public class MemberController {
 		if(result>0) {
 			msg="회원가입성공";
 			loc="/";
-			sessiona.setAttribute("flag", true);
+			session.setAttribute("flag", true);
 		}else {
 			msg="회원가입실패";
 			loc="/member/enrollUser2.do";
@@ -117,4 +131,75 @@ public class MemberController {
 		new Gson().toJson(m==null? "true":"false",out);
 	}
 	
+	@RequestMapping("/member/searchIdPwPage.do")
+	public String searchIdPwPage() {
+		return "member/searchIdPwPage";
+	}
+	@RequestMapping("/member/searchIdPwPage2.do")
+	public String searchIdpage2() {
+		return "member/searchIdPage";
+	}
+	@RequestMapping("/member/searchId.do")
+	public String searchId1(String memberName,String memberPhone,Member m,Model model) {
+		
+		m.getMemberName();
+		m.getMemberPhone();
+		System.out.println(m);
+		Member m2=service.searchId1(m);
+		
+		String msg="";
+		String loc="";
+
+		if(m2==null) {
+			msg="해당하는 데이터가 없습니다.";
+			loc="/member/searchIdPwPage.do";
+		}else {
+			msg="검색완료";
+			loc="/member/resultIdPage.do?m2="+m2.getMemberId();
+		}
+		model.addAttribute("m2", m2);
+		
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
+	}
+	
+	
+	@RequestMapping("/member/searchId2.do")
+	public String searchId2(String memberName,String memberEmail,Model model,Member m) {
+		
+		m.getMemberName();
+		m.getMemberEmail();
+		
+		Member m2=service.searchId2(m);
+		
+		String msg="";
+		String loc="";
+		System.out.println(m2);
+		if(m2==null) {
+			msg="해당하는 데이터가 없습니다.";
+			loc="/member/searchIdPwPage.do";
+		}else {
+			msg="검색완료";
+			loc="/member/resultIdPage.do?m2="+m2.getMemberId();
+		}
+		model.addAttribute("m2", m2);
+		
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("loc",loc);
+		
+		
+		return "common/msg";
+	}
+	@RequestMapping("/member/resultIdPage.do")
+	public String resultIdPage(String m2,Model model) {
+		
+		model.addAttribute("m2", m2);
+		
+		
+		return "member/resultIdPage";
+	}
 }

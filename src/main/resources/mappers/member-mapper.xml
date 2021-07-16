@@ -24,6 +24,14 @@
 		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
 	</select>
 	
+	<select id="searchId1" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE MEMBER_NAME=#{memberName} AND MEMBER_PHONE=#{memberPhone}
+	</select>
+	
+	<select id="searchId2" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE MEMBER_NAME=#{memberName} AND MEMBER_EMAIL=#{memberEmail}
+	</select>
+	
 	
 	
 

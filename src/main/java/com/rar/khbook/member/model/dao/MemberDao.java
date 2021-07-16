@@ -12,4 +12,8 @@ public interface MemberDao {
 	int insertMember(SqlSession session ,Member m);
 	
 	Member selectOneMember(SqlSession session,Map param);
+	
+	Member searchId1(SqlSession session,Member m);
+	
+	Member searchId2(SqlSession session,Member m);
 }
