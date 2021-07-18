@@ -44,6 +44,29 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.searchId2(session,m);
 	}
+
+	@Override
+	public Member searchId3(Member m) {
+		// TODO Auto-generated method stub
+		return dao.searchId3(session,m);
+	}
+
+	@Override
+	public Member searchId4(Member m) {
+		// TODO Auto-generated method stub
+		return dao.searchId4(session,m);
+	}
+
+	@Override
+	public int updateMemberPw(Member m) {
+		// TODO Auto-generated method stub
+		return dao.updateMemberPw(session,m);
+	}
+	
+	
+	
+	
+	
 	
 	
 	

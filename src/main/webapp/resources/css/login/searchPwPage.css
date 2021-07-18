@@ -1,13 +1,14 @@
 @charset "UTF-8";
 
-.searchId-container{
+.searchPw-container{
 	display: flex;
     justify-content: center;
     flex-direction: column;
 	width:100%;
 	align-items:center;
 }
-.searchIdType{
+
+.searchPwType{
 	padding-bottom:10px;
 }
 .search-Th{

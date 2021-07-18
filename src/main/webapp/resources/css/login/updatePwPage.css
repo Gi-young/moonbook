@@ -1,24 +1,32 @@
 @charset "UTF-8";
 
-.searchId-container{
+.updatePw-container{
 	display: flex;
     justify-content: center;
     flex-direction: column;
 	width:100%;
 	align-items:center;
 }
-.searchIdType{
+
+.searchPwType{
 	padding-bottom:10px;
 }
 .search-Th{
-	width:110px;
+	/* width:110px; */
 }
-.searchMyInfo-title2{
+.updateMyInfo-title3{
 	font-weight: bold;
 	color:#353f67;
 	font-size:20px;
 	text-align:center;
-	padding: 30px 30px;
+	padding-top: 50px;
+}
+.updateMyInfo-title4{
+	font-weight: bold;
+	color:#353f67;
+	font-size:20px;
+	text-align:center;
+	padding: 20px 20px;
 }
 .search1VerBtns{
 	padding: 10px 10px;
@@ -38,20 +46,4 @@
 	width:300px;
 	height:7px;
 	border: 1px solid #353f67;
-}
-
-.searchVer2{
-	width:300px;
-	height:7px;
-	border: 1px solid #353f67;
-}
-.searchIdInfo{
-	width:400px;
-	text-align: center;
-	padding-top:20px;
-	padding-bottom:20px;
-}
-.search2Ver-container{
-	/* display:hidden; */
-	display:none;
 }

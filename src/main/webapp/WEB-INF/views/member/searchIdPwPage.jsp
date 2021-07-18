@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="searchIdPw-container">
-	<p>내 정보로 간편 찾기</p>
+	<p class="searchMyInfo-title">내 정보로 간편 찾기</p>
 	<input class="searchIdBtn" type="button" value="아이디 찾기" onclick="location.assign('${path}/member/searchIdPwPage2.do')">
 	<input class="searchPwBtn" type="button" value="비밀번호 찾기" onclick="location.assign('${path}/member/searchIdPwPage3.do')">
 	

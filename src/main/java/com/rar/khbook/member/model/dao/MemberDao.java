@@ -16,4 +16,10 @@ public interface MemberDao {
 	Member searchId1(SqlSession session,Member m);
 	
 	Member searchId2(SqlSession session,Member m);
+	
+	Member searchId3(SqlSession session,Member m);
+	
+	Member searchId4(SqlSession session,Member m);
+	
+	int updateMemberPw(SqlSession session,Member m);
 }

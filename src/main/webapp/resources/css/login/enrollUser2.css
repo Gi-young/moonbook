@@ -35,7 +35,8 @@
 .enrollInfo-select{
 	height:30px;
 }
-.enrollInfo-box input{
+
+.enrollInfo5-box input{
 	width:200px;
 	height:30px;
 }
@@ -66,7 +67,9 @@
 	color:#fff;
 	background-color:#56a900;
 }
+
 .enrollchoice3{
+	
 	width:350px; 
 	height:70px; 
 	font-size: 28px;

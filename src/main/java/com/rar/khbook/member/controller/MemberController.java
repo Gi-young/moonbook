@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.rar.khbook.member.model.service.MemberService;
@@ -139,6 +140,11 @@ public class MemberController {
 	public String searchIdpage2() {
 		return "member/searchIdPage";
 	}
+	@RequestMapping("/member/searchIdPwPage3.do")
+	public String searchPwpage2() {
+		return "member/searchPwPage";
+	}
+	
 	@RequestMapping("/member/searchId.do")
 	public String searchId1(String memberName,String memberPhone,Member m,Model model) {
 		
@@ -194,6 +200,7 @@ public class MemberController {
 		
 		return "common/msg";
 	}
+	
 	@RequestMapping("/member/resultIdPage.do")
 	public String resultIdPage(String m2,Model model) {
 		
@@ -201,5 +208,114 @@ public class MemberController {
 		
 		
 		return "member/resultIdPage";
+	}
+	@RequestMapping("/member/searchPw.do")
+	public String searchPw(String memberId,String memberName,String memberPhone,Model model,Member m) {
+		m.getMemberId();
+		m.getMemberName();
+		m.getMemberPhone();
+		
+		//일단 아이디, 이름과 휴대전화로 회원이 맞는지 확인
+		Member m3=service.searchId3(m);
+		
+		String msg="";
+		String loc="";
+
+		if(m3==null) {
+			msg="해당하는 데이터가 없습니다.";
+			loc="/member/searchIdPwPage.do";
+		}else {
+			//회원이 임시 패스워드 생성창으로 바로가기
+			msg="비밀번호를 재 생성 하세요";
+			loc="/member/updatePwPage.do?m3="+m3.getMemberId();
+		}
+		model.addAttribute("m3", m3);
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
+			
+	}
+	
+	@RequestMapping("/member/searchPw2.do")
+	public String searchPw2(String memberId,String memberName,String memberEmail,Model model,Member m) {
+		m.getMemberId();
+		m.getMemberName();
+		m.getMemberEmail();
+		
+		//일단 아이디, 이름과 이메일로 회원이 맞는지 확인
+		Member m3=service.searchId4(m);
+		
+		String msg="";
+		String loc="";
+
+		if(m3==null) {
+			msg="해당하는 데이터가 없습니다.";
+			loc="/member/searchIdPwPage.do";
+		}else {
+			
+			//회원이 임시 패스워드 생성창으로 바로가기
+			msg="비밀번호를 재 생성 하세요";
+			loc="/member/updatePwPage.do?m3="+m3.getMemberId();
+		}
+		
+		model.addAttribute("m3", m3);
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("loc",loc);
+		
+		return "common/msg";
+			
+	}
+	@RequestMapping("/member/updatePwPage.do")
+	public String updatePwPage(String m3,Model model) {
+		
+		model.addAttribute("memberId", m3);
+		return "member/updatePwPage";
+	}
+	
+	@RequestMapping("/member/memberUpdatePw.do")
+	public ModelAndView updateMemberPw(ModelAndView mv,Member m,String memberPw) {
+
+		m.setMemberPw(pwEncoder.encode(memberPw));
+		int resultPw=service.updateMemberPw(m);
+		//mv.setViewName("/member/resultIdPage2.do?resultPw="+resultPw);
+		
+		
+		String msg="";
+		String loc="";
+		
+		if(resultPw>0) {
+			msg="비밀번호가 정상적으로 변경되었습니다.";
+			loc="/member/resultIdPage2.do?";
+			System.out.println(resultPw);
+		}else {
+			msg="비밀번호가 변경 실패";
+			loc="/member/searchIdPwPage.do";
+			System.out.println(resultPw);
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/member/resultIdPage2.do")
+	public String resultPwPage(Model model) {
+		
+		/* model.addAttribute("resultPw", resultPw); */
+		return "member/resultIdPage";
+	}
+	//창이 닫히면서 memeberId를 어캐 넘겨주지
+	@RequestMapping("/member/cookieChangePage.do")
+	public ModelAndView cookieChange(ModelAndView mv,String memberId) {
+		
+		mv.addObject("memberIdC", memberId);
+		mv.setViewName("member/login");
+		return mv;
 	}
 }

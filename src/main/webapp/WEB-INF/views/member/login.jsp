@@ -30,8 +30,14 @@
 
 						<div class="logintext4">
 							<div class="logintext1">
+								<c:if test="${memberIdC !=null}">
+								<input type="text" name="memberId" value="${memberIdC}"
+									placeholder="아이디를 대/소문자 구분하여 입력">
+								</c:if>
+								<c:if test="${memberIdC ==null}">
 								<input type="text" name="memberId" value="${cookie.saveId.value}"
-									placeholder="아이디를 대/소문자 구분하여 입력"> 
+									placeholder="아이디를 대/소문자 구분하여 입력">
+								</c:if>  
 									<input type="password" name="memberPw" id="password"
 									placeholder="비밀번호를 대/소문자 구분하여 입력">
 							</div>

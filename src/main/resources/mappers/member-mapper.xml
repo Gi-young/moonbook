@@ -32,7 +32,16 @@
 		SELECT * FROM MEMBER WHERE MEMBER_NAME=#{memberName} AND MEMBER_EMAIL=#{memberEmail}
 	</select>
 	
+	<select id="searchId3" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_NAME=#{memberName} AND MEMBER_PHONE=#{memberPhone} 
+	</select>
 	
+	<select id="searchId4" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId} AND MEMBER_NAME=#{memberName} AND MEMBER_EMAIL=#{memberEmail}
+	</select>
 	
+	<update id="updateMemberPw">
+		UPDATE MEMBER SET MEMBER_PW=#{memberPw} WHERE MEMBER_ID=#{memberId}
+	</update> 
 
 </mapper>

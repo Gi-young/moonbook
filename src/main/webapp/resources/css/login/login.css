@@ -65,15 +65,15 @@
 }
 .login-title{
 	margin-top:10px;
-	margin-left:15px;
+	/* margin-left:10px; */
 	
 }
 .login-title span{
-	margin-left:15px;
+	margin-left:20px;
 	text-align:left;
 	font-size:16px;
 	font-weight:bold;
-}
+} 
 .hr1{
 	opacity:0.5;
 	width:950px;
@@ -93,7 +93,7 @@
 .login-container{
 	border : #8fc8f1 solid;
 	width:332px;
-	height:197px;
+	heigth:230px;
 	margin-bottom:30px;
 }
 .logintext1>input{
