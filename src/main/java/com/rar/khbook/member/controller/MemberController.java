@@ -337,5 +337,10 @@ public class MemberController {
 	public String memberGrade() {
 		
 		return "member/memberGrade";
+	}	
+
+	@RequestMapping("/member/sleepingMemberPage.do")
+	public String sleepingMemberPage() {
+		return "member/sleepingMemberPage";
 	}
 }

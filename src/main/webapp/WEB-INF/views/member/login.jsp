@@ -61,7 +61,7 @@
 			</div>
 				<div class="sleepingUser">
 					<p>1년 이상 미접속 회원이신가요?</p>
-					<input type="button" name="sleepUser" value="조회하기">
+					<input type="button" name="sleepUser" value="조회하기" onclick="location.assign('${path}/member/sleepingMemberPage.do')">
 				</div>
 			</div>
 			
