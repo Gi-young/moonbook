@@ -23,11 +23,11 @@
 			</c:if>
 			
 			<c:if test="${resultPw ne null }">
-				정상적으로 비밀번호를 변경하였습니다.
+				<p class="resultId-Info">정상적으로 비밀번호를 변경하였습니다.</p>
 			</c:if>
 			<div class="resultIdPwd-ok">
 			<input type="hidden" name="memberId" value="${m2 }">
-			<input type="submit" value="확인" class="resultIdBtn">
+			<input type="button" value="확인" class="resultIdBtn" onclick="fn_resultIdPwdBtn('cookieChangePage.do')">
 			</div>
 		</form>
 	</div>
@@ -41,6 +41,11 @@
 	$(#cookieChangeP).submit();
 	window.close();
 },10000); */ 
+function fn_resultIdPwdBtn(url){
+	$("#cookieChangeP").attr("action","${path}/member/"+url);
+	$("#cookieChangeP").submit();
+	window.open("about:black","_self").close();
+}
 
 
 </script>

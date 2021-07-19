@@ -288,7 +288,7 @@ public class MemberController {
 		
 		if(resultPw>0) {
 			msg="비밀번호가 정상적으로 변경되었습니다.";
-			loc="/member/resultIdPage2.do?";
+			loc="/member/resultIdPage2.do?resultPw="+resultPw;
 			System.out.println(resultPw);
 		}else {
 			msg="비밀번호가 변경 실패";
@@ -305,9 +305,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/resultIdPage2.do")
-	public String resultPwPage(Model model) {
+	public String resultPwPage(String resultPw,Model model) {
 		
-		/* model.addAttribute("resultPw", resultPw); */
+		model.addAttribute("resultPw", resultPw);
 		return "member/resultIdPage";
 	}
 	//창이 닫히면서 memeberId를 어캐 넘겨주지
