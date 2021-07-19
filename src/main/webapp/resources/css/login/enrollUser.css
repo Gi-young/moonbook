@@ -44,7 +44,7 @@
 	display: flex;
     justify-content: center;
     flex-direction: column;
-	width:1920px;
+	width:100%;
 	align-items:center;
 }
 .manual-title1{
@@ -71,4 +71,7 @@
 }
 .manual-title2{
 	color:#56a900;
+}
+.enroll-okBox{
+	text-align:center;
 }
