@@ -35,15 +35,7 @@
                 	<li class="user1"><a href="${path }/myroom/memberGradeGo.do">${loginMember.memberName }님 (${loginMember.memberGrade}) ▽</a></li>
                 	<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
                 	<li><a href="${path }/member/logout.do">로그아웃</a></li>
-                	<ul class="loginLayer">
-                		
-                		<li><a href="#">마이룸 메인</a></li>
-                		<li><a href="#">쿠폰함</a></li>
-                		<li><a href="#">eBook서재</a></li>
-                		<li><a href="#">sam 서재</a></li>
-                		<li><a href="#">보관함</a></li>
-                		
-                	</ul>
+                	
                 </c:if>
                 <li><a href="#">고객센터</a></li>
                 <li><a href="#">주문배송</a></li>
@@ -164,14 +156,7 @@
     </div>
 </div>
 
-<script type="text/javascript">
 
-$(".loginLayer").hide();
-$(".user1").hover(e =>{
-	$(".loginLayer").show();
-})
-
-</script>
 
 <script src="${path }/resources/js/header.js"></script>
 <script src="${path }/resources/js/header(2).js"></script>

@@ -318,4 +318,8 @@ public class MemberController {
 		mv.setViewName("member/login");
 		return mv;
 	}
+	@RequestMapping("/member/sleepingMemberPage.do")
+	public String sleepingMemberPage() {
+		return "member/sleepingMemberPage";
+	}
 }
