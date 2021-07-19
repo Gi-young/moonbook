@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title> 
+    <title>${param.title }</title> 
     <link rel="stylesheet" href="${path }/resources/css/style.css">
 	<script type="text/javascript" src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 
@@ -32,7 +32,7 @@
                 	<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
                 </c:if>
                 <c:if test="${loginMember!=null }">
-                	<li class="user1"><a href="${path }/myroom/memberGradeGo.do">${loginMember.memberName }님 (${loginMember.memberGrade}) ▽</a></li>
+                	<li class="user1"><a href="${path }/member/myroom.do">${loginMember.memberName }님 (${loginMember.memberGrade}) ▽</a></li>
                 	<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
                 	<li><a href="${path }/member/logout.do">로그아웃</a></li>
                 	<ul class="loginLayer">

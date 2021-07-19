@@ -4,6 +4,10 @@
 
 	<typeAliases>
 		<typeAlias type="com.rar.khbook.member.model.vo.Member" alias="member"/>
+		
+		<!-- 쿠폰 -->
+		<typeAlias type="com.rar.khbook.coupon.model.vo.Couponlist" alias="couponlist"/>
+		<typeAlias type="com.rar.khbook.coupon.model.vo.Coupon" alias="coupon"/>
 	</typeAliases>
 
 </configuration>

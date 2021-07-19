@@ -1,8 +1,10 @@
 package com.rar.khbook.member.model.service;
 
 
+import java.util.List;
 import java.util.Map;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface MemberService {
@@ -20,4 +22,6 @@ public interface MemberService {
 	Member searchId4(Member m); //아이디 ,이름 ,이메일 -> 아이디 조회 
 	
 	int updateMemberPw(Member m);
+	
+	List<Coupon> getCoupon(Member m);
 }

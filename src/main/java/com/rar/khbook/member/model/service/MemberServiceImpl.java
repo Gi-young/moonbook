@@ -1,14 +1,14 @@
 package com.rar.khbook.member.model.service;
 
 
+import java.util.List;
 import java.util.Map;
-
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.dao.MemberDao;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -63,8 +63,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.updateMemberPw(session,m);
 	}
 	
-	
-	
+//	쿠폰 가져오기
+	@Override
+	public List<Coupon> getCoupon(Member m) {
+		// TODO Auto-generated method stub
+		return dao.getCoupon(session, m);
+	}
 	
 	
 	
