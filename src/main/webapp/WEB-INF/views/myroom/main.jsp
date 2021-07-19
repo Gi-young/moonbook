@@ -41,9 +41,9 @@
 		<div class="myroom_contents">
 			<div class="out_myroom_gradearea">
 				<div class="user_section">
-					<div class="user_name">이름님 (회원등급)</div>
+					<div class="user_name">${loginMember.memberName }님 (${loginMember.memberGrade })</div>
 					<div class="btn_group">
-						<a href="#" class="btn_small">혜택보기</a> <a href="#"
+						<a href="${path }/member/grade.do" class="btn_small">혜택보기</a> <a href="#"
 							class="btn_small">다음달 예상 등급</a>
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 								<a href="#">쿠폰</a>
 							</div>
 							<div class="padding3">
-								<a href="#"><strong class="bold">숫자</strong></a>장
+								<a href="#"><strong class="bold">${coupon.size() }</strong></a>장
 							</div>
 						</td>
 					</tr>

@@ -1,10 +1,12 @@
 package com.rar.khbook.member.model.dao;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface MemberDao {
@@ -22,4 +24,7 @@ public interface MemberDao {
 	Member searchId4(SqlSession session,Member m);
 	
 	int updateMemberPw(SqlSession session,Member m);
+	
+//	쿠폰 가져오기
+	List<Coupon> getCoupon(SqlSession session, Member m);
 }

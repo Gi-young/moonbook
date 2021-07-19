@@ -1,14 +1,19 @@
 package com.rar.khbook.member.model.dao;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Repository
+@Slf4j
 public class MemberDaoImpl implements MemberDao {
 
 	@Override
@@ -53,8 +58,13 @@ public class MemberDaoImpl implements MemberDao {
 		return session.update("member.updateMemberPw",m);
 	}
 	
-	
-	
+//	쿠폰 가져오기
+	@Override
+	public List<Coupon> getCoupon(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		log.debug(m.getMemberId());
+		return session.selectList("member.getCoupon", m);
+	}
 	
 	
 	

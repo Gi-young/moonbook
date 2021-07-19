@@ -93,8 +93,20 @@ h2>a {
 }
 
 .btn_small {
-	font-size: 12px !important;
-	padding: 3px 4px 2px;
+	display: inline-block;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border: 1px solid #d0d0d0;
+    padding: 5px 4px 0px;
+    height: 13px;
+    font-size: 12px;
+    line-height: 13px;
+    font-weight: normal;
+    color: #666;
+    text-decoration: none;
+    background-color: #fff;
+    text-align: center;
+    transition: all .2s;
 }
 
 .out_myroom_gradearea .user_info_list {

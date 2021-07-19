@@ -2,6 +2,7 @@ package com.rar.khbook.member.controller;
 
 
 import java.io.Writer;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -60,6 +62,11 @@ public class MemberController {
 			
 			if(pwEncoder.matches((String)param.get("memberPw"), m.getMemberPw())) {
 				session.setAttribute("loginMember", m);
+//				log.debug("{}", session.getAttribute("loginMember"));
+				
+//				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
+				List<Coupon> c = service.getCoupon(m);
+				session.setAttribute("coupon", c);
 				msg="로그인 성공";
 				model.addAttribute("loc", "/");
 			}else {
@@ -317,5 +324,18 @@ public class MemberController {
 		mv.addObject("memberIdC", memberId);
 		mv.setViewName("member/login");
 		return mv;
+	}
+	
+//	마이룸 메인연결
+	@RequestMapping("/member/myroom.do")
+	public String myroomMain(HttpSession session) {
+		
+		return "myroom/main";
+	}
+//	회원등급별 혜택 페이지
+	@RequestMapping("/member/grade.do")
+	public String memberGrade() {
+		
+		return "member/memberGrade";
 	}
 }
