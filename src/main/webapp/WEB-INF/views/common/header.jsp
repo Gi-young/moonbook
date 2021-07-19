@@ -149,9 +149,16 @@
                 <ul class="flex">
                     <li><a href="#">베스트</a></li>
                     <li><a href="#">신상품</a></li>
+            <c:if test="${loginMember.memberId.equals('admin') }">
+                    <li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
+            </c:if>
                 </ul>
             </div>
-            <div></div>
+            <div>
+            	<ul class="flex">
+                    
+                </ul>
+            </div>
         </div>
     </div>
 </div>
