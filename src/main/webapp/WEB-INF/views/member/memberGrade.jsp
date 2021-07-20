@@ -16,16 +16,16 @@
 				<tr>
 					<th colspan="2"></th>
 					<th scope="col" class="tbl_head">
-						<div class="member_grade">플래티넘</div>
+						<div class="member_grade4">플래티넘</div>
 					</th>
 					<th scope="col" class="tbl_head">
-						<div class="member_grade">골드</div>
+						<div class="member_grade3">골드</div>
 					</th>
 					<th scope="col" class="tbl_head">
-						<div class="member_grade">실버</div>
+						<div class="member_grade2">실버</div>
 					</th>
 					<th scope="col" class="tbl_head">
-						<div class="member_grade">프렌즈</div>
+						<div class="member_grade1">프렌즈</div>
 					</th>
 				</tr>
 				<tr>
@@ -37,15 +37,80 @@
 					<td><big>10만원 미만</big></td>
 				</tr>
 				<tr>
-					<th scope="row" colspan="2">발급 가능 쿠폰 종류</th>
+					<th scope="row" colspan="2">추가 발급 가능 쿠폰 종류</th>
 					<td class="valign_top">
 						<ul class="couponlist">
 							<li><div class="coupon">
 									<img src="${path }/resources/images/img_coupon_3000.png">
-								</div> <span class="coupon_info">3만원 이상 구매시 사용가능</span></li>
+								</div> <span class="coupon_info">3만원 이상 구매시 사용</span></li>
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_3000.png">
+								</div> <span class="coupon_info">2만원 이상 구매시 사용</span></li>
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_3000.png">
+								</div> <span class="coupon_info">1만원 이상 구매시 사용</span></li>
 						</ul>
+					</td>
+					<td class="valign_top">
+						<ul class="couponlist">
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_3000.png">
+								</div> <span class="coupon_info">7만원 이상 구매시 사용</span></li>
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_3000.png">
+								</div> <span class="coupon_info">5만원 이상 구매시 사용</span></li>
+							<%-- <li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_3000.png">
+								</div> <span class="coupon_info">3만원 이상 구매시 사용</span></li> --%>
+						</ul>
+					</td>
+					<td class="valign_top">
+						<ul class="couponlist">
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_2000.png">
+								</div> <span class="coupon_info">3만원 이상 구매시 사용</span></li>
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_2000.png">
+								</div> <span class="coupon_info">2만원 이상 구매시 사용</span></li>
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_2000.png">
+								</div> <span class="coupon_info">1만원 이상 구매시 사용</span></li>
+						</ul>
+					</td>
+					<td class="valign_top">
+						<ul class="couponlist">
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_1000.png">
+								</div> <span class="coupon_info">7만원 이상 구매시 사용</span></li>
+							<li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_1000.png">
+								</div> <span class="coupon_info">5만원 이상 구매시 사용</span></li>
+							<%-- <li><div class="coupon">
+									<img src="${path }/resources/images/img_coupon_1000.png">
+								</div> <span class="coupon_info">3만원 이상 구매시 사용</span></li> --%>
+						</ul>
+					</td>
 			</table>
 		</div>
+		<h4 class="title_memberStandard bold">등급 선정 기준</h4>
+		<table class="tbl_memberStandard">
+			<tr>
+				<th scope="col" colspan="2">구분</th>
+				<th scope="col">내용</th>
+			</tr>
+			<tr>
+				<th scope="row" colspan="2">혜택기간</th>
+				<td>매월 1일(오전 9시)부터 3개월</td>
+			</tr>
+			<tr>
+				<th scope="row" colspan="2">선정기간</th>
+				<td>직전 3개월 순수구매액(전월 1일 ~ 당월 1일, 결제일 기준)</td>
+			</tr>
+			<tr>
+				<th scope="row" colspan="2">순수구매액</th>
+				<td>쿠폰, 배송비 등을 제외한 도서 및 기프트 상품의 순수 금액</td>
+			</tr>
+		</table>
 	</div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp">

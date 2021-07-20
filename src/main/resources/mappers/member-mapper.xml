@@ -32,6 +32,7 @@
 		<result column="couponlist_invalid"
 			property="couponlistInvalid" />
 		<result column="couponlist_name" property="couponlistName" />
+		<result column="couponlist_condition" property="couponlistCondition" />
 	</resultMap>
 
 	<!-- 쿠폰리스트를 상속받는 쿠폰 VO -->
@@ -43,6 +44,7 @@
 		<result column="coupon_couponlist_no"
 			property="couponCouponlistNo" />
 		<result column="coupon_canuse" property="couponCanuse" />
+		<result column="coupon_img" property="couponImg" />
 	</resultMap>
 
 	<select id="selectOneMember" resultMap="memberMap">

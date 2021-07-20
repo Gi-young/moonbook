@@ -12,4 +12,5 @@ public class Couponlist {
 	private String couponlistForuse;
 	private int couponlistInvalid;
 	private String couponlistName;
+	private int couponlistCondition;
 }
