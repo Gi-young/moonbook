@@ -14,7 +14,7 @@
 			<ul class="cscenter_snb3" style="width:180px;">
 				<li><strong>회원 관리</strong>
 					<ul>
-						<li><button>수정</button></li>
+						<li><button onclick="adUpdateMember()">수정</button></li>
 						<li><button>삭제</button></li>
 					</ul></li>
 				<li><strong>책 관리</strong>
@@ -44,3 +44,11 @@
 					</ul></li>
 			</ul>
 		</div>
+		
+<script>
+function adUpdateMember(){
+	$.get("${path}/admin/adUpdateMember",data =>{
+		console.log(data);
+	});
+}
+</script>

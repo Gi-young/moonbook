@@ -19,6 +19,28 @@
 		</jsp:include>
 		
 	</div>
+	
+	<div class="admin_contents">
+		<table>
+			<tr>
+				<th>회원 아이디</th>
+				<th>회원 이름</th>
+				<th>회원 전화번호</th>
+				<th>회원 성별</th>
+				<th>회원 포인트</th>
+				<th>회원 등급</th>
+			</tr>
+			<tr>
+				<td></td>
+				<td>회원 이름</td>
+				<td>회원 전화번호</td>
+				<td>회원 성별</td>
+				<td>회원 포인트</td>
+				<td>회원 등급</td>
+			</tr>
+			
+		</table>
+	</div>
 
 
 </div>
