@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.member.model.vo.Membergrade;
 
 public interface MemberService {
 
@@ -23,5 +24,8 @@ public interface MemberService {
 	
 	int updateMemberPw(Member m);
 	
+//	쿠폰 가져옴
 	List<Coupon> getCoupon(Member m);
+//	회원등급 가져옴
+	Membergrade getMembergrade(Member m);
 }

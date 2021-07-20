@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.member.model.vo.Membergrade;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -66,7 +67,12 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList("member.getCoupon", m);
 	}
 	
-	
+//	회원등급 가져오기
+	@Override
+	public Membergrade getMembergrade(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.getMembergrade", m);
+	}
 	
 	
 	

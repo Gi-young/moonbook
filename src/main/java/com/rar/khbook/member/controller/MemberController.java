@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.member.model.vo.Membergrade;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -67,6 +68,9 @@ public class MemberController {
 //				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
 				List<Coupon> c = service.getCoupon(m);
 				session.setAttribute("coupon", c);
+//				로그인한 멤버의 회원등급도 Session에 넣어줌
+				Membergrade mg = service.getMembergrade(m);
+				session.setAttribute("membergrade", mg);
 				msg="로그인 성공";
 				model.addAttribute("loc", "/");
 			}else {

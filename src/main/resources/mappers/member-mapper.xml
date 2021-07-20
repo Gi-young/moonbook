@@ -7,7 +7,17 @@
 		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1)
 	</insert>
 
-	<resultMap type="member" id="memberMap">
+	<!-- 멤버에 상속해줄 부모 VO -->
+	<resultMap type="membergrade" id="membergradeMap">
+		<result column="membergrade_no" property="membergradeNo" />
+		<result column="membergrade_name" property="membergradeName" />
+		<result column="membergrade_standard" property="membergradeStandard" />
+		<result column="membergrade_content" property="membergradeContent" />
+		<result column="membergrade_img" property="membergradeImg" />
+	</resultMap>
+
+	<resultMap type="member" id="memberMap"
+		extends="membergradeMap">
 		<result column="member_id" property="memberId" />
 		<result column="member_pw" property="memberPw" />
 		<result column="member_name" property="memberName" />
@@ -32,7 +42,8 @@
 		<result column="couponlist_invalid"
 			property="couponlistInvalid" />
 		<result column="couponlist_name" property="couponlistName" />
-		<result column="couponlist_condition" property="couponlistCondition" />
+		<result column="couponlist_condition"
+			property="couponlistCondition" />
 	</resultMap>
 
 	<!-- 쿠폰리스트를 상속받는 쿠폰 VO -->
@@ -85,5 +96,10 @@
 		COUPONLIST ON COUPON_COUPONLIST_NO =
 		COUPONLIST_NO WHERE
 		COUPON_MEMBER_ID=#{memberId}
+	</select>
+	
+	<!-- 회원등급 가져오기 -->
+	<select id = "getMembergrade" resultMap="membergradeMap">
+	SELECT * FROM MEMBERGRADE WHERE MEMBERGRADE_NO = #{memberGradeNo}
 	</select>
 </mapper>

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.member.model.vo.Membergrade;
 
 public interface MemberDao {
 
@@ -27,4 +28,7 @@ public interface MemberDao {
 	
 //	쿠폰 가져오기
 	List<Coupon> getCoupon(SqlSession session, Member m);
+	
+//	회원등급 가져오기
+	Membergrade getMembergrade(SqlSession session, Member m);
 }

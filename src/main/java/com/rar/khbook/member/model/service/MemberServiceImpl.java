@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.dao.MemberDao;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.member.model.vo.Membergrade;
 
 
 @Service
@@ -70,8 +71,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getCoupon(session, m);
 	}
 	
-	
-	
+//	회원등급 가져오기
+	@Override
+	public Membergrade getMembergrade(Member m) {
+		// TODO Auto-generated method stub
+		return dao.getMembergrade(session, m);
+	}
 	
 	
 	

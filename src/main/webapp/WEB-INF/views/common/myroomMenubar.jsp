@@ -41,8 +41,8 @@
 		<div class="myroom_contents">
 			<div class="out_myroom_gradearea">
 				<div class="user_section">
-					<div class="user_name">${loginMember.memberName }님
-						(${loginMember.memberGrade })</div>
+					<div class="user_name">${loginMember.memberName }님 (${membergrade.membergradeName })</div>
+						<%-- (${loginMember.memberGrade })</div> --%>
 					<div class="btn_group">
 						<a href="${path }/member/grade.do" class="btn_small">혜택보기</a> <a
 							href="${path }/member/nextGrade.do" class="btn_small">다음달 예상
