@@ -338,4 +338,10 @@ public class MemberController {
 		
 		return "member/memberGrade";
 	}
+//	다음달 등급 페이지
+	@RequestMapping("/member/nextGrade.do")
+	public String nextGrade() {
+		
+		return "member/nextGrade";
+	}
 }

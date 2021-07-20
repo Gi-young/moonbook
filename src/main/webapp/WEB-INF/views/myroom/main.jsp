@@ -3,10 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<%-- <jsp:include page="/WEB-INF/views/common/header.jsp">
+	<jsp:param name="title" value="마이룸 - KH문고" />
+</jsp:include> --%>
+<jsp:include page="/WEB-INF/views/common/myroomMenubar.jsp">
 	<jsp:param name="title" value="마이룸 - KH문고" />
 </jsp:include>
-<div class="wrap">
+<%-- <div class="wrap">
 	<div class="container">
 		<p class="path">
 			홈 > <span>마이룸 > main</span>
@@ -41,10 +44,12 @@
 		<div class="myroom_contents">
 			<div class="out_myroom_gradearea">
 				<div class="user_section">
-					<div class="user_name">${loginMember.memberName }님 (${loginMember.memberGrade })</div>
+					<div class="user_name">${loginMember.memberName }님
+						(${loginMember.memberGrade })</div>
 					<div class="btn_group">
-						<a href="${path }/member/grade.do" class="btn_small">혜택보기</a> <a href="#"
-							class="btn_small">다음달 예상 등급</a>
+						<a href="${path }/member/grade.do" class="btn_small">혜택보기</a> <a
+							href="${path }/member/nextgrade.do" class="btn_small">다음달 예상
+							등급</a>
 					</div>
 				</div>
 				<table class="user_info_list">
@@ -59,7 +64,7 @@
 						</td>
 					</tr>
 				</table>
-			</div>
+			</div> --%>
 
 			<h3 class="bul_green20">
 				<span class="bold">나의 최근 주문현황</span>
@@ -160,8 +165,7 @@
 					</div>
 					<a href="#" class="btn_prev"> <img
 						src="${path }/resources/images/gifts_list_arr1.gif">
-					</a>
-					<a href="#" class="btn_next"> <img
+					</a> <a href="#" class="btn_next"> <img
 						src="${path }/resources/images/gifts_list_arr2.gif">
 					</a>
 				</div>
