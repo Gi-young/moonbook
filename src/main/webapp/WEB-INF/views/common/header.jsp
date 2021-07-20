@@ -32,18 +32,10 @@
                 	<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
                 </c:if>
                 <c:if test="${loginMember!=null }">
-                	<li class="user1"><a href="${path }/member/myroom.do">${loginMember.memberName }님 (${loginMember.memberGrade}) ▽</a></li>
+                	<li class="user1"><a href="${path }/member/myroom.do">${loginMember.memberName }님 (${loginMember.memberGradeNo}) ▽</a></li>
                 	<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
                 	<li><a href="${path }/member/logout.do">로그아웃</a></li>
-                	<ul class="loginLayer">
-                		
-                		<li><a href="#">마이룸 메인</a></li>
-                		<li><a href="#">쿠폰함</a></li>
-                		<li><a href="#">eBook서재</a></li>
-                		<li><a href="#">sam 서재</a></li>
-                		<li><a href="#">보관함</a></li>
-                		
-                	</ul>
+                	
                 </c:if>
                 <li><a href="#">고객센터</a></li>
                 <li><a href="#">주문배송</a></li>
@@ -157,21 +149,21 @@
                 <ul class="flex">
                     <li><a href="#">베스트</a></li>
                     <li><a href="#">신상품</a></li>
+            <c:if test="${loginMember.memberId.equals('admin') }">
+                    <li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
+            </c:if>
                 </ul>
             </div>
-            <div></div>
+            <div>
+            	<ul class="flex">
+                    
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript">
 
-$(".loginLayer").hide();
-$(".user1").hover(e =>{
-	$(".loginLayer").show();
-})
-
-</script>
 
 <script src="${path }/resources/js/header.js"></script>
 <script src="${path }/resources/js/header(2).js"></script>

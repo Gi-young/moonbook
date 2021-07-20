@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 재생성하기</title>
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${path }/resources/css/login/reset.css">
 <link rel="stylesheet" href="${path }/resources/css/login/updatePwPage.css">
 </head>
@@ -35,7 +36,7 @@
 					
 				</table>
 				<div class="search1VerBtns">
-					<input type="submit" value="확인" onclick="fn_checkPw();"/>
+					<input type="submit" value="확인" onclick="return fn_checkPw();"/>
 					<button onclick="fn_close();">닫기</button>
 				</div>
 			</form>
@@ -48,9 +49,10 @@
 </html>
 <script type="text/javascript">
 const fn_checkPw=()=>{
-	const password=$(e.target).parent().parent().prev().children().next().children().val();
-	const password2=$(e.target).val();
-	
+	const password=$("#memberPw2").parent().parent().prev().children().next().children().val();
+	const password2=$("#memberPw2").val();
+	console.log(password);
+	console.log(password2);
 	if(password2!=password){
 		alert("비밀번호가 맞지 않습니다.");
 		return false;

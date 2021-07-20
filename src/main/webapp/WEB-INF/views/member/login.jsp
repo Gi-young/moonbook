@@ -30,14 +30,10 @@
 
 						<div class="logintext4">
 							<div class="logintext1">
-								<c:if test="${memberIdC !=null}">
-								<input type="text" name="memberId" value="${memberIdC}"
+								
+								<input type="text" name="memberId" value="${cookie.saveId.value}" id="memberId_"
 									placeholder="아이디를 대/소문자 구분하여 입력">
-								</c:if>
-								<c:if test="${memberIdC ==null}">
-								<input type="text" name="memberId" value="${cookie.saveId.value}"
-									placeholder="아이디를 대/소문자 구분하여 입력">
-								</c:if>  
+								  
 									<input type="password" name="memberPw" id="password"
 									placeholder="비밀번호를 대/소문자 구분하여 입력">
 							</div>
@@ -61,7 +57,7 @@
 			</div>
 				<div class="sleepingUser">
 					<p>1년 이상 미접속 회원이신가요?</p>
-					<input type="button" name="sleepUser" value="조회하기">
+					<input type="button" name="sleepUser" value="조회하기" onclick="location.assign('${path}/member/sleepingMemberPage.do')">
 				</div>
 			</div>
 			

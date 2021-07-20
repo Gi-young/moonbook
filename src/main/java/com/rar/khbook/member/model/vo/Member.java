@@ -23,6 +23,6 @@ public class Member {
 	private String memberBirth;
 	private int memberPoint;
 	private Date memberRegiDate;
-	private String memberGrade;
+	private int memberGradeNo;
 	
 }

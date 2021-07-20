@@ -11,6 +11,7 @@
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${path }/resources/css/login/reset.css">
 <link rel="stylesheet" href="${path }/resources/css/login/searchPwPage.css">
+
 </head>
 <body>
 	<div class="searchPw-container">
