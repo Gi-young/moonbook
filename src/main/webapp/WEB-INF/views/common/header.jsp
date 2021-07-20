@@ -32,7 +32,7 @@
                 	<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
                 </c:if>
                 <c:if test="${loginMember!=null }">
-                	<li class="user1"><a href="${path }/member/myroom.do">${loginMember.memberName }님 (${loginMember.memberGrade}) ▽</a></li>
+                	<li class="user1"><a href="${path }/member/myroom.do">${loginMember.memberName }님 (${loginMember.memberGradeNo}) ▽</a></li>
                 	<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
                 	<li><a href="${path }/member/logout.do">로그아웃</a></li>
                 	

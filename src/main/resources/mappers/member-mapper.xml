@@ -4,7 +4,7 @@
 
 	<insert id="insertMember">
 		INSERT INTO MEMBER
-		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,'프렌즈')
+		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1)
 	</insert>
 
 	<resultMap type="member" id="memberMap">
@@ -18,7 +18,7 @@
 		<result column="member_birth" property="memberBirth" />
 		<result column="member_point" property="memberPoint" />
 		<result column="member_regidate" property="memberRegiDate" />
-		<result column="member_grade" property="memberGrade" />
+		<result column="member_memberGrade_no" property="memberGradeNo" />
 	</resultMap>
 
 	<!-- 쿠폰에 상속해줄 부모 VO -->
