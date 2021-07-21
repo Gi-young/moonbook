@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.resultId-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+	width:100%;
+	align-items:center;
+}
+.resultAlert{
+	font-weight: bold;
+	color:#353f67;
+	font-size:20px;
+	text-align:center;
+	padding: 70px 30px;
+}
+.resultId-Info{
+	padding: 70px 30px;
+	font-weight: bold;
+	color:black;
+}
+.m2Result{
+	color:red;
+}
+.resultIdPwd-ok{
+	text-align: center;
+	
+}
+.resultIdBtn{
+	background-color:#1776c8;
+	color: #fff;
+	bolder-color:#0c60a8;
+}

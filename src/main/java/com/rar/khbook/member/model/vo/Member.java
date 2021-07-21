@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Member {
+public class Member extends Membergrade {
 
 	private String memberId;
 	private String memberPw;
@@ -23,6 +23,6 @@ public class Member {
 	private String memberBirth;
 	private int memberPoint;
 	private Date memberRegiDate;
-	private String memberGrade;
+	private int memberGradeNo;
 	
 }

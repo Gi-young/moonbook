@@ -24,7 +24,7 @@
 			<p>회원가입</p>
 		</div>
 		<div class="enrollInfo-box">
-
+			<div class="enrollInfo5-box">
 			<form id="frm" action="${path }/member/memberEnrollEnd.do" method="post">
 
 			<form action="${path }/member/memberEnrollEnd.do" method="post">
@@ -71,11 +71,10 @@
 					<label for="genderF">여</label>
 			</div>
 			<p class="enrollInfo-font">생년월일</p>
-
-				<input type="Date" name="memberBirth" required>
-			<div>
-			<input class="enrollchoice3" type="submit" value="완료" onclick="return fn_frmsubmit();" >
-
+			<input type="Date" name="memberBirth" required>
+			</div>
+			<div class="enrollInfo-box4">
+				<input class="enrollchoice3" type="submit" value="완료" onclick="return fn_frmsubmit();" >
 			</div>
 		</form>
 		</div>

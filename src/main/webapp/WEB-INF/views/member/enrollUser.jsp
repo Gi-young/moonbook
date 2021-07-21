@@ -83,13 +83,16 @@
 					- 보존 기간 : 3년 4. 웹사이트 방문기록 - 보존 근거 : 통신비밀보호법 - 보존 기간 : 3개월</p>
 			</div>
 		</div>
-
+		<div class="enroll-okBox">
+		<form action="${path}/member/enrollUser2.do">
 		<label><input type="checkbox" class="manual-check" name="enrollMenuCheck" required>개인정보
 			수집 및 이용안내 (필수)</label>
 		<p>입력하신 정보는 회원 유무 확인용으로 수집/이용 되며,가입 회원에 한해 입력하신 모든 정보가 저장되는데
 			동의합니다.</p>
-		<input class="enrollchoice3" type="button" value="다음" onclick="location.replace('${path}/member/enrollUser2.do')">
-
+		<input class="enrollchoice3" type="submit" value="다음">
+		<%-- <input class="enrollchoice3" type="button" value="다음" onclick="location.replace('${path}/member/enrollUser2.do')"> --%>
+		</form>
+		</div>
 	</div>
 </body>
 </html>
