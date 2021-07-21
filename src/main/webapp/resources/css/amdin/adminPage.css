@@ -64,4 +64,30 @@ h2>a {
     *font-family: 'Dotum',sans-serif; */
     float:right;
     width:755px;
+    text-align: center;
 }
+.memberT tbody{
+	border: black 1px solid;
+    width: 750px;
+    border-collapse: collapse;
+}
+
+/* .sub_content1{
+	display:none;
+}
+
+.sub_content2{
+	display:none;
+}
+.sub_content3{
+	display:none;
+}
+.sub_content4{
+	display:none;
+}
+.sub_content5{
+	display:none;
+} */
+
+
+
