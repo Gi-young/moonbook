@@ -6,11 +6,51 @@
 	width:100%; 
 	min-width:950px;
 	align-items:center;
+	height:700px;
 }
 
 .login-box{
 	margin-top:50px;
 	
+}
+.logintext3-sub1 img{
+	width:166px;
+	height: 140px;
+}
+.logintext3-sub2{
+	vertical-align: middle; 
+}
+.logintext3-font{
+	font-size: 17px;
+    font-weight: 900;
+    padding-left:20px;
+    color:#582810; 
+    padding-top:40px;
+}
+.loginP1{
+	padding-top:15px;
+	font-size: 30px;
+	font-weight: 900;
+    color: #582810; 
+}
+.loginP3{
+	font-size: 15px;
+	font-weight: 900;
+	color:#582810;
+	margin-top:20px;
+}
+.loginP2{
+	font-size: 15px;
+	font-weight: 900;
+	color:#008080;
+}
+
+.loginWelcome{
+	box-sizing: border-box;
+	border: 2px solid #582810;
+	width:699px;
+	text-align: center;
+	height:100px;
 }
 .sleepingUser{
 	display:flex;
@@ -84,16 +124,21 @@
 	width:950px;
 }
 .hr3{
-	background: #99bddd;
+	background: #582810;
 	width: 300px;
 	height:1px;
 }
-
+.login-box2{
+	border : #582810 solid;
+	box-sizing: border-box;
+	width:346px;
+	height:336px;
+}
 
 .login-container{
-	border : #8fc8f1 solid;
+	/* border : #582810 solid; */
 	width:332px;
-	heigth:230px;
+	/* heigth:230px; */
 	margin-bottom:30px;
 }
 .logintext1>input{
@@ -134,11 +179,14 @@
 	flex-direction:row;
 	justify-content:center;
 	margin-top:7px;
+	padding-top:10px;
+	text-align: center;
+	
 }
 .loginSubmit>input{
 	width:70px;
 	height:70px;
-	background-color:#0277d3;
+	background-color:#582810;
 	border: 1px #0362ad solid;
 }
 /* 네이버 id로 가입/로그인 */

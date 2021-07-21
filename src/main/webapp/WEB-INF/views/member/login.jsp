@@ -10,11 +10,15 @@
 <link rel="stylesheet" href="${path }/resources/css/login/login.css">
 
 <div class="loginPage-container">
-		<div class="loginInfo">
+		<!-- <div class="loginInfo">
 			<p>홈 > 로그인</p>
 			<hr class="hr1">
 			<h3>로그인</h3>
 		<hr class="hr2">
+		</div> -->
+		<div class="loginWelcome">
+			<p class="loginP1">KH문고에 오신걸 환영합니다</p>
+			<p class="loginP3"><span class="loginP2">서비스 이용</span>을 위해선 로그인이 필요합니다.</p>
 		</div>
 
 		<div class="login-box">
@@ -46,41 +50,51 @@
 								${cookie.saveId.value != null? "checked":""}> <label for="saveId">아이디저장</label>
 							<span class="searchIdPwd" onclick="fn_searchIdPw();">아이디/비밀번호찾기</span>
 						</div>
-						<div class="logintext3">
+						<%-- <div class="logintext3">
 							<input type="button" name="naverLogin" value="네이버 Id로 가입/로그인">
 							<input type="button" name="enroll" value="KH문고 회원가입" onclick="location.assign('${path}/member/enrollPage.do')">
+						</div>  --%>
+						<div class="logintext3">
+							<div class="logintext3-sub1">
+								<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/nolam.png">
+							</div>
+							<div class="logintext3-sub2">
+								<p class="logintext3-font">6개월마다 <br>비밀번호를 <br>변경해주세요!</p>
+							</div>
 						</div>
 					</form>
 					
 				</c:if>
 				
 			</div>
-				<div class="sleepingUser">
-					<p>1년 이상 미접속 회원이신가요?</p>
-					<input type="button" name="sleepUser" value="조회하기" onclick="location.assign('${path}/member/sleepingMemberPage.do')">
+				<%-- <div class="sleepingUser">
+					<p>1년 이상 미접속 회원 알림</p>
+					<input type="button" name="sleepUser" value="알림안내" onclick="location.assign('${path}/member/sleepingMemberPage.do')">
+				</div> --%>
+				<div>
+					<%-- <img alt="광고사진"
+					src="${pageContext.request.contextPath }/resources/img/login/loginAd.PNG"> --%>
 				</div>
 			</div>
 			
 			<div class="login-ad">
 				<img alt="광고사진"
-					src="${pageContext.request.contextPath }/resources/img/login/loginAd.PNG">
-			</div>
+					src="${pageContext.request.contextPath }/resources/img/login/addsky.png">
+			</div> 
 			
 			
 		</div>
 		<div class="login-box3">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh0.png">
+			
 		</div>
 		<div class="login-box4">
-		<p>KH문고가 더 좋은 이유</p>
-			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh1.PNG">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh2.PNG">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh3.png">
+		 	<%-- <img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh1.PNG"> --%>
+			
 		</div>
 		<div class="login-box5">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh4.PNG">
+			<%-- <img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh4.PNG">
 			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh5.PNG">
-			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh6.png">
+			<img alt="광고사진" src="${pageContext.request.contextPath }/resources/img/login/kh6.png"> --%>
 		</div>
 		
 	</div>
