@@ -1,0 +1,29 @@
+html{
+    height:100%;
+    width:100%;
+}
+body{
+    margin:0;
+    height:100%;
+    width:100%;
+}
+div#container{
+    height:100%;
+    width:100%;
+}
+div#container>header{
+    height:75px;
+    background-color:pink;
+}
+div#mainSection{
+    display:flex;
+}
+div#mainSection>aside{
+    background-color:aquamarine;
+    width:225px;
+    height:100%;
+}
+div#mainSection>section{
+    background-color:azure;
+    height:100%;
+}
