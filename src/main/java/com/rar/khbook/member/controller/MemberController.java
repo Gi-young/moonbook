@@ -2,6 +2,7 @@ package com.rar.khbook.member.controller;
 
 
 import java.io.Writer;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -330,7 +331,11 @@ public class MemberController {
 	}
 //	회원등급별 혜택 페이지
 	@RequestMapping("/member/grade.do")
-	public String memberGrade() {
+	public String memberGrade(Model m) {
+		
+		List<Membergrade> mg = service.memberGrade();
+		Collections.reverse(mg);
+		m.addAttribute("mg", mg);
 		
 		return "member/memberGrade";
 	}	

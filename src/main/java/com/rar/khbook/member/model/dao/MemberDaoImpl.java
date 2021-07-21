@@ -67,14 +67,19 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList("member.getCoupon", m);
 	}
 	
-//	회원등급 가져오기
+//	회원의 회원등급 가져오기
 	@Override
 	public Membergrade getMembergrade(SqlSession session, Member m) {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.getMembergrade", m);
 	}
 	
-	
+//	전체 회원 등급 가져오기
+	@Override
+	public List<Membergrade> memberGrade(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.memberGrade");
+	}
 	
 	
 	
