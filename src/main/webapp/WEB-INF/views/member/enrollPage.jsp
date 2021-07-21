@@ -15,7 +15,7 @@
 <body>
 	<div class="enroll-container">
 		<div class="enroll-title">
-			<img alt="KH로고" src="${pageContext.request.contextPath}/resources/img/KHLogo3.PNG">
+			<img alt="KH로고" src="${pageContext.request.contextPath}/resources/img/KHLogo2.png">
 			<p>회원가입</p>
 		</div>
 		

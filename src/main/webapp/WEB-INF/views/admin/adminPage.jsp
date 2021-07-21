@@ -56,6 +56,8 @@
 								<th>회원 성별</th>
 								<th>회원 포인트</th>
 								<th>회원 등급</th>
+								<th>총 매출</th>
+								<th>방문 횟수</th>
 								<th>수정하기</th>
 							</tr>
 							<tr>
@@ -66,6 +68,8 @@
 								<td>${memberGender }4</td>
 								<td>${memberPoint }5</td>
 								<td>${memberGradeNo }6</td>
+								<td></td>
+								<td></td>
 								<td><img alt="검색하기" src="${path }/resources/img/admin/checkgreen.png" class="updateCheck"></td>
 							</tr>
 							<tr>
@@ -76,6 +80,8 @@
 								<td>${memberGender }4</td>
 								<td>${memberPoint }5</td>
 								<td>${memberGradeNo }6</td>
+								<td></td>
+								<td></td>
 								<td><img alt="검색하기" src="${path }/resources/img/admin/checkgreen.png" class="updateCheck"></td>
 							</tr>
 
