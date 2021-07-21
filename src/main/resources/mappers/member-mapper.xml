@@ -98,8 +98,13 @@
 		COUPON_MEMBER_ID=#{memberId}
 	</select>
 	
-	<!-- 회원등급 가져오기 -->
+	<!-- 회원의 회원등급 가져오기 -->
 	<select id = "getMembergrade" resultMap="membergradeMap">
 	SELECT * FROM MEMBERGRADE WHERE MEMBERGRADE_NO = #{memberGradeNo}
+	</select>
+	
+	<!-- 전체 회원 등급 가져오기 -->
+	<select id = "memberGrade" resultMap="membergradeMap">
+	SELECT * FROM MEMBERGRADE
 	</select>
 </mapper>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/header.jsp">
 	<jsp:param name="title" value="회원등급별 혜택" />
@@ -15,7 +16,13 @@
 			<table class="tbl_memberGrade">
 				<tr>
 					<th colspan="2"></th>
-					<th scope="col" class="tbl_head">
+					<c:forEach var="mg" items="${mg }" varStatus="status">
+						<th scope="col" class="tbl_head">
+
+							<div class="member_grade${mg.membergradeNo}">${mg.membergradeName }</div>
+						</th>
+					</c:forEach>
+					<!-- <th scope="col" class="tbl_head">
 						<div class="member_grade4">플래티넘</div>
 					</th>
 					<th scope="col" class="tbl_head">
@@ -26,7 +33,7 @@
 					</th>
 					<th scope="col" class="tbl_head">
 						<div class="member_grade1">프렌즈</div>
-					</th>
+					</th> -->
 				</tr>
 				<tr>
 					<th scope="row" colspan="2">최근 3개월<br>순수 구매액
