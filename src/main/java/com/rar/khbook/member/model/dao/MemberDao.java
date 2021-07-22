@@ -29,6 +29,9 @@ public interface MemberDao {
 //	쿠폰 가져오기
 	List<Coupon> getCoupon(SqlSession session, Member m);
 	
-//	회원등급 가져오기
+//	회원의 회원등급 가져오기
 	Membergrade getMembergrade(SqlSession session, Member m);
+	
+//	전체 회원 등급 가져오기
+	List<Membergrade> memberGrade(SqlSession session);
 }

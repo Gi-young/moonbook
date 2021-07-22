@@ -20,7 +20,7 @@
 	<div class="enrollInfo-container">
 		<div class="enroll-title">
 			<img alt="KH로고"
-				src="${pageContext.request.contextPath}/resources/img/KHLogo3.PNG">
+				src="${pageContext.request.contextPath}/resources/img/KHLogo2.png">
 			<p>회원가입</p>
 		</div>
 		<div class="enrollInfo-box">

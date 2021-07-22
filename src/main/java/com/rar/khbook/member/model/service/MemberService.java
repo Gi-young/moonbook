@@ -26,6 +26,8 @@ public interface MemberService {
 	
 //	쿠폰 가져옴
 	List<Coupon> getCoupon(Member m);
-//	회원등급 가져옴
+//	회원의 회원등급 가져옴
 	Membergrade getMembergrade(Member m);
+//	전체 회원등급 가져옴
+	List<Membergrade> memberGrade();
 }
