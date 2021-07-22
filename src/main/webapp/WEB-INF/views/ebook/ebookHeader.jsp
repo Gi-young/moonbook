@@ -12,39 +12,39 @@
 	<script src="https://kit.fontawesome.com/5af64d5c05.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	
-	<nav class="navbar">
-		<div class="navbar_upper">
-			<div class="navbar_logo">
+	<div class="wrapper">
+		<nav class="portal-navbar">
+		
+		</nav>
+		
+		<header>
+			<div class="header-logo">
 				<a href=""><img src="${path}/resources/images/ebook/khbook_logo.png"></a>
 			</div>
 			
-			<div class="navbar_search">
+			<div class="header-searchbar">
 				<input type="text">
 			</div>
 			
-			<ul class="navbar_icons">
+			<ul class="header-icons">
 				<li><a href="javascript:openEbookReader();"><i class="fas fa-book-open"></i></a></li>
 				<li><a href=""><i class="fas fa-cart-plus"></i></a></li>
 			</ul>
-		</div>
+		</header>
 		
-		<div class="navbar_under">
-			<ul class="navbar_menu">
+		<nav class="navbar">
+			<ul class="navbar-menu">
 				<li><i class="fas fa-bars"></i></li>
 				<li><a href="">일반</a></li>
-				<li><a href="">소설</a></li>
-				<li><a href="">프로그래밍</a></li>
-				<li><a href="">자기계발</a></li>
-				<li><a href="">역사</a></li>
+				<li><a href="">초등 저학년</a></li>
+				<li><a href="">초등 고학년</a></li>
+				<li><a href="">중학생</a></li>
+				<li><a href="">우리들의 노트</a></li>
 			</ul>
 			
-			<ul class="navbar_thema">
+			<ul class="navbar-thema">
 				<li><a href="">베스트</a></li>
 				<li><a href="">신간</a></li>
 				<li><a href="">무료</a></li>
-				<li><a href="">추천</a></li>
-				<li><a href="">대여</a></li>
 			</ul>
-		</div>
-	</nav>
+		</nav>
