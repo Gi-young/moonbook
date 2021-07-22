@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title> 
+    <title>${param.title }</title> 
     <link rel="stylesheet" href="${path }/resources/css/style.css">
 	<script type="text/javascript" src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 
@@ -27,8 +27,16 @@
                 </div>
             </ul>
             <ul class="header-top-info2">
-                <li class="login"><a href="#">로그인</a></li>
-                <li><a href="#">회원가입</a></li>
+            	<c:if test="${loginMember==null }">
+                	<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
+                	<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
+                </c:if>
+                <c:if test="${loginMember!=null }">
+                	<li class="user1"><a href="${path }/member/myroom.do">${loginMember.memberName }님 (${loginMember.memberGradeNo}) ▽</a></li>
+                	<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
+                	<li><a href="${path }/member/logout.do">로그아웃</a></li>
+                	
+                </c:if>
                 <li><a href="#">고객센터</a></li>
                 <li><a href="#">주문배송</a></li>
                 <li><a href="#"><img src="${path }/resources/images/baguni.svg" style="width: 24px; height: 24px;"></a></li>
@@ -124,7 +132,7 @@
                     <li><a href="#">국내도서</a></li>
                     <li><a href="#">외국도서</a></li>
                     <li>
-                        <a href="#"><div>eBook ▼</div></a>
+                        <a href="${path}/ebook/pageEbook.do"><div>eBook ▼</div></a>
                         <ul class="eBook">
                             <li><a href="#">일반도서</a></li>
                             <li><a href="#">판타지/무협</a></li>
@@ -134,16 +142,29 @@
                         </ul>
                     </li>
                     <li><a href="#">기프트 ▼</a></li>
-                    <li><a href="#">중고장터</a></li>
+                    <li><a href="${path}/usedboard/usedboardPage.do">중고장터</a></li>
                 </ul>
             </div>
             <div class="header-menuBar2">
                 <ul class="flex">
                     <li><a href="#">베스트</a></li>
                     <li><a href="#">신상품</a></li>
+            <c:if test="${loginMember.memberId.equals('admin') }">
+                    <li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
+            </c:if>
                 </ul>
             </div>
-            <div></div>
+            <div>
+            	<ul class="flex">
+                    
+                </ul>
+            </div>
         </div>
     </div>
 </div>
+
+
+
+<script src="${path }/resources/js/header.js"></script>
+<script src="${path }/resources/js/header(2).js"></script>
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>

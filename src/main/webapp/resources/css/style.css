@@ -4,6 +4,15 @@
 @import url("mainCss.css");
 @import url("footer.css");
 
+@import url("myroom/layout.css");
+@import url("memberGrade.css");
+
+@import url("gift.css");
+@import url("newHeader.css");
+@import url("quickBar.css");
+@import url("newFooter.css");
+
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

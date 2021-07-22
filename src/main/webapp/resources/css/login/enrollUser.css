@@ -6,8 +6,8 @@
 	height:70px;
 	font-size: 28px;
 	line-height: 78px;
-	border: 1px solid #56a900;
-	color: #56a900;
+	border: 1px solid #582810;
+	color: #582810;
 	background-color: #fff;
 	cursor:pointer;
 	margin-top:15px;
@@ -23,12 +23,12 @@
 }
 .enrollchoice3:hover{
 	color:#fff;
-	background-color:#56a900;
+	background-color:#582810;
 }
 
 .manual-title3{
 	font-size:40px;
-	color:#56a900;
+	color:#582810;
 	font-weight:bold;
 	margin-top:30px;
 	
@@ -44,31 +44,34 @@
 	display: flex;
     justify-content: center;
     flex-direction: column;
-	width:1920px;
+	width:100%;
 	align-items:center;
 }
 .manual-title1{
-	color:#56a900;
+	color:#582810;
 	font-weight:bold;
 }
 .enroll-manualBox{
 	width:900px;
-	border: 1px solid #56a900;
+	border: 1px solid #582810;
 	
 }
 .enroll-manualBox2{
 	width:897px;
-	border: 1px solid #56a900;
+	border: 1px solid #582810;
 	overflow:scroll;
 	height:300px;
 	
 }
 .enroll-manualBox3{
 	width:897px;
-	border: 1px solid #56a900;
+	border: 1px solid #582810;
 	overflow:scroll;
 	height:150px;
 }
 .manual-title2{
-	color:#56a900;
+	color:#582810;
+}
+.enroll-okBox{
+	text-align:center;
 }
