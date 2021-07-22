@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+
+.cscenter_snb3 {
+	margin-top: 8px;
+	width:180px;
+} 
+
+.cscenter_snb3 li strong {
+	box-sizing: border-box;
+	display: block;
+	line-height: 12px; 
+	padding: 9px 9px 7px; 
+	font-weight: bold;
+	border-bottom: solid #ececec 1px;
+	color: #555;
+	width:180px;
+}
+
+.cscenter_snb3 ul {
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #ececec;
+	padding: 5px 0 4px;
+	width:180px;
+}
+
+
+.cscenter_snb3 ul li {
+	font-size: 11px;
+	_zoom: 1;
+	padding: 5px 10px 4px;
+	width:180px;
+}
+.sub_content0{
+	display:none;
+}
+.sub_content1{
+	display:none;
+}
+.sub_content2{
+	display:none;
+}
+.sub_content3{
+	display:none;
+}
+.sub_content4{
+	display:none;
+}
+.sub_content5{
+	display:none;
+}

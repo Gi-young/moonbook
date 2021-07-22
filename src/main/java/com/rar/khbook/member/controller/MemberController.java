@@ -1,9 +1,19 @@
 package com.rar.khbook.member.controller;
 
+
+import java.io.Writer;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-<<<<<<< Updated upstream
-=======
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,20 +21,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-//import com.google.gson.Gson;
+import com.google.gson.Gson;
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 
 import lombok.extern.slf4j.Slf4j;
->>>>>>> Stashed changes
 
 @Controller
+@Slf4j
+@SessionAttributes({"loginMember"})
 public class MemberController {
 	
-<<<<<<< Updated upstream
-=======
+
 	@Autowired
 	private MemberService service;
 	@Autowired
@@ -128,13 +138,13 @@ public class MemberController {
 		return "common/msg";
 		
 	}
-//	@RequestMapping("/member/checkId.do")
-//	public void checkId(@RequestParam Map param,Writer out) {
-//		System.out.println(param);
-//		Member m=service.selectOneMember(param);
-//		System.out.println("testtest : "+m);
-//		new Gson().toJson(m==null? "true":"false",out);
-//	}
+	@RequestMapping("/member/checkId.do")
+	public void checkId(@RequestParam Map param,Writer out) {
+		System.out.println(param);
+		Member m=service.selectOneMember(param);
+		System.out.println("testtest : "+m);
+		new Gson().toJson(m==null? "true":"false",out);
+	}
 	
 	@RequestMapping("/member/searchIdPwPage.do")
 	public String searchIdPwPage() {
@@ -341,5 +351,5 @@ public class MemberController {
 		
 		return "member/nextGrade";
 	}
->>>>>>> Stashed changes
+
 }

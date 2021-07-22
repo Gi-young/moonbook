@@ -5,7 +5,7 @@
 	display: flex;
     justify-content: center;
     flex-direction: column;
-	width:1920px;
+	width:100%;
 	align-items:center;
 }
 
@@ -21,21 +21,21 @@
 .enroll-title>p{
 	font-size:35px;
 	font-weight: 900;
-	color: #374089;
-	margin-left:20px;
+	color: #582810;
 	margin-top:3px;
 }
 .enrollInfo-font{
 	font-weight: bold;
 	font-size:20px;
-	color:#56a900;
+	color:#582810;
 	margin-top:10px;
 	margin-bottom:10px;
 }
 .enrollInfo-select{
 	height:30px;
 }
-.enrollInfo-box input{
+
+.enrollInfo5-box input{
 	width:200px;
 	height:30px;
 }
@@ -43,13 +43,13 @@
 .enrollInfo-box label{
 	font-weight: bold;
 	font-size:20px;
-	color:#374089;
+	color:#582810;
 }
 .enrollInfo-button{
 	height:30px;
 	font-weight:bold;
-	border: 1px solid #56a900;
-	color: #56a900;
+	border: 1px solid #582810;
+	color: #582810;
 	background-color: #fff;
 	cursor:pointer;
 }
@@ -64,21 +64,54 @@
 
 .enrollInfo-button:hover{
 	color:#fff;
-	background-color:#56a900;
+	background-color:#582810;
 }
+
 .enrollchoice3{
-	width:350px;
-	height:70px;
+	
+	width:350px; 
+	height:70px; 
 	font-size: 28px;
-	line-height: 78px;
-	border: 1px solid #56a900;
-	color: #56a900;
+	
+	border: 1px solid #582810;
+	color: #582810;
 	background-color: #fff;
 	cursor:pointer;
 	margin-top:15px;
 	margin-bottom:15px;
+	
+}
+.enrollInfo-box4{
+	align-items: center;
+	text-align: center;
 }
 .enrollchoice3:hover{
 	color:#fff;
-	background-color:#56a900;
+	background-color:#582810;
 }
+.memberIdCheck{
+	display:none;
+	color:#582810;
+	font-weight: bold;
+}
+.memberIdCheck2{
+	display:none;
+	color:#582810;
+	font-weight: bold;
+}
+.memberIdCheck3{
+	display:none;
+	color:#582810;
+	font-weight: bold;
+}
+.memberPwcheck2{
+	display:none;
+	color:#582810;
+	font-weight: bold;
+}
+.memberPwcheck{
+	display:none;
+	color:#582810;
+	font-weight: bold;
+}
+

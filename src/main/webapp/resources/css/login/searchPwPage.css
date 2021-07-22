@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+.searchPw-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+	width:100%;
+	align-items:center;
+}
+
+.searchPwType{
+	padding-bottom:10px;
+}
+.search-Th{
+	width:110px;
+}
+.searchMyInfo-title2{
+	font-weight: bold;
+	color:#353f67;
+	font-size:20px;
+	text-align:center;
+	padding: 30px 30px;
+}
+.search1VerBtns{
+	padding: 10px 10px;
+	text-align: center;
+}
+.search1VerBtns input{
+	background-color:#1776c8;
+	color: #fff;
+	bolder-color:#0c60a8;
+}
+.search1VerBtns button{
+	background-color:#c0c0c0;
+	color: black;
+	bolder-color:#0c60a8;
+}
+.search1Ver{
+	width:300px;
+	height:7px;
+	border: 1px solid #353f67;
+}
+
+.searchVer2{
+	width:300px;
+	height:7px;
+	border: 1px solid #353f67;
+}
+.searchIdInfo{
+	width:400px;
+	text-align: center;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.search2Ver-container{
+	/* display:hidden; */
+	display:none;
+}
