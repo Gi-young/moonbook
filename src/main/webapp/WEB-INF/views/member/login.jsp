@@ -17,7 +17,7 @@
 		<hr class="hr2">
 		</div> -->
 		<div class="loginWelcome">
-			<p class="loginP1">KH문고에 오신걸 환영합니다</p>
+			<p class="loginP1">문고책방에 오신걸 환영합니다</p>
 			<p class="loginP3"><span class="loginP2">서비스 이용</span>을 위해선 로그인이 필요합니다.</p>
 		</div>
 
@@ -79,7 +79,7 @@
 			
 			<div class="login-ad">
 				<img alt="광고사진"
-					src="${pageContext.request.contextPath }/resources/img/login/addsky.png">
+					src="${pageContext.request.contextPath }/resources/img/login/hello3.png">
 			</div> 
 			
 			
