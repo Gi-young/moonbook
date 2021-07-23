@@ -28,7 +28,6 @@
 		</aside>
 		
 		<section>
-			<button id="readBookBtn">책 읽기</button>
 			
 		</section>
 	</div>
