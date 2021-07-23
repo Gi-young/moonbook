@@ -17,7 +17,7 @@
 <body>
 	<div class="enrollAgree-manual">
 		<div class="enrollAgreeTitle">
-			<p class="manual-title3">KH문고 이용 약관</p>
+			<p class="manual-title3">문곰책방 이용 약관</p>
 			<hr>
 		</div>
 		<div class="enroll-manualBox">
