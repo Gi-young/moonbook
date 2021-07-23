@@ -17,93 +17,13 @@
 .admin-box3{
 	height:100%;
 }
-.admin-search{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-}
-.admin-search3 th{
-	background-color: #582810;
-	color:white;
-}
-.admin-search3{
-	border: 1px solid #582810;
-	height: 100%;
-	width: 730px;
-   
-}
-.adminHowTable{
-	width:100%;
-	height: 100%;
-	text-align: center;
-}
-.adminHowTable th td{
-	border: 1px solid #582810;
-}
 
-.memberT-container{
-	height: 100%;
-	overflow-x:scroll;
-}
-.admin-box4{
-	border: 1px solid black;
-	display: flex;
-	align-items: center;
-	justify-content:center;
-	display:flex; 
-	vertical-align:middle; 
-	width:770px;
-	height: 100px;
-	/* overflow:scroll; */
-}
 
-.search-box img{
-	background-color: #804040;
-	width:25px;
-	hight:25px;
-	filter: invert(100%);
-}
-.search-box img:hover{
-	opacity: 0.5;
-}
 
-.search-box {
-/* 	display: flex; */
-	align-items: center;
-	justify-content:center;
-}
 .admin-box2{
 	display: flex;
 	flex-direction: column;
 	border: 1px solid black; 
 	width:770px;
 }
-.memberT{
-	/* width: 730px; */ 
-	/* width:auto; */
-	width: 1200px;
-	/* overflow-x: auto; */
-	margin-left: 20px;
-	margin-top:30px; 
-	text-align: center;	
-}
-.memberT tbody{
-	border: black 1px solid;
-    border-collapse: collapse;
-}
-.memberT th{
-	width: 100px;
-	height:30px;
-	background-color: #c0c0c0;
-	color:white;
-	vertical-align: middle;
-}
 
-.memberT td{
-	width: 100px;
-}
-.updateCheck{
-	width:20px;
-	hight:20px;
-}

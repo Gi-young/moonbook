@@ -13,9 +13,22 @@
 	border-bottom: 2px solid #582810;
 }
 
-h1 a, h3 a{
+
+sideMenu p{
 	color:#582810;
 	font-weight: bold;
+}
+.adminColor{
+	color:#582810;
+	font-weight: bold;
+}
+.adminColor2{
+	font-size: 14px;
+	color:#582810;
+	
+}
+..adminColor2:hover{
+	cursor: pointer;
 }
 
 
@@ -29,9 +42,9 @@ h1 a, h3 a{
 	padding-bottom:10px;
 	
 }
-.sideMenu li:hover{
+/* .sideMenu li:hover{
 	background-color: #F1CB63;
-}
+} */
 .content_head, .user_section{
 	display:flex;
 	align-items: center;
@@ -515,7 +528,12 @@ a img {
 	top: 80px;
 }
 .sub-menu2 button{
-	background-color:  #fbceb1;
+	background-color:  #F1CB63;
+	color: #582810;
+	
+}
+.sub-menu2 button:hover{
+	background-color: #582810;
 	color: white;
 }
 .sub-menu3 button{
