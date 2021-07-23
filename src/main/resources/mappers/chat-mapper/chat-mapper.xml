@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rar.khbook.chat.dao.ChatDao">
+
+	<insert id="add" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		IMSERT INTO chatroom SET regDate=SYSDATE,
+		title=#{title},
+		passwd=#{passwd},
+		memberId=#{memberId}
+	</insert>
+
+</mapper>

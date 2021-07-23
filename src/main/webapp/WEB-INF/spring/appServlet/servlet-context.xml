@@ -24,7 +24,7 @@
 	
 
 
-	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
+	<!-- <beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/> -->
 
    
    <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
