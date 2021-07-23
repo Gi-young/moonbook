@@ -7,13 +7,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>KH문고 이북리더</title>
+	<title>e북 리더 - 문곰책방</title>
 
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/ebookReader.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookReader.css">
 
 	<script defer src="${path}/resources/js/jquery-3.6.0.min.js"></script>
 	<script defer src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-	<script defer src="${path}/resources/js/ebook/ebookReader.js"></script>
+	<script defer src="${path}/resources/js/ebook/wizard/ebookReader.js"></script>
 </head>
 <body>
 

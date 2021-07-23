@@ -30,20 +30,67 @@ public class EbookController {
 	
 	@RequestMapping(value="/ebook/pageEbook.do")
 	public String pageEbook() {
-		return "ebook/ebookHome";
+		return "ebook/home/ebookHome";
+	}
+	
+	@RequestMapping(value="/ebook/pageBookstallJuvenile.do")
+	public String pageBookstallJuvenile() {
+		return "ebook/home/bookstallJuvenile";
+	}
+	
+	@RequestMapping(value="/ebook/pageBookstallElementary.do")
+	public String pageBookstallElementary() {
+		return "ebook/home/bookstallElementary";
+	}
+	
+	@RequestMapping(value="/ebook/pageBookstallMiddle.do")
+	public String pageBookstallMiddle() {
+		return "ebook/home/bookstallMiddle";
+	}
+	
+	@RequestMapping(value="/ebook/pageBookstallNotes.do")
+	public String pageBookstallNotes() {
+		return "ebook/home/bookstallNotes";
+	}
+	
+	@RequestMapping(value="/ebook/pageBookstallSearch.do")
+	public String pageBookstallSearch() {
+		return "ebook/home/bookstallSearch";
+	}
+	
+	@RequestMapping(value="/ebook/pageShoppingBasket.do")
+	public String pageShoppingBasket() {
+		return "ebook/home/shoppingBasket";
 	}
 	
 	@RequestMapping(value="/ebook/openEbookWizard.do")
-	public ModelAndView openEbookReader(HttpSession session,ModelAndView mv) {
-		mv.setViewName("ebook/ebookWizard");
-		
-		return mv;
+	public String openEbookReader() {
+		return "ebook/wizard/ebookWizard";
 	}
 	
-	@RequestMapping(value="/ebook/ebookReader.do")
-	public ModelAndView readBook(ModelAndView mv) {
-		mv.setViewName("ebook/ebookReader");
-		return mv;
+	@RequestMapping(value="/ebook/pageEbookReader.do")
+	public String pageEbookReader() {
+		return "ebook/wizard/ebookReader";
+	}
+	
+	@RequestMapping(value="/ebook/pageEbookReport.do")
+	public String pageEbookReport() {
+		return "ebook/wizard/ebookReport";
+	}
+	
+	@RequestMapping(value="/ebook/pageEbookPlanner.do")
+	public String pageEbookPlanner() {
+		return "ebook/wizard/ebookPlanner";
+	}
+	
+	@RequestMapping(value="/ebook/pageEbookClub.do")
+	public String pageEbookClub() {
+		return "ebook/wizard/ebookClub";
+	}
+	
+	@RequestMapping(value="/ebook/pageEbookPublisher.do")
+	public String pageEbookPublisher() {
+		return "ebook/wizard/ebookPublisher";
 	}
 	
 	@RequestMapping(value = "/ebook/getEBooksFromAPI.do", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
