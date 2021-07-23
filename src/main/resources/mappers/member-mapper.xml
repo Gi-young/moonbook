@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-
+	<select id="selectMemberList" resultMap="memberMap">
+	 	SELECT * FROM MEMBER 
+	</select>
+	<select id="selectMemberCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+	
 	<insert id="insertMember">
 		INSERT INTO MEMBER
-		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1)
+		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1,0,0,NULL)
 	</insert>
 
 	<!-- 멤버에 상속해줄 부모 VO -->
@@ -30,7 +36,8 @@
 		<result column="member_regidate" property="memberRegiDate" />
 		<result column="member_memberGrade_no" property="memberGradeNo" />
 		<result column="member_total_sale" property="memberTotalSale" />
-		<result column="member_visits" property="memberVisits" />
+		<result column="member_visit" property="memberVisit" />
+		<result column="member_today" property="memberToday" />
 	</resultMap>
 
 	<!-- 쿠폰에 상속해줄 부모 VO -->
@@ -109,4 +116,7 @@
 	<select id = "memberGrade" resultMap="membergradeMap">
 	SELECT * FROM MEMBERGRADE
 	</select>
+	
+	
+	
 </mapper>
