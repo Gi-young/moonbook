@@ -17,9 +17,7 @@
 			</jsp:include>
 		</div>
 		<div class="admin-box2">
-			<jsp:include page="/WEB-INF/views/admin/adminMemberPage.jsp">
-				<jsp:param name="" value="" />
-			</jsp:include>
+			
 		</div>
 	</div>
 </div>

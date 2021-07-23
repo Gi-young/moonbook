@@ -21,7 +21,7 @@
 				<p onclick="" class="adminColor">판매 내역</p>
 			</li>
 		<li>
-				<p onclick="" class="adminColor">회원 관리</p>
+				<p onclick="location.assign('${path}/admin/adMemberPage.do')" class="adminColor">회원 관리</p>
 			</li>
 		<li class="sub-menu2">
 				<p onclick="" class="adminColor">제품 관리</p>
@@ -88,9 +88,5 @@
 
 	});
 
-function adUpdateMember(){
-	 $.get("${path}/admin/adUpdateMember",data =>{
-	 console.log(data);
-	 });
-	 } 
+
 </script>

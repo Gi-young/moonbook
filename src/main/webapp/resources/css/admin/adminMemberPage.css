@@ -1,7 +1,31 @@
 @charset "UTF-8";
+.admin-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+}
+.admin-box1{
+	width: 950px;
+	display:flex;
+	height:700px;
+	min-height:500px; 
+	box-sizing: border-box;
+}
+.admin-box3{
+	height:100%;
+}
+
+.admin-box2{
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black; 
+	width:770px;
+}
 
 .admin-box4{
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	display: flex;
 	align-items: center;
 	justify-content:center;
@@ -34,12 +58,12 @@
 	width:100%;
 	height: 100%;
 	text-align: center;
-	
-	/* height: 100px; */
+	/* height: 100px;  */
 }
-.adminHowTable th td{
+.adminHowTable th,.adminHowTable td{
 	border: 1px solid #582810;
-	/* height: 100px; */
+	height: 50px;
+	vertical-align: middle;
 	
 }
 .search-box img{
@@ -67,7 +91,7 @@
 	width: 1200px;
 	/* overflow-x: auto; */
 	margin-left: 20px;
-	margin-top:30px; 
+	/* margin-top:30px;  */
 	text-align: center;	
 }
 .memberT tbody{

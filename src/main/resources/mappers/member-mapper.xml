@@ -29,6 +29,8 @@
 		<result column="member_point" property="memberPoint" />
 		<result column="member_regidate" property="memberRegiDate" />
 		<result column="member_memberGrade_no" property="memberGradeNo" />
+		<result column="member_total_sale" property="memberTotalSale" />
+		<result column="member_visits" property="memberVisits" />
 	</resultMap>
 
 	<!-- 쿠폰에 상속해줄 부모 VO -->

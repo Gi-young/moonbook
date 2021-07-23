@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rar.khbook.admin.model.service.AdminService;
+import com.rar.khbook.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +23,13 @@ public class AdminController {
 	@RequestMapping("/admin/adminPage.do")
 	public String adminPage() {
 		return "admin/adminPage";
+	}
+	@RequestMapping("/admin/adMemberPage.do")
+	public String adUpdateMember() {
+		
+		//List<Member>=service.selectMemberList();
+		
+		return "admin/adminMemberPage";
 	}
 	
 	
