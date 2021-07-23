@@ -2,7 +2,6 @@ package com.rar.khbook.member.controller;
 
 
 import java.io.Writer;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
@@ -334,8 +334,8 @@ public class MemberController {
 	public String memberGrade(Model m) {
 		
 		List<Membergrade> mg = service.memberGrade();
-		Collections.reverse(mg);
-		m.addAttribute("mg", mg);
+		m.addAttribute("allMembergrade", mg);
+		List<Couponlist> cl = service.couponlist();
 		
 		return "member/memberGrade";
 	}	
@@ -348,5 +348,14 @@ public class MemberController {
 	public String nextGrade() {
 		
 		return "member/nextGrade";
+	}
+//	쿠폰함 페이지
+	@RequestMapping("/member/coupon.do")
+	public String couponBox(Model m) {
+		
+		List<Membergrade> mg = service.memberGrade();
+		m.addAttribute("allMembergrade", mg);
+		
+		return "myroom/couponBox";
 	}
 }

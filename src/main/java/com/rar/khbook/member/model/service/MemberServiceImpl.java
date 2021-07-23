@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.dao.MemberDao;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
+import com.rar.khbook.model.mapper.CouponlistMapper;
 
 
 @Service
@@ -21,6 +23,9 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao dao;
 	@Autowired
 	private SqlSession session;
+//	쿠폰 리스트 맵퍼 빈 연결
+	@Autowired
+	private CouponlistMapper mapper;
 	
 	@Override
 	public int insertMember(Member m) {
@@ -64,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
 		return dao.updateMemberPw(session,m);
 	}
 	
-//	쿠폰 가져오기
+//	회원의 쿠폰 가져오기
 	@Override
 	public List<Coupon> getCoupon(Member m) {
 		// TODO Auto-generated method stub
@@ -85,7 +90,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberGrade(session);
 	}
 	
-	
+//	전체 쿠폰리스트 가져오기
+	@Override
+	public List<Couponlist> couponlist() {
+		// TODO Auto-generated method stub
+		return dao.couponlist(mapper);
+	}
 	
 
 

@@ -14,6 +14,7 @@
 		<result column="membergrade_standard" property="membergradeStandard" />
 		<result column="membergrade_content" property="membergradeContent" />
 		<result column="membergrade_img" property="membergradeImg" />
+		<result column="membergrade_percent" property="membergradePercent" />
 	</resultMap>
 
 	<resultMap type="member" id="memberMap"
@@ -34,7 +35,7 @@
 	<!-- 쿠폰에 상속해줄 부모 VO -->
 	<resultMap type="couponlist" id="couponlistMap">
 		<result column="couponlist_no" property="couponlistNo" />
-		<result column="couponlist_grade" property="couponlistGrade" />
+		<result column="couponlist_membergrade_no" property="couponlistMembergradeNo" />
 		<result column="couponlist_percent"
 			property="couponlistPercent" />
 		<result column="couponlist_amount" property="couponlistAmount" />
@@ -95,9 +96,9 @@
 		SELECT * FROM COUPON LEFT JOIN
 		COUPONLIST ON COUPON_COUPONLIST_NO =
 		COUPONLIST_NO WHERE
-		COUPON_MEMBER_ID=#{memberId}
+		COUPON_MEMBER_ID=#{memberId} ORDER BY COUPONLIST_MEMBERGRADE_NO DESC
 	</select>
-	
+
 	<!-- 회원의 회원등급 가져오기 -->
 	<select id = "getMembergrade" resultMap="membergradeMap">
 	SELECT * FROM MEMBERGRADE WHERE MEMBERGRADE_NO = #{memberGradeNo}
@@ -105,6 +106,6 @@
 	
 	<!-- 전체 회원 등급 가져오기 -->
 	<select id = "memberGrade" resultMap="membergradeMap">
-	SELECT * FROM MEMBERGRADE
+	SELECT * FROM MEMBERGRADE ORDER BY MEMBERGRADE_STANDARD DESC
 	</select>
 </mapper>
