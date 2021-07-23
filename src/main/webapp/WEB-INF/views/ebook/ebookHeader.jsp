@@ -27,8 +27,8 @@
 			</div>
 			
 			<ul class="header-icons">
-				<li><a href="javascript:openEbookReader();"><i class="fas fa-book-open"></i></a></li>
-				<li><a href=""><i class="fas fa-cart-plus"></i></a></li>
+				<li><a href="javascript:openEbookWizard();"><i class="fas fa-book-open"></i>e북 마법사</a></li>
+				<li><a href=""><i class="fas fa-cart-plus"></i>장바구니</a></li>
 			</ul>
 		</header>
 		
@@ -36,9 +36,10 @@
 			<ul class="navbar-menu">
 				<li><i class="fas fa-bars"></i></li>
 				<li><a href="">일반</a></li>
-				<li><a href="">초등 저학년</a></li>
-				<li><a href="">초등 고학년</a></li>
-				<li><a href="">중학생</a></li>
+				<li><a href="">아동</a></li>
+				<li><a href="">초등(저학년)</a></li>
+				<li><a href="">초등(고학년)</a></li>
+				<li><a href="">중등</a></li>
 				<li><a href="">우리들의 노트</a></li>
 			</ul>
 			

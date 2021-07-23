@@ -33,16 +33,16 @@ public class EbookController {
 		return "ebook/ebookHome";
 	}
 	
-	@RequestMapping(value="/ebook/openEbookReader.do")
+	@RequestMapping(value="/ebook/openEbookWizard.do")
 	public ModelAndView openEbookReader(HttpSession session,ModelAndView mv) {
-		mv.setViewName("ebook/ebookReader");
+		mv.setViewName("ebook/ebookWizard");
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="/ebook/readBook.do")
+	@RequestMapping(value="/ebook/ebookReader.do")
 	public ModelAndView readBook(ModelAndView mv) {
-		mv.setViewName("ebook/readBook");
+		mv.setViewName("ebook/ebookReader");
 		return mv;
 	}
 	
