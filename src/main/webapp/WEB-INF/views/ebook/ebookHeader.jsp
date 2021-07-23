@@ -37,8 +37,7 @@
 				<li><i class="fas fa-bars"></i></li>
 				<li><a href="">일반</a></li>
 				<li><a href="">아동</a></li>
-				<li><a href="">초등(저학년)</a></li>
-				<li><a href="">초등(고학년)</a></li>
+				<li><a href="">초등</a></li>
 				<li><a href="">중등</a></li>
 				<li><a href="">우리들의 노트</a></li>
 			</ul>
