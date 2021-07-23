@@ -19,7 +19,7 @@
 		
 		<header>
 			<div class="header-logo">
-				<a href=""><img src="${path}/resources/images/ebook/khbook_logo.png"></a>
+				<a href=""><img src="${path}/resources/images/ebook/moonbook_ebook_logo.png"></a>
 			</div>
 			
 			<div class="header-searchbar">
