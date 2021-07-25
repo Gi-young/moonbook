@@ -63,6 +63,11 @@ public class EbookController {
 		return "ebook/home/shoppingBasket";
 	}
 	
+	@RequestMapping(value="/ebook/pageEbookDetail.do")
+	public String pageEbookDetail() {
+		return "ebook/home/ebookDetail";
+	}
+	
 	@RequestMapping(value="/ebook/openEbookWizard.do")
 	public String openEbookReader() {
 		return "ebook/wizard/ebookWizard";

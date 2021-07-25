@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/commonStyle.css">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookClub.css">
 	<script defer src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script defer src="${path}/resources/js/ebook/wizard/ebookClub.js"></script>
 </head>
 <body>
@@ -28,7 +29,9 @@
 		</aside>
 		
 		<section>
-			
+			<div id="debateBox">메시지</div>
+			<input type="text" id="debateMessage">
+			<input type="button" id="submitBtn" value="입력"/>
 		</section>
 	</div>
 

@@ -1,6 +1,7 @@
 const contextPath = $('#contextPath').val();
 
-let url = contextPath + "/resources/ebook/test.pdf";
+//let url = contextPath + "/resources/ebook/test.pdf";
+let url = "http://naver.me/GpJmcgFl";
 let pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
@@ -124,4 +125,41 @@ pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
 window.addEventListener('resize',() => {
     renderLeftPage(pageNum);
     renderRightPage(pageNum+1);
+});
+
+document.getElementById("pageToTextBtn").addEventListener("click", () => {
+
+    console.log("working OCR");
+
+    let leftCanvas = document.getElementById("left-canvas");
+    let rightCanvas = document.getElementById("right-canvas");
+
+    let leftDataURI = leftCanvas.toDataURL();
+    let rightDataURI = rightCanvas.toDataURL();
+
+    let leftCanvasImg = document.getElementById("left-canvas-img");
+    let rightCanvasImg = document.getElementById("right-canvas-img");
+
+    leftCanvasImg.src = leftDataURI;
+    rightCanvasImg.src = rightDataURI;
+
+    leftCanvasImg.style.display = "none";
+    rightCanvasImg.style.display = "none";
+
+    Tesseract.recognize(
+        leftDataURI,
+        'kor',
+        { logger: m => console.log(m) }
+    ).then(({ data: { text }}) => {
+        console.log(text);
+        document.getElementById("parsedTextData").innerText = text;
+    });
+});
+
+document.getElementById("textToSpeechBtn").addEventListener("click", () => {
+    let targetText = document.getElementById("parsedTextData").value;
+    console.log(targetText);
+    const utterance = new SpeechSynthesisUtterance(targetText);
+    utterance.rate = 1;
+    window.speechSynthesis.speak(utterance);
 });

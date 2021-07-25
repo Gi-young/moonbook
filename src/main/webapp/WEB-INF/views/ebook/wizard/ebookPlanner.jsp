@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/commonStyle.css">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookPlanner.css">
 	<script defer src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script defer src="${path}/resources/js/ebook/wizard/ebookPlanner.js"></script>
 </head>
 <body>
@@ -28,7 +29,7 @@
 		</aside>
 		
 		<section>
-			
+			<canvas id="line-chart"></canvas>
 		</section>
 	</div>
 

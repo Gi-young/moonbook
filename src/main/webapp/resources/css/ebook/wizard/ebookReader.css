@@ -69,3 +69,7 @@ body::-webkit-scrollbar{
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
+.hidden {
+    display: none;
+}

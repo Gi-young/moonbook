@@ -12,6 +12,19 @@
 	
 	<main>
 		<p>중등도서</p>
+		
+		<div class="carousel-container">
+			<div class="carousel-slide">
+				<img src="${path}/resources/images/ebook/bookstallMiddle/test1.jpg" alt="">
+				<img src="${path}/resources/images/ebook/bookstallMiddle/test2.jpg" alt="">
+				<img src="${path}/resources/images/ebook/bookstallMiddle/test3.jpg" alt="">
+				<img src="${path}/resources/images/ebook/bookstallMiddle/test4.jpg" alt="">
+				<img src="${path}/resources/images/ebook/bookstallMiddle/test5.jpg" alt="">
+			</div>
+		</div>
+		<button id="prevBtn">Prev</button>
+		<button id="nextBtn">Next</button>
+		
 	</main>
 	
 	<input type="hidden" id="contextPath" value="${path}"/>

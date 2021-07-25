@@ -1,1 +1,15 @@
 @charset "UTF-8";
+.carousel-container {
+    width: 300px;
+    overflow: hidden;
+}
+
+.carousel-slide {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.carousel-slide>img {
+    width: 300px;
+}

@@ -11,6 +11,9 @@ const getEbookItems = () => {
 				ebookItem.style.backgroundColor = "white";
 				ebookItem.style.width = "180px";
 				ebookItem.style.height = "230px";
+				ebookItem.addEventListener("click", () => {
+					location.assign(contextPath + "/ebook/pageEbookDetail.do");
+				});
 				
 				let coverImg = document.createElement("img");
 				coverImg.setAttribute("src", v.image);
