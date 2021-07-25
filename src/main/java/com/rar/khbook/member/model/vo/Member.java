@@ -24,5 +24,8 @@ public class Member extends Membergrade {
 	private int memberPoint;
 	private Date memberRegiDate;
 	private int memberGradeNo;
+	private int memberTotalSale;
+	private int memberVisit;
+	private Date memberToday;
 	
 }
