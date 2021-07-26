@@ -33,13 +33,17 @@
                 </div>
             </div>     
         </div>
-        <div class="quickBar"></div> 
+        <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
+<jsp:param name="" value=""/>
+</jsp:include>
+       <%--  System.out.println(${path }); --%>
         <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-	<script>
+	<%-- <script>
 		$(document).ready(function(){
 	        // 사이드 퀵메뉴바
-	        $(".quickBar").load("<%=request.getContextPath()%>/quickBar.jsp");
+	        console.log("<%=request.getContextPath()%>/quickBar.jsp");
+	        $(".quickBar").html("quickBar.jsp");
 	    }) 
-	</script>
+	</script> --%>
 </body>
 </html>
