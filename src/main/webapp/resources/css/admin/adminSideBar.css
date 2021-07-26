@@ -1,36 +1,548 @@
 @charset "UTF-8";
 
+/* @import url("nextGrade.css"); */
+
+.admin_sideMenu {
+	float: left;
+	box-sizing: border-box;
+	width:180px;
+}
+
+.myroom_sideMenu h1 {
+	font-size: 32px;
+	border-bottom: 2px solid #582810;
+}
+
+
+sideMenu p{
+	color:#582810;
+	font-weight: bold;
+}
+.adminColor{
+	color:#582810;
+	font-weight: bold;
+}
+.adminColor2{
+	font-size: 14px;
+	color:#582810;
+	
+}
+..adminColor2:hover{
+	cursor: pointer;
+}
+
+
+.sideMenu h3{
+	font-size:16px;
+}
+
+.sideMenu li{
+	text-align: center;
+	padding-top:10px;
+	padding-bottom:10px;
+	
+}
+/* .sideMenu li:hover{
+	background-color: #F1CB63;
+} */
+.content_head, .user_section{
+	display:flex;
+	align-items: center;
+}
+
+.user_name{
+	font-size:24px;
+	font-weight: bold;
+	color: black;
+}
+.content_middle {
+	z-index: 200;
+	*zoom: 1;
+	position: relative
+}
+
+.content_middle:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.myroom_snb {
+	float: left;
+	width: 180px;
+	margin: 0 10px 0 0px;
+	min-height: 831px;
+}
+
+.cscenter_h2 {
+	height: 21px;
+	padding-bottom: 8px;
+	overflow: hidden;
+	border-bottom: 2px solid #565656;
+}
+
+h2>a {
+	font-size: 1.5em;
+}
 
 .cscenter_snb3 {
 	margin-top: 8px;
-	width:180px;
-} 
+}
 
 .cscenter_snb3 li strong {
 	box-sizing: border-box;
 	display: block;
-	line-height: 12px; 
+	line-height: 12px;
 	padding: 9px 9px 7px; 
 	font-weight: bold;
 	border-bottom: solid #ececec 1px;
 	color: #555;
-	width:180px;
 }
 
 .cscenter_snb3 ul {
 	background-color: #f9f9f9;
 	border-bottom: 1px solid #ececec;
-	padding: 5px 0 4px;
-	width:180px;
+	/* padding: 5px 0 4px; */
+	box-sizing: border-box;
+	width: 180px;
 }
-
 
 .cscenter_snb3 ul li {
 	font-size: 11px;
 	_zoom: 1;
 	padding: 5px 10px 4px;
-	width:180px;
 }
+
+.myroom_contents {
+	color: #666666;
+	width: 33.3em;
+	/* font-family: 'Tahoma','Dotum',sans-serif;
+    *font-family: 'Dotum',sans-serif; */
+	float: right;
+	width: 755px;
+}
+
+.out_myroom_gradearea {
+	border: 1px solid #899bdb;
+	border-left: 0;
+	border-right: 0;
+	overflow: hidden;
+	margin-bottom: 30px;
+	color: #333333;
+}
+
+.out_myroom_gradearea .user_section, .out_myroom_gradearea .user_info_list td
+	{
+	height: 54px;
+}
+
+.out_myroom_gradearea .user_section {
+	background: #dde5ff;
+	float: left;
+	width: 201px;
+	padding-left: 20px;
+	border-right: 1px solid #c1cfff;
+}
+
+.out_myroom_gradearea .user_section .user_name {
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 3px;
+}
+
+.btn_small {
+	display: inline-block;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border: 1px solid #d0d0d0;
+	/* padding: 5px 4px 4px; */
+	height: 13px;
+	font-size: 12px;
+	line-height: 13px;
+	font-weight: normal;
+	color: #666;
+	text-decoration: none;
+	background-color: #fff;
+	text-align: center;
+	transition: all .2s;
+}
+
+.out_myroom_gradearea .user_info_list {
+	float: left;
+	border-spacing: 0;
+	margin-left: 2em;
+}
+
+.out_myroom_gradearea .user_info_list td .tit {
+	margin-bottom: 4px;
+	margin-top: 8px;
+}
+
+.out_myroom_gradearea .user_info_list td {
+	text-align: center;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.padding3 {
+	/* padding: 3px; */
+}
+
+.bul_green20 {
+	line-height: 16px;
+	margin-bottom: 9px;
+	padding-left: 15px;
+	font-size: 14px;
+	color: #222;
+	vertical-align: middle;
+}
+
+.bul_green20 span {
+	float: left;
+	padding-top: 6px;
+}
+
+.bul_green20 .sub_title {
+	text-align: left;
+	float: left;
+	padding-top: 7px;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.bul_green20 .sub_title .col {
+	padding-top: 1px;
+	color: #767676 !important;
+	font-size: 14px;
+	font-weight: normal !important;
+	position: relative;
+}
+
+.col {
+	color: #aeaeae;
+	font-size: 11px;
+	padding: 0px 6px;
+	font-weight: normal;
+}
+
+.order_tracking_section {
+	border: 1px solid #dadada;
+	border-left: 0;
+	border-right: 0;
+	min-height: 75px;
+	overflow: hidden;
+	color: #333333;
+	display: inline-flex;
+}
+
+.order_tracking_section .process_list {
+	float: left;
+	width: 653px;
+	background-image: url(../../images/order_tracking_process_imgs.gif);
+}
+
+.order_tracking_section .process_list li.cell1 {
+	width: 103px;
+}
+
+.order_tracking_section .process_list li {
+	float: left;
+	height: 63px;
+	padding-left: 10px;
+	padding-top: 12px;
+	font-weight: bold;
+	letter-spacing: -0.025em;
+}
+
+.order_tracking_section .process_list li span {
+	color: #365fdd;
+	font-size: 16px;
+}
+
+.order_tracking_section .total_order {
+	float: left;
+	height: 75px;
+	width: 101px;
+	background: #f7f7f7;
+	border-left: 1px solid #dadada;
+}
+
+.total_order ul {
+	padding-left: 10px;
+	padding-top: 10px;
+	box-sizing: border-box;
+	width: 180px;
+}
+
+.total_order ul li {
+	margin-bottom: 6px;
+	color: #555555;
+	position: relative;
+	text-align: right;
+	padding-right: 10px;
+	box-sizing: border-box;
+	width: 180px;
+}
+
+.total_order ul li .tit {
+	position: absolute;
+	left: 0;
+	font-weight: bold;
+	padding-left: 6px;
+	box-sizing: border-box;
+	width: 180px;
+}
+
+.order_tracking_section .process_list li.cell2 {
+	width: 103px;
+	background-position: -113px bottom;
+}
+
+.order_tracking_section .process_list li.cell3 {
+	width: 103px;
+	background-position: -226px bottom;
+}
+
+.order_tracking_section .process_list li.cell4 {
+	width: 98px;
+	background-position: -339px bottom;
+}
+
+.order_tracking_section .process_list li.cell5 {
+	width: 99px;
+	background-position: -447px bottom;
+}
+
+.order_tracking_section .process_list li.cell6 {
+	width: 87px;
+	background-position: right bottom;
+}
+
+.td_font_12 {
+	width: 100%;
+	border-spacing: 0;
+}
+
+.margin_top20 {
+	margin-top: 20px !important;
+}
+
+.margin_top30 {
+	margin-top: 30px !important;
+}
+
+.table_myroom {
+	border-top: solid #99bddd 1px;
+	border-bottom: solid #99bddd 1px;
+}
+
+.table_myroom th {
+	color: #1770b4;
+	padding: 8px 0 7px 0;
+	background-color: #f7f7f7;
+	font-size: 11px;
+	border-left: solid #dadada 1px;
+	text-align: center;
+}
+
+.table_myroom td.none_data {
+	padding: 20px 0 20px 0;
+	text-align: center;
+	font-weight: bold;
+	color: #1770b5;
+}
+
+.paging_num_my {
+	color: #dadada;
+	text-align: center;
+	background: #f7f7f7;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #dadada;
+	padding: 9px 0 7px;
+	line-height: 1.2em;
+	display: flow-root;
+}
+
+.paging_num_my img {
+	vertical-align: -3px;
+}
+
+.box_info_my {
+	position: relative;
+	border: 1px solid #dadada;
+	display: grid;
+}
+
+.box_info_my h3 {
+	height: 16px;
+	padding: 7px 0;
+	background: #f7f7f7;
+	color: #333;
+	font-size: 12px;
+	padding-left: 12px;
+}
+
+.box_info_my h3 img {
+	vertical-align: -4px;
+}
+
+.box_info_my ul {
+	padding: 10px 10px 8px 20px;
+	box-sizing: border-box;
+	width: 180px;
+}
+
+.box_info_my ul li {
+	background-position: 0px 6px;
+	box-sizing: border-box;
+	width: 180px;
+}
+
+.box_info_my ul li {
+	color: #666;
+	line-height: 16px;
+	font-size: 12px;
+	padding: 0 0 7px 8px;
+}
+
+.tab_menu02 {
+	position: relative;
+	overflow: hidden;
+	height: 30px;
+	margin: 20px 0 0;
+	background-image: url("../../images/line_tab1.gif");
+	border-left: solid #e6e6e6 1px;
+	border-right: solid #e6e6e6 1px;
+}
+
+.tab_menu02 li {
+	float: left;
+	_display: position:relative;
+	z-index: 10;
+	margin: 0 0 0 -1px;
+	color: #666;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: -1;
+	border-left: solid #e6e6e6 1px;
+	background-image: url("../../images/line_tab1.gif");
+	letter-spacing: -0.05em;
+}
+
+.padding10 {
+	padding: 10px;
+	color: #582810;
+    font-weight: bold;
+    border-bottom: 2px solid #582810;
+    text-align: center;
+}
+.padding10 a{
+	color: #582810;
+}
+
+.myroom_wishlist .tab_menu02 li a {
+	min-width: 90px;
+	text-align: center;
+	border-right: 1px solid #e6e6e6;
+	display: block;
+	text-decoration: none;
+	padding: 9px 9px 7px 9px;
+	height: 14px;
+}
+
+.myroom_wishlist_slide {
+	position: relative;
+	padding: 15px 0px 10px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.myroom_wishlist_slide .mask {
+	width: 688px;
+	position: relative;
+	margin-left: 34px;
+	overflow: hidden;
+}
+
+.myroom_wishlist_slide ul {
+	overflow: hidden;
+	position: relative;
+	width: 1720px;
+}
+
+.myroom_wishlist_slide ul li {
+	width: 100px;
+	padding: 0px 36px;
+	float: left;
+	text-align: center;
+}
+
+.prod_type01 {
+	height: 185px;
+	position: relative;
+}
+
+.prod_type01 dt {
+	height: 98px;
+}
+
+.myroom_wishlist_slide ul li dt img {
+	width: 70px;
+	height: 96px;
+	border: 1px solid #a7a7a7;
+}
+
+.prod_type01 .title {
+	color: #333333;
+	line-height: 15px;
+	margin-top: 5px;
+}
+
+.prod_type01 .writer {
+	color: #666666;
+	margin-top: 3px;
+}
+
+.prod_type01 .price {
+	color: #f74451;
+	width: 100%;
+	position: absolute;
+	bottom: 17px;
+	left: 0;
+}
+
+.myroom_wishlist_slide .btn_prev {
+	position: absolute;
+	left: 0;
+	top: 80px;
+}
+
+a img {
+	vertical-align: middle;
+}
+
+.myroom_wishlist_slide .btn_next {
+	position: absolute;
+	right: 0;
+	top: 80px;
+}
+.sub-menu2 button{
+	background-color:  #F1CB63;
+	color: #582810;
+	
+}
+.sub-menu2 button:hover{
+	background-color: #582810;
+	color: white;
+}
+.sub-menu3 button{
+	
+}
+.sub-menu4 button{
+	
+}
+
 .sub_content0{
 	display:none;
 }
