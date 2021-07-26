@@ -29,6 +29,13 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.delete("member.memberDelete",memberId);
 	}
+
+	@Override
+	public int memberUpdate(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("member.memberUpdate",param);
+	}
+	
 	
 	
 

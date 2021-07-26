@@ -15,4 +15,6 @@ public interface AdminDao {
 	
 	int memberDelete(SqlSession session,String memberId);
 	
+	int memberUpdate(SqlSession session,Map param);
+	
 }

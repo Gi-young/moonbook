@@ -28,8 +28,8 @@
 								<td>
 								<select name="type1">
 									<option value="totalMoney" selected>총 매출</option>
-									<option value="memberId" >Id</option>
-									<option value="memberName" >Name</option>
+									<option value="memberPoint" >회원포인트</option>
+									<option value="memberVisit" >방문횟수</option>
 								</select>
 								</td>
 								<td>
@@ -96,15 +96,23 @@
 									<td><input type="text" value="${e.memberTotalSale }" name="memberTotalSale" readonly></td>
 									<td><input type="text" value="${e.memberVisit }" name="memberVisit" readonly></td>
 									<td>
-									<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" class="updateCheck">
+									<form action="${path }/admin/memeberUpdate.do" method="post" class="adMemberT2">
+									<input type="hidden" value="${e.memberId }" name="memberId" readonly>
+									<input type="hidden" value="${e.memberPhone }" name="memberPhone" readonly>
+									<input type="hidden" value="${e.memberAddress }" name="memberAddress" readonly>
+									<input type="hidden" value="${e.memberPoint }" name="memberPoint" readonly>
+									<input type="hidden" value="${e.memberGradeNo }" name="memberGradeNo" readonly>
+									
+									<button type="submit"><img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" class="updateCheck"></button>
+									</form>
 									</td>
 									
 									<td>
-										<form action="${path }/admin/memberDelete.do" method="post" class="adMemberT" onsubmit="">
+										<form action="${path }/admin/memberDelete.do" method="post" class="adMemberT">
 											<input type="hidden" value="${e.memberId }" name="memberId" readonly>
-											<img alt="삭제하기" src="${path }/resources/img/admin/delete2.png" class="updateCheck" onclick="adminMemberDelete();"> 
+											<%-- <img alt="삭제하기" src="${path }/resources/img/admin/delete2.png" class="updateCheck" onclick="adminMemberDelete();"> --%> 
 											<!-- <input type="submit" value="삭제"> -->
-											<%-- <button type="submit"><img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck"></button> --%>
+											<button type="submit"><img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck"></button>
 											
 										</form>
 										</td>

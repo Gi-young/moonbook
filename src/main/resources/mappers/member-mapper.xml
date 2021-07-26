@@ -15,6 +15,10 @@
 	<delete id="memberDelete">
 		DELETE FROM MEMBER WHERE MEMBER_ID=#{memberId}
 	</delete>
+	<update id="memberUpdate">
+		UPDATE MEMBER SET MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_POINT=#{memberPoint},MEMBER_MEMBERGRADE_NO=#{memberGradeNo}
+		WHERE MEMBER_ID=#{memberId}
+	</update>
 
 	<!-- 멤버에 상속해줄 부모 VO -->
 	<resultMap type="membergrade" id="membergradeMap">

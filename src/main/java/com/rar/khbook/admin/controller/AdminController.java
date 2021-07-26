@@ -50,7 +50,7 @@ public class AdminController {
 	public ModelAndView memberDelete(ModelAndView mv,String memberId){
 		
 		/* log.debug(memberId); */
-		System.out.println("테스트중입니다. 아이디제발 :"+memberId);
+		/* System.out.println("테스트중입니다. 아이디제발 :"+memberId); */
 		int result=service.memberDelete(memberId);
 		String msg="";
 		String loc="";
@@ -66,7 +66,26 @@ public class AdminController {
 		mv.setViewName("common/msg");
 		
 		return mv;
+	}
+	@RequestMapping("/admin/memeberUpdate.do")
+	public ModelAndView memberUpdate(ModelAndView mv,@RequestParam Map param) {
 		
+		int result=service.memberUpdate(param);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="수정되었습니다";
+			
+		}else {
+			msg="수정실패";
+		}
+		loc="/admin/adMemberPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+	
 	}
 	
 	

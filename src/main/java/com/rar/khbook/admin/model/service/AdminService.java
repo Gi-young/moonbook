@@ -11,5 +11,7 @@ public interface AdminService {
 	int selectMemberCount();
 	
 	int memberDelete(String memberId);
+	
+	int memberUpdate(Map param);
 
 }
