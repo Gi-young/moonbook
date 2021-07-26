@@ -8,8 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.member.model.vo.Member;
@@ -33,11 +35,20 @@ public class AdminController {
 	@RequestMapping("/admin/adMemberPage.do")
 	public ModelAndView adUpdateMember(
 			@RequestParam(value="cPage", defaultValue="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
-		
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv
+			) {
 		
 		List<Member> listT=service.selectMemberList(cPage,numPerpage);
+		
+		/* List<Member> listT2=service.memberHowT(param); */
+		
+		
 		mv.addObject("list",listT);
+		/*
+		 * if(param.get("type1")==null) { }else if(param.get("type1")!=null) {
+		 * mv.addObject("listT2",listT2);
+		 * mv.addObject("list",listT2); }
+		 */
 		
 		int totalData=service.selectMemberCount();
 		
@@ -87,6 +98,17 @@ public class AdminController {
 		
 		return mv;
 	
+	}
+	
+	@RequestMapping("/admin/orderedMemberList.do")
+	@ResponseBody
+	public String orderedMemberList(@RequestParam Map param) {
+		List<Member> list = service.memberHowT(param);
+		System.out.println(list);
+		
+		/* new Gson().toJson(list); */
+		
+		return new Gson().toJson(list).toString();
 	}
 	
 	

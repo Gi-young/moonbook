@@ -19,6 +19,12 @@
 		UPDATE MEMBER SET MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_POINT=#{memberPoint},MEMBER_MEMBERGRADE_NO=#{memberGradeNo}
 		WHERE MEMBER_ID=#{memberId}
 	</update>
+	
+	<select id="memberHowT" resultMap="memberMap">
+		SELECT * FROM MEMBER
+		ORDER BY ${type1} ${order}
+		
+	</select>
 
 	<!-- 멤버에 상속해줄 부모 VO -->
 	<resultMap type="membergrade" id="membergradeMap">

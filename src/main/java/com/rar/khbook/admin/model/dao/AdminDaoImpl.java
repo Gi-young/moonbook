@@ -35,6 +35,16 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.update("member.memberUpdate",param);
 	}
+
+	@Override
+	public List<Member> memberHowT(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		System.out.println(param);
+		return session.selectList("member.memberHowT",param);
+	}
+	
+	
+	
 	
 	
 	

@@ -14,4 +14,5 @@ public interface AdminService {
 	
 	int memberUpdate(Map param);
 
+	List<Member> memberHowT(Map param);
 }

@@ -21,22 +21,22 @@
 		<div class="admin-box2">
 			<div class="admin-box4">
 					<div class="admin-search3">
-				<form class="admin-search">
+				<form class="admin-search" action="">
 						<table class="adminHowTable">
 							<tr>
 								<th>정렬방법</th>
 								<td>
 								<select name="type1">
-									<option value="totalMoney" selected>총 매출</option>
-									<option value="memberPoint" >회원포인트</option>
-									<option value="memberVisit" >방문횟수</option>
+									<option value="MEMBER_TOTAL_SALE" selected>총 매출</option>
+									<option value="MEMBER_POINT" >회원포인트</option>
+									<option value="MEMBER_VISIT" >방문횟수</option>
 								</select>
 								</td>
 								<td>
-									<input class="howASCSearch" type="radio" name="searchHow2" id="asc" value="asc" checked><label for="asc">오름차순</label>
-									<input class="howDESCSearch2" type="radio" name="searchHow2" id="desc" value="desc"><label for="desc">내림차순</label>
+									<input class="howASCSearch" type="radio" name="searchHow2" id="asc" value="ASC" checked><label for="asc">오름차순</label>
+									<input class="howDESCSearch2" type="radio" name="searchHow2" id="desc" value="DESC"><label for="desc">내림차순</label>
 								</td>
-								<td><input type="submit" value="조회하기"></td>
+								<td><input type="button" value="조회하기" onclick="orderList();"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
@@ -101,8 +101,6 @@
 									<td>
 										<form action="${path }/admin/memberDelete.do" method="post" class="adMemberT">
 											<input type="hidden" value="${e.memberId }" name="memberId" readonly>
-											<%-- <img alt="삭제하기" src="${path }/resources/img/admin/delete2.png" class="updateCheck" onclick="adminMemberDelete();"> --%> 
-											<!-- <input type="submit" value="삭제"> -->
 											<button type="submit"><img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck"></button>
 											
 										</form>
@@ -139,19 +137,32 @@ function changeMemberV(event){
 	
 } 
 
-
-function adminMemberDelete(event){
-	/*  let memberDeleteN = confirm($(e.target).prev().val()+"회원을 정말 삭제하시겠습니까?"); 
+const orderList = () => {
+	let type1 = document.getElementsByName("type1")[0].value;
+	let order="";
+	document.getElementsByName("searchHow2").forEach((v,i) => {
+		if (v.checked) {
+			order = v.value;
+		}
+	});
 	
-	if(memberDeleteN){
-		$("#adMemberT").attr("action","${path}/admin/"+url+"memberId"+${memberId})
-		
-	}  */ 
-	$(".adMemberT").submit(); 
-	
-	/* console.log(event.target); */
-	
+	$.ajax({
+		url: "${path}/admin/orderedMemberList.do",
+		data: {
+			type1: type1,
+			order: order==="" ? "asc":order
+		},
+		success: data => {
+			console.log(data);
+			JSON.parse(data);
+			console.log(JSON.parse(data));
+		}
+	});
 }
+
+
+
+
 </script>
 
 <%-- <jsp:include page="/WEB-INF/views/common/footer.jsp">
