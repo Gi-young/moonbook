@@ -10,7 +10,6 @@ import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
-import com.rar.khbook.model.mapper.CouponlistMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -84,8 +83,15 @@ public class MemberDaoImpl implements MemberDao {
 
 //	전체 쿠폰리스트 가져오기
 	@Override
-	public List<Couponlist> couponlist(CouponlistMapper mapper) {
+	public List<Couponlist> couponlist(SqlSession session) {
 		// TODO Auto-generated method stub
-		return mapper.couponlist();
+		return session.selectList("member.couponlist");
+	}
+	
+//	회원가입 감사 쿠폰 발급
+	@Override
+	public int insertCoupon(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		return session.update("member.insertCoupon", m);
 	}
 }

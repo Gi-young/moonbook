@@ -33,54 +33,20 @@
 				<tr>
 					<td class="td_first">쿠폰 혜택</td>
 					<c:forEach var="mg" items="${allMembergrade }">
-					
+						<td>
+							<ul class="couponlist">
+								<c:forEach var="cl" items="${allCouponlist }">
+									<c:if
+										test="${cl.couponlistMembergradeNo == mg.membergradeNo && cl.couponlistForuse=='Y' }">
+										<li><div class="coupon">
+												<img src="${path }/resources/images/img_coupon_3000.png">
+											</div>
+											<div class="coupon_info">${cl.couponlistName }</div></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+						</td>
 					</c:forEach>
-					<td>
-						<ul class="couponlist">
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_3000.png">
-								</div> <span class="coupon_info">3만원 이상 구매시 사용</span></li>
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_3000.png">
-								</div> <span class="coupon_info">2만원 이상 구매시 사용</span></li>
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_3000.png">
-								</div> <span class="coupon_info">1만원 이상 구매시 사용</span></li>
-						</ul>
-					</td>
-					<td>
-						<ul class="couponlist">
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_3000.png">
-								</div> <span class="coupon_info">7만원 이상 구매시 사용</span></li>
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_3000.png">
-								</div> <span class="coupon_info">5만원 이상 구매시 사용</span></li>
-						</ul>
-					</td>
-					<td>
-						<ul class="couponlist">
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_2000.png">
-								</div> <span class="coupon_info">3만원 이상 구매시 사용</span></li>
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_2000.png">
-								</div> <span class="coupon_info">2만원 이상 구매시 사용</span></li>
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_2000.png">
-								</div> <span class="coupon_info">1만원 이상 구매시 사용</span></li>
-						</ul>
-					</td>
-					<td>
-						<ul class="couponlist">
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_1000.png">
-								</div> <span class="coupon_info">7만원 이상 구매시 사용</span></li>
-							<li><div class="coupon">
-									<img src="${path }/resources/images/img_coupon_1000.png">
-								</div> <span class="coupon_info">5만원 이상 구매시 사용</span></li>
-						</ul>
-					</td>
 				</tr>
 				<tr>
 					<td class="td_first fs15">적립포인트</td>
@@ -118,7 +84,7 @@
 						12,110원의 상품을 구입한 경우 <br> 726.6의 포인트가 반올림 되어 727 포인트로 적립
 				<tr>
 					<td class="td_first">쿠폰</td>
-					<td>쿠폰은 결제일 기준, 30일 후에 재충전됩니다.</td>
+					<td>쿠폰은 발급일 기준, 30일 후에 재충전됩니다.</td>
 				</tr>
 			</table>
 		</div>

@@ -11,10 +11,13 @@
 	<resultMap type="membergrade" id="membergradeMap">
 		<result column="membergrade_no" property="membergradeNo" />
 		<result column="membergrade_name" property="membergradeName" />
-		<result column="membergrade_standard" property="membergradeStandard" />
-		<result column="membergrade_content" property="membergradeContent" />
+		<result column="membergrade_standard"
+			property="membergradeStandard" />
+		<result column="membergrade_content"
+			property="membergradeContent" />
 		<result column="membergrade_img" property="membergradeImg" />
-		<result column="membergrade_percent" property="membergradePercent" />
+		<result column="membergrade_percent"
+			property="membergradePercent" />
 	</resultMap>
 
 	<resultMap type="member" id="memberMap"
@@ -35,7 +38,8 @@
 	<!-- 쿠폰에 상속해줄 부모 VO -->
 	<resultMap type="couponlist" id="couponlistMap">
 		<result column="couponlist_no" property="couponlistNo" />
-		<result column="couponlist_membergrade_no" property="couponlistMembergradeNo" />
+		<result column="couponlist_membergrade_no"
+			property="couponlistMembergradeNo" />
 		<result column="couponlist_percent"
 			property="couponlistPercent" />
 		<result column="couponlist_amount" property="couponlistAmount" />
@@ -100,12 +104,27 @@
 	</select>
 
 	<!-- 회원의 회원등급 가져오기 -->
-	<select id = "getMembergrade" resultMap="membergradeMap">
-	SELECT * FROM MEMBERGRADE WHERE MEMBERGRADE_NO = #{memberGradeNo}
+	<select id="getMembergrade" resultMap="membergradeMap">
+		SELECT * FROM MEMBERGRADE
+		WHERE MEMBERGRADE_NO = #{memberGradeNo}
 	</select>
-	
+
 	<!-- 전체 회원 등급 가져오기 -->
-	<select id = "memberGrade" resultMap="membergradeMap">
-	SELECT * FROM MEMBERGRADE ORDER BY MEMBERGRADE_STANDARD DESC
+	<select id="memberGrade" resultMap="membergradeMap">
+		SELECT * FROM MEMBERGRADE
+		ORDER BY MEMBERGRADE_STANDARD DESC
 	</select>
+
+	<!-- 쿠폰리스트 조인해서 가져오기 -->
+	<select id="couponlist" resultMap="couponlistMap">
+		SELECT * FROM COUPONLIST LEFT
+		JOIN MEMBERGRADE ON COUPONLIST_MEMBERGRADE_NO
+		= MEMBERGRADE_NO
+	</select>
+
+	<!-- 회원가입한 회원에게 기본 쿠폰 넣어주기 -->
+	<update id="insertCoupon">
+		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL, SYSDATE+30, #{MEMBER_ID},
+		1, 'Y', '');
+	</update>
 </mapper>

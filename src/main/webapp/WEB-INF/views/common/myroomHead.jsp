@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%int couponCount = 0; %>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <div class="content_head">
 	<div class="user_section">
@@ -18,8 +19,8 @@
 		<div class="padding10">쿠폰 :</div>
 		<div class="padding10">
 			<c:forEach var="c" items="${coupon}" varStatus="status">
-				<c:if test="${c.couponCanuse =='Y'}">
-					<c:set var="couponCount" value="${count+=1 }" />
+				<c:if test="${c.couponCanuse =='Y' && c.couponlistMembergradeNo <= membergrade.membergradeNo}">
+					<c:set var="couponCount" value="<%=couponCount+=1 %>" />
 				</c:if>
 			</c:forEach>
 			${couponCount }

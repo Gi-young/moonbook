@@ -10,7 +10,6 @@ import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
-import com.rar.khbook.model.mapper.CouponlistMapper;
 
 public interface MemberDao {
 
@@ -38,5 +37,8 @@ public interface MemberDao {
 	List<Membergrade> memberGrade(SqlSession session);
 	
 //	전체 쿠폰리스트 가져오기
-	List<Couponlist> couponlist(CouponlistMapper mapper);
+	List<Couponlist> couponlist(SqlSession session);
+	
+//	회원가입 감사 쿠폰 발급
+	int insertCoupon(SqlSession session, Member m);
 }

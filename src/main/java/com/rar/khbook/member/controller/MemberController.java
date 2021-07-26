@@ -64,7 +64,6 @@ public class MemberController {
 			
 			if(pwEncoder.matches((String)param.get("memberPw"), m.getMemberPw())) {
 				session.setAttribute("loginMember", m);
-//				log.debug("{}", session.getAttribute("loginMember"));
 				
 //				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
 				List<Coupon> c = service.getCoupon(m);
@@ -336,6 +335,8 @@ public class MemberController {
 		List<Membergrade> mg = service.memberGrade();
 		m.addAttribute("allMembergrade", mg);
 		List<Couponlist> cl = service.couponlist();
+		System.out.println(cl);
+		m.addAttribute("allCouponlist", cl);
 		
 		return "member/memberGrade";
 	}	

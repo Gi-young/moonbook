@@ -58,7 +58,7 @@
 					<td>골드곰 등업 축하 쿠폰</td>
 					<td><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 				</tr>
-				<tr>
+				<%-- <tr>
 					<td>결제내역</td>
 					<td>골드곰 등업 축하 쿠폰</td>
 					<td><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy.MM.dd HH:mm:ss"/></td>
@@ -67,7 +67,7 @@
 					<td>결제내역</td>
 					<td>골드곰 등업 축하 쿠폰</td>
 					<td><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy.MM.dd HH:mm:ss"/></td>
-				</tr>
+				</tr> --%>
 			</table>
 		</div>
 	</div>
