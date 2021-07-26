@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.enroll-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+	width:1920px;
+	align-items:center;
+}
+.enroll-title{
+	display: flex;
+	text-align:center;
+	vertical-align: middle;
+	align-items:center;
+	padding-top:30px;
+	padding-bottom:30px;
+}
+/* 타이틀 회원가입 위아래 맞추기 */
+.enroll-title>p{
+	font-size:35px;
+	font-weight: 900;
+	color: #374089;
+	margin-left:20px;
+	margin-top:3px;
+}
+
+
+.enroll-choice hr{
+	opacity:0.5;
+	width:950px;
+}
+.enroll-welcome{
+	font-size:20px;
+	text-align:center;
+	font-weight:bold;
+	padding: 30px 30px;
+}
+.enroll-welcome1{
+	margin-top:15px;
+	margin-bottom:15px;
+	text-align:center;
+}
+.enroll-choice{
+	display: flex;
+	flex-direction: column;
+	
+	align-items:center;
+}
+.enrollchoice1{
+	width:460px;
+	height:80px;
+	font-size: 28px;
+	line-height: 78px;
+	border: 1px solid #56a900;
+	color: #56a900;
+	background-color: #fff;
+	cursor:pointer;
+	margin-top:15px;
+	margin-bottom:15px;
+}
+.enrollchoice1:hover{
+	color:#fff;
+	background-color:#56a900;
+}

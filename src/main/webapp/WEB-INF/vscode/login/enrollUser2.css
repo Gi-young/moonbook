@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+.enrollInfo-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+	width:1920px;
+	align-items:center;
+}
+
+.enroll-title{
+	display: flex;
+	text-align:center;
+	vertical-align: middle;
+	align-items:center;
+	padding-top:30px;
+	padding-bottom:30px;
+}
+/* 타이틀 회원가입 위아래 맞추기 */
+.enroll-title>p{
+	font-size:35px;
+	font-weight: 900;
+	color: #374089;
+	margin-left:20px;
+	margin-top:3px;
+}
+.enrollInfo-font{
+	font-weight: bold;
+	font-size:20px;
+	color:#56a900;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.enrollInfo-select{
+	height:30px;
+}
+.enrollInfo-box input{
+	width:200px;
+	height:30px;
+}
+
+.enrollInfo-box label{
+	font-weight: bold;
+	font-size:20px;
+	color:#374089;
+}
+.enrollInfo-button{
+	height:30px;
+	font-weight:bold;
+	border: 1px solid #56a900;
+	color: #56a900;
+	background-color: #fff;
+	cursor:pointer;
+}
+.enrollInfo-box2{
+	display:flex;
+	align-items:center;
+}
+.enrollInfo-box3{
+	display:flex;
+	align-items:center;
+}
+
+.enrollInfo-button:hover{
+	color:#fff;
+	background-color:#56a900;
+}
+.enrollchoice3{
+	width:350px;
+	height:70px;
+	font-size: 28px;
+	line-height: 78px;
+	border: 1px solid #56a900;
+	color: #56a900;
+	background-color: #fff;
+	cursor:pointer;
+	margin-top:15px;
+	margin-bottom:15px;
+}
+.enrollchoice3:hover{
+	color:#fff;
+	background-color:#56a900;
+}
