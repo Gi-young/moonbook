@@ -11,6 +11,10 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/commonStyle.css">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookReport.css">
 	<script defer src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
 	<script defer src="${path}/resources/js/ebook/wizard/ebookReport.js"></script>
 </head>
 <body>
@@ -28,7 +32,8 @@
 		</aside>
 		
 		<section>
-			
+			<div id="editorBox"></div>
+			<button id="saveBtn">저장</button>
 		</section>
 	</div>
 

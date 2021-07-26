@@ -1,6 +1,6 @@
-const getEbookItems = () => {
+const getEbookItems = (groupId, keyword) => {
 	$.ajax({
-		url: contextPath + "/ebook/getEBooksFromAPI.do",
+		url: contextPath + "/ebook/getEBooksFromAPI.do?" + "groupId=" + groupId + "&keyword=" + keyword,
 		success: data => {
 			let dataJSON = new X2JS().xml_str2json(data);
 			console.log(dataJSON);
@@ -46,4 +46,6 @@ const getEbookItems = () => {
 	});
 }
 
-window.onload = getEbookItems;
+window.onload = function() {	
+	getEbookItems("*groupId", "*keyword");
+};

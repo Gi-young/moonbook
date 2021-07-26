@@ -11,7 +11,13 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHome.css">
 	
 	<main>
+		<input type="text">
 	
+		<ul class="navbar-thema">
+			<li><a href="#">판매량순</a></li>
+			<li><a href="#">출판일순</a></li>
+			<!-- <li><a href="#">무료</a></li> -->
+		</ul>
 	</main>
 	
 	<input type="hidden" id="contextPath" value="${path}"/>

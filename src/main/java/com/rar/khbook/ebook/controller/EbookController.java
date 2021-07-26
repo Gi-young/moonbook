@@ -100,15 +100,18 @@ public class EbookController {
 	
 	@RequestMapping(value = "/ebook/getEBooksFromAPI.do", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
 	@ResponseBody
-	public String getEBooksFromAPI(@RequestParam(value = "postParams", required = false) String postParams) {
+	public String getEBooksFromAPI(
+			@RequestParam(value = "groupId", required = false) String groupId,
+			@RequestParam(value = "keyword", required = false) String keyword
+			) {
 		String clientId = "M3sMrvNy4wHO2sKgHMae";
 		String clientSecret = "5QxKP7UbYJ";
 		StringBuffer response=new StringBuffer();
 		try {
 			String apiURL = "https://openapi.naver.com/v1/search/book_adv.xml?"
 					+ "display=" + 20
-					+ "&d_titl=" + URLEncoder.encode("가", "UTF-8")
-					+ "&d_catg=" + URLEncoder.encode("300050", "UTF-8");
+					+ "&d_titl=" + URLEncoder.encode(keyword, "UTF-8")
+					+ "&d_catg=" + URLEncoder.encode(groupId, "UTF-8");
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");

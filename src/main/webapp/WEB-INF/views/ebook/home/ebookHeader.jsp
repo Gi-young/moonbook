@@ -23,10 +23,6 @@
 				<a href="${path}/ebook/pageEbook.do"><img src="${path}/resources/images/ebook/moonbook_ebook_logo.png"></a>
 			</div>
 			
-			<div class="header-searchbar">
-				<input type="text">
-			</div>
-			
 			<ul class="header-icons">
 				<li>
 					<a href="javascript:openEbookWizard();"><i class="fas fa-book-open"></i>e북 마법사</a>
@@ -45,11 +41,5 @@
 				<li><a href="${path}/ebook/pageBookstallElementary.do">초등</a></li>
 				<li><a href="${path}/ebook/pageBookstallMiddle.do">중등</a></li>
 				<li><a href="${path}/ebook/pageBookstallNotes.do">우리들의 노트</a></li>
-			</ul>
-			
-			<ul class="navbar-thema">
-				<li><a href="${path}/ebook/pageBookstallSearch.do">베스트</a></li>
-				<li><a href="${path}/ebook/pageBookstallSearch.do">신간</a></li>
-				<li><a href="${path}/ebook/pageBookstallSearch.do">무료</a></li>
 			</ul>
 		</nav>
