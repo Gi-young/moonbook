@@ -15,16 +15,41 @@
 		<div class="myroom_contents">
 			<form action="#">
 				<div class="fm_div">
-					<div class="padding10">
+					<div class="fm_valDiv">
 						<div>아이디</div>
 						<div>
 							<input name="memberId" value="${loginMember.memberId }" readonly>
 						</div>
 					</div>
-					<div class="padding10">
+					<div class="fm_valDiv">
 						<div>이름</div>
 						<div>
 							<input name="memberName" value="${loginMember.memberName }">
+						</div>
+					</div>
+				</div>
+				<div class="fm_div">
+					<div class="fm_valDiv">
+						<div>전화번호</div>
+						<div>
+							<input name="memberPhone" value="${loginMember.memberPhone}">
+						</div>
+					</div>
+					<div class="fm_valDiv">
+						<div>주소</div>
+						<div>
+							<input name="memberAddress" value="${loginMember.memberAddress}">
+						</div>
+					</div>
+				</div>
+				<div class="fm_div">
+					<div class="fm_valDiv">
+						<div>이메일</div>
+						<div>
+							<input class="emailId"
+								value="${loginMember.memberEmail.substring(0, loginMember.memberEmail.indexOf('@'))}">
+								<div>@</div>
+								<input class="emailAddress" value="${loginMember.memberEmail.substring(loginMember.memberEmail.indexOf('@')+1) }">
 						</div>
 					</div>
 				</div>

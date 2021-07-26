@@ -148,3 +148,8 @@ a img {
 	display:flex;
 	justify-content: center;
 }
+.fm_valDiv{
+	display:flex;
+	align-items: center;
+	padding:1.3em;
+}
