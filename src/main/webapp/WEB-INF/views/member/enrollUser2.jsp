@@ -19,9 +19,9 @@
 <body>
 	<div class="enrollInfo-container">
 		<div class="enroll-title">
-			<img alt="KH로고"
-				src="${pageContext.request.contextPath}/resources/img/KHLogo3.PNG">
-			<p>회원가입</p>
+			<img alt="문곰책방 로고"
+				src="${pageContext.request.contextPath}/resources/img/login/enroll1.PNG">
+			<p>문곰 회원가입</p>
 		</div>
 		<div class="enrollInfo-box">
 			<div class="enrollInfo5-box">

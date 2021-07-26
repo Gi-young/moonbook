@@ -1,54 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath }"/>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path }/resources/css/admin/adminPage.css">
+<link rel="stylesheet"
+	href="${path}/resources/css/admin/adminSideBar.css">
 
-
-		<div class="admin_snb">
-			<h2 class="cscenter_h2">
-				<a href="${path }/admin/adminPage.do">관리자페이지</a>
-			</h2>
-			<ul class="cscenter_snb3" style="width:180px;">
-				<li><strong>회원 관리</strong>
-					<ul>
-						<li><button onclick="adUpdateMember()">수정</button></li>
-						<li><button>삭제</button></li>
-					</ul></li>
-				<li><strong>책 관리</strong>
-					<ul>
-						<li><button>등록</button></li>
-						<li><button>수정</button></li>
-						<li><button>삭제</button></li>
-					</ul></li>
-				
-				<li><strong>기프트 관리</strong>
-					<ul>
-						<li><button>등록</button></li>
-						<li><button>수정</button></li>
-						<li><button>삭제</button></li>
-				</ul></li>
-				<li><strong>FAQ 관리</strong>
-					<ul>
-						<li><button>등록</button></li>
-						<li><button>수정</button></li>
-						<li><button>삭제</button></li>
-					</ul></li>
-					<li><strong>공지사항</strong>
-					<ul>
-						<li><button>등록</button></li>
-						<li><button>수정</button></li>
-						<li><button>삭제</button></li>
-					</ul></li>
-			</ul>
-		</div>
+<style>
+</style>
+<div class="admin_sideMenu">
+	<%-- <h1 class="padding10">
+		<a href="${path }/member/myroom.do">마이페이지</a>
+	</h1> --%>
+	<h2 class="padding10">
+		<a href="${path }/admin/adminPage.do">관리자페이지</a>
+	</h2>
+	<ul class="sideMenu" style="width:180px;">
+		<li>
+				<p onclick="" class="adminColor">판매 내역</p>
+			</li>
+		<li>
+				<p onclick="location.assign('${path}/admin/adMemberPage.do')" class="adminColor">회원 관리</p>
+			</li>
+		<li class="sub-menu2">
+				<p onclick="" class="adminColor">제품 관리</p>
+			<ul class="sub_content2">
+			<li><p onclick="" class="adminColor2">매입등록</p></li>
+			<li><p onclick="" class="adminColor2">매입내역</p></li>
+			<li><p onclick="" class="adminColor2">재고현황</p></li>
+			<li><p onclick="" class="adminColor2">입출고현황</p></li>
+		</ul>
+			</li>
+		<li class="sub-menu3">
+				<p onclick="" class="adminColor">분석</a>
+			
+			<ul class="sub_content3">
+			<li><p onclick="" class="adminColor2">수입및지출집계</p></li>
+			<li><p onclick="" class="adminColor2">일별매출집계</p></li>
+			<li><p onclick="" class="adminColor2">제품별매출집계</p></li>
+			<li><p onclick="" class="adminColor2">매출상세분석</p></li>
+			<li><p onclick="" class="adminColor2">월별제품매출분석</p></li>
+		</ul>
+			</li>
+		<li class="sub-menu4">
+				<p onclick="" class="adminColor">고객센터</a>
+			
+			<ul class="sub_content4">
+			<li><p onclick="" class="adminColor2">공지사항</p></li>
+			<li><p onclick="" class="adminColor2">FAQ관리</p></li>
+			<li><p onclick="" class="adminColor2">1대1상담</p></li>
+			<li><p onclick="" class="adminColor2">기업정보</p></li>
+		</ul>
+			</li>
 		
+	</ul>
+</div>
+
+
 <script>
-function adUpdateMember(){
-	$.get("${path}/admin/adUpdateMember",data =>{
-		console.log(data);
+	$('.sub-menu0').click(function() {
+		$('.sub_content0').slideToggle('slow');
+
 	});
-}
+	$('.sub-menu1').click(function() {
+		$('.sub_content1').slideToggle('slow');
+
+	});
+	$('.sub-menu2').click(function() {
+		$('.sub_content2').slideToggle('slow');
+
+	});
+	$('.sub-menu3').click(function() {
+		$('.sub_content3').slideToggle('slow');
+
+	});
+	$('.sub-menu4').click(function() {
+		$('.sub_content4').slideToggle('slow');
+
+	});
+	$('.sub-menu5').click(function() {
+		$('.sub_content5').slideToggle('slow');
+
+	});
+	$('.sub-menu6').click(function() {
+		$('.sub_content6').slideToggle('slow');
+
+	});
+
+
 </script>

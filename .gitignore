@@ -4,5 +4,4 @@ target
 .classpath
 .project
 .springBeans
-pom.xml
 /webapp/WEB-INF/classes/
