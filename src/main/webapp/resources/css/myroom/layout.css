@@ -143,3 +143,8 @@ h1 a, h3 a {
 a img {
 	vertical-align: middle;
 }
+
+.fm_div{
+	display:flex;
+	justify-content: center;
+}

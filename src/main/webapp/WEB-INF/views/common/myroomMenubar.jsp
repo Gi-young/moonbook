@@ -20,7 +20,7 @@
 				<a href="#">문의내역</a>
 			</h3></li>
 		<li><h3>
-				<a href="#">회원정보수정</a>
+				<a href="${path }/member/updateMember.do">회원정보수정</a>
 			</h3></li>
 		<li><h3>
 				<a href="#">비밀번호변경</a>

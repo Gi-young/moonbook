@@ -359,4 +359,10 @@ public class MemberController {
 		
 		return "myroom/couponBox";
 	}
+//	회원정보수정 페이지
+	@RequestMapping("/member/updateMember.do")
+	public String updateMember() {
+		
+		return "myroom/updateMember";
+	}
 }
