@@ -7,8 +7,8 @@
         <div class="footer-background">
             <div class="center"> 
                 <div class="left">
-                    <img src="${path }/resources/images/문곰책방.png" alt="문곰책방" 
-                    style="width:250px; height:100px;"/>
+                    <img src="${path }/resources/images/common/mgbook.png" alt="문곰책방" 
+                    />
                 </div> 
                 <div class="mid">
                     <ul>
