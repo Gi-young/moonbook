@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\javascriptwork"
+		},
+		{
+			"path": "C:\\Users\\JAVAMAN\\Desktop\\세미벤치\\amin-master"
+		},
+		{
+			"path": "C:\\Users\\JAVAMAN\\Desktop\\세미벤치\\courses-master"
+		},
+		{
+			"path": "..\\..\\..\\..\\servlet_jsp\\05_basicjsp\\web"
+		},
+		{
+			"path": "..\\..\\..\\..\\loginAPI"
+		},
+		{
+			"path": "..\\..\\..\\..\\guilguComment"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "C:\\Users\\JAVAMAN\\Desktop\\final"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "khbook"
+	}
+}

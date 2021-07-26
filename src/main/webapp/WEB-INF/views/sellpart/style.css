@@ -1,6 +1,9 @@
 a{
     text-decoration: none;
 }
+ul{
+    list-style:none;
+    }
 .contenttitle{
     font-weight: bold;
 }
@@ -8,19 +11,36 @@ a{
     float: right;
     font-size: 12px;
 }
-
+.wrap{
+    min-width: 950px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 #container{
     width: 950px;
     display: flex;
 }
+.leftlongbanner{
+    width: 168px;
+    height: 100%;
+}
+.lev1add div{
+    border: #582810 3px solid;
+}
+.lev1add div:not(:first-child){
+    border-left:none;
+}
+    
 .line{
-    border: black 1px solid;
+     /* border: #582810 1px solid;  */
 }
 .main_sub_title{
     position: relative;
 }
 .main_sub_title:hover{
-    border: 1px black solid;
+    /* border: 1px #582810 solid; */
     border-right: none;
 }
 .main_sub_title{
@@ -46,28 +66,65 @@ a{
     border-bottom: silver 1px solid;
 }
 .layer>li:hover{
-  border: 1px solid black;
+  border: 1px solid #582810;
 }
 
 #main_snb>ul{
     padding: 10px 0;
     z-index: 100;
-    border: black 1px solid;
+    border: #582810 1px solid;
     border-top: 1px solid #e2e5ee;
+
 }
 #main_sub>ul>li{
     list-style: none;
     width: 100px;
+
+    
+}
+.main_ul>li>ul>li{
+    font-family: '한컴 말랑말랑', '돋움';
+    font-size: 16px;
+ 
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 #main_snb{
     width: 168px;
-    height: 54px;
+    height: auto;
+    font-family: '한컴 말랑말랑', '돋움';
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
 }
 #main_snb>h2{
     margin: 0px;
     padding: 20px;
-    background-color: skyblue;
+    background-color: rgb(255, 255, 255);
+    text-align: center; 
+}
+.content-todaybook{
+    /* width: 168px;
+    height: auto; */
+    font-family: '한컴 말랑말랑', '돋움';
+    font-size: 15px;
     text-align: center;
+    
+}
+.content-todaybook>ul>li{
+    background-image: url("../sellpart/selllevel1/todayinner.png");
+}
+
+.content-todaybook>ul>li:not(:first-child){
+    border-top:none;
+}
+.content-todaybook>ul>li:hover{
+    background-image: url("../sellpart/selllevel1/lev1add2gold.png");
+}
+
+.content-todaybook li{
+    border: 3px solid #582810;
+    
 }
 #content_ad_banner{
     display: flex;
@@ -94,7 +151,7 @@ a{
     margin: 10px;
     width: 132px;
     height: 250px;
-    border: 1px solid black;
+    border: 1px solid #582810;
 }
 #bookpagebar{
     overflow: hidden;
@@ -135,19 +192,19 @@ a{
 #level_cho{
     margin: 10px;
     padding: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #582810;
 }
 #level_cho>div{
     position: relative;
     display: inline-block;
-    border: 1px solid black;
+    border: 1px solid #582810;
     font-size: 12px;
 }
 #level_cho div div{
     top: 21px;
     position: absolute;
     display: flex;
-    border: 1px solid black;
+    border: 1px solid #582810;
     background-color: white;
     text-align: center;
     padding: 0px;
@@ -160,7 +217,7 @@ a{
 }
 #level_cho div ul li:hover{
     background-color: whitesmoke;
-    border: 1px solid black;
+    border: 1px solid #582810;
 }
 .level_catagory_cho{
     text-align: center;
@@ -235,7 +292,7 @@ transition: all 0.2s linear;
 #select_bar{
     margin: 10px;
     padding: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #582810;
 }
 #select_bar>p{
     display: inline-block;
@@ -247,7 +304,7 @@ transition: all 0.2s linear;
 }
 .btn_1{    
     padding: 2 10 10 2px;
-    border: 1px solid black;
+    border: 1px solid #582810;
     color: blue;
     font-weight: bold;
     background-color: white;
@@ -278,7 +335,7 @@ transition: all 0.2s linear;
     text-align: center;
     font-size: 15px;
     color: white;
-    border: 1px solid black;
+    border: 1px solid #582810;
     margin-top: 3px;
     background-color: #582810;
     font-weight: bold;
@@ -306,20 +363,20 @@ transition: all 0.2s linear;
     padding-right: 5px;
 }
 .bookView_img>div>a{
-    border: 1px solid black;
-    background-color: white;
-    color: red;
+    border: 1px solid #582810;
+    background-color: #582810;
+    color: white;
     padding: 1px 30px 1px 30px;
 }
 .bookView_img>ul>li:first-child{
-    border-right: 1px black solid;
+    border-right: 1px #582810 solid;
 }
 .bookView_order{
     width: 758px;
 }
 .bookView_order>div{
     margin: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #582810;
 }
 .bookView_order>div>h2{
     margin: 0px;
@@ -329,7 +386,7 @@ transition: all 0.2s linear;
     margin: 0px;
 }
 .bookView_order>div>span:not(:last-child){
-   border-right: 1px solid black;
+   border-right: 1px solid #582810;
    padding: 0px 10px 0px 10px;
 }
 .bookView_order>div:not(h2){
@@ -337,7 +394,7 @@ transition: all 0.2s linear;
     font-weight: bold;
 }
 .bookView_order>div>a{
-    margin-top: 100px;
+    margin-top: 10px;
     padding: 15px 40px 15px 40px;
     background-color: #582810;
     color: white;
@@ -403,7 +460,7 @@ transition: all 0.2s linear;
 #review_list{
     padding: 15px;
     font-size: 13px;
-    border-top: 1px black solid;
+    border-top: 1px #582810 solid;
 }
 #review_list>div{
     margin: 10px;
@@ -444,13 +501,16 @@ transition: all 0.2s linear;
     position: relative;
     display: inline-block;
     list-style: none;
-    background-color: whitesmoke;
-    border: 1px solid black;
+    background-color: #E5E2DB;
+    border: #adadad 1px solid;
+    color: #582810;
+    font-weight: bold;
     font-style: inherit;
     text-align: center;
 }
 .banner_cho_box ul li a:hover{
-    color: red;
+    /* background-color: #582810; */
+    color: white;
 }
 .banner_cho_box ul li{
     position: relative;

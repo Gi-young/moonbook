@@ -1,0 +1,140 @@
+<link rel="stylesheet" href="../eventboard/eventboard.css">
+<c:set var="path" value="${pageContext.request.contextPath }"/> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+	<script type="text/javascript" src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="flex">
+            <div class="eventcg"></div>
+            <div class="eventboard">
+                <div>총 게시물 #건</div>
+                <table>
+                    <if test="">
+
+                    </if>
+                    
+                    <thead>
+                        <tr>
+                        <th></th>
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>첨부파일</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                        <th>수정/삭제</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <c:forEach var="eBoard" items="${eventBoardList}">
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>${eBoard.no}</td>
+                        <td><a href="#">${eBorad.title}</a></td>
+                        <td><img src="../eventboard/imgevent/addFileIcon.png"></td>
+                        <td>${eBoard.memberId}</td>
+                        <td>${eBoard.date}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button name="modify" value="${eBoard.no}">수정</button>
+                                <button name="delete" value="${eBoard.no}">삭제</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </c:forEach> -->
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td><a href="#">데이터1</a></td>
+                        <td><img src="../eventboard/imgevent/addFileIcon.png"></td>
+                        <td>데이터4</td>
+                        <td>데이터5</td>
+                        <td>
+                        <button name="modify" value="1">수정</button>
+                        <button name="delete" value="1">삭제</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td><a href="#">데이터1</a></td>
+                        <td><img src="../eventboard/imgevent/addFileIcon.png"></td>
+                        <td>데이터4</td>
+                        <td>데이터5</td>
+                        <td>
+                        <button name="modify" value="1">수정</button>
+                        <button name="delete" value="1">삭제</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td><a href="#">데이터1</a></td>
+                        <td><img src="../eventboard/imgevent/addFileIcon.png"></td>
+                        <td>데이터4</td>
+                        <td>데이터5</td>
+                        <td>
+                        <button name="modify" value="1">수정</button>
+                        <button name="delete" value="1">삭제</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td><a href="#">데이터1</a></td>
+                        <td><img src="../eventboard/imgevent/addFileIcon.png"></td>
+                        <td>데이터4</td>
+                        <td>데이터5</td>
+                        <td>
+                        <button name="modify" value="1">수정</button>
+                        <button name="delete" value="1">삭제</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>1</td>
+                        <td><a href="#">데이터1</a></td>
+                        <td><img src="../eventboard/imgevent/addFileIcon.png"></td>
+                        <td>데이터4</td>
+                        <td>데이터5</td>
+                        <td>
+                        <button name="modify" value="1">수정</button>
+                        <button name="delete" value="1">삭제</button>
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                <jsp:include page="../board/eventboard/eventboard.html"/>
+                <button id="createBtn" type="button" class="btn btn-info btn-sm" data-toggle="modal">새 글 쓰기</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+var action='';
+var url='';
+var type='';
+var no='';
+
+$(document).ready(function(){
+    $("#createBtn").click(function(){
+        action='create';
+        type='POST'
+        $("#modal-title").text("새 글 작성");
+        $("#myModal").modal();
+    })
+});
+
+
+</script>
+
+
+
+</html>

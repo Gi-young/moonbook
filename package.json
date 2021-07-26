@@ -1,0 +1,25 @@
+{
+  "name": "khbook",
+  "version": "1.0.0",
+  "description": "둥글게둥글게 팀의 파이널 프로젝트\r ---\r ### 내 컴퓨터에서 실행시키기(클론)\r 1. 윈도우 탐색기에서 khbook프로젝트를 생성할 워크스페이스로 이동합니다. (기존 워크스페이스 사용 가능)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gi-young/moonbook.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gi-young/moonbook/issues"
+  },
+  "homepage": "https://github.com/Gi-young/moonbook#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "socket.io": "^4.1.3"
+  }
+}

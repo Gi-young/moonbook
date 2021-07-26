@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="board-container">
+
+        <input type="text" class="form-control" placeholder="제목" name="eBoardTitle" id="eBoardTitle" value="${eBoard.boardTitle}" required>
+        <input type="text" class="form-control" name="eBoardWriter" value="${eBoard.eBoardWriter}" readonly required>
+		<c:if test="${eBoard.attachments.size()>0 }">
+        	<c:forEach var="a" items="${eBoard.attachments }" varStatus="vs">
+                <button type="button" 
+                    class="btn btn-outline-success btn-block"
+                    onclick="location.replace('${path}/eBoard/fileDownload.do?oriname=${a.originalFilename }&rename=${a.renamedFilename }')">
+                    첨부파일 ${vs.count } - ${a.originalFilename }
+            	</button>
+        	</c:forEach>
+        </c:if>
+        
+        <textarea class="form-control" name="eBoardContent" placeholder="내용" required>${eBoard.eBoardContent }</textarea>
+    </div>
+</body>
+</html>
