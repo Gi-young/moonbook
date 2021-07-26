@@ -46,6 +46,11 @@ const getEbookItems = (groupId, keyword) => {
 	});
 }
 
-window.onload = function() {	
-	getEbookItems("*groupId", "*keyword");
+window.onload = function() {
+	let hangulStr = "가나다라마바사아자차카타파하";
+	
+	for(let i=0;i<hangulStr.length;i++) {
+		getEbookItems("300060", hangulStr[i]);
+	}
+	
 };

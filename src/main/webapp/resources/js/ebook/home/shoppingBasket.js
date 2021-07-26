@@ -11,7 +11,7 @@ payBtn.addEventListener("click", () => {
         {
             pg: "html5_inicis",
             pay_method: "card",
-            merchant_uid: "ORD20180131-0000011",
+            merchant_uid: "ORD20180131-0000012",
             name: "안나 카레니나",
             amount: 500,
             buyer_email: "tnsks710@naver.com",

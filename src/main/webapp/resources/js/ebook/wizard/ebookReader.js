@@ -1,7 +1,6 @@
 const contextPath = $('#contextPath').val();
 
-//let url = contextPath + "/resources/ebook/test.pdf";
-let url = "http://naver.me/GpJmcgFl";
+let url = contextPath + "/resources/ebook/test.pdf";
 let pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
@@ -157,7 +156,7 @@ document.getElementById("pageToTextBtn").addEventListener("click", () => {
 });
 
 document.getElementById("textToSpeechBtn").addEventListener("click", () => {
-    let targetText = document.getElementById("parsedTextData").value;
+    let targetText = document.getElementById("parsedTextData").innerText;
     console.log(targetText);
     const utterance = new SpeechSynthesisUtterance(targetText);
     utterance.rate = 1;

@@ -24,9 +24,9 @@
 				<span id="page-num"></span> / <span id="page-count"></span>
 			</span>
 			<div id="textTurmoil">
+				<div id="parsedTextData"></div>
 				<button id="pageToTextBtn">텍스트로 변환</button>
 				<button id="textToSpeechBtn">읽어 줘</button>
-				<textarea id="parsedTextData"></textarea>
 			</div>
 		</div>
 
