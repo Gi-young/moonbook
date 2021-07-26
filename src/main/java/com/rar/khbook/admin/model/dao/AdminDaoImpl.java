@@ -1,6 +1,7 @@
 package com.rar.khbook.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -22,6 +23,14 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("member.selectMemberCount");
 	}
+
+	@Override
+	public int memberDelete(SqlSession session, String memberId) {
+		// TODO Auto-generated method stub
+		return session.delete("member.memberDelete",memberId);
+	}
+	
+	
 
 	
 	

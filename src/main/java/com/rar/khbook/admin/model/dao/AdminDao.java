@@ -1,6 +1,7 @@
 package com.rar.khbook.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -11,5 +12,7 @@ public interface AdminDao {
 	List<Member> selectMemberList(SqlSession session,int cPage,int numPerpage);
 	
 	int selectMemberCount(SqlSession session);
+	
+	int memberDelete(SqlSession session,String memberId);
 	
 }

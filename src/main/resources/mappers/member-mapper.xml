@@ -12,6 +12,9 @@
 		INSERT INTO MEMBER
 		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1,0,0,NULL)
 	</insert>
+	<delete id="memberDelete">
+		DELETE FROM MEMBER WHERE MEMBER_ID=#{memberId}
+	</delete>
 
 	<!-- 멤버에 상속해줄 부모 VO -->
 	<resultMap type="membergrade" id="membergradeMap">

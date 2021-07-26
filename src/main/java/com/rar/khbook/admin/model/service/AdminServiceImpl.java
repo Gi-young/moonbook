@@ -1,6 +1,7 @@
 package com.rar.khbook.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,14 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.selectMemberCount(session);
 	}
+
+	@Override
+	public int memberDelete(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.memberDelete(session,memberId);
+	}
+	
+	
 	
 	
 	

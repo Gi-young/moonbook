@@ -1,6 +1,7 @@
 package com.rar.khbook.admin.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,18 +33,40 @@ public class AdminController {
 	@RequestMapping("/admin/adMemberPage.do")
 	public ModelAndView adUpdateMember(
 			@RequestParam(value="cPage", defaultValue="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue="5") int numPerpage,ModelAndView mv) {
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
 		
-		mv.addObject("list",service.selectMemberList(cPage,numPerpage));
+		List<Member> listT=service.selectMemberList(cPage,numPerpage);
+		mv.addObject("list",listT);
 		
 		int totalData=service.selectMemberCount();
 		
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage,5, "adMemberPage.do"));
-		
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
 		mv.setViewName("admin/adminMemberPage");
 		
 		return mv;
+	}
+	@RequestMapping("/admin/memberDelete.do")
+	public ModelAndView memberDelete(ModelAndView mv,String memberId){
+		
+		/* log.debug(memberId); */
+		System.out.println("테스트중입니다. 아이디제발 :"+memberId);
+		int result=service.memberDelete(memberId);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="삭제되었습니다";
+			
+		}else {
+			msg="삭제실패";
+		}
+		loc="/admin/adMemberPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+		
 	}
 	
 	
