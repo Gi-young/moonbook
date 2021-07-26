@@ -1,0 +1,47 @@
+@charset "UTF-8";
+.wrapper {
+	display: grid;
+	grid-template-rows: 25px 100px 50px 1fr 100px;
+	grid-template-areas: 'portalnav'
+						 'header'
+						 'navbar'
+						 'main'
+						 'footer';
+}
+
+main {
+	background-color: lightgoldenrodyellow;
+	display: grid;
+	grid-template-columns: repeat(4, 200px);
+	grid-auto-rows: 250px;
+	grid-auto-rows: minmax(250px, auto);
+	grid-gap: 1rem;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	padding: 20px;
+}
+
+main>div {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+
+.ebookTitle {
+	margin-top: 7px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.ebookAuthor {
+	font-size: 14px;
+}
+
+.ebookPublisher {
+	font-size: 14px;
+}
