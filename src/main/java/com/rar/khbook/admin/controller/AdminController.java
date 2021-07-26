@@ -35,6 +35,7 @@ public class AdminController {
 			@RequestParam(value="cPage", defaultValue="1") int cPage,
 			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
 		
+		
 		List<Member> listT=service.selectMemberList(cPage,numPerpage);
 		mv.addObject("list",listT);
 		
@@ -67,7 +68,7 @@ public class AdminController {
 		
 		return mv;
 	}
-	@RequestMapping("/admin/memeberUpdate.do")
+	@RequestMapping("/admin/memberUpdate.do")
 	public ModelAndView memberUpdate(ModelAndView mv,@RequestParam Map param) {
 		
 		int result=service.memberUpdate(param);

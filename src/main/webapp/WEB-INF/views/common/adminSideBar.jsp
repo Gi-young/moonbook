@@ -49,11 +49,13 @@
 			<ul class="sub_content4">
 			<li><p onclick="" class="adminColor2">공지사항</p></li>
 			<li><p onclick="" class="adminColor2">FAQ관리</p></li>
-			<li><p onclick="" class="adminColor2">1대1상담</p></li>
+			<li><p onclick="" class="adminColor2">1대1채팅</p></li>
 			<li><p onclick="" class="adminColor2">기업정보</p></li>
 		</ul>
 			</li>
-		
+		<li class="sub-menu5">
+			<p onclick="" class="adminColor">쿠폰관리</a>
+		</li>
 	</ul>
 </div>
 

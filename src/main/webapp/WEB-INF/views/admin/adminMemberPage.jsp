@@ -84,11 +84,10 @@
 							
 							<c:forEach var="e" items="${list }">
 							<tr>
-								
 									<td><input type="text" value="${e.memberRegiDate }" name="memberRegiDate" readonly></td>
 									<td><input type="text" value="${e.memberId }" name="memberId" readonly></td>
 									<td><input type="text" value="${e.memberName }" name="memberName" readonly></td>
-									<td><input type="text" value="${e.memberPhone }" name="memberPhone" ></td>
+									<td><input type="text" value="${e.memberPhone }" name="memberPhone"></td>
 									<td><input type="text" value="${e.memberGender }" name="memberGender" readonly></td>
 									<td><input type="text" value="${e.memberAddress }" name="memberAddress"></td>
 									<td><input type="text" value="${e.memberPoint }" name="memberPoint"></td>
@@ -96,15 +95,7 @@
 									<td><input type="text" value="${e.memberTotalSale }" name="memberTotalSale" readonly></td>
 									<td><input type="text" value="${e.memberVisit }" name="memberVisit" readonly></td>
 									<td>
-									<form action="${path }/admin/memeberUpdate.do" method="post" class="adMemberT2">
-									<input type="hidden" value="${e.memberId }" name="memberId" readonly>
-									<input type="hidden" value="${e.memberPhone }" name="memberPhone" readonly>
-									<input type="hidden" value="${e.memberAddress }" name="memberAddress" readonly>
-									<input type="hidden" value="${e.memberPoint }" name="memberPoint" readonly>
-									<input type="hidden" value="${e.memberGradeNo }" name="memberGradeNo" readonly>
-									
-									<button type="submit"><img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" class="updateCheck"></button>
-									</form>
+										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck">
 									</td>
 									
 									<td>
@@ -135,14 +126,25 @@
 
 
 <script>
+
+function changeMemberV(event){
+	let memberId=event.target.parentElement.parentElement.children[1].children[0].value;
+	let memberPhone=event.target.parentElement.parentElement.children[3].children[0].value;
+	let memberAddress=event.target.parentElement.parentElement.children[5].children[0].value;
+	let memberPoint=event.target.parentElement.parentElement.children[6].children[0].value;
+	let memberGradeNo=event.target.parentElement.parentElement.children[7].children[0].value;
+	console.dir(memberPhone);
+	console.log("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberAddress="+memberAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
+	location.assign("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberAddress="+memberAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
+	
+} 
+
+
 function adminMemberDelete(event){
 	/*  let memberDeleteN = confirm($(e.target).prev().val()+"회원을 정말 삭제하시겠습니까?"); 
 	
 	if(memberDeleteN){
 		$("#adMemberT").attr("action","${path}/admin/"+url+"memberId"+${memberId})
-		
-	
-		
 		
 	}  */ 
 	$(".adMemberT").submit(); 
