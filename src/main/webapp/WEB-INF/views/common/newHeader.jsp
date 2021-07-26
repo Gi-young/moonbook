@@ -9,17 +9,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>header</title> 
-	<link rel="stylesheet" href="${path }/resources/css/style.css">
-    <script type="text/javascript" src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+    <title>문곰책방</title> 
+    <link rel="stylesheet" href="${path }/resources/css/style.css">
+    
 </head>
 <body>
 <div class="header">
-    <div class="header-top">
-        <ul class="header-top-info1">
-        
+     <div class="header-top">
+         <ul class="header-top-info1">
+        <!--
                 <li class="store-info"><a href="#">매장안내 ▼</a></li>
-                
                 <div>    
                     <li><a href="#">회원혜택 ▼</a></li>
                     <div class="benefit"></div>
@@ -31,8 +30,9 @@
                 <li><a href="#">고객센터</a></li>
                 <li><a href="#">주문배송</a></li>
                 <li><a href="#"><img src="../components/image/baguni.svg" style="width: 24px; height: 24px;"></a></li>
-            </ul>
-    </div>
+        -->
+            </ul> 
+    </div> 
     <!--
         <div class="info">
             <ul>
@@ -46,7 +46,7 @@
         </div> -->
     
         <div class="header-mid">
-            <img src="../components/image/문곰책방.png" alt="">
+            <img src="${path }/resources/images/문곰책방.png" alt="">
             <!-- <h1 class="logo">
                 <a href="#">
                     <img src="../components/image/kh문고 로고 final.png" style="width: 250px;">
@@ -148,3 +148,5 @@
             <div></div>
         </div>
     </div>
+</div>
+
