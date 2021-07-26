@@ -22,12 +22,12 @@ public class PageFactory {
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
 				pageBar+="<li class='page-item active'>";
-				pageBar+="<a class='page-link'>"+pageNo+"</a>";
+				pageBar+="<a class='page-link' href='#'>"+pageNo+"</a>";
 				pageBar+="</li>";
 			}else {
 				pageBar+="<li class='page-item'>";
 				pageBar+="<a class='page-link' href='javascript:fn_paging("+pageNo+")'>"+pageNo+"</a>";
-				pageBar="</li>";
+				pageBar+="</li>";
 			}
 			pageNo++;
 		}

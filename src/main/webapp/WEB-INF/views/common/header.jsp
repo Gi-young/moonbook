@@ -142,7 +142,7 @@
                         </ul>
                     </li>
                     <li><a href="#">기프트 ▼</a></li>
-                    <li><a href="${path}/usedboard/usedboardPage.do">중고장터</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do">중고장터</a></li>
                 </ul>
             </div>
             <div class="header-menuBar2">
