@@ -25,6 +25,19 @@
 		ORDER BY ${type1} ${order}
 		
 	</select>
+	
+	<select id="memberHowT2" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE
+		<choose>
+			<when test="type2=='memberId'">
+				MEMBER_ID=${type2} LIKE '%'||#{search}||'%'
+			</when>
+			<when test="type2=='memberName'">
+				MEMBER_NAME=${type2} LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+	</select>
+	
 
 	<!-- 멤버에 상속해줄 부모 VO -->
 	<resultMap type="membergrade" id="membergradeMap">

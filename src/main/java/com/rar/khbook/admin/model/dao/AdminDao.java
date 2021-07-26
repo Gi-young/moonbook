@@ -19,4 +19,5 @@ public interface AdminDao {
 	
 	List<Member> memberHowT(SqlSession session,Map param);
 	
+	List<Member> memberHowT2(SqlSession session,Map param);
 }

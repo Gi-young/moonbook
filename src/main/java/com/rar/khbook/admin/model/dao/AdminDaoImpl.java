@@ -42,6 +42,14 @@ public class AdminDaoImpl implements AdminDao {
 		System.out.println(param);
 		return session.selectList("member.memberHowT",param);
 	}
+
+	@Override
+	public List<Member> memberHowT2(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("member.memberHowT2",param);
+	}
+	
+	
 	
 	
 	

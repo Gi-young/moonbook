@@ -47,11 +47,11 @@
 								</select>
 								</td>
 								<td class="search-box">
-									<input type="text"> 
+									<input type="text" name="searchHow3"> 
 								</td>
 								<td class="search-box">
 									<img alt="검색하기"
-									src="${path }/resources/img/admin/search.png">
+									src="${path }/resources/img/admin/search.png" onclick="searchMT();">
 								</td>
 							</tr>
 						</table>
@@ -137,6 +137,58 @@ function changeMemberV(event){
 	
 } 
 
+/* const searchMT =()=>{
+	let type2 =document.getElemnetsByName("type2")[0].value;
+	let search=document.getElementsByName("searchHow3")[0].value;
+	
+	$.ajax({
+		url: "${path}/admin/searchTextMemberList.do",
+		data:{
+			type2 :type2
+			search:search
+		},
+		success: data=>{
+		document.querySelectorAll(".memberT td").forEach((v,i) => {
+				v.remove();
+			});
+			console.dir( data);
+			
+			let table=document.querySelector(".memberT");
+			for(let i=0;i<data.length;i++){
+				let tr=document.createElement("tr");
+				for(let j=0;j<12;j++){
+					let td=document.createElement("td");
+					td.style.border="1px solid black";
+					td.style.height="27px";
+					if(j == 0) {
+						let regiDate = new Date(data[i].memberRegiDate);
+						
+						td.innerText = regiDate.getFullYear() + "-" + 
+						(regiDate.getMonth()+1) 
+							
+						+ "-" + regiDate.getDate();
+					}
+					if(j == 1) td.innerText = data[i].memberId;
+					if(j == 2) td.innerText = data[i].memberName;
+					if(j == 3) td.innerText = data[i].memberPhone;
+					if(j == 4) td.innerText = data[i].memberGender;
+					if(j == 5) td.innerText = data[i].memberAddress;
+					if(j == 6) td.innerText = data[i].memberPoint;
+					if(j == 7) td.innerText = data[i].memberGradeNo;
+					if(j == 8) td.innerText = data[i].memberTotalSale;
+					if(j == 9) td.innerText = data[i].memberVisit;
+					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck">'
+					if(j == 11) td.innerHTML = '<button type="submit"><img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck"></button>'
+					tr.appendChild(td);
+				}
+				table.appendChild(tr);
+				
+			}
+		}
+		} 
+	});
+} */
+
 const orderList = () => {
 	let type1 = document.getElementsByName("type1")[0].value;
 	let order="";
@@ -153,11 +205,54 @@ const orderList = () => {
 			order: order==="" ? "asc":order
 		},
 		success: data => {
-			console.log(data);
-			JSON.parse(data);
-			console.log(JSON.parse(data));
+			document.querySelectorAll(".memberT td").forEach((v,i) => {
+				v.remove();
+			});
+			
+			
+			console.dir( data);
+			//JSON.parse("이거 : " + data);
+			//console.log(JSON.parse(data));
+			
+			//let orderTableData=JSON.parse(data);
+			let table=document.querySelector(".memberT");
+			for(let i=0;i<data.length;i++){
+				let tr=document.createElement("tr");
+				for(let j=0;j<12;j++){
+					let td=document.createElement("td");
+					td.style.border="1px solid black";
+					td.style.height="27px";
+					if(j == 0) {
+						let regiDate = new Date(data[i].memberRegiDate);
+						
+						td.innerText = regiDate.getFullYear() + "-" + 
+						/* if((regiDate.getMonth()+1)<10){
+							(0+(regiDate.getMonth()+1)) 
+						}else{ */
+							(regiDate.getMonth()+1) 
+							
+						+ "-" + regiDate.getDate();
+					}
+					if(j == 1) td.innerText = data[i].memberId;
+					if(j == 2) td.innerText = data[i].memberName;
+					if(j == 3) td.innerText = data[i].memberPhone;
+					if(j == 4) td.innerText = data[i].memberGender;
+					if(j == 5) td.innerText = data[i].memberAddress;
+					if(j == 6) td.innerText = data[i].memberPoint;
+					if(j == 7) td.innerText = data[i].memberGradeNo;
+					if(j == 8) td.innerText = data[i].memberTotalSale;
+					if(j == 9) td.innerText = data[i].memberVisit;
+					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck">'
+					if(j == 11) td.innerHTML = '<button type="submit"><img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck"></button>'
+					tr.appendChild(td);
+				}
+				table.appendChild(tr);
+				
+			}
 		}
 	});
+	
+	
 }
 
 

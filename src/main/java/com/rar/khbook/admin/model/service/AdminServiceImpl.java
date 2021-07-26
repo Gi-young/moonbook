@@ -48,6 +48,12 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.memberHowT(session,param);
 	}
+
+	@Override
+	public List<Member> memberHowT2(Map param) {
+		// TODO Auto-generated method stub
+		return dao.memberHowT2(session, param);
+	}
 	
 	
 	

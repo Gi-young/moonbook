@@ -102,13 +102,20 @@ public class AdminController {
 	
 	@RequestMapping("/admin/orderedMemberList.do")
 	@ResponseBody
-	public String orderedMemberList(@RequestParam Map param) {
+	public List<Member> orderedMemberList(@RequestParam Map param) {
 		List<Member> list = service.memberHowT(param);
-		System.out.println(list);
-		
 		/* new Gson().toJson(list); */
 		
-		return new Gson().toJson(list).toString();
+		/* return new Gson().toJson(list).toString(); */
+		return list;
+	}
+	@RequestMapping("/admin/searchTextMemberList.do")
+	@ResponseBody
+	public List<Member> searchTextMemberList(@RequestParam Map param){
+		
+		List<Member> list =service.memberHowT2(param);
+		
+		return list;
 	}
 	
 	
