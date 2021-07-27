@@ -80,13 +80,10 @@ public class MemberController {
 				//최근 로그인한 날짜 구하기
 				//컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
 				//컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
-				if(!m.getMemberToday().toString().equals(today)) {
+				if(m.getMemberToday().toString().equals(today)) {
 					int memberVisit =service.updateMemberVisit(param);
 					int memberToday =service.updateMemberToday(param);
 				}
-//				
-
-				
 				msg="로그인 성공";
 				model.addAttribute("loc", "/");
 			}else {
