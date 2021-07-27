@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>quickBar</title>
     <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="${path }/resources/css/quickBar.css">
+
 </head>
 <body>
     <div class="quickContents">

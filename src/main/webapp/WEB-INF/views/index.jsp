@@ -10,7 +10,6 @@
 
 <style>
 
-@import url(${path}/resources/css/style.css);
 li{
     list-style: none;
     /* margin-left: -40px; */
