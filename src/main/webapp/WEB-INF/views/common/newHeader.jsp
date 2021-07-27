@@ -125,7 +125,7 @@
                     <li><a href="#">국내도서</a></li>
                     <li><a href="#">외국도서</a></li>
                     <li>
-                        <a href="#"><div>eBook ▼</div></a>
+                        <a href="${path}/ebook/pageEbook.do"><div>eBook ▼</div></a>
                         <ul class="eBook">
                             <li><a href="#">일반도서</a></li>
                             <li><a href="#">판타지/무협</a></li>

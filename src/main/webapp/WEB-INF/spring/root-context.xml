@@ -10,15 +10,9 @@
 
    <bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource">
       <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-<<<<<<< HEAD
       <property name="url" value="jdbc:oracle:thin:@rclass.iptime.org:1521:xe"/>
       <property name="username" value="moonbook"/>
       <property name="password" value="moonbook"/>
-=======
-      <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-      <property name="username" value="khbook"/>
-      <property name="password" value="khbook"/>
->>>>>>> 6204255c2a05f006c27092751ce6fb15a0df7515
    </bean>
    
    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
