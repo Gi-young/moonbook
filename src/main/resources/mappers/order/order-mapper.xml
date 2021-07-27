@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="order">
-	<resultMap type="order" id="orderMap" >
+	<!-- <resultMap type="order" id="orderMap" >
 		<result column="order_no" property="orderNo"/>
 		<result column="order_count" property="orderCount"/>
 		<result column="order_price" property="orderPrice"/>
@@ -11,6 +11,6 @@
 		<result column="order_paidmethod" property="orderPaidMethod"/>
 		<result column="order_no" property="orderNo"/>
 		
-	</resultMap>
+	</resultMap> -->
 
 </mapper>
