@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>문곰책방</title> 
     <link rel="stylesheet" href="${path }/resources/css/style.css">
-    
+    <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="header">
@@ -46,7 +46,7 @@
         </div> -->
     
         <div class="header-mid">
-            <img src="${path }/resources/images/문곰책방.png" alt="">
+            <img src="${path }/resources/images/common/mgbanner.png" alt="">
             <!-- <h1 class="logo">
                 <a href="#">
                     <img src="../components/image/kh문고 로고 final.png" style="width: 250px;">
@@ -122,10 +122,10 @@
             </div> -->
             <div class="header-menuBar1">
                 <ul class="flex">
-                    <li><a href="#">국내도서</a></li>
-                    <li><a href="#">외국도서</a></li>
+                    <li><a href="#">문곰도서</a></li>
+                   <!--  <li><a href="#">외국도서</a></li> -->
                     <li>
-                        <a href="${path}/ebook/pageEbook.do"><div>eBook ▼</div></a>
+                        <a href="#"><div>문곰e북 ▼</div></a>
                         <ul class="eBook">
                             <li><a href="#">일반도서</a></li>
                             <li><a href="#">판타지/무협</a></li>
@@ -134,8 +134,8 @@
                             <li><a href="#">오디오북</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">기프트 ▼</a></li>
-                    <li><a href="#">중고장터</a></li>
+                    <li><a href="#">문곰템 ▼</a></li>
+                    <li><a href="#">중고/경매</a></li>
                 </ul>
             </div>
             <div class="header-menuBar2">

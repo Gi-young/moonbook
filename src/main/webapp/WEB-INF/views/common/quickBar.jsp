@@ -38,7 +38,13 @@
             </button>
             <!-- 상담문의, 관리자 연결 -->
                 <button class="help">
-                    <img src="${path }/resources/image/상담문의.png" alt="">
+                    <img src="${path }/resources/images/상담문의.png" alt="상담문의">
+                </button>
+                <button class="chatting">
+                    <img src="${path }/resources/images/chatting.svg" alt="채팅">
+                </button>
+                <button class="locationHome" onclick="location.assign('${path}')">
+                    <img src="${path }/resources/images/퀵바홈버튼.png" alt="홈으로 이동">
                 </button>
         </div>
         <!-- <div class="openBar-wrap">
@@ -67,11 +73,13 @@
     const topBtn = $(".topBtn");
     const botBtn = $(".botBtn");
     $(topBtn).click(function(){
-        window.scrollTo(0,0);
+        $('html, body').animate({scrollTop:'0'},800);
         // 상단 이동 버튼
     })
     $(botBtn).click(function(){
-        window.scrollTo(0,100000);
+        // window.scrollTo(0,100000);
+        let windowEnd = ($(document).height() - $(window).height());
+        $('html, body').animate({scrollTop: `${windowEnd}`},800);
         // 하단 이동 버튼
     })
 </script>

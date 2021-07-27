@@ -7,8 +7,8 @@
         <div class="footer-background">
             <div class="center"> 
                 <div class="left">
-                    <img src="${path }/resources/images/문곰책방.png" alt="문곰책방" 
-                    style="width:250px; height:100px;"/>
+                    <img src="${path }/resources/images/common/mgbook.png" alt="문곰책방" 
+                    />
                 </div> 
                 <div class="mid">
                     <ul>
@@ -33,13 +33,16 @@
                 </div>
             </div>     
         </div>
-        <div class="quickBar"></div> 
-        <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-	<script>
+        <%-- <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
+<jsp:param name="" value=""/>
+</jsp:include> --%>
+       <%--  System.out.println(${path }); --%>
+	<%-- <script>
 		$(document).ready(function(){
 	        // 사이드 퀵메뉴바
-	        $(".quickBar").load("<%=request.getContextPath()%>/quickBar.jsp");
+	        console.log("<%=request.getContextPath()%>/quickBar.jsp");
+	        $(".quickBar").html("quickBar.jsp");
 	    }) 
-	</script>
+	</script> --%>
 </body>
 </html>

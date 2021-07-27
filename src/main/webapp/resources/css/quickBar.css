@@ -7,9 +7,9 @@
     position: fixed;
     bottom: 0;
     top: 50%;
-    left: 50%;
+    left: 1700px;
     z-index: 5;
-    min-width: 1350px;
+    /* min-width: 1350px; */
     width: 63px;
     height: 370px;
     display: flex;
@@ -68,6 +68,45 @@
     height: 41px;
 }
 .help:hover{
+    border: 3px solid #AAB1C7;
+    cursor: pointer;
+}
+.chatting{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 63px;
+    height: 50px;
+    padding: 14px 10px 10px 10px;
+    border: 2px solid #AAB1C7;
+    border-radius: 5px;
+}
+.chatting img{
+    width: 41px;
+    height: 41px;
+}
+.chatting:hover{
+    border: 3px solid #AAB1C7;
+    cursor: pointer;
+}
+.locationHome{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 63px;
+    height: 50px;
+    padding: 12px 10px 12px 10px;
+    border: 2px solid #AAB1C7;
+    border-radius: 5px;
+    margin-top: 2px;
+}
+.locationHome img{
+    width: 41px;
+    height: 41px;
+}
+.locationHome:hover{
     border: 3px solid #AAB1C7;
     cursor: pointer;
 }
