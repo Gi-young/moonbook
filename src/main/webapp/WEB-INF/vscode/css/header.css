@@ -1,0 +1,283 @@
+@charset "UTF-8";
+@import url("style.css");
+.info{
+    display: none;
+    width: 350px;
+    height: 350px;
+    border: 1px solid silver;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+.info>ul li{
+    font-size: 15px;
+    font-weight: 600;
+}
+.header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+.div-header{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.header-top{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 12px;
+    background-color: #F6F6F6;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-width: 950px;
+}
+.header-top-info1{
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+.header-top-info2{
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.header-top-info2 :not(:last-child){
+    border-left: 0.5px solid silver;
+    padding-left: 8px;
+    border-right: 0.5px solid silver;
+    padding-right: 8px;
+}
+.login{
+    border: 0.5px solid silver;
+    padding: 5px 3px 5px 3px;
+    border-radius: 2px;
+}
+.login:hover{
+    border:0.8px solid black;
+    cursor: pointer;
+}
+/* header 검색 창 */
+.searchBox-slide-content{
+    width: 100px;
+    font-size: 10px;
+}
+.searchBox-slide-content:not(:last-child){
+    border-right: 0.5px solid silver;
+}
+.searchBox-slide-content:hover{
+    color: cornflowerblue;
+    text-decoration: underline cornflowerblue;
+    cursor: pointer;
+}
+.searchBox-box{
+    width: 460px;
+    height: 40px;
+    border: 2px solid #5e6b9e;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.searchBox-input{
+    width: 370px;
+    height: 30px;
+    border: none;
+}
+input:focus{
+   outline: none;
+}
+.header-mid{
+    display: flex;
+    justify-content: space-around;
+    justify-content: center;
+    width:100%;
+    margin-top: 20px;
+    min-width: 950px;
+}
+.searchBox-slideBox{
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 400px;
+    margin-bottom: 10px;
+}
+.searchBox-slideList{
+    display: flex;
+    text-align: center;
+}
+.searchBox-slideContent{
+    width: 400px;
+    font-size: 12px;
+}
+.fontColor:not(:last-child){
+    border-right: 0.5px solid silver;
+    width: 100px;
+    margin-right: 10px;
+    padding-right: 10px;
+}
+.fontColor:hover{
+    cursor: pointer;
+    color: cornflowerblue;
+}
+.searchBox-slideBtn-prev{
+    border: 0.5px solid silver;
+    width: 13px;
+    height: 13px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchBox-slideBtn-prev:focus{
+    border: 1px solid black;
+}
+.searchBox-slideBtn-prev:hover{
+    cursor: pointer;
+}
+.searchBox-slideBtn-next{
+    border: 0.5px solid silver;
+    border-left: none;
+    width: 13px;
+    height: 13px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchBox-slideBtn-next:focus{
+    border: 1px solid black;
+}
+.searchBox-slideBtn-next:hover{
+    cursor: pointer;
+}
+.dotbo{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+/* header 슬라이드 배너(오른쪽 슬라이드) */
+.dot{
+    display: none;
+}
+.slide-box{
+    width: 250px;
+    position: relative;
+    overflow: hidden; 
+    display: flex; 
+    margin-left: 24px;
+}    
+.slide-list{
+    float: left;
+    display: flex;
+}
+.slide-content{
+    width: 250px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: center;
+}
+.slide-content img{
+    width: 65px;
+    height: 60px;
+    border: none;
+}
+.header-slide-explan{
+    padding-left: 24px;
+}
+.slide-button-prev{
+    border: 0.5px solid silver;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-button-prev:focus{
+    border: 1px solid black;
+}
+.slide-button-prev:hover{
+    cursor: pointer;
+}
+.slide-button-next{
+    border: 0.5px solid silver;
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-button-next:focus{
+    border: 1px solid black;
+}
+.slide-button-next:hover{
+    cursor: pointer;
+}
+.slide1 , .slide2 , .slide3 , .slide4{
+    margin-right: 10px;
+    vertical-align: text-bottom;
+    text-align: center;
+    width: 150px;
+    font-size: 12px;
+}
+.slide2 , .slide3 , .slide4{
+    display: none;
+}
+.header-mid-searchBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.slide-button{
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+.header-bottom{
+    background-color: #5e6b9e;
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;  
+    display: flex;
+    justify-content: center;
+    min-width: 950px;
+}
+.header-bottom-div{
+    width: 1200px;
+    display: flex;
+    justify-content: space-around;  
+}
+.header-menuBar1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+.header-menuBar1>ul li:not(:last-child){
+    margin-right: 30px;
+}
+.header-menuBar2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: silver;
+    font-size: 13px;
+    font-weight: 500;
+}
+.header-menuBar2>ul li:not(:last-child){
+    margin-right: 30px;
+}
+.header-menuBar1  a, .header-menuBar2  a{
+    color: white;
+}
+.eBook{
+    display: none;
+}

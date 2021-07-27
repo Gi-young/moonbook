@@ -88,11 +88,12 @@
 .memberT{
 	/* width: 730px; */ 
 	/* width:auto; */
-	width: 1200px;
+	width: 1900px;
 	/* overflow-x: auto; */
 	margin-left: 20px;
 	/* margin-top:30px;  */
 	text-align: center;	
+	margin-bottom:20px;
 }
 .memberT tbody{
 	border: black 1px solid;
@@ -101,7 +102,7 @@
 .memberT th{
 	width: 100px;
 	height:30px;
-	background-color: #c0c0c0;
+	background-color: #582810;
 	color:white;
 	vertical-align: middle;
 }
@@ -112,4 +113,19 @@
 .updateCheck{
 	width:20px;
 	hight:20px;
+	cursor: pointer;
+}
+.turnRed{
+	color:red;
+	font-weight: bold;
+}
+.memberTFont{
+	font-weight: bold;
+	margin-left:20px;
+	margin-bottom:10px;
+}
+.memberTFont2{
+	font-weight: bold;
+	margin-left:20px;
+	margin-bottom:20px;
 }
