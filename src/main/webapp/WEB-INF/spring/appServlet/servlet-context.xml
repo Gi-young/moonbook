@@ -26,6 +26,18 @@
 	
 	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
    
+   <!-- jackson을 이용해서 json반환하기  -->
+	<!-- MappingJaskson2HttpMessageConverter를 bean으로 등록하고 converter로 활용  -->
+	<beans:bean id="jacksonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+	
+	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters">
+			<beans:list>
+				<beans:ref bean="jacksonConverter"/>
+			</beans:list> 
+		</beans:property>
+	</beans:bean>
+	
    <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
       <beans:property name="order" value="1"/>
    </beans:bean>
