@@ -1,13 +1,6 @@
 @charset "UTF-8";
 
-@import url("header.css");
-@import url("mainCss.css");
-@import url("footer.css");
-
-@import url("myroom/layout.css");
-@import url("memberGrade.css");
-
-@import url("gift.css");
+/* 컴포넌트 */
 @import url("newHeader.css");
 @import url("quickBar.css");
 @import url("newFooter.css");
