@@ -3,6 +3,8 @@ package com.rar.khbook.admin.model.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.core.annotation.Order;
+
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AdminService {
@@ -17,4 +19,6 @@ public interface AdminService {
 	List<Member> memberHowT(Map param);
 	
 	List<Member> memberHowT2(Map param);
+	
+	List<Order> selectOrderList(int cPage,int numPerpage);
 }

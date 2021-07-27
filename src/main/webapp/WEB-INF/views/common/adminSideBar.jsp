@@ -18,7 +18,7 @@
 	</h2>
 	<ul class="sideMenu" style="width:180px;">
 		<li>
-				<p onclick="" class="adminColor">판매 내역</p>
+				<p onclick="location.assign('${path}/admin/adSalePage.do')" class="adminColor">판매 내역</p>
 			</li>
 		<li>
 				<p onclick="location.assign('${path}/admin/adMemberPage.do')" class="adminColor">회원 관리</p>
