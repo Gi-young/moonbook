@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.member.model.vo.Member;
@@ -28,12 +28,13 @@ public class AdminController {
 	private BCryptPasswordEncoder pwEncoder;
 	
 	
+	//회원 관리 페이지 31~120 소스코드
 	@RequestMapping("/admin/adminPage.do")
 	public String adminPage() {
 		return "admin/adminPage";
 	}
 	@RequestMapping("/admin/adMemberPage.do")
-	public ModelAndView adUpdateMember(
+	public ModelAndView adListMember(
 			@RequestParam(value="cPage", defaultValue="1") int cPage,
 			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv
 			) {
@@ -62,7 +63,7 @@ public class AdminController {
 	public ModelAndView memberDelete(ModelAndView mv,String memberId){
 		
 		/* log.debug(memberId); */
-		System.out.println("테스트중입니다. 아이디제발 :"+memberId);
+		/* System.out.println("테스트중입니다. 아이디제발 :"+memberId); */
 		int result=service.memberDelete(memberId);
 		String msg="";
 		String loc="";
@@ -116,6 +117,18 @@ public class AdminController {
 		List<Member> list =service.memberHowT2(param);
 		
 		return list;
+	}
+	
+	//판매내역 페이지 시작
+	@RequestMapping("/admin/adSalePage.do")
+	public ModelAndView adSalePage(@RequestParam(value="cPage", defaultValue="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
+		
+		List<Order> list=service.selectOrderList(cPage,numPerpage);
+		
+		
+		mv.setViewName("admin/adminSalePage"); 
+		return mv;
 	}
 	
 	
