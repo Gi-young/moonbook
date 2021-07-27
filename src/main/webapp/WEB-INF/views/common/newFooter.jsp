@@ -37,7 +37,6 @@
 <jsp:param name="" value=""/>
 </jsp:include>
        <%--  System.out.println(${path }); --%>
-        <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 	<%-- <script>
 		$(document).ready(function(){
 	        // 사이드 퀵메뉴바
