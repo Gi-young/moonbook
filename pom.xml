@@ -3,7 +3,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.rar</groupId>
-	<artifactId>21PM_moonbook</artifactId>
+	<artifactId>21PM_moonbook_final</artifactId>
 	<name>21PM_moonbook</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
