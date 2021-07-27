@@ -34,4 +34,9 @@ public interface MemberDao {
 	
 //	전체 회원 등급 가져오기
 	List<Membergrade> memberGrade(SqlSession session);
+	//방문횟수 +1 증가
+	int updateMemberVisit(SqlSession session,Map param);
+	
+	//최근 로그인 날짜 변경
+	int updateMemberToday(SqlSession session,Map param);
 }

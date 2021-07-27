@@ -84,6 +84,21 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.memberGrade(session);
 	}
+	//방문횟수 +1증가
+	@Override
+	public int updateMemberVisit(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateMemberVisit(session,param);
+	}
+	//최근 로그인 날짜 변경
+	@Override
+	public int updateMemberToday(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateMemberToday(session,param);
+	}
+	
+	
+	
 	
 	
 	
