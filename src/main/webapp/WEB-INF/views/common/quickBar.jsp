@@ -73,11 +73,13 @@
     const topBtn = $(".topBtn");
     const botBtn = $(".botBtn");
     $(topBtn).click(function(){
-        window.scrollTo(0,0);
+        $('html, body').animate({scrollTop:'0'},800);
         // 상단 이동 버튼
     })
     $(botBtn).click(function(){
-        window.scrollTo(0,100000);
+        // window.scrollTo(0,100000);
+        let windowEnd = ($(document).height() - $(window).height());
+        $('html, body').animate({scrollTop: `${windowEnd}`},800);
         // 하단 이동 버튼
     })
 </script>
