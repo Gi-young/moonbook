@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import com.rar.khbook.admin.model.dao.AdminDao;
@@ -53,6 +54,12 @@ public class AdminServiceImpl implements AdminService {
 	public List<Member> memberHowT2(Map param) {
 		// TODO Auto-generated method stub
 		return dao.memberHowT2(session, param);
+	}
+
+	@Override
+	public List<Order> selectOrderList(int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.selectOrderList(session,cPage,numPerpage);
 	}
 	
 	
