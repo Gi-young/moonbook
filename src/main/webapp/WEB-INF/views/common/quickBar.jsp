@@ -38,7 +38,13 @@
             </button>
             <!-- 상담문의, 관리자 연결 -->
                 <button class="help">
-                    <img src="${path }/resources/image/상담문의.png" alt="">
+                    <img src="${path }/resources/images/상담문의.png" alt="상담문의">
+                </button>
+                <button class="chatting">
+                    <img src="${path }/resources/images/chatting.svg" alt="채팅">
+                </button>
+                <button class="locationHome" onclick="location.assign('${path}')">
+                    <img src="${path }/resources/images/퀵바홈버튼.png" alt="홈으로 이동">
                 </button>
         </div>
         <!-- <div class="openBar-wrap">
