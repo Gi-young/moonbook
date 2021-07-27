@@ -7,9 +7,8 @@
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
+
 <style>
-
-
 
 @import url(${path}/resources/css/style.css);
 li{
@@ -238,6 +237,8 @@ a {
     align-items: flex-end;
 }
 .mainbanner{
+width: 1300px;
+
     align-items: center;
 }
 .mainbanner_obj1{
@@ -245,9 +246,7 @@ a {
     height: 400px;
     overflow: hidden;
 }
-.mainbanner_objleft{
 
-}
 .mainbanner_objcontainer{
     width: 702px;
     background-color: #77f78c;
@@ -310,7 +309,7 @@ a {
 }
 .hotnew{
     width: 950px;
-    /* background-color: #ffcdfb; */
+    background-color: white;
     height: 400px;
 }
 .hotnewimgsize{
@@ -498,25 +497,25 @@ a {
 }
 .hotnewObj{
     width: 224px;
-    background-color: #86e7ff;
+    /* background-color: #86e7ff; */
     height: 350px;
     margin-right: 18px;
 
 }
 .hotnewObj2{
     width: 224px;
-    background-color: #5a0053;
+    /* background-color: #5a0053; */
     height: 350px;
     margin-left: 24px;
 }
 .todaybooks21{
     width: 600px;
-    background-color: #32a374;
+    /* background-color: #32a374; */
     height: 50px;
 }
 .todaybooks22{
     width: 50px;
-    background-color: #43ffb1;
+    /* background-color: #43ffb1; */
     height: 50px;
 }
 
@@ -743,12 +742,12 @@ li[class^="best"]{
 }
 .khloverBg{
     width: 950px;
-    /* background-color: #ffcdec; */
+    background-color: white;
     height: 460px;
 }
 .khlover_container1{
     width: 250px;
-    background-color: #f1f1f1;
+    /* background-color: #f1f1f1; */
     height: 410px;
     border: 5px solid #d1d1d1;
 }
@@ -769,7 +768,7 @@ li[class^="best"]{
 
 .khlover_right{
     width: 166px;
-    background-color: #fff674;
+    /* background-color: #fff674; */
     height: 350px;
     margin-top: 30px;
     margin-left: 10px;
@@ -777,14 +776,14 @@ li[class^="best"]{
 }
 .khlover_obj0{
     width: 127px;
-    background-color: #5b73fa;
+    /* background-color: #5b73fa; */
     height: 162px;
     margin-top: 90px;
     margin-left: 50px;
 }
 .khlover_obj{
     width: 127px;
-    background-color: #5b73fa;
+    /* background-color: #5b73fa; */
     height: 162px;
     margin-top: 60px;
     margin-left: 15px;
@@ -792,7 +791,7 @@ li[class^="best"]{
 
 .upFooterBg{
     width: 950px;
-    /* background-color: #1cffff; */
+    background-color: white;
 
 }
 .upFooter_upSide{
@@ -808,8 +807,8 @@ li[class^="best"]{
 }
 .upFooter_downSide{
     width: 190px;
-    /* background-color: #86ff40; */
-    height: 223px;
+    background-color: white;
+    height: 200px;
     font-size: 15px;
     line-height: 170%;
     
@@ -851,6 +850,12 @@ li[class^="best"]{
     border-right: 1px solid #8a8a8a;
     height: 200px;
     scale:space-around;
+}
+.verticalline2{
+    border-right: 1px solid #8a8a8a;
+    height: 200px;
+    scale:space-around;
+    opacity:1; 
 }
 
 .btnfooterslide{
@@ -947,33 +952,33 @@ padding-bottom: 5px;
 <div class="wrap">
 <div class="bannerBg">
 <div class="flex bannerwrap">
-<div class="mainbanner flex">
+<div class="">
 <!-- <div class="mainbtn flex"> -->
 <!-- <button class="mainsearchBox-slideBtn-next">이전</button> -->
 
 <div class="mainbanner_obj1">
     <div class="mainsearchBox-slideBox">
-        <div class="mainbanner_objleft btndown mainsearchBox-slideList">
+        <div class="btndown mainsearchBox-slideList">
             <div class="mainsearchBox-slideContent mainbanner1">
-                <img alt="banner1" src="${path}/resources/img/main/banner/1300add1.png">
+                <a href="#"><img alt="banner1" src="${path}/resources/img/main/banner/1300add1.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner2">
-                <img alt="banner2" src="${path}/resources/img/main/banner/1300add2.png">
+                <a href="#"><img alt="banner2" src="${path}/resources/img/main/banner/1300add2.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner3">
-                <img alt="banner3" src="${path}/resources/img/main/banner/1300400.png">
+                <a href="#"><img alt="banner3" src="${path}/resources/img/main/banner/1300400.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner4">
-                <img alt="banner4" src="${path}/resources/img/main/banner/1300add3.png">
+                <a href="#"><img alt="banner4" src="${path}/resources/img/main/banner/1300add3.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner5">
-                <img alt="banner5" src="${path}/resources/img/main/banner/1300add4.png">
+                <a href="#"><img alt="banner5" src="${path}/resources/img/main/banner/1300add4.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner6">
-                <img alt="banner6" src="${path}/resources/img/main/banner/1300400.png">
+                <a href="#"><img alt="banner6" src="${path}/resources/img/main/banner/1300400.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner7">
-                <img alt="banner7" src="${path}/resources/img/main/banner/1300add3.png">
+                <a href="#"><img alt="banner7" src="${path}/resources/img/main/banner/1300add3.png"></a>
             </div>
         </div>
         
@@ -1256,39 +1261,39 @@ padding-bottom: 5px;
                 <li class="hotNewslide_content hotnewbox">
                     <div class="hotnewinner hotnewjccenter">
                     <div>
-                        <a href="#"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                        <a href="${path}/sellbookController/sellbook.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
                         <input type="hidden" name="" value="">
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
-                        <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                        <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
                     </div>
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href="#"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
+                            <a href="${path}/sellbookController/sellbook.do"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                            <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
                         </div>
                         <div class="hotnewinner hotnewjccenter">
                             <div>
-                                <a href="#"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                                <a href="${path}/sellbookController/sellbook.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
                                 <input type="hidden" name="" value="">
                             </div>
                             <div class="hotnewcg">[음식/생활]</div>
                             <div>
-                                <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                                <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
                             </div>
                             <div class="hotnewinner hotnewjccenter">
                                 <div>
-                                    <a href="#"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                                    <a href="${path}/sellbookController/sellbook.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
                                     <input type="hidden" name="" value="">
                                 </div>
                                 <div class="hotnewcg">[음식/생활]</div>
                                 <div>
-                                    <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                                    <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
                                 </div>
                 </li>
 
@@ -1296,7 +1301,7 @@ padding-bottom: 5px;
                 <li class="hotNewslide_content hotnewbox">
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href="#"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                            <a href="${path}/sellbookController/sellbook.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
@@ -1307,7 +1312,7 @@ padding-bottom: 5px;
 
            <div class="hotnewinner hotnewjccenter">
                 <div>
-                    <a href="#"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                    <a href="${path}/sellbookController/sellbook.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
                     <input type="hidden" name="" value="">
                 </div>
                 <div class="hotnewcg">[음식/생활]</div>
@@ -1320,21 +1325,21 @@ padding-bottom: 5px;
 
                 <div class="hotnewinner hotnewjccenter">
                     <div>
-                        <a href="#"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
+                        <a href="${path}/sellbookController/sellbook.do"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
                         <input type="hidden" name="" value="">
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
-                        <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                        <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
                     </div>
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href="#"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
+                            <a href="${path}/sellbookController/sellbook.do"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                            <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
                         </div>
               
 
@@ -1388,6 +1393,14 @@ padding-bottom: 5px;
         </div>
     </div> 
 
+
+<!-- 문곰이그림////////////////////////////////////////////////////////// -->
+
+
+<div>이곳에 그림이 들어갈 예정입니다.</div>
+
+
+
 <!-- ////////////////////////베스트셀러/////////////////////// -->
 
     <div class="bestSeller_chart partition">
@@ -1405,10 +1418,10 @@ padding-bottom: 5px;
                             <strong class="rankwhite">01</strong>
                         </div>
                         <div class="cover ">
-                            <a href="sellpart/bookView.html"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12"></a>
+                            <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12"></a>
                         </div>
                         <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">먹어야 산다</p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1418,10 +1431,10 @@ padding-bottom: 5px;
                         </div>
                         <div class="cover">
                             <div class="cover">
-                                <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
+                                <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
                         </div>
                         <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">먹어야 산다</p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1430,10 +1443,10 @@ padding-bottom: 5px;
                             <strong class="rank">03</strong>
                         </div>
                         <div class="cover">
-                            <a href="#"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
                         </div>
                         <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">먹어야 산다</p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1442,10 +1455,10 @@ padding-bottom: 5px;
                             <strong class="rank">04</strong>
                         </div>
                         <div class="cover">
-                            <a href="#"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
                         </div>
                         <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">먹어야 산다</p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1454,10 +1467,10 @@ padding-bottom: 5px;
                             <strong class="rank">05</strong>
                         </div>
                         <div class="cover">
-                            <a href="#"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
                         </div>
                         <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbook.do"><p class="hotnewtitle">먹어야 산다</p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1538,7 +1551,7 @@ padding-bottom: 5px;
 
 
                     <div class="booktubercontainer textalign margintop50">
-                        <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller12"></a>
+                        <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller12"></a>
                     </div>
                     <div class="title "><p class="margintop20 ">[북튜버의 책방]</p></div>
                     <div class="comment">
@@ -1661,7 +1674,7 @@ padding-bottom: 5px;
                             <ul>
                                 <li>
                                     <div class="cover weekbookcontent khloverbg1">
-                                        <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
+                                        <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
                                         <div class=" " > 
                                             <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
                                         </div>
@@ -1676,7 +1689,7 @@ padding-bottom: 5px;
                             <ul class="flex khloverul">
                                 <li>
                                     <div class="cover khloverright ">
-                                        <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
+                                        <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
                                         
                                         <div class="title " > 
                                             <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
@@ -1688,7 +1701,7 @@ padding-bottom: 5px;
                                 </li>
                                 <li>
                                     <div class="cover khloverright ">
-                                        <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
+                                        <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
                                         
                                         <div class="title " > 
                                             <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
@@ -1700,7 +1713,7 @@ padding-bottom: 5px;
                                 </li>
                                 <li>
                                     <div class="cover khloverright ">
-                                        <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
+                                        <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
                                         
                                         <div class="title " > 
                                             <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
@@ -1712,7 +1725,7 @@ padding-bottom: 5px;
                                 </li>
                                 <li>
                                     <div class="cover khloverright">
-                                        <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
+                                        <a href="${path}/sellbookController/sellbook.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1"></a>
                                         <div class="title " > 
                                             <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
                                             <div class="author">박원재</div>
@@ -1744,7 +1757,7 @@ padding-bottom: 5px;
                         
                             <ul class="footerslide-List" style="margin-left: 20px;">
                                     <li class="footerslide-content">
-                                        <a href="#">KH문고 오픈 기념 할인 행사 이벤트!</a></li>
+                                        <a href="#">문곰책방 오픈 기념 할인 행사 이벤트!</a></li>
                                     <li class="footerslide-content">
                                         <a href="#">매장에 숨어있는 문곰이를 찾으세요</a></li>  
                                     <li class="footerslide-content">
@@ -1782,17 +1795,17 @@ padding-bottom: 5px;
         <div>
             <div class="flex footerul" style="margin-top: 20px;">
                 <div class="upFooter_downSide verticalline">
-                    <a href="#"><h2 class="middlefont">회원혜택</h2></a>
+                    <h2><a href="#" class="middlefont">회원혜택</a></h2>
                     <ul class="footerul">
                         <li class="strong"><a href="#" class="ataggray">Prestige Lounge</a></li>
                         <li><a href="#" class="ataggray">신규회원 혜택</a></li>
                         <li><a href="#" class="ataggray">등급별 혜택</a></li>
-                        <li><a href="#" class="ataggray">KH문고 혜택</a></li>
+                        <li><a href="#" class="ataggray">문곰책방 혜택</a></li>
                     </ul>
                     
                 </div>
                 <div class="upFooter_downSide verticalline">
-                    <h2 class="middlefont"><a href="#">쇼핑 꿀팁</a></h2>
+                    <h2><a href="#" class="middlefont">쇼핑 꿀팁</a></h2>
                     <ul class="footerul">
                         <li><a href="#" class="ataggray">포인트/상품권</a></li>
                         <li><a href="#" class="ataggray"><strong>공동구매</strong></a></li>
@@ -1800,7 +1813,7 @@ padding-bottom: 5px;
                         <li><a href="#" class="ataggray">출판사전화번호안내</a></li>
                 </div>
                 <div class="upFooter_downSide verticalline">
-                    <h2 class="middlefont"><a href="#">간편 서비스</a></h2>
+                    <h2><a href="#" class="middlefont">간편 서비스</a></h2>
                     <ul class="footerul">
                         <li><a href="#" class="ataggray">맴버십카드 등록</a></li>
                         <li><a href="#" class="ataggray">KH캐시 조회·충전</a></li>
@@ -1808,7 +1821,7 @@ padding-bottom: 5px;
                     </ul>
                 </div>
                 <div class="upFooter_downSide verticalline" >
-                    <h2 class="middlefont"><a href="#">KH문고 알리미</a></h2>
+                    <h2><a href="#" class="middlefont">문고 알리미</a></h2>
                     <ul class="footerul">
                         <li><a href="#" class="ataggray">KH페이스북</a></li>
                         <li><a href="#" class="ataggray">KH트위터</a></li>
@@ -1816,8 +1829,8 @@ padding-bottom: 5px;
                         <li><a href="#" class="ataggray">KH유튜브</a></li>
                     </ul>
                 </div>
-                <div class="upFooter_downSide">
-                    <h2 class="middlefont"><a href="#">FAQ</a></h2>
+                <div class="upFooter_downSide ">
+                    <h2><a href="#" class="middlefont">FAQ</a></h2>
                     <ul class="footerul">
                         <li><a href="#" class="ataggray">주문·결제</a></li>
                         <li><a href="#" class="ataggray">eBook</a></li>
@@ -2314,7 +2327,7 @@ padding-bottom: 5px;
                 <div class="upFooter_downSide">회원혜택</div>
                 <div class="upFooter_downSide">쇼핑TIP</div>
                 <div class="upFooter_downSide">빠른서비스</div>
-                <div class="upFooter_downSide">KH문고소식</div>
+                <div class="upFooter_downSide">문곰책방소식</div>
                 <div class="upFooter_downSide">FAQ</div>
             </div>
             <div class="flex">

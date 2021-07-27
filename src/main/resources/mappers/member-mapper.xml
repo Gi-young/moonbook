@@ -10,7 +10,7 @@
 	
 	<insert id="insertMember">
 		INSERT INTO MEMBER
-		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1,0,0,NULL)
+		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1,0,0,SYSDATE)
 	</insert>
 	<delete id="memberDelete">
 		DELETE FROM MEMBER WHERE MEMBER_ID=#{memberId}
@@ -142,7 +142,13 @@
 	<select id = "memberGrade" resultMap="membergradeMap">
 	SELECT * FROM MEMBERGRADE
 	</select>
-	
-	
+	<!-- 방문횟수 +1증가 -->
+	<update id="updateMemberVisit">
+		UPDATE MEMBER SET MEMBER_VISIT=MEMBER_VISIT+1 WHERE MEMBER_ID=#{memberId}
+	</update>
+	<!-- 최근 로그인 날짜 변경 -->
+	<update id="updateMemberToday">
+		UPDATE MEMBER SET MEMBER_TODAY=TO_DATE(SYSDATE,'YY/MM/DD') WHERE MEMBER_ID=#{memberId}
+	</update>
 	
 </mapper>

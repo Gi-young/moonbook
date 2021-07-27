@@ -140,9 +140,10 @@
             </div>
             <div class="header-menuBar2">
                 <ul class="flex">
-                    <li><a href="#">로그인</a></li>
+                    <li><a href="${path }/member/loginPage.do">로그인</a></li>
+                    <li><a href="${path }/member/enrollPage.do">회원가입</a></li>
                     <li><a href="#">마이룸</a></li>
-                    <li><a href="#">관리자전용페이지</a></li>
+                    <li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
                 </ul>
             </div>
             <div></div>
