@@ -62,7 +62,7 @@ public class AdminController {
 	public ModelAndView memberDelete(ModelAndView mv,String memberId){
 		
 		/* log.debug(memberId); */
-		/* System.out.println("테스트중입니다. 아이디제발 :"+memberId); */
+		System.out.println("테스트중입니다. 아이디제발 :"+memberId);
 		int result=service.memberDelete(memberId);
 		String msg="";
 		String loc="";

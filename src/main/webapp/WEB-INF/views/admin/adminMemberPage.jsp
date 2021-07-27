@@ -42,8 +42,8 @@
 								<th>검색하기</th>
 								<td class="admin-search2">
 								<select name="type2">
-									<option value="memberId" selected>Id</option>
-									<option value="memberName" >Name</option>
+									<option value="MEMBER_ID" selected>Id</option>
+									<option value="MEMBER_NAME" >Name</option>
 								</select>
 								</td>
 								<td class="search-box">
@@ -95,15 +95,15 @@
 									<td><input type="text" value="${e.memberTotalSale }" name="memberTotalSale" readonly></td>
 									<td><input type="text" value="${e.memberVisit }" name="memberVisit" readonly></td>
 									<td>
-										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck">
+										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
 									</td>
 									
 									<td>
-										<form action="${path }/admin/memberDelete.do" method="post" class="adMemberT">
+										
 											<input type="hidden" value="${e.memberId }" name="memberId" readonly>
-											<button type="submit"><img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck"></button>
+											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete()">
 											
-										</form>
+									
 										</td>
 								
 							</tr>
@@ -124,6 +124,13 @@
 
 
 <script>
+function adMemberDelete(e){
+	let memberId=$(e.target).prev().val();
+	
+	location.assign('${path}/admin/memberDelete.do?memberId='+memberId);
+	
+}
+
 
 function changeMemberV(event){
 	let memberId=event.target.parentElement.parentElement.children[1].children[0].value;
@@ -137,14 +144,14 @@ function changeMemberV(event){
 	
 } 
 
-/* const searchMT =()=>{
-	let type2 =document.getElemnetsByName("type2")[0].value;
+const searchMT =()=>{
+	let type2 =document.getElementsByName("type2")[0].value;
 	let search=document.getElementsByName("searchHow3")[0].value;
 	
 	$.ajax({
 		url: "${path}/admin/searchTextMemberList.do",
 		data:{
-			type2 :type2
+			type2 :type2,
 			search:search
 		},
 		success: data=>{
@@ -163,31 +170,44 @@ function changeMemberV(event){
 					if(j == 0) {
 						let regiDate = new Date(data[i].memberRegiDate);
 						
-						td.innerText = regiDate.getFullYear() + "-" + 
-						(regiDate.getMonth()+1) 
-							
-						+ "-" + regiDate.getDate();
+						let regiMonth;
+						if((regiDate.getMonth()+1)<10){
+							regiMonth = ("0"+(regiDate.getMonth()+1));
+						}else{ 
+							regiMonth = (regiDate.getMonth()+1);
+						}	
+						
+						td.innerHTML = "<input type='text' value='"+regiDate.getFullYear() + "-" + 
+						regiMonth
+						+ "-" + regiDate.getDate()+ "'>";
 					}
-					if(j == 1) td.innerText = data[i].memberId;
-					if(j == 2) td.innerText = data[i].memberName;
-					if(j == 3) td.innerText = data[i].memberPhone;
-					if(j == 4) td.innerText = data[i].memberGender;
-					if(j == 5) td.innerText = data[i].memberAddress;
-					if(j == 6) td.innerText = data[i].memberPoint;
-					if(j == 7) td.innerText = data[i].memberGradeNo;
-					if(j == 8) td.innerText = data[i].memberTotalSale;
-					if(j == 9) td.innerText = data[i].memberVisit;
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck">'
-					if(j == 11) td.innerHTML = '<button type="submit"><img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck"></button>'
+					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].memberId + "'>";
+					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
+					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
+					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
+					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
+					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
+					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
+					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
+					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
+					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+					
 					tr.appendChild(td);
 				}
 				table.appendChild(tr);
 				
 			}
+			document.querySelectorAll(".memberT td>img.updateImg").forEach((v, i) => {
+				v.addEventListener("click", function() {changeMember(event)});
+			});
+			document.querySelectorAll(".memberT td>img.deleteImg").forEach((v, i) => {
+				v.addEventListener("click", function() {adMemberDelete(event)});
+			});
 		}
-		} 
+		
 	});
-} */
+} 
 
 const orderList = () => {
 	let type1 = document.getElementsByName("type1")[0].value;
@@ -208,13 +228,6 @@ const orderList = () => {
 			document.querySelectorAll(".memberT td").forEach((v,i) => {
 				v.remove();
 			});
-			
-			
-			console.dir( data);
-			//JSON.parse("이거 : " + data);
-			//console.log(JSON.parse(data));
-			
-			//let orderTableData=JSON.parse(data);
 			let table=document.querySelector(".memberT");
 			for(let i=0;i<data.length;i++){
 				let tr=document.createElement("tr");
@@ -224,31 +237,40 @@ const orderList = () => {
 					td.style.height="27px";
 					if(j == 0) {
 						let regiDate = new Date(data[i].memberRegiDate);
+						let regiMonth;
+						if((regiDate.getMonth()+1)<10){
+							regiMonth = ("0"+(regiDate.getMonth()+1));
+						}else{ 
+							regiMonth = (regiDate.getMonth()+1);
+						}	
 						
-						td.innerText = regiDate.getFullYear() + "-" + 
-						/* if((regiDate.getMonth()+1)<10){
-							(0+(regiDate.getMonth()+1)) 
-						}else{ */
-							(regiDate.getMonth()+1) 
-							
-						+ "-" + regiDate.getDate();
+						td.innerHTML = "<input type='text' value='"+regiDate.getFullYear() + "-" + 
+						regiMonth
+						+ "-" + regiDate.getDate()+ "'>";
 					}
-					if(j == 1) td.innerText = data[i].memberId;
-					if(j == 2) td.innerText = data[i].memberName;
-					if(j == 3) td.innerText = data[i].memberPhone;
-					if(j == 4) td.innerText = data[i].memberGender;
-					if(j == 5) td.innerText = data[i].memberAddress;
-					if(j == 6) td.innerText = data[i].memberPoint;
-					if(j == 7) td.innerText = data[i].memberGradeNo;
-					if(j == 8) td.innerText = data[i].memberTotalSale;
-					if(j == 9) td.innerText = data[i].memberVisit;
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck">'
-					if(j == 11) td.innerHTML = '<button type="submit"><img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck"></button>'
+					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].memberId + "'>";
+					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
+					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
+					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
+					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
+					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
+					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
+					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
+					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
+					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+					
 					tr.appendChild(td);
 				}
 				table.appendChild(tr);
 				
 			}
+			document.querySelectorAll(".memberT td>img.updateImg").forEach((v, i) => {
+				v.addEventListener("click", function() {changeMember(event)});
+			});
+			document.querySelectorAll(".memberT td>img.deleteImg").forEach((v, i) => {
+				v.addEventListener("click", function() {adMemberDelete(event)});
+			});
 		}
 	});
 	
