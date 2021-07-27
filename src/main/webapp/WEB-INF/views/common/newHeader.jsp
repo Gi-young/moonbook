@@ -122,7 +122,14 @@
             </div> -->
             <div class="header-menuBar1">
                 <ul class="flex">
-                    <li><a href="#">문곰도서</a></li>
+                    <li>
+                    	<a href="${path}/sellbookController/sellbook.do"><div>문곰도서▼</div></a>
+                     	<ul class="eBook">
+                            <li><a href="#">아동 도서</a></li>
+                            <li><a href="#">초등 도서</a></li>
+                            <li><a href="#">중등 도서</a></li>
+                        </ul>
+                    </li>
                    <!--  <li><a href="#">외국도서</a></li> -->
                     <li>
                         <a href="#"><div>문곰e북 ▼</div></a>
