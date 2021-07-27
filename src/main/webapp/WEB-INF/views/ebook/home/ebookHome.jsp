@@ -9,15 +9,49 @@
 </jsp:include>
 	
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHome.css">
-	
 	<main>
-		<input type="text">
-	
-		<ul class="navbar-thema">
-			<li><a href="#">판매량순</a></li>
-			<li><a href="#">출판일순</a></li>
-			<!-- <li><a href="#">무료</a></li> -->
-		</ul>
+		<form id="searchFrm">
+			<div>
+				<input type="text" id="keyword" name="keyword" placeholder="검색 키워드를 입력하세요">
+				
+				<select id="searchType" name="searchType">
+					<option value="title" selected>제목</option>
+					<option value="author">저자</option>
+					<option value="pulisher">출판사</option>
+					<option value="isbn">ISBN</option>
+				</select>
+				
+				<select id="categoryCode" name="categoryCode">
+					<option value="100020020" selected>세계문학</option>
+				</select>
+				
+				<div id="pubdateOrder">
+					<label for="pubdateOrderDesc">최신 순</label>
+					<input type="radio" id="pubdateOrderDesc" name="pubdateOrder" value="DESC" checked>
+					<label for="pubdateOrderDesc">오래된 순</label>
+					<input type="radio" id="pubdateOrderAsc" name="pubdateOrder" value="ASC">
+					<input type="number" name="importancePubdate" value="1">
+				</div>
+				
+				<div id="priceOrder">
+					<label for="priceOrderDesc">높은 가격 순</label>
+					<input type="radio" id="priceOrderDesc" name="priceOrder" value="DESC" checked>
+					<label for="priceOrderAsc">낮은 가격 순</label>
+					<input type="radio" id="priceOrderAsc" name="priceOrder" value="ASC">
+					<input type="number" name="importancePrice" value="2">
+				</div>
+				
+				<div id="salesOrder">
+					<label for="salesOrderDesc">판매량 높은 순</label>
+					<input type="radio" id="salesOrderDesc" name="salesOrder" value="DESC" checked>
+					<label for="salesOrderAsc">판매량 낮은 순</label>
+					<input type="radio" id="salesOrderAsc" name="salesOrder" value="ASC">
+					<input type="number" name="importanceSales" value="3">
+				</div>
+				
+				<input type="submit" value="검색">
+			</div>
+		</form>
 	</main>
 	
 	<input type="hidden" id="contextPath" value="${path}"/>

@@ -15,7 +15,8 @@
 <body>
 	<div class="wrapper">
 		<nav class="portal-navbar">
-		
+			<button id="databindBtn">api에서 데이터 받아오기</button>
+			<button id="test">test</button>
 		</nav>
 		
 		<header>

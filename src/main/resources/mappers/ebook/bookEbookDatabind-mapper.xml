@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "bookEbookDatabind">
+
+	<insert id="insertBookDataIntoDatabase">
+		INSERT INTO BOOK_EBOOK_DATABIND VALUES(
+			SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,
+			#{title},
+			#{author},
+			#{image},
+			#{price},
+			#{isbn},
+			#{pubdate},
+			#{publisher},
+			#{description},
+			#{link},
+			#{groupId},
+			DEFAULT
+		)
+	</insert>
+	
+	<select id="search" resultMap="ebookDatabind">
+		SELECT * FROM BOOK_EBOOK_DATABIND
+		WHERE ${searchType} LIKE '%'||#{keyword}||'%'
+		AND CATEGORY_CODE=#{categoryCode}
+		ORDER BY 
+		<choose>
+			<when test="importancePubdate == 1 and importancePrice == 2">
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder}
+			</when>
+			<otherwise>
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<resultMap id="ebookDatabind" type="ebookDataBind">
+		<result column="CATEGORY_CODE" property="categoryCode"/>
+	</resultMap>
+
+</mapper>

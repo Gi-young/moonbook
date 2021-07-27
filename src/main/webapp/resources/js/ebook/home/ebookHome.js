@@ -1,3 +1,22 @@
+let searchFrm = document.getElementById("searchFrm");
+
+console.log(searchFrm);
+
+searchFrm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	let formData = $(e.target).serialize();
+
+	$.ajax({
+		url: contextPath + "/ebook/search.do",
+		type: "post",
+		data: formData,
+		dataType: "json",
+		success: data => {
+			console.log(data);
+		}
+	});
+});
+
 const getEbookItems = (groupId, keyword) => {
 	$.ajax({
 		url: contextPath + "/ebook/getEBooksFromAPI.do?" + "groupId=" + groupId + "&keyword=" + keyword,
@@ -45,12 +64,3 @@ const getEbookItems = (groupId, keyword) => {
 		}
 	});
 }
-
-window.onload = function() {
-	let hangulStr = "가나다라마바사아자차카타파하";
-	
-	for(let i=0;i<hangulStr.length;i++) {
-		getEbookItems("300060", hangulStr[i]);
-	}
-	
-};
