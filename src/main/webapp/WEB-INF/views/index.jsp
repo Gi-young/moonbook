@@ -10,7 +10,10 @@
 
 <style>
 
-@import url(${path}/resources/css/style.css);
+/* @import url(${path}/resources/css/style.css); */
+/* body{
+	position: relative;
+} */
 li{
     list-style: none;
     /* margin-left: -40px; */
