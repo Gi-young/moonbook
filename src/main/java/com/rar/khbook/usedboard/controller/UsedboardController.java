@@ -30,14 +30,14 @@ public class UsedboardController {
 			mv.addObject("list",service.selectUsedboardList(cPage,numPerpage));
 			int totalData=service.selectUsedboardCount();
 			mv.addObject("totalContents",totalData);
-			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage,5, "usedboardList.do"));
+			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardList.do"));
 			
 			mv.setViewName("usedboard/usedboardList");
 		}else {
 			mv.addObject("list",service.searchUsedboardList(cPage,numPerpage,catagory));
 			int totalData=service.searchUsedboardCount(catagory);
 			mv.addObject("totalContents",totalData);
-			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage,5, "usedboardList.do"));
+			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage,"usedboardList.do"));
 			
 			mv.setViewName("usedboard/usedboardList");
 		}
