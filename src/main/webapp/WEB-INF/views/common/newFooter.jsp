@@ -33,9 +33,9 @@
                 </div>
             </div>     
         </div>
-        <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
+        <%-- <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
 <jsp:param name="" value=""/>
-</jsp:include>
+</jsp:include> --%>
        <%--  System.out.println(${path }); --%>
 	<%-- <script>
 		$(document).ready(function(){
