@@ -15,7 +15,7 @@ public class EbookDaoImpl implements EbookDao {
 	public int insertBookDataIntoDatabase(SqlSession session, Map param) {
 		int result = 0;
 		try{
-			result = session.insert("bookEbookDatabind.insertBookDataIntoDatabase",param);
+			result = session.insert("ebook.insertBookDataIntoDatabase",param);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -24,7 +24,7 @@ public class EbookDaoImpl implements EbookDao {
 	
 	@Override
 	public List<EbookDatabind> search(SqlSession session, Map param) {
-		return session.selectList("bookEbookDatabind.search", param);
+		return session.selectList("ebook.search", param);
 	}
 	
 }

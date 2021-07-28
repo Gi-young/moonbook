@@ -125,7 +125,7 @@
                     <li><a href="#">문곰도서</a></li>
                    <!--  <li><a href="#">외국도서</a></li> -->
                     <li>
-                        <a href="#"><div>문곰e북 ▼</div></a>
+                        <a href="${path}/ebook/pageEbook.do"><div>문곰e북 ▼</div></a>
                         <ul class="eBook">
                             <li><a href="#">일반도서</a></li>
                             <li><a href="#">판타지/무협</a></li>

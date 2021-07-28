@@ -1,19 +1,5 @@
 const contextPath = $("#contextPath").val();
 
-document.getElementById("test").addEventListener("click", () => {
-    $.ajax({
-        url: contextPath + "/ebook/getBookDataFromAPI.do",
-        data: {
-            groupId: "100020010",
-            keyword: "나"
-        },
-        success: data => {
-            let dataJSON = new X2JS().xml_str2json(data);
-            console.log(dataJSON);
-        }
-    });
-});
-
 function openEbookWizard() {
 	let windowHeight = window.screen.height;
     let windowWidth = window.screen.width;
@@ -157,3 +143,13 @@ function databind(groupId, keyword) {
     });
 }
 
+document.getElementById("uploadEbookBtn").addEventListener("click", () => {
+    let url = contextPath + "/ebook/pageUploadEbook.do";
+    let windowWidth = window.screen.width;
+    let windowHeight = window.screen.height;
+    let width = 800;
+    let height = 600;
+    let status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ",width = " + width + ", height = " + height;
+
+    window.open(url, "uploadEbook", status);
+});

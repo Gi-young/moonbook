@@ -2,6 +2,7 @@ package com.rar.khbook.ebook.controller;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -13,12 +14,15 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rar.khbook.ebook.model.service.EbookService;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
@@ -75,6 +79,11 @@ public class EbookController {
 	@RequestMapping(value="/ebook/pageEbookDetail.do")
 	public String pageEbookDetail() {
 		return "ebook/home/ebookDetail";
+	}
+	
+	@RequestMapping(value="/ebook/pageUploadEbook.do")
+	public String pageUploadEbook() {
+		return "ebook/home/uploadEbook";
 	}
 	
 	@RequestMapping(value="/ebook/openEbookWizard.do")
@@ -179,6 +188,27 @@ public class EbookController {
 		List<EbookDatabind> list = service.search(param);
 		
 		return list;
+	}
+	
+	@RequestMapping(value = "/ebook/uploadEbook.do")
+	public String uploadEbook(int ebookNo, MultipartFile[] upFile, HttpServletRequest request) {
+		String path = request.getServletContext().getRealPath("/resources/ebook/");
+		File dir = new File(path);
+		
+		if(!dir.exists()) dir.mkdirs();
+		
+		for(MultipartFile f : upFile) {
+			if(!f.isEmpty()) {
+				String originalFilename = f.getOriginalFilename();
+				String 
+			}
+		}
+		
+		
+		
+		
+		
+		
 	}
 	
 	@RequestMapping(value = "/ebook/cancelPurchase.do")

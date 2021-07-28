@@ -1,7 +1,5 @@
 let searchFrm = document.getElementById("searchFrm");
 
-console.log(searchFrm);
-
 searchFrm.addEventListener("submit", (e) => {
 	e.preventDefault();
 	let formData = $(e.target).serialize();
@@ -13,23 +11,19 @@ searchFrm.addEventListener("submit", (e) => {
 		dataType: "json",
 		success: data => {
 			console.log(data);
-		}
-	});
-});
-
-const getEbookItems = (groupId, keyword) => {
-	$.ajax({
-		url: contextPath + "/ebook/getEBooksFromAPI.do?" + "groupId=" + groupId + "&keyword=" + keyword,
-		success: data => {
-			let dataJSON = new X2JS().xml_str2json(data);
-			console.log(dataJSON);
 			
 			let main = document.getElementsByTagName("main")[0];
-			dataJSON.rss.channel.item.forEach((v,i) => {
+
+			document.querySelectorAll("main div.ebookItem").forEach((v, i) => {
+				v.remove();
+			});
+
+			data.forEach((v,i) => {
 				let ebookItem = document.createElement("div");
 				ebookItem.style.backgroundColor = "white";
 				ebookItem.style.width = "180px";
 				ebookItem.style.height = "230px";
+				ebookItem.classList.add("ebookItem");
 				ebookItem.addEventListener("click", () => {
 					location.assign(contextPath + "/ebook/pageEbookDetail.do");
 				});
@@ -63,4 +57,15 @@ const getEbookItems = (groupId, keyword) => {
 			
 		}
 	});
-}
+});
+
+let orders = document.querySelectorAll("#searchFrm input[type=number]");
+orders.forEach((v, i) => {
+	v.addEventListener("change", (e) => {
+		orders.forEach((w, j) => {
+			if(w != v) {
+				w.value = "";
+			}
+		});
+	});
+});

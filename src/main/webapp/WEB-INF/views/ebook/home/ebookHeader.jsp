@@ -16,7 +16,8 @@
 	<div class="wrapper">
 		<nav class="portal-navbar">
 			<button id="databindBtn">api에서 데이터 받아오기</button>
-			<button id="test">test</button>
+			<button onclick="location.assign('${path}')">홈으로</button>
+			<button id="uploadEbookBtn">e북 업로드</button>
 		</nav>
 		
 		<header>
