@@ -169,6 +169,7 @@
                     <li><a href="${path }/member/enrollPage.do">회원가입</a></li>
                     <li><a href="#">마이룸</a></li>
                     <li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
+                	<li><a href="${path }/service/servicePage.do">고객센터</a></li>
                 </ul>
             </div>
             <div></div>
