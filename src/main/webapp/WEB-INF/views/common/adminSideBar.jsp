@@ -26,8 +26,8 @@
 		<li class="sub-menu2">
 				<p onclick="" class="adminColor">제품 관리</p>
 			<ul class="sub_content2">
-			<li><p onclick="location.assign('${path}/admin')" class="adminColor2">입고</p></li>
-			<li><p onclick="" class="adminColor2">출고</p></li>
+			<li><p onclick="location.assign('${path}/admin/addProductPage.do')" class="adminColor2">입고</p></li>
+			<li><p onclick="location.assign('${path}/admin/removeProductPage.do')" class="adminColor2">출고</p></li>
 			<li><p onclick="" class="adminColor2">재고현황</p></li>
 			<li><p onclick="" class="adminColor2">입출고현황</p></li><!-- 차트활용 -->
 		</ul>

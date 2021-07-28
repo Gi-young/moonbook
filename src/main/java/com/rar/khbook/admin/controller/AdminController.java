@@ -119,7 +119,7 @@ public class AdminController {
 		return list;
 	}
 	
-	//판매내역 페이지 시작
+	//판매내역 페이지 멈춤
 	@RequestMapping("/admin/adSalePage.do")
 	public ModelAndView adSalePage(@RequestParam(value="cPage", defaultValue="1") int cPage,
 			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
@@ -128,6 +128,19 @@ public class AdminController {
 		
 		
 		mv.setViewName("admin/adminSalePage"); 
+		return mv;
+	}
+	//제품관리 페이지 시작
+	@RequestMapping("/admin/addProductPage.do")
+	public ModelAndView addProductPage(ModelAndView mv) {
+		
+		mv.setViewName("admin/addProduct");
+		return mv;
+	}
+	@RequestMapping("/admin/removeProductPage.do")
+	public ModelAndView removeProductPage(ModelAndView mv) {
+		
+		mv.setViewName("admin/removeProduct");
 		return mv;
 	}
 	
