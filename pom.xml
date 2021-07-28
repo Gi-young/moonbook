@@ -3,8 +3,8 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.rar</groupId>
-	<artifactId>21PM_moonbook</artifactId>
-	<name>21PM_moonbook</name>
+	<artifactId>21PM_moonbook_final</artifactId>
+	<name>21PM_moonbook_final</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -232,6 +232,20 @@
 			<artifactId>iamport-rest-client-java</artifactId>
 			<version>0.2.15</version>
 		</dependency>
+		
+		<!-- file upload -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+		
 	</dependencies>
     
     <build>

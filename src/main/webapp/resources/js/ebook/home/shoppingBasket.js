@@ -3,6 +3,7 @@ console.log("test");
 IMP.init("imp47672833");
 
 let payBtn = document.getElementById("payBtn");
+let refundBtn = document.getElementById("refundBtn");
 
 payBtn.addEventListener("click", () => {
     console.log("test2");
@@ -28,4 +29,9 @@ payBtn.addEventListener("click", () => {
             }
         }
     );
+});
+
+refundBtn.addEventListener("click", () => {
+    //location.assign(contextPath + "/ebook/cancelPurchase.do");
+    location.assign(contextPath + "/ebook/cancel.do");
 });
