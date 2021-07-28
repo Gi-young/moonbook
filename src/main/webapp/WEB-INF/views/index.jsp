@@ -8,6 +8,16 @@
    <jsp:param name="" value=""/>
 </jsp:include>
 
+<script>
+
+window.onload=funtion(){
+	
+	
+}
+
+</script>
+
+
 <style>
 
 /* @import url(${path}/resources/css/style.css); */
@@ -2345,7 +2355,7 @@ padding-bottom: 5px;
     </div>
     
     <script src="${path }/resources/js/header.js"></script>
-	<script src="${path }/resources/js/header(2).js"></script> --%> --%>
+	<script src="${path }/resources/js/header(2).js"></script> --%>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 <jsp:param name="" value=""/>
 </jsp:include>
