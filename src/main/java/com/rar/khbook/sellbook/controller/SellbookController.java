@@ -20,10 +20,15 @@ public class SellbookController {
 	@RequestMapping("/sellbookController/sellbook.do")
 	public String sellbook() {
 		System.out.println("나와라이놈아2");
+		return "sellpart/level1";
+		
+	}
+	@RequestMapping("/sellbookController/sellbookDetail.do")
+	public String sellbookDetail() {
+		System.out.println("나와라이놈아2");
 		return "sellpart/bookDetail";
 		
 	}
-	
 	
 	
 	

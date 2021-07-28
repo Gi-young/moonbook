@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.member.model.vo.Member;
 
@@ -20,4 +21,6 @@ public interface AdminDao {
 	List<Member> memberHowT(SqlSession session,Map param);
 	
 	List<Member> memberHowT2(SqlSession session,Map param);
+	
+	List<Order> selectOrderList(SqlSession session,int cPage,int numPerpage);
 }

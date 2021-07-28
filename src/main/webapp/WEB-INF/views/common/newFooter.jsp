@@ -7,8 +7,7 @@
         <div class="footer-background">
             <div class="center"> 
                 <div class="left">
-                    <img src="${path }/resources/images/common/mgbook.png" alt="문곰책방" 
-                    />
+                    <img src="${path }/resources/images/common/mgbook.png" alt="문곰책방"/>
                 </div> 
                 <div class="mid">
                     <ul>
@@ -33,9 +32,9 @@
                 </div>
             </div>     
         </div>
-        <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
+       <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
 			<jsp:param name="" value=""/> 
-		</jsp:include>
+		</jsp:include> 
        <%--  System.out.println(${path }); --%>
 	<%-- <script>
 		$(document).ready(function(){

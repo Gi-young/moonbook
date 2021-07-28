@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.member.model.vo.Member;
@@ -48,6 +49,13 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectList("member.memberHowT2",param);
 	}
+	@Override
+	public List<Order> selectOrderList(SqlSession session, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return session.selectList("order.selectOrderList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	
+	
 	
 	
 	

@@ -11,7 +11,139 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>quickBar</title>
     <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="${path }/resources/css/quickBar.css">
+<style>
+
+/* @import url("style.css"); */
+/* .qc-padding-left{
+    padding-left: 18px;
+} */
+.quickContents{
+    position: fixed;
+    bottom: 0;
+    top: 50%;
+    left: 1700px;
+    z-index: 5;
+    /* min-width: 1350px; */
+    width: 63px;
+    height: 370px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+/* .guide,.toSale{
+    width: 61px;
+    height: 114px;
+    border: 1px solid silver;
+} */
+.topBtn,.botBtn{
+    width: 63px;
+    height: 36px;
+    cursor: pointer;
+    border: 1px solid #AAB1C7;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.topBtn:hover,.botBtn:hover{
+    border: 3px solid #AAB1C7;
+}
+.botBtn{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+/* .openBar{
+    background-color: #AAB1C7;
+    position: relative;
+    width: 63px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+} */
+.help{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 63px;
+    height: 50px;
+    padding: 12px 10px 12px 10px;
+    border: 1px solid #AAB1C7;
+    border-radius: 5px;
+}
+.help img{
+    width: 41px;
+    height: 41px;
+}
+.help:hover{
+    border: 3px solid #AAB1C7;
+    cursor: pointer;
+}
+.chatting{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 63px;
+    height: 50px;
+    padding: 14px 10px 10px 10px;
+    border: 2px solid #AAB1C7;
+    border-radius: 5px;
+}
+.chatting img{
+    width: 41px;
+    height: 41px;
+}
+.chatting:hover{
+    border: 3px solid #AAB1C7;
+    cursor: pointer;
+}
+.locationHome{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width: 63px;
+    height: 50px;
+    padding: 12px 10px 12px 10px;
+    border: 2px solid #AAB1C7;
+    border-radius: 5px;
+    margin-top: 2px;
+}
+.locationHome img{
+    width: 41px;
+    height: 41px;
+}
+.locationHome:hover{
+    border: 3px solid #AAB1C7;
+    cursor: pointer;
+}
+/* .openBar img{
+    width: 35px;
+    height: 40px;
+}
+.openBar-wrap{
+    display: flex;
+    width: 80px;
+    margin-right: 30px;
+}
+.openBar-hover{
+    width: 20px;
+    height: 50px;
+    margin-right: 2px;
+    background-color: #AAB1C7;
+    font-weight: 800;
+    cursor: pointer;
+} */
+
+
+</style>
 </head>
 <body>
     <div class="quickContents">
@@ -77,9 +209,9 @@
         // 상단 이동 버튼
     })
     $(botBtn).click(function(){
-        window.scrollTo(0,100000);
-        /* let windowEnd = ($(document).height() - $(window).height());
-        $('html, body').animate({scrollTop: windowEnd},800); */
+        //window.scrollTo(0,100000);
+         let windowEnd = ($(document).height() - $(window).height());
+        $('html, body').animate({scrollTop: windowEnd},800); 
         // 하단 이동 버튼
     })
 </script>
