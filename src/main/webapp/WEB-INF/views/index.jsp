@@ -14,6 +14,11 @@
 /* body{
 	position: relative;
 } */
+
+body{
+	overflow-x:hidden;
+	overflow-y:auto;
+}
 li{
     list-style: none;
     /* margin-left: -40px; */
@@ -2345,7 +2350,7 @@ padding-bottom: 5px;
     </div>
     
     <script src="${path }/resources/js/header.js"></script>
-	<script src="${path }/resources/js/header(2).js"></script> --%> --%>
+	<script src="${path }/resources/js/header(2).js"></script> --%>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 <jsp:param name="" value=""/>
 </jsp:include>

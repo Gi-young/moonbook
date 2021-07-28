@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>문곰책방</title> 
-    <link rel="stylesheet" href="${path }/resources/css/style.css">
+    <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
     <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -141,7 +141,15 @@
                             <li><a href="#">오디오북</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">문곰템 ▼</a></li>
+                    <li class="item">
+                    	<a href="${path }/gift/giftView.do">문곰템 ▼</a>
+                    	<ul class="giftTab">
+                            <li><a href='#'>전자기기</a></li>
+                            <li><a href='#'>수납/정리</a></li>
+                            <li><a href='#'>독서 필수템</a></li>
+                            <li><a href="#">잡화</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">중고/경매</a></li>
                 </ul>
             </div>
@@ -157,4 +165,24 @@
         </div>
     </div>
 </div>
-
+<script>
+    let item = $('.item');
+    let tab = $('.giftTab');
+    $(function(){
+        $(item).mouseover(function(){
+            // tab.slideDown(500);
+            tab.css('display',"flex");   
+            $(tab).mouseover(function(){
+                tab.css('display',"flex"); 
+            })
+        })
+        $(tab).mouseout(function(){
+            tab.css('display',"none");
+        }) 
+        $(item).mouseout(function(){
+            tab.css('display',"none");
+        }) 
+    });
+</script>
+</body>
+</html>

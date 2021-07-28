@@ -3,27 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <c:set var="path" value="${pageContext.request.contextPath }"/>     
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문곰책방 | 문곰템</title>
-    <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
+	<jsp:param name="" value=""/>
+</jsp:include>
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/gift.css">
-</head>
-<body>
-<!-- <div id="header">
-    header
-</div> -->
 <div class="wrap">
     <!-- 전체를 감싸고 있는 div -->
     <div class="hotTracks">
     <!-- 상단 핫트랙스 메뉴바 -->
         <div class="category-open">
-            <img src="${paht }/resources/images/기프트헤더로고.png" alt="" style="height: 50px;">
+            <img src="${path }/resources/images/gift/기프트헤더로고.png" alt="" style="height: 50px;">
         </div>
         <div class="hotTracks-menu">
             <ul>
@@ -948,16 +938,12 @@
         </div>
     </div> 
 </div> 
-<!-- <div id="header">
-    footer
-</div>  --> 
+
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
+	<jsp:param name="" value=""/>
+</jsp:include>
 <div class="quickBar"></div>
-</body>
-</html>
-<script src="../js/gift_headBanner.js"></script>
-<script src="../js/gift_moreView.js"></script>
-<script src="../js/timer.js"></script>
-<script src="../js/gift_updownScroll.js"></script>
+
 <script>
     // 가장 많이 보는 상품 이미지 hover 될 때 js
     let imgIn;
@@ -1012,3 +998,9 @@
         }
 }) 
 </script>
+<script src="../js/gift_headBanner.js"></script>
+<script src="../js/gift_moreView.js"></script>
+<script src="../js/timer.js"></script>
+<script src="../js/gift_updownScroll.js"></script>
+</body>
+</html>
