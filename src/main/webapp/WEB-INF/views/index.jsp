@@ -86,14 +86,23 @@ function searchHotnew(searchData) {
 			/* 따끈따끈신작 타이틀 */
 			console.log(hotnewtitle0);
 			console.log(data[0].title);
-			$(hotnewtitle0).html(data[0].title );
-			$(hotnewtitle1).html(data[1].title );
-			$(hotnewtitle2).html(data[2].title );
-			$(hotnewtitle3).html(data[3].title );
-			$(hotnewtitle4).html(data[4].title );
-			$(hotnewtitle5).html(data[5].title );
-			$(hotnewtitle6).html(data[6].title );
-			$(hotnewtitle7).html(data[7].title );
+			var hntitle0=(data[0].title).split('(');
+			var hntitle1=(data[1].title).split('(');
+			var hntitle2=(data[2].title).split('(');
+			var hntitle3=(data[3].title).split('(');
+			var hntitle4=(data[4].title).split('(');
+			var hntitle5=(data[5].title).split('(');
+			var hntitle6=(data[6].title).split('(');
+			var hntitle7=(data[7].title).split('(');
+			
+			$(hotnewtitle0).html(hntitle0[0] );
+			$(hotnewtitle1).html(hntitle1[0] );
+			$(hotnewtitle2).html(hntitle2[0] );
+			$(hotnewtitle3).html(hntitle3[0] );
+			$(hotnewtitle4).html(hntitle4[0] );
+			$(hotnewtitle5).html(hntitle5[0] );
+			$(hotnewtitle6).html(hntitle6[0] );
+			$(hotnewtitle7).html(hntitle7[0] );
 			
 		}
 	});
@@ -110,9 +119,15 @@ function searchHotnew(searchData) {
 	let bestsellerimg3=$(".bestsellerimg3");
 	let bestsellerimg4=$(".bestsellerimg4");
 	
+	
 	 /* 가장 인기있는 아이템 도서 타이틀 1-5 */
+	let bestsellertitle0=$(".bestsellertitle0");
+	let bestsellertitle1=$(".bestsellertitle1");
+	let bestsellertitle2=$(".bestsellertitle2");
+	let bestsellertitle3=$(".bestsellertitle3");
+	let bestsellertitle4=$(".bestsellertitle4");
 	 
-	 
+
 	$.ajax({
 		url:"${path}/ebook/search.do",
 		type: "post",
@@ -121,11 +136,30 @@ function searchHotnew(searchData) {
 		success: data=>{
 			console.log("나와라뿅뿅");
 			console.log(data[0].title+"구분할수있는문자열");
+			/* 베스트셀러 이미지 */
 			$(bestsellerimg0).attr('src',data[0].image );
 			$(bestsellerimg1).attr('src',data[1].image );
 			$(bestsellerimg2).attr('src',data[2].image );
 			$(bestsellerimg3).attr('src',data[3].image );
 			$(bestsellerimg4).attr('src',data[4].image );
+			
+			/* 베스트셀러 타이틀 ( 괄호 앞 잘라내기 */
+			console.log(data[0].title);
+			
+			var bstitle0=(data[0].title).split('(');
+			var bstitle1=(data[1].title).split('(');
+			var bstitle2=(data[2].title).split('(');
+			var bstitle3=(data[3].title).split('(');
+			var bstitle4=(data[4].title).split('(');
+			console.log(bstitle0[0]+"왼쪽은 스플릿이후"+bstitle4[0]);
+			
+			$(bestsellertitle0).html(bstitle0[0] );
+			$(bestsellertitle1).html(bstitle1[0] );
+			$(bestsellertitle2).html(bstitle2[0] );
+			$(bestsellertitle3).html(bstitle3[0] );
+			$(bestsellertitle4).html(bstitle4[0] );
+
+		
 		}
 	})
 }   
@@ -1559,7 +1593,7 @@ padding-bottom: 5px;
                             <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12 bestsellerimg0"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle0"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1572,7 +1606,7 @@ padding-bottom: 5px;
                                 <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg1"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle1"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1584,7 +1618,7 @@ padding-bottom: 5px;
                             <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg2"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle2"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1596,7 +1630,7 @@ padding-bottom: 5px;
                             <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg3"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle3"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1608,7 +1642,7 @@ padding-bottom: 5px;
                             <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg4"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle4"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
