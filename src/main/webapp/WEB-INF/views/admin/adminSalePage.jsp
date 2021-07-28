@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
@@ -60,7 +60,7 @@
 			</div>
 			<div class="saleT-container">
 						<p class="saleTFont">총 <span class="turnRed">${totalContents }</span>개의 데이터가 있습니다.</p>
-						<p class="saleTFont2">※ 전화번호, 주소, 회원 포인트, 회원 등급만 수정 가능합니다.</p>
+						<!-- <p class="saleTFont2">※ 전화번호, 주소, 회원 포인트, 회원 등급만 수정 가능합니다.</p> -->
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
 						<table class="saleT">
 							
@@ -82,16 +82,16 @@
 							
 							<c:forEach var="e" items="${list }">
 							<tr>
-									<td><input type="text" value="${e.memberRegiDate }" name="memberRegiDate" readonly></td>
-									<td><input type="text" value="${e.memberId }" name="memberId" readonly></td>
-									<td><input type="text" value="${e.memberName }" name="memberName" readonly></td>
-									<td><input type="text" value="${e.memberPhone }" name="memberPhone"></td>
-									<td><input type="text" value="${e.memberGender }" name="memberGender" readonly></td>
-									<td><input type="text" value="${e.memberAddress }" name="memberAddress"></td>
-									<td><input type="text" value="${e.memberPoint }" name="memberPoint"></td>
-									<td><input type="text" value="${e.memberGradeNo }" name="memberGradeNo"></td>
-									<td><input type="text" value="${e.memberTotalSale }" name="memberTotalSale" readonly></td>
-									<td><input type="text" value="${e.memberVisit }" name="memberVisit" readonly></td>
+									<td><input type="text" value="${e.orderNo }" name="orderNo" readonly></td>
+									<td><input type="text" value="${e.orderCount }" name="orderCount" readonly></td>
+									<td><input type="text" value="${e.orderPrice }" name="orderPrice" readonly></td>
+									<td><input type="text" value="${e.orderDeliverFee }" name="orderDeliverFee"></td>
+									<td><input type="text" value="${e.orderPaymentId }" name="orderPaymentId" readonly></td>
+									<td><input type="text" value="${e.orderPaidat }" name="orderPaidat"></td>
+									<td><input type="text" value="${e.orderPaidMethod }" name="orderPaidMethod"></td>
+									<td><input type="text" value="${e.orderStatus }" name="orderStatus"></td>
+									<td><input type="text" value="${e.orderPoint }" name="orderPoint" readonly></td>
+									<td><input type="text" value="${e.orderMemberId }" name="orderMemberId" readonly></td>
 									<td>
 										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
 									</td>
@@ -99,7 +99,7 @@
 									<td>
 										
 											<input type="hidden" value="${e.memberId }" name="memberId" readonly>
-											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete()">
+											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event)">
 											
 									
 										</td>
@@ -122,8 +122,8 @@
 
 
 <script>
-function adMemberDelete(e){
-	let memberId=$(e.target).prev().val();
+function adMemberDelete(event){
+	let memberId=$(event.target).prev().val();
 	
 	location.assign('${path}/admin/memberDelete.do?memberId='+memberId);
 	
@@ -280,6 +280,6 @@ const orderList = () => {
 
 </script>
 
-<%-- <jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
-</jsp:include> --%>
+</jsp:include>

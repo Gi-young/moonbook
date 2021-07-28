@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
@@ -101,7 +101,8 @@
 									<td>
 										
 											<input type="hidden" value="${e.memberId }" name="memberId" readonly>
-											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete()">
+											
+											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
 											
 									
 										</td>
@@ -124,8 +125,8 @@
 
 
 <script>
-function adMemberDelete(e){
-	let memberId=$(e.target).prev().val();
+function adMemberDelete(event){
+	let memberId=$(event.target).prev().val();
 	
 	location.assign('${path}/admin/memberDelete.do?memberId='+memberId);
 	
@@ -282,6 +283,6 @@ const orderList = () => {
 
 </script>
 
-<%-- <jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
-</jsp:include> --%>
+</jsp:include>
