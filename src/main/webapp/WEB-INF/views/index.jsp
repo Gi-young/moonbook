@@ -20,7 +20,10 @@ window.onload = function() {
 		priceOrder: "DESC",
 		importancePubdate: "1",
 		importanceSales: "2",
-		importancePrice: "3"
+		importanceRating: "3",
+		importancePrice: "4",
+		dataVolume: 8
+		
 	});
 	
 	searchBestseller({
@@ -32,7 +35,9 @@ window.onload = function() {
 		priceOrder: "DESC",
 		importancePubdate: "2",
 		importanceSales: "1",
-		importancePrice: "3"
+		importanceRating: "3",
+		importancePrice: "4",
+		dataVolume: 5
 	});
 	
 }
@@ -68,7 +73,6 @@ function searchHotnew(searchData) {
 		success: data => {
 			console.log("여기부터 보면 됩니다.");
 			console.log(data);
-			console.log(data[400].image);
 			/* 따끈따끈신작 이미지 */
 			$(hotnewimg0).attr('src',data[0].image );
 			$(hotnewimg1).attr('src',data[1].image );
@@ -98,12 +102,17 @@ function searchHotnew(searchData) {
 }
 
   function searchBestseller(searchData) {
+	 
+	 /* 가장 인기있는 아이템 도서 이미지 1-5 */
 	let bestsellerimg0=$(".bestsellerimg0");
 	let bestsellerimg1=$(".bestsellerimg1");
 	let bestsellerimg2=$(".bestsellerimg2");
 	let bestsellerimg3=$(".bestsellerimg3");
 	let bestsellerimg4=$(".bestsellerimg4");
 	
+	 /* 가장 인기있는 아이템 도서 타이틀 1-5 */
+	 
+	 
 	$.ajax({
 		url:"${path}/ebook/search.do",
 		type: "post",
@@ -111,10 +120,15 @@ function searchHotnew(searchData) {
 		dataType: "json",
 		success: data=>{
 			console.log("나와라뿅뿅");
-			console.log(bestseller);
+			console.log(data[0].title+"구분할수있는문자열");
+			$(bestsellerimg0).attr('src',data[0].image );
+			$(bestsellerimg1).attr('src',data[1].image );
+			$(bestsellerimg2).attr('src',data[2].image );
+			$(bestsellerimg3).attr('src',data[3].image );
+			$(bestsellerimg4).attr('src',data[4].image );
 		}
 	})
-}  
+}   
 
 </script>
 
