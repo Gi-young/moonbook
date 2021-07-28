@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.usedboard.model.service.UsedboardService;
+import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,8 +47,31 @@ public class UsedboardController {
 	}
 	
 	@RequestMapping("/usedboard/usedboardView.do")
-	public String usedboardView() {
-		return "/usedboard/usedboardView";
+	public ModelAndView usedboardView(int no, ModelAndView mv) {
+		mv.addObject("usedboard",service.selectUsedboardOne(no));
+		mv.addObject("reply",service.selectReply(no));
+		mv.addObject("replycount",service.selectReplyCount(no));
+		mv.addObject("no",no);
+		mv.setViewName("usedboard/usedboardView");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/insertUsedcomment.do")
+	public ModelAndView insertUsedcomment(Usedcomment c,ModelAndView mv,HttpServletRequest req) {
+		int no=Integer.parseInt(req.getParameter("usedbaord_No"));
+		mv.addObject("usedboard",service.selectUsedboardOne(no));
+		mv.addObject("reply",service.selectReply(no));
+		mv.addObject("replycount",service.selectReplyCount(no));
+		int result=service.insertUsedcomment(c);
+		if(result==1) {
+			System.out.println("등록성공");
+		}else {
+			System.out.println("등록실패");
+		}
+		
+		mv.addObject("no",no);
+		mv.setViewName("usedboard/usedboardView");
+		return mv;
 	}
 	
 	@RequestMapping("/usedboard/usedboardInsert.do")

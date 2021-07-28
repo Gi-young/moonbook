@@ -75,7 +75,7 @@
         <c:forEach var="b" items="${list }">
         <div id="secondBorad" style="padding-left: 300px;">
             <div class="side">
-                    <a href="${path }/usedboard/usedboardView.do" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
+                    <a href="${path }/usedboard/usedboardView.do?no=${b.usedboard_No }" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
                         <span class="artice">
                             <span style="font-size: 15px;">
 	                            <c:if test="${b.usedboard_Category != '' }">
@@ -123,6 +123,7 @@
         </c:if>
         
         </div>
+        <br><br>
 		<div id="pageBarb">${pageBar }</div>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

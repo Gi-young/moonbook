@@ -3,6 +3,7 @@ package com.rar.khbook.ebook.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +26,9 @@ public class EbookDaoImpl implements EbookDao {
 	
 	@Override
 	public List<EbookDatabind> search(SqlSession session, Map param) {
-		return session.selectList("ebook.search", param);
+		int limit = Integer.parseInt((String)param.get("dataVolume"));
+		RowBounds rb = new RowBounds(1, limit);
+		return session.selectList("ebook.search", param, rb);
 	}
 	
 	@Override

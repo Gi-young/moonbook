@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.rar.khbook.usedboard.model.dao.UsedboardDao;
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,5 +43,29 @@ public class UsedboardServiceImpl implements UsedboardService {
 	public int searchUsedboardCount(String catagory) {
 		// TODO Auto-generated method stub
 		return dao.searchUsedboardCount(session,catagory);
+	}
+	
+	@Override
+	public Usedboard selectUsedboardOne(int no) {
+		// TODO Auto-generated method stub
+		return dao.selectUsedboardOne(session, no);
+	}
+	
+	@Override
+	public int selectReplyCount(int no) {
+		// TODO Auto-generated method stub
+		return dao.selectReplyCount(session, no);
+	}
+	
+	@Override
+	public List<Usedcomment> selectReply(int no) {
+		// TODO Auto-generated method stub
+		return dao.selectReply(session, no);
+	}
+	
+	@Override
+	public int insertUsedcomment(Usedcomment c){
+		// TODO Auto-generated method stub
+		return dao.insertUsedcomment(session,c);
 	}
 }

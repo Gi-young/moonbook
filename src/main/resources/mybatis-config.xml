@@ -17,10 +17,16 @@
 		<!-- 중고게시판 -->
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboard" alias="usedboard"/>
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboardfile" alias="usedboardfile"/>
+
+		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedcomment" alias="usedcomment"/>
 		
 		<!-- ebook -->
 		<typeAlias type="com.rar.khbook.ebook.model.vo.EbookDatabind" alias="ebookDatabind"/>
 		<typeAlias type="com.rar.khbook.ebook.model.vo.Ebook" alias="ebook"/>
+
+	
+		<typeAlias type="com.rar.khbook.order.model.vo.Order" alias="order"/>
+
 	</typeAliases>
 
 </configuration>
