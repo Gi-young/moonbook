@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
@@ -147,12 +148,13 @@ public class MemberController {
 		return "common/msg";
 		
 	}
-	/*
-	 * @RequestMapping("/member/checkId.do") public void checkId(@RequestParam Map
-	 * param,Writer out) { System.out.println(param); Member
-	 * m=service.selectOneMember(param); System.out.println("testtest : "+m); new
-	 * Gson().toJson(m==null? "true":"false",out); }
-	 */
+	
+	  @RequestMapping("/member/checkId.do") public void checkId(@RequestParam Map
+			  param,Writer out) { System.out.println(param); Member
+			  m=service.selectOneMember(param); System.out.println("testtest : "+m); new
+			  Gson().toJson(m==null? "true":"false",out); 
+			  }
+	 
 	
 	@RequestMapping("/member/searchIdPwPage.do")
 	public String searchIdPwPage() {
