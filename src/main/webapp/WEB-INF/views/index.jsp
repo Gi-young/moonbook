@@ -8,9 +8,89 @@
    <jsp:param name="" value=""/>
 </jsp:include>
 
+<script>
+
+window.onload = function() {
+	searchEbook({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "100020020",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		importancePubdate: "2",
+		importanceSales: "1",
+		importancePrice: "3"
+	});
+}
+
+function searchEbook(searchData) {
+	/* 따끈따끈신작 이미지 */
+	let hotnewimg0=$(".hotnewimg0");
+	let hotnewimg1=$(".hotnewimg1");
+	let hotnewimg2=$(".hotnewimg2");
+	let hotnewimg3=$(".hotnewimg3");
+	let hotnewimg4=$(".hotnewimg4");
+	let hotnewimg5=$(".hotnewimg5");
+	let hotnewimg6=$(".hotnewimg6");
+	let hotnewimg7=$(".hotnewimg7");
+	
+	
+	/* 따끈따끈신작 타이틀 */
+	let hotnewtitle0=$(".hotnewtitle0");
+	let hotnewtitle1=$(".hotnewtitle1");
+	let hotnewtitle2=$(".hotnewtitle2");
+	let hotnewtitle3=$(".hotnewtitle3");
+	let hotnewtitle4=$(".hotnewtitle4");
+	let hotnewtitle5=$(".hotnewtitle5");
+	let hotnewtitle6=$(".hotnewtitle6");
+	let hotnewtitle7=$(".hotnewtitle7");
+	
+	
+	$.ajax({
+		url: "${path}/ebook/search.do",
+		type: "post",
+		data: searchData,
+		dataType: "json",
+		success: data => {
+			console.log("여기부터 보면 됩니다.");
+			console.log(data);
+			console.log(data[400].image);
+			/* 따끈따끈신작 이미지 */
+			$(hotnewimg0).attr('src',data[0].image );
+			$(hotnewimg1).attr('src',data[1].image );
+			$(hotnewimg2).attr('src',data[2].image );
+			$(hotnewimg3).attr('src',data[3].image );
+			$(hotnewimg4).attr('src',data[4].image );
+			$(hotnewimg5).attr('src',data[5].image );
+			$(hotnewimg6).attr('src',data[6].image );
+			$(hotnewimg7).attr('src',data[7].image );
+			
+			/* 따끈따끈신작 타이틀 */
+			console.log(hotnewtitle0);
+			console.log(data[0].title);
+			$(hotnewtitle0).innerHTML(data[0].title );
+			$(hotnewtitle1).attr('src',data[1].title );
+			$(hotnewtitle2).attr('src',data[2].title );
+			$(hotnewtitle3).attr('src',data[3].title );
+			$(hotnewtitle4).attr('src',data[4].title );
+			$(hotnewtitle5).attr('src',data[5].title );
+			$(hotnewtitle6).attr('src',data[6].title );
+			$(hotnewtitle7).attr('src',data[7].title );
+			
+		}
+	});
+	
+	
+}
+
+
+</script>
+
+
 <style>
 
-/* @import url(${path}/resources/css/style.css); */
+@import url(${path}/resources/css/style.css);
 /* body{
 	position: relative;
 } */
@@ -968,6 +1048,7 @@ padding-bottom: 5px;
     <div class="mainsearchBox-slideBox">
         <div class="btndown mainsearchBox-slideList">
             <div class="mainsearchBox-slideContent mainbanner1">
+
                 <a href="#"><img alt="banner1" src="${path}/resources/img/main/banner/1300add1.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner2">
@@ -1260,25 +1341,29 @@ padding-bottom: 5px;
         <div class="flex alignitems">
             <div class="footerheadline">
                 <p style="font-weight: bold;">따끈따끈 신작</p></div>
-                <a href="#"><img src="${path}/resources/img/main/icon/plusicon.png"></a>
+                <a href="#"><img  src="#"></a>
         </div>
         <div class="hotNewsearchBox-slideBox boxsetNew">
             <div class="hotNewslide_btn_prev btnNewleftposition"></div>
             <ul class="hotNewslide_list hotListflex " style="margin-top: 30px; justify-content: space-around;">
 
                 <li class="hotNewslide_content hotnewbox">
+                    
                     <div class="hotnewinner hotnewjccenter">
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                    
+                        <a href=""><img class="hotnewimg0 hotnewimgsize" src="#" alt=""></a>
                         <input type="hidden" name="" value="">
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
                         <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
                     </div>
+                    
+                    
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
+                            <a href=""><img class="hotnewimg1 hotnewimgsize" src="#" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
@@ -1287,7 +1372,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="hotnewinner hotnewjccenter">
                             <div>
-                                <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                                <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg2" src="#" alt=""></a>
                                 <input type="hidden" name="" value="">
                             </div>
                             <div class="hotnewcg">[음식/생활]</div>
@@ -1296,7 +1381,7 @@ padding-bottom: 5px;
                             </div>
                             <div class="hotnewinner hotnewjccenter">
                                 <div>
-                                    <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                                    <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg3" src="#" alt=""></a>
                                     <input type="hidden" name="" value="">
                                 </div>
                                 <div class="hotnewcg">[음식/생활]</div>
@@ -1309,7 +1394,7 @@ padding-bottom: 5px;
                 <li class="hotNewslide_content hotnewbox">
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg4" src="#" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
@@ -1320,7 +1405,7 @@ padding-bottom: 5px;
 
            <div class="hotnewinner hotnewjccenter">
                 <div>
-                    <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize" src="${path}/resources/img/main/bestseller/bestseller12.png" alt=""></a>
+                    <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg5" src="#" alt=""></a>
                     <input type="hidden" name="" value="">
                 </div>
                 <div class="hotnewcg">[음식/생활]</div>
@@ -1333,7 +1418,7 @@ padding-bottom: 5px;
 
                 <div class="hotnewinner hotnewjccenter">
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
+                        <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg6" src="#" alt=""></a>
                         <input type="hidden" name="" value="">
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
@@ -1342,13 +1427,13 @@ padding-bottom: 5px;
                     </div>
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize" src="${path}/resources/img/main/dummybooks/dummy1.jpg" alt=""></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg7" src="#" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
                             <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
-                        </div>
+                 </div>
               
 
                     
