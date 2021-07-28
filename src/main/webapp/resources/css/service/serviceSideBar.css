@@ -2,7 +2,7 @@
 
 /* @import url("nextGrade.css"); */
 
-.admin_sideMenu {
+.service_sideMenu {
 	float: left;
 	box-sizing: border-box;
 	width:180px;
@@ -18,21 +18,21 @@ sideMenu p{
 	color:#582810;
 	font-weight: bold;
 }
-.adminColor{
+.serviceColor{
 	color:#582810;
 	font-weight: bold;
 }
-.adminColor2{
+.serviceColor2{
 	font-size: 14px;
 	color:#582810;
 	
 }
-.adminColor2:hover{
-	cursor: pointer;
-}.adminColor:hover{
+.serviceColor2:hover{
 	cursor: pointer;
 }
-
+.serviceColor:hover{
+	cursor: pointer;
+}
 
 .sideMenu h3{
 	font-size:16px;
