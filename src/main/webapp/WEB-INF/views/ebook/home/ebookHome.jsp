@@ -45,7 +45,7 @@
 					<input type="radio" id="pubdateOrderDesc" name="pubdateOrder" value="DESC" checked>
 					<label for="pubdateOrderDesc">오래된 순</label>
 					<input type="radio" id="pubdateOrderAsc" name="pubdateOrder" value="ASC">
-					<input type="number" name="importancePubdate" value="1" max="3" min="1" step="1" required>
+					<input type="number" name="importancePubdate" value="1" max="4" min="1" step="1" required>
 				</div>
 				
 				<div id="salesOrder">
@@ -53,7 +53,15 @@
 					<input type="radio" id="salesOrderDesc" name="salesOrder" value="DESC" checked>
 					<label for="salesOrderAsc">판매량 낮은 순</label>
 					<input type="radio" id="salesOrderAsc" name="salesOrder" value="ASC">
-					<input type="number" name="importanceSales" value="2" max="3" min="1" step="1" required>
+					<input type="number" name="importanceSales" value="2" max="4" min="1" step="1" required>
+				</div>
+				
+				<div id="ratingOrder">
+					<label for="ratingOrderDesc">평점 높은 순</label>
+					<input type="radio" id="ratingOrderDesc" name="ratingOrder" value="DESC" checked>
+					<label for="ratingOrderAsc">평점 낮은 순</label>
+					<input type="radio" id="ratingOrderAsc" name="ratingOrder" value="ASC">
+					<input type="number" name="importanceRating" value="3" max="4" min="1" step="1" required>
 				</div>
 				
 				<div id="priceOrder">
@@ -61,8 +69,10 @@
 					<input type="radio" id="priceOrderDesc" name="priceOrder" value="DESC" checked>
 					<label for="priceOrderAsc">낮은 가격 순</label>
 					<input type="radio" id="priceOrderAsc" name="priceOrder" value="ASC">
-					<input type="number" name="importancePrice" value="3" max="3" min="1" step="1" required>
+					<input type="number" name="importancePrice" value="4" max="4" min="1" step="1" required>
 				</div>
+				
+				<input type="number" name="dataVolume" value="100" min="1" step="1" required>
 				
 				<input type="submit" value="검색">
 			</div>
