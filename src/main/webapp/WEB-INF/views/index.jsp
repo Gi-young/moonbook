@@ -11,7 +11,19 @@
 <script>
 
 window.onload = function() {
-	searchEbook({
+	searchHotnew({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "100020020",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		importancePubdate: "1",
+		importanceSales: "2",
+		importancePrice: "3"
+	});
+	
+	searchBestseller({
 		keyword: "",
 		searchType: "title",
 		categoryCode: "100020020",
@@ -22,9 +34,10 @@ window.onload = function() {
 		importanceSales: "1",
 		importancePrice: "3"
 	});
+	
 }
 
-function searchEbook(searchData) {
+function searchHotnew(searchData) {
 	/* 따끈따끈신작 이미지 */
 	let hotnewimg0=$(".hotnewimg0");
 	let hotnewimg1=$(".hotnewimg1");
@@ -69,21 +82,39 @@ function searchEbook(searchData) {
 			/* 따끈따끈신작 타이틀 */
 			console.log(hotnewtitle0);
 			console.log(data[0].title);
-			$(hotnewtitle0).innerHTML(data[0].title );
-			$(hotnewtitle1).attr('src',data[1].title );
-			$(hotnewtitle2).attr('src',data[2].title );
-			$(hotnewtitle3).attr('src',data[3].title );
-			$(hotnewtitle4).attr('src',data[4].title );
-			$(hotnewtitle5).attr('src',data[5].title );
-			$(hotnewtitle6).attr('src',data[6].title );
-			$(hotnewtitle7).attr('src',data[7].title );
+			$(hotnewtitle0).html(data[0].title );
+			$(hotnewtitle1).html(data[1].title );
+			$(hotnewtitle2).html(data[2].title );
+			$(hotnewtitle3).html(data[3].title );
+			$(hotnewtitle4).html(data[4].title );
+			$(hotnewtitle5).html(data[5].title );
+			$(hotnewtitle6).html(data[6].title );
+			$(hotnewtitle7).html(data[7].title );
 			
 		}
 	});
 	
-	
+
 }
 
+  function searchBestseller(searchData) {
+	let bestsellerimg0=$(".bestsellerimg0");
+	let bestsellerimg1=$(".bestsellerimg1");
+	let bestsellerimg2=$(".bestsellerimg2");
+	let bestsellerimg3=$(".bestsellerimg3");
+	let bestsellerimg4=$(".bestsellerimg4");
+	
+	$.ajax({
+		url:"${path}/ebook/search.do",
+		type: "post",
+		data: searchData,
+		dataType: "json",
+		success: data=>{
+			console.log("나와라뿅뿅");
+			console.log(bestseller);
+		}
+	})
+}  
 
 </script>
 
@@ -1357,7 +1388,7 @@ padding-bottom: 5px;
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle0"></p></a></div>
                     </div>
                     
                     
@@ -1368,7 +1399,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle1"></p></a></div>
                         </div>
                         <div class="hotnewinner hotnewjccenter">
                             <div>
@@ -1377,7 +1408,7 @@ padding-bottom: 5px;
                             </div>
                             <div class="hotnewcg">[음식/생활]</div>
                             <div>
-                                <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                                <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle2"></p></a></div>
                             </div>
                             <div class="hotnewinner hotnewjccenter">
                                 <div>
@@ -1386,7 +1417,7 @@ padding-bottom: 5px;
                                 </div>
                                 <div class="hotnewcg">[음식/생활]</div>
                                 <div>
-                                    <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                                    <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle3"></p></a></div>
                                 </div>
                 </li>
 
@@ -1399,7 +1430,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                            <a href="#"><p class="hotnewtitle hotnewtitle4"></p></a></div>
                         </div>   
                         
 
@@ -1410,7 +1441,7 @@ padding-bottom: 5px;
                 </div>
                 <div class="hotnewcg">[음식/생활]</div>
                 <div>
-                    <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                    <a href="#"><p class="hotnewtitle hotnewtitle5"></p></a></div>
                 </div>   
 
 
@@ -1423,7 +1454,7 @@ padding-bottom: 5px;
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle6"></p></a></div>
                     </div>
                     <div class="hotnewinner hotnewjccenter">
                         <div>
@@ -1432,7 +1463,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle7"></p></a></div>
                  </div>
               
 
@@ -1511,7 +1542,7 @@ padding-bottom: 5px;
                             <strong class="rankwhite">01</strong>
                         </div>
                         <div class="cover ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12"></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12 bestsellerimg0"></a>
                         </div>
                         <div class="title ">
                             <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
@@ -1524,7 +1555,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="cover">
                             <div class="cover">
-                                <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
+                                <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg1"></a>
                         </div>
                         <div class="title ">
                             <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
@@ -1536,7 +1567,7 @@ padding-bottom: 5px;
                             <strong class="rank">03</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg2"></a>
                         </div>
                         <div class="title ">
                             <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
@@ -1548,7 +1579,7 @@ padding-bottom: 5px;
                             <strong class="rank">04</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg3"></a>
                         </div>
                         <div class="title ">
                             <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
@@ -1560,7 +1591,7 @@ padding-bottom: 5px;
                             <strong class="rank">05</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg4"></a>
                         </div>
                         <div class="title ">
                             <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
@@ -1909,24 +1940,24 @@ padding-bottom: 5px;
                     <h2><a href="#" class="middlefont">간편 서비스</a></h2>
                     <ul class="footerul">
                         <li><a href="#" class="ataggray">맴버십카드 등록</a></li>
-                        <li><a href="#" class="ataggray">KH캐시 조회·충전</a></li>
+                        <li><a href="#" class="ataggray">문곰캐시 조회·충전</a></li>
                         <li><a href="#" class="ataggray">휴면고객 조회·복원</a></li>
                     </ul>
                 </div>
                 <div class="upFooter_downSide verticalline" >
-                    <h2><a href="#" class="middlefont">문고 알리미</a></h2>
+                    <h2><a href="#" class="middlefont">문곰책방 알리미</a></h2>
                     <ul class="footerul">
-                        <li><a href="#" class="ataggray">KH페이스북</a></li>
-                        <li><a href="#" class="ataggray">KH트위터</a></li>
-                        <li><a href="#" class="ataggray">KH인스타그램</a></li>
-                        <li><a href="#" class="ataggray">KH유튜브</a></li>
+                        <li><a href="#" class="ataggray">뭉곰페이스북</a></li>
+                        <li><a href="#" class="ataggray">문곰트위터</a></li>
+                        <li><a href="#" class="ataggray">문곰인스타그램</a></li>
+                        <li><a href="#" class="ataggray">문곰유튜브</a></li>
                     </ul>
                 </div>
                 <div class="upFooter_downSide ">
                     <h2><a href="#" class="middlefont">FAQ</a></h2>
                     <ul class="footerul">
                         <li><a href="#" class="ataggray">주문·결제</a></li>
-                        <li><a href="#" class="ataggray">eBook</a></li>
+                        <li><a href="#" class="ataggray">문곰e북</a></li>
                         <li><a href="#" class="ataggray">도서·상품정보</a></li>
                         <li><a href="#" class="ataggray">중고장터</a></li>
                     </ul>
