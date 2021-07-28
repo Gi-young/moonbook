@@ -37,9 +37,7 @@ public class AuctionController {
 		
 		m.addAttribute("timelist", service.selectTimeList(cPage,numPerpage));
 		m.addAttribute("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "auction/auction.do"));
-		
-		
-		
+			
 		return "auction/auction";
 	}
 	

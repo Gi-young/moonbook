@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>  
 
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/auction/auction.css">

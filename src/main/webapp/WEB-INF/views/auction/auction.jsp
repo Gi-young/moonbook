@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
-<c:set var="path" value="${pageContext.request.contextPath }"/>
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/auction/auction.css">
-${pageBar }
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+
+
 <div id="wrap">
 <div id="container">
         <div class="auction_main line">
@@ -16,7 +16,7 @@ ${pageBar }
                 <p><span>${loginMember.memberName}</span>님 환영합니다.</p>
                 <p>경매 포인트 :<span><fmt:formatNumber value="${loginMember.memberPoint }" type="currency"/>point</span> </p> 
                 <button>포인트 충전하기</button>
-                <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
+                <button><a href="${path }/auction/auctionwrite.do">물픔 등록하기</a></button>
                 <button>내 경매 등록품 확인</button>
                 <button>내 경매 입찰목록 확인</button>
             </div>
@@ -184,6 +184,7 @@ ${pageBar }
 
     </div>
 </div>
+
     <script>
      $(function(){
             $(".acution_category_left>div").hover((e)=>{
@@ -235,6 +236,224 @@ ${pageBar }
                   
                  
     </script>
+    <style>
+table{
+	border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+th{
+	   vertical-align: middle;
+ 	 display: table-cell;
+    font-weight: bold;
+    text-align: -internal-center;	
+}
+a{
+    text-decoration: none;
+}
+#wrap{
+	text-align:center;
+}
+#container{
+	text-align: left;
+    width: 950px;
+    border: 1px solid black;
+	display: inline-block;
+}
+.line{
+    border: 1px solid black;
+}
+.auction_main{
+    padding: 10px;
+    display: flex;
+}
+.auction_main_left{
+    width: 800px;
+    height: 300px;
+}
+.auction_main_right{
+    width: 200px;
+    height: 300px;
+}
+.acution_category{
+    margin-top: 10px;
+    padding: 10px;
+}
+.acution_category_left{
+    width: 100%;
+}
+.acution_category_left>div>a{
+    font-size: 20px;
+    padding: 10px 30px 10px 30px;
+    font-weight: bolder;
+    text-align: center;
+    border: 1px solid black;
+    margin-right: 0px;
+}
+.acution_category_left>div{
+    position: relative;
+    display: inline-block;
+}
+.acution_category_left>div>div{
+    padding: 10px 30px 10px 30px;
+    display: none;
+    width: 500px;
+    position: absolute;
+    top: 37px;
+    border: 1px solid silver;
+    z-index: 10;
+    background-color: white;
+}
+.acution_category_left>div>div>a{
+    text-align: center;
+    padding: 10px;
+}
+.acution_category_left>div>div>a:hover{
+    color: blue;
+    border: 1px solid blue;
+}
+#auction_serach_name>div{
+   text-align: right;
+}
+
+.auction_main_po_img img{
+    width: 180px;
+    height: 180px;
+    border: 1px solid black;
+}
+.auction_main_po_center{
+    width: 550px;
+    padding: 10px;
+}
+.auction_main_po_center p{
+    padding: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.auction_main_title{
+    text-align: center;
+    padding: 15px;
+    border:1px solid black;
+    border-radius: 10px;
+    font-weight: bolder;
+    font-size: 20px;
+}
+.auction_main_po_right{
+    margin-left: 40px;
+}
+.btn1{
+    margin: 10px;
+    padding: 10px 20px 10px 20px;
+    color: white;
+    background-color: teal;
+    text-align: center;
+    font-weight: bolder;
+    border: 1px solid black;
+}
+.pagebar{
+    text-align: center;
+}
+
+
+
+/*===========옥션 리스트=============*/
+.auctionlist_level2{
+    border: 1px solid black;
+    height: 150px;
+    flex-wrap: wrap;
+    display: flex;
+}
+.auctionlist_level2 div{
+    text-align: center;
+    width: 215px;
+    background-color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 20px 10px 20px 10px;
+}
+.auctionlist_level2 div a{
+    font-size: 15px;
+    font-weight: bold;
+}
+.auctionlist>table{
+    width: 100%;
+    border: 1px;
+}
+.auctionlist table tr td{
+    border-right: silver 1px dotted;
+}
+.auctionlist_img{
+    text-align: center;
+}
+.auctionlist_img>img{
+    width: 150px;
+    height: 100px;
+}
+.auctionlist_person{
+    text-align: right;
+}
+
+/*옥션 view*/
+
+.auctionview_left>img{
+    width: 250px;
+    height: 250px;
+}
+.auctionview_right{
+    width: 800px;
+    margin-left: 10px;
+}
+.auctionview_right p{
+   padding: 0px;
+   margin: 0px;
+   font-weight: bold;
+   font-size: 12px;
+}
+.auctionview_right h2{
+    font-size: 17px;
+    padding: 0px;
+    margin: 0px;
+}
+.auctionview_right div{
+    border-bottom: 1px solid black;
+}
+.auctionview_btn{
+    height: 40px;
+    margin: 20px;
+}
+
+.auctionview_btn a{
+    text-align: center;
+    width: 25%;
+    border: 1px solid black;
+    padding: 10px 20px 10px 20px;
+    background-color: chartreuse;
+    color: white;
+}
+
+
+.auction_buy_now{
+    color: red;
+    font-size: 15px;
+}
+
+.auctionwrite_submit{
+    text-align: center;
+}
+span{
+    font-size: 12px;
+}
+.auctionwrite>table>tbody>tr>th{
+    background-color: yellow;
+
+}
+.countdown{
+	font-size:20px;
+	font-weight: bolder;
+	
+}
+
+</style>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 <jsp:param name="" value=""/>
 </jsp:include>
