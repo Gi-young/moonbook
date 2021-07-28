@@ -11,7 +11,7 @@ public interface EbookService {
 	int insertBookDataIntoDatabase(Map param);
 	
 	List<EbookDatabind> search(Map param);
-	
+
 	int uploadEbook(Ebook ebook);
 	
 }

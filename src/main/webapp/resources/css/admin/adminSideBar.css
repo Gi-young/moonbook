@@ -27,7 +27,9 @@ sideMenu p{
 	color:#582810;
 	
 }
-..adminColor2:hover{
+.adminColor2:hover{
+	cursor: pointer;
+}.adminColor:hover{
 	cursor: pointer;
 }
 

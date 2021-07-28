@@ -19,19 +19,19 @@
             <ul>
                 <!-- 페이지 전환할 때 스크립트로 전환 -->
                 <li>
-                    <a style="color:#696969;">전자기기</a>
+                    <a style="color:#696969;" href="#">전자기기</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;">수납/정리</a>
+                    <a style="color:#696969;" href="#">수납/정리</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;">독서 필수템</a>
+                    <a style="color:#696969;" href="#">독서 필수템</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;">잡화</a> 
+                    <a style="color:#696969;" href="#">잡화</a> 
                 </li>
             </ul>
         </div>
@@ -68,9 +68,9 @@
                 <a class="slide-btn headsBtn-next">〉</a>
             </div>
         </div>
-        <a href="#">
+        <!-- <a href="#">
             <div class="slide-modal"></div>
-        </a> 
+        </a>  -->
         <div class="modal-pop-back">
         </div>
     </div> 
@@ -210,8 +210,8 @@
                         </div>               
                     <div class="toSale-main">
                         <div style="width: 350px;">
-                            <a href='#'>
-                                <img src="../components/image/넥밴드선풍기.jpg" alt="" class="toSale-mainImg">
+                            <a href='${path }/gift/giftDetail.do?giftNo=123'>
+                                <img src="${path }/components/image/넥밴드선풍기.jpg" alt="" class="toSale-mainImg">
                                 <div class="freeship-wrap">
                                     <span class="freeship">무료배송</span>
                                 </div>
@@ -224,8 +224,10 @@
                         <div class="toSale-sub">
                             <ul class="toSale-ul">
                                 <li>
-                                    <img src="../components/image/버섯조명jpg.jpg" alt="">
-                                    <p class="toSale-dc">할인율</p>
+                                	<a href="#">
+	                                    <img src="../components/image/버섯조명jpg.jpg" alt="">
+	                                    <p class="toSale-dc">할인율</p>
+                                    </a>
                                 </li>
                                 <li>
                                     <img src="../components/image/라핀선크림.png" alt="">
@@ -966,10 +968,10 @@
     //     var height=$(document).scrollTop();
     //     console.log(height);
     // })
-    $(document).ready(function(){
+    /* $(document).ready(function(){
         // 사이드 퀵메뉴바
         $(".quickBar").load("../html/quickBar.html");
-    })
+    }) */
     $(".slide-modal").click(function(){
         console.log("모달창 실행");
         let modal = $(".modal-pop-content");
@@ -998,9 +1000,9 @@
         }
 }) 
 </script>
-<script src="../js/gift_headBanner.js"></script>
-<script src="../js/gift_moreView.js"></script>
-<script src="../js/timer.js"></script>
-<script src="../js/gift_updownScroll.js"></script>
+<script src="${path }/resources/js/gift/gift_headBanner.js"></script>
+<script src="${path }/resources/js/gift/gift_moreView.js"></script>
+<script src="${path }/resources/js/gift/timer.js"></script>
+<script src="${path }/resources/js/gift/gift_updownScroll.js"></script>
 </body>
 </html>
