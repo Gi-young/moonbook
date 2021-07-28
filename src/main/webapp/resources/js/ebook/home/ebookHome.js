@@ -1,16 +1,48 @@
-const getEbookItems = (groupId, keyword) => {
+let searchFrm = document.getElementById("searchFrm");
+
+window.onload = function() {
+	searchEbook({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "100020020",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		importancePubdate: "1",
+		importanceSales: "2",
+		importancePrice: "3"
+	});
+}
+
+searchFrm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	
+	let searchData = $(e.target).serialize();
+
+	searchEbook(searchData);
+});
+
+function searchEbook(searchData) {
 	$.ajax({
-		url: contextPath + "/ebook/getEBooksFromAPI.do?" + "groupId=" + groupId + "&keyword=" + keyword,
+		url: contextPath + "/ebook/search.do",
+		type: "post",
+		data: searchData,
+		dataType: "json",
 		success: data => {
-			let dataJSON = new X2JS().xml_str2json(data);
-			console.log(dataJSON);
+			console.log(data);
 			
 			let main = document.getElementsByTagName("main")[0];
-			dataJSON.rss.channel.item.forEach((v,i) => {
+
+			document.querySelectorAll("main div.ebookItem").forEach((v, i) => {
+				v.remove();
+			});
+
+			data.forEach((v,i) => {
 				let ebookItem = document.createElement("div");
 				ebookItem.style.backgroundColor = "white";
 				ebookItem.style.width = "180px";
 				ebookItem.style.height = "230px";
+				ebookItem.classList.add("ebookItem");
 				ebookItem.addEventListener("click", () => {
 					location.assign(contextPath + "/ebook/pageEbookDetail.do");
 				});
@@ -46,11 +78,13 @@ const getEbookItems = (groupId, keyword) => {
 	});
 }
 
-window.onload = function() {
-	let hangulStr = "가나다라마바사아자차카타파하";
-	
-	for(let i=0;i<hangulStr.length;i++) {
-		getEbookItems("300060", hangulStr[i]);
-	}
-	
-};
+let orders = document.querySelectorAll("#searchFrm input[type=number]");
+orders.forEach((v, i) => {
+	v.addEventListener("change", (e) => {
+		orders.forEach((w, j) => {
+			if(w != v) {
+				w.value = "";
+			}
+		});
+	});
+});

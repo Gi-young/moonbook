@@ -24,6 +24,11 @@ window.onload=funtion(){
 /* body{
 	position: relative;
 } */
+
+body{
+	overflow-x:hidden;
+	overflow-y:auto;
+}
 li{
     list-style: none;
     /* margin-left: -40px; */

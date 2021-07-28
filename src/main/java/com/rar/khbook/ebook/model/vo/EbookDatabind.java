@@ -15,6 +15,7 @@ import lombok.ToString;
 @Builder
 public class EbookDatabind {
 
+	private int bindNo;
 	private String title;
 	private String author;
 	private String image;
@@ -25,5 +26,6 @@ public class EbookDatabind {
 	private String description;
 	private String link;
 	private String categoryCode;
+	private Ebook ebook;
 	
 }

@@ -4,9 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value="회원등급별 혜택" />
 </jsp:include>
+<link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
 <div class="wrap">
 	<div class="container">
 		<div class="title_memberGrade bold">

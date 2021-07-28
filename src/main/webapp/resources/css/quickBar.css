@@ -1,6 +1,8 @@
 
 @charset "UTF-8";
-/* @import url("style.css"); 주석이나 지워진거나 똑같지 않나요 그럼 안땡겨진건가요 */
+
+@import url("style.css");
+
 /* .qc-padding-left{
     padding-left: 18px;
 } */

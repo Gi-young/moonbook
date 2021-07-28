@@ -17,11 +17,7 @@ import lombok.ToString;
 public class Ebook {
 
 	private int ebookNo;
-	private String title;
-	private String writer;
-	private Date publishDate;
 	private String filepath;
-	private String coverImgFilepath;
-	private List<String> likeMemberList;
+	private int salesVolume;
 	
 }

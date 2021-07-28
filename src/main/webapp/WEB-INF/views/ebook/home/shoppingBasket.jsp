@@ -13,6 +13,7 @@
 	<main>
 		<p>장바구니</p>
 		<button id="payBtn">결제</button>
+		<button id="refundBtn">환불</button>
 	</main>
 	
 	<input type="hidden" id="contextPath" value="${path}"/>
