@@ -21,9 +21,11 @@
 				<p onclick="location.assign('${path}/service/noticePage.do')" class="serviceColor">공지사항</p>
 			</li>
 		<li>
+				<p onclick="" class="serviceColor">이벤트</p>
+			</li>
+		<li>
 				<p onclick="location.assign('${path}/service/faqPage.do')" class="serviceColor">FAQ</p>
 			</li>
-		
 		
 	</ul>
 </div>
