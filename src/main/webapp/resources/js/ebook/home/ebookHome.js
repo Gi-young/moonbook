@@ -1,13 +1,32 @@
 let searchFrm = document.getElementById("searchFrm");
 
+window.onload = function() {
+	searchEbook({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "100020020",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		importancePubdate: "1",
+		importanceSales: "2",
+		importancePrice: "3"
+	});
+}
+
 searchFrm.addEventListener("submit", (e) => {
 	e.preventDefault();
-	let formData = $(e.target).serialize();
+	
+	let searchData = $(e.target).serialize();
 
+	searchEbook(searchData);
+});
+
+function searchEbook(searchData) {
 	$.ajax({
 		url: contextPath + "/ebook/search.do",
 		type: "post",
-		data: formData,
+		data: searchData,
 		dataType: "json",
 		success: data => {
 			console.log(data);
@@ -57,7 +76,7 @@ searchFrm.addEventListener("submit", (e) => {
 			
 		}
 	});
-});
+}
 
 let orders = document.querySelectorAll("#searchFrm input[type=number]");
 orders.forEach((v, i) => {

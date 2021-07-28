@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rar.khbook.ebook.model.service.EbookService;
+import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
@@ -191,7 +194,11 @@ public class EbookController {
 	}
 	
 	@RequestMapping(value = "/ebook/uploadEbook.do")
-	public String uploadEbook(int ebookNo, MultipartFile[] upFile, HttpServletRequest request) {
+	public String uploadEbook(int ebookNo, MultipartFile[] upFile, HttpServletRequest request, Model model) {
+		System.out.println(ebookNo);
+		
+		Ebook ebook = null;
+		
 		String path = request.getServletContext().getRealPath("/resources/ebook/");
 		File dir = new File(path);
 		
@@ -200,15 +207,33 @@ public class EbookController {
 		for(MultipartFile f : upFile) {
 			if(!f.isEmpty()) {
 				String originalFilename = f.getOriginalFilename();
-				String 
+				String originalName = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+				String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+				String rename = sdf.format(System.currentTimeMillis()) + "_" + originalName + extension;
+			
+				try {
+					f.transferTo(new File(path + rename));
+					
+				} catch(IOException e) {
+					e.printStackTrace();
+				}
+				ebook = Ebook.builder().ebookNo(ebookNo).filepath(rename).build();
 			}
 		}
 		
+		int result = service.uploadEbook(ebook);
+		String message = "";
+		if(result > 0) {
+			message = "업로드 성공";
+		} else {
+			message = "업로드 실패";
+		}
+		model.addAttribute("result", result);
+		model.addAttribute("message", message);
 		
-		
-		
-		
-		
+		return "ebook/home/uploadEbook";
 	}
 	
 	@RequestMapping(value = "/ebook/cancelPurchase.do")

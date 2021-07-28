@@ -81,5 +81,9 @@
 			</otherwise>
 		</choose>
 	</select>
+	
+	<insert id="uploadEbook">
+		INSERT INTO EBOOK VALUES(#{ebookNo}, #{filepath}, DEFAULT)
+	</insert>
 
 </mapper>

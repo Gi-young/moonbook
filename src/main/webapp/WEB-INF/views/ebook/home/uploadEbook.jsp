@@ -12,13 +12,20 @@
 <body>
 	<form action="${path}/ebook/uploadEbook.do" method="post" enctype="multipart/form-data">
 		<div>
-			<p>올리실 eBook에 상응하는 BOOK_EBOOK_DATABIND의 BIND_NO를 입력하세요<p>
-			<input type="number" name="ebookNo" min="1" step="1" required>
+			<p>업로드할 eBook에 상응하는 BOOK_EBOOK_DATABIND의 BIND_NO를 입력하세요<p>
+			<input type="number" name="ebookNo" value="1" min="1" step="1" required>
 		
 			<input type="file" name="upFile">
 		
 			<input type="submit" value="업로드">
 		</div>
 	</form>
+	
+	<script>
+		<c:if test="${result != null}">
+			alert("${message}");
+		</c:if>
+	</script>
+	
 </body>
 </html>

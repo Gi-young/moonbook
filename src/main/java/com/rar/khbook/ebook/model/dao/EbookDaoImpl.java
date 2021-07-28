@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 
 @Repository
@@ -25,6 +26,17 @@ public class EbookDaoImpl implements EbookDao {
 	@Override
 	public List<EbookDatabind> search(SqlSession session, Map param) {
 		return session.selectList("ebook.search", param);
+	}
+	
+	@Override
+	public int uploadEbook(SqlSession session, Ebook ebook) {
+		int result = 0;
+		try {
+			return session.insert("ebook.uploadEbook", ebook);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 }

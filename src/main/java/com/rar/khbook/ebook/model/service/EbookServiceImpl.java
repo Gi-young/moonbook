@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rar.khbook.ebook.model.dao.EbookDao;
+import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 
 @Service
@@ -29,6 +30,12 @@ public class EbookServiceImpl implements EbookService {
 	public List<EbookDatabind> search(Map param) {
 		List<EbookDatabind> list = dao.search(session, param);
 		return list;
+	}
+	
+	@Override
+	public int uploadEbook(Ebook ebook) {
+		int result = dao.uploadEbook(session, ebook);
+		return result;
 	}
 	
 }
