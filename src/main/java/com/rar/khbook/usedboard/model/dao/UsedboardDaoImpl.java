@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 @Repository
 public class UsedboardDaoImpl implements UsedboardDao {
@@ -33,5 +34,27 @@ public class UsedboardDaoImpl implements UsedboardDao {
 	public int searchUsedboardCount(SqlSession session,String catagory) {
 		// TODO Auto-generated method stub
 		return session.selectOne("usedboard.searchUsedboardCount",catagory);
+	}
+	
+	@Override
+	public Usedboard selectUsedboardOne(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("usedboard.selectUsedboardOne",no);
+	}
+	
+	@Override
+	public int selectReplyCount(SqlSession session, int no) {
+		return session.selectOne("usedboard.selectReplyCount",no);
+	}
+	
+	@Override
+	public List<Usedcomment> selectReply(SqlSession session, int no) {
+		return session.selectList("usedboard.selectReply",no);
+	}
+	
+	@Override
+	public int insertUsedcomment(SqlSession session, Usedcomment c) {
+		// TODO Auto-generated method stub
+		return session.insert("usedboard.insertUsedcomment",c);
 	}
 }

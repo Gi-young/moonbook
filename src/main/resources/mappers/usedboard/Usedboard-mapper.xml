@@ -33,4 +33,22 @@
 	<select id="searchUsedboardCount" resultType="_int">
 		SELECT COUNT(*) FROM USEDBOARD WHERE USEDBOARD_CATEGORY LIKE '%'||${value}||'%'
 	</select>
+	
+	<select id="selectUsedboardOne" resultMap="usedboardMap">
+		SELECT * 
+		FROM USEDBOARD B LEFT JOIN USEDBOARDFILE A ON B.USEDBOARD_NO=A.USEDBOARD_NO  
+		WHERE B.USEDBOARD_NO=${value}
+	</select>
+	
+	<select id="selectReplyCount" resultType="_int">
+		SELECT COUNT(*) FROM USEDCOMMENT WHERE USEDBOARD_NO=${value}
+	</select>
+	
+	<select id="selectReply" resultType="usedcomment">
+		SELECT * FROM USEDCOMMENT WHERE USEDBOARD_NO=${value}
+	</select>
+	
+	<insert id="insertUsedcomment">
+		INSERT INTO USEDCOMMENT VALUES(SEQ_USEDCOMMENT_NO.NEXTVAL,#{usedcomment_Content},SYSDATE,#{usedcomment_Level},#{usedcomment_UserId},#{usedcomment_CommentRef},#{usedbaord_No})
+	</insert>
 </mapper>
