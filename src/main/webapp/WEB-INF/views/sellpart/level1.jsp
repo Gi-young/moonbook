@@ -1006,43 +1006,35 @@ transition: all 0.2s linear;
                 <li class="main_sub_title" >
                      <a href="#" class="atag" >아동 도서</a>
                     <ul style="display: none;" class="layer">
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
+                        <li><a href="${path}/sellbookController/bookadong03.do">한국 그림책 (0~3세)</a></li>
+                        <li><a href="${path}/sellbookController/bookadong032.do">외국 그림책 (0~3세)</a></li>
+                        <li><a href="${path}/sellbookController/bookadong47.do">한국 그림책 (4~7세)</a></li>
+                        <li><a href="${path}/sellbookController/bookadong472.do">외국 그림책 (4~7세)</a></li>
+                        <li><a href="${path}/sellbookController/bookadong99.do">외국 그림책 (공통)</a></li>
+                        
                     </ul>
                 </li> 
                 <li class="main_sub_title">
                     <a href="#" class="atag" >초등 도서</a>
                     <ul style="display: none;" class="layer">
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
+                        <li><a href="${path}/sellbookController/bookchodongdonghwa12.do">초등 동화(1~2학년)</a></li>
+                        <li><a href="${path}/sellbookController/bookchodongdonghwa34.do">초등 동화(3~4학년)</a></li>
+                        <li><a href="${path}/sellbookController/bookchodongdonghwa56.do">초등 동화(5~6학년)</a></li>
+                        <li><a href="${path}/sellbookController/bookchodongdonghwa99.do">초등 동화(공통)</a></li>
                     </ul>
                 </li> 
                 <li class="main_sub_title" >
                     <a href="#" class="atag" >중등 도서</a>
                     <ul style="display: none;" class="layer">
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
-                        <li><a href="#">한국소설</a></li>
+                        <li><a href="${path}/sellbookController/bookjoongdong.do">중등 문학</a></li>
+                        <li><a href="${path}/sellbookController/bookjoongdongworld.do">세계 문학</a></li>
+                    </ul>
+                </li> 
+                <li class="main_sub_title" >
+                    <a href="#" class="atag" >고전 도서</a>
+                    <ul style="display: none;" class="layer">
+                        <li><a href="${path}/sellbookController/bookgojunkorea.do">한국 고전</a></li>
+                        <li><a href="${path}/sellbookController/bookgojunworld.do">세계 고전</a></li>
                     </ul>
                 </li> 
            

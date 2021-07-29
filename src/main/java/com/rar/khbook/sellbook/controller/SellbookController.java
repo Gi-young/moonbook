@@ -23,10 +23,92 @@ public class SellbookController {
 		return "sellpart/level1";
 		
 	}
-	@RequestMapping("/sellbookController/sellbookDetail.do")
-	public String sellbookDetail() {
-		System.out.println("나와라이놈아2");
-		return "sellpart/bookDetail";
+	@RequestMapping("/sellbookController/bookadong03.do")
+	public String bookadong03() {
+		System.out.println("한국그림책");
+		return "sellpart/bookadong/bookadong03";
+		
+	}
+	@RequestMapping("/sellbookController/bookadong032.do")
+	public String bookadong032() {
+		System.out.println("한국그림책");
+		return "sellpart/bookadong/bookadong032";
+		
+	}
+	@RequestMapping("/sellbookController/bookadong47.do")
+	public String bookadong47() {
+		System.out.println("한국그림책");
+		return "sellpart/bookadong/bookadong47";
+		
+	}
+	@RequestMapping("/sellbookController/bookadong472.do")
+	public String bookadong472() {
+		System.out.println("한국그림책");
+		return "sellpart/bookadong/bookadong472";
+		
+	}
+	@RequestMapping("/sellbookController/bookadong99.do")
+	public String bookadong99() {
+		System.out.println("한국그림책");
+		return "sellpart/bookadong/bookadong99";
+		
+	}
+	
+	///////////////////////////////
+	
+	@RequestMapping("/sellbookController/bookadongdonghwa.do")
+	public String bookadongdonghwa() {
+		System.out.println("아동동화");
+		return "sellpart/bookadong/bookadongdonghwa";
+		
+	}
+	
+	////////////////////////////////
+	
+	
+	@RequestMapping("/sellbookController/bookchodongdonghwa12.do")
+	public String bookchodongdonghwa12() {
+		System.out.println("초등동화");
+		return "sellpart/bookchodong/bookchodongdonghwa12";
+		
+	}
+	@RequestMapping("/sellbookController/bookchodongdonghwa34.do")
+	public String bookchodongdonghwa34() {
+		System.out.println("초등동화");
+		return "sellpart/bookchodong/bookchodongdonghwa34";
+		
+	}
+	@RequestMapping("/sellbookController/bookchodongdonghwa56.do")
+	public String bookchodongdonghwa56() {
+		System.out.println("초등동화");
+		return "sellpart/bookchodong/bookchodongdonghwa56";
+		
+	}
+	@RequestMapping("/sellbookController/bookchodongdonghwa99.do")
+	public String bookchodongdonghwa99() {
+		System.out.println("초등동화");
+		return "sellpart/bookchodong/bookchodongdonghwa99";
+		
+	}
+	
+	
+	////////////////////////////////////////
+	
+	
+	@RequestMapping("/sellbookController/bookjoongdong.do")
+	public String bookjoongdongmoonhak() {
+		System.out.println("중등문학");
+		return "sellpart/bookjoongdong/bookjoongdong";
+		
+	}
+	
+	
+	
+	
+	@RequestMapping("/sellbookController/bookjoongdongworld.do")
+	public String bookworldmoonhak() {
+		System.out.println("세계문학");
+		return "sellpart/bookjoongdong/bookjoongdongworld";
 		
 	}
 	
@@ -35,81 +117,25 @@ public class SellbookController {
 	
 	
 	
+	@RequestMapping("/sellbookController/bookgojunkorea.do")
+	public String bookgojunkorea() {
+		System.out.println("한국고전");
+		return "sellpart/bookgojun/bookgojunkorea";
+		
+	}
+	
+	@RequestMapping("/sellbookController/bookgojunworld.do")
+	public String bookgojunworld() {
+		System.out.println("세계고전");
+		return "sellpart/bookgojun/bookgojunworld";
+		
+	}
+	@RequestMapping(value="/sellpart/bookDetail.do")
+	public String pageEbookDetail(int bindNo) {
+		return "sellpart/bookDetail";
+	}
 	
 	
-	
-	
-	
-	
-//	@RequestMapping(value="/ebook/pageEbook.do")
-//	public String pageEbook() {
-//		return "ebook/home/ebookHome";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageBookstallJuvenile.do")
-//	public String pageBookstallJuvenile() {
-//		return "ebook/home/bookstallJuvenile";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageBookstallElementary.do")
-//	public String pageBookstallElementary() {
-//		return "ebook/home/bookstallElementary";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageBookstallMiddle.do")
-//	public String pageBookstallMiddle() {
-//		return "ebook/home/bookstallMiddle";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageBookstallNotes.do")
-//	public String pageBookstallNotes() {
-//		return "ebook/home/bookstallNotes";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageBookstallSearch.do")
-//	public String pageBookstallSearch() {
-//		return "ebook/home/bookstallSearch";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageShoppingBasket.do")
-//	public String pageShoppingBasket() {
-//		return "ebook/home/shoppingBasket";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageEbookDetail.do")
-//	public String pageEbookDetail() {
-//		return "ebook/home/ebookDetail";
-//	}
-//	
-//	@RequestMapping(value="/ebook/openEbookWizard.do")
-//	public String openEbookReader() {
-//		return "ebook/wizard/ebookWizard";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageEbookReader.do")
-//	public String pageEbookReader() {
-//		return "ebook/wizard/ebookReader";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageEbookReport.do")
-//	public String pageEbookReport() {
-//		return "ebook/wizard/ebookReport";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageEbookPlanner.do")
-//	public String pageEbookPlanner() {
-//		return "ebook/wizard/ebookPlanner";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageEbookClub.do")
-//	public String pageEbookClub() {
-//		return "ebook/wizard/ebookClub";
-//	}
-//	
-//	@RequestMapping(value="/ebook/pageEbookPublisher.do")
-//	public String pageEbookPublisher() {
-//		return "ebook/wizard/ebookPublisher";
-//	}
-	
+
 	
 }
