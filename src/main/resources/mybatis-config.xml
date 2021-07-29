@@ -30,6 +30,10 @@
 	
 		<typeAlias type="com.rar.khbook.order.model.vo.Order" alias="order"/>
 
+		<!-- sellpart -->
+		<typeAlias type="com.rar.khbook.sellbook.model.vo.SellbookDatabind" alias="sellbookDatabind"/>
+
+
 	</typeAliases>
 
 </configuration>

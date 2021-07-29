@@ -2,11 +2,16 @@ package com.rar.khbook.sellbook.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.rar.khbook.sellbook.model.service.SellbookService;
+import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
+import com.rar.khbook.sellbook.model.vo.service.SellbookService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -130,9 +135,13 @@ public class SellbookController {
 		return "sellpart/bookgojun/bookgojunworld";
 		
 	}
+	
 	@RequestMapping(value="/sellpart/bookDetail.do")
-	public String pageEbookDetail(int bindNo) {
-		return "sellpart/bookDetail";
+	public ModelAndView selectSellbookDatabind(int bindNo, ModelAndView mv) {
+		
+		mv.addObject("book",service.selectSellbookDatabind(bindNo));
+		mv.setViewName("sellpart/bookDetail");
+		return mv;
 	}
 	
 	

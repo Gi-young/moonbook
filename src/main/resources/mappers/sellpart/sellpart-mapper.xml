@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "SellbookDatabind">
+
+	<resultMap id="SellbookDatabind" type="sellbookDatabind">
+		<id column="BIND_NO" property="bindNo"/>
+		<result column="TITLE" property="title"/>
+		<result column="AUTHOR" property="author"/>
+		<result column="IMAGE" property="image"/>
+		<result column="PRICE" property="price"/>
+		<result column="ISBN" property="isbn"/>
+		<result column="PUBDATE" property="pubdate"/>
+		<result column="PUBLISHER" property="publisher"/>
+		<result column="DESCRIPTION" property="description"/>
+		<result column="LINK" property="link"/>
+		<result column="CATEGORY_CODE" property="categoryCode"/>
+		<result column="SALES_VOLUME" property="salesVolume"/>
+		<result column="RATING" property="rating"/>
+		<result column="STOCK" property="stock"/>
+	</resultMap>
+
+	
+	<select id="selectSellbookDatabind" resultMap="SellbookDatabind">
+		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+
+
+</mapper>

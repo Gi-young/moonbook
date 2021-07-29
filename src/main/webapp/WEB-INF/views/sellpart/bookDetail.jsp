@@ -922,7 +922,7 @@ transition: all 0.2s linear;
             </div>
             <div class="bookView_order" style="margin-left: 50px;">
                 <div>
-                    <h2>먹어야 산다</h2>
+                    <h2>${book.title }</h2>
                     <span>지은이</span>
                     <span>옮김이</span>
                     <span>출판사</span>
