@@ -8,6 +8,7 @@ window.onload = function() {
 		pubdateOrder: "DESC",
 		salesOrder: "DESC",
 		priceOrder: "DESC",
+		ratingOrder: "DESC",
 		importancePubdate: "1",
 		importanceSales: "2",
 		importanceRating: "3",
@@ -21,7 +22,19 @@ searchFrm.addEventListener("submit", (e) => {
 	
 	let searchData = $(e.target).serialize();
 
-	searchEbook(searchData);
+	let checkSet = new Set();
+
+	document.querySelectorAll("form#searchFrm input[name^=importance]").forEach((v, i) => {
+		checkSet.add(Number(v.value));
+	});
+
+	console.log(checkSet);
+
+	if (checkSet.has(1) && checkSet.has(2) && checkSet.has(3) && checkSet.has(4)) {
+		searchEbook(searchData);
+	} else {
+		alert("각 정렬 기준의 중요도를 올바르게 배치해주세요(1 ~ 4까지 겹치지 않고 배치)");
+	}
 });
 
 function searchEbook(searchData) {
@@ -79,14 +92,3 @@ function searchEbook(searchData) {
 		}
 	});
 }
-
-let orders = document.querySelectorAll("#searchFrm input[type=number]");
-orders.forEach((v, i) => {
-	v.addEventListener("change", (e) => {
-		orders.forEach((w, j) => {
-			if(w != v) {
-				w.value = "";
-			}
-		});
-	});
-});
