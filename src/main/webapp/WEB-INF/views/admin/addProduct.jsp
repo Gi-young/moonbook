@@ -18,238 +18,174 @@
 		</div>
 		<div class="addProduct-box2">
 			<div class="addProduct-box4">
-				<p>도서 입고</p>
-			</div>
-			<div class="addProduct-container2">
-				<form action="" method="post">
-					<table class="ChooseTable1">
-						<tr>
-							<th>타입</th>
-							<td>
-								<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="book" checked><label for="book" class="chooseBookAdd3">종이책</label>
-								<input class="chooseBookAdd2" type="radio" name="chooseBookAdd" id="ebook" value="ebook"><label for="ebook" class="chooseBookAdd4">eBook</label>
-							</td>
-							<td><input type="button" value="선택하기" onclick="orderList();"></td>
-						</tr>
-					</table>
-				</form>
+					<p>도서 입고</p>
 			</div>
 			<div class="addProduct-container3">
-				<form action="" method="post">
-					<table class="ChooseTable1">
+				
+				<table class="ChooseTable1">
 						<tr>
-							<th>도서 번호</th>
-							<td>
-								<input type="number" min="1">
+							<th>제품 별 카테고리</th>
+							<th>등록하기</th>
+						</tr>
+						<tr>
+							<td colspan="2" class="product-category">고전/문학</td>
+						</tr>
+						<tr>
+							<th>한국고전소설</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=308')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>도서 이미지</th>
-							<td>
-								<input type="text">
+							<th>세계문학</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1167')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>책 제목</th>
-							<td>
-								<input type="text">
+							<th>세계고전</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1142')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>책 부제</th>
-							<td>
-								<input type="text">
+							<td colspan="2" class="product-category">청소년</td>
+						</tr>
+						<tr>
+							<th>청소년 문학</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1073')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>책 소개</th>
-							<td>
-								<input type="text">
+							<td colspan="2" class="product-category">0~3세</td>
+						</tr>
+						<tr>
+							<th>한국그림책</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=319')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>가격</th>
-							<td>
-								<input type="number" min="10000" max="99000">
+							<th>외국그림책</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=422')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>저자</th>
-							<td>
-								<input type="text">
+							<td colspan="2" class="product-category">4~7세</td>
+						</tr>
+						<tr>
+							<th>한국그림책</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1016')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>출판사</th>
-							<td>
-								<input type="text">
+							<th>외국그림책</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1220')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>출간일</th>
-							<td>
-								<input type="Date">
+							<td colspan="2" class="product-category">유아그림책</td>
+						</tr>
+						<tr>
+							<th>세계 명작 동화</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=761')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>옮긴이</th>
-							<td>
-								<input type="text">
+							<th>한국 전래 동화</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=264')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>ISBN</th>
-							<td>
-								<input type="text">
+							<th>국내 창작 동화</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=493')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>쪽수</th>
-							<td>
-								<input type="text">
+							<th>다른나라 그림책</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=397')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>크기</th>
-							<td>
-								<input type="text">
+							<td colspan="2" class="product-category">초등1~2학년</td>
+						</tr>
+						<tr>
+							<th>어린이동화</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1113')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>수량</th>
-							<td>
-								<input type="number" min="1">
+							<td colspan="2" class="product-category">초등3~4학년</td>
+						</tr>
+						<tr>
+							<th>어린이동화</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1163')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>판매여부</th>
-							<td>
-								<input type="text">
+							<td colspan="2" class="product-category">초등5~6학년</td>
+						</tr>
+						<tr>
+							<th>어린이동화</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=746')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>입고가</th>
-							<td>
-								<input type="number" min="1000">
-							</td>
+							<td colspan="2" class="product-category">어린이(공통)</td>
 						</tr>
 						<tr>
-							<th>안전재고</th>
-							<td>
-								<input type="number" min="1">
+							<th>어린이동화</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=829')" value="등록">
 							</td>
 						</tr>
-						<tr>
-							<th>할인가</th>
-							<td>
-								<input type="number" min="1">
-							</td>
-						</tr>
-						<tr>
-							<th>카테고리 코드</th>
-							<td>
-								<input type="number" min="1">
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<input type="submit" value="입고">
-							</td>
-						</tr>
+						
 					</table>
-				</form>	
- 
-			</div>
-			<div class="addProduct-container4" style="display:none;">
-				<form action="" method="post">
-					<table class="ChooseTable2">
+					
+ 				<div class="addProduct-box8">
+					<p>기프트 입고</p>
+				</div>
+				<table class="ChooseTable1">
 						<tr>
-							<th>도서 번호</th>
-							<td>
-								<input type="number" min="1">
+							<th>전자기기</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909091')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>책 제목</th>
-							<td>
-								<input type="text">
+							<th>수납/정리</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909092')" value="등록">
 							</td>
 						</tr>
 						<tr>
-							<th>저자</th>
-							<td>
-								<input type="text">
+							<th>독서 필수템</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909093')" value="등록">
+							</td>
+						</tr><tr>
+							<th>잡화</th>
+							<td class="Ch-td">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909094')" value="등록">
 							</td>
 						</tr>
-						<tr>
-							<th>도서 이미지</th>
-							<td>
-								<input type="text">
-							</td>
-						</tr>
-						<tr>
-							<th>가격</th>
-							<td>
-								<input type="number" min="10000" max="99000">
-							</td>
-						</tr>
-						<tr>
-							<th>ISBN</th>
-							<td>
-								<input type="text">
-							</td>
-						</tr>
-						<tr>
-							<th>PUBDATE</th>
-							<td>
-								<input type="Date">
-							</td>
-						</tr>
-						<tr>
-							<th>출판사</th>
-							<td>
-								<input type="text">
-							</td>
-						</tr>
-						<tr>
-							<th>설명</th>
-							<td>
-								<input type="text">
-							</td>
-						</tr>
-						<tr>
-							<th>링크</th>
-							<td>
-								<input type="text">
-							</td>
-						</tr>
-						<tr>
-							<th>카테고리 코드</th>
-							<td>
-								<input type="number" min="1">
-							</td>
-						</tr>
-						<tr>
-							<th>판매량</th>
-							<td>
-								<input type="number" min="1">
-							</td>
-						</tr>
-						<tr>
-							<th>평점</th>
-							<td>
-								<input type="number" min="1">
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<input type="submit" value="입고">
-							</td>
-						</tr>
+						
 					</table>
-				</form>	
- 
 			</div>
+			
+ 
+			
 			
 		</div>
 	</div>
@@ -257,19 +193,7 @@
 
 
 <script>
-	$("input[name=chooseBookAdd]").click(e=>{
-		$("input[name=chooseBookAdd]").each((i,v)=>{
-			if(v.checked){
-				if(v.value=="book"){
-					$(".addProduct-container3").css("display","block");
-					$(".addProduct-container4").css("display","none");
-				}else{
-					$(".addProduct-container4").css("display","block");
-					$(".addProduct-container3").css("display","none");
-				}
-			}
-		})
-	})
+	
 </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

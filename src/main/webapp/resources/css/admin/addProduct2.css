@@ -52,12 +52,29 @@
 	color:#582810;
 }
 .ChooseTable1 td{
-	
-}
-.Ch-td{
 	border: 1px solid #582810;
 	height: 50px;
 	vertical-align: middle;
+	
+}
+.ChooseTable3{
+	width:100%;
+	/* height: 100%;  */
+	text-align: center;
+	/* height: 100px;  */
+}
+.ChooseTable3 th{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	font-weight:bold;
+	color:#582810;
+}
+.ChooseTable3 td{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	
 }
 .chooseBookAdd3{
 	margin-right:10px;
@@ -78,6 +95,11 @@
 	width:100%;
    
 }
+.addProduct-container5{
+	height: 100%;
+	overflow-y:scroll;
+}
+
 .addProduct-container3{
 	height: 100%;
 	overflow-y:scroll;
@@ -130,30 +152,9 @@
 	vertical-align: middle;
 	
 }
-.inputSize7{
-	width:176px;
-	height:27px;
+.chooseBookAdd5{
+	margin-left: 8px;
 }
-
-.product-category{
-	text-align: center;
-	height:15px;
-	background-color: #9F000F;
-	color:white;
-	vertical-align: middle;
-	border: 1px solid #582810;
+.chooseBookAdd6{
+	margin-left:5px;
 }
-
-.addProduct-box8 p{
-	
-	height:46px;
-	font-weight: 800;
-	margin-left:20px;
-	padding-top:15px;
-}
-.addProduct-box8{
-	height:46px;
-	background-color: #582810;
-	color:white;
-}
-

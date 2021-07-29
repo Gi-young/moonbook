@@ -137,12 +137,21 @@ public class AdminController {
 		mv.setViewName("admin/addProduct");
 		return mv;
 	}
+	@RequestMapping("/admin/addProductPage2.do")
+	public ModelAndView addProductPage2(ModelAndView mv,int categoryCode) {
+		
+		mv.addObject("categoryCode", categoryCode);
+		mv.setViewName("admin/addProduct2");
+		return mv;
+	}
+	
 	@RequestMapping("/admin/removeProductPage.do")
 	public ModelAndView removeProductPage(ModelAndView mv) {
 		
 		mv.setViewName("admin/removeProduct");
 		return mv;
 	}
+	
 	
 	
 
