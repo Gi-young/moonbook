@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.rar.khbook.ebook.model.dao.EbookDao;
 import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.member.model.vo.Member;
 
 @Service
 public class EbookServiceImpl implements EbookService {
@@ -36,6 +37,12 @@ public class EbookServiceImpl implements EbookService {
 	public int uploadEbook(Ebook ebook) {
 		int result = dao.uploadEbook(session, ebook);
 		return result;
+	}
+	
+	@Override
+	public Member login(String memberId) {
+		Member loginMember = dao.login(session, memberId);
+		return loginMember;
 	}
 	
 }

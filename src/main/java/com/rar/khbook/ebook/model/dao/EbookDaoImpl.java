@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.member.model.vo.Member;
 
 @Repository
 public class EbookDaoImpl implements EbookDao {
@@ -27,7 +28,7 @@ public class EbookDaoImpl implements EbookDao {
 	@Override
 	public List<EbookDatabind> search(SqlSession session, Map param) {
 		int limit = Integer.parseInt((String)param.get("dataVolume"));
-		RowBounds rb = new RowBounds(1, limit);
+		RowBounds rb = new RowBounds(0, limit);
 		return session.selectList("ebook.search", param, rb);
 	}
 	
@@ -40,6 +41,11 @@ public class EbookDaoImpl implements EbookDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	@Override
+	public Member login(SqlSession session, String memberId) {
+		return session.selectOne("ebook.login", memberId);
 	}
 	
 }

@@ -15,20 +15,26 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rar.khbook.ebook.model.service.EbookService;
 import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.member.model.vo.Member;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
@@ -39,10 +45,14 @@ import net.sf.json.JSONObject;
 
 @Controller
 @Slf4j
+@SessionAttributes({"loginMember"})
 public class EbookController {
 
 	@Autowired
 	EbookService service;
+	
+	@Autowired
+	BCryptPasswordEncoder pwEncoder;
 	
 	@RequestMapping(value="/ebook/pageEbook.do")
 	public String pageEbook() {
@@ -87,6 +97,11 @@ public class EbookController {
 	@RequestMapping(value="/ebook/pageUploadEbook.do")
 	public String pageUploadEbook() {
 		return "ebook/home/uploadEbook";
+	}
+	
+	@RequestMapping(value="/ebook/pageLogin.do")
+	public String login() {
+		return "ebook/home/login";
 	}
 	
 	@RequestMapping(value="/ebook/openEbookWizard.do")
@@ -180,6 +195,46 @@ public class EbookController {
 		
 		int result = service.insertBookDataIntoDatabase(param);
 		return result;
+	}
+	
+	@RequestMapping(value = "/ebook/login.do")
+	public String login(@RequestParam Map param, Model model, HttpServletResponse response) {
+		String memberId = (String)param.get("memberId");
+		String password = (String)param.get("password");
+		
+		if(param.get("saveId") != null) {
+			Cookie cookie = new Cookie("saveId", memberId);
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+			response.addCookie(cookie);
+		} else {
+			Cookie cookie = new Cookie("saveId", "");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
+		
+		Member m = service.login(memberId);
+		
+		if(m != null) {
+			if(pwEncoder.matches(password, m.getMemberPw())) {
+				model.addAttribute("loginMember", m);
+				model.addAttribute("result", "로그인 성공");
+			} else {
+				model.addAttribute("result", "로그인 실패");
+			}
+		} else {
+			model.addAttribute("result", "로그인 실패");
+		}
+		
+		return "ebook/home/login";
+	}
+	
+	@RequestMapping(value = "/ebook/logout.do")
+	public String logout(SessionStatus ss) {
+		if(!ss.isComplete()) {
+			ss.setComplete();
+		}
+		
+		return "ebook/home/ebookHome";
 	}
 	
 	@RequestMapping(value = "/ebook/search.do")

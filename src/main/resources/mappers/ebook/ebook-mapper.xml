@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace = "ebook">
 
-	<resultMap id="ebookDatabind" type="ebookDataBind">
+	<resultMap id="ebookDatabindMap" type="ebookDataBind">
 		<id column="BIND_NO" property="bindNo"/>
 		<result column="TITLE" property="title"/>
 		<result column="AUTHOR" property="author"/>
@@ -21,9 +21,26 @@
 		</association>
 	</resultMap>
 	
-	<resultMap id="ebook" type="ebook">
-		<result column="EBOOK_NO" property="ebookNo"/>
+	<resultMap id="ebookMap" type="ebook">
+		<id column="EBOOK_NO" property="ebookNo"/>
 		<result column="SALES_VOLUME" property="salesVolume"/>
+	</resultMap>
+	
+	<resultMap type="member" id="memberMap">
+		<result column="member_id" property="memberId" />
+		<result column="member_pw" property="memberPw" />
+		<result column="member_name" property="memberName" />
+		<result column="member_email" property="memberEmail" />
+		<result column="member_phone" property="memberPhone" />
+		<result column="member_address" property="memberAddress" />
+		<result column="member_gender" property="memberGender" />
+		<result column="member_birth" property="memberBirth" />
+		<result column="member_point" property="memberPoint" />
+		<result column="member_regidate" property="memberRegiDate" />
+		<result column="member_memberGrade_no" property="memberGradeNo" />
+		<result column="member_total_sale" property="memberTotalSale" />
+		<result column="member_visit" property="memberVisit" />
+		<result column="member_today" property="memberToday" />
 	</resultMap>
 
 	<insert id="insertBookDataIntoDatabase">
@@ -43,7 +60,7 @@
 		)
 	</insert>
 	
-	<select id="search" resultMap="ebookDatabind">
+	<select id="search" resultMap="ebookDatabindMap">
 		SELECT * FROM BOOK_EBOOK_DATABIND
 		WHERE ${searchType} LIKE '%'||#{keyword}||'%'
 		AND CATEGORY_CODE=#{categoryCode}
@@ -205,5 +222,9 @@
 	<insert id="uploadEbook">
 		INSERT INTO EBOOK VALUES(#{ebookNo}, #{filepath}, DEFAULT)
 	</insert>
+	
+	<select id="login" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
+	</select>
 
 </mapper>

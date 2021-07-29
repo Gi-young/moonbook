@@ -1,17 +1,6 @@
-const contextPath = $("#contextPath").val();
+let contextPath = document.getElementById("contextPath").value;
 
-function openEbookWizard() {
-	let windowHeight = window.screen.height;
-    let windowWidth = window.screen.width;
-	let readerWidth = windowWidth * 0.9;
-	let readerHeight = windowHeight * 0.9;
-    let url = contextPath + "/ebook/openEbookWizard.do";
-    let status = "width = "+ readerWidth + ", height = " + readerHeight;
-    var reader = window.open(url, "ebookReader", status);
-	reader.moveTo((windowWidth - readerWidth) / 2, (windowHeight - readerHeight) / 2);
-};
-
-document.getElementById("databindBtn").addEventListener("click", () => {
+function moonbookDatabind() {
     let keywordStr = "";
     keywordStr += "가나다라마바사아자차카타파하";
     keywordStr += "갸냐댜랴먀뱌샤야쟈챠캬탸퍄햐";
@@ -77,7 +66,7 @@ document.getElementById("databindBtn").addEventListener("click", () => {
         // 어린이동화(공통)
         window.setTimeout(() => {databind("320040010", keywordStr[i])}, timeout * keywordStr.length * 15 + timeout * i);
     }
-});
+}
 
 function databind(groupId, keyword) {
     $.ajax({
@@ -143,7 +132,7 @@ function databind(groupId, keyword) {
     });
 }
 
-document.getElementById("uploadEbookBtn").addEventListener("click", () => {
+function uploadEbook() {
     let url = contextPath + "/ebook/pageUploadEbook.do";
     let windowWidth = window.screen.width;
     let windowHeight = window.screen.height;
@@ -152,4 +141,45 @@ document.getElementById("uploadEbookBtn").addEventListener("click", () => {
     let status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ",width = " + width + ", height = " + height;
 
     window.open(url, "uploadEbook", status);
-});
+}
+
+function login() {
+    let url = contextPath + "/ebook/pageLogin.do";
+    let windowWidth = window.screen.width;
+    let windowHeight = window.screen.height;
+    let width = 400;
+    let height = 300;
+    let status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+
+    window.open(url, "loginFromEbookPage", status);
+}
+    
+function logout() {
+        location.replace(contextPath + "/ebook/logout.do");
+}
+
+let shoppingBasketLoginCheck = document.getElementById("shoppingBasketLoginCheck").value;
+if(shoppingBasketLoginCheck === "denied") {
+	login();
+	
+	location.replace(contextPath + "/ebook/pageEbook.do");
+}
+function openEbookWizard() {
+    let memberId = document.getElementById("memberId").value;
+    console.log("header : " + memberId);
+    console.log(typeof memberId);
+    if (memberId !== "") {
+            let windowHeight = window.screen.height;
+            let windowWidth = window.screen.width;
+            let readerWidth = windowWidth * 0.9;
+            let readerHeight = windowHeight * 0.9;
+            let url = contextPath + "/ebook/openEbookWizard.do";
+            let status = "width = "+ readerWidth + ", height = " + readerHeight;
+            var reader = window.open(url, "ebookReader", status);
+            reader.moveTo((windowWidth - readerWidth) / 2, (windowHeight - readerHeight) / 2);
+    } else {
+        login();
+
+        location.replace(contextPath + "/ebook/pageEbook.do");
+    }
+};
