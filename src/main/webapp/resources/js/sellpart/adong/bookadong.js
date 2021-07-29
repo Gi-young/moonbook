@@ -47,7 +47,8 @@ function searchBook(searchData) {
 				ebookItem.style.height = "230px";
 				ebookItem.classList.add("ebookItem");
 				ebookItem.addEventListener("click", () => {
-					location.assign(contextPath + "/sellpart/bookDetail.do?bindNo="+data[0].bindNo);
+					console.log(data[0]);
+					location.assign(contextPath + "/sellpart/bookDetail.do?bindNo="+data[i].bindNo);
 					console.log(data[0].bindNo+"바인드넘버");
 				});
 				
