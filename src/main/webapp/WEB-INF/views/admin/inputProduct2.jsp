@@ -35,7 +35,7 @@
 				</form>
 			</div>
 			<div class="addProduct-container3">
-				<form action="${path}/admin/insertProduct1.do" method="post">
+				<form action="${path}/admin/updateProduct1.do" method="post">
 					<table class="ChooseTable1">
 						<!--자동 넘버처리 -->
 						<tr>
@@ -62,7 +62,7 @@
 			</div>
 			
 			<div class="addProduct-container5" style="display:none;">
-				<form action="${path}/admin/insertProduct3.do" method="post">
+				<form action="${path}/admin/updateProduct3.do" method="post">
 					<table class="ChooseTable3">
 						<tr>
 							<th>상품 번호</th>

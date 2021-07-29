@@ -26,7 +26,7 @@ public interface AdminDao {
 	
 	int insertProduct1(SqlSession session,Map param);
 	
-	int insertProduct2(SqlSession session,Map param);
+	
 	
 	
 	

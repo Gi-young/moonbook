@@ -160,9 +160,9 @@ public class AdminController {
 		mv.setViewName("admin/removeProduct");
 		return mv;
 	}
-	//1.book 2.ebook 3.gift 입고
+	//1.book  3.gift 입고
 	@RequestMapping("/admin/insertProduct1.do")
-	public ModelAndView insertProduct1(ModelAndView mv,@RequestParam Map param) {
+	public ModelAndView insertProduct1(ModelAndView mv,@RequestParam Map param,String categoryCode) {
 		//book
 		int result=service.insertProduct1(param);
 		
@@ -173,36 +173,23 @@ public class AdminController {
 		}else {
 			msg="입고가 실패되었습니다.";
 		}
-		loc="/admin/addProductPage2.do";
+		loc="/admin/addProductPage2.do?categoryCode="+categoryCode;
+		
 		
 		mv.addObject("msg", msg);
 		mv.addObject("loc", loc);
-		mv.addObject("categoryCode", param.get("categoryCode"));
+		mv.addObject("categoryCode", categoryCode);
 		mv.setViewName("common/msg");
 		
 		return mv;
 	}
-	@RequestMapping("/admin/insertProduct2.do")
-	public ModelAndView insertProduct2(ModelAndView mv,@RequestParam Map param) {
-		//book
-		int result=service.insertProduct2(param);
+	@RequestMapping("/admin/updateProduct1.do")
+	public ModelAndView updateProduct1(ModelAndView mv,@RequestParam Map param) {
 		
-		String msg="";
-		String loc="";
-		if(result>0) {
-			msg="입고가 정상적으로 처리되었습니다";
-		}else {
-			msg="입고가 실패되었습니다.";
-		}
-		loc="/admin/addProductPage2.do";
-		
-		mv.addObject("msg", msg);
-		mv.addObject("loc", loc);
-		mv.addObject("categoryCode", param.get("categoryCode"));
-		mv.setViewName("common/msg");
 		
 		return mv;
 	}
+	
 	
 	
 	
