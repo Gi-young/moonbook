@@ -4,11 +4,221 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
+<script>
 
+window.onload = function() {
+	adong({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "310040020",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		importancePubdate: "1",
+		importanceSales: "2",
+		importanceRating: "3",
+		importancePrice: "4",
+		dataVolume: 4
+		
+	});
+	
+	
+	searchHotnew({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "310010010",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		importancePubdate: "1",
+		importanceSales: "2",
+		importanceRating: "3",
+		importancePrice: "4",
+		dataVolume: 15
+		
+	});
+	
+	searchBestseller({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "100020020",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		importancePubdate: "2",
+		importanceSales: "1",
+		importanceRating: "3",
+		importancePrice: "4",
+		dataVolume: 5
+	});
+	
+}
+
+function searchHotnew(searchData) {
+	/* 따끈따끈신작 이미지 */
+	
+	let hotnewimg0=$(".hotnewimg0");
+	let hotnewimg1=$(".hotnewimg1");
+	let hotnewimg2=$(".hotnewimg2");
+	let hotnewimg3=$(".hotnewimg3");
+	let hotnewimg4=$(".hotnewimg4");
+	let hotnewimg5=$(".hotnewimg5");
+	let hotnewimg6=$(".hotnewimg6");
+	let hotnewimg7=$(".hotnewimg7");
+	let hotnewimg8=$(".hotnewimg8");
+	let hotnewimg9=$(".hotnewimg9");
+	let hotnewimg10=$(".hotnewimg10");
+	let hotnewimg11=$(".hotnewimg11");
+	let hotnewimg12=$(".hotnewimg12");
+	let hotnewimg13=$(".hotnewimg13");
+	let hotnewimg14=$(".hotnewimg14");
+	
+	
+	
+	/* 따끈따끈신작 타이틀 */
+	let hotnewtitle0=$(".hotnewtitle0");
+	let hotnewtitle1=$(".hotnewtitle1");
+	let hotnewtitle2=$(".hotnewtitle2");
+	let hotnewtitle3=$(".hotnewtitle3");
+	let hotnewtitle4=$(".hotnewtitle4");
+	let hotnewtitle5=$(".hotnewtitle5");
+	let hotnewtitle6=$(".hotnewtitle6");
+	let hotnewtitle7=$(".hotnewtitle7");
+	let hotnewtitle8=$(".hotnewtitle8");
+	let hotnewtitle9=$(".hotnewtitle9");
+	let hotnewtitle10=$(".hotnewtitle10");
+	let hotnewtitle11=$(".hotnewtitle11");
+	let hotnewtitle12=$(".hotnewtitle12");
+	let hotnewtitle13=$(".hotnewtitle13");
+	let hotnewtitle14=$(".hotnewtitle14");
+	
+	$.ajax({
+		url: "${path}/ebook/search.do",
+		type: "post",
+		data: searchData,
+		dataType: "json",
+		success: data => {
+			console.log("여기부터 보면 됩니다.");
+			console.log(data);
+			/* 따끈따끈신작 이미지 */
+			$(hotnewimg0).attr('src',data[0].image );
+			$(hotnewimg1).attr('src',data[1].image );
+			$(hotnewimg2).attr('src',data[2].image );
+			$(hotnewimg3).attr('src',data[3].image );
+			$(hotnewimg4).attr('src',data[4].image );
+			$(hotnewimg5).attr('src',data[5].image );
+			$(hotnewimg6).attr('src',data[6].image );
+			$(hotnewimg7).attr('src',data[7].image );
+			$(hotnewimg8).attr('src',data[8].image );
+			$(hotnewimg9).attr('src',data[9].image );
+			$(hotnewimg10).attr('src',data[10].image );
+			$(hotnewimg11).attr('src',data[11].image );
+			$(hotnewimg12).attr('src',data[12].image );
+			$(hotnewimg13).attr('src',data[13].image );
+			$(hotnewimg14).attr('src',data[14].image );
+			
+			
+			/* 따끈따끈신작 타이틀 */
+			console.log(hotnewtitle0);
+			console.log(data[0].title);
+			var hntitle0=(data[0].title).split('(');
+			var hntitle1=(data[1].title).split('(');
+			var hntitle2=(data[2].title).split('(');
+			var hntitle3=(data[3].title).split('(');
+			var hntitle4=(data[4].title).split('(');
+			var hntitle5=(data[5].title).split('(');
+			var hntitle6=(data[6].title).split('(');
+			var hntitle7=(data[7].title).split('(');
+			var hntitle8=(data[8].title).split('(');
+			var hntitle9=(data[9].title).split('(');
+			var hntitle10=(data[10].title).split('(');
+			var hntitle11=(data[11].title).split('(');
+			var hntitle12=(data[12].title).split('(');
+			var hntitle13=(data[13].title).split('(');
+			var hntitle14=(data[14].title).split('(');
+			
+			$(hotnewtitle0).html(hntitle0[0] );
+			$(hotnewtitle1).html(hntitle1[0] );
+			$(hotnewtitle2).html(hntitle2[0] );
+			$(hotnewtitle3).html(hntitle3[0] );
+			$(hotnewtitle4).html(hntitle4[0] );
+			$(hotnewtitle5).html(hntitle5[0] );
+			$(hotnewtitle6).html(hntitle6[0] );
+			$(hotnewtitle7).html(hntitle7[0] );
+			$(hotnewtitle8).html(hntitle8[0] );
+			$(hotnewtitle9).html(hntitle9[0] );
+			$(hotnewtitle10).html(hntitle10[0] );
+			$(hotnewtitle11).html(hntitle11[0] );
+			$(hotnewtitle12).html(hntitle12[0] );
+			$(hotnewtitle13).html(hntitle13[0] );
+			$(hotnewtitle14).html(hntitle14[0] );
+			
+		}
+	});
+	
+
+}
+
+  function searchBestseller(searchData) {
+	 
+	 /* 가장 인기있는 아이템 도서 이미지 1-5 */
+	let bestsellerimg0=$(".bestsellerimg0");
+	let bestsellerimg1=$(".bestsellerimg1");
+	let bestsellerimg2=$(".bestsellerimg2");
+	let bestsellerimg3=$(".bestsellerimg3");
+	let bestsellerimg4=$(".bestsellerimg4");
+	
+	
+	 /* 가장 인기있는 아이템 도서 타이틀 1-5 */
+	let bestsellertitle0=$(".bestsellertitle0");
+	let bestsellertitle1=$(".bestsellertitle1");
+	let bestsellertitle2=$(".bestsellertitle2");
+	let bestsellertitle3=$(".bestsellertitle3");
+	let bestsellertitle4=$(".bestsellertitle4");
+	 
+
+	$.ajax({
+		url:"${path}/ebook/search.do",
+		type: "post",
+		data: searchData,
+		dataType: "json",
+		success: data=>{
+			console.log("나와라뿅뿅");
+			console.log(data[0].title+"구분할수있는문자열");
+			/* 베스트셀러 이미지 */
+			$(bestsellerimg0).attr('src',data[0].image );
+			$(bestsellerimg1).attr('src',data[1].image );
+			$(bestsellerimg2).attr('src',data[2].image );
+			$(bestsellerimg3).attr('src',data[3].image );
+			$(bestsellerimg4).attr('src',data[4].image );
+			
+			/* 베스트셀러 타이틀 ( 괄호 앞 잘라내기 */
+			console.log(data[0].title);
+			
+			var bstitle0=(data[0].title).split('(');
+			var bstitle1=(data[1].title).split('(');
+			var bstitle2=(data[2].title).split('(');
+			var bstitle3=(data[3].title).split('(');
+			var bstitle4=(data[4].title).split('(');
+			console.log(bstitle0[0]+"왼쪽은 스플릿이후"+bstitle4[0]);
+			
+			$(bestsellertitle0).html(bstitle0[0] );
+			$(bestsellertitle1).html(bstitle1[0] );
+			$(bestsellertitle2).html(bstitle2[0] );
+			$(bestsellertitle3).html(bstitle3[0] );
+			$(bestsellertitle4).html(bstitle4[0] );
+
+		
+		}
+	})
+}   
+
+</script>
 <style>
+
 a{
     text-decoration: none;
 }
@@ -902,128 +1112,128 @@ transition: all 0.2s linear;
             </div>
             <div class="content">
                 <div class="content-title"> 
-                    <a href="#" class="contenttitle">오늘의 책</a><span class="moreview">더보기 +</span> 
+                    <a href="#" class="contenttitle">NEW! 외국 그림책</a><span class="moreview">더보기 +</span> 
                 </div>
                 <div class="line" id="today_book">
                     <div id="prev"> <button>&lt;</button></div>
                     <div id="bookpagebar">
                         <div class="today_book_form">
-                           <img src="" alt="">
+                           <img class="hotnewimg0" src="" alt="">
                            <div>
-                               <p>제목</p>
-                               <p>1</p>
+                               <p class="hotnewtitle0">제목</p>
+                               <!-- <p>1</p> -->
                                <p style="color: red;">18000원</p>
                            </div>
                         </div>
                         <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg1" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>2</p>
+                                <p class="hotnewtitle1">제목</p>
+                                <!-- <p>2</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg2" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>3</p>
+                                <p class="hotnewtitle2">제목</p>
+                                <!-- <p>3</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg3" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>4</p>
+                                <p class="hotnewtitle3">제목</p>
+                                <!-- <p>4</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="x.png" alt="">
+                            <img class="hotnewimg4" src="x.png" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>5</p>
+                                <p class="hotnewtitle4">제목</p>
+                                <!-- <p>5</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg5" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>6</p>
+                                <p class="hotnewtitle5">제목</p>
+                               <!--  <p>6</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg6" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>7</p>
+                                <p class="hotnewtitle6">제목</p>
+                                <!-- <p>7</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg7" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>8</p>
+                                <p class="hotnewtitle7">제목</p>
+                                <!-- <p>8</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg8" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>9</p>
+                                <p class="hotnewtitle8">제목</p>
+                                <!-- <p>9</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg9" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>10</p>
+                                <p class="hotnewtitle9">제목</p>
+                               <!--  <p>10</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg10" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>11</p>
+                                <p class="hotnewtitle"10>제목</p>
+                              <!--   <p>11</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg11" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>12</p>
+                                <p class="hotnewtitle11">제목</p>
+                               <!--  <p>12</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg12" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>13</p>
+                                <p class="hotnewtitle12">제목</p>
+                               <!--  <p>13</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg13" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>14</p>
+                                <p class="hotnewtitle13">제목</p>
+                                <!-- <p>14</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
                          <div class="today_book_form">
-                            <img src="" alt="">
+                            <img class="hotnewimg14" src="" alt="">
                             <div>
-                                <p>제목</p>
-                                <p>15</p>
+                                <p class="hotnewtitle14">제목</p>
+                                <!-- <p>15</p> -->
                                 <p style="color: red;">18000원</p>
                             </div>
                          </div>
@@ -1058,12 +1268,15 @@ transition: all 0.2s linear;
             <div class="content line"> 
                 <div class="content_body2">
                    <div class="content_body2_left line">
-                     <a href="#" class="contenttitle">새로나온 책</a><a>아동 도서</a><a>초등 도서</a><a>중등 도서</a>
+                     <a href="#" class="contenttitle">새로나온 책</a>
+                     <a class="tt">아동 도서</a>
+                     <a>초등 도서</a>
+                     <a>중등 도서</a>
                      <span class="moreview">더보기 +</span>
                      <div class="content_body2_book line">
                          <div>
                             <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory">[category]</div>
+                            <div class="bcategory1">[category]</div>
                             <strong class="btitle">책 제목 넣기</strong>
                             <div class="bcontent">책 내용 20자 </div>
                             <div class="bprice">700원</div>      
@@ -1310,6 +1523,23 @@ transition: all 0.2s linear;
 
 <script>
 
+
+	$(".tt").hover(e=>{
+	function adong(searchData){
+		$.ajax({
+			url: "${path}/ebook/search.do",
+			type: "post",
+			data: searchData,
+			dataType: "json",
+			success: data => {
+				console.log(data+"dddddddddddddddd");
+			}
+		})
+	}
+	});
+	
+
+
     let atag1=$(".main_ul")[0].children[0];
     let atag2=$(".main_ul")[0].children[1];
     let atag3=$(".main_ul")[0].children[2];
@@ -1536,4 +1766,4 @@ transition: all 0.2s linear;
 
 </section>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

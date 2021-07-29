@@ -4,14 +4,29 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
 
 <script>
 
 window.onload = function() {
-	searchEbook({
+	searchHotnew({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "100020020",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		importancePubdate: "1",
+		importanceSales: "2",
+		importanceRating: "3",
+		importancePrice: "4",
+		dataVolume: 8
+		
+	});
+	
+	searchBestseller({
 		keyword: "",
 		searchType: "title",
 		categoryCode: "100020020",
@@ -20,11 +35,14 @@ window.onload = function() {
 		priceOrder: "DESC",
 		importancePubdate: "2",
 		importanceSales: "1",
-		importancePrice: "3"
+		importanceRating: "3",
+		importancePrice: "4",
+		dataVolume: 5
 	});
+	
 }
 
-function searchEbook(searchData) {
+function searchHotnew(searchData) {
 	/* 따끈따끈신작 이미지 */
 	let hotnewimg0=$(".hotnewimg0");
 	let hotnewimg1=$(".hotnewimg1");
@@ -55,7 +73,6 @@ function searchEbook(searchData) {
 		success: data => {
 			console.log("여기부터 보면 됩니다.");
 			console.log(data);
-			console.log(data[400].image);
 			/* 따끈따끈신작 이미지 */
 			$(hotnewimg0).attr('src',data[0].image );
 			$(hotnewimg1).attr('src',data[1].image );
@@ -69,21 +86,83 @@ function searchEbook(searchData) {
 			/* 따끈따끈신작 타이틀 */
 			console.log(hotnewtitle0);
 			console.log(data[0].title);
-			$(hotnewtitle0).innerHTML(data[0].title );
-			$(hotnewtitle1).attr('src',data[1].title );
-			$(hotnewtitle2).attr('src',data[2].title );
-			$(hotnewtitle3).attr('src',data[3].title );
-			$(hotnewtitle4).attr('src',data[4].title );
-			$(hotnewtitle5).attr('src',data[5].title );
-			$(hotnewtitle6).attr('src',data[6].title );
-			$(hotnewtitle7).attr('src',data[7].title );
+			var hntitle0=(data[0].title).split('(');
+			var hntitle1=(data[1].title).split('(');
+			var hntitle2=(data[2].title).split('(');
+			var hntitle3=(data[3].title).split('(');
+			var hntitle4=(data[4].title).split('(');
+			var hntitle5=(data[5].title).split('(');
+			var hntitle6=(data[6].title).split('(');
+			var hntitle7=(data[7].title).split('(');
+			
+			$(hotnewtitle0).html(hntitle0[0] );
+			$(hotnewtitle1).html(hntitle1[0] );
+			$(hotnewtitle2).html(hntitle2[0] );
+			$(hotnewtitle3).html(hntitle3[0] );
+			$(hotnewtitle4).html(hntitle4[0] );
+			$(hotnewtitle5).html(hntitle5[0] );
+			$(hotnewtitle6).html(hntitle6[0] );
+			$(hotnewtitle7).html(hntitle7[0] );
 			
 		}
 	});
 	
-	
+
 }
 
+  function searchBestseller(searchData) {
+	 
+	 /* 가장 인기있는 아이템 도서 이미지 1-5 */
+	let bestsellerimg0=$(".bestsellerimg0");
+	let bestsellerimg1=$(".bestsellerimg1");
+	let bestsellerimg2=$(".bestsellerimg2");
+	let bestsellerimg3=$(".bestsellerimg3");
+	let bestsellerimg4=$(".bestsellerimg4");
+	
+	
+	 /* 가장 인기있는 아이템 도서 타이틀 1-5 */
+	let bestsellertitle0=$(".bestsellertitle0");
+	let bestsellertitle1=$(".bestsellertitle1");
+	let bestsellertitle2=$(".bestsellertitle2");
+	let bestsellertitle3=$(".bestsellertitle3");
+	let bestsellertitle4=$(".bestsellertitle4");
+	 
+
+	$.ajax({
+		url:"${path}/ebook/search.do",
+		type: "post",
+		data: searchData,
+		dataType: "json",
+		success: data=>{
+			console.log("나와라뿅뿅");
+			console.log(data[0].title+"구분할수있는문자열");
+			/* 베스트셀러 이미지 */
+			$(bestsellerimg0).attr('src',data[0].image );
+			$(bestsellerimg1).attr('src',data[1].image );
+			$(bestsellerimg2).attr('src',data[2].image );
+			$(bestsellerimg3).attr('src',data[3].image );
+			$(bestsellerimg4).attr('src',data[4].image );
+			
+			/* 베스트셀러 타이틀 ( 괄호 앞 잘라내기 */
+			console.log(data[0].title);
+			
+			var bstitle0=(data[0].title).split('(');
+			var bstitle1=(data[1].title).split('(');
+			var bstitle2=(data[2].title).split('(');
+			var bstitle3=(data[3].title).split('(');
+			var bstitle4=(data[4].title).split('(');
+			console.log(bstitle0[0]+"왼쪽은 스플릿이후"+bstitle4[0]);
+			
+			$(bestsellertitle0).html(bstitle0[0] );
+			$(bestsellertitle1).html(bstitle1[0] );
+			$(bestsellertitle2).html(bstitle2[0] );
+			$(bestsellertitle3).html(bstitle3[0] );
+			$(bestsellertitle4).html(bstitle4[0] );
+
+		
+		}
+	})
+}   
 
 </script>
 
@@ -1357,7 +1436,7 @@ padding-bottom: 5px;
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle0"></p></a></div>
                     </div>
                     
                     
@@ -1368,7 +1447,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle1"></p></a></div>
                         </div>
                         <div class="hotnewinner hotnewjccenter">
                             <div>
@@ -1377,7 +1456,7 @@ padding-bottom: 5px;
                             </div>
                             <div class="hotnewcg">[음식/생활]</div>
                             <div>
-                                <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                                <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle2"></p></a></div>
                             </div>
                             <div class="hotnewinner hotnewjccenter">
                                 <div>
@@ -1386,7 +1465,7 @@ padding-bottom: 5px;
                                 </div>
                                 <div class="hotnewcg">[음식/생활]</div>
                                 <div>
-                                    <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                                    <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle3"></p></a></div>
                                 </div>
                 </li>
 
@@ -1399,7 +1478,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                            <a href="#"><p class="hotnewtitle hotnewtitle4"></p></a></div>
                         </div>   
                         
 
@@ -1410,7 +1489,7 @@ padding-bottom: 5px;
                 </div>
                 <div class="hotnewcg">[음식/생활]</div>
                 <div>
-                    <a href="#"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                    <a href="#"><p class="hotnewtitle hotnewtitle5"></p></a></div>
                 </div>   
 
 
@@ -1423,7 +1502,7 @@ padding-bottom: 5px;
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle6"></p></a></div>
                     </div>
                     <div class="hotnewinner hotnewjccenter">
                         <div>
@@ -1432,7 +1511,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">식욕은 어디서 시작되는가?</p></a></div>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle7"></p></a></div>
                  </div>
               
 
@@ -1511,10 +1590,10 @@ padding-bottom: 5px;
                             <strong class="rankwhite">01</strong>
                         </div>
                         <div class="cover ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12"></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12 bestsellerimg0"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle0"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1524,10 +1603,10 @@ padding-bottom: 5px;
                         </div>
                         <div class="cover">
                             <div class="cover">
-                                <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
+                                <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg1"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle1"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1536,10 +1615,10 @@ padding-bottom: 5px;
                             <strong class="rank">03</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg2"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle2"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1548,10 +1627,10 @@ padding-bottom: 5px;
                             <strong class="rank">04</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg3"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle3"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1560,10 +1639,10 @@ padding-bottom: 5px;
                             <strong class="rank">05</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg4"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle4"></p></a>
                         </div>
                         <div class="author">박원재</div>
                     </li>
@@ -1909,24 +1988,24 @@ padding-bottom: 5px;
                     <h2><a href="#" class="middlefont">간편 서비스</a></h2>
                     <ul class="footerul">
                         <li><a href="#" class="ataggray">맴버십카드 등록</a></li>
-                        <li><a href="#" class="ataggray">KH캐시 조회·충전</a></li>
+                        <li><a href="#" class="ataggray">문곰캐시 조회·충전</a></li>
                         <li><a href="#" class="ataggray">휴면고객 조회·복원</a></li>
                     </ul>
                 </div>
                 <div class="upFooter_downSide verticalline" >
-                    <h2><a href="#" class="middlefont">문고 알리미</a></h2>
+                    <h2><a href="#" class="middlefont">문곰책방 알리미</a></h2>
                     <ul class="footerul">
-                        <li><a href="#" class="ataggray">KH페이스북</a></li>
-                        <li><a href="#" class="ataggray">KH트위터</a></li>
-                        <li><a href="#" class="ataggray">KH인스타그램</a></li>
-                        <li><a href="#" class="ataggray">KH유튜브</a></li>
+                        <li><a href="#" class="ataggray">뭉곰페이스북</a></li>
+                        <li><a href="#" class="ataggray">문곰트위터</a></li>
+                        <li><a href="#" class="ataggray">문곰인스타그램</a></li>
+                        <li><a href="#" class="ataggray">문곰유튜브</a></li>
                     </ul>
                 </div>
                 <div class="upFooter_downSide ">
                     <h2><a href="#" class="middlefont">FAQ</a></h2>
                     <ul class="footerul">
                         <li><a href="#" class="ataggray">주문·결제</a></li>
-                        <li><a href="#" class="ataggray">eBook</a></li>
+                        <li><a href="#" class="ataggray">문곰e북</a></li>
                         <li><a href="#" class="ataggray">도서·상품정보</a></li>
                         <li><a href="#" class="ataggray">중고장터</a></li>
                     </ul>

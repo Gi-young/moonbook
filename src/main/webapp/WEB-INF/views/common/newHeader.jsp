@@ -160,7 +160,8 @@
                             <li><a href="#">잡화</a></li>
                         </ul>
                     </li>
-                    <li><a href="${path}/usedboard/usedboardList.do">중고/경매</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do">중고</a></li>
+                     <li><a href="${path}/auction/auction.do">경매</a></li>
                 </ul>
             </div>
             <div class="header-menuBar2">
