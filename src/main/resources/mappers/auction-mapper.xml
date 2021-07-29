@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="auction">
+
+	<insert id="auctionWriteEnd">
+	INSERT INTO AUCTION VALUES(SEQ_AUCTION_NO.NEXTVAL,#{memberId},#{auctioncateCode},#{auctionName},#{auctionEx},DEFAULT,#{endDate},#{startPrice},#{buyNow},#{priceUnit},'Y',#{auctionImg, typeHandler=strArr})
+	</insert>
+	
+	<select id="auctionCount" resultType="_int">
+	SELECT COUNT(*) FROM AUCTION
+	</select>
+	
+	<select id="selectTimeList" resultMap="AuctionMap">
+	SELECT * FROM AUCTION ORDER BY (end_date-start_date)
+	</select>
+	
+	<select id="selectauctioncate" resultMap="AuctionCateMap">
+		SELECT * FROM AUCTIONCATE WHERE AUCTIONCATE_NAME=#{level1}
+	</select>
+	
+	<select id="selectauctioncateCode" resultMap="AuctionCateMap">
+		SELECT * FROM AUCTIONCATE WHERE AUCTIONCATE_NAME=#{acutioncateName} AND AUCTIONCATE_FIRST=#{acutioncateFrist}
+	</select>
+	
+	
+	<resultMap type="com.rar.khbook.auction.model.vo.AuctionCate" id="AuctionCateMap">
+		<result column="auctioncate_code" property="auctioncateCode"/>
+		<result column="auctioncate_name" property="auctioncateName"/>
+		<result column="auctioncate_first" property="auctioncateFirst"/>
+	</resultMap>
+	
+	<resultMap type="com.rar.khbook.auction.model.vo.Auction" id="AuctionMap">
+		<result column="auction_no" property="auctionNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="auctioncate_code" property="auctioncateCode"/>
+		<result column="auction_name" property="auctionName"/>
+		<result column="auction_ex" property="auctionEx"/>
+		<result column="start_date" property="startDate"/>
+		<result column="end_date" property="endDate"/>
+		<result column="start_price" property="startPrice"/>
+		<result column="buy_now" property="buyNow"/>
+		<result column="price_unit" property="priceUnit"/>
+		<result column="auction_state" property="auctionState"/>
+		<result column="auction_img" property="auctionImg" typeHandler="strArr"/>
+		
+	</resultMap>
+</mapper>

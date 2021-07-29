@@ -123,7 +123,7 @@ public class MemberController {
 	@RequestMapping("/member/memberEnrollEnd.do")
 	public String memberEnrollEnd(Member m,Model model,HttpSession session) {
 		
-		
+		System.out.println(m);
 		log.debug("암호화전 : {}", m.getMemberPw());
 		log.debug("암호화 후 : {}", pwEncoder.encode(m.getMemberPw()));
 		m.setMemberPw(pwEncoder.encode(m.getMemberPw()));

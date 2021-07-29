@@ -355,7 +355,7 @@
 }
 .todayPop-contentTop{
     display: flex;
-    padding-top: 50px;
+    margin-top: 50px;
     width: 405px;
     align-items: center;
     padding-left: 20px;
@@ -386,7 +386,7 @@ a[class^="todayPop-content"]{
 }
 .todayPop-content{
     display: flex;
-    padding-top: 40px;
+   	margin-top: 40px;
     width: 405px;
     align-items: center;
     padding-left: 20px;

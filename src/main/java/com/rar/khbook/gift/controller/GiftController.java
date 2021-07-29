@@ -11,4 +11,17 @@ public class GiftController {
 	public String giftView() {
 		return "gift/gift";
 	}
+	
+//	기프트 상세페이지 이동
+	@RequestMapping("/gift/giftDetail.do")
+	public String giftDetail(int giftNo) {
+		
+		return "gift/giftDetail";
+	}
+	
+// 	내 쿠폰 페이지 
+	@RequestMapping("/gift/myCoupon.do")
+	public String myCoupons() {
+		return "gift/myCoupon";
+	}
 }

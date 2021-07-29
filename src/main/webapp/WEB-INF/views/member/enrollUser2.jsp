@@ -53,7 +53,7 @@
 					<option value="yahoo.co.kr">yahoo.co.kr</option>
 				</select>
 				
-				<input type="hidden" name="memberEmail" id="memberEmail">
+				<input type="text" name="memberEmail" id="memberEmail">
 				
 				<!-- <button onclick="" class="enrollInfo-button">확인</button>  -->
 			</div> 
@@ -82,16 +82,16 @@
 </html>
 <script>
 
-	const fn_frmsubmit=()=>{
-		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none"){
-			let memberEmail=$("#localPart").val()+"@"+$("#domain").val();
-			document.getElementById("memberEmail").value=memberEmail;
-			return true;
-		}else{
-			alert("확인 필요");
-			return false;
-		}
-	}
+// 	const fn_frmsubmit=()=>{
+// 		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none"){
+// 			let memberEmail=$("#localPart").val()+"@"+$("#domain").val();
+// 			document.getElementById("memberEmail").value=memberEmail;
+// 			return true;
+// 		}else{
+// 			alert("확인 필요");
+// 			return false;
+// 		}
+// 	}
 
 	$("#selectEmail").change(e =>{
 		let domain=$(e.target).val();

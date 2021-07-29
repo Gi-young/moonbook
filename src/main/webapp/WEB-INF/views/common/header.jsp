@@ -152,7 +152,12 @@
                         </ul>
                     </li>
                     <li><a href="#">기프트 ▼</a></li>
+<<<<<<< HEAD
+                    <li><a href="${path}/usedboard/usedboardPage.do">중고장터</a></li>
+                     <li><a href="${path}/auction/auction.do">경매 ▼</a></li>
+=======
                     <li><a href="${path}/usedboard/usedboardList.do">중고장터</a></li>
+>>>>>>> branch 'master' of http://github.com/Gi-young/khbook.git
                 </ul>
             </div>
             <div class="header-menuBar2">

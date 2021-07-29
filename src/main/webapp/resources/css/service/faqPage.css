@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+.service-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+}
+.service-box1{
+	width: 950px;
+	display:flex;
+	height:700px;
+	min-height:500px; 
+	box-sizing: border-box;
+}
+.service-box3{
+	height:100%;
+}
+
+.service-box2{
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black; 
+	width:770px;
+}
+/* 수정할 부분 */
+.memberTFont2{
+	font-weight: bold;
+	margin-left:20px;
+	margin-bottom:20px;
+}
+
+.faqFont{
+	font-weight: bold;
+	margin-left:20px;
+	margin-bottom:10px;
+}
+.FAQlist-container{
+	height: 100%;
+	overflow-x:scroll;
+}
+.service-box4{
+	/* border: 1px solid black; */
+	display: flex;
+	align-items: center;
+	justify-content:center;
+	display:flex; 
+	vertical-align:middle; 
+	width:770px;
+	/* height: 100px; */
+	padding-top:42px;
+	padding-bottom:42px;
+	/* overflow:scroll; */
+	
+}
+.service-search3 th{
+	background-color: #582810;
+	color:white;
+}
+.service-search3{
+	border: 1px solid #582810;
+	height: 100%;
+	width: 730px;
+   
+}
+.service-search{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.faqSearchTable{
+	width:100%;
+	height: 100%;
+	text-align: center;
+	/* height: 100px;  */
+}
+.faqSearchTable th,.faqSearchTable td{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	
+}
+.search-box img{
+	background-color: #804040;
+	width:25px;
+	hight:25px;
+	filter: invert(100%);
+	
+}
+.search-box img:hover{
+	opacity: 0.5;
+}
+.search-box {
+/* 	display: flex; */
+	align-items: center;
+	justify-content:center;
+}
+.faqList-box1{
+	
+	margin-left:20px;
+	align-items: center;
+	border:1px solid black;
+	text-align: center;
+	width:730px;
+	
+}
+.faqList-box1 ul li{
+	border:1px solid black;
+	width:600px;
+	height:40px;
+}
