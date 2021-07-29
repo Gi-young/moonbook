@@ -38,7 +38,7 @@
 					<input type="checkbox" class="" name="category" id="category12" value="초등학습"><label for="category12" class="">초등학습</label>&nbsp;
 					<input type="checkbox" class="" name="category" id="category13" value="중/고등학습"><label for="category13" class="">중/고등학습</label>&nbsp;
 					<input type="checkbox" class="" name="category" id="category14" value="대학교재"><label for="category14" class="">대학교재</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category15" value="취업수험서"><label for="category15" class="">취업수험서</label>&nbsp;
+					<input type="checkbox" class="" name="category" id="category15" value="취업/수험서"><label for="category15" class="">취업/수험서</label>&nbsp;
 					<input type="checkbox" class="" name="category" id="category16" value="외국어"><label for="category16" class="">외국어</label>&nbsp;
 					<input type="checkbox" class="" name="category" id="category17" value="동화"><label for="category17" class="">동화</label>&nbsp;
 					<input type="checkbox" class="" name="category" id="category18" value="아동"><label for="category18" class="">아동</label>&nbsp;
@@ -63,7 +63,6 @@
 			</ul>
 			<br>
 			<hr>
-			<!-- <input name="id" value="닉네임" type="hidden">  -->
 			<br>
 			<div class="btn">
 			<input class="btnbtn" type="submit" value="등록하기" width="20" height="20">

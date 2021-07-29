@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.usedboard.model.service.UsedboardService;
+import com.rar.khbook.usedboard.model.vo.Usedboard;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -59,18 +60,59 @@ public class UsedboardController {
 	@RequestMapping("/usedboard/insertUsedcomment.do")
 	public ModelAndView insertUsedcomment(Usedcomment c,ModelAndView mv,HttpServletRequest req) {
 		int no=Integer.parseInt(req.getParameter("usedbaord_No"));
-		mv.addObject("usedboard",service.selectUsedboardOne(no));
-		mv.addObject("reply",service.selectReply(no));
-		mv.addObject("replycount",service.selectReplyCount(no));
 		int result=service.insertUsedcomment(c);
+		String msg="";
 		if(result==1) {
-			System.out.println("등록성공");
+			msg="등록성공";
 		}else {
-			System.out.println("등록실패");
+			msg="등록실패";
 		}
 		
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardView.do?no="+no);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/deleteUsedcomment.do")
+	public ModelAndView deleteUsedcomment(ModelAndView mv,HttpServletRequest req) {
+		int no=Integer.parseInt(req.getParameter("usedbaord_No"));
+		int commentNo=Integer.parseInt(req.getParameter("usedcomment_No"));
+		int result=service.deleteUsedcomment(commentNo);
+		int result2=service.deleteUsedcommentRef(commentNo);
+		String msg="";
+		if(result==1) {
+			msg="삭제성공";
+		}else {
+			msg="삭제실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardView.do?no="+no);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardUpdate.do")
+	public ModelAndView usedboardUpdate(int no,Usedboard b, ModelAndView mv) {
+		mv.addObject("usedboard",service.selectUsedboardOne(no));
 		mv.addObject("no",no);
-		mv.setViewName("usedboard/usedboardView");
+		mv.setViewName("usedboard/usedboardUpdate");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardUpdateEnd.do")
+	public ModelAndView usedboardUpdateEnd(Usedboard b,ModelAndView mv,HttpServletRequest req) {
+		int no=Integer.parseInt(req.getParameter("usedboard_No"));
+		String msg="";
+		int result=service.usedboardUpdateEnd(b);
+		if(result==1) {
+			msg="변경성공";
+		}else {
+			msg="변경실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardView.do?no="+no);
+		mv.setViewName("common/msg");
 		return mv;
 	}
 	

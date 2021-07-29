@@ -11,7 +11,7 @@
 		<result column="usedboard_Date" property="usedboard_Date"/>
 		<result column="usedboard_Price" property="usedboard_Price"/>
 		<result column="usedboard_State" property="usedboard_State"/>
-		<result column="usedboard_Category" property="usedboard_Category"/>
+		<result column="usedboard_Category" property="usedboard_Category" typeHandler="strArr"/>
 		<result column="member_Id" property="member_Id"/>
 		<result column="usedboard_BookTitle" property="usedboard_BookTitle"/>
 		<collection property="usedboardfiles" resultMap="usedboardfileMap"></collection>
@@ -51,4 +51,16 @@
 	<insert id="insertUsedcomment">
 		INSERT INTO USEDCOMMENT VALUES(SEQ_USEDCOMMENT_NO.NEXTVAL,#{usedcomment_Content},SYSDATE,#{usedcomment_Level},#{usedcomment_UserId},#{usedcomment_CommentRef},#{usedbaord_No})
 	</insert>
+	
+	<delete id="deleteUsedcomment">
+		DELETE FROM USEDCOMMENT WHERE USEDCOMMENT_NO=${value}
+	</delete>
+	
+	<delete id="deleteUsedcommentRef">
+		DELETE FROM USEDCOMMENT WHERE USEDCOMMENT_COMMENTREF=${value}
+	</delete>
+	
+	<update id="usedboardUpdateEnd">
+		UPDATE USEDBOARD SET USEDBOARD_TITLE=#{usedboard_Title},USEDBOARD_CONTENT=#{usedboard_Content}, USEDBOARD_CATEGORY=#{usedboard_Category, typeHandler=strArr} WHERE USEDBOARD_NO=#{usedboard_No} 
+	</update>
 </mapper>

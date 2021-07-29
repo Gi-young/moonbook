@@ -21,4 +21,10 @@ public interface UsedboardService {
 	List<Usedcomment> selectReply(int no);
 	
 	int insertUsedcomment(Usedcomment c);
+	
+	int deleteUsedcomment(int commentNo);
+	
+	int deleteUsedcommentRef(int commentNo);
+	
+	int usedboardUpdateEnd(Usedboard b);
 }
