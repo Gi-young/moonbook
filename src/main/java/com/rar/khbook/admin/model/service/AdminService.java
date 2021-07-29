@@ -24,5 +24,5 @@ public interface AdminService {
 	
 	int insertProduct1(Map param);
 	
-	
+	int updateProduct1(Map param);
 }

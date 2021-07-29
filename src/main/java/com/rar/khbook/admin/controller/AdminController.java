@@ -169,9 +169,9 @@ public class AdminController {
 		String msg="";
 		String loc="";
 		if(result>0) {
-			msg="입고가 정상적으로 처리되었습니다";
+			msg="책 등록이 정상적으로 처리되었습니다";
 		}else {
-			msg="입고가 실패되었습니다.";
+			msg="책 등록이 실패되었습니다.";
 		}
 		loc="/admin/addProductPage2.do?categoryCode="+categoryCode;
 		
@@ -186,6 +186,21 @@ public class AdminController {
 	@RequestMapping("/admin/updateProduct1.do")
 	public ModelAndView updateProduct1(ModelAndView mv,@RequestParam Map param) {
 		
+		int result=service.updateProduct1(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="입고가 정상적으로 처리되었습니다";
+		}else {
+			msg="입고가 실패되었습니다.";
+		}
+		loc="/admin/inputProductPage2.do";
+		
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
 		
 		return mv;
 	}

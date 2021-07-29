@@ -41,7 +41,7 @@
 						<tr>
 							<th>도서 번호</th>
 							<td>
-								<input type="number" min="1" name="bookNo">
+								<input type="number" min="1" name="bindNo">
 							</td>
 						</tr> 
 						<tr>
@@ -107,22 +107,7 @@
 			}
 		})
 	})
-	$(".bookPriceAd1").keyup(e =>{ // BOOK 할인가
-		const bookPriceAd=$(e.target).val();
-		$("#discountPriceAd1").val(bookPriceAd*0.9);
-	});
-	$(".bookPriceAd1").change(e =>{ // BOOK 할인가
-		const bookPriceAd=$(e.target).val();
-		$("#discountPriceAd1").val(bookPriceAd*0.9);
-	});
-	$(".bookPriceAd3").keyup(e =>{ // GIFT 할인가
-		const bookPriceAd3=$(e.target).val();
-		$("#discountPriceAd3").val(bookPriceAd3*0.9);
-	});
-	$(".bookPriceAd3").change(e =>{ // GIFT 할인가
-		const bookPriceAd3=$(e.target).val();
-		$("#discountPriceAd3").val(bookPriceAd3*0.9);
-	});
+	
 </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

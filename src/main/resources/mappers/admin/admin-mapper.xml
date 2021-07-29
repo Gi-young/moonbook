@@ -30,5 +30,9 @@
 	<insert id="insertProduct1">
 		INSERT INTO BOOK_EBOOK_DATABIND VALUES(SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,#{title},#{author},#{image},#{price},#{isbn},#{pubdate},#{publisher},#{description},#{link},#{categoryCode},0,0,0,0,0)
 	</insert>
+	
+	<update id="updateProduct1">
+		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK+#{stock} WHERE BIND_NO=#{bindNo}
+	</update>
   
 </mapper>
