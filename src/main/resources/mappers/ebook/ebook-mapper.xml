@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace = "ebook">
 
+	
 	<resultMap id="ebookDatabind" type="ebookDataBind">
 		<id column="BIND_NO" property="bindNo"/>
 		<result column="TITLE" property="title"/>

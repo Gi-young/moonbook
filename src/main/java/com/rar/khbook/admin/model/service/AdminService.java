@@ -21,4 +21,8 @@ public interface AdminService {
 	List<Member> memberHowT2(Map param);
 	
 	List<Order> selectOrderList(int cPage,int numPerpage);
+	
+	int insertProduct1(Map param);
+	
+	int insertProduct2(Map param);
 }

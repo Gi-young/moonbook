@@ -23,4 +23,13 @@ public interface AdminDao {
 	List<Member> memberHowT2(SqlSession session,Map param);
 	
 	List<Order> selectOrderList(SqlSession session,int cPage,int numPerpage);
+	
+	int insertProduct1(SqlSession session,Map param);
+	
+	int insertProduct2(SqlSession session,Map param);
+	
+	
+	
+	
+	
 }

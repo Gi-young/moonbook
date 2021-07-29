@@ -18,14 +18,14 @@
 		</div>
 		<div class="addProduct-box2">
 			<div class="addProduct-box4">
-					<p>도서 등록</p>
+					<p>도서 입고</p>
 			</div>
 			<div class="addProduct-container3">
 				
 				<table class="ChooseTable1">
 						<tr>
 							<th>제품 별 카테고리</th>
-							<th>등록하기</th>
+							<th>입고하기</th>
 						</tr>
 						<tr>
 							<td colspan="2" class="product-category">고전/문학</td>
@@ -33,19 +33,19 @@
 						<tr>
 							<th>한국고전소설</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=308')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=308')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>세계문학</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1167')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=1167')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>세계고전</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1142')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=1142')" value="입고">
 							</td>
 						</tr>
 						<tr>
@@ -54,7 +54,7 @@
 						<tr>
 							<th>청소년 문학</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1073')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=1073')" value="입고">
 							</td>
 						</tr>
 						<tr>
@@ -63,13 +63,13 @@
 						<tr>
 							<th>한국그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=319')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=319')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>외국그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=422')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=422')" value="입고">
 							</td>
 						</tr>
 						<tr>
@@ -78,13 +78,13 @@
 						<tr>
 							<th>한국그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1016')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=1016')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>외국그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1220')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=1220')" value="입고">
 							</td>
 						</tr>
 						<tr>
@@ -93,25 +93,25 @@
 						<tr>
 							<th>세계 명작 동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=761')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=761')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>한국 전래 동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=264')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=264')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>국내 창작 동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=493')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=493')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>다른나라 그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=397')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=397')" value="입고">
 							</td>
 						</tr>
 						<tr>
@@ -120,7 +120,7 @@
 						<tr>
 							<th>어린이동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1113')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=1113')" value="입고">
 							</td>
 						</tr>
 						<tr>
@@ -129,7 +129,7 @@
 						<tr>
 							<th>어린이동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1163')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=1163')" value="입고">
 							</td>
 						</tr>
 						<tr>
@@ -138,7 +138,7 @@
 						<tr>
 							<th>어린이동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=746')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=746')" value="입고">
 							</td>
 						</tr>
 						<tr>
@@ -147,37 +147,37 @@
 						<tr>
 							<th>어린이동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=829')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=829')" value="입고">
 							</td>
 						</tr>
 						
 					</table>
 					
  				<div class="addProduct-box8">
-					<p>기프트 등록</p>
+					<p>기프트 입고</p>
 				</div>
 				<table class="ChooseTable1">
 						<tr>
 							<th>전자기기</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909091')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=909091')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>수납/정리</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909092')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=909092')" value="입고">
 							</td>
 						</tr>
 						<tr>
 							<th>독서 필수템</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909093')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=909093')" value="입고">
 							</td>
 						</tr><tr>
 							<th>잡화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909094')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/inputProductPage2.do?categoryCode=909094')" value="입고">
 							</td>
 						</tr>
 						
