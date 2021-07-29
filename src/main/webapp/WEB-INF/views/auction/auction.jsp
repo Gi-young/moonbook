@@ -16,7 +16,7 @@
                 <p><span>${loginMember.memberName}</span>님 환영합니다.</p>
                 <p>경매 포인트 :<span><fmt:formatNumber value="${loginMember.memberPoint }" type="currency"/>point</span> </p> 
                 <button>포인트 충전하기</button>
-                <button><a href="${path }/auction/auctionwrite.do">물픔 등록하기</a></button>
+                <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
                 <button>내 경매 등록품 확인</button>
                 <button>내 경매 입찰목록 확인</button>
             </div>
