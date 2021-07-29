@@ -50,148 +50,148 @@
 		ORDER BY 
 		<choose>
 			<when test="importancePubdate>importanceSales and importanceSales>importanceRating and importanceRating>importancePrice">
-				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder},
 				RATING ${ratingOrder},
-				PRICE ${priceOrder}
+				SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importanceSales and importanceSales>importancePrice and importancePrice>importanceRating">
-				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder},
+				RATING ${ratingOrder},
 				PRICE ${priceOrder},
-				RATING ${ratingOrder}
+				SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importancePrice and importancePrice>importanceSales and importanceSales>importanceRating">
-				PUBDATE ${pubdateOrder},
-				PRICE ${priceOrder},
+				RATING ${ratingOrder},
 				SALES_VOLUME ${salesOrder},
-				RATING ${ratingOrder}
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importancePrice and importancePrice>importanceRating and importanceRating>importanceSales">
-				PUBDATE ${pubdateOrder},
-				PRICE ${priceOrder},
-				RATING ${ratingOrder},
 				SALES_VOLUME ${salesOrder},
+				RATING ${ratingOrder},
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importanceRating and importanceRating>importanceSales and importanceSales>importancePrice">
-				PUBDATE ${pubdateOrder},
-				RATING ${ratingOrder},
+				PRICE ${priceOrder},
 				SALES_VOLUME ${salesOrder},
-				PRICE ${priceOrder}
+				RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importanceRating and importanceRating>importancePrice and importancePrice>importanceSales">
-				PUBDATE ${pubdateOrder},
-				RATING ${ratingOrder},
+				SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder}
+				RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importanceSales>importancePubdate and importancePubdate>importanceRating and importanceRating>importancePrice">
-				SALES_VOLUME ${salesOrder},
-				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder},
 				RATING ${ratingOrder},
-				PRICE ${priceOrder}
+				PUBDATE ${pubdateOrder},
+				SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceRating">
-				SALES_VOLUME ${salesOrder},
-				PUBDATE ${pubdateOrder},
+				RATING ${ratingOrder},
 				PRICE ${priceOrder},
-				RATING ${ratingOrder}
+				PUBDATE ${pubdateOrder},
+				SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importanceRating and importanceRating>importancePubdate and importancePubdate>importancePrice">
-				SALES_VOLUME ${salesOrder},
-				RATING ${ratingOrder},
+				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder},
-				PRICE ${priceOrder}
+				RATING ${ratingOrder},
+				SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importanceRating and importanceRating>importancePrice and importancePrice>importancePubdate">
-				SALES_VOLUME ${salesOrder},
-				RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder},
-				PUBDATE ${pubdateOrder}				
+				RATING ${ratingOrder},
+				SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceRating">
-				SALES_VOLUME ${salesOrder},
-				PRICE ${priceOrder},
+				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder},
-				RATING ${ratingOrder}				
+				PRICE ${priceOrder},
+				SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importancePrice and importancePrice>importanceRating and importanceRating>importancePubdate">
-				SALES_VOLUME ${salesOrder},
-				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder},
-				PUBDATE ${pubdateOrder}
+				PRICE ${priceOrder},
+				SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceRating>importanceSales and importanceSales>importancePrice and importancePrice>importancePubdate">
-				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder},
-				PUBDATE ${pubdateOrder}				
+				SALES_VOLUME ${salesOrder},
+				RATING ${ratingOrder}
 			</when>
 			<when test="importanceRating>importanceSales and importanceSales>importancePubdate and importancePubdate>importancePrice">
-				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder},
-				PRICE ${priceOrder}
+				SALES_VOLUME ${salesOrder},
+				RATING ${ratingOrder}
 			</when>
 			<when test="importanceRating>importancePubdate and importancePubdate>importanceSales and importanceSales>importancePrice">
+				PRICE ${priceOrder},
+				SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder},
+				RATING ${ratingOrder}
+			</when>
+			<when test="importanceRating>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceSales">
+				SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder},
+				RATING ${ratingOrder}
+			</when>
+			<when test="importanceRating>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceSales">
+				SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder},
+				RATING ${ratingOrder}
+			</when>
+			<when test="importanceRating>importancePrice and importancePrice>importanceSales and importanceSales>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder},
+				RATING ${ratingOrder}
+			</when>
+			<when test="importancePrice>importanceRating and importanceRating>importancePubdate and importancePubdate>importanceSales">
+				SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder},
+				RATING ${ratingOrder},
+				PRICE ${priceOrder}
+			</when>
+			<when test="importancePrice>importanceRating and importanceRating>importanceSales and importanceSales>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				SALES_VOLUME ${salesOrder},
+				RATING ${ratingOrder},
+				PRICE ${priceOrder}
+			</when>
+			<when test="importancePrice>importanceSales and importanceSales>importanceRating and importanceRating>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				RATING ${ratingOrder},
+				SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder}
+			</when>
+			<when test="importancePrice>importanceSales and importanceSales>importancePubdate and importancePubdate>importanceRating">
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder},
 				SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder}
 			</when>
-			<when test="importanceRating>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceSales">
-				RATING ${ratingOrder},
-				PUBDATE ${pubdateOrder},
-				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder}
-			</when>
-			<when test="importanceRating>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceSales">
-				RATING ${ratingOrder},
-				PRICE ${priceOrder},
-				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder}
-			</when>
-			<when test="importanceRating>importancePrice and importancePrice>importanceSales and importanceSales>importancePubdate">
-				RATING ${ratingOrder},
-				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder},
-				PUBDATE ${pubdateOrder}				
-			</when>
-			<when test="importancePrice>importanceRating and importanceRating>importancePubdate and importancePubdate>importanceSales">
-				PRICE ${priceOrder},
-				RATING ${ratingOrder},
-				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder}
-			</when>
-			<when test="importancePrice>importanceRating and importanceRating>importanceSales and importanceSales>importancePubdate">
-				PRICE ${priceOrder},
-				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder},
-				PUBDATE ${pubdateOrder}
-			</when>
-			<when test="importancePrice>importanceSales and importanceSales>importanceRating and importanceRating>importancePubdate">
-				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder},
-				RATING ${ratingOrder},
-				PUBDATE ${pubdateOrder}
-			</when>
-			<when test="importancePrice>importanceSales and importanceSales>importancePubdate and importancePubdate>importanceRating">
-				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder},
-				PUBDATE ${pubdateOrder},
-				RATING ${ratingOrder}
-			</when>
 			<when test="importancePrice>importancePubdate and importancePubdate>importanceRating and importanceRating>importanceSales">
-				PRICE ${priceOrder},
-				PUBDATE ${pubdateOrder},
+				SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder}
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder}
 			</when>
 			<when test="importancePrice>importancePubdate and importancePubdate>importanceSales and importanceSales>importanceRating">
-				PRICE ${priceOrder},
-				PUBDATE ${pubdateOrder},
+				RATING ${ratingOrder},
 				SALES_VOLUME ${salesOrder},
-				RATING ${ratingOrder}
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder}
 			</when>
 			<otherwise>
 				PUBDATE ${pubdateOrder},

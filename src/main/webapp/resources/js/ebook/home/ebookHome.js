@@ -9,10 +9,10 @@ window.onload = function() {
 		salesOrder: "DESC",
 		priceOrder: "DESC",
 		ratingOrder: "DESC",
-		importancePubdate: "4",
-		importanceSales: "3",
-		importanceRating: "2",
-		importancePrice: "1",
+		importancePubdate: "1",
+		importanceSales: "2",
+		importanceRating: "3",
+		importancePrice: "4",
 		dataVolume: 100
 	});
 }
