@@ -49,7 +49,7 @@
 		AND CATEGORY_CODE=#{categoryCode}
 		ORDER BY 
 		<choose>
-			<when test="importancePubdate>importanceSales and importanceSales>importanceRating and importanceRating>impocrtanePrice">
+			<when test="importancePubdate>importanceSales and importanceSales>importanceRating and importanceRating>importancePrice">
 				PUBDATE ${pubdateOrder},
 				SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
