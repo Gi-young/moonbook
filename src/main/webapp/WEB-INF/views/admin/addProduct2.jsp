@@ -29,7 +29,6 @@
 								<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="book" checked><label for="book" class="chooseBookAdd3">책등록</label>
 								<input class="chooseBookAdd6" type="radio" name="chooseBookAdd" id="gift" value="gift"><label for="gift" class="chooseBookAdd5">gift</label>
 							</td>
-							<td><input type="button" value="선택하기" onclick="orderList();"></td>
 						</tr>
 					</table>
 				</form>

@@ -7,7 +7,7 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/admin/removeProduct.css">
+<link rel="stylesheet" href="${path}/resources/css/admin/addProduct2.css">
 
 <div class="addProduct-container">
 	<div class="addProduct-box1">
@@ -18,27 +18,96 @@
 		</div>
 		<div class="addProduct-box2">
 			<div class="addProduct-box4">
-				<p>도서 출고</p>
+				<p>제품 출고</p>
 			</div>
-			<table class="ChooseTable1">
-				<tr>
-					<th>타입</th>
-					<td>
-						<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="" checked><label for="book" class="chooseBookAdd3">종이책</label>
-						<input class="chooseBookAdd2" type="radio" name="chooseBookAdd" id="ebook" value=""><label for="ebook" class="chooseBookAdd4">eBook</label>
-					</td>
-					<td><input type="button" value="선택하기" onclick="orderList();"></td>
-				</tr>
-			</table>
+			<div class="addProduct-container2">
+				<form action="" method="post">
+					<table class="ChooseTable1">
+						<tr>
+							<th>타입</th>
+							<td>
+								<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="book" checked><label for="book" class="chooseBookAdd3">책등록</label>
+								<input class="chooseBookAdd6" type="radio" name="chooseBookAdd" id="gift" value="gift"><label for="gift" class="chooseBookAdd5">gift</label>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="addProduct-container3">
+				<form action="${path}/admin/outputProduct1.do" method="post">
+					<table class="ChooseTable1">
+						<!--자동 넘버처리 -->
+						<tr>
+							<th>도서 번호</th>
+							<td>
+								<input type="number" min="1" name="bindNo">
+							</td>
+						</tr> 
+						<tr>
+							<th>출고 개수</th>
+							<td>
+								<input type="number" min="1" name="stock">
+							</td>
+						</tr> 
+						
+						<tr>
+							<td colspan="2">
+								<input type="submit" value="출고">
+							</td>
+						</tr>
+					</table>
+				</form>	
+ 
+			</div>
 			
+			<div class="addProduct-container5" style="display:none;">
+				<form action="${path}/admin/outputProduct3.do" method="post">
+					<table class="ChooseTable3">
+						<tr>
+							<th>상품 번호</th>
+							<td>
+								<input type="number" min="1">
+							</td>
+						</tr>
+						<tr>
+							<th>출고 개수</th>
+							<td>
+								<input type="number" min="1" name="stock">
+							</td>
+						</tr> 
+						
+						<tr>
+							<td colspan="2">
+								<input type="submit" value="출고">
+							</td>
+						</tr>
+					</table>
+				</form>	
+ 
+			</div>
 			
 		</div>
 	</div>
 </div>
 
 
-<style>
-</style>
+<script>
+	$("input[name=chooseBookAdd]").click(e=>{
+		$("input[name=chooseBookAdd]").each((i,v)=>{
+			if(v.checked){
+				if(v.value=="book"){
+					
+					$(".addProduct-container5").css("display","none");
+					$(".addProduct-container3").css("display","block");
+				}else if(v.value=="gift"){
+					$(".addProduct-container3").css("display","none");
+					$(".addProduct-container5").css("display","block");
+				}
+			}
+		})
+	})
+	
+</script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />

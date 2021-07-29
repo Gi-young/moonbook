@@ -29,7 +29,6 @@
 								<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="book" checked><label for="book" class="chooseBookAdd3">책등록</label>
 								<input class="chooseBookAdd6" type="radio" name="chooseBookAdd" id="gift" value="gift"><label for="gift" class="chooseBookAdd5">gift</label>
 							</td>
-							<td><input type="button" value="선택하기" onclick="orderList();"></td>
 						</tr>
 					</table>
 				</form>
@@ -45,7 +44,7 @@
 							</td>
 						</tr> 
 						<tr>
-							<th>안전 재고</th>
+							<th>입고 개수</th>
 							<td>
 								<input type="number" min="1" name="stock">
 							</td>
@@ -71,7 +70,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>안전 재고</th>
+							<th>추가할 재고</th>
 							<td>
 								<input type="number" min="1" name="stock">
 							</td>
