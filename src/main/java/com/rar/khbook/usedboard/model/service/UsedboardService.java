@@ -27,4 +27,8 @@ public interface UsedboardService {
 	int deleteUsedcommentRef(int commentNo);
 	
 	int usedboardUpdateEnd(Usedboard b);
+	
+	int usedboardInsertEnd(Usedboard b) throws Exception;
+	
+	int usedboardDelete(int no);
 }

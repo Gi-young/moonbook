@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.rar.khbook.usedboard.model.dao.UsedboardDao;
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -86,4 +87,35 @@ public class UsedboardServiceImpl implements UsedboardService {
 		// TODO Auto-generated method stub
 		return dao.usedboardUpdateEnd(session,b);
 	}
+	
+	@Override
+	public int usedboardInsertEnd(Usedboard b) throws Exception {
+		// TODO Auto-generated method stub
+		try {
+			int result=dao.usedboardInsertEnd(session,b);
+			int usedboardNo=b.getUsedboard_No();
+			if(result>0) {
+				List<Usedboardfile> usedboardfiles=b.getUsedboardfiles();
+				if(usedboardfiles.size()>0) {
+					for(Usedboardfile f : usedboardfiles) {
+						f.setUsedboard_No(usedboardNo);
+						dao.usedboardfileInsertEnd(session,f);
+					}
+				}else if(result>0) return 1;
+				else return 0;
+			}else return 0;
+		}catch(RuntimeException e) {
+			throw new RuntimeException("등록실패");
+		}
+		return 1;
+	}
+	
+	@Override
+	public int usedboardDelete(int no) {
+		// TODO Auto-generated method stub
+		dao.usedcommentDelete(session,no);
+		dao.usedboardfileDelete(session,no);
+		return dao.usedboardDelete(session,no);
+	}
+	
 }

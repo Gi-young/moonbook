@@ -22,7 +22,7 @@
             <span class="desc_subjeck">
                 <a href="${path}/usedboard/usedboardList.do" id="gomain" role="button" class="btnbtn_1" style="font-size: 15px; cursor: pointer;">목록</a>
                 <a href="${path}/usedboard/usedboardUpdate.do?no=${no}" role="button" class="btnbtn_2" style="font-size: 15px;">수정</a>
-                <a href="" id="deletebtn" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">삭제</a>
+                <a href="${path}/usedboard/usedboardDelete.do?no=${no}" id="deletebtn" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">삭제</a>
             </span>
         </div>
         <br>
