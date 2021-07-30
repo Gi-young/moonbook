@@ -107,4 +107,10 @@ public class UsedboardDaoImpl implements UsedboardDao {
 		return session.delete("usedboard.usedboardfileDelete",no);
 	}
 	
+	@Override
+	public List<Usedboardfile> usedboardfileSelect(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.selectList("usedboard.usedboardfileSelect",no);
+	}
+	
 }

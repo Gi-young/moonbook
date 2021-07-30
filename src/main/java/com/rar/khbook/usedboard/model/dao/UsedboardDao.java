@@ -41,4 +41,6 @@ public interface UsedboardDao {
 	int usedcommentDelete(SqlSession session,int no);
 	
 	int usedboardfileDelete(SqlSession session,int no);
+	
+	List<Usedboardfile> usedboardfileSelect(SqlSession session,int no);
 }

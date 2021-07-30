@@ -118,4 +118,10 @@ public class UsedboardServiceImpl implements UsedboardService {
 		return dao.usedboardDelete(session,no);
 	}
 	
+	@Override
+	public List<Usedboardfile> usedboardfileSelect(int no) {
+		// TODO Auto-generated method stub
+		return dao.usedboardfileSelect(session, no);
+	}
+	
 }

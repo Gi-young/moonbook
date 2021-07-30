@@ -3,6 +3,7 @@ package com.rar.khbook.usedboard.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -128,7 +129,12 @@ public class UsedboardController {
 	}
 	
 	@RequestMapping("/usedboard/usedboardInsertEnd.do")
-	public ModelAndView insertBoard(Usedboard b,MultipartFile[] upFile,ModelAndView mv,HttpServletRequest req) {
+	public ModelAndView usedboardInsertEnd(Usedboard b,MultipartFile[] upFile,ModelAndView mv,HttpServletRequest req) {
+		log.debug("Usedboard : "+b);
+		log.debug("fileName : "+upFile[0].getOriginalFilename());
+		log.debug("fileSize : "+upFile[0].getSize());
+		log.debug("fileName : "+upFile[1].getOriginalFilename());
+		log.debug("fileSize : "+upFile[1].getSize());
 		String path=req.getServletContext().getRealPath("/resources/upload/usedboard/");
 		File dir=new File(path);//폴더
 		if(!dir.exists()) dir.mkdirs();
@@ -169,7 +175,15 @@ public class UsedboardController {
 	}
 	
 	@RequestMapping("/usedboard/usedboardDelete.do")
-	public ModelAndView usedboardDelete(int no, ModelAndView mv) {
+	public ModelAndView usedboardDelete(int no, ModelAndView mv,HttpServletRequest req) {
+		List<Usedboardfile> f=service.usedboardfileSelect(no);
+		String path=req.getServletContext().getRealPath("/resources/upload/usedboard/");
+		String paths="";
+		for(Usedboardfile ff : f) {
+			paths=path+ff.getUsedboardfile_Rename();
+			File deleteFile=new File(paths);
+			deleteFile.delete();
+		}
 		int result=service.usedboardDelete(no);
 		String msg="";
 		String loc="";

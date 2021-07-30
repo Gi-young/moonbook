@@ -86,4 +86,8 @@
 	<delete id="usedboardfileDelete">
 		DELETE FROM USEDBOARDFILE WHERE USEDBOARD_NO=${value}
 	</delete>
+	
+	<select id="usedboardfileSelect" resultMap="usedboardfileMap">
+		SELECT * FROM USEDBOARDFILE WHERE USEDBOARD_NO=${value}
+	</select>
 </mapper>
