@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
 	<select id="selectMemberList" resultMap="memberMap">
-	 	SELECT * FROM MEMBER 
+		SELECT * FROM MEMBER
 	</select>
 	<select id="selectMemberCount" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER
+		SELECT COUNT(*) FROM
+		MEMBER
 	</select>
-	
+
 	<insert id="insertMember">
 		INSERT INTO MEMBER
 		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1,0,0,SYSDATE)
@@ -16,16 +17,18 @@
 		DELETE FROM MEMBER WHERE MEMBER_ID=#{memberId}
 	</delete>
 	<update id="memberUpdate">
-		UPDATE MEMBER SET MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_POINT=#{memberPoint},MEMBER_MEMBERGRADE_NO=#{memberGradeNo}
+		UPDATE MEMBER SET
+		MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_POINT=#{memberPoint},MEMBER_MEMBERGRADE_NO=#{memberGradeNo}
 		WHERE MEMBER_ID=#{memberId}
 	</update>
-	
+
 	<select id="memberHowT" resultMap="memberMap">
 		SELECT * FROM MEMBER
-		ORDER BY ${type1} ${order}
-		
+		ORDER BY
+		${type1} ${order}
+
 	</select>
-	
+
 	<select id="memberHowT2" resultMap="memberMap">
 		SELECT * FROM MEMBER WHERE
 		<choose>
@@ -37,15 +40,19 @@
 			</when>
 		</choose>
 	</select>
-	
+
 
 	<!-- 멤버에 상속해줄 부모 VO -->
 	<resultMap type="membergrade" id="membergradeMap">
 		<result column="membergrade_no" property="membergradeNo" />
 		<result column="membergrade_name" property="membergradeName" />
-		<result column="membergrade_standard" property="membergradeStandard" />
-		<result column="membergrade_content" property="membergradeContent" />
+		<result column="membergrade_standard"
+			property="membergradeStandard" />
+		<result column="membergrade_content"
+			property="membergradeContent" />
 		<result column="membergrade_img" property="membergradeImg" />
+		<result column="membergrade_percent"
+			property="membergradePercent" />
 	</resultMap>
 
 	<resultMap type="member" id="memberMap"
@@ -69,7 +76,8 @@
 	<!-- 쿠폰에 상속해줄 부모 VO -->
 	<resultMap type="couponlist" id="couponlistMap">
 		<result column="couponlist_no" property="couponlistNo" />
-		<result column="couponlist_grade" property="couponlistGrade" />
+		<result column="couponlist_membergrade_no"
+			property="couponlistMembergradeNo" />
 		<result column="couponlist_percent"
 			property="couponlistPercent" />
 		<result column="couponlist_amount" property="couponlistAmount" />
@@ -130,25 +138,57 @@
 		SELECT * FROM COUPON LEFT JOIN
 		COUPONLIST ON COUPON_COUPONLIST_NO =
 		COUPONLIST_NO WHERE
-		COUPON_MEMBER_ID=#{memberId}
+		COUPON_MEMBER_ID=#{memberId} ORDER BY COUPONLIST_MEMBERGRADE_NO DESC
 	</select>
-	
+
 	<!-- 회원의 회원등급 가져오기 -->
-	<select id = "getMembergrade" resultMap="membergradeMap">
-	SELECT * FROM MEMBERGRADE WHERE MEMBERGRADE_NO = #{memberGradeNo}
+	<select id="getMembergrade" resultMap="membergradeMap">
+		SELECT * FROM MEMBERGRADE
+		WHERE MEMBERGRADE_NO = #{memberGradeNo}
 	</select>
-	
+
 	<!-- 전체 회원 등급 가져오기 -->
-	<select id = "memberGrade" resultMap="membergradeMap">
-	SELECT * FROM MEMBERGRADE
+	<select id="memberGrade" resultMap="membergradeMap">
+		SELECT * FROM MEMBERGRADE
+		ORDER BY MEMBERGRADE_STANDARD DESC
 	</select>
+
+	<!-- 쿠폰리스트 조인해서 가져오기 -->
+	<select id="couponlist" resultMap="couponlistMap">
+		SELECT * FROM COUPONLIST LEFT
+		JOIN MEMBERGRADE ON COUPONLIST_MEMBERGRADE_NO
+		= MEMBERGRADE_NO
+	</select>
+
+	<!-- 회원가입한 회원에게 기본 쿠폰 넣어주기 -->
+	<insert id="insertCoupon">
+		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,
+		SYSDATE+30, #{memberId},
+		1, 'Y', '');
+	</insert>
+
+	<!-- 회원 정보 수정 -->
+	<update id="updateMemberEnd">
+		UPDATE MEMBER
+		SET MEMBER_NAME =
+		#{memberName},MEMBER_EMAIL=#{memberEmail},MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_GENDER=#{memberGender},MEMBER_BIRTH=#{memberBirth}
+		WHERE
+		MEMBER_ID = #{memberId}
+	</update>
+
 	<!-- 방문횟수 +1증가 -->
 	<update id="updateMemberVisit">
-		UPDATE MEMBER SET MEMBER_VISIT=MEMBER_VISIT+1 WHERE MEMBER_ID=#{memberId}
+		UPDATE MEMBER SET MEMBER_VISIT=MEMBER_VISIT+1 WHERE
+		MEMBER_ID=#{memberId}
 	</update>
 	<!-- 최근 로그인 날짜 변경 -->
 	<update id="updateMemberToday">
-		UPDATE MEMBER SET MEMBER_TODAY=TO_DATE(SYSDATE,'YY/MM/DD') WHERE MEMBER_ID=#{memberId}
+		UPDATE MEMBER SET
+		MEMBER_TODAY=TO_DATE(SYSDATE,'YY/MM/DD') WHERE MEMBER_ID=#{memberId}
 	</update>
-	
+
+	<!-- 회원 삭제 -->
+	<delete id="deleteMember">
+		DELETE FROM MEMBER WHERE MEMBER_ID = #{memberId}
+	</delete>
 </mapper>

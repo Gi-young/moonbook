@@ -9,7 +9,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문곰책방</title> 
+
+    <title>${param.title }</title> 
     <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
     <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
     
@@ -20,7 +21,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	
     
 </head>
 <body>
@@ -176,7 +176,7 @@
                 	<li><a href="${path }/member/logout.do">로그아웃</a></li>
                 	
                 </c:if>
-                    <li><a href="#">마이룸</a></li>
+                    <li><a href="${path }/member/myroom/main.do">마이룸</a></li>
                     <li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
                 	<li><a href="${path }/service/servicePage.do">고객센터</a></li>
                 </ul>

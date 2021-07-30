@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 
@@ -26,7 +27,7 @@ public interface MemberDao {
 	
 	int updateMemberPw(SqlSession session,Member m);
 	
-//	쿠폰 가져오기
+//	회원의 쿠폰 가져오기
 	List<Coupon> getCoupon(SqlSession session, Member m);
 	
 //	회원의 회원등급 가져오기
@@ -34,9 +35,23 @@ public interface MemberDao {
 	
 //	전체 회원 등급 가져오기
 	List<Membergrade> memberGrade(SqlSession session);
+
+//	전체 쿠폰리스트 가져오기
+	List<Couponlist> couponlist(SqlSession session);
+	
+//	회원가입 감사 쿠폰 발급
+	int insertCoupon(SqlSession session, Member m);
+	
+//	회원 정보 수정
+	int updateMemberEnd(SqlSession session, Member m);
+
 	//방문횟수 +1 증가
 	int updateMemberVisit(SqlSession session,Map param);
 	
 	//최근 로그인 날짜 변경
 	int updateMemberToday(SqlSession session,Map param);
+	
+//	회원 탈퇴
+	int deleteMember(SqlSession session, Member m);
+
 }
