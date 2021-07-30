@@ -10,48 +10,49 @@
 <section id="content2">
 <script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <div class="iscontainer">
-		<form method="post" id="frm" action="" enctype="multipart/form-data">
+		<form method="post" id="frm" action="${path}/usedboard/usedboardInsertEnd.do" enctype="multipart/form-data">
 			<ul>
-				<li class="title_input"><textarea name="title" id="subject" rows="1" placeholder="제목을 입력해주세요." maxlength="76" style="height: 26px;"></textarea></li>
+				<li class="title_input"><textarea name="usedboard_Title" id="subject" rows="1" placeholder="제목을 입력해주세요." maxlength="76" style="height: 26px;"></textarea></li>
 				<br>
 				<li>
-					책 제목 : <input type="text" style="width: 500px; height: 20px">
+					책 제목 : <input type="text" name="usedboard_BookTitle" style="width: 500px; height: 20px">
 				</li>
 				<br>
 				<li>
-					가격 : <input type="number" style="width: 500px; height: 20px"> 원 
+					가격 : <input type="number" name="usedboard_Price" style="width: 500px; height: 20px"> 원 
 				</li>
+				<br>
 				<li>
 					카테고리 : &nbsp; 
-					<input type="checkbox" class="" name="category" id="category0" value="소설"><label for="category0" class="">소설</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category1" value="시/에세이"><label for="category1" class="">시/에세이</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category2" value="경제/경영"><label for="category2" class="">경제/경영</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category3" value="자기계발"><label for="category3" class="">자기계발</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category4" value="인문"><label for="category4" class="">인문</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category5" value="역사문화"><label for="category5" class="">역사문화</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category6" value="종교"><label for="category6" class="">종교</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category7" value="정치/사회"><label for="category7" class="">정치/사회</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category8" value="예술/대중문화"><label for="category8" class="">예술/대중문화</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category9" value="과학"><label for="category9" class="">과학</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category10" value="기술/공학"><label for="category10" class="">기술/공학</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category11" value="컴퓨터/IT"><label for="category11" class="">컴퓨터/IT</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category12" value="초등학습"><label for="category12" class="">초등학습</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category13" value="중/고등학습"><label for="category13" class="">중/고등학습</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category14" value="대학교재"><label for="category14" class="">대학교재</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category15" value="취업/수험서"><label for="category15" class="">취업/수험서</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category16" value="외국어"><label for="category16" class="">외국어</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category17" value="동화"><label for="category17" class="">동화</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category18" value="아동"><label for="category18" class="">아동</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category19" value="가정생활"><label for="category19" class="">가정생활</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category20" value="건강"><label for="category20" class="">건강</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category21" value="여행"><label for="category21" class="">여행</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category22" value="요리"><label for="category22" class="">요리</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category23" value="스포츠"><label for="category23" class="">스포츠</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category24" value="잡지"><label for="category24" class="">잡지</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category25" value="만화"><label for="category25" class="">만화</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category26" value="사전"><label for="category26" class="">사전</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category27" value="외서"><label for="category27" class="">외서</label>&nbsp;
-					<input type="checkbox" class="" name="category" id="category28" value="일서"><label for="category28" class="">일서</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category0" value="소설"><label for="category0" class="">소설</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category1" value="시/에세이"><label for="category1" class="">시/에세이</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category2" value="경제/경영"><label for="category2" class="">경제/경영</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category3" value="자기계발"><label for="category3" class="">자기계발</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category4" value="인문"><label for="category4" class="">인문</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category5" value="역사문화"><label for="category5" class="">역사문화</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category6" value="종교"><label for="category6" class="">종교</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category7" value="정치/사회"><label for="category7" class="">정치/사회</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category8" value="예술/대중문화"><label for="category8" class="">예술/대중문화</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category9" value="과학"><label for="category9" class="">과학</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category10" value="기술/공학"><label for="category10" class="">기술/공학</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category11" value="컴퓨터/IT"><label for="category11" class="">컴퓨터/IT</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category12" value="초등학습"><label for="category12" class="">초등학습</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category13" value="중/고등학습"><label for="category13" class="">중/고등학습</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category14" value="대학교재"><label for="category14" class="">대학교재</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category15" value="취업/수험서"><label for="category15" class="">취업/수험서</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category16" value="외국어"><label for="category16" class="">외국어</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category17" value="동화"><label for="category17" class="">동화</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category18" value="아동"><label for="category18" class="">아동</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category19" value="가정생활"><label for="category19" class="">가정생활</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category20" value="건강"><label for="category20" class="">건강</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category21" value="여행"><label for="category21" class="">여행</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category22" value="요리"><label for="category22" class="">요리</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category23" value="스포츠"><label for="category23" class="">스포츠</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category24" value="잡지"><label for="category24" class="">잡지</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category25" value="만화"><label for="category25" class="">만화</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category26" value="사전"><label for="category26" class="">사전</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category27" value="외서"><label for="category27" class="">외서</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category28" value="일서"><label for="category28" class="">일서</label>&nbsp;
 				</li>
 				<li>
 					<div id="attachFileDiv">
@@ -59,12 +60,13 @@
 					</div>
 			    </li>
 				<li><div id="image_container"></div><li>
-				<li><textarea name="content" id="content" cols="100" rows="50" ></textarea></li>
+				<li><textarea name="usedboard_Content" id="content" cols="100" rows="50" ></textarea></li>
 			</ul>
 			<br>
 			<hr>
 			<br>
 			<div class="btn">
+			<input type="hidden" name="member_Id" value="${loginMember.memberId }">
 			<input class="btnbtn" type="submit" value="등록하기" width="20" height="20">
 			<input class="btnbtn2" type="button" value="취소하기" width="20" height="20" onclick="fn_cancel();">
 			</div>
@@ -92,7 +94,7 @@ attachFile = {
 
             var file = document.all ? document.createElement('<input name="files">') : document.createElement('input');
             file.type = 'file';
-            file.name = 'files';
+            file.name = 'upFile';
             file.size = '40';
             file.id = 'fileField' + o.idx;
             file.onchange = function(){o.prev(this,'dv'+idx)};
