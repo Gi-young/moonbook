@@ -21,6 +21,7 @@
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboard" alias="usedboard"/>
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboardfile" alias="usedboardfile"/>
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedcomment" alias="usedcomment"/>
+		<typeAlias type="com.rar.khbook.common.StringArrayTypeHandler" alias="strArr"/>
 		
 		<!-- ebook -->
 		<typeAlias type="com.rar.khbook.ebook.model.vo.EbookDatabind" alias="ebookDatabind"/>

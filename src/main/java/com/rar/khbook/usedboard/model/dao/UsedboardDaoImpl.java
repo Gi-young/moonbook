@@ -57,4 +57,23 @@ public class UsedboardDaoImpl implements UsedboardDao {
 		// TODO Auto-generated method stub
 		return session.insert("usedboard.insertUsedcomment",c);
 	}
+	
+	@Override
+	public int deleteUsedcomment(SqlSession session, int commentNo) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.deleteUsedcomment",commentNo);
+	}
+	
+	@Override
+	public int deleteUsedcommentRef(SqlSession session, int commentNo) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.deleteUsedcommentRef",commentNo);
+	}
+	
+	@Override
+	public int usedboardUpdateEnd(SqlSession session, Usedboard b) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardUpdateEnd",b);
+	}
+	
 }

@@ -68,4 +68,22 @@ public class UsedboardServiceImpl implements UsedboardService {
 		// TODO Auto-generated method stub
 		return dao.insertUsedcomment(session,c);
 	}
+	
+	@Override
+	public int deleteUsedcomment(int commentNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteUsedcomment(session,commentNo);
+	}
+	
+	@Override
+	public int deleteUsedcommentRef(int commentNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteUsedcommentRef(session,commentNo);
+	}
+	
+	@Override
+	public int usedboardUpdateEnd(Usedboard b) {
+		// TODO Auto-generated method stub
+		return dao.usedboardUpdateEnd(session,b);
+	}
 }

@@ -24,4 +24,10 @@ public interface UsedboardDao {
 	List<Usedcomment> selectReply(SqlSession session,int no);
 	
 	int insertUsedcomment(SqlSession session, Usedcomment c);
+	
+	int deleteUsedcomment(SqlSession session, int commentNo);
+	
+	int deleteUsedcommentRef(SqlSession session, int commentNo);
+	
+	int usedboardUpdateEnd(SqlSession session, Usedboard b);
 }
