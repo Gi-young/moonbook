@@ -4,8 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <c:set var="prevMonth" value="<%=new java.util.Date().getMonth()%>" />
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value="쿠폰함 - KH문고" />
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
+   <jsp:param name="title" value="쿠폰함 - 문곰책방"/>
 </jsp:include>
 <div class="wrap">
 	<div class="container margin_top2e">

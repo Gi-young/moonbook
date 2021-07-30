@@ -41,4 +41,7 @@ public interface MemberDao {
 	
 //	회원가입 감사 쿠폰 발급
 	int insertCoupon(SqlSession session, Member m);
+	
+//	회원 정보 수정
+	int updateMemberEnd(SqlSession session, Member m);
 }

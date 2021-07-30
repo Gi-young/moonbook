@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문곰책방</title> 
+    <title>${param.title }</title> 
     <link rel="stylesheet" href="${path }/resources/css/style.css">
     
 </head>
@@ -140,8 +140,8 @@
             </div>
             <div class="header-menuBar2">
                 <ul class="flex">
-                    <li><a href="#">로그인</a></li>
-                    <li><a href="#">마이룸</a></li>
+                    <li><a href="${path }/member/loginPage.do">로그인</a></li>
+                    <li><a href="${path }/member/myroom.do">마이룸</a></li>
                     <li><a href="#">관리자전용페이지</a></li>
                 </ul>
             </div>

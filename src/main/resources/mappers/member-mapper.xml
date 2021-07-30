@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
 	<select id="selectMemberList" resultMap="memberMap">
-	 	SELECT * FROM MEMBER 
+		SELECT * FROM MEMBER
 	</select>
 	<select id="selectMemberCount" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER
+		SELECT COUNT(*) FROM
+		MEMBER
 	</select>
-	
+
 	<insert id="insertMember">
 		INSERT INTO MEMBER
 		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1,0,0,NULL)
@@ -132,9 +133,17 @@
 	</select>
 
 	<!-- 회원가입한 회원에게 기본 쿠폰 넣어주기 -->
-	<update id="insertCoupon">
-		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL, SYSDATE+30, #{MEMBER_ID},
+	<insert id="insertCoupon">
+		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,
+		SYSDATE+30, #{MEMBER_ID},
 		1, 'Y', '');
-	</update>
+	</insert>
 
+	<!-- 회원 정보 수정 -->
+	<update id="updateMemberEnd">
+		UPDATE MEMBER
+		SET MEMBER_NAME =
+		#{memberName},MEMBER_EMAIL=#{memberEmail},MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_GENDER=#{memberGender},MEMBER_BIRTH=#{memberBirth} WHERE
+		MEMBER_ID = #{memberId}
+	</update>
 </mapper>

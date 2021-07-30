@@ -92,6 +92,14 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int insertCoupon(SqlSession session, Member m) {
 		// TODO Auto-generated method stub
-		return session.update("member.insertCoupon", m);
+		return session.insert("member.insertCoupon", m);
+	}
+	
+//	회원정보수정
+	@Override
+	public int updateMemberEnd(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		System.out.println(m);
+		return session.update("member.updateMemberEnd", m);
 	}
 }

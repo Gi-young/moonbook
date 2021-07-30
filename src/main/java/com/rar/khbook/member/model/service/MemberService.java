@@ -33,4 +33,6 @@ public interface MemberService {
 	List<Membergrade> memberGrade();
 //	전체 쿠폰리스트 가져옴
 	List<Couponlist> couponlist();
+//	회원 정보 수정
+	int updateMemberEnd(Member m);
 }

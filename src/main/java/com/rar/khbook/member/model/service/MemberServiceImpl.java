@@ -107,4 +107,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.couponlist(session);
 	}
 
+//	회원 정보 수정
+	@Override
+	public int updateMemberEnd(Member m) {
+		// TODO Auto-generated method stub
+		return dao.updateMemberEnd(session, m);
+	}
 }
