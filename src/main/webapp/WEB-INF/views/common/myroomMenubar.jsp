@@ -4,7 +4,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <div class="myroom_sideMenu margin_top20">
 	<h1 class="padding10">
-		<a href="${path }/member/myroom.do">마이페이지</a>
+		<a href="${path }/member/myroom/main.do">마이페이지</a>
 	</h1>
 	<ul class="sideMenu padding10">
 		<li><h3>
@@ -14,19 +14,19 @@
 				<a href="#">e-Book</a>
 			</h3></li>
 		<li><h3>
-				<a href="${path }/member/coupon.do">쿠폰함</a>
+				<a href="${path }/member/myroom/coupon.do">쿠폰함</a>
 			</h3></li>
 		<li><h3>
 				<a href="#">문의내역</a>
 			</h3></li>
 		<li><h3>
-				<a href="${path }/member/reLogin.do">회원정보수정</a>
+				<a href="${path }/member/myroom/reLogin.do?">회원정보수정</a>
 			</h3></li>
 		<li><h3>
-				<a href="${path }/member/changePw.do">비밀번호변경</a>
+				<a href="${path }/member/myroom/changePw.do?del=0">비밀번호변경</a>
 			</h3></li>
 		<li><h3>
-				<a href="#">회원탈퇴</a>
+				<a href="${path }/member/myroom/changePw.do?del=1">회원탈퇴</a>
 			</h3></li>
 	</ul>
 </div>

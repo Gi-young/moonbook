@@ -50,9 +50,10 @@ public class MemberController {
 
 	@RequestMapping("/member/loginPage.do")
 	public String loginPage() {
+		
 		return "member/login";
-
-	}@RequestMapping("/member/login.do")
+	}
+	@RequestMapping("/member/login.do")
 	public String login(@RequestParam Map param,Model model,HttpSession session,HttpServletResponse res) {
 		
 		boolean visitFlag=false;
@@ -233,6 +234,13 @@ public class MemberController {
 		} else {
 			msg = "검색완료";
 			loc = "/member/resultIdPage.do?m2=" + m2.getMemberId();
+			
+//			이메일 전송 메소드 호출 후 전송된 코드와 회원 ID 저장
+			model.addAttribute("code", this.checkEmail(memberEmail));
+			model.addAttribute("m2", m2.getMemberId());
+						
+//			인증 창 화면으로 이동
+			return "member/checkEmail";
 		}
 		model.addAttribute("m2", m2);
 
@@ -299,6 +307,13 @@ public class MemberController {
 			// 회원이 임시 패스워드 생성창으로 바로가기
 			msg = "비밀번호를 재 생성 하세요";
 			loc = "/member/updatePwPage.do?m3=" + m3.getMemberId();
+			
+//			이메일 전송 메소드 호출 후 전송된 코드와 회원 ID저장
+			model.addAttribute("code", this.checkEmail(memberEmail));
+			model.addAttribute("m3", m3.getMemberId());
+			
+//			인증 창 화면으로 이동
+			return "member/checkEmail";
 		}
 
 		model.addAttribute("m3", m3);
@@ -353,7 +368,7 @@ public class MemberController {
 	}
 
 //	마이룸 메인연결
-	@RequestMapping("/member/myroom.do")
+	@RequestMapping("/member/myroom/main.do")
 	public String myroomMain(HttpSession session) {
 
 		return "myroom/main";
@@ -378,14 +393,14 @@ public class MemberController {
 	}
 
 //	다음달 등급 페이지
-	@RequestMapping("/member/nextGrade.do")
+	@RequestMapping("/member/myroom/nextGrade.do")
 	public String nextGrade() {
 
 		return "member/nextGrade";
 	}
 
 //	쿠폰함 페이지
-	@RequestMapping("/member/coupon.do")
+	@RequestMapping("/member/myroom/coupon.do")
 	public String couponBox(Model m) {
 
 		List<Membergrade> mg = service.memberGrade();
@@ -395,7 +410,7 @@ public class MemberController {
 	}
 
 //	회원정보수정 페이지
-	@RequestMapping("/member/updateMember.do")
+	@RequestMapping("/member/myroom/updateMember.do")
 	public String updateMember() {
 
 		return "myroom/updateMember";
@@ -454,14 +469,14 @@ public class MemberController {
 	}
 
 //	회원정보수정전 재로그인창
-	@RequestMapping("/member/reLogin.do")
+	@RequestMapping("/member/myroom/reLogin.do")
 	public String reLogin() {
 
 		return "myroom/reLogin";
 	}
 
 //	회원정보수정
-	@RequestMapping("/member/updateMemberEnd.do")
+	@RequestMapping("/member/myroom/updateMemberEnd.do")
 	public ModelAndView memberUpdateEnd(Member m, ModelAndView mv) {
 
 		int result = service.updateMemberEnd(m);
@@ -477,9 +492,37 @@ public class MemberController {
 	}
 	
 //	회원 비밀번호 수정
-	@RequestMapping("/member/changePw.do")
-	public String changePw() {
+	@RequestMapping("/member/myroom/changePw.do")
+	public String changePw(int del, Model m) {
 		
+//		del 값이 0보다 크면 이메일 인증 후 회원탈퇴 로직
+		if(del > 0) {
+//			del값 전송
+			m.addAttribute("del", del);
+		}
+		
+//		그 외에는 이메일 인증 후 비밀번호 변경 화면으로 이동
 		return "myroom/changePw";
+	}
+	
+//	회원 삭제
+	@RequestMapping("/member/myroom/deleteMember.do")
+	public ModelAndView deleteMember(Member m, ModelAndView mv) {
+		
+		int result = service.deleteMember(m);
+		String loc = "";
+		String msg = "";
+		if(result>0) {
+			msg = "정상적으로 탈퇴 되셨습니다. 그 동안 문곰 책방을 이용해 주셔서 감사합니다.";
+			loc = "/member/logout.do";
+		}else {
+			msg = "예기치 못 한 에러가 발생했습니다. 이와 같은 현상이 반복되면 관리자에게 문의하십시오.";
+			loc = "/member/myroom/main.do";
+		}
+		mv.setViewName("common/msg");
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		
+		return mv;
 	}
 }

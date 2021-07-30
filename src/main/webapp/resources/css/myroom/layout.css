@@ -8,8 +8,9 @@
 }
 
 .myroom_sideMenu h1 {
-	font-size: 32px;
+	font-size: 30px;
 	border-bottom: 2px solid #582810;
+	text-align: center;
 }
 
 h1 a, h3 a {
@@ -96,6 +97,7 @@ h1 a, h3 a {
 .tbl_nextGrade td.td_first {
 	color: #582810;
 	font-weight: bold;
+	width:200px
 }
 
 .tbl_gradeInfo td {
@@ -122,6 +124,7 @@ h1 a, h3 a {
 	font-weight: bold;
 	padding: 10px;
 	width: 25%;
+	text-align: center;
 }
 
 .tbl_gradeInfo th {

@@ -50,5 +50,8 @@ public interface MemberDao {
 	
 	//최근 로그인 날짜 변경
 	int updateMemberToday(SqlSession session,Map param);
+	
+//	회원 탈퇴
+	int deleteMember(SqlSession session, Member m);
 
 }

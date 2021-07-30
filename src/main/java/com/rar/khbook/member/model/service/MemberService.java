@@ -34,6 +34,7 @@ public interface MemberService {
 
 //	전체 쿠폰리스트 가져옴
 	List<Couponlist> couponlist();
+	
 //	회원 정보 수정
 	int updateMemberEnd(Member m);
 	
@@ -43,4 +44,6 @@ public interface MemberService {
 	// 최근 로그인 날짜 변경
 	int updateMemberToday(Map param);
 
+//	회원 탈퇴
+	int deleteMember(Member m);
 }

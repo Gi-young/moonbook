@@ -100,17 +100,18 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberGrade(session);
 	}
 
-	//방문횟수 +1증가
+	// 방문횟수 +1증가
 	@Override
 	public int updateMemberVisit(Map param) {
 		// TODO Auto-generated method stub
-		return dao.updateMemberVisit(session,param);
+		return dao.updateMemberVisit(session, param);
 	}
-	//최근 로그인 날짜 변경
+
+	// 최근 로그인 날짜 변경
 	@Override
 	public int updateMemberToday(Map param) {
 		// TODO Auto-generated method stub
-		return dao.updateMemberToday(session,param);
+		return dao.updateMemberToday(session, param);
 	}
 
 //	전체 쿠폰리스트 가져오기
@@ -125,5 +126,12 @@ public class MemberServiceImpl implements MemberService {
 	public int updateMemberEnd(Member m) {
 		// TODO Auto-generated method stub
 		return dao.updateMemberEnd(session, m);
+	}
+
+//	회원 탈퇴
+	@Override
+	public int deleteMember(Member m) {
+		// TODO Auto-generated method stub
+		return dao.deleteMember(session, m);
 	}
 }

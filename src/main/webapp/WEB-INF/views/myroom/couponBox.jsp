@@ -4,13 +4,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <c:set var="prevMonth" value="<%=new java.util.Date().getMonth()%>" />
+<link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
+<link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
+<link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="title" value="쿠폰함 - 문곰책방"/>
 </jsp:include>
 <div class="wrap">
 	<div class="container margin_top2e">
 		<jsp:include page="/WEB-INF/views/common/myroomMenubar.jsp">
-			<jsp:param name="title" value="마이페이지 - KH문고" />
+			<jsp:param name="" value="" />
 		</jsp:include>
 		<div class="myroom_contents">
 			<jsp:include page="/WEB-INF/views/common/myroomHead.jsp">
@@ -72,6 +75,6 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>

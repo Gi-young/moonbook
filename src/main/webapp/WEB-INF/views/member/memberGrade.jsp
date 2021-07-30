@@ -5,9 +5,11 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
-   <jsp:param name="title" value="회원등급별 혜택"/>
+	<jsp:param name="title" value="회원등급별 혜택" />
 </jsp:include>
 <link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
+<link rel="stylesheet" href="${path }/resources/css/mainCss.css">
+<link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
 <div class="wrap">
 	<div class="margin_top2e">
 		<div class="memberGrade_head padding10">
@@ -63,7 +65,7 @@
 		</div>
 		<div class="wrap_tbl">
 			<table class="tbl_gradeInfo">
-				<tr>
+				<tr style="text-align: center;">
 					<th>구분</th>
 					<th>내용</th>
 				</tr>
@@ -91,6 +93,6 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>

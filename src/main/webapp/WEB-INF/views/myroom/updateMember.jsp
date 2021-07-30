@@ -5,13 +5,16 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <c:set var="prevMonth" value="<%=new java.util.Date().getMonth()%>" />
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
+<link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
+<link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value="회원정보수정 - 문곰책방" />
 </jsp:include>
 <div class="wrap">
 	<div class="container margin_top2e">
 		<jsp:include page="/WEB-INF/views/common/myroomMenubar.jsp">
-			<jsp:param name="title" value="회원정보수정 - 문곰책방" />
+			<jsp:param name="title" value="" />
 		</jsp:include>
 		<div class="myroom_contents">
 			<div class="content_head2">
@@ -19,7 +22,7 @@
 				<p>회원 정보 수정</p>
 			</div>
 			<hr>
-			<form action="${path }/member/updateMemberEnd.do" method="post">
+			<form action="${path }/member/myroom/updateMemberEnd.do" method="post">
 				<div class="fm_div">
 					<div class="fm_valDiv">
 						<div class="fm_valNam">아이디</div>
@@ -161,6 +164,6 @@ const fn_frmsubmit=()=> {
 	}
 }
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>

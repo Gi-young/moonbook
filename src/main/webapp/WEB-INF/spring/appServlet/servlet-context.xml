@@ -62,6 +62,10 @@
 			<mapping path="/ebook/pageShoppingBasket.do"/>
 			<beans:bean class="com.rar.khbook.ebook.interceptor.EbookShoppingBasketLoginCheckInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/member/myroom/*"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
 	<context:component-scan base-package="com.rar.khbook" />

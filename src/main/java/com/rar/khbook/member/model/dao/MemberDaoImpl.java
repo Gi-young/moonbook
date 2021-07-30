@@ -111,7 +111,14 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int updateMemberEnd(SqlSession session, Member m) {
 		// TODO Auto-generated method stub
-		System.out.println(m);
+		
 		return session.update("member.updateMemberEnd", m);
+	}
+	
+//	회원 탈퇴
+	@Override
+	public int deleteMember(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		return session.delete("member.deleteMember", m);
 	}
 }

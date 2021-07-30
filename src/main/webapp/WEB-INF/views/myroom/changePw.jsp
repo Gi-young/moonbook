@@ -5,60 +5,116 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <c:set var="prevMonth" value="<%=new java.util.Date().getMonth()%>" />
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
+<link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
+<link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value="비밀번호변경 - 문곰책방" />
 </jsp:include>
 <div class="wrap">
 	<div class="container margin_top2e">
 		<jsp:include page="/WEB-INF/views/common/myroomMenubar.jsp">
-			<jsp:param name="title" value="마이페이지 - KH문고" />
+			<jsp:param name="title" value="" />
 		</jsp:include>
-		<div class="myroom_contents">
-			<div class="reLoginInfo">
-				<div>
-					<p class="infoP3">
-						비밀번호 변경을 위해서는 <span class="infoP2">이메일 인증</span>이 필요합니다.
-					</p>
-				</div>
-			</div>
-			<div class="login-box2 margin_top2e">
-				<div class="login-container">
-					<div class="login-title">
-						<span>이메일 인증</span>
-						<hr class="hr3">
-					</div>
-					<div class="">
-						<div class="fm_valDiv2">
-							<div class="padding10">이메일</div>
-							<div>
-								<input type="text" name="memberEmail"
-									value="${loginMember.memberEmail}" id="memberEmail" readonly>
-								<button type="button" class="btn" id="sendEmail">코드전송</button>
-							</div>
-						</div>
-						<div class="fm_valDiv2">
-							<div class="word4">코드입력</div>
-							<div class="div4">
-								<input type="text" id="codeVal" placeholder="이메일로 인증코드를 전송했습니다.">
-								<button type="button" class="btn" id="checkCode">인증하기</button>
-							</div>
-						</div>
-						<div class="fm_valDiv2" style="display: none" id="changePw">
-							<div class="word4">비밀번호</div>
-							<div class="div4">
-								<form action="/member/memberUpdatePw.do" method="post">
-								<input type="hidden" name="memberId" value="${loginMember.memberId }">
-									<input type="hidden" name="memberPw" id="memberPw">
-									<button class="btn">변경하기</button>
-								</form>
-							</div>
-						</div>
-						<div id="infoF" class="infoF">잘못된 코드입니다.</div>
-						<input type="hidden" id="wC" value="no">
+		<c:if test="${del == null }">
+			<div class="myroom_contents">
+				<div class="reLoginInfo">
+					<div>
+						<p class="infoP3">
+							비밀번호 변경을 위해서는 <span class="infoP2">이메일 인증</span>이 필요합니다.
+						</p>
 					</div>
 				</div>
+				<div class="login-box2 margin_top2e">
+					<div class="login-container">
+						<div class="login-title">
+							<span>이메일 인증</span>
+							<hr class="hr3">
+						</div>
+						<div class="">
+							<div class="fm_valDiv2">
+								<div class="padding10">이메일</div>
+								<div>
+									<input type="text" name="memberEmail"
+										value="${loginMember.memberEmail}" id="memberEmail" readonly>
+									<button type="button" class="btn" id="sendEmail">코드전송</button>
+								</div>
+							</div>
+							<div class="fm_valDiv2">
+								<div class="word4">코드입력</div>
+								<div class="div4">
+									<input type="text" id="codeVal"
+										placeholder="이메일로 인증코드를 전송했습니다.">
+									<button type="button" class="btn" id="checkCode">인증하기</button>
+								</div>
+							</div>
+							<div class="fm_valDiv2" style="display: none" id="changePw">
+								<div class="word4">비밀번호</div>
+								<div class="div4">
+									<form action="/member/myroom/memberUpdatePw.do" method="post">
+										<input type="hidden" name="memberId"
+											value="${loginMember.memberId }"> <input
+											type="hidden" name="memberPw" id="memberPw">
+										<button class="btn">변경하기</button>
+									</form>
+								</div>
+							</div>
+							<div id="infoF" class="infoF">잘못된 코드입니다.</div>
+							<input type="hidden" id="wC" value="no">
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
+		</c:if>
+		<c:if test="${del != null }">
+			<div class="myroom_contents">
+				<div class="reLoginInfo">
+					<div>
+						<p class="infoP3">
+							회원탈퇴를 위해서는 <span class="infoP2">이메일 인증</span>이 필요합니다.
+						</p>
+					</div>
+				</div>
+				<div class="login-box2 margin_top2e">
+					<div class="login-container">
+						<div class="login-title">
+							<span>이메일 인증</span>
+							<hr class="hr3">
+						</div>
+						<div class="">
+							<div class="fm_valDiv2">
+								<div class="padding10">이메일</div>
+								<div>
+									<input type="text" name="memberEmail"
+										value="${loginMember.memberEmail}" id="memberEmail" readonly>
+									<button type="button" class="btn" id="sendEmail">코드전송</button>
+								</div>
+							</div>
+							<div class="fm_valDiv2">
+								<div class="word4">코드입력</div>
+								<div class="div4">
+									<input type="text" id="codeVal"
+										placeholder="이메일로 인증코드를 전송했습니다.">
+									<button type="button" class="btn" id="checkCode">인증하기</button>
+								</div>
+							</div>
+							<div class="fm_valDiv2" style="display: none" id="changePw">
+								<div class="word4">정말 탈퇴 하시겠습니까?</div>
+								<div class="div4">
+									<form action="${path }/member/myroom/deleteMember.do" method="post">
+										<input type="hidden" name="memberId"
+											value="${loginMember.memberId }"> 
+										<button class="btn">탈퇴하기</button>
+									</form>
+								</div>
+							</div>
+							<div id="infoF" class="infoF">잘못된 코드입니다.</div>
+							<input type="hidden" id="wC" value="no">
+						</div>
+					</div>
+				</div>
+			</div>
+		</c:if>
 	</div>
 </div>
 <script>
@@ -84,6 +140,6 @@ $("#sendEmail").click(e=>{
 	})
 })
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>

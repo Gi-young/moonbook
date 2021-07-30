@@ -176,7 +176,7 @@
                 	<li><a href="${path }/member/logout.do">로그아웃</a></li>
                 	
                 </c:if>
-                    <li><a href="${path }/member/myroom.do">마이룸</a></li>
+                    <li><a href="${path }/member/myroom/main.do">마이룸</a></li>
                     <li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
                 	<li><a href="${path }/service/servicePage.do">고객센터</a></li>
                 </ul>

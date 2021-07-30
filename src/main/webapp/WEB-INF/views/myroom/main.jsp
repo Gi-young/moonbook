@@ -5,18 +5,20 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <c:set var="prevMonth" value="<%=new java.util.Date().getMonth()%>" />
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
-   <jsp:param name="title" value="마이페이지 - 문곰책방"/>
+	<jsp:param name="title" value="마이페이지 - 문곰책방" />
 </jsp:include>
 <link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
+<link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
+<link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <div class="wrap">
 	<div class="container margin_top2e">
 		<jsp:include page="/WEB-INF/views/common/myroomMenubar.jsp">
-			<jsp:param name="title" value="마이페이지 - KH문고" />
+			<jsp:param name="" value="" />
+		</jsp:include>
+		<jsp:include page="/WEB-INF/views/common/myroomHead.jsp">
+			<jsp:param name="" value="" />
 		</jsp:include>
 		<div class="myroom_contents">
-			<jsp:include page="/WEB-INF/views/common/myroomHead.jsp">
-				<jsp:param value="" name="" />
-			</jsp:include>
 			<div class="content_middle padding10 flex">
 				<div class="bold">이번달 등급 |</div>
 				<div class="sub_title">
@@ -126,6 +128,6 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
