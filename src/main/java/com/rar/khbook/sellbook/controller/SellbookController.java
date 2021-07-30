@@ -144,6 +144,13 @@ public class SellbookController {
 		return mv;
 	}
 	
+	@RequestMapping("/sellbookController/bigview.do")
+	public String bigview(String img) {
+		System.out.println("페이지이동");
+		return "bigview";
+		
+	}
+	
 	
 
 	
