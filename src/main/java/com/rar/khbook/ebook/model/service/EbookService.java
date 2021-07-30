@@ -17,4 +17,12 @@ public interface EbookService {
 	
 	Member login(String memberId);
 	
+	EbookDatabind searchOneBook(int bindNo);
+	
+	int checkLoved(Map param);
+	
+	int loveBook(Map param);
+	
+	int unloveBook(Map param);
+	
 }

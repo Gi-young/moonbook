@@ -45,4 +45,28 @@ public class EbookServiceImpl implements EbookService {
 		return loginMember;
 	}
 	
+	@Override
+	public EbookDatabind searchOneBook(int bindNo) {
+		EbookDatabind b = dao.searchOneBook(session, bindNo);
+		return b;
+	}
+	
+	@Override
+	public int checkLoved(Map param) {
+		int result = dao.checkLoved(session, param);
+		return result;
+	}
+	
+	@Override
+	public int loveBook(Map param) {
+		int result = dao.loveBook(session, param);
+		return result;
+	}
+	
+	@Override
+	public int unloveBook(Map param) {
+		int result = dao.unloveBook(session, param);
+		return result;
+	}
+	
 }

@@ -48,4 +48,24 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectOne("ebook.login", memberId);
 	}
 	
+	@Override
+	public EbookDatabind searchOneBook(SqlSession session, int bindNo) {
+		return session.selectOne("ebook.searchOneBook", bindNo);
+	}
+	
+	@Override
+	public int checkLoved(SqlSession session, Map param) {
+		return session.selectOne("ebook.checkLoved", param);
+	}
+	
+	@Override
+	public int loveBook(SqlSession session, Map param) {
+		return session.insert("ebook.loveBook", param);
+	}
+	
+	@Override
+	public int unloveBook(SqlSession session, Map param) {
+		return session.delete("ebook.unloveBook", param);
+	}
+	
 }

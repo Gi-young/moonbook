@@ -19,4 +19,12 @@ public interface EbookDao {
 	
 	Member login(SqlSession session, String memberId);
 	
+	EbookDatabind searchOneBook(SqlSession session, int bindNo);
+	
+	int checkLoved(SqlSession session, Map param);
+	
+	int loveBook(SqlSession session, Map param);
+	
+	int unloveBook(SqlSession session, Map param);
+	
 }

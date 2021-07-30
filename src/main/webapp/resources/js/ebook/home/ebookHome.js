@@ -59,7 +59,8 @@ function searchEbook(searchData) {
 				ebookItem.style.height = "230px";
 				ebookItem.classList.add("ebookItem");
 				ebookItem.addEventListener("click", () => {
-					location.assign(contextPath + "/ebook/pageEbookDetail.do");
+					let bindNo = v.bindNo;
+					location.assign(contextPath + "/ebook/pageEbookDetail.do?bindNo="+bindNo);
 				});
 				
 				let coverImg = document.createElement("img");

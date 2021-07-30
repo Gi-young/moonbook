@@ -90,7 +90,15 @@ public class EbookController {
 	}
 	
 	@RequestMapping(value="/ebook/pageEbookDetail.do")
-	public String pageEbookDetail() {
+	public String pageEbookDetail(int bindNo, Model model) {
+		System.out.println(bindNo);
+		
+		EbookDatabind ebookDatabind = service.searchOneBook(bindNo);
+		
+		System.out.println("컨트롤러 : " + ebookDatabind);
+		
+		model.addAttribute("ebookDatabind", ebookDatabind);
+		
 		return "ebook/home/ebookDetail";
 	}
 	
@@ -289,6 +297,30 @@ public class EbookController {
 		model.addAttribute("message", message);
 		
 		return "ebook/home/uploadEbook";
+	}
+	
+	@RequestMapping(value = "/ebook/checkLoved.do")
+	@ResponseBody
+	public int checkLoved(@RequestParam Map param) {
+		int result = service.checkLoved(param);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/ebook/loveBook.do")
+	@ResponseBody
+	public int loveBook(@RequestParam Map param) {
+		int result = service.loveBook(param);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/ebook/unloveBook.do")
+	@ResponseBody
+	public int unloveBook(@RequestParam Map param) {
+		int result = service.unloveBook(param);
+		
+		return result;
 	}
 	
 	@RequestMapping(value = "/ebook/cancelPurchase.do")
