@@ -14,234 +14,116 @@
             <center><h2 style="margin-bottom: 20px;"><a style="color: orange;">카테고리</a></h2></center>
             <div style="border:1px solid #666; width: 140px;">
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="">소설</a></li>
-                    <li><a href="">시/에세이</a></li>
-                    <li><a href="">경제/경영</a></li>
-                    <li style="margin-bottom: 17px;"><a href="">자기계발</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='소설'">소설</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='시/에세이'">시/에세이</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='경제/경영'">경제/경영</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='자기계발'">자기계발</a></li>
                 </ul>
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="">인문</a></li>
-                    <li><a href="">역사문화</a></li>
-                    <li><a href="">종교</a></li>
-                    <li><a href="">정치/사회</a></li>
-                    <li><a href="">예술/대중문화</a></li>
-                    <li><a href="">과학</a></li>
-                    <li><a href="">기술/공학</a></li>
-                    <li style="margin-bottom: 17px;"><a href="">컴퓨터/IT</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='인문'">인문</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='역사문화'">역사문화</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='종교'">종교</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='정치/사회'">정치/사회</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='예술/대중문화'">예술/대중문화</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='과학'">과학</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='기술/공학'">기술/공학</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='컴퓨터/IT'">컴퓨터/IT</a></li>
                 </ul>
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="">초등학습</a></li>
-                    <li><a href="">중/고등학습</a></li>
-                    <li><a href="">대학교재</a></li>
-                    <li><a href="">취업/수험서</a></li>
-                    <li style="margin-bottom: 17px;"><a href="">외국어</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='초등학습'">초등학습</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='중/고등학습'">중/고등학습</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='대학교재'">대학교재</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='취업/수험서'">취업/수험서</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='외국어'">외국어</a></li>
                 </ul>
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="">동화</a></li>
-                    <li style="margin-bottom: 17px;"><a href="">아동</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='동화'">동화</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='아동'">아동</a></li>
                 </ul>
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="">가정생활</a></li>
-                    <li><a href="">건강</a></li>
-                    <li><a href="">여행</a></li>
-                    <li><a href="">요리</a></li>
-                    <li style="margin-bottom: 17px;"><a href="">스포츠</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='가정생활'">가정생활</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='건강'">건강</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='여행'">여행</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='요리'">요리</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='스포츠'">스포츠</a></li>
                 </ul>
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="">잡지</a></li>
-                    <li><a href="">만화</a></li>
-                    <li style="margin-bottom: 17px;"><a href="">사전</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='잡지'">잡지</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='만화'">만화</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='사전'">사전</a></li>
                 </ul>
                 <ul id="ul1">
-                    <li><a href="">외서</a></li>
-                    <li style="margin-bottom: 17px;"><a href="">일서</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='외서'">외서</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='일서'">일서</a></li>
                 </ul>
             </div>
-        </div><!-- .nav_category -->
+        </div>
     </div>
-    <div>
+    <div style="height: 1250px">
         <p id="titi" style="font-size: 35px; color: cornflowerblue;">  중고게시판</p>
-        <p id="insertborad" style="left: 65%; font-size: 18px;">거래 등록</p>
-        <div id="secondBorad" style="position: relative; padding-left: 140px">
+        <a href="${path }/usedboard/usedboardInsert.do" id="insertborad" style="left: 65%; font-size: 18px;">거래 등록</a>
+        <br><br>
+        <c:if test="${list.isEmpty() }">
+	        <div id="secondBorad" style="padding-left: 300px;">
+	            <div class="side">
+	            <br><hr><br><br>
+	            <center><h1>물품이 없습니다.</h1></center>
+	            </div>
+	            </div>
+	        </c:if>
+        <c:if test="${list != null }">
+        <c:forEach var="b" items="${list }">
+        <div id="secondBorad" style="padding-left: 300px;">
             <div class="side">
-                    <a href="" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
+                    <a href="${path }/usedboard/usedboardView.do?no=${b.usedboard_No }" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
                         <span class="artice">
                             <span style="font-size: 15px;">
-                                (장르)
+	                            <c:if test="${b.usedboard_Category != '' }">
+									<c:forEach var="l" items="${b.usedboard_Category }" varStatus="vs">
+										${l }
+									</c:forEach>
+								</c:if>
                             </span> 
                     <div id="imgdivback" style=" width: 130px; resize:none; height: 120px; background-color: rgb(234, 234, 234); position: relative; top: 20px;"> 
                         
-                            <img src="" width="130" height="120" onerror="" >
+                            <img src="${path }/resources/upload/usedboard/${b.usedboardfiles[0].usedboardfile_Rename}" width="130" height="120" onerror="" >
                         </div>
                             <strong class="tit" style="display: inline-block;">
-                                <span class="txt_de" style="font-size: 23px;">&emsp;첫번째글</span>
+                                <span class="txt_de" style="font-size: 23px;">&emsp;${b.usedboard_Title }</span>
                             </strong>
-                            <span id="ddssaa" style="font-size: 17px;">책정보</span>
+                            <span id="ddssaa" style="font-size: 17px;">책제목 : ${b.usedboard_BookTitle } / 가격 : ${b.usedboard_Price }</span>
+                            <br>
+                            <span id="ddssaa" style="font-size: 17px;">${b.usedboard_Content }</span>
                             <span class="txt_info">
                                 <span class="username" style="font-size: 17px;">
-                                    아이디
+                                    ${b.member_Id }
                                     ||
                                 </span>
                                 <span style="font-size: 17px;">
-                                    날짜
+                                    ${b.usedboard_Date }
                                     ||
                                 </span> 
-                                <span style="font-size: 17px; color: red;">
+                                <c:if test="${b.usedboard_State == 'y' }">
+									<span style="font-size: 17px; color: red;">
                                     거래중 
-                                </span>
-                                <span style="font-size: 17px; color: blue;">
+                                	</span>
+								</c:if>
+                                <c:if test="${b.usedboard_State == 'n' }">
+									<span style="font-size: 17px; color: blue;">
                                     거래완료
-                                </span>
+                                	</span>
+								</c:if>
                             </span>
                         </span>
                         
                     </a>
                 </div>
             </div>
-
-
-        <div id="secondBorad" style="position: relative; padding-left: 140px">
-            <div class="side">
-                <a href="" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
-                        <span class="artice">
-                            <span style="font-size: 15px;">
-                                (장르)
-                            </span> 
-                    <div id="imgdivback" style=" width: 130px; resize:none; height: 120px; background-color: rgb(234, 234, 234); position: relative; top: 20px;"> 
-                        
-                            <img src="" width="130" height="120" onerror="" >
-                        </div>
-                            <strong class="tit" style="display: inline-block;">
-                                <span class="txt_de" style="font-size: 23px;">&emsp;두번째글</span>
-                            </strong>
-                            <span id="ddssaa" style="font-size: 17px;">제목 : 아기돼지삼형제 / 글쓴이 : 제이콥스 / 출판사 : 글송이 / 가격 : 6300원</span>
-                            <span class="txt_info">
-                                <span class="username" style="font-size: 17px;">
-                                    아이디
-                                    ||
-                                </span>
-                                <span style="font-size: 17px;">
-                                    날짜
-                                    ||
-                                </span> 
-                                <span style="font-size: 17px; color: red;">
-                                    거래중 
-                                </span>
-                                <span style="font-size: 17px; color: blue;">
-                                    거래완료
-                                </span>
-                            </span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-
-
-            <!-- <div id="secondBorad" style="position: relative; padding-left: 140px">
-                <div class="side">
-                    <a href="" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
-                            <span class="artice">
-                                <span style="font-size: 15px;">
-                                    (장르)
-                                </span> 
-                        <div id="imgdivback" style=" width: 130px; resize:none; height: 120px; background-color: rgb(234, 234, 234); position: relative; top: 20px;"> 
-                            
-                                <img src="" width="130" height="120" onerror="" >
-                            </div>
-                                <strong class="tit" style="display: inline-block;">
-                                    <span class="txt_de" style="font-size: 23px;">&emsp;세번째글</span>
-                                </strong>
-                                <span id="ddssaa" style="font-size: 17px;">책정보</span>
-                                <span class="txt_info">
-                                    <span class="username" style="font-size: 17px;">
-                                        아이디
-                                        ||
-                                    </span>
-                                    <span style="font-size: 17px;">
-                                        날짜
-                                        ||
-                                    </span> 
-                                    <span style="font-size: 17px; color: red;">
-                                        거래중 
-                                    </span>
-                                    <span style="font-size: 17px; color: blue;">
-                                        거래완료
-                                    </span>
-                                </span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div id="secondBorad" style="position: relative; padding-left: 140px">
-                <div class="side">
-                    <a href="" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
-                            <span class="artice">
-                                <span style="font-size: 15px;">
-                                    (장르)
-                                </span> 
-                        <div id="imgdivback" style=" width: 130px; resize:none; height: 120px; background-color: rgb(234, 234, 234); position: relative; top: 20px;"> 
-                            
-                                <img src="" width="130" height="120" onerror="" >
-                            </div>
-                                <strong class="tit" style="display: inline-block;">
-                                    <span class="txt_de" style="font-size: 23px;">&emsp;세번째글</span>
-                                </strong>
-                                <span id="ddssaa" style="font-size: 17px;">책정보</span>
-                                <span class="txt_info">
-                                    <span class="username" style="font-size: 17px;">
-                                        아이디
-                                        ||
-                                    </span>
-                                    <span style="font-size: 17px;">
-                                        날짜
-                                        ||
-                                    </span> 
-                                    <span style="font-size: 17px; color: red;">
-                                        거래중 
-                                    </span>
-                                    <span style="font-size: 17px; color: blue;">
-                                        거래완료
-                                    </span>
-                                </span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div id="secondBorad" style="position: relative; padding-left: 140px ">
-                <div class="side">
-                    <a href="" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
-                            <span class="artice">
-                                <span style="font-size: 15px;">
-                                    (장르)
-                                </span> 
-                        <div id="imgdivback" style=" width: 130px; resize:none; height: 120px; background-color: rgb(234, 234, 234); position: relative; top: 20px;"> 
-                            
-                                <img src="" width="130" height="120" onerror="" >
-                            </div>
-                                <strong class="tit" style="display: inline-block;">
-                                    <span class="txt_de" style="font-size: 23px;">&emsp;세번째글</span>
-                                </strong>
-                                <span id="ddssaa" style="font-size: 17px;">책정보</span>
-                                <span class="txt_info">
-                                    <span class="username" style="font-size: 17px;">
-                                        아이디
-                                        ||
-                                    </span>
-                                    <span style="font-size: 17px;">
-                                        날짜
-                                        ||
-                                    </span> 
-                                    <span style="font-size: 17px; color: red;">
-                                        거래중 
-                                    </span>
-                                    <span style="font-size: 17px; color: blue;">
-                                        거래완료
-                                    </span>
-                                </span>
-                            </span>
-                        </a>
-                    </div>
-                </div> -->
-    </div>
+        </c:forEach>
+        </c:if>
+        
+        </div>
+        <br><br>
+		<div id="pageBarb">${pageBar }</div>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>

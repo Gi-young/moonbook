@@ -7,6 +7,7 @@
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="title" value="회원등급별 혜택"/>
 </jsp:include>
+<link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
 <div class="wrap">
 	<div class="margin_top2e">
 		<div class="memberGrade_head padding10">

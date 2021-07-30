@@ -3,45 +3,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <c:set var="path" value="${pageContext.request.contextPath }"/>     
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문곰책방 | 문곰템</title>
-    <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
+	<jsp:param name="" value=""/>
+</jsp:include>
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/gift.css">
-</head>
-<body>
-<!-- <div id="header">
-    header
-</div> -->
 <div class="wrap">
     <!-- 전체를 감싸고 있는 div -->
     <div class="hotTracks">
     <!-- 상단 핫트랙스 메뉴바 -->
         <div class="category-open">
-            <img src="${paht }/resources/images/기프트헤더로고.png" alt="" style="height: 50px;">
+            <img src="${path }/resources/images/gift/기프트헤더로고.png" alt="" style="height: 50px;">
         </div>
         <div class="hotTracks-menu">
             <ul>
                 <!-- 페이지 전환할 때 스크립트로 전환 -->
                 <li>
-                    <a style="color:#696969;">전자기기</a>
+                    <a style="color:#696969;" href="#">전자기기</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;">수납/정리</a>
+                    <a style="color:#696969;" href="#">수납/정리</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;">독서 필수템</a>
+                    <a style="color:#696969;" href="#">독서 필수템</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;">잡화</a> 
+                    <a style="color:#696969;" href="#">잡화</a> 
                 </li>
             </ul>
         </div>
@@ -78,9 +68,9 @@
                 <a class="slide-btn headsBtn-next">〉</a>
             </div>
         </div>
-        <a href="#">
+        <!-- <a href="#">
             <div class="slide-modal"></div>
-        </a> 
+        </a>  -->
         <div class="modal-pop-back">
         </div>
     </div> 
@@ -220,8 +210,8 @@
                         </div>               
                     <div class="toSale-main">
                         <div style="width: 350px;">
-                            <a href='#'>
-                                <img src="../components/image/넥밴드선풍기.jpg" alt="" class="toSale-mainImg">
+                            <a href='${path }/gift/giftDetail.do?giftNo=123'>
+                                <img src="${path }/components/image/넥밴드선풍기.jpg" alt="" class="toSale-mainImg">
                                 <div class="freeship-wrap">
                                     <span class="freeship">무료배송</span>
                                 </div>
@@ -234,8 +224,10 @@
                         <div class="toSale-sub">
                             <ul class="toSale-ul">
                                 <li>
-                                    <img src="../components/image/버섯조명jpg.jpg" alt="">
-                                    <p class="toSale-dc">할인율</p>
+                                	<a href="#">
+	                                    <img src="../components/image/버섯조명jpg.jpg" alt="">
+	                                    <p class="toSale-dc">할인율</p>
+                                    </a>
                                 </li>
                                 <li>
                                     <img src="../components/image/라핀선크림.png" alt="">
@@ -948,16 +940,12 @@
         </div>
     </div> 
 </div> 
-<!-- <div id="header">
-    footer
-</div>  --> 
+
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
+	<jsp:param name="" value=""/>
+</jsp:include>
 <div class="quickBar"></div>
-</body>
-</html>
-<script src="../js/gift_headBanner.js"></script>
-<script src="../js/gift_moreView.js"></script>
-<script src="../js/timer.js"></script>
-<script src="../js/gift_updownScroll.js"></script>
+
 <script>
     // 가장 많이 보는 상품 이미지 hover 될 때 js
     let imgIn;
@@ -980,10 +968,10 @@
     //     var height=$(document).scrollTop();
     //     console.log(height);
     // })
-    $(document).ready(function(){
+    /* $(document).ready(function(){
         // 사이드 퀵메뉴바
         $(".quickBar").load("../html/quickBar.html");
-    })
+    }) */
     $(".slide-modal").click(function(){
         console.log("모달창 실행");
         let modal = $(".modal-pop-content");
@@ -1012,3 +1000,9 @@
         }
 }) 
 </script>
+<script src="${path }/resources/js/gift/gift_headBanner.js"></script>
+<script src="${path }/resources/js/gift/gift_moreView.js"></script>
+<script src="${path }/resources/js/gift/timer.js"></script>
+<script src="${path }/resources/js/gift/gift_updownScroll.js"></script>
+</body>
+</html>

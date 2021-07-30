@@ -13,6 +13,7 @@ main {
 	background-color: lightgoldenrodyellow;
 	display: grid;
 	grid-template-columns: repeat(4, 200px);
+	grid-template-columns: 100px;
 	grid-auto-rows: 250px;
 	grid-auto-rows: minmax(250px, auto);
 	grid-gap: 1rem;
@@ -44,4 +45,20 @@ main>div {
 
 .ebookPublisher {
 	font-size: 14px;
+}
+
+#searchFrm {
+	grid-column: 1/5;
+}
+
+#searchFrm>div {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+}
+
+#searchFrm>div>div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 }

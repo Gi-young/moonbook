@@ -13,6 +13,16 @@
     <link rel="stylesheet" href="${path }/resources/css/style.css">
 	<script type="text/javascript" src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+		
+	
 </head>
 <body>
 <div class="header">
@@ -142,7 +152,12 @@
                         </ul>
                     </li>
                     <li><a href="#">기프트 ▼</a></li>
+<<<<<<< HEAD
                     <li><a href="${path}/usedboard/usedboardPage.do">중고장터</a></li>
+                     <li><a href="${path}/auction/auction.do">경매 ▼</a></li>
+=======
+                    <li><a href="${path}/usedboard/usedboardList.do">중고장터</a></li>
+>>>>>>> branch 'master' of http://github.com/Gi-young/khbook.git
                 </ul>
             </div>
             <div class="header-menuBar2">

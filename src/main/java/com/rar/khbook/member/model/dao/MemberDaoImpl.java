@@ -87,6 +87,18 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return session.selectList("member.couponlist");
 	}
+
+	@Override
+	public int updateMemberVisit(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("member.updateMemberVisit",param);
+	}
+
+	@Override
+	public int updateMemberToday(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("member.updateMemberToday",param);
+	}
 	
 //	회원가입 감사 쿠폰 발급
 	@Override

@@ -1,0 +1,61 @@
+@charset "UTF-8";
+@import url(style.css);
+.couponBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    height: 500px;
+}
+.userName{
+    color: #582810;
+    font-weight: 900;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.cp-count{
+    color: #582810;
+    font-weight: 900;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.cp-countAll{
+    color: #582810;
+    font-weight: 900;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.couponList{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    width: 400px;
+    height: 400px;
+}
+.couponView{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.couponMsg{
+    font-size: 12px;
+}
+.useCoupon{
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 900;
+}
+.useCoupon:hover{
+    background-color: #582810;
+    color: white;
+    cursor: pointer;
+    border: 1px solid silver;
+}
+.flex{
+	display: flex;
+	align-items: center;
+}

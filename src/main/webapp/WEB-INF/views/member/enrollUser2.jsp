@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +26,6 @@
 					method="post">
 
 					<form action="${path }/member/memberEnrollEnd.do" method="post">
-
 						<hr>
 						<p class="enrollInfo-font">아이디</p>
 
@@ -99,7 +96,6 @@
 </body>
 </html>
 <script>
-
 	const fn_frmsubmit=()=>{
 		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none" && $("#wC").val()=="yes"){
 			let memberEmail=$("#localPart").val()+"@"+$("#domain").val();

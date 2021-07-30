@@ -1,6 +1,9 @@
 package com.rar.khbook.member.controller;
 
 import java.io.Writer;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -48,16 +51,20 @@ public class MemberController {
 	@RequestMapping("/member/loginPage.do")
 	public String loginPage() {
 		return "member/login";
-	}
 
-	@RequestMapping("/member/login.do")
-	public String login(@RequestParam Map param, Model model, HttpSession session, HttpServletResponse res) {
+	}@RequestMapping("/member/login.do")
+	public String login(@RequestParam Map param,Model model,HttpSession session,HttpServletResponse res) {
+		
+		boolean visitFlag=false;
+		SimpleDateFormat sdf= new SimpleDateFormat("yy/MM/dd");
+		String today=sdf.format(new Date());
+		
+		String saveId=(String)param.get("saveId");
+		String memberId=(String)param.get("memberId");
+		if(saveId !=null) {
+			Cookie c= new Cookie("saveId",memberId);
+			c.setMaxAge(7*24*60*60);
 
-		String saveId = (String) param.get("saveId");
-		String memberId = (String) param.get("memberId");
-		if (saveId != null) {
-			Cookie c = new Cookie("saveId", memberId);
-			c.setMaxAge(7 * 24 * 60 * 60);
 			res.addCookie(c);
 		} else {
 			Cookie c = new Cookie("saveId", "");
@@ -79,7 +86,16 @@ public class MemberController {
 //				로그인한 멤버의 회원등급도 Session에 넣어줌
 				Membergrade mg = service.getMembergrade(m);
 				session.setAttribute("membergrade", mg);
-				msg = "로그인 성공";
+
+				//최근 로그인한 날짜 구하기
+				//컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
+				//컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
+				if(m.getMemberToday().toString().equals(today)) {
+					int memberVisit =service.updateMemberVisit(param);
+					int memberToday =service.updateMemberToday(param);
+				}
+				msg="로그인 성공";
+
 				model.addAttribute("loc", "/");
 			} else {
 				msg = "로그인 실패";
@@ -122,8 +138,10 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/memberEnrollEnd.do")
-	public String memberEnrollEnd(Member m, Model model, HttpSession session) {
 
+	public String memberEnrollEnd(Member m,Model model,HttpSession session) {
+		
+		System.out.println(m);
 		log.debug("암호화전 : {}", m.getMemberPw());
 		log.debug("암호화 후 : {}", pwEncoder.encode(m.getMemberPw()));
 		m.setMemberPw(pwEncoder.encode(m.getMemberPw()));
@@ -149,12 +167,12 @@ public class MemberController {
 
 	}
 
-	@RequestMapping("/member/checkId.do")
-	public void checkId(@RequestParam Map param, Writer out) {
-		System.out.println(param);
-		Member m = service.selectOneMember(param);
-		System.out.println("testtest : " + m);
-		new Gson().toJson(m == null ? "true" : "false", out);
+	
+	@RequestMapping("/member/checkId.do") 
+	public void checkId(@RequestParam Map param,Writer out) { 
+	System.out.println(param); 
+	Member m=service.selectOneMember(param); System.out.println("testtest : "+m); new
+	  Gson().toJson(m==null? "true":"false",out); 
 	}
 
 	@RequestMapping("/member/searchIdPwPage.do")

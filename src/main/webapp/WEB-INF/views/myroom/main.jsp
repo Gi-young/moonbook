@@ -7,6 +7,7 @@
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="title" value="마이페이지 - 문곰책방"/>
 </jsp:include>
+<link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
 <div class="wrap">
 	<div class="container margin_top2e">
 		<jsp:include page="/WEB-INF/views/common/myroomMenubar.jsp">

@@ -31,8 +31,16 @@ public interface MemberService {
 	Membergrade getMembergrade(Member m);
 //	전체 회원등급 가져옴
 	List<Membergrade> memberGrade();
+
 //	전체 쿠폰리스트 가져옴
 	List<Couponlist> couponlist();
 //	회원 정보 수정
 	int updateMemberEnd(Member m);
+	
+	// 방문횟수 +1 증가
+	int updateMemberVisit(Map param);
+	
+	// 최근 로그인 날짜 변경
+	int updateMemberToday(Map param);
+
 }

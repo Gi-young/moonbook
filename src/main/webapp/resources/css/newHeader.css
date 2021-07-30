@@ -265,6 +265,7 @@ input:focus{
     justify-content: center;
     align-items: center;
     font-weight: 600;
+    position: relative;
 }
 .header-menuBar1>ul li:not(:last-child){
     margin-right: 30px;
@@ -285,4 +286,60 @@ input:focus{
 }
 .eBook{
     display: none;
+}
+
+/* 헤더에서 기프트메뉴 호버시 */
+
+.giftTab{
+    position: absolute;
+    top: 50%;
+    left: 42.5%;
+    border: 3px solid silver;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 150px;
+    height: 240px;
+    margin-top: 25px;
+    z-index: 5;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    display: none;
+}
+.giftTab li{
+    background-color: #E5E2DB;
+    height: 60px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+}
+.giftTab li:not(:last-child){
+    border-bottom: 0.5px solid silver;
+}
+.giftTab a{
+    color: #582810;
+    font-weight: 900;
+}
+.categoryBar{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    height: 100%;
+}
+.categoryBar li{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
 }

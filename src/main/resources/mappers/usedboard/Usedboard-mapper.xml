@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="usedboard">
+	<select id="selectUsedboardList" resultMap="usedboardMap">
+		SELECT * FROM USEDBOARD B LEFT JOIN USEDBOARDFILE A ON B.USEDBOARD_NO=A.USEDBOARD_NO ORDER BY B.USEDBOARD_NO DESC
+	</select>
+	<resultMap type="usedboard" id="usedboardMap">
+		<id column="usedboard_No" property="usedboard_No"/>
+		<result column="usedboard_Title" property="usedboard_Title"/>
+		<result column="usedboard_Content" property="usedboard_Content"/>
+		<result column="usedboard_Date" property="usedboard_Date"/>
+		<result column="usedboard_Price" property="usedboard_Price"/>
+		<result column="usedboard_State" property="usedboard_State"/>
+		<result column="usedboard_Category" property="usedboard_Category" typeHandler="strArr"/>
+		<result column="member_Id" property="member_Id"/>
+		<result column="usedboard_BookTitle" property="usedboard_BookTitle"/>
+		<collection property="usedboardfiles" resultMap="usedboardfileMap"></collection>
+	</resultMap>
+	<resultMap type="usedboardfile" id="usedboardfileMap">
+		<id column="usedboardfile_No" property="usedboardfile_No"/>
+		<result column="usedboardfile_Oriname" property="usedboardfile_Oriname"/>
+		<result column="usedboardfile_Rename" property="usedboardfile_Rename"/>
+		<result column="usedboard_No" property="usedboard_No"/>
+	</resultMap>
+	
+	<select id="selectUsedboardCount" resultType="_int">
+		SELECT COUNT(*) FROM USEDBOARD
+	</select>
+	
+	<select id="searchUsedboardList" resultMap="usedboardMap">
+		SELECT * FROM USEDBOARD B LEFT JOIN USEDBOARDFILE A ON B.USEDBOARD_NO=A.USEDBOARD_NO WHERE B.USEDBOARD_CATEGORY LIKE '%'||${value}||'%' ORDER BY B.USEDBOARD_NO DESC
+	</select>
+	<select id="searchUsedboardCount" resultType="_int">
+		SELECT COUNT(*) FROM USEDBOARD WHERE USEDBOARD_CATEGORY LIKE '%'||${value}||'%'
+	</select>
+	
+	<select id="selectUsedboardOne" resultMap="usedboardMap">
+		SELECT * 
+		FROM USEDBOARD B LEFT JOIN USEDBOARDFILE A ON B.USEDBOARD_NO=A.USEDBOARD_NO  
+		WHERE B.USEDBOARD_NO=${value}
+	</select>
+	
+	<select id="selectReplyCount" resultType="_int">
+		SELECT COUNT(*) FROM USEDCOMMENT WHERE USEDBOARD_NO=${value}
+	</select>
+	
+	<select id="selectReply" resultType="usedcomment">
+		SELECT * FROM USEDCOMMENT WHERE USEDBOARD_NO=${value}
+	</select>
+	
+	<insert id="insertUsedcomment">
+		INSERT INTO USEDCOMMENT VALUES(SEQ_USEDCOMMENT_NO.NEXTVAL,#{usedcomment_Content},SYSDATE,#{usedcomment_Level},#{usedcomment_UserId},#{usedcomment_CommentRef},#{usedbaord_No})
+	</insert>
+	
+	<delete id="deleteUsedcomment">
+		DELETE FROM USEDCOMMENT WHERE USEDCOMMENT_NO=${value}
+	</delete>
+	
+	<delete id="deleteUsedcommentRef">
+		DELETE FROM USEDCOMMENT WHERE USEDCOMMENT_COMMENTREF=${value}
+	</delete>
+	
+	<update id="usedboardUpdateEnd">
+		UPDATE USEDBOARD SET USEDBOARD_TITLE=#{usedboard_Title},USEDBOARD_CONTENT=#{usedboard_Content}, USEDBOARD_CATEGORY=#{usedboard_Category, typeHandler=strArr} WHERE USEDBOARD_NO=#{usedboard_No} 
+	</update>
+</mapper>

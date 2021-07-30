@@ -1,16 +1,63 @@
-const getEbookItems = (groupId, keyword) => {
+let searchFrm = document.getElementById("searchFrm");
+
+window.onload = function() {
+	searchEbook({
+		keyword: "",
+		searchType: "title",
+		categoryCode: "100020020",
+		pubdateOrder: "DESC",
+		salesOrder: "DESC",
+		priceOrder: "DESC",
+		ratingOrder: "DESC",
+		importancePubdate: "1",
+		importanceSales: "2",
+		importanceRating: "3",
+		importancePrice: "4",
+		dataVolume: 100
+	});
+}
+
+searchFrm.addEventListener("submit", (e) => {
+	e.preventDefault();
+	
+	let searchData = $(e.target).serialize();
+
+	let checkSet = new Set();
+
+	document.querySelectorAll("form#searchFrm input[name^=importance]").forEach((v, i) => {
+		checkSet.add(Number(v.value));
+	});
+
+	console.log(checkSet);
+
+	if (checkSet.has(1) && checkSet.has(2) && checkSet.has(3) && checkSet.has(4)) {
+		searchEbook(searchData);
+	} else {
+		alert("각 정렬 기준의 중요도를 올바르게 배치해주세요(1 ~ 4까지 겹치지 않고 배치)");
+	}
+});
+
+function searchEbook(searchData) {
 	$.ajax({
-		url: contextPath + "/ebook/getEBooksFromAPI.do?" + "groupId=" + groupId + "&keyword=" + keyword,
+		url: contextPath + "/ebook/search.do",
+		type: "post",
+		data: searchData,
+		dataType: "json",
 		success: data => {
-			let dataJSON = new X2JS().xml_str2json(data);
-			console.log(dataJSON);
+			console.log(data);
 			
 			let main = document.getElementsByTagName("main")[0];
-			dataJSON.rss.channel.item.forEach((v,i) => {
+
+			document.querySelectorAll("main div.ebookItem").forEach((v, i) => {
+				v.remove();
+			});
+
+			data.forEach((v,i) => {
 				let ebookItem = document.createElement("div");
 				ebookItem.style.backgroundColor = "white";
 				ebookItem.style.width = "180px";
 				ebookItem.style.height = "230px";
+				ebookItem.classList.add("ebookItem");
 				ebookItem.addEventListener("click", () => {
 					location.assign(contextPath + "/ebook/pageEbookDetail.do");
 				});
@@ -45,12 +92,3 @@ const getEbookItems = (groupId, keyword) => {
 		}
 	});
 }
-
-window.onload = function() {
-	let hangulStr = "가나다라마바사아자차카타파하";
-	
-	for(let i=0;i<hangulStr.length;i++) {
-		getEbookItems("300060", hangulStr[i]);
-	}
-	
-};
