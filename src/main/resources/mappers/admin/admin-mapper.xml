@@ -15,6 +15,12 @@
 		<result column="DESCRIPTION" property="description"/>
 		<result column="LINK" property="link"/>
 		<result column="CATEGORY_CODE" property="categoryCode"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALES_VOLUME" property="salesVolume"/>
+		<result column="RATING" property="rating"/>
+		<result column="EBOOK_RATING" property="ebookRating"/>
+		<result column="EBOOK_SALES_VOLUME" property="ebookSalesVolume"/>
+		<result column="PRIME_COST" property="primeCost"/>
 		<association property="ebook" javaType="ebook">
 			<id column="EBOOK_NO" property="ebookNo"/>
 			<result column="FILEPATH" property="filepath"/>
@@ -38,6 +44,11 @@
 	<!--price조회컬럼 -->
 	<select id="searchBringPrice" resultMap="ebookDatabind">
 		SELECT PRICE FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+	
+	<!-- 출고전 재고확인 -->
+	<select id="checkStock1" resultMap="ebookDatabind">
+		SELECT STOCK FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
 	</select>
 	
 	<!-- 재고에서 -출고개수 -->

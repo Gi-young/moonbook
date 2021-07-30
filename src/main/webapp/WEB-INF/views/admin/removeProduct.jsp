@@ -210,9 +210,25 @@
 			}
 		});
 	});
-	const checkStock=()=>{
+	const checkStock=()=>{ //BOOK에서 재고가 있는지 확인, 재고가 출고할 양보다 작으면 return =false
 		let stock=$(".bringInputStock1").val(); //output할 stock 값임
-		
+		let bringNum=$(".bringNum1").val();
+		$.ajax({
+			url: "${path}/admin/checkStock1.do",
+			type: "GET",
+			data: {
+				bindNo: bringNum
+				stock: stock
+			},
+			success: data => {
+				if(data.result=="true"){
+					return true;
+				}else if(data.result="false"){
+					alert("해당하는 출고 개수보다 재고가 부족합니다")
+					return false;
+				}
+			}
+		});
 	}
 	
 	

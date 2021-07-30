@@ -69,19 +69,24 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public EbookDatabind searchBringPrice(SqlSession session, int bindNo) {
+	public EbookDatabind searchBringPrice(SqlSession session, int bindNo) { // 책가격 가져오기
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.searchBringPrice",bindNo);
 	}
+	@Override
+	public EbookDatabind checkStock1(SqlSession session, int bindNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.checkStock1",bindNo);
+	}
 
 	@Override
-	public int outputProduct1(SqlSession session, Map param) {
+	public int outputProduct1(SqlSession session, Map param) { //출고 book
 		// TODO Auto-generated method stub
 		return session.update("admin.outputProduct1",param);
 	}
 
 	@Override
-	public int updateSalesVolume1(SqlSession session, Map param) {
+	public int updateSalesVolume1(SqlSession session, Map param) { //출고후 판매량 +update 로직 book
 		// TODO Auto-generated method stub
 		return session.update("admin.updateSalesVolume1",param);
 	}

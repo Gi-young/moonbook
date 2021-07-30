@@ -27,7 +27,9 @@ public interface AdminService {
 	 
 	int updateProduct1(Map param); //입고
 	
-	EbookDatabind searchBringPrice(int bindNo); //가격 가져오는 로직
+	EbookDatabind searchBringPrice(int bindNo); //가격 가져오는 로직 book
+	
+	EbookDatabind checkStock1(int bindNo);
 	
 	int outputProduct1(Map param); //재고에서 -출고 개수
 	

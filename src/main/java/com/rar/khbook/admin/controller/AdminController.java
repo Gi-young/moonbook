@@ -217,6 +217,27 @@ public class AdminController {
 	}
 	//이익을 위한 가격 가져오기 기프트
 	
+	
+	//출고 전 재고 체크 book버전
+	@RequestMapping("/admin/checkStock1.do")
+	@ResponseBody
+	public boolean checkStock1(int bindNo,int stock) {
+		
+		EbookDatabind result=service.checkStock1(bindNo);
+		//수정, 업데이트 딜리트
+		//select  stock의 정수값
+		
+		
+		System.out.println("출고전 재고 체크:" +result);
+		System.out.println("출고전 output할 stock 체크:" +stock);
+		
+		if(result.getPrice()>=stock) { //형변환 어캐하지 
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	//출고
 	@RequestMapping("/admin/outputProduct1.do")
 	public ModelAndView outputProduct1(ModelAndView mv,@RequestParam Map param) {

@@ -31,6 +31,8 @@ public interface AdminDao {
 	
 	EbookDatabind searchBringPrice(SqlSession session,int bindNo); 
 	
+	EbookDatabind checkStock1(SqlSession session, int bindNo);
+	
 	int outputProduct1(SqlSession session,Map param);
 	
 	int updateSalesVolume1(SqlSession session,Map param);
