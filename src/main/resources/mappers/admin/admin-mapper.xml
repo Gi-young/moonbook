@@ -34,7 +34,7 @@
 	</resultMap>
 	
 	<insert id="insertProduct1">
-		INSERT INTO BOOK_EBOOK_DATABIND VALUES(SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,#{title},#{author},#{image},#{price},#{isbn},#{pubdate},#{publisher},#{description},#{link},#{categoryCode},0,0,0,0,0)
+		INSERT INTO BOOK_EBOOK_DATABIND VALUES(SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,#{title},#{author},#{image},#{price},#{isbn},#{pubdate},#{publisher},#{description},#{link},#{categoryCode},0,0,0,0,0,0)
 	</insert>
 	
 	<update id="updateProduct1">
