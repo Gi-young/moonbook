@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.common.PageFactory;
+import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -204,40 +205,59 @@ public class AdminController {
 		
 		return mv;
 	}
-//	@RequestMapping("/admin/outputProduct1.do")
-//	public ModelAndView outputProduct1(ModelAndView mv,@RequestParam Map param) {
-//		
-//		//상민님 판매량을 몇개 판매했다는 뜻인가요 아님 매출액의 price를 의미하는건가요
-//		
-//		//출고를 하려면 재고에서 -1 판매량에서 +1 해줘야 함
-//		//다만 배송상태를 넣지 않았음
-//		//판매량 계산을 해줘야 함
-//		//매출액 = 변동비 +고정비 +이익
-//		//판매량..계산.. (할인된 가격 * 출고 개수)+배송비= 물건 살 때의 고정비
-//		//이익 계산 (사람에게 팔 할인된 가격)-입고가= 이익 ※단 배송회사의 줄 돈은 고려 안했음 
-//		//잠시만 그러면 컬럼의 입고가가 필요함..미치겠음 등록 뜯어고칠 준비
-//		//해당하는 번호의 price를 hidden으로 넣고 들고 가야함
-//		int result=service.outputProduct1(param);
-//		
-//		String msg="";
-//		String loc="";
-//		if(result>0) {
-//			msg="출고가 정상적으로 처리되었습니다";
-//		}else {
-//			msg="출고가 실패되었습니다.";
-//		}
-//		loc="/admin/removeProductPage.do";
-//		
-//		
-//		mv.addObject("msg", msg);
-//		mv.addObject("loc", loc);
-//		mv.setViewName("common/msg");
-//		
-//		
-//		
-//		return mv;
-//		
-//	}
+	
+	//이익을 위한 가격 가져오기 책버전
+	@RequestMapping("/admin/bringPrice.do")
+	@ResponseBody
+	public EbookDatabind searchBringPrice(int bindNo) {
+		
+		EbookDatabind price1=service.searchBringPrice(bindNo);
+		
+		return price1;
+	}
+	//이익을 위한 가격 가져오기 기프트
+	
+	//출고
+	@RequestMapping("/admin/outputProduct1.do")
+	public ModelAndView outputProduct1(ModelAndView mv,@RequestParam Map param) {
+		
+		//판매량을 몇개 판매했다는 뜻
+		//출고를 하려면 재고에서 -출고 개수 
+		int result1=service.outputProduct1(param);
+		//판매량에서 +출고개수 해줘야 함
+		int result2=service.updateSalesVolume1(param);
+		//매출액계산 -->결제테이블에서 쏴주시기로 함 신경 쓸 필요 없음
+		
+		//이익 계산 ((사람에게 팔 할인된 가격)-입고가)*판매량= 이익  ※단 진짜 결제된 금액에서 차감, 쿠폰이 있어서
+		
+		//입고가 컬럼이 prime_cost(원가) 컬럼
+		//잠시만 그러면 컬럼의 입고가가 필요함..미치겠음 등록 뜯어고칠 준비
+		//출고 완료
+		
+		
+		//출고뒤 바로 이익컬럼에 이익 update
+		
+		String msg="";
+		String loc="";
+		if(result1>0 && result2>0) {
+			msg="출고가 정상적으로 처리되었습니다";
+		}else {
+			msg="출고가 실패되었습니다.";
+		}
+		loc="/admin/removeProductPage.do";
+		
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
+		
+		
+		
+		return mv;
+		
+	}
+	
+	//재고현황
 	
 	
 	

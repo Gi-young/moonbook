@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
@@ -26,7 +26,7 @@
 						<tr>
 							<th>타입</th>
 							<td>
-								<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="book" checked><label for="book" class="chooseBookAdd3">책등록</label>
+								<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="book" checked><label for="book" class="chooseBookAdd3">book</label>
 								<input class="chooseBookAdd6" type="radio" name="chooseBookAdd" id="gift" value="gift"><label for="gift" class="chooseBookAdd5">gift</label>
 							</td>
 						</tr>

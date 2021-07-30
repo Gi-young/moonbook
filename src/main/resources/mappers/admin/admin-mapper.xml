@@ -34,5 +34,21 @@
 	<update id="updateProduct1">
 		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK+#{stock} WHERE BIND_NO=#{bindNo}
 	</update>
-  
+	
+	<!--price조회컬럼 -->
+	<select id="searchBringPrice" resultMap="ebookDatabind">
+		SELECT PRICE FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+	
+	<!-- 재고에서 -출고개수 -->
+  	<update id="outputProduct1">
+  		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK-#{stock} WHERE BIND_NO=#{bindNo}
+  	</update>
+  	
+  	<!-- book판매량에서 +출고개수 -->
+  	<update id="updateSalesVolume1">
+  		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME=SALES_VOLUME+#{stock} WHERE BIND_NO=#{bindNo}
+  	</update>
+  	
+  	
 </mapper>

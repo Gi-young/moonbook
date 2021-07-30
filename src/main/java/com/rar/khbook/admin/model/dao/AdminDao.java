@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
+import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AdminDao {
@@ -28,8 +29,10 @@ public interface AdminDao {
 	
 	int updateProduct1(SqlSession session,Map param);
 	
+	EbookDatabind searchBringPrice(SqlSession session,int bindNo); 
 	
+	int outputProduct1(SqlSession session,Map param);
 	
-	
+	int updateSalesVolume1(SqlSession session,Map param);
 	
 }
