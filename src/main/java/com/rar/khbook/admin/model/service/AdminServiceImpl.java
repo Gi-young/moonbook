@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import com.rar.khbook.admin.model.dao.AdminDao;
+import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.member.model.vo.Member;
 
 @Service
@@ -61,6 +62,50 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.selectOrderList(session,cPage,numPerpage);
 	}
+
+	@Override
+	public int insertProduct1(Map param) {
+		// TODO Auto-generated method stub
+		return dao.insertProduct1(session,param);
+	}
+
+	@Override
+	public int updateProduct1(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateProduct1(session,param);
+	}
+
+	@Override
+	public EbookDatabind searchBringPrice(int bindNo) {
+		// TODO Auto-generated method stub
+		return dao.searchBringPrice(session,bindNo);
+	}
+
+	@Override
+	public int outputProduct1(Map param) {
+		// TODO Auto-generated method stub
+		return dao.outputProduct1(session,param);
+	}
+
+	@Override
+	public int updateSalesVolume1(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateSalesVolume1(session,param);
+	}
+
+	@Override
+	public EbookDatabind checkStock1(int bindNo) {
+		// TODO Auto-generated method stub
+		return dao.checkStock1(session,bindNo);
+	}
+	
+	
+	
+	
+
+	
+	
+	
 	
 	
 	

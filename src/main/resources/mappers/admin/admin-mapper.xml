@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "admin">
+  	
+  	
+  	<resultMap id="ebookDatabind" type="ebookDataBind">
+		<id column="BIND_NO" property="bindNo"/>
+		<result column="TITLE" property="title"/>
+		<result column="AUTHOR" property="author"/>
+		<result column="IMAGE" property="image"/>
+		<result column="PRICE" property="price"/>
+		<result column="ISBN" property="isbn"/>
+		<result column="PUBDATE" property="pubdate"/>
+		<result column="PUBLISHER" property="publisher"/>
+		<result column="DESCRIPTION" property="description"/>
+		<result column="LINK" property="link"/>
+		<result column="CATEGORY_CODE" property="categoryCode"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALES_VOLUME" property="salesVolume"/>
+		<result column="RATING" property="rating"/>
+		<result column="EBOOK_RATING" property="ebookRating"/>
+		<result column="EBOOK_SALES_VOLUME" property="ebookSalesVolume"/>
+		<result column="PRIME_COST" property="primeCost"/>
+		<association property="ebook" javaType="ebook">
+			<id column="EBOOK_NO" property="ebookNo"/>
+			<result column="FILEPATH" property="filepath"/>
+			<result column="SALES_VOLUME" property="salesVolume"/>
+		</association>
+	</resultMap>
+	
+	<resultMap id="ebook" type="ebook">
+		<result column="EBOOK_NO" property="ebookNo"/>
+		<result column="SALES_VOLUME" property="salesVolume"/>
+	</resultMap>
+	
+	<insert id="insertProduct1">
+		INSERT INTO BOOK_EBOOK_DATABIND VALUES(SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,#{title},#{author},#{image},#{price},#{isbn},#{pubdate},#{publisher},#{description},#{link},#{categoryCode},0,0,0,0,0,0)
+	</insert>
+	
+	<update id="updateProduct1">
+		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK+#{stock} WHERE BIND_NO=#{bindNo}
+	</update>
+	
+	<!--price조회컬럼 -->
+	<select id="searchBringPrice" resultMap="ebookDatabind">
+		SELECT PRICE FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+	
+	<!-- 출고전 재고확인 -->
+	<select id="checkStock1" resultMap="ebookDatabind">
+		SELECT STOCK FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+	
+	<!-- 재고에서 -출고개수 -->
+  	<update id="outputProduct1">
+  		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK-#{stock} WHERE BIND_NO=#{bindNo}
+  	</update>
+  	
+  	<!-- book판매량에서 +출고개수 -->
+  	<update id="updateSalesVolume1">
+  		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME=SALES_VOLUME+#{stock} WHERE BIND_NO=#{bindNo}
+  	</update>
+  	
+  	
+</mapper>

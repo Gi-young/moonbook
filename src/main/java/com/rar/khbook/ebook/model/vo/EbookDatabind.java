@@ -26,6 +26,11 @@ public class EbookDatabind {
 	private String description;
 	private String link;
 	private String categoryCode;
+	private int stock;
+	private int salesVolume;
+	private int rating;
+	private int ebookRating;
+	private int ebookSalesVolume;
+	private int primeCost;
 	private Ebook ebook;
-	
 }
