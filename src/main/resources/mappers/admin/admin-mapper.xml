@@ -3,7 +3,7 @@
 <mapper namespace = "admin">
   	
   	
-  	<resultMap id="ebookDatabind" type="ebookDataBind">
+  	<resultMap id="ebookDatabindMap" type="ebookDatabind">
 		<id column="BIND_NO" property="bindNo"/>
 		<result column="TITLE" property="title"/>
 		<result column="AUTHOR" property="author"/>
@@ -28,26 +28,26 @@
 		</association>
 	</resultMap>
 	
-	<resultMap id="ebook" type="ebook">
-		<result column="EBOOK_NO" property="ebookNo"/>
+	<resultMap id="ebookMap" type="ebook">
+		<id column="EBOOK_NO" property="ebookNo"/>
 		<result column="SALES_VOLUME" property="salesVolume"/>
 	</resultMap>
 	
 	<insert id="insertProduct1">
 		INSERT INTO BOOK_EBOOK_DATABIND VALUES(SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,#{title},#{author},#{image},#{price},#{isbn},#{pubdate},#{publisher},#{description},#{link},#{categoryCode},0,0,0,0,0,0)
 	</insert>
-	
+	<!-- 책입고 -->
 	<update id="updateProduct1">
-		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK+#{stock} WHERE BIND_NO=#{bindNo}
+		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK+#{stock},PRIME_COST=#{primeCost} WHERE BIND_NO=#{bindNo}
 	</update>
 	
 	<!--price조회컬럼 -->
-	<select id="searchBringPrice" resultMap="ebookDatabind">
+	<select id="searchBringPrice" resultMap="ebookDatabindMap">
 		SELECT PRICE FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
 	</select>
 	
 	<!-- 출고전 재고확인 -->
-	<select id="checkStock1" resultMap="ebookDatabind">
+	<select id="checkStock1" resultMap="ebookDatabindMap">
 		SELECT STOCK FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
 	</select>
 	

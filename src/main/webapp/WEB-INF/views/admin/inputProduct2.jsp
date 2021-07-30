@@ -49,7 +49,12 @@
 								<input type="number" min="1" name="stock">
 							</td>
 						</tr> 
-						
+						<tr>
+							<th>입고가</th>
+							<td>
+								<input type="number" min="0" name="primeCost">
+							</td>
+						</tr> 
 						<tr>
 							<td colspan="2">
 								<input type="submit" value="입고">
@@ -70,12 +75,17 @@
 							</td>
 						</tr>
 						<tr>
-							<th>추가할 재고</th>
+							<th>입고 개수</th>
 							<td>
 								<input type="number" min="1" name="stock">
 							</td>
 						</tr> 
-						
+						<tr>
+							<th>입고가</th>
+							<td>
+								<input type="number" min="0" name="primeCost">
+							</td>
+						</tr> 
 						<tr>
 							<td colspan="2">
 								<input type="submit" value="입고">

@@ -25,18 +25,19 @@
 						<table class="adminHowTable">
 							<tr>
 								<th>정렬방법</th>
+								
 								<td>
-								<select name="type1">
-									<option value="MEMBER_TOTAL_SALE" selected>총 매출</option>
-									<option value="MEMBER_POINT" >회원포인트</option>
-									<option value="MEMBER_VISIT" >방문횟수</option>
-								</select>
+									<input class="howASCSearch" type="radio" name="searchHow2" id="asc" value="ASC" checked><label for="asc">book</label>
+									<input class="howDESCSearch2" type="radio" name="searchHow2" id="desc" value="DESC"><label for="desc">gift</label>
+								</td>
+								<td style="display:flex;">
+								
+									<p>재고 </p> <input type="number" style="width:60px; height:27px;"><p> 이상 </p><input type="number" style="width:60px; height:27px;"><p> 미만 </p>
+								
 								</td>
 								<td>
-									<input class="howASCSearch" type="radio" name="searchHow2" id="asc" value="ASC" checked><label for="asc">오름차순</label>
-									<input class="howDESCSearch2" type="radio" name="searchHow2" id="desc" value="DESC"><label for="desc">내림차순</label>
+								<input type="button" value="조회하기" onclick="orderList();">
 								</td>
-								<td><input type="button" value="조회하기" onclick="orderList();"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
@@ -61,22 +62,22 @@
 					</div>
 			</div>
 			<div class="memberT-container">
-						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>명의 회원이 있습니다.</p>
-						<p class="memberTFont2">※ 전화번호, 주소, 회원 포인트, 회원 등급만 수정 가능합니다.</p>
+						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>개의 상품이 있습니다.</p>
+						<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
 						<table class="memberT">
 							
 							<tr>
-								<th>등록일</th>
-								<th>회원 아이디</th>
-								<th>회원 이름</th>
-								<th>회원 전화번호</th>
-								<th>회원 성별</th>
-								<th>회원 주소</th>
-								<th>회원 포인트</th>
-								<th>회원 등급</th>
-								<th>총 매출</th>
-								<th>방문 횟수</th>
+								<th>책 번호</th>
+								<th>책 제목</th>
+								<th>가격</th>
+								<th>ISBN</th>
+								<th>출판일</th>
+								<th>출판사</th>
+								<th>카테고리 코드</th>
+								<th>재고</th>
+								<th>판매량</th>
+								<th>평점</th>
 								<th>수정하기</th>
 								<th>삭제하기</th>
 							</tr>

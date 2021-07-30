@@ -231,14 +231,14 @@ public class AdminController {
 		System.out.println("출고전 재고 체크:" +result);
 		System.out.println("출고전 output할 stock 체크:" +stock);
 		
-		if(result.getPrice()>=stock) { //형변환 어캐하지 
+		if(result.getStock()>=stock) { 
 			return true;
 		}else {
 			return false;
 		}
 	}
 	
-	//출고
+	//책 출고
 	@RequestMapping("/admin/outputProduct1.do")
 	public ModelAndView outputProduct1(ModelAndView mv,@RequestParam Map param) {
 		
@@ -247,16 +247,12 @@ public class AdminController {
 		int result1=service.outputProduct1(param);
 		//판매량에서 +출고개수 해줘야 함
 		int result2=service.updateSalesVolume1(param);
-		//매출액계산 -->결제테이블에서 쏴주시기로 함 신경 쓸 필요 없음
+		//매출액계산 -->결제테이블에서 쏴주시기로 함 신경 쓸 필요 없음 -분석파트로 넘김
 		
-		//이익 계산 ((사람에게 팔 할인된 가격)-입고가)*판매량= 이익  ※단 진짜 결제된 금액에서 차감, 쿠폰이 있어서
+		//이익 계산 ((가격)-입고가)*판매량= 이익  ※단 진짜 결제된 금액에서 차감 -분석파트로 넘김
 		
 		//입고가 컬럼이 prime_cost(원가) 컬럼
-		//잠시만 그러면 컬럼의 입고가가 필요함..미치겠음 등록 뜯어고칠 준비
 		//출고 완료
-		
-		
-		//출고뒤 바로 이익컬럼에 이익 update
 		
 		String msg="";
 		String loc="";
@@ -272,14 +268,18 @@ public class AdminController {
 		mv.addObject("loc", loc);
 		mv.setViewName("common/msg");
 		
-		
-		
 		return mv;
 		
 	}
 	
 	//재고현황
-	
+	@RequestMapping("/admin/stockProductPage.do")
+	public ModelAndView stockProductPage(ModelAndView mv) {
+		
+		mv.setViewName("admin/stockProduct");
+		
+		return mv;
+	}
 	
 	
 	

@@ -27,7 +27,7 @@
 							<th>타입</th>
 							<td>
 								<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="book" checked><label for="book" class="chooseBookAdd3">book</label>
-								<input class="chooseBookAdd2" type="radio" name="chooseBookAdd" id="ebook" value="ebook" checked><label for="ebook" class="chooseBookAdd4">eBook</label>
+								<input class="chooseBookAdd2" type="radio" name="chooseBookAdd" id="ebook" value="ebook" ><label for="ebook" class="chooseBookAdd4">eBook</label>
 								<input class="chooseBookAdd6" type="radio" name="chooseBookAdd" id="gift" value="gift"><label for="gift" class="chooseBookAdd5">gift</label>
 							</td>
 						</tr>
@@ -35,7 +35,7 @@
 				</form>
 			</div>
 			<div class="addProduct-container3">
-				<form action="${path}/admin/outputProduct1.do" method="post">
+				<form action="${path}/admin/outputProduct1.do" method="post" id="targetFrm">
 					<table class="ChooseTable1">
 						<tr style="display:none">
 							<th>도서 가격</th>
@@ -58,7 +58,7 @@
 						
 						<tr>
 							<td colspan="2">
-								<input type="submit" onclick="checkStock();" value="출고">
+								<input type="submit" onclick="return checkStock(event);" value="출고">
 							</td>
 						</tr>
 					</table>
@@ -210,22 +210,25 @@
 			}
 		});
 	});
-	const checkStock=()=>{ //BOOK에서 재고가 있는지 확인, 재고가 출고할 양보다 작으면 return =false
+	const checkStock=(event)=>{ //BOOK에서 재고가 있는지 확인, 재고가 출고할 양보다 작으면 return =false
+		event.preventDefault();
 		let stock=$(".bringInputStock1").val(); //output할 stock 값임
 		let bringNum=$(".bringNum1").val();
+		
 		$.ajax({
 			url: "${path}/admin/checkStock1.do",
 			type: "GET",
 			data: {
-				bindNo: bringNum
+				bindNo: bringNum,
 				stock: stock
 			},
 			success: data => {
-				if(data.result=="true"){
+				console.log(data);
+				if(data.result){
+					//$("#targetFrm").submit();
 					return true;
-				}else if(data.result="false"){
-					alert("해당하는 출고 개수보다 재고가 부족합니다")
-					return false;
+				}else if(!data.result){
+					alert("해당하는 출고 개수보다 재고가 부족합니다");
 				}
 			}
 		});
