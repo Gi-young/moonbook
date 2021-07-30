@@ -236,6 +236,10 @@
 		SELECT COUNT(*) FROM EBOOK_LIKE WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
 	</select>
 	
+	<select id="checkShopped" resultType="_int">
+		SELECT COUNT(*) FROM EBOOK_SHOPPINGBASKET WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</select>
+	
 	<insert id="loveBook">
 		INSERT INTO EBOOK_LIKE VALUES(#{loginMemberId}, #{bindNo})
 	</insert>
@@ -243,5 +247,21 @@
 	<delete id="unloveBook">
 		DELETE FROM EBOOK_LIKE WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
 	</delete>
+	
+	<insert id="putInShoppingBasket">
+		INSERT INTO EBOOK_SHOPPINGBASKET VALUES(#{loginMemberId},#{bindNo})
+	</insert>
+	
+	<delete id="putOutShoppingBasket">
+		DELETE FROM EBOOK_SHOPPINGBASKET WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</delete>
+	
+	<select id="getMyBooksFromBasket" resultType="HashMap">
+		SELECT * FROM BOOK_EBOOK_DATABIND B, EBOOK E, EBOOK_SHOPPINGBASKET S WHERE S.EBOOK_NO=B.BIND_NO AND B.BIND_NO=E.EBOOK_NO(+) AND S.MEMBER_ID=#{loginMemberId}
+	</select>
+	
+	<insert id="writePurchaseLog">
+		INSERT INTO EBOOK_PURCHASE_HISTORY VALUES(SEQ_EBOOK_PURCHASE_HISTORY.NEXTVAL,#{impUid},#{merchantUid},#{memberId},#{payMethod},#{paidAmount},#{paidAt},#{pgProvider},#{receiptUrl},#{purchaseEbookNoList})
+	</insert>
 
 </mapper>

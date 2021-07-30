@@ -1,5 +1,6 @@
 package com.rar.khbook.ebook.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,6 +60,11 @@ public class EbookDaoImpl implements EbookDao {
 	}
 	
 	@Override
+	public int checkShopped(SqlSession session, Map param) {
+		return session.selectOne("ebook.checkShopped", param);
+	}
+	
+	@Override
 	public int loveBook(SqlSession session, Map param) {
 		return session.insert("ebook.loveBook", param);
 	}
@@ -66,6 +72,26 @@ public class EbookDaoImpl implements EbookDao {
 	@Override
 	public int unloveBook(SqlSession session, Map param) {
 		return session.delete("ebook.unloveBook", param);
+	}
+	
+	@Override
+	public int putInShoppingBasket(SqlSession session, Map param) {
+		return session.insert("ebook.putInShoppingBasket", param);
+	}
+	
+	@Override
+	public int putOutShoppingBasket(SqlSession session, Map param) {
+		return session.delete("ebook.putOutShoppingBasket", param);
+	}
+	
+	@Override
+	public List<HashMap> getMyBooksFromBasket(SqlSession session, String loginMemberId) {
+		return session.selectList("ebook.getMyBooksFromBasket", loginMemberId);
+	}
+	
+	@Override
+	public int writePurchaseLog(SqlSession session, Map param) {
+		return session.insert("ebook.writePurchaseLog", param);
 	}
 	
 }

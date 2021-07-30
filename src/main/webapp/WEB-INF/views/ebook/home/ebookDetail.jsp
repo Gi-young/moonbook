@@ -23,9 +23,10 @@
 		<p><c:out value="${ebookDatabind.categoryCode}"/></p>
 		
 		<input type="button" value="좋아요" onclick="loveOrUnlove();">
-		<input type="checkbox" id="checkLoved">
+		<input type="checkbox" id="checkLoved" onclick="return false;">
 		
 		<input type="button" value="장바구니에 넣기" onclick="putInShoppingBasket();">
+		<input type="checkbox" id="checkShopped" onclick="return false;">
 
 		<input type="hidden" id="bindNo" value="${ebookDatabind.bindNo}">
 	</main>

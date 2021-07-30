@@ -1,5 +1,6 @@
 package com.rar.khbook.ebook.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +24,18 @@ public interface EbookDao {
 	
 	int checkLoved(SqlSession session, Map param);
 	
+	int checkShopped(SqlSession session, Map param);
+	
 	int loveBook(SqlSession session, Map param);
 	
 	int unloveBook(SqlSession session, Map param);
+	
+	int putInShoppingBasket(SqlSession session, Map param);
+	
+	int putOutShoppingBasket(SqlSession session, Map param);
+	
+	List<HashMap> getMyBooksFromBasket(SqlSession session, String loginMemberId);
+	
+	int writePurchaseLog(SqlSession session, Map param);
 	
 }

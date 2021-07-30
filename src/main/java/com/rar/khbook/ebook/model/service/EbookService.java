@@ -1,5 +1,6 @@
 package com.rar.khbook.ebook.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +22,18 @@ public interface EbookService {
 	
 	int checkLoved(Map param);
 	
+	int checkShopped(Map param);
+	
 	int loveBook(Map param);
 	
 	int unloveBook(Map param);
+	
+	int putInShoppingBasket(Map param);
+	
+	int putOutShoppingBasket(Map param);
+	
+	List<HashMap> getMyBooksFromBasket(String loginMemberId);
+	
+	int writePurchaseLog(Map param);
 	
 }

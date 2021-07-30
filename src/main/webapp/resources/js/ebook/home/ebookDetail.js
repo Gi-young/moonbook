@@ -1,6 +1,9 @@
 let bindNo = document.getElementById("bindNo").value;
 
-window.onload = checkLoved;
+window.onload = function() {
+    checkLoved();
+    checkShopped();
+}
 
 function checkLoved() {
     let checkLoved = document.getElementById("checkLoved");
@@ -17,6 +20,26 @@ function checkLoved() {
                 checkLoved.checked = true;
             } else {
                 checkLoved.checked = false;
+            }
+        }
+    });
+}
+
+function checkShopped() {
+    let checkShopped = document.getElementById("checkShopped");
+    $.ajax({
+        url: contextPath + "/ebook/checkShopped.do",
+        type: "GET",
+        data: {
+            loginMemberId: loginMemberId,
+            bindNo: bindNo
+        },
+        success: data => {
+            console.log("shopped: " + data);
+            if(data > 0) {
+                checkShopped.checked = true;
+            } else {
+                checkShopped.checked = false;
             }
         }
     });
@@ -53,5 +76,31 @@ function loveOrUnlove() {
 }
 
 function putInShoppingBasket() {
-
+    let checkShopped = document.getElementById("checkShopped");
+    if (checkShopped.checked) {
+        $.ajax({
+            url: contextPath + "/ebook/putOutShoppingBasket.do",
+            type: "GET",
+            data: {
+                loginMemberId: loginMemberId,
+                bindNo: bindNo
+            },
+            success: data => {
+                console.log("From basket: " + data);
+            }
+        });
+    } else {
+        $.ajax({
+            url: contextPath + "/ebook/putInShoppingBasket.do",
+            type: "GET",
+            data: {
+                loginMemberId: loginMemberId,
+                bindNo: bindNo
+            },
+            success: data => {
+                console.log("To basket: " + data);
+            }
+        });
+    }
+    checkShopped.checked = !checkShopped.checked;
 }
