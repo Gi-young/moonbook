@@ -21,8 +21,8 @@ public class Gift {
 	private String gift_size;
 	private int gift_count;
 	private String gift_rowprice;
-	private int gift_safecount;
-	private int gift_discount;
+//	private int gift_safecount;
+//	private int gift_discount;
 	private int gift_giftcate_code;
 	
 }
