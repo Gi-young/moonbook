@@ -70,6 +70,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public int insertProduct3(Map param) {
+		// TODO Auto-generated method stub
+		return dao.insertProduct3(session, param);
+	}
+
+	@Override
 	public int updateProduct1(Map param) {
 		// TODO Auto-generated method stub
 		return dao.updateProduct1(session,param);

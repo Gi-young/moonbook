@@ -18,7 +18,12 @@
 		<result column="GIFT_FORSALE" property="giftForSale"/>
 		<result column="GIFT_ROWPRICE" property="giftRowPrice"/>
 		<result column="GIFT_GIFTCATE_CODE" property="giftGiftcateCode"/>
-		
+		<association property="giftcate" javaType="giftcate">
+			<id column="giftCateCode" property="giftCateCode"/>
+			<result column="GIFTCATE_NAME" property="giftCateName"/>
+			<result column="GIFTCATE_FIRSTREF" property="giftCateFirstRef"/>
+			<result column="GIFTCATE_SECONDREF" property="giftCateSecondRef"/>
+		</association>
 	</resultMap>
   	
   	<resultMap id="ebookDatabindMap" type="ebookDatabind">
@@ -50,10 +55,16 @@
 		<id column="EBOOK_NO" property="ebookNo"/>
 		<result column="SALES_VOLUME" property="salesVolume"/>
 	</resultMap>
-	
+	<!-- 책등록 -->
 	<insert id="insertProduct1">
 		INSERT INTO BOOK_EBOOK_DATABIND VALUES(SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,#{title},#{author},#{image},#{price},#{isbn},#{pubdate},#{publisher},#{description},#{link},#{categoryCode},0,0,0,0,0,0)
 	</insert>
+	
+	<!-- 기프트 등록 -->
+	<insert id="insertProduct3">
+		INSERT INTO GIFT VALUES(SEQ_GIFT_NO.NEXTVAL,#{giftImg},#{giftTitle},#{giftContent},#{giftPrice},#{giftMaker},#{giftMade},#{giftImport},#{giftAs},#{giftSize},0,#{giftForSale},0,#{giftGiftcateCode})
+	</insert>
+	
 	<!-- 책입고 -->
 	<update id="updateProduct1">
 		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK+#{stock},PRIME_COST=#{primeCost} WHERE BIND_NO=#{bindNo}

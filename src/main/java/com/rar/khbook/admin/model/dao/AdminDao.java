@@ -27,6 +27,8 @@ public interface AdminDao {
 	
 	int insertProduct1(SqlSession session,Map param);
 	
+	int insertProduct3(SqlSession session,Map param);	
+	
 	int updateProduct1(SqlSession session,Map param);
 	
 	EbookDatabind searchBringPrice(SqlSession session,int bindNo); 

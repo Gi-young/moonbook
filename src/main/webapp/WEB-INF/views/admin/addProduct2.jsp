@@ -163,8 +163,8 @@
 						<tr>
 							<th>수입여부</th>
 							<td>
-								<input class="chooseBookAdd" type="radio" name="GIFT_IMPORT" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
-								<input class="chooseBookAdd2" type="radio" name="GIFT_IMPORT" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
+								<input class="chooseBookAdd" type="radio" name="giftImport" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
+								<input class="chooseBookAdd2" type="radio" name="giftImport" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
 							</td>
 						</tr>
 						<tr>
@@ -176,44 +176,22 @@
 						<tr>
 							<th>치수</th>
 							<td>
-								<input type="text">
+								<input type="text" name="giftSize">
 							</td>
 						</tr>
-						<tr>
-							<th>수량</th>
-							<td>
-								<input type="number" min="1">
-							</td>
-						</tr>
+						
 						<tr>
 							<th>판매 여부</th>
 							<td>
-								<input class="chooseBookAdd" type="radio" name="GIFT_FORSALE" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
-								<input class="chooseBookAdd2" type="radio" name="GIFT_FORSALE" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
+								<input class="chooseBookAdd" type="radio" name="giftForSale" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
+								<input class="chooseBookAdd2" type="radio" name="giftForSale" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
 							</td>
 						</tr>
-						<tr>
-							<th>입고가</th>
-							<td>
-								<input type="number" min="1">
-							</td>
-						</tr>
-						<tr>
-							<th>안전재고</th>
-							<td>
-								<input type="number" min="1" >
-							</td>
-						</tr>
-						<tr>
-							<th>할인가</th>
-							<td>
-								<input type="number"  value="" id="discountPriceAd3" readonly>
-							</td>
-						</tr>
+						
 						<tr>
 							<th>카테고리 코드</th>
 							<td>
-								<input type="number" min="1" value="${categoryCode }" readonly>
+								<input type="number" min="1" value="${categoryCode }" name="giftGiftcateCode" readonly>
 							</td>
 						</tr>
 						<tr>

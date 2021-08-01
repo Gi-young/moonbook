@@ -185,6 +185,30 @@ public class AdminController {
 		
 		return mv;
 	}
+	//기프트 등록
+	@RequestMapping("/admin/insertProduct3.do")
+	public ModelAndView insertProduct3(ModelAndView mv,@RequestParam Map param,String categoryCode) {
+		
+		int result=service.insertProduct3(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="상품 등록이 정상적으로 처리되었습니다";
+		}else {
+			msg="상품 등록이 실패되었습니다.";
+		}
+		loc="/admin/addProductPage2.do?categoryCode="+categoryCode;
+		
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.addObject("categoryCode", categoryCode);
+		mv.setViewName("common/msg");
+		
+		return mv;
+		
+	}
 	@RequestMapping("/admin/updateProduct1.do")
 	public ModelAndView updateProduct1(ModelAndView mv,@RequestParam Map param) {
 		//책 입고
