@@ -97,7 +97,7 @@
                     <button>찜하기</button>
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
-                    <button class="naverPay">네이버페이</button>
+                    <button class="naverPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
         </div>
@@ -521,8 +521,8 @@
         //   centerMode : true,
         //   variableWidth : true,
         //   focusOnSelect : true,
-          pauseOnHover : true,
-          responsive: [ // 반응형 웹 구현 옵션
+          pauseOnHover : true
+          /* responsive: [ // 반응형 웹 구현 옵션
               {  
                   breakpoint: 1350, //화면 사이즈 960px
                   settings: {
@@ -537,7 +537,7 @@
                       slidesToShow:2 
                   } 
               }
-          ]
+          ] */
 
       });
     let slickBtn = $('.slick-dots li>button');
@@ -554,6 +554,19 @@
     $(hot).mouseout(function(){
         $(this).css("color","#696969");
     })
+    $("#kakaoPay").click(function(){
+    	$.ajax({
+    		url: '${path}/kakaopay.do',
+    		dataType:'json',
+    		success:function(data){   			
+    			console.log("정상 실행 : "+data.tid);
+    			window.open(data.next_redirect_pc_url);
+    		},
+    		error:function(error){
+    			console.log("에러 : "+error);
+    		}  		
+    	})
+    });
 </script>
 </body>
 </html>
