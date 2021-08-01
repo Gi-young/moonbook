@@ -127,71 +127,71 @@
 						<tr>
 							<th>상품 이미지</th>
 							<td>
-								<input type="text" name="giftImg">
+								<input type="text" name="gift_img">
 							</td>
 						</tr>
 						<tr>
 							<th>상품명</th>
 							<td>
-								<input type="text" name="giftTitle">
+								<input type="text" name="gift_title">
 							</td>
 						</tr>
 						<tr>
 							<th>상품 소개</th>
 							<td>
-								<input type="text" name="giftContent">
+								<input type="text" name="gift_content">
 							</td>
 						</tr>
 						<tr>
 							<th>가격</th>
 							<td>
-								<input type="number" min="10000" max="99000" class="bookPriceAd3" name="giftPrice">
+								<input type="number" min="10000" max="99000" class="bookPriceAd3" name="gift_price">
 							</td>
 						</tr>
 						<tr>
 							<th>제조사</th>
 							<td>
-								<input type="text" name="giftMaker">
+								<input type="text" name="gift_maker">
 							</td>
 						</tr>
 						<tr>
 							<th>제조국</th>
 							<td>
-								<input type="text" name="giftMade">
+								<input type="text" name="gift_made">
 							</td>
 						</tr>
 						<tr>
 							<th>수입여부</th>
 							<td>
-								<input class="chooseBookAdd" type="radio" name="giftImport" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
-								<input class="chooseBookAdd2" type="radio" name="giftImport" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
+								<input class="chooseBookAdd" type="radio" name="gift_import" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
+								<input class="chooseBookAdd2" type="radio" name="gift_import" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
 							</td>
 						</tr>
 						<tr>
 							<th>A/S및 소비자 상담</th>
 							<td>
-								<input type="text" name="giftAs">
+								<input type="text" name="gift_as">
 							</td>
 						</tr>
 						<tr>
 							<th>치수</th>
 							<td>
-								<input type="text" name="giftSize">
+								<input type="text" name="gift_size">
 							</td>
 						</tr>
 						
 						<tr>
 							<th>판매 여부</th>
 							<td>
-								<input class="chooseBookAdd" type="radio" name="giftForSale" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
-								<input class="chooseBookAdd2" type="radio" name="giftForSale" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
+								<input class="chooseBookAdd" type="radio" name="gift_for_sale" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
+								<input class="chooseBookAdd2" type="radio" name="gift_for_sale" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
 							</td>
 						</tr>
 						
 						<tr>
 							<th>카테고리 코드</th>
 							<td>
-								<input type="number" min="1" value="${categoryCode }" name="giftGiftcateCode" readonly>
+								<input type="number" min="1" value="${categoryCode }" name="gift_giftcate_code" readonly>
 							</td>
 						</tr>
 						<tr>

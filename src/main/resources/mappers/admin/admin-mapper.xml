@@ -4,20 +4,20 @@
   	
   	
   	<resultMap id="giftMap" type="gift">
-		<id column="GIFT_NO" property="giftNo"/>
-		<result column="GIFT_IMG" property="giftImg"/>
-		<result column="GIFT_TITLE" property="giftTitle"/>
-		<result column="GIFT_CONTENT" property="giftContent"/>
-		<result column="GIFT_PRICE" property="giftPrice"/>
-		<result column="GIFT_MAKER" property="giftMaker"/>
-		<result column="GIFT_MADE" property="giftMade"/>
-		<result column="GIFT_IMPORT" property="giftImport"/>
-		<result column="GIFT_AS" property="giftAs"/>
-		<result column="GIFT_SIZE" property="giftSize"/>
-		<result column="GIFT_COUNT" property="giftCount"/>
-		<result column="GIFT_FORSALE" property="giftForSale"/>
-		<result column="GIFT_ROWPRICE" property="giftRowPrice"/>
-		<result column="GIFT_GIFTCATE_CODE" property="giftGiftcateCode"/>
+		<id column="GIFT_NO" property="gift_no"/>
+		<result column="GIFT_IMG" property="gift_img"/>
+		<result column="GIFT_TITLE" property="gift_title"/>
+		<result column="GIFT_CONTENT" property="gift_content"/>
+		<result column="GIFT_PRICE" property="gift_price"/>
+		<result column="GIFT_MAKER" property="gift_maker"/>
+		<result column="GIFT_MADE" property="gift_made"/>
+		<result column="GIFT_IMPORT" property="gift_import"/>
+		<result column="GIFT_AS" property="gift_as"/>
+		<result column="GIFT_SIZE" property="gift_size"/>
+		<result column="GIFT_COUNT" property="gift_count"/>
+		<result column="GIFT_FORSALE" property="gift_for_sale"/>
+		<result column="GIFT_ROWPRICE" property="gift_rowprice"/>
+		<result column="GIFT_GIFTCATE_CODE" property="gift_giftcate_code"/>
 		<association property="giftcate" javaType="giftcate">
 			<id column="giftCateCode" property="giftCateCode"/>
 			<result column="GIFTCATE_NAME" property="giftCateName"/>
@@ -62,7 +62,7 @@
 	
 	<!-- 기프트 등록 -->
 	<insert id="insertProduct3">
-		INSERT INTO GIFT VALUES(SEQ_GIFT_NO.NEXTVAL,#{giftImg},#{giftTitle},#{giftContent},#{giftPrice},#{giftMaker},#{giftMade},#{giftImport},#{giftAs},#{giftSize},0,#{giftForSale},0,#{giftGiftcateCode})
+		INSERT INTO GIFT VALUES(SEQ_GIFT_NO.NEXTVAL,#{gift_img},#{gift_title},#{gift_content},#{gift_price},#{gift_maker},#{gift_made},#{gift_import},#{gift_as},#{gift_size},0,#{gift_for_sale},0,#{gift_giftcate_code})
 	</insert>
 	
 	<!-- 책입고 -->
