@@ -518,8 +518,8 @@
         //   centerMode : true,
         //   variableWidth : true,
         //   focusOnSelect : true,
-          pauseOnHover : true,
-          responsive: [ // 반응형 웹 구현 옵션
+          pauseOnHover : true
+          /* responsive: [ // 반응형 웹 구현 옵션
               {  
                   breakpoint: 1350, //화면 사이즈 960px
                   settings: {
@@ -534,7 +534,7 @@
                       slidesToShow:2 
                   } 
               }
-          ]
+          ] */
 
       });
     let slickBtn = $('.slick-dots li>button');
