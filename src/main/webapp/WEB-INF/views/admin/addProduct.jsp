@@ -160,24 +160,24 @@
 						<tr>
 							<th>전자기기</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909091')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=9')" value="등록">
 							</td>
 						</tr>
 						<tr>
 							<th>수납/정리</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909092')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=10')" value="등록">
 							</td>
 						</tr>
 						<tr>
 							<th>독서 필수템</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909093')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=11')" value="등록">
 							</td>
 						</tr><tr>
 							<th>잡화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=909094')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=12')" value="등록">
 							</td>
 						</tr>
 						
