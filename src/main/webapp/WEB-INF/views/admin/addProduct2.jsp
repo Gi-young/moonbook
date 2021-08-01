@@ -118,46 +118,46 @@
 			<div class="addProduct-container5" style="display:none;">
 				<form action="${path}/admin/insertProduct3.do" method="post">
 					<table class="ChooseTable3">
-						<tr>
+						<!-- <tr>
 							<th>상품 번호</th>
 							<td>
 								<input type="number" min="1">
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th>상품 이미지</th>
 							<td>
-								<input type="text">
+								<input type="text" name="giftImg">
 							</td>
 						</tr>
 						<tr>
 							<th>상품명</th>
 							<td>
-								<input type="text">
+								<input type="text" name="giftTitle">
 							</td>
 						</tr>
 						<tr>
 							<th>상품 소개</th>
 							<td>
-								<input type="text">
+								<input type="text" name="giftContent">
 							</td>
 						</tr>
 						<tr>
 							<th>가격</th>
 							<td>
-								<input type="number" min="10000" max="99000" class="bookPriceAd3">
+								<input type="number" min="10000" max="99000" class="bookPriceAd3" name="giftPrice">
 							</td>
 						</tr>
 						<tr>
 							<th>제조사</th>
 							<td>
-								<input type="text">
+								<input type="text" name="giftMaker">
 							</td>
 						</tr>
 						<tr>
 							<th>제조국</th>
 							<td>
-								<input type="text">
+								<input type="text" name="giftMade">
 							</td>
 						</tr>
 						<tr>
@@ -170,7 +170,7 @@
 						<tr>
 							<th>A/S및 소비자 상담</th>
 							<td>
-								<input type="text">
+								<input type="text" name="giftAs">
 							</td>
 						</tr>
 						<tr>

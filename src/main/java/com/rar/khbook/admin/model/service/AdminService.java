@@ -34,4 +34,7 @@ public interface AdminService {
 	int outputProduct1(Map param); //재고에서 -출고 개수
 	
 	int updateSalesVolume1(Map param); //판매량 +출고 개수
+	
+	List<EbookDatabind> selectEbookDatabindList(int cPage,int numPerpage);//재고 구하기
+	int selectEbookDataCount();
 }

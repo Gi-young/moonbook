@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.common.PageFactory;
+import com.rar.khbook.ebook.controller.EbookController;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -274,8 +275,17 @@ public class AdminController {
 	
 	//재고현황
 	@RequestMapping("/admin/stockProductPage.do")
-	public ModelAndView stockProductPage(ModelAndView mv) {
+	public ModelAndView stockProductPage(@RequestParam(value="cPage",defaultValue="1") int cPage,
+										 @RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
 		
+		List<EbookDatabind> listT=service.selectEbookDatabindList(cPage,numPerpage);
+		
+		mv.addObject("list", listT);
+		
+		int totalData=service.selectEbookDataCount();
+		
+		mv.addObject("totalContents", totalData);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage,"stockProductPage.do"));
 		mv.setViewName("admin/stockProduct");
 		
 		return mv;

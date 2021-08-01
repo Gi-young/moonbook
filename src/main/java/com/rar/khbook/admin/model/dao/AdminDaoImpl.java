@@ -91,6 +91,21 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.updateSalesVolume1",param);
 	}
 	//잠만 ebook은 입고는 공통인데 출고가 다름 ebook은 판매량+1만 하면됨
+
+	//재고현황
+	@Override
+	public List<EbookDatabind> selectEbookDatabindList(SqlSession session, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.selectEbookDatabindList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int selectEbookDataCount(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectEbookDataCount");
+	}
+	
+	
 	
 	
 	

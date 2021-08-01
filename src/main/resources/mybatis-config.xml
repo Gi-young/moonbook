@@ -30,6 +30,7 @@
 	
 		<typeAlias type="com.rar.khbook.order.model.vo.Order" alias="order"/>
 
+		<typeAlias type="com.rar.khbook.gift.model.vo.Gift" alias="gift"/>
 	</typeAliases>
 
 </configuration>

@@ -3,6 +3,24 @@
 <mapper namespace = "admin">
   	
   	
+  	<resultMap id="giftMap" type="gift">
+		<id column="GIFT_NO" property="giftNo"/>
+		<result column="GIFT_IMG" property="giftImg"/>
+		<result column="GIFT_TITLE" property="giftTitle"/>
+		<result column="GIFT_CONTENT" property="giftContent"/>
+		<result column="GIFT_PRICE" property="giftPrice"/>
+		<result column="GIFT_MAKER" property="giftMaker"/>
+		<result column="GIFT_MADE" property="giftMade"/>
+		<result column="GIFT_IMPORT" property="giftImport"/>
+		<result column="GIFT_AS" property="giftAs"/>
+		<result column="GIFT_SIZE" property="giftSize"/>
+		<result column="GIFT_COUNT" property="giftCount"/>
+		<result column="GIFT_FORSALE" property="giftForSale"/>
+		<result column="GIFT_ROWPRICE" property="giftRowPrice"/>
+		<result column="GIFT_GIFTCATE_CODE" property="giftGiftcateCode"/>
+		
+	</resultMap>
+  	
   	<resultMap id="ebookDatabindMap" type="ebookDatabind">
 		<id column="BIND_NO" property="bindNo"/>
 		<result column="TITLE" property="title"/>
@@ -61,5 +79,11 @@
   		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME=SALES_VOLUME+#{stock} WHERE BIND_NO=#{bindNo}
   	</update>
   	
+  	<select id="selectEbookDatabindList" resultMap="ebookDatabindMap">
+  		SELECT * FROM BOOK_EBOOK_DATABIND
+  	</select>
+  	<select id="selectEbookDataCount" resultType="_int">
+  		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND
+  	</select>
   	
 </mapper>

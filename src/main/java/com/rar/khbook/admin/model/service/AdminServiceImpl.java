@@ -98,6 +98,18 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.checkStock1(session,bindNo);
 	}
+
+	@Override
+	public List<EbookDatabind> selectEbookDatabindList(int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.selectEbookDatabindList(session,cPage,numPerpage);
+	}
+
+	@Override
+	public int selectEbookDataCount() {
+		// TODO Auto-generated method stub
+		return dao.selectEbookDataCount(session);
+	}
 	
 	
 	

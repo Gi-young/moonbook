@@ -37,4 +37,7 @@ public interface AdminDao {
 	
 	int updateSalesVolume1(SqlSession session,Map param);
 	
+	List<EbookDatabind> selectEbookDatabindList(SqlSession session,int cPage,int numPerpage);
+	int selectEbookDataCount(SqlSession session);
+	
 }

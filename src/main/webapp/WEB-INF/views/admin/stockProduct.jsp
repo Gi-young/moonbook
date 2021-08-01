@@ -8,7 +8,7 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/admin/adminMemberPage.css">
+<link rel="stylesheet" href="${path}/resources/css/admin/stockProduct.css">
 
 
 <div class="admin-container">
@@ -27,12 +27,12 @@
 								<th>정렬방법</th>
 								
 								<td>
-									<input class="howASCSearch" type="radio" name="searchHow2" id="asc" value="ASC" checked><label for="asc">book</label>
-									<input class="howDESCSearch2" type="radio" name="searchHow2" id="desc" value="DESC"><label for="desc">gift</label>
+									<input class="howASCSearch" type="radio" name="HowStockT" id="stockBookT" value="stockBookT" checked><label for="stockBookT">book</label>
+									<input class="howDESCSearch2" type="radio" name="HowStockT" id="stockGiftT" value="stockGiftT"><label for="stockGiftT">gift</label>
 								</td>
-								<td style="display:flex;">
+								<td>
 								
-									<p>재고 </p> <input type="number" style="width:60px; height:27px;"><p> 이상 </p><input type="number" style="width:60px; height:27px;"><p> 미만 </p>
+									<span>재고 </span> <input type="number" style="width:60px; height:27px;"><span> 이상 </span><input type="number" style="width:60px; height:27px;"><span> 미만 </span>
 								
 								</td>
 								<td>
@@ -43,8 +43,8 @@
 								<th>검색하기</th>
 								<td class="admin-search2">
 								<select name="type2">
-									<option value="MEMBER_ID" selected>Id</option>
-									<option value="MEMBER_NAME" >Name</option>
+									<option value="" selected>책 제목</option>
+									<option value="" >책 번호</option>
 								</select>
 								</td>
 								<td class="search-box">
@@ -61,8 +61,8 @@
 				</form>
 					</div>
 			</div>
-			<div class="memberT-container">
-						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>개의 상품이 있습니다.</p>
+			<div class="stockT-container">
+						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>개의 책이 있습니다.</p>
 						<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
 						<table class="memberT">
@@ -70,14 +70,14 @@
 							<tr>
 								<th>책 번호</th>
 								<th>책 제목</th>
+								<th>저자</th>
 								<th>가격</th>
 								<th>ISBN</th>
-								<th>출판일</th>
 								<th>출판사</th>
 								<th>카테고리 코드</th>
 								<th>재고</th>
 								<th>판매량</th>
-								<th>평점</th>
+								<th>eBook판매량</th>
 								<th>수정하기</th>
 								<th>삭제하기</th>
 							</tr>
@@ -85,23 +85,82 @@
 							
 							<c:forEach var="e" items="${list }">
 							<tr>
-									<td><input type="text" value="${e.memberRegiDate }" name="memberRegiDate" readonly></td>
-									<td><input type="text" value="${e.memberId }" name="memberId" readonly></td>
-									<td><input type="text" value="${e.memberName }" name="memberName" readonly></td>
-									<td><input type="text" value="${e.memberPhone }" name="memberPhone"></td>
-									<td><input type="text" value="${e.memberGender }" name="memberGender" readonly></td>
-									<td><input type="text" value="${e.memberAddress }" name="memberAddress"></td>
-									<td><input type="text" value="${e.memberPoint }" name="memberPoint"></td>
-									<td><input type="text" value="${e.memberGradeNo }" name="memberGradeNo"></td>
-									<td><input type="text" value="${e.memberTotalSale }" name="memberTotalSale" readonly></td>
-									<td><input type="text" value="${e.memberVisit }" name="memberVisit" readonly></td>
+									<td><input type="text" value="${e.bindNo }" name="bindNo" readonly></td>
+									<td><input type="text" value="${e.title }" name="title" ></td>
+									<td><input type="text" value="${e.author }" name="author" readonly></td>
+									<td><input type="text" value="${e.price }" name="price"></td>
+									<td><input type="text" value="${e.isbn }" name="isbn" readonly></td>
+									<td><input type="text" value="${e.publisher }" name="publisher"></td>
+									<td><input type="text" value="${e.categoryCode }" name="categoryCode"></td>
+									<td><input type="text" value="${e.stock }" name="stock" readonly></td>
+									<td><input type="text" value="${e.salesVolume }" name="salesVolume" readonly></td>
+									<td><input type="text" value="${e.ebookSalesVolume }" name="ebookSalesVolume" readonly></td>
 									<td>
 										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
 									</td>
 									
 									<td>
 										
-											<input type="hidden" value="${e.memberId }" name="memberId" readonly>
+											<input type="hidden" value="${e.bindNo }" name="bindNo" readonly>
+											
+											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
+											
+									
+										</td>
+								
+							</tr>
+							</c:forEach>
+							
+
+						</table>
+						<!-- </form> -->
+						
+						<div id="pagebar-container">
+			        		${pageBar }
+			        	</div> 
+			        
+					</div>
+					<div class="stockT-container2" style="display:none;">
+						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>개의 상품이 있습니다.</p>
+						<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
+						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
+						<table class="memberT">
+							
+							<tr>
+								<th>상품 번호</th>
+								<th>상품명</th>
+								<th>가격</th>
+								<th>제조사</th>
+								<th>제조국</th>
+								<th>수입여부</th>
+								<th>재고</th>
+								<th>판매여부</th>
+								<th>카테고리코드</th>
+								<th>eBook판매량</th>
+								<th>수정하기</th>
+								<th>삭제하기</th>
+							</tr>
+							
+							
+							<c:forEach var="e" items="${list }">
+							<tr>
+									<td><input type="text" value="${e.bindNo }" name="bindNo" readonly></td>
+									<td><input type="text" value="${e.title }" name="title" ></td>
+									<td><input type="text" value="${e.author }" name="author" readonly></td>
+									<td><input type="text" value="${e.price }" name="price"></td>
+									<td><input type="text" value="${e.isbn }" name="isbn" readonly></td>
+									<td><input type="text" value="${e.publisher }" name="publisher"></td>
+									<td><input type="text" value="${e.categoryCode }" name="categoryCode"></td>
+									<td><input type="text" value="${e.stock }" name="stock" readonly></td>
+									<td><input type="text" value="${e.salesVolume }" name="salesVolume" readonly></td>
+									<td><input type="text" value="${e.ebookSalesVolume }" name="ebookSalesVolume" readonly></td>
+									<td>
+										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
+									</td>
+									
+									<td>
+										
+											<input type="hidden" value="${e.bindNo }" name="bindNo" readonly>
 											
 											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
 											
@@ -126,6 +185,19 @@
 
 
 <script>
+$("input[name=HowStockT]").click(e=>{
+	$("input[name=HowStockT]").each((i,v)=>{
+		if(v.checked){
+			if(v.value=="stockBookT"){
+				$(".stockT-container").css("display","block");
+				$(".stockT-container2").css("display","none");
+			}else{
+				$(".stockT-container").css("display","none");
+				$(".stockT-container2").css("display","block");
+			}
+		}
+	})
+})
 function adMemberDelete(event){
 	let memberId=$(event.target).prev().val();
 	

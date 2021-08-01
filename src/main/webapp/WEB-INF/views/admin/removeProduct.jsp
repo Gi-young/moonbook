@@ -7,7 +7,7 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/admin/addProduct2.css">
+<link rel="stylesheet" href="${path}/resources/css/admin/removeProduct.css">
 
 <div class="addProduct-container">
 	<div class="addProduct-box1">
@@ -225,8 +225,8 @@
 			success: data => {
 				console.log(data);
 				if(data.result){
-					//$("#targetFrm").submit();
-					return true;
+					$("#targetFrm").submit();
+					//return true;
 				}else if(!data.result){
 					alert("해당하는 출고 개수보다 재고가 부족합니다");
 				}
