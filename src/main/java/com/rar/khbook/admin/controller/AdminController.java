@@ -133,16 +133,17 @@ public class AdminController {
 		return mv;
 	}
 	//제품관리 페이지 시작
-	//등록
+	//등록 전환용 페이지
 	@RequestMapping("/admin/addProductPage.do")
 	public ModelAndView addProductPage(ModelAndView mv) {
 		
 		mv.setViewName("admin/addProduct");
 		return mv;
 	}
+	//등록할 내용 페이지
 	@RequestMapping("/admin/addProductPage2.do")
 	public ModelAndView addProductPage2(ModelAndView mv,int categoryCode) {
-		
+		System.out.println("페이지 전환로직"+categoryCode);
 		mv.addObject("categoryCode", categoryCode);
 		mv.setViewName("admin/addProduct2");
 		return mv;
@@ -150,7 +151,6 @@ public class AdminController {
 	//입고
 	@RequestMapping("/admin/inputProductPage2.do")
 	public ModelAndView inputProductPage2(ModelAndView mv) {
-		
 			mv.setViewName("admin/inputProduct2");
 			return mv;
 	}
@@ -187,7 +187,7 @@ public class AdminController {
 	}
 	//기프트 등록
 	@RequestMapping("/admin/insertProduct3.do")
-	public ModelAndView insertProduct3(ModelAndView mv,@RequestParam Map param,String categoryCode) {
+	public ModelAndView insertProduct3(ModelAndView mv,@RequestParam Map param,int gift_giftcate_code) {
 		
 		int result=service.insertProduct3(param);
 		
@@ -198,12 +198,13 @@ public class AdminController {
 		}else {
 			msg="상품 등록이 실패되었습니다.";
 		}
-		loc="/admin/addProductPage2.do?categoryCode="+categoryCode;
+		System.out.println("기프트 등록 끝난후"+gift_giftcate_code);
+		loc="/admin/addProductPage2.do?categoryCode="+gift_giftcate_code;
 		
 		
 		mv.addObject("msg", msg);
 		mv.addObject("loc", loc);
-		mv.addObject("categoryCode", categoryCode);
+		mv.addObject("categoryCode", gift_giftcate_code);
 		mv.setViewName("common/msg");
 		
 		return mv;
