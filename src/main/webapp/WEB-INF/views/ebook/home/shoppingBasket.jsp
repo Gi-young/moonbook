@@ -12,8 +12,14 @@
 	
 	<main>
 		<p>장바구니</p>
+		<div><span id="totalPrice">0</span>원</div>
+		
 		<button id="payBtn">결제</button>
+		<button id="payTest">결제 테스트</button>
 		<button id="refundBtn">환불</button>
+		
+		<input type="checkbox" id="checkAll">
+		<label for="checkAll">모두 체크 / 해제</label>
 	</main>
 	
 	<input type="hidden" id="contextPath" value="${path}"/>

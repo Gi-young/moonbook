@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
 
@@ -1536,4 +1536,4 @@ transition: all 0.2s linear;
 
 </section>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

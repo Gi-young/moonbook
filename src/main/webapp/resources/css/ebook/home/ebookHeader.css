@@ -9,6 +9,9 @@ a {
 }
 
 nav.portal-navbar {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
 	background-color: ivory;
 }
 

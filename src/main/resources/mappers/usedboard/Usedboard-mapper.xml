@@ -11,7 +11,7 @@
 		<result column="usedboard_Date" property="usedboard_Date"/>
 		<result column="usedboard_Price" property="usedboard_Price"/>
 		<result column="usedboard_State" property="usedboard_State"/>
-		<result column="usedboard_Category" property="usedboard_Category"/>
+		<result column="usedboard_Category" property="usedboard_Category" typeHandler="strArr"/>
 		<result column="member_Id" property="member_Id"/>
 		<result column="usedboard_BookTitle" property="usedboard_BookTitle"/>
 		<collection property="usedboardfiles" resultMap="usedboardfileMap"></collection>
@@ -51,4 +51,43 @@
 	<insert id="insertUsedcomment">
 		INSERT INTO USEDCOMMENT VALUES(SEQ_USEDCOMMENT_NO.NEXTVAL,#{usedcomment_Content},SYSDATE,#{usedcomment_Level},#{usedcomment_UserId},#{usedcomment_CommentRef},#{usedbaord_No})
 	</insert>
+	
+	<delete id="deleteUsedcomment">
+		DELETE FROM USEDCOMMENT WHERE USEDCOMMENT_NO=${value}
+	</delete>
+	
+	<delete id="deleteUsedcommentRef">
+		DELETE FROM USEDCOMMENT WHERE USEDCOMMENT_COMMENTREF=${value}
+	</delete>
+	
+	<update id="usedboardUpdateEnd">
+		UPDATE USEDBOARD SET USEDBOARD_TITLE=#{usedboard_Title},USEDBOARD_CONTENT=#{usedboard_Content}, USEDBOARD_CATEGORY=#{usedboard_Category, typeHandler=strArr} WHERE USEDBOARD_NO=#{usedboard_No} 
+	</update>
+	
+	<insert id="usedboardInsertEnd">
+		INSERT INTO USEDBOARD VALUES(SEQ_USEDBOARD.NEXTVAL,#{usedboard_Title},#{usedboard_Content},SYSDATE,#{usedboard_Price},'y',#{usedboard_Category, typeHandler=strArr},#{member_Id},#{usedboard_BookTitle})
+		<selectKey keyProperty="usedboard_No" resultType="_int" order="AFTER">
+			SELECT SEQ_USEDBOARD.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<insert id="usedboardfileInsertEnd">	
+		INSERT INTO USEDBOARDFILE VALUES(#{usedboardfile_Oriname},#{usedboardfile_Rename},#{usedboard_No},SEQ_USEDBOARDFILE.NEXTVAL)
+	</insert>
+	
+	<delete id="usedboardDelete">
+		DELETE FROM USEDBOARD WHERE USEDBOARD_NO=${value}
+	</delete>
+	
+	<delete id="usedcommentDelete">
+		DELETE FROM USEDCOMMENT WHERE USEDBOARD_NO=${value}
+	</delete>
+	
+	<delete id="usedboardfileDelete">
+		DELETE FROM USEDBOARDFILE WHERE USEDBOARD_NO=${value}
+	</delete>
+	
+	<select id="usedboardfileSelect" resultMap="usedboardfileMap">
+		SELECT * FROM USEDBOARDFILE WHERE USEDBOARD_NO=${value}
+	</select>
 </mapper>

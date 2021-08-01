@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <jsp:include page="/WEB-INF/views/ebook/home/ebookHeader.jsp">
 	<jsp:param name="title" value="문곰e북"/>
+	<jsp:param name="shoppingBasketLoginCheck" value="${shoppingBasketLoginCheck}"/>
 </jsp:include>
-	
+
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHome.css">
 	<main>
 		<form id="searchFrm">
@@ -22,6 +22,7 @@
 				</select>
 				
 				<select id="categoryCode" name="categoryCode">
+					<option value="111111">구현된 e북</option>
 					<option value="100020010">한국고전소설</option>
 					<option value="100020020" selected>세계문학</option>
 					<option value="100020030">세계고전</option>
@@ -79,10 +80,6 @@
 		</form>
 	</main>
 	
-	<input type="hidden" id="contextPath" value="${path}"/>
-	
-	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
-	<script src = "${path}/resources/js/ebook/xml2json.js"></script>
 	<script src="${path}/resources/js/ebook/home/ebookHome.js"></script>
 	
 <jsp:include page="/WEB-INF/views/ebook/home/ebookFooter.jsp"/>

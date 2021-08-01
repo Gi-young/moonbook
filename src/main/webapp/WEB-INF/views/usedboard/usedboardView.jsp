@@ -21,8 +21,8 @@
             </span>
             <span class="desc_subjeck">
                 <a href="${path}/usedboard/usedboardList.do" id="gomain" role="button" class="btnbtn_1" style="font-size: 15px; cursor: pointer;">목록</a>
-                <a href="" role="button" class="btnbtn_2" style="font-size: 15px;">수정</a>
-                <a id="deletebtn" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">삭제</a>
+                <a href="${path}/usedboard/usedboardUpdate.do?no=${no}" role="button" class="btnbtn_2" style="font-size: 15px;">수정</a>
+                <a href="${path}/usedboard/usedboardDelete.do?no=${no}" id="deletebtn" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">삭제</a>
             </span>
         </div>
         <br>
@@ -72,7 +72,7 @@
                             <strong class="reply_st">
                                 <span class="txt_de" style="font-size: 20px;">${r.usedcomment_Content }</span>
                             </strong>
-                            <button onclick="" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
+                            <button onclick="location.assign('${path}/usedboard/deleteUsedcomment.do?usedcomment_No=${r.usedcomment_No }&usedbaord_No=${no }');" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
                             <button class="btn-reply" style="font-size: 20px;" value="${r.usedcomment_No }">답글</button>
                         </div>
                     </li>
@@ -92,7 +92,7 @@
                             <strong class="reply_st">
                                 <span class="txt_de" style="font-size: 20px;">${r2.usedcomment_Content }</span>
                             </strong>
-                            <button onclick="" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
+                            <button onclick="location.assign('${path}/usedboard/deleteUsedcomment.do?usedcomment_No=${r2.usedcomment_No }&usedbaord_No=${no }');" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
                         </div>
                     </li>
                 </ul>

@@ -3,6 +3,7 @@ package com.rar.khbook.usedboard.model.service;
 import java.util.List;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 public interface UsedboardService {
@@ -21,4 +22,16 @@ public interface UsedboardService {
 	List<Usedcomment> selectReply(int no);
 	
 	int insertUsedcomment(Usedcomment c);
+	
+	int deleteUsedcomment(int commentNo);
+	
+	int deleteUsedcommentRef(int commentNo);
+	
+	int usedboardUpdateEnd(Usedboard b);
+	
+	int usedboardInsertEnd(Usedboard b) throws Exception;
+	
+	int usedboardDelete(int no);
+	
+	List<Usedboardfile> usedboardfileSelect(int no);
 }
