@@ -23,7 +23,8 @@ public interface AdminService {
 	
 	List<Order> selectOrderList(int cPage,int numPerpage);
 	
-	int insertProduct1(Map param); //등록
+	int insertProduct1(Map param); // 책등록
+	int insertProduct3(Map param); // 상품등록
 	 
 	int updateProduct1(Map param); //입고
 	

@@ -63,6 +63,12 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
+	public int insertProduct3(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("admin.insertProduct3",param);
+	}
+
+	@Override
 	public int updateProduct1(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		return session.update("admin.updateProduct1",param);

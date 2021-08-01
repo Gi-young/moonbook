@@ -16,4 +16,5 @@ public class Gift {
 	private String giftForSale;
 	private int giftRowPrice;
 	private int giftGiftcateCode;
+	private GiftCate giftcate;
 }
