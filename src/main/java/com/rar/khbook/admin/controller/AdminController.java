@@ -14,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.common.PageFactory;
-import com.rar.khbook.ebook.controller.EbookController;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -140,12 +140,18 @@ public class AdminController {
 		mv.setViewName("admin/addProduct");
 		return mv;
 	}
-	//등록할 내용 페이지
+	//등록할 책 페이지 
 	@RequestMapping("/admin/addProductPage2.do")
 	public ModelAndView addProductPage2(ModelAndView mv,int categoryCode) {
-		System.out.println("페이지 전환로직"+categoryCode);
 		mv.addObject("categoryCode", categoryCode);
 		mv.setViewName("admin/addProduct2");
+		return mv;
+	}
+	//등록할 상품 페이지 
+	@RequestMapping("/admin/addProductPage3.do")
+	public ModelAndView addProductPage3(ModelAndView mv,int categoryCode) {
+		mv.addObject("categoryCode", categoryCode);
+		mv.setViewName("admin/addProduct3");
 		return mv;
 	}
 	//입고
@@ -198,8 +204,7 @@ public class AdminController {
 		}else {
 			msg="상품 등록이 실패되었습니다.";
 		}
-		System.out.println("기프트 등록 끝난후"+gift_giftcate_code);
-		loc="/admin/addProductPage2.do?categoryCode="+gift_giftcate_code;
+		loc="/admin/addProductPage3.do?categoryCode="+gift_giftcate_code;
 		
 		
 		mv.addObject("msg", msg);
@@ -231,6 +236,29 @@ public class AdminController {
 		
 		return mv;
 	}
+	//기프트 입고
+	@RequestMapping("/admin/updateProduct3.do")
+	public ModelAndView updateProduct3(ModelAndView mv,@RequestParam Map param) {
+		
+		int result=service.updateProduct3(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="입고가 정상적으로 처리되었습니다";
+		}else {
+			msg="입고가 실패되었습니다.";
+		}
+		loc="/admin/inputProductPage2.do";
+		
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
 	
 	//이익을 위한 가격 가져오기 책버전
 	@RequestMapping("/admin/bringPrice.do")
@@ -304,13 +332,20 @@ public class AdminController {
 										 @RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
 		
 		List<EbookDatabind> listT=service.selectEbookDatabindList(cPage,numPerpage);
+		List<Gift> listT2=service.selectGiftList(cPage,numPerpage);
 		
 		mv.addObject("list", listT);
+		mv.addObject("list2", listT2);
 		
 		int totalData=service.selectEbookDataCount();
+		int totalData2=service.selectGiftCount();
 		
 		mv.addObject("totalContents", totalData);
+		mv.addObject("totalContents2", totalData2);
+		
 		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage,"stockProductPage.do"));
+		mv.addObject("pageBar2",PageFactory.getPageBar(totalData2, cPage, numPerpage,"stockProductPage.do"));
+		
 		mv.setViewName("admin/stockProduct");
 		
 		return mv;

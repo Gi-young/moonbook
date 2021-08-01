@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AdminService {
@@ -26,7 +27,8 @@ public interface AdminService {
 	int insertProduct1(Map param); // 책등록
 	int insertProduct3(Map param); // 상품등록
 	 
-	int updateProduct1(Map param); //입고
+	int updateProduct1(Map param); //책입고
+	int updateProduct3(Map param); //상품입고
 	
 	EbookDatabind searchBringPrice(int bindNo); //가격 가져오는 로직 book
 	
@@ -38,4 +40,8 @@ public interface AdminService {
 	
 	List<EbookDatabind> selectEbookDatabindList(int cPage,int numPerpage);//재고 구하기
 	int selectEbookDataCount();
+	
+	List<Gift> selectGiftList(int cPage,int numPerpage);
+	int selectGiftCount();
+	
 }

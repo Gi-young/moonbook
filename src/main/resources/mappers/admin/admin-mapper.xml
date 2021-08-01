@@ -69,6 +69,11 @@
 	<update id="updateProduct1">
 		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK+#{stock},PRIME_COST=#{primeCost} WHERE BIND_NO=#{bindNo}
 	</update>
+	<!-- 상품 입고 -->
+	<update id="updateProduct3">
+		UPDATE GIFT SET GIFT_COUNT=GIFT_COUNT+#{gift_count},GIFT_ROWPRICE=#{gift_rowprice} WHERE GIFT_NO=#{gift_no}
+	</update>
+	
 	
 	<!--price조회컬럼 -->
 	<select id="searchBringPrice" resultMap="ebookDatabindMap">
@@ -90,11 +95,21 @@
   		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME=SALES_VOLUME+#{stock} WHERE BIND_NO=#{bindNo}
   	</update>
   	
+  	<!-- 책 재고조회 -->
   	<select id="selectEbookDatabindList" resultMap="ebookDatabindMap">
   		SELECT * FROM BOOK_EBOOK_DATABIND
   	</select>
   	<select id="selectEbookDataCount" resultType="_int">
   		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND
   	</select>
+  	
+  	<!-- 상품 재고조회 -->
+  	<select id="selectGiftList" resultMap="giftMap">
+  		SELECT * FROM GIFT
+  	</select>
+  	<select id="selectGiftCount" resultType="_int">
+  		SELECT COUNT(*) FROM GIFT
+  	</select>
+  	
   	
 </mapper>

@@ -7,7 +7,7 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/admin/addProduct2.css">
+<link rel="stylesheet" href="${path}/resources/css/admin/addProduct3.css">
 
 <div class="addProduct-container">
 	<div class="addProduct-box1">
@@ -33,8 +33,8 @@
 					</table>
 				</form>
 			</div> -->
-			<div class="addProduct-container3">
-				<form action="${path}/admin/insertProduct1.do" method="post">
+			<div class="addProduct-container3" style="display:none;">
+				<form action="${path}/admin/insertProduct1.do" method="post" >
 					<table class="ChooseTable1">
 						<!--자동 넘버처리 -->
 						<!-- <tr>
@@ -115,7 +115,7 @@
  
 			</div>
 			
-			<div class="addProduct-container5" style="display:none;">
+			<div class="addProduct-container5" style="display:block;">
 				<form action="${path}/admin/insertProduct3.do" method="post">
 					<table class="ChooseTable3">
 						<!-- <tr>

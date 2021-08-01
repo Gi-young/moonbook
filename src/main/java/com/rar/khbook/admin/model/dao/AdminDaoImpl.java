@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.member.model.vo.Member;
 
 @Repository
@@ -73,6 +74,11 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.update("admin.updateProduct1",param);
 	}
+	@Override
+	public int updateProduct3(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("admin.updateProduct3",param);
+	}
 
 	@Override
 	public EbookDatabind searchBringPrice(SqlSession session, int bindNo) { // 책가격 가져오기
@@ -110,6 +116,20 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.selectEbookDataCount");
 	}
+	//상품 재고현황
+	@Override
+	public List<Gift> selectGiftList(SqlSession session, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.selectGiftList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int selectGiftCount(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectGiftCount");
+	}
+	
+	
 	
 	
 	

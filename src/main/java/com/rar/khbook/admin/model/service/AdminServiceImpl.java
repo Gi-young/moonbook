@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.rar.khbook.admin.model.dao.AdminDao;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.member.model.vo.Member;
 
 @Service
@@ -80,6 +81,12 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.updateProduct1(session,param);
 	}
+	
+	@Override
+	public int updateProduct3(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateProduct3(session, param);
+	}
 
 	@Override
 	public EbookDatabind searchBringPrice(int bindNo) {
@@ -116,6 +123,20 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.selectEbookDataCount(session);
 	}
+
+	@Override
+	public List<Gift> selectGiftList(int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.selectGiftList(session,cPage,numPerpage);
+	}
+
+	@Override
+	public int selectGiftCount() {
+		// TODO Auto-generated method stub
+		return dao.selectGiftCount(session);
+	}
+	
+	
 	
 	
 	

@@ -71,19 +71,19 @@
 						<tr>
 							<th>상품 번호</th>
 							<td>
-								<input type="number" min="1">
+								<input type="number" min="1" name="gift_no">
 							</td>
 						</tr>
 						<tr>
 							<th>입고 개수</th>
 							<td>
-								<input type="number" min="1" name="stock">
+								<input type="number" min="1" name="gift_count">
 							</td>
 						</tr> 
 						<tr>
 							<th>입고가</th>
 							<td>
-								<input type="number" min="0" name="primeCost">
+								<input type="number" min="0" name="gift_rowprice">
 							</td>
 						</tr> 
 						<tr>

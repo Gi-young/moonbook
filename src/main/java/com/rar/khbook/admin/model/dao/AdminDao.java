@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AdminDao {
@@ -31,6 +32,8 @@ public interface AdminDao {
 	
 	int updateProduct1(SqlSession session,Map param);
 	
+	int updateProduct3(SqlSession session,Map param);
+	
 	EbookDatabind searchBringPrice(SqlSession session,int bindNo); 
 	
 	EbookDatabind checkStock1(SqlSession session, int bindNo);
@@ -42,4 +45,6 @@ public interface AdminDao {
 	List<EbookDatabind> selectEbookDatabindList(SqlSession session,int cPage,int numPerpage);
 	int selectEbookDataCount(SqlSession session);
 	
+	List<Gift> selectGiftList(SqlSession session,int cPage,int numPerpage);
+	int selectGiftCount(SqlSession session);
 }
