@@ -89,7 +89,7 @@
 	height: 100%;
 	overflow-x:scroll;
 }
-.memberT{
+.stockT{
 	/* width: 730px; */ 
 	/* width:auto; */
 	width: 1900px;
@@ -99,11 +99,11 @@
 	text-align: center;	
 	margin-bottom:20px;
 }
-.memberT tbody{
+.stockT tbody{
 	border: black 1px solid;
     border-collapse: collapse;
 }
-.memberT th{
+.stockT th{
 	width: 100px;
 	height:30px;
 	background-color: #582810;
@@ -111,7 +111,32 @@
 	vertical-align: middle;
 }
 
-.memberT td{
+.stockT td{
+	width: 100px;
+}
+.stockT2{
+	/* width: 730px; */ 
+	/* width:auto; */
+	width: 2100px;
+	/* overflow-x: auto; */
+	margin-left: 20px;
+	/* margin-top:30px;  */
+	text-align: center;	
+	margin-bottom:20px;
+}
+.stockT2 tbody{
+	border: black 1px solid;
+    border-collapse: collapse;
+}
+.stockT2 th{
+	width: 100px;
+	height:30px;
+	background-color: #582810;
+	color:white;
+	vertical-align: middle;
+}
+
+.stockT2 td{
 	width: 100px;
 }
 .updateCheck{

@@ -43,8 +43,8 @@
 								<th>검색하기</th>
 								<td class="admin-search2">
 								<select name="type2">
-									<option value="" selected>책 제목</option>
-									<option value="" >책 번호</option>
+									<option value="" selected>제품명</option>
+									<option value="" >번호</option>
 								</select>
 								</td>
 								<td class="search-box">
@@ -65,7 +65,7 @@
 						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>개의 책이 있습니다.</p>
 						<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
-						<table class="memberT">
+						<table class="stockT">
 							
 							<tr>
 								<th>책 번호</th>
@@ -122,9 +122,9 @@
 					</div>
 					<div class="stockT-container2" style="display:none;">
 						<p class="memberTFont">총 <span class="turnRed">${totalContents2 }</span>개의 상품이 있습니다.</p>
-						<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
+						<p class="memberTFont2">※ 상품명, 상품소개, 가격, 제조사, 제조국, AS/상담여부, 수입여부, 판매여부  수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
-						<table class="memberT">
+						<table class="stockT2">
 							
 							<tr>
 								<th>상품 번호</th>
