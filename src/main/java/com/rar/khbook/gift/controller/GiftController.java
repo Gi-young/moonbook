@@ -1,10 +1,30 @@
 package com.rar.khbook.gift.controller;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.rar.khbook.gift.model.service.GiftService;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class GiftController {
+	
+//	@Autowired
+//	private GiftService service;
 	
 //	기프트 메인페이지 이동
 	@RequestMapping("/gift/giftView.do")
@@ -24,4 +44,46 @@ public class GiftController {
 	public String myCoupons() {
 		return "gift/myCoupon";
 	}
+	
+	@RequestMapping("/kakaopay.do")
+	@ResponseBody
+	public String kakaopay() {
+		try {
+			URL address = new URL("https://kapi.kakao.com/v1/payment/ready");
+			HttpURLConnection conn = (HttpURLConnection)address.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "KakaoAK bc4c8975279f86d69d56a5f54fa529b9");
+			conn.setRequestProperty("Content-type","application/x-www-form-urlencoded;charset=utf-8");
+			conn.setDoOutput(true);
+			String param = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=초코파이&quantity=1&total_amount=2200&tax_free_amount=0&approval_url=http://localhost:9095/success&cancel_url=http://localhost:9095/fail&fail_url=http://localhost:9095/cancel";
+			OutputStream give = conn.getOutputStream();
+//			conn.getOutputStream을 통해서 보내야할 데이터를 보낼 수 있게 되었다.
+			DataOutputStream dataGive = new DataOutputStream(give);
+			dataGive.writeBytes(param);
+			dataGive.flush();
+			dataGive.close();
+			
+			int result = conn.getResponseCode();
+			/* System.out.println("결과 결과 결과 : "+result); */
+			InputStream recive;
+			
+			if(result == 200) {
+				recive = conn.getInputStream();
+			}else {
+				recive = conn.getErrorStream();
+			}
+			InputStreamReader reader = new InputStreamReader(recive);
+			BufferedReader convert = new BufferedReader(reader);
+			/* System.out.println("컨버트 리드라인 : "+convert.readLine()); */
+			return convert.readLine();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "{\"result\":\"NO\"}";
+	}
+
 }

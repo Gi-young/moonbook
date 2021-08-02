@@ -10,4 +10,5 @@ public class Membergrade {
 	private int membergradeStandard;
 	private String membergradeContent;
 	private String membergradeImg;
+	private double membergradePercent;
 }

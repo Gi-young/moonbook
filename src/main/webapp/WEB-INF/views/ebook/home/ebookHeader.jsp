@@ -9,15 +9,33 @@
 	<meta charset="UTF-8">
 	<title>${param.title}</title>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHeader.css">
-	<script defer src="https://kit.fontawesome.com/5af64d5c05.js" crossorigin="anonymous"></script>
-	<script defer src="${path}/resources/js/ebook/home/ebookHeader.js"></script>
 </head>
 <body>
 	<div class="wrapper">
 		<nav class="portal-navbar">
-			<button id="databindBtn">api에서 데이터 받아오기</button>
 			<button onclick="location.assign('${path}')">홈으로</button>
-			<button id="uploadEbookBtn">e북 업로드</button>
+			
+			<c:if test="${sessionScope.loginMember == null}">
+				<div id="loginBox">
+					<button id="loginBtn" onclick="login();">로그인</button>
+				</div>
+			</c:if>
+			
+			<c:if test="${sessionScope.loginMember != null}">
+				<div id="memberInfoBox">
+					<span><b><c:out value="${sessionScope.loginMember.memberId}"/></b>님, 환영합니다</span>
+					<button id="logoutBtn" onclick="logout();">로그아웃</button>
+				</div>
+			</c:if>
+			
+			<c:if test="${sessionScope.loginMember != null}">
+				<c:if test="${sessionScope.loginMember.memberId.equals('admin')}">
+					<div id="adminBox">
+						<button id="databindBtn" onclick="moonbookDatabind();">api에서 데이터 받아오기</button>
+						<button id="uploadEbookBtn" onclick="uploadEbook();">e북 업로드</button>
+					</div>
+				</c:if>
+			</c:if>
 		</nav>
 		
 		<header>
@@ -45,3 +63,12 @@
 				<li><a href="${path}/ebook/pageBookstallNotes.do">우리들의 노트</a></li>
 			</ul>
 		</nav>
+		
+		<input type="hidden" id="contextPath" value="${path}"/>
+		<input type="hidden" id="memberId" value="${sessionScope.loginMember.memberId}">
+		<input type="hidden" id="shoppingBasketLoginCheck" value="${param.shoppingBasketLoginCheck}">
+	
+	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+	<script src="${path}/resources/js/ebook/xml2json.js"></script>
+	<script src="https://kit.fontawesome.com/5af64d5c05.js" crossorigin="anonymous"></script>
+	<script src="${path}/resources/js/ebook/home/ebookHeader.js"></script>

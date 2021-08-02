@@ -114,4 +114,28 @@
 	color:#582810;
 	font-weight: bold;
 }
+.btn {
+	color: #582810;
+	background-color: #fff;
+	cursor: pointer;
+}
 
+.btn:hover {
+	color: #fff;
+	background-color: #582810;
+}
+.sendBox{
+	display:flex;
+	height:40px;
+	margin: 10 0 10 0;
+	align-items: center;
+}
+.sendInfo{
+	font-size: 15px;
+	font-weight:900;
+	padding: 10px;
+	color: #582810;
+}
+#codeVal{
+	margin-right:10px;
+}

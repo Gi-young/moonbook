@@ -7,7 +7,7 @@
 	<jsp:param name="" value=""/>
 </jsp:include>
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="${path }/resources/css/gift.css">
+    <link rel="stylesheet" href="${path }/resources/css/gift/gift.css">
 <div class="wrap">
     <!-- 전체를 감싸고 있는 div -->
     <div class="hotTracks">

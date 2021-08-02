@@ -1,5 +1,6 @@
 package com.rar.khbook.ebook.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.member.model.vo.Member;
 
 @Repository
 public class EbookDaoImpl implements EbookDao {
@@ -27,7 +29,7 @@ public class EbookDaoImpl implements EbookDao {
 	@Override
 	public List<EbookDatabind> search(SqlSession session, Map param) {
 		int limit = Integer.parseInt((String)param.get("dataVolume"));
-		RowBounds rb = new RowBounds(1, limit);
+		RowBounds rb = new RowBounds(0, limit);
 		return session.selectList("ebook.search", param, rb);
 	}
 	
@@ -40,6 +42,56 @@ public class EbookDaoImpl implements EbookDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	@Override
+	public Member login(SqlSession session, String memberId) {
+		return session.selectOne("ebook.login", memberId);
+	}
+	
+	@Override
+	public EbookDatabind searchOneBook(SqlSession session, int bindNo) {
+		return session.selectOne("ebook.searchOneBook", bindNo);
+	}
+	
+	@Override
+	public int checkLoved(SqlSession session, Map param) {
+		return session.selectOne("ebook.checkLoved", param);
+	}
+	
+	@Override
+	public int checkShopped(SqlSession session, Map param) {
+		return session.selectOne("ebook.checkShopped", param);
+	}
+	
+	@Override
+	public int loveBook(SqlSession session, Map param) {
+		return session.insert("ebook.loveBook", param);
+	}
+	
+	@Override
+	public int unloveBook(SqlSession session, Map param) {
+		return session.delete("ebook.unloveBook", param);
+	}
+	
+	@Override
+	public int putInShoppingBasket(SqlSession session, Map param) {
+		return session.insert("ebook.putInShoppingBasket", param);
+	}
+	
+	@Override
+	public int putOutShoppingBasket(SqlSession session, Map param) {
+		return session.delete("ebook.putOutShoppingBasket", param);
+	}
+	
+	@Override
+	public List<HashMap> getMyBooksFromBasket(SqlSession session, String loginMemberId) {
+		return session.selectList("ebook.getMyBooksFromBasket", loginMemberId);
+	}
+	
+	@Override
+	public int writePurchaseLog(SqlSession session, Map param) {
+		return session.insert("ebook.writePurchaseLog", param);
 	}
 	
 }

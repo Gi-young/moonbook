@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace = "ebook">
 
-	<resultMap id="ebookDatabind" type="ebookDataBind">
+	<resultMap id="ebookDatabindMap" type="ebookDatabind">
 		<id column="BIND_NO" property="bindNo"/>
 		<result column="TITLE" property="title"/>
 		<result column="AUTHOR" property="author"/>
@@ -14,6 +14,12 @@
 		<result column="DESCRIPTION" property="description"/>
 		<result column="LINK" property="link"/>
 		<result column="CATEGORY_CODE" property="categoryCode"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALES_VOLUME" property="salesVolume"/>
+		<result column="RATING" property="rating"/>
+		<result column="EBOOK_RATING" property="ebookRating"/>
+		<result column="EBOOK_SALES_VOLUME" property="ebookSalesVolume"/>
+		<result column="PRIME_COST" property="primeCost"/>
 		<association property="ebook" javaType="ebook">
 			<id column="EBOOK_NO" property="ebookNo"/>
 			<result column="FILEPATH" property="filepath"/>
@@ -21,9 +27,26 @@
 		</association>
 	</resultMap>
 	
-	<resultMap id="ebook" type="ebook">
-		<result column="EBOOK_NO" property="ebookNo"/>
+	<resultMap id="ebookMap" type="ebook">
+		<id column="EBOOK_NO" property="ebookNo"/>
 		<result column="SALES_VOLUME" property="salesVolume"/>
+	</resultMap>
+	
+	<resultMap type="member" id="memberMap">
+		<result column="member_id" property="memberId" />
+		<result column="member_pw" property="memberPw" />
+		<result column="member_name" property="memberName" />
+		<result column="member_email" property="memberEmail" />
+		<result column="member_phone" property="memberPhone" />
+		<result column="member_address" property="memberAddress" />
+		<result column="member_gender" property="memberGender" />
+		<result column="member_birth" property="memberBirth" />
+		<result column="member_point" property="memberPoint" />
+		<result column="member_regidate" property="memberRegiDate" />
+		<result column="member_memberGrade_no" property="memberGradeNo" />
+		<result column="member_total_sale" property="memberTotalSale" />
+		<result column="member_visit" property="memberVisit" />
+		<result column="member_today" property="memberToday" />
 	</resultMap>
 
 	<insert id="insertBookDataIntoDatabase">
@@ -43,44 +66,45 @@
 		)
 	</insert>
 	
-	<select id="search" resultMap="ebookDatabind">
-		SELECT * FROM BOOK_EBOOK_DATABIND
-		WHERE ${searchType} LIKE '%'||#{keyword}||'%'
+	<select id="search" resultMap="ebookDatabindMap">
+		SELECT * FROM BOOK_EBOOK_DATABIND B, EBOOK E
+		WHERE B.BIND_NO=E.EBOOK_NO(+)
+		AND ${searchType} LIKE '%'||#{keyword}||'%'
 		AND CATEGORY_CODE=#{categoryCode}
 		ORDER BY 
 		<choose>
 			<when test="importancePubdate>importanceSales and importanceSales>importanceRating and importanceRating>importancePrice">
 				PRICE ${priceOrder},
 				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importanceSales and importanceSales>importancePrice and importancePrice>importanceRating">
 				RATING ${ratingOrder},
 				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importancePrice and importancePrice>importanceSales and importanceSales>importanceRating">
 				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importancePrice and importancePrice>importanceRating and importanceRating>importanceSales">
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
 				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importanceRating and importanceRating>importanceSales and importanceSales>importancePrice">
 				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
 			<when test="importancePubdate>importanceRating and importanceRating>importancePrice and importancePrice>importanceSales">
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder},
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder}
@@ -89,113 +113,113 @@
 				PRICE ${priceOrder},
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder}
+				B.SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceRating">
 				RATING ${ratingOrder},
 				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder}
+				B.SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importanceRating and importanceRating>importancePubdate and importancePubdate>importancePrice">
 				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder}
+				B.SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importanceRating and importanceRating>importancePrice and importancePrice>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder},
 				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder}
+				B.SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceRating">
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder}
+				B.SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceSales>importancePrice and importancePrice>importanceRating and importanceRating>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder},
 				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder}
+				B.SALES_VOLUME ${salesOrder}
 			</when>
 			<when test="importanceRating>importanceSales and importanceSales>importancePrice and importancePrice>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder}
 			</when>
 			<when test="importanceRating>importanceSales and importanceSales>importancePubdate and importancePubdate>importancePrice">
 				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder}
 			</when>
 			<when test="importanceRating>importancePubdate and importancePubdate>importanceSales and importanceSales>importancePrice">
 				PRICE ${priceOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder}
 			</when>
 			<when test="importanceRating>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceSales">
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder}
 			</when>
 			<when test="importanceRating>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceSales">
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder},
 				RATING ${ratingOrder}
 			</when>
 			<when test="importanceRating>importancePrice and importancePrice>importanceSales and importanceSales>importancePubdate">
 				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder},
 				RATING ${ratingOrder}
 			</when>
 			<when test="importancePrice>importanceRating and importanceRating>importancePubdate and importancePubdate>importanceSales">
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder},
 				PRICE ${priceOrder}
 			</when>
 			<when test="importancePrice>importanceRating and importanceRating>importanceSales and importanceSales>importancePubdate">
 				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
 				PRICE ${priceOrder}
 			</when>
 			<when test="importancePrice>importanceSales and importanceSales>importanceRating and importanceRating>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder}
 			</when>
 			<when test="importancePrice>importanceSales and importanceSales>importancePubdate and importancePubdate>importanceRating">
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder}
 			</when>
 			<when test="importancePrice>importancePubdate and importancePubdate>importanceRating and importanceRating>importanceSales">
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder}
 			</when>
 			<when test="importancePrice>importancePubdate and importancePubdate>importanceSales and importanceSales>importanceRating">
 				RATING ${ratingOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder}
 			</when>
 			<otherwise>
 				PUBDATE ${pubdateOrder},
-				SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
 				PRICE ${priceOrder}
 			</otherwise>
@@ -204,6 +228,46 @@
 	
 	<insert id="uploadEbook">
 		INSERT INTO EBOOK VALUES(#{ebookNo}, #{filepath}, DEFAULT)
+	</insert>
+	
+	<select id="login" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="searchOneBook" resultMap="ebookDatabindMap">
+		SELECT * FROM BOOK_EBOOK_DATABIND B, EBOOK E WHERE B.BIND_NO=E.EBOOK_NO(+) AND BIND_NO=#{bindNo}
+	</select>
+	
+	<select id="checkLoved" resultType="_int">
+		SELECT COUNT(*) FROM EBOOK_LIKE WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</select>
+	
+	<select id="checkShopped" resultType="_int">
+		SELECT COUNT(*) FROM EBOOK_SHOPPINGBASKET WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</select>
+	
+	<insert id="loveBook">
+		INSERT INTO EBOOK_LIKE VALUES(#{loginMemberId}, #{bindNo})
+	</insert>
+	
+	<delete id="unloveBook">
+		DELETE FROM EBOOK_LIKE WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</delete>
+	
+	<insert id="putInShoppingBasket">
+		INSERT INTO EBOOK_SHOPPINGBASKET VALUES(#{loginMemberId},#{bindNo})
+	</insert>
+	
+	<delete id="putOutShoppingBasket">
+		DELETE FROM EBOOK_SHOPPINGBASKET WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</delete>
+	
+	<select id="getMyBooksFromBasket" resultType="HashMap">
+		SELECT * FROM BOOK_EBOOK_DATABIND B, EBOOK E, EBOOK_SHOPPINGBASKET S WHERE S.EBOOK_NO=B.BIND_NO AND B.BIND_NO=E.EBOOK_NO(+) AND S.MEMBER_ID=#{loginMemberId}
+	</select>
+	
+	<insert id="writePurchaseLog">
+		INSERT INTO EBOOK_PURCHASE_HISTORY VALUES(SEQ_EBOOK_PURCHASE_HISTORY.NEXTVAL,#{impUid},#{merchantUid},#{memberId},#{payMethod},#{paidAmount},#{paidAt},#{pgProvider},#{receiptUrl},#{purchaseEbookNoList})
 	</insert>
 
 </mapper>

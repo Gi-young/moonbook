@@ -20,8 +20,8 @@
 		<!-- 중고게시판 -->
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboard" alias="usedboard"/>
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboardfile" alias="usedboardfile"/>
-
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedcomment" alias="usedcomment"/>
+		<typeAlias type="com.rar.khbook.common.StringArrayTypeHandler" alias="strArr"/>
 		
 		<!-- ebook -->
 		<typeAlias type="com.rar.khbook.ebook.model.vo.EbookDatabind" alias="ebookDatabind"/>
@@ -30,9 +30,14 @@
 	
 		<typeAlias type="com.rar.khbook.order.model.vo.Order" alias="order"/>
 
+
 		<!-- sellpart -->
 		<typeAlias type="com.rar.khbook.sellbook.model.vo.SellbookDatabind" alias="sellbookDatabind"/>
 
+
+		<!-- 기프트 -->
+		<typeAlias type="com.rar.khbook.gift.model.vo.Gift" alias="gift"/>
+		<typeAlias type="com.rar.khbook.gift.model.vo.GiftCate" alias="giftCate"/>
 
 	</typeAliases>
 

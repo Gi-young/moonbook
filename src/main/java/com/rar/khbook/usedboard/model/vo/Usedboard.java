@@ -14,7 +14,7 @@ public class Usedboard {
 	private Date usedboard_Date;
 	private int usedboard_Price;
 	private String usedboard_State;
-	private String usedboard_Category;
+	private String[] usedboard_Category;
 	private String member_Id;
 	private String usedboard_BookTitle;
 	private List<Usedboardfile> usedboardfiles=new ArrayList();
