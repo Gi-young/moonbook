@@ -32,12 +32,19 @@ public interface AdminService {
 	
 	EbookDatabind searchBringPrice(int bindNo); //가격 가져오는 로직 book
 	
-	EbookDatabind checkStock1(int bindNo);
+	EbookDatabind checkStock1(int bindNo); //book 재고 체크
 	
-	int outputProduct1(Map param); //재고에서 -출고 개수
+	Gift checkStock3(int gift_no); // gift 재고 체크
 	
-	int updateSalesVolume1(Map param); //판매량 +출고 개수
+	int outputProduct1(Map param); //book재고에서 -출고 개수
 	
+	int updateSalesVolume1(Map param); //book판매량 +출고 개수
+	
+	int updateSalesVolume2(Map param); //ebook 판매량 +출고 개수 출고는 재고 상관없이 마음대로 가능
+	
+	int outputAndupdateSalesVolume3(Map param); //gift 재고-출고 && 판매량 +출고
+	
+	//재고현황 시작
 	List<EbookDatabind> selectEbookDatabindList(int cPage,int numPerpage);//재고 구하기
 	int selectEbookDataCount();
 	

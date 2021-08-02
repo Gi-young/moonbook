@@ -291,6 +291,22 @@ public class AdminController {
 			return false;
 		}
 	}
+	//출고 전 재고 체크 gift버전
+	@RequestMapping("/admin/checkStock3.do")
+	@ResponseBody
+	public boolean checkStock3(int gift_no,int gift_count) {
+		
+		Gift result=service.checkStock3(gift_no);
+		
+		System.out.println("출고전 재고 체크:" +result);
+		System.out.println("출고전 output할 stock 체크:" +gift_count);
+		
+		if(result.getGift_count()>=gift_count) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	//책 출고
 	@RequestMapping("/admin/outputProduct1.do")
@@ -325,37 +341,57 @@ public class AdminController {
 		return mv;
 		
 	}
-//	@RequestMapping("/admin/outputProduct2.do")
-//	public ModelAndView outputProduct2(ModelAndView mv,@RequestParam Map param) {
-//		
-//		
-//		int result1=service.outputProduct1(param);
-//		//판매량에서 +출고개수 해줘야 함
-//		int result2=service.updateSalesVolume1(param);
-//		//매출액계산 -->결제테이블에서 쏴주시기로 함 신경 쓸 필요 없음 -분석파트로 넘김
-//		
-//		//이익 계산 ((가격)-입고가)*판매량= 이익  ※단 진짜 결제된 금액에서 차감 -분석파트로 넘김
-//		
-//		//입고가 컬럼이 prime_cost(원가) 컬럼
-//		//출고 완료
-//		
-//		String msg="";
-//		String loc="";
-//		if(result1>0 && result2>0) {
-//			msg="출고가 정상적으로 처리되었습니다";
-//		}else {
-//			msg="출고가 실패되었습니다.";
-//		}
-//		loc="/admin/removeProductPage.do";
-//		
-//		
-//		mv.addObject("msg", msg);
-//		mv.addObject("loc", loc);
-//		mv.setViewName("common/msg");
-//		
-//		return mv;
-//		
-//	}
+	//eBook 출고
+	@RequestMapping("/admin/outputProduct2.do")
+	public ModelAndView outputProduct2(ModelAndView mv,@RequestParam Map param) {
+		
+		//판매량에서 +출고개수 해줘야 함
+		//ebook은 재고 필요 없이 바로 판매량 update
+		int result2=service.updateSalesVolume2(param);
+		
+		
+		String msg="";
+		String loc="";
+		if(result2>0) {
+			msg="eBook 출고가 정상적으로 처리되었습니다";
+		}else {
+			msg="eBook 출고가 실패되었습니다.";
+		}
+		loc="/admin/removeProductPage.do";
+		
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+		
+	}
+	//gift 출고
+	@RequestMapping("/admin/outputProduct3.do")
+	public ModelAndView outputProduct3(ModelAndView mv,@RequestParam Map param) {
+		
+		//재고에서 -출고 개수 && 판매량에서 +출고개수 
+		int result=service.outputAndupdateSalesVolume3(param);
+		
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="상품 출고가 정상적으로 처리되었습니다";
+		}else {
+			msg="상품 출고가 실패되었습니다.";
+		}
+		loc="/admin/removeProductPage.do";
+		
+		
+		mv.addObject("msg", msg);
+		mv.addObject("loc", loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+		
+	}
 	
 	//재고현황
 	@RequestMapping("/admin/stockProductPage.do")

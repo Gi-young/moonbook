@@ -145,7 +145,7 @@
 						<tr>
 							<th>가격</th>
 							<td>
-								<input type="number" min="10000" max="99000" class="bookPriceAd3" name="gift_price">
+								<input type="number" min="1000" max="9900000" class="bookPriceAd3" name="gift_price">
 							</td>
 						</tr>
 						<tr>

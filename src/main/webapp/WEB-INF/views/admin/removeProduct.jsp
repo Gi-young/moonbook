@@ -68,12 +68,12 @@
 			<div class="addProduct-container4" style="display:none">
 				<form action="${path}/admin/outputProduct2.do" method="post">
 					<table class="ChooseTable2">
-						<tr style="display:none">
+						<!-- <tr style="display:none">
 							<th>도서 가격</th>
 							<td>
 								<input type="hidden" min="1" name="price" id="bringPrice1" readonly>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th>도서 번호</th>
 							<td>
@@ -83,7 +83,7 @@
 						<tr>
 							<th>출고 개수</th>
 							<td>
-								<input type="number" min="1" name="stock">
+								<input type="number" min="1" name="ebookSalesVolume">
 							</td>
 						</tr> 
 						
@@ -97,30 +97,30 @@
  
 			</div>
 			<div class="addProduct-container5" style="display:none;">
-				<form action="${path}/admin/outputProduct3.do" method="post">
+				<form action="${path}/admin/outputProduct3.do" method="post" id="targetFrm3">
 					<table class="ChooseTable3">
-						<tr style="display:none">
+						<!-- <tr style="display:none">
 							<th>상품 가격</th>
 							<td>
 								<input type="hidden" min="1" name="price" id="bringPrice2" readonly>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<th>상품 번호</th>
 							<td>
-								<input type="number" min="1" class="bringNum2">
+								<input type="number" min="1" class="bringNum3" name="gift_no">
 							</td>
 						</tr>
 						<tr>
 							<th>출고 개수</th>
 							<td>
-								<input type="number" min="1" name="stock" class="bringInputStock3">
+								<input type="number" min="1" class="bringInputStock3" name="gift_count">
 							</td>
 						</tr> 
 						
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="출고">
+								<input type="submit" value="출고" onclick="checkStock3(event);">
 							</td>
 						</tr>
 					</table>
@@ -153,7 +153,7 @@
 			}
 		})
 	})
-	$(".bringNum1").keyup(e =>{ // 가격가져오기 book
+/* 	$(".bringNum1").keyup(e =>{ // 가격가져오기 book
 		let bringNum=$(e.target).val();
 		let bringPrice=$("#bringPrice1").val();
 		$.ajax({
@@ -209,7 +209,7 @@
 				$("#bringPrice2").val(data.price);
 			}
 		});
-	});
+	}); */
 	const checkStock=(event)=>{ //BOOK에서 재고가 있는지 확인, 재고가 출고할 양보다 작으면 return =false
 		event.preventDefault();
 		let stock=$(".bringInputStock1").val(); //output할 stock 값임
@@ -233,7 +233,29 @@
 			}
 		});
 	}
-	
+	const checkStock3=(event)=>{ //gift에서 재고가 있는지 확인, 재고가 출고할 양보다 작으면 return =false
+		event.preventDefault();
+		let stock=$(".bringInputStock3").val(); //output할 stock 값임
+		let bringNum=$(".bringNum3").val();
+		
+		$.ajax({
+			url: "${path}/admin/checkStock3.do",
+			type: "GET",
+			data: {
+				gift_no: bringNum,
+				gift_count: stock
+			},
+			success: data => {
+				console.log(data);
+				if(data){
+					$("#targetFrm3").submit();
+					//return true;
+				}else if(!data){
+					alert("해당하는 출고 개수보다 재고가 부족합니다");
+				}
+			}
+		});
+	}
 	
 </script>
 

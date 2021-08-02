@@ -19,6 +19,7 @@
 		<result column="GIFT_ROWPRICE" property="gift_rowprice"/>
 		<result column="GIFT_GIFTCATE_CODE" property="gift_giftcate_code"/>
 		<result column="GIFT_DISCOUNT" property="gift_discount"/>
+		<result column="GIFT_SALESVOLUME" property="gift_salesVolume"/>
 		<association property="giftcate" javaType="giftcate">
 			<id column="giftCateCode" property="giftCateCode"/>
 			<result column="GIFTCATE_NAME" property="giftCateName"/>
@@ -64,7 +65,7 @@
 	
 	<!-- 기프트 등록 -->
 	<insert id="insertProduct3">
-		INSERT INTO GIFT VALUES(SEQ_GIFT_NO.NEXTVAL,#{gift_img},#{gift_title},#{gift_content},#{gift_price},#{gift_maker},#{gift_made},#{gift_import},#{gift_as},#{gift_size},0,#{gift_for_sale},0,#{gift_giftcate_code},#{gift_discount})
+		INSERT INTO GIFT VALUES(SEQ_GIFT_NO.NEXTVAL,#{gift_img},#{gift_title},#{gift_content},#{gift_price},#{gift_maker},#{gift_made},#{gift_import},#{gift_as},#{gift_size},0,#{gift_for_sale},0,#{gift_giftcate_code},#{gift_discount},0)
 	</insert>
 	
 	<!-- 책입고 -->
@@ -76,15 +77,19 @@
 		UPDATE GIFT SET GIFT_COUNT=GIFT_COUNT+#{gift_count},GIFT_ROWPRICE=#{gift_rowprice} WHERE GIFT_NO=#{gift_no}
 	</update>
 	
-	
 	<!--price조회컬럼 -->
 	<select id="searchBringPrice" resultMap="ebookDatabindMap">
 		SELECT PRICE FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
 	</select>
 	
-	<!-- 출고전 재고확인 -->
+	<!-- 출고전 book 재고확인 -->
 	<select id="checkStock1" resultMap="ebookDatabindMap">
 		SELECT STOCK FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+	
+	<!-- 출고전 admin 재고확인 -->
+	<select id="checkStock3" resultMap="giftMap">
+		SELECT GIFT_COUNT FROM GIFT WHERE GIFT_NO=#{gift_no}
 	</select>
 	
 	<!-- 재고에서 -출고개수 -->
@@ -95,6 +100,16 @@
   	<!-- book판매량에서 +출고개수 -->
   	<update id="updateSalesVolume1">
   		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME=SALES_VOLUME+#{stock} WHERE BIND_NO=#{bindNo}
+  	</update>
+  	
+  	<!-- ebook판매량에서 +출고개수 -->
+  	<update id="updateSalesVolume2">
+  		UPDATE BOOK_EBOOK_DATABIND SET EBOOK_SALES_VOLUME=EBOOK_SALES_VOLUME+#{ebookSalesVolume} WHERE BIND_NO=#{bindNo}
+  	</update>
+  	
+  	<!-- gift 재고 -출고 && 판매량+출고  -->
+  	<update id="outputAndupdateSalesVolume3">
+  		UPDATE GIFT SET GIFT_COUNT=GIFT_COUNT-#{gift_count}, GIFT_SALESVOLUME=GIFT_SALESVOLUME+#{gift_count} WHERE GIFT_NO=#{gift_no}
   	</update>
   	
   	<!-- 책 재고조회 -->
