@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+.addProduct-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+}
+.addProduct-box1{
+	width: 950px;
+	display:flex;
+	height:700px;
+	min-height:500px; 
+	box-sizing: border-box;
+}
+.addProduct-box3{
+	height:100%;
+}
+.addProduct-box4 p{
+	
+	height:46px;
+	font-weight: 800;
+	margin-left:50px;
+	margin-top:13px;
+}
+.addProduct-box4{
+	height:46px;
+	background-color: #582810;
+	color:white;
+}
+
+
+.addProduct-box2{
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black; 
+	width:770px;
+}
+
+.ChooseTable1{
+	width:100%;
+	/* height: 100%;  */
+	text-align: center;
+	/* height: 100px;  */
+}
+.ChooseTable1 th{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	font-weight:bold;
+	color:#582810;
+}
+.ChooseTable1 td{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	
+}
+.ChooseTable3{
+	width:100%;
+	/* height: 100%;  */
+	text-align: center;
+	/* height: 100px;  */
+}
+.ChooseTable3 th{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	font-weight:bold;
+	color:#582810;
+}
+.ChooseTable3 td{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	
+}
+.chooseBookAdd3{
+	margin-right:10px;
+}
+.chooseBookAdd{
+	margin-right:5px;
+}
+.chooseBookAdd2{
+	margin-right:5px;
+}
+.addProduct-container2 th{
+	background-color: #582810;
+	color:white;
+}
+.addProduct-container2{
+	/* border: 1px solid #582810; */
+	height: 15%;
+	width:100%;
+   
+}
+.addProduct-container5{
+	height: 100%;
+	overflow-y:scroll;
+}
+
+.addProduct-container3{
+	height: 100%;
+	overflow-y:scroll;
+}
+.memberT{
+	/* width: 730px; */ 
+	/* width:auto; */
+	width: 1900px;
+	/* overflow-x: auto; */
+	margin-left: 20px;
+	/* margin-top:30px;  */
+	text-align: center;	
+	margin-bottom:20px;
+}
+.memberT tbody{
+	border: black 1px solid;
+    border-collapse: collapse;
+}
+.memberT th{
+	width: 100px;
+	height:30px;
+	/* background-color: #582810; */
+	color:white;
+	vertical-align: middle;
+}
+
+.memberT td{
+	width: 100px;
+}
+.addProduct-container4{
+	height: 100%;
+	overflow-y:scroll;
+}
+.ChooseTable2{
+	width:100%;
+	/* height: 100%;  */
+	text-align: center;
+	/* height: 100px;  */
+}
+.ChooseTable2 th{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	font-weight:bold;
+	color:#582810;
+}
+.ChooseTable2 td{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	
+}
+.chooseBookAdd5{
+	margin-left: 8px;
+}
+.chooseBookAdd6{
+	margin-left:5px;
+}

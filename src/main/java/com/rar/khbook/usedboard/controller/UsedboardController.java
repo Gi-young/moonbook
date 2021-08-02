@@ -199,4 +199,20 @@ public class UsedboardController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	
+	@RequestMapping("/usedboard/usedboardPayment.do")
+	public ModelAndView usedboardPayment(int no, ModelAndView mv) {
+		int result=service.usedboardPayment(no);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="결제성공";
+		}else {
+			msg="결제실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardView.do?no="+no);
+		mv.setViewName("common/msg");
+		return mv;
+	}
 }

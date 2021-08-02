@@ -113,4 +113,11 @@ public class UsedboardDaoImpl implements UsedboardDao {
 		return session.selectList("usedboard.usedboardfileSelect",no);
 	}
 	
+	@Override
+	public int usedboardPayment(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardPayment",no);
+	}
+	
+	
 }

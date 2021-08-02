@@ -34,4 +34,6 @@ public interface UsedboardService {
 	int usedboardDelete(int no);
 	
 	List<Usedboardfile> usedboardfileSelect(int no);
+	
+	int usedboardPayment(int no);
 }

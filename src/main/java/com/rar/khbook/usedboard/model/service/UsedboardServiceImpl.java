@@ -124,4 +124,11 @@ public class UsedboardServiceImpl implements UsedboardService {
 		return dao.usedboardfileSelect(session, no);
 	}
 	
+	@Override
+	public int usedboardPayment(int no) {
+		// TODO Auto-generated method stub
+		return dao.usedboardPayment(session,no);
+	}
+	
+	
 }

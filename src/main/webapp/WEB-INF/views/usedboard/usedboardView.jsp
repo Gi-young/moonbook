@@ -2,11 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
 <link rel="stylesheet" href="${path }/resources/css/usedboard/usedboardView.css">
+<link rel="stylesheet" href="${path }/resources/css/usedboard/button.css">
 <section id="content">
 <br><br>
     <article id="ar">
@@ -21,8 +24,10 @@
             </span>
             <span class="desc_subjeck">
                 <a href="${path}/usedboard/usedboardList.do" id="gomain" role="button" class="btnbtn_1" style="font-size: 15px; cursor: pointer;">목록</a>
+                <c:if test="${loginMember.memberId==usedboard.member_Id }">
                 <a href="${path}/usedboard/usedboardUpdate.do?no=${no}" role="button" class="btnbtn_2" style="font-size: 15px;">수정</a>
                 <a href="${path}/usedboard/usedboardDelete.do?no=${no}" id="deletebtn" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">삭제</a>
+                </c:if>
             </span>
         </div>
         <br>
@@ -49,8 +54,23 @@
 				</div>
 				</center>
             <br>
-            <center><div id="article" style="font-size: 20px;">책제목 : ${usedboard.usedboard_BookTitle } / 가격 : ${usedboard.usedboard_Price }원</div></center>
-            <div id="article" style="font-size: 20px;">${usedboard.usedboard_Content }</div>
+            <center><div id="article" style="font-size: 20px;">책제목 : ${usedboard.usedboard_BookTitle } / 가격 : ${usedboard.usedboard_Price }원 / 거래상태 : 
+            <c:if test="${usedboard.usedboard_State == 'y' }">
+            	<span style="font-size: 20px; color: red;">
+                	거래중 
+                </span></c:if>
+            <c:if test="${usedboard.usedboard_State == 'n' }">
+				<span style="font-size: 20px; color: blue;">
+                	거래완료
+                </span></c:if>
+            </div></center>
+            <div id="article" style="font-size: 20px;">${usedboard.usedboard_Content }</div><br>
+            <c:if test="${loginMember!=null }">
+            <c:if test="${usedboard.usedboard_State!='n'}">
+            <center><div class="wrap">
+			  <button class="button">결제하기</button>
+			</div></center>
+			</c:if></c:if>
         </div>
         <div class="viewrecom">
             <div>
@@ -102,10 +122,11 @@
                 </c:forEach>
             </div>
             <br><br>
+            <c:if test="${loginMember!=null }">
                 <div class="comment-editor">
                     <div class="inner-comment">
                         <form action="${path }/usedboard/insertUsedcomment.do" method="post">
-                            <textarea name="usedcomment_Content" rows="3" cols="195" style="resize: none; width: 95%; height: 50px" placeholder="로그인을 하셔야 댓글에 글을 쓸수 있습니다."></textarea>
+                            <textarea name="usedcomment_Content" rows="3" cols="195" style="resize: none; width: 95%; height: 50px"></textarea>
                             <input type="hidden" name="usedcomment_Level" value="1">
                             <input type="hidden" name="usedbaord_No" value="${no }">
                             <input type="hidden" name="usedcomment_CommentRef" value="0">
@@ -116,12 +137,48 @@
                         </form>
                     </div>
                 </div>
+                </c:if>
         </div>
         <br><br><br>
     
     </article>
 </section>
 <style>
+
+.wrap { 
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 540px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+
+
 	#slider-wrap {
 	    width: 700px;
 	    height: 700px;
@@ -254,6 +311,67 @@
 	}
 </style>
 <script>
+	$(".button").click(function () {
+		var IMP = window.IMP; // 생략가능
+		IMP.init('imp82349962');
+		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+		IMP.request_pay({
+		pg: 'inicis', // version 1.1.0부터 지원.
+		/*
+		'kakao':카카오페이,
+		html5_inicis':이니시스(웹표준결제)
+		'nice':나이스페이
+		'jtnet':제이티넷
+		'uplus':LG유플러스
+		'danal':다날
+		'payco':페이코
+		'syrup':시럽페이
+		'paypal':페이팔
+		*/
+		pay_method: 'card',
+		/*
+		'samsung':삼성페이,
+		'card':신용카드,
+		'trans':실시간계좌이체,
+		'vbank':가상계좌,
+		'phone':휴대폰소액결제
+		*/
+		merchant_uid: 'merchant_' + new Date().getTime(),
+		/*
+		merchant_uid에 경우
+		https://docs.iamport.kr/implementation/payment
+		위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+		참고하세요.
+		나중에 포스팅 해볼게요.
+		*/
+		name: '${usedboard.usedboard_BookTitle }',
+		//결제창에서 보여질 이름
+		amount: ${usedboard.usedboard_Price},
+		//가격
+		buyer_email: '${loginMember.memberEmail}',
+		buyer_name: '${loginMember.memberName}',
+		buyer_tel: '${loginMember.memberPhone}',
+		buyer_addr: '${loginMember.memberAddress}',
+		buyer_postcode: '123-456',
+		m_redirect_url: 'https://www.yourdomain.com/payments/complete'
+		/*
+		모바일 결제시,
+		결제가 끝나고 랜딩되는 URL을 지정
+		(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+		*/
+		}, function (rsp) {
+		console.log(rsp);
+		if (rsp.success) {
+			location.href="${path}/usedboard/usedboardPayment.do?no=${no}";
+		} else {
+			var msg = '결제에 실패하였습니다.';
+			msg += '에러내용 : ' + rsp.error_msg;
+			alert(msg);
+		}
+		});
+		});
+
 		//slide-wrap
 	var slideWrapper = document.getElementById('slider-wrap');
 	//current slideIndexition
@@ -356,4 +474,4 @@
 		$(e.target).off("click");
 	});
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp"></jsp:include>
