@@ -27,7 +27,7 @@
 								<th>정렬방법</th>
 								
 								<td>
-									<input class="howASCSearch" type="radio" name="HowStockT" id="stockBookT" value="stockBookT" checked><label for="stockBookT">book</label>
+									<input class="howASCSearch" type="radio" name="HowStockT" id="stockBookT" value="stockBookT"><label for="stockBookT">book</label>
 									<input class="howDESCSearch2" type="radio" name="HowStockT" id="stockGiftT" value="stockGiftT"><label for="stockGiftT">gift</label>
 								</td>
 								<td>
@@ -36,7 +36,7 @@
 								
 								</td>
 								<td>
-								<input type="button" value="조회하기" onclick="orderList();">
+									<input type="button" value="조회하기" onclick="orderList();">
 								</td>
 							</tr>
 							<tr>
@@ -187,7 +187,33 @@
 
 
 <script>
+var stockParam = "book";
+
+console.log("test : " + "${stockParam}");
+
+<c:if test="${stockParam.equals('book')}">
+	console.log("haha : " + "book");
+	$(".stockT-container").css("display","block");
+	$(".stockT-container2").css("display","none");
+</c:if>
+
+<c:if test="${stockParam.equals('gift')}">
+	console.log("haha : " + "gift");
+	$(".stockT-container").css("display","none");
+	$(".stockT-container2").css("display","block");
+</c:if>
+
+
 $("input[name=HowStockT]").click(e=>{
+	
+	document.getElementsByName("HowStockT").forEach((v, i) => {
+		if(v.checked) {
+			if(v.value == "stockBookT") stockParam="book";
+			else stockParam = "gift";
+		}
+	});
+	
+	
 	$("input[name=HowStockT]").each((i,v)=>{
 		if(v.checked){
 			if(v.value=="stockBookT"){
