@@ -27,5 +27,5 @@ public class Gift {
 	private String gift_discount; //할인 여부
 	private int gift_salesVolume;
 	private GiftCate giftcate;
-	
+	private int gift_salesvolume;
 }

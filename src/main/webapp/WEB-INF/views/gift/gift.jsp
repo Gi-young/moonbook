@@ -10,32 +10,13 @@
     <link rel="stylesheet" href="${path }/resources/css/gift/gift.css">
 <div class="wrap">
     <!-- 전체를 감싸고 있는 div -->
-    <div class="hotTracks">
+    
+  	<jsp:include page="/WEB-INF/views/gift/hotTracksMenu.jsp">
+    <jsp:param name="" value=""/>
+    </jsp:include>
+    
     <!-- 상단 핫트랙스 메뉴바 -->
-        <div class="category-open">
-            <img src="${path }/resources/images/gift/기프트헤더로고.png" alt="" style="height: 50px;">
-        </div>
-        <div class="hotTracks-menu">
-            <ul>
-                <!-- 페이지 전환할 때 스크립트로 전환 -->
-                <li>
-                    <a style="color:#696969;" href="#">전자기기</a>
-                </li>
-                <p>·</p>
-                <li>
-                    <a style="color:#696969;" href="#">수납/정리</a>
-                </li>
-                <p>·</p>
-                <li>
-                    <a style="color:#696969;" href="#">독서 필수템</a>
-                </li>
-                <p>·</p>
-                <li>
-                    <a style="color:#696969;" href="#">잡화</a> 
-                </li>
-            </ul>
-        </div>
-    </div>
+       
     <div class="slide-container">
         <!-- 리스트를 담고 있는 박스 -->
        <div class="firstSlide-list">
@@ -972,7 +953,7 @@
         // 사이드 퀵메뉴바
         $(".quickBar").load("../html/quickBar.html");
     }) */
-    $(".slide-modal").click(function(){
+    /* $(".slide-modal").click(function(){
         console.log("모달창 실행");
         let modal = $(".modal-pop-content");
         let modalBack = $(".modal-pop-back");
@@ -989,7 +970,7 @@
         $(".wrap:first").css("overflow","");
         modalBack.css("display","none");
         modal.css("display","none");
-    })
+    }) */
     var lnb = $(".hotTracks").offset().top;
     $(window).scroll(function() {
         var window = $(this).scrollTop();

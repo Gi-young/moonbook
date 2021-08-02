@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
     <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- Popper JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
 </head>
 <body>
@@ -154,10 +154,10 @@
                     <li class="item">
                     	<a href="${path }/gift/giftView.do">문곰템 ▼</a>
                     	<ul class="giftTab">
-                            <li><a href='#'>전자기기</a></li>
-                            <li><a href='#'>수납/정리</a></li>
-                            <li><a href='#'>독서 필수템</a></li>
-                            <li><a href="#">잡화</a></li>
+                            <li><a href='${path }/gift/moreThing.do?giftCate=e'>전자기기</a></li>
+                            <li><a href='${path }/gift/moreThing.do?giftCate=s'>수납/정리</a></li>
+                            <li><a href='${path }/gift/moreThing.do?giftCate=r'>독서 필수템</a></li>
+                            <li><a href="${path }/gift/moreThing.do?giftCate=g">잡화</a></li>
                         </ul>
                     </li>
                     <li><a href="${path}/usedboard/usedboardList.do">중고</a></li>

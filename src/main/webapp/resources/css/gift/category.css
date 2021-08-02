@@ -1,0 +1,141 @@
+@charset "UTF-8";
+@import url(../css/style.css);
+
+.wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.hotTracks{
+    width: 950px;
+    height: 50px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0px 5px 5px #C3C3C3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.category-open{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hotTracks-menu{
+    padding-left: 50px;
+}
+.hotTracks-menu ul{
+    display: flex;
+    justify-content: space-around;
+    width: 700px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #696969;
+}
+.hotTracks-menu a{
+    color:#696969;
+    cursor: pointer;
+}
+.fixed{
+    position: fixed;
+    top: 0;
+    left: 50;
+    min-width: 1600px;
+    width: 100%;
+    z-index: 15;
+    background-color: #FFFFFF;
+}
+
+/* 카테고리 box css 시작 */
+
+.category-box{
+    width: 950px;
+    display: flex;
+    margin: 20px 0 20px 0; 
+    align-items: center;
+}
+.main{
+    font-size: 28px;
+    font-weight: 900;
+}
+.sub{
+    font-size: 20px;
+    font-weight: lighter;
+    margin-left: 80px;
+    color: silver;
+}
+
+/* 카테고리 css 끝 */
+/* space */
+.space{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border: .2px solid silver;
+    width: 1200px;
+    /* width: 100%; */
+}
+
+/* 9개의 상품을 보여주는 박스 */
+
+.thing9{
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 1200px;
+}
+.thing9>div{
+    display: flex;
+    justify-content: space-around;
+}
+.thing9 img{
+    width: 300px;
+    width: 300px;
+    box-shadow: 5px 5px 5px 2px burlywood;
+    /* border: 2px solid rgba(0, 0, 0, 1); */
+    border-radius: 5px;
+}
+.thing9-a{
+    position: relative;
+}
+.inner-a{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color:white;
+}
+.inner-div{
+    display: flex;
+    height: 200px;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.none{
+    display: none;
+}
+.discount{
+    font-size: 16px;
+    font-weight: 800;
+}
+.price{
+    font-size: 14px;
+    font-weight: lighter;
+    margin-left: 20px;
+}
+
+/* 9개의 상품 박스 css 끝 */
+/* 가변슬라이드 css 시작 */
