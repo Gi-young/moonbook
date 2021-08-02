@@ -1113,10 +1113,12 @@ padding-bottom: 5px;
     display: none;
   }
 </style>
-
+<link rel="stylesheet" href="${path }/resources/css/index/stickymenu.css">
 <!-- ////////////////////////상위배너/////////////////////// -->
-
 <div class="wrap">
+<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickymenu.jsp">
+<jsp:param name="" value=""/>
+</jsp:include>
 <div class="bannerBg">
 <div class="flex bannerwrap">
 <div class="">
@@ -2515,6 +2517,7 @@ padding-bottom: 5px;
     
     <script src="${path }/resources/js/header.js"></script>
 	<script src="${path }/resources/js/header(2).js"></script> --%>
+
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 <jsp:param name="" value=""/>
 </jsp:include>
