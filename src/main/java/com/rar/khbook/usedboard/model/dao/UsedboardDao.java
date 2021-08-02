@@ -43,4 +43,6 @@ public interface UsedboardDao {
 	int usedboardfileDelete(SqlSession session,int no);
 	
 	List<Usedboardfile> usedboardfileSelect(SqlSession session,int no);
+	
+	int usedboardPayment(SqlSession session,int no);
 }

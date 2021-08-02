@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
 <link rel="stylesheet" href="${path }/resources/css/usedboard/usedboardInsert.css">
@@ -219,4 +219,4 @@ attachFile = {
 	function setThumbnail(event) { var reader = new FileReader(); reader.onload = function(event) { var img = document.createElement("img"); img.setAttribute("src", event.target.result); document.querySelector("div#image_container").appendChild(img); }; reader.readAsDataURL(event.target.files[0]); };
 	
 </script>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp"></jsp:include>

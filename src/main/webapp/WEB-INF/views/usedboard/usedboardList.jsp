@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value="중고게시판 리스트"/>
 </jsp:include>
 <link rel="stylesheet" href="${path }/resources/css/usedboard/usedboardList.css">
@@ -61,7 +61,9 @@
     </div>
     <div style="height: 1250px">
         <p id="titi" style="font-size: 35px; color: cornflowerblue;">  중고게시판</p>
+        <c:if test="${loginMember!=null }">
         <a href="${path }/usedboard/usedboardInsert.do" id="insertborad" style="left: 65%; font-size: 18px;">거래 등록</a>
+        </c:if>
         <br><br>
         <c:if test="${list.isEmpty() }">
 	        <div id="secondBorad" style="padding-left: 300px;">
@@ -126,4 +128,4 @@
         <br><br>
 		<div id="pageBarb">${pageBar }</div>
 </section>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp"></jsp:include>

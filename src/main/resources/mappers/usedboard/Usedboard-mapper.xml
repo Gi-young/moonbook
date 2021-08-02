@@ -65,7 +65,7 @@
 	</update>
 	
 	<insert id="usedboardInsertEnd">
-		INSERT INTO USEDBOARD VALUES(SEQ_USEDBOARD.NEXTVAL,#{usedboard_Title},#{usedboard_Content},SYSDATE,#{usedboard_Price},'y',#{usedboard_Category, typeHandler=strArr},#{member_Id},#{usedboard_BookTitle})
+		INSERT INTO USEDBOARD VALUES(SEQ_USEDBOARD.NEXTVAL,#{usedboard_Title},#{usedboard_Content},SYSDATE,#{usedboard_Price},'y',#{usedboard_Category, typeHandler=strArr},#{member_Id},#{usedboard_BookTitle},null)
 		<selectKey keyProperty="usedboard_No" resultType="_int" order="AFTER">
 			SELECT SEQ_USEDBOARD.CURRVAL FROM DUAL
 		</selectKey>
@@ -90,4 +90,8 @@
 	<select id="usedboardfileSelect" resultMap="usedboardfileMap">
 		SELECT * FROM USEDBOARDFILE WHERE USEDBOARD_NO=${value}
 	</select>
+	
+	<update id="usedboardPayment">
+		UPDATE USEDBOARD SET USEDBOARD_STATE='n',USEDBOARD_PAYMENTDATE=SYSDATE WHERE USEDBOARD_NO=${value}
+	</update>
 </mapper>
