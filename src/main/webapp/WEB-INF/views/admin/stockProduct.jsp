@@ -32,19 +32,21 @@
 								</td>
 								<td>
 								
-									<span>재고 </span> <input type="number" style="width:60px; height:27px;" min="0"><span> 이상 </span><input type="number" style="width:60px; height:27px;" min="1"><span> 미만 </span>
+									<span>재고 </span> <input type="number" style="width:60px; height:27px;" min="0" name="stockNum1"><span> 이상 </span><input type="number" style="width:60px; height:27px;" min="1" name="stockNum2"><span> 미만 </span>
 								
 								</td>
 								<td>
-									<input type="button" value="조회하기" onclick="orderList();">
+									<input type="button" value="조회하기" onclick="orderList3();">
 								</td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
 								<td class="admin-search2">
 								<select name="type2">
-									<option value="" selected>제품명</option>
-									<option value="" >번호</option>
+									<option value="" selected>책 제목</option>
+									<option value="" >책 번호</option>
+									<option value="">상품명</option>
+									<option value="" >상품 번호</option>
 								</select>
 								</td>
 								<td class="search-box">
@@ -245,12 +247,15 @@ const searchMT =()=>{
 			search:search
 		},
 		success: data=>{
-		document.querySelectorAll(".memberT td").forEach((v,i) => {
+			document.querySelectorAll(".stockT td").forEach((v,i) => {
+				v.remove();
+			});
+			document.querySelectorAll(".stockT2 td").forEach((v,i) => {
 				v.remove();
 			});
 			console.dir( data);
 			
-			let table=document.querySelector(".memberT");
+			let table=document.querySelector(".stockT");
 			for(let i=0;i<data.length;i++){
 				let tr=document.createElement("tr");
 				for(let j=0;j<12;j++){
@@ -299,66 +304,62 @@ const searchMT =()=>{
 	});
 } 
 
-const orderList = () => {
-	let type1 = document.getElementsByName("type1")[0].value;
-	let order="";
-	document.getElementsByName("searchHow2").forEach((v,i) => {
+const orderList3 = () => {
+	let typeT = "";
+	let stockNum1= documnet.getElementsByName("stockNum1")[0].value;
+	let stockNum2= documnet.getElementsByName("stockNum2")[0].value;
+	document.getElementsByName("HowStockT").forEach((v,i) => {
 		if (v.checked) {
-			order = v.value;
+			typeT = v.value;
 		}
 	});
 	
 	$.ajax({
-		url: "${path}/admin/orderedMemberList.do",
+		url: "${path}/admin/orderStockList.do",
 		data: {
-			type1: type1,
-			order: order==="" ? "asc":order
+			typeT: typeT,
+			stockNum1: stockNum1,
+			stockNum2: stockNum2
 		},
 		success: data => {
-			document.querySelectorAll(".memberT td").forEach((v,i) => {
+			document.querySelectorAll(".stockT td").forEach((v,i) => {
 				v.remove();
 			});
-			let table=document.querySelector(".memberT");
-			for(let i=0;i<data.length;i++){
-				let tr=document.createElement("tr");
-				for(let j=0;j<12;j++){
-					let td=document.createElement("td");
-					td.style.border="1px solid black";
-					td.style.height="27px";
-					if(j == 0) {
-						let regiDate = new Date(data[i].memberRegiDate);
-						let regiMonth;
-						if((regiDate.getMonth()+1)<10){
-							regiMonth = ("0"+(regiDate.getMonth()+1));
-						}else{ 
-							regiMonth = (regiDate.getMonth()+1);
-						}	
+			document.querySelectorAll(".stockT2 td").forEach((v,i) => {
+				v.remove();
+			});
+			if(typeT.equals("book")){
+				let table=document.querySelector(".stockT");
+				for(let i=0;i<data.length;i++){
+					let tr=document.createElement("tr");
+					for(let j=0;j<12;j++){
+						let td=document.createElement("td");
+						td.style.border="1px solid black";
+						td.style.height="27px";
+						if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].bindNo+"'>";
+						if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].title + "'>";
+						if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].author + "'>";
+						if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].price + "'>";
+						if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].isbn + "'>";
+						if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].publisher + "'>";
+						if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].categoryCode + "'>";
+						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].stock + "'>";
+						if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].salesVolume + "'>";
+						if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].ebookSalesVolume + "'>";
+						if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="" class="updateCheck updateImg">'
+						if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].bindNo +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
 						
-						td.innerHTML = "<input type='text' value='"+regiDate.getFullYear() + "-" + 
-						regiMonth
-						+ "-" + regiDate.getDate()+ "'>";
+						tr.appendChild(td);
 					}
-					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].memberId + "'>";
-					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
-					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
-					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
-					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
-					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
-					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
-					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+					table.appendChild(tr);
 					
-					tr.appendChild(td);
 				}
-				table.appendChild(tr);
-				
 			}
-			document.querySelectorAll(".memberT td>img.updateImg").forEach((v, i) => {
+			
+			document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
 				v.addEventListener("click", function() {changeMember(event)});
 			});
-			document.querySelectorAll(".memberT td>img.deleteImg").forEach((v, i) => {
+			document.querySelectorAll(".stockT td>img.deleteImg").forEach((v, i) => {
 				v.addEventListener("click", function() {adMemberDelete(event)});
 			});
 		}
