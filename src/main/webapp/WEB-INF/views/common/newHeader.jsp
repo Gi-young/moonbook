@@ -154,10 +154,10 @@
                     <li class="item">
                     	<a href="${path }/gift/giftView.do">문곰템 ▼</a>
                     	<ul class="giftTab">
-                            <li><a href='#'>전자기기</a></li>
-                            <li><a href='#'>수납/정리</a></li>
-                            <li><a href='#'>독서 필수템</a></li>
-                            <li><a href="#">잡화</a></li>
+                            <li><a href='${path }/gift/moreThing.do?giftCate=e'>전자기기</a></li>
+                            <li><a href='${path }/gift/moreThing.do?giftCate=s'>수납/정리</a></li>
+                            <li><a href='${path }/gift/moreThing.do?giftCate=r'>독서 필수템</a></li>
+                            <li><a href="${path }/gift/moreThing.do?giftCate=g">잡화</a></li>
                         </ul>
                     </li>
                     <li><a href="${path}/usedboard/usedboardList.do">중고</a></li>

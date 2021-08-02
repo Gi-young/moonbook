@@ -90,6 +90,12 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.checkStock1",bindNo);
 	}
+	
+	@Override
+	public Gift checkStock3(SqlSession session, int gift_no) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.checkStock3",gift_no);
+	}
 
 	@Override
 	public int outputProduct1(SqlSession session, Map param) { //출고 book
@@ -103,6 +109,18 @@ public class AdminDaoImpl implements AdminDao {
 		return session.update("admin.updateSalesVolume1",param);
 	}
 	//잠만 ebook은 입고는 공통인데 출고가 다름 ebook은 판매량+1만 하면됨
+	
+	@Override
+	public int updateSalesVolume2(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("admin.updateSalesVolume2",param);
+	}
+	
+	@Override
+	public int outputAndupdateSalesVolume3(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("admin.outputAndupdateSalesVolume3",param);
+	}
 
 	//재고현황
 	@Override

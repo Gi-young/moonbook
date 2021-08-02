@@ -24,7 +24,8 @@ public class Gift {
 	private String gift_for_sale;
 //	private int gift_safecount;
 	private int gift_giftcate_code;
-	private String gift_discount;
+	private String gift_discount; //할인 여부
+	private int gift_salesVolume;
 	private GiftCate giftcate;
-	
+	private int gift_salesvolume;
 }
