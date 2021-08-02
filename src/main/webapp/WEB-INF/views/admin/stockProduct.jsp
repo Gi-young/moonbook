@@ -32,7 +32,7 @@
 								</td>
 								<td>
 								
-									<span>재고 </span> <input type="number" style="width:60px; height:27px;"><span> 이상 </span><input type="number" style="width:60px; height:27px;"><span> 미만 </span>
+									<span>재고 </span> <input type="number" style="width:60px; height:27px;" min="0"><span> 이상 </span><input type="number" style="width:60px; height:27px;" min="1"><span> 미만 </span>
 								
 								</td>
 								<td>

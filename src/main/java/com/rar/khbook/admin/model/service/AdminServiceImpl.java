@@ -105,11 +105,28 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.updateSalesVolume1(session,param);
 	}
+	@Override
+	public int updateSalesVolume2(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateSalesVolume2(session,param);
+	}
+	
+	@Override
+	public int outputAndupdateSalesVolume3(Map param) {
+		// TODO Auto-generated method stub
+		return dao.outputAndupdateSalesVolume3(session,param);
+	}
 
 	@Override
 	public EbookDatabind checkStock1(int bindNo) {
 		// TODO Auto-generated method stub
 		return dao.checkStock1(session,bindNo);
+	}
+	
+	@Override
+	public Gift checkStock3(int gift_no) {
+		// TODO Auto-generated method stub
+		return dao.checkStock3(session, gift_no);
 	}
 
 	@Override
@@ -135,6 +152,9 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.selectGiftCount(session);
 	}
+
+	
+	
 	
 	
 	

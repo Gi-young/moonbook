@@ -38,9 +38,15 @@ public interface AdminDao {
 	
 	EbookDatabind checkStock1(SqlSession session, int bindNo);
 	
+	Gift checkStock3(SqlSession session, int gift_no);
+	
 	int outputProduct1(SqlSession session,Map param);
 	
 	int updateSalesVolume1(SqlSession session,Map param);
+	
+	int updateSalesVolume2(SqlSession session,Map param);
+	
+	int outputAndupdateSalesVolume3(SqlSession session,Map param);
 	
 	List<EbookDatabind> selectEbookDatabindList(SqlSession session,int cPage,int numPerpage);
 	int selectEbookDataCount(SqlSession session);
