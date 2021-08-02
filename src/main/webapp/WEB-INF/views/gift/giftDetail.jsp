@@ -75,7 +75,7 @@
                     <!-- <button>찜하기</button> -->
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
-                    <button class="naverPay" id="kakaoPay">[간편결제] 카카오페이</button>
+                    <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
         </div>
