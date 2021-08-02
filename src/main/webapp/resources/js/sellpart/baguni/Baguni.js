@@ -3,25 +3,30 @@ IMP.init("imp26745696");
 
 let payBtn = document.getElementById("payBtn");
 let refundBtn = document.getElementById("refundBtn");
+let loginMember = document.getElementById("loginMember").value;
+let contextPath = document.getElementById("contextPath").value;
 
-payBtn.addEventListener("click", () => {
-    let totalPrice = Number(document.getElementById("totalPrice").innerText);
 
-    let purchaseArr = new Array();
-    document.querySelectorAll("input[name=selectEbook]").forEach((v, i) => {
-        if (v.checked) {
-            purchaseArr.push(v.value);
-        }
-    });
+payBtn.addEventListener("click", (e) => {
+
+	e.preventDefault();
+    //let totalPrice = Number(document.getElementById("totalPrice").innerText);
+
+    //let purchaseArr = new Array();
+    //document.querySelectorAll("input[name=selectEbook]").forEach((v, i) => {
+     //   if (v.checked) {
+       //     purchaseArr.push(v.value);
+    //    }
+    //});
     
 	
 	
 	
     $.ajax({
-        url: contextPath + "/ebook/getMemberInfo.do",
+        url: contextPath + "/sellpart/checkMember.do",
         type: "POST",
-        data: {
-            memberId: ${loginMember}.memberId
+        data: { 
+        memberId: loginMember
         },
         success: data => {
             let buyerName;
@@ -58,7 +63,7 @@ payBtn.addEventListener("click", () => {
                                         paidAt: rsp.paid_at,
                                         pgProvider: rsp.pg_provider,
                                         receiptUrl: rsp.receipt_url,
-                                        purchaseEbookNoList: purchaseArr.toString()
+                                        purchaseEbookNoList: "1,2"
                                     },
                                     success: data => {
                                         console.log("결제 로그 추가 결과 : " + data);
@@ -78,15 +83,15 @@ payBtn.addEventListener("click", () => {
 });
 
 
-refundBtn.addEventListener("click", () => {
-    $.ajax({
-        url: contextPath + "/ebook/cancelPayment.do",
-        type: "POST",
-        data: {
-            impUid: "imp_223195009712"
-        },
-        success: () => {
-            console.log("환불 성공");
-        }
-    });
-});
+//refundBtn.addEventListener("click", () => {
+//    $.ajax({
+//        url: contextPath + "/ebook/cancelPayment.do",
+ //       type: "POST",
+  //      data: {
+ //           impUid: "imp_223195009712"
+  //      },
+  //      success: () => {
+  //          console.log("환불 성공");
+ //       }
+ //   });
+// });

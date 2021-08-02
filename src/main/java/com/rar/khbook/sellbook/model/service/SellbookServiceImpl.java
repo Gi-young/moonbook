@@ -1,11 +1,13 @@
-package com.rar.khbook.sellbook.model.vo.service;
+package com.rar.khbook.sellbook.model.service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.sellbook.model.dao.SellbookDao;
 import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
+
 
 @Service
 public class SellbookServiceImpl implements SellbookService {
@@ -23,5 +25,14 @@ public class SellbookServiceImpl implements SellbookService {
 
 		return dao.selectSellbookDatabind(session, bindNo);
 	}
+
+
+
+	@Override
+	public Member checkMember(String memberId) {
+		
+		return dao.checkMember(session, memberId);
+	}
+	
 	
 }

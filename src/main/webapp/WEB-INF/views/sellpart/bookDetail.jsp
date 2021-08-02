@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.rar.khbook.member.model.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
@@ -1473,7 +1473,18 @@ transition: all 0.2s linear;
     })
     </script>
 
-<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
 </section>
+
+
+<input type="hidden" id="loginMember" value="${loginMember.memberId}">
+<%System.out.println("test : " + session.getAttribute("loginMember")); %>
+
+<input type="hidden" id="contextPath" value="${path }">
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

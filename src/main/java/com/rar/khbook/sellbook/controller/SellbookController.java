@@ -7,11 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.sellbook.model.service.SellbookService;
 import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
-import com.rar.khbook.sellbook.model.vo.service.SellbookService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -151,7 +153,15 @@ public class SellbookController {
 		
 	}
 	
-	
+	@RequestMapping(value = "/sellpart/checkMember.do")
+	@ResponseBody
+	public Member checkMember(String memberId) {
+		System.out.println("DAO이전입니다.");
+		Member member = service.checkMember(memberId);
+		System.out.println("DAO이후입니다.");
+		System.out.println("멤버 넘어오니?" + member);
+		return member;
+	}
 
 	
 }

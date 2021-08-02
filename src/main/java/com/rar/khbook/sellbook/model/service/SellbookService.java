@@ -1,9 +1,12 @@
-package com.rar.khbook.sellbook.model.vo.service;
+package com.rar.khbook.sellbook.model.service;
 
+import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
 
 public interface SellbookService {
 	
 	SellbookDatabind selectSellbookDatabind(int bindNo);
+
+	Member checkMember(String memberId);
 
 }
