@@ -20,7 +20,7 @@
 			<a href="${path}/ebook/openEbookWizard.do">e북 마법사</a>
 			<a href="${path}/ebook/pageEbookReport.do">e독서록</a>
 			<a href="${path}/ebook/pageEbookPlanner.do">e북 플래너</a>
-			<a href="${path}/ebook/pageEbookClub.do">e독서토론 </a>
+			<a href="${path}/ebook/pageEbookClubManager.do">e독서토론 </a>
 			<a href="${path}/ebook/pageEbookPublisher.do">e노트 출판</a>
 		</header>
 		

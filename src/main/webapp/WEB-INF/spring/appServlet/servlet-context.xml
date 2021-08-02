@@ -41,8 +41,6 @@
 	   </beans:property>
    </beans:bean>
    
-   <beans:bean id="wizardHandler" class=""
-   
    <beans:bean id="debateHandler" class="com.rar.khbook.ebook.server.EbookDebateServer"/>
    
    <websocket:handlers>

@@ -116,11 +116,13 @@
 						<!-- </form> -->
 						
 						<div id="pagebar-container">
-			        		${pageBar }
+			        		<c:if test="${stockParam.equals('book')}">
+			        			${pageBar }
+			        		</c:if>
 			        	</div> 
 			        
 					</div>
-					<div class="stockT-container2" style="display:none;">
+					<div class="stockT-container2">
 						<p class="memberTFont">총 <span class="turnRed">${totalContents2 }</span>개의 상품이 있습니다.</p>
 						<p class="memberTFont2">※ 상품명, 상품소개, 가격, 제조사, 제조국, AS/상담여부, 수입여부, 판매여부  수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
@@ -177,7 +179,9 @@
 						<!-- </form> -->
 						
 						<div id="pagebar-container">
-			        		${pageBar2 }
+							<c:if test="${stockParam.equals('gift')}">
+			        			${pageBar2 }
+			        		</c:if>
 			        	</div> 
 			        
 					</div>
@@ -187,45 +191,29 @@
 
 
 <script>
-var stockParam = "book";
 
-console.log("test : " + "${stockParam}");
-
-<c:if test="${stockParam.equals('book')}">
-	console.log("haha : " + "book");
-	$(".stockT-container").css("display","block");
-	$(".stockT-container2").css("display","none");
-</c:if>
-
-<c:if test="${stockParam.equals('gift')}">
-	console.log("haha : " + "gift");
-	$(".stockT-container").css("display","none");
-	$(".stockT-container2").css("display","block");
-</c:if>
-
+window.onload = function () {
+	if("${stockParam}" === "book") {
+		$("#stockBookT").attr("checked","checked");
+		$(".stockT-container").css("display","block");
+		$(".stockT-container2").css("display","none");
+	} else {
+		$("#stockGiftT").attr("checked","checked");
+		$(".stockT-container").css("display","none");
+		$(".stockT-container2").css("display","block");
+	}
+}
 
 $("input[name=HowStockT]").click(e=>{
-	
-	document.getElementsByName("HowStockT").forEach((v, i) => {
-		if(v.checked) {
-			if(v.value == "stockBookT") stockParam="book";
-			else stockParam = "gift";
-		}
-	});
-	
-	
 	$("input[name=HowStockT]").each((i,v)=>{
 		if(v.checked){
-			if(v.value=="stockBookT"){
-				$(".stockT-container").css("display","block");
-				$(".stockT-container2").css("display","none");
-			}else{
-				$(".stockT-container").css("display","none");
-				$(".stockT-container2").css("display","block");
-			}
+			if(v.value == "stockBookT") location.assign("${path}/admin/stockProductPage.do?stockParam="+"book");
+			else location.assign("${path}/admin/stockProductPage.do?stockParam="+"gift");
+			
 		}
-	})
-})
+	});
+});
+
 function adMemberDelete(event){
 	let memberId=$(event.target).prev().val();
 	

@@ -4,7 +4,7 @@ public class PageFactoryAdmin {
 
 	
 	public static String getPageBar(int totalData, 
-			int cPage, int numPerpage, String url) {
+			int cPage, int numPerpage, String url, String stockParam) {
 		
 		String pageBar="<ul class='pagination justify-content-center pagination-sm'>";
 		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
@@ -53,8 +53,10 @@ public class PageFactoryAdmin {
 		pageBar+="<script>";
 		
 		pageBar+="function fn_paging(cPage){";
-		pageBar+="location.assign('"+url+"?cPage='+cPage+'&stockParam='+stockParam+'\');}";
+		pageBar+="location.assign('"+url+"?cPage='+cPage+'&stockParam="+ stockParam +"');}";
 		pageBar+="</script>";	
+		
+		System.out.println("pageBar Test : " + stockParam);
 		
 		
 		return pageBar;

@@ -7,11 +7,12 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>e노트 출판 - 문곰책방</title>
+	<title>${param.title}</title>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/commonStyle.css">
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookPublisher.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookClub.css">
 	<script defer src="${path}/resources/js/jquery-3.6.0.min.js"></script>
-	<script defer src="${path}/resources/js/ebook/wizard/ebookPublisher.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script defer src="${path}/resources/js/ebook/wizard/ebookClub.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -24,14 +25,10 @@
 		</header>
 		
 		<aside>
-			<div></div>
+			<ul>
+				<li><a href="${path}/ebook/pageEookClubManager.do">나의 클럽 관리하기</a></li>
+				<li><a href="${path}/ebook/pageEookClubBoard.do">클럽 게시판</a></li>
+				<li><a href="${path}/ebook/pageEookClubDebate.do">독서 토론</a></li>
+				<li><a href="${path}/ebook/pageEookClubDebateManager.do">독서 토론 관리</a></li>
+			</ul>
 		</aside>
-		
-		<section>
-			
-		</section>
-	</div>
-
-	<input type="hidden" id="contextPath" value="${path}">
-</body>
-</html>
