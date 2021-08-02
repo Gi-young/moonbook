@@ -130,9 +130,24 @@ public class EbookController {
 		return "ebook/wizard/ebookPlanner";
 	}
 	
-	@RequestMapping(value="/ebook/pageEbookClub.do")
-	public String pageEbookClub() {
-		return "ebook/wizard/ebookClub";
+	@RequestMapping(value="/ebook/pageEbookClubManager.do")
+	public String pageEbookClubManager() {
+		return "ebook/wizard/club/ebookClubManager";
+	}
+	
+	@RequestMapping(value = "/ebook/pageEbookClubBoard.do")
+	public String pageEbookClubBoard() {
+		return "ebook/wizard/club/ebookClubBoard";
+	}
+	
+	@RequestMapping(value = "/ebook/pageEbookClubDebate.do")
+	public String pageEbookClubDebate() {
+		return "ebook/wizard/club/ebookClubDebate";
+	}
+	
+	@RequestMapping(value = "/ebook/pageEbookClubDebateManager.do")
+	public String pageEbookClubDebateManager() {
+		return "ebook/wizard/club/ebookClubDebateManager";
 	}
 	
 	@RequestMapping(value="/ebook/pageEbookPublisher.do")

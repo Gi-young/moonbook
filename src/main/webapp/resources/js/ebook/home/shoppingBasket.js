@@ -15,6 +15,7 @@ function getMyBooksFromBasket() {
             
             data.forEach((v, i) => {
                 let ebookBox = document.createElement("div");
+                ebookBox.classList.add("ebookBox");
                 
                 let ebookImg = document.createElement("img");
                 ebookImg.src = v.IMAGE;
@@ -110,6 +111,22 @@ payBtn.addEventListener("click", () => {
                                     },
                                     success: data => {
                                         console.log("결제 로그 추가 결과 : " + data);
+
+                                        $.ajax({
+                                            url: contextPath + "/ebook/putPurchasedEbooksIntoDatabase.do",
+                                            type: "POST",
+                                            data: {
+                                                loginMemberId: loginMemberId,
+                                                purchaseList: purchaseArr.toString()
+                                            }
+                                        });
+
+                                        document.querySelectorAll("div.ebookBox").forEach((v, i) => {
+                                            if(purchaseArr.includes($(v).find("input[name=selectEbook]").val())) {
+                                                v.remove();
+                                            }
+                                        });
+
                                         alert("결제에 성공했습니다. 감사합니다");
                                     }
                                 });
