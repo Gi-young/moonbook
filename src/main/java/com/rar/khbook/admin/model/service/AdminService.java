@@ -51,4 +51,20 @@ public interface AdminService {
 	List<Gift> selectGiftList(int cPage,int numPerpage);
 	int selectGiftCount();
 	
+	//재고 책 정렬방법
+	List<EbookDatabind> orderStockList(Map param);
+	
+	//재고 gift 정렬
+	List<Gift> orderStockList3(Map param);
+	
+	//재고 책 검색
+	List<EbookDatabind> searchTextStockList(Map param);
+	//재고 gift 검색
+	List<Gift> searchTextStockList3(Map param);
+	
+	//재고 책 수정
+	int stockTUpdate(Map param);
+	
+	
+	
 }

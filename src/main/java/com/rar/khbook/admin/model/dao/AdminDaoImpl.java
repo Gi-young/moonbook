@@ -146,6 +146,38 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.selectGiftCount");
 	}
+
+	@Override
+	public List<EbookDatabind> orderStockList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.orderStockList",param);
+	}
+
+	@Override
+	public List<Gift> orderStockList3(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.orderStockList3",param);
+	}
+
+	@Override
+	public List<EbookDatabind> searchTextStockList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.searchTextStockList",param);
+	}
+
+	@Override
+	public List<Gift> searchTextStockList3(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.searchTextStockList3",param);
+	}
+
+	@Override
+	public int stockTUpdate(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("admin.stockUpdate",param);
+	}
+	
+	
 	
 	
 	

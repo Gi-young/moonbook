@@ -401,7 +401,7 @@ public class AdminController {
 										 @RequestParam(value="stockParam", required=false) String stockParam,
 										 ModelAndView mv) {
 		
-		System.out.println("컨트롤러 테스트 : " + stockParam);
+		//System.out.println("컨트롤러 테스트 : " + stockParam);
 		
 		List<EbookDatabind> listT=service.selectEbookDatabindList(cPage,numPerpage);
 		List<Gift> listT2=service.selectGiftList(cPage,numPerpage);
@@ -429,7 +429,70 @@ public class AdminController {
 		
 		return mv;
 	}
+	//재고 ~이상 ~ 미만 book버전
+	@RequestMapping("/admin/orderStockList.do")
+	@ResponseBody
+	public List<EbookDatabind> orderStockList(@RequestParam Map param) {
+		
+		int stockNum1 = Integer.parseInt((String)param.get("stockNum1"));
+		param.put("stockNum1", stockNum1);
+		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
+		param.put("stockNum2", stockNum2);
+		
+		
+		List<EbookDatabind> list=service.orderStockList(param);
+		
+		return list;
+	}
+	//재고 ~이상 ~ 미만 gift버전
+	@RequestMapping("/admin/orderStockList3.do")
+	@ResponseBody
+	public List<Gift> orderStockList3(@RequestParam Map param) {
+		
+		int stockNum1 = Integer.parseInt((String)param.get("stockNum1"));
+		param.put("stockNum1", stockNum1);
+		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
+		param.put("stockNum2", stockNum2);
+		
+		
+		List<Gift> list2=service.orderStockList3(param);
+		
+		return list2;
+	}
 	
+	//
+	@RequestMapping("/admin/searchTextStockList.do")
+	@ResponseBody
+	public List<EbookDatabind> searchTextStockList(@RequestParam Map param) {
+		
+		
+		List<EbookDatabind> list=service.searchTextStockList(param);
+		
+		return list;
+	}
+	@RequestMapping("/admin/searchTextStockList3.do")
+	@ResponseBody
+	public List<Gift> searchTextStockList3(@RequestParam Map param) {
+		
+		
+		List<Gift> list2=service.searchTextStockList3(param);
+		
+		return list2;
+	}
+	// 책 수정하기
+	
+	@RequestMapping("/admin/stockUpdate.do")
+	@ResponseBody
+	public boolean stockTUpdate(@RequestParam Map param) {
+		
+		int result=service.stockTUpdate(param);
+		
+		if(result>0) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	
 	
