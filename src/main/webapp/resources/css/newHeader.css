@@ -112,12 +112,12 @@ button{
     padding-right: 8px;
 }
 .login{
-    border: 0.5px solid silver;
+    /* border: 0.5px solid silver; */
     padding: 5px 3px 5px 3px;
     border-radius: 2px;
 }
 .login:hover{
-    border:0.8px solid black;
+    /* border:0.8px solid black; */
     cursor: pointer;
 }
 /* header 검색 창 */

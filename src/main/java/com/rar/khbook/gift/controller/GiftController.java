@@ -10,10 +10,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+
+import com.rar.khbook.gift.model.service.GiftService;
+import com.rar.khbook.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,8 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GiftController {
 	
-//	@Autowired
-//	private GiftService service;
+	@Autowired
+	private GiftService service;
 	
 //	기프트 메인페이지 이동
 	@RequestMapping("/gift/giftView.do")
@@ -99,6 +102,15 @@ public class GiftController {
 		 System.out.println(loc);
 		 
 		 return loc;
+		 
+	 }
+	 
+	 @RequestMapping("/gift/searchMember.do")
+	 @ResponseBody
+	 public String searchMember(String memberId) {
+		 Member m = service.searchMember(memberId);
+		 System.out.println("============== "+m+" ==============");
+		 return "common/msg";
 		 
 	 }
 }

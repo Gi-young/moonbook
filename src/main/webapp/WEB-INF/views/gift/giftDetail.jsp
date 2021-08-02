@@ -65,11 +65,12 @@
                 </div>
                 <div class="discount-price">
                     <p class="discount">할인율</p>
-                    <p class="price">가격</p>
+                    <p class="price" id="totalPrice">12000</p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
-                    <button>구매하기</button>
+                    <button id="byBuy">구매하기</button>
+                    <input type="hidden" value="${loginMember.memberId }" id="loginMemberId">
                     <button>장바구니</button>
                     <!-- <button>찜하기</button> -->
                 </div>
@@ -478,6 +479,7 @@
                 </li>
             </ul>
         </div> -->
+        <input type="hidden" value="${path }" id="contextPath">
 	<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 		<jsp:param name="" value=""/>
 	</jsp:include>
@@ -486,6 +488,11 @@
 			<jsp:param name="" value=""/> 
 	 </jsp:include>  --%>   
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+  <!-- iamport.payment.js -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="${path }/resources/js/gift/gift_buy.js"></script>
 <script>
       $('#slider-div').slick({
           slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
