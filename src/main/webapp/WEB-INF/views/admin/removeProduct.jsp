@@ -224,10 +224,10 @@
 			},
 			success: data => {
 				console.log(data);
-				if(data.result){
+				if(data){
 					$("#targetFrm").submit();
 					//return true;
-				}else if(!data.result){
+				}else if(!data){
 					alert("해당하는 출고 개수보다 재고가 부족합니다");
 				}
 			}

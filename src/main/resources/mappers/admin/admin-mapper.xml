@@ -18,6 +18,7 @@
 		<result column="GIFT_FORSALE" property="gift_for_sale"/>
 		<result column="GIFT_ROWPRICE" property="gift_rowprice"/>
 		<result column="GIFT_GIFTCATE_CODE" property="gift_giftcate_code"/>
+		<result column="GIFT_DISCOUNT" property="gift_discount"/>
 		<association property="giftcate" javaType="giftcate">
 			<id column="giftCateCode" property="giftCateCode"/>
 			<result column="GIFTCATE_NAME" property="giftCateName"/>
@@ -44,6 +45,7 @@
 		<result column="EBOOK_RATING" property="ebookRating"/>
 		<result column="EBOOK_SALES_VOLUME" property="ebookSalesVolume"/>
 		<result column="PRIME_COST" property="primeCost"/>
+		<result column="DISCOUNT" property="discount"/>
 		<association property="ebook" javaType="ebook">
 			<id column="EBOOK_NO" property="ebookNo"/>
 			<result column="FILEPATH" property="filepath"/>
@@ -57,12 +59,12 @@
 	</resultMap>
 	<!-- 책등록 -->
 	<insert id="insertProduct1">
-		INSERT INTO BOOK_EBOOK_DATABIND VALUES(SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,#{title},#{author},#{image},#{price},#{isbn},#{pubdate},#{publisher},#{description},#{link},#{categoryCode},0,0,0,0,0,0)
+		INSERT INTO BOOK_EBOOK_DATABIND VALUES(SEQ_BOOK_EBOOK_DATABIND.NEXTVAL,#{title},#{author},#{image},#{price},#{isbn},#{pubdate},#{publisher},#{description},#{link},#{categoryCode},0,0,0,0,0,0,#{discount})
 	</insert>
 	
 	<!-- 기프트 등록 -->
 	<insert id="insertProduct3">
-		INSERT INTO GIFT VALUES(SEQ_GIFT_NO.NEXTVAL,#{gift_img},#{gift_title},#{gift_content},#{gift_price},#{gift_maker},#{gift_made},#{gift_import},#{gift_as},#{gift_size},0,#{gift_for_sale},0,#{gift_giftcate_code})
+		INSERT INTO GIFT VALUES(SEQ_GIFT_NO.NEXTVAL,#{gift_img},#{gift_title},#{gift_content},#{gift_price},#{gift_maker},#{gift_made},#{gift_import},#{gift_as},#{gift_size},0,#{gift_for_sale},0,#{gift_giftcate_code},#{gift_discount})
 	</insert>
 	
 	<!-- 책입고 -->

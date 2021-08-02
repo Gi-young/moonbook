@@ -32,5 +32,6 @@ public class EbookDatabind {
 	private int ebookRating;
 	private int ebookSalesVolume;
 	private int primeCost;
+	private String discount;
 	private Ebook ebook;
 }

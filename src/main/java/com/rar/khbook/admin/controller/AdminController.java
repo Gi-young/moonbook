@@ -325,6 +325,37 @@ public class AdminController {
 		return mv;
 		
 	}
+//	@RequestMapping("/admin/outputProduct2.do")
+//	public ModelAndView outputProduct2(ModelAndView mv,@RequestParam Map param) {
+//		
+//		
+//		int result1=service.outputProduct1(param);
+//		//판매량에서 +출고개수 해줘야 함
+//		int result2=service.updateSalesVolume1(param);
+//		//매출액계산 -->결제테이블에서 쏴주시기로 함 신경 쓸 필요 없음 -분석파트로 넘김
+//		
+//		//이익 계산 ((가격)-입고가)*판매량= 이익  ※단 진짜 결제된 금액에서 차감 -분석파트로 넘김
+//		
+//		//입고가 컬럼이 prime_cost(원가) 컬럼
+//		//출고 완료
+//		
+//		String msg="";
+//		String loc="";
+//		if(result1>0 && result2>0) {
+//			msg="출고가 정상적으로 처리되었습니다";
+//		}else {
+//			msg="출고가 실패되었습니다.";
+//		}
+//		loc="/admin/removeProductPage.do";
+//		
+//		
+//		mv.addObject("msg", msg);
+//		mv.addObject("loc", loc);
+//		mv.setViewName("common/msg");
+//		
+//		return mv;
+//		
+//	}
 	
 	//재고현황
 	@RequestMapping("/admin/stockProductPage.do")

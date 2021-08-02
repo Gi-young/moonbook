@@ -99,6 +99,13 @@
 							</td>
 						</tr>
 						<tr>
+							<th>할인 여부</th>
+							<td>
+								<input class="chooseBookAdd" type="radio" name="discount" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
+								<input class="chooseBookAdd2" type="radio" name="discount" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
+							</td>
+						</tr>
+						<tr>
 							<th>카테고리 코드</th>
 							<td>
 								<input type="number" min="1" value="${categoryCode }" readonly name="categoryCode">

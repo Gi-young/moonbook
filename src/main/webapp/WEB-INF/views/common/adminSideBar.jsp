@@ -59,6 +59,9 @@
 		<li class="sub-menu6">
 			<p onclick="" class="adminColor">경매관리</a>
 		</li>
+		<li class="sub-menu7">
+			<p onclick="" class="adminColor">배송관리</a>
+		</li>
 	</ul>
 </div>
 
