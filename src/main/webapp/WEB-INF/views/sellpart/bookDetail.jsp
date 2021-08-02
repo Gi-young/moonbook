@@ -952,12 +952,11 @@ transition: all 0.2s linear;
                 </div>
                 <div style="display:flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
                     <a href="" >장바구니담기</a>
-                    <a href="">바로구매</a>
+                    <a href="" id="payBtn">바로구매</a>
                     <!-- <a href="">바로드림 주문</a>
                     <a href="">선물하기</a>
                     <a href="">보관함담기</a> -->
                 </div>
-                
             </div>
         </div>
 
@@ -1474,7 +1473,7 @@ transition: all 0.2s linear;
     })
     </script>
 
-
+<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
 </section>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

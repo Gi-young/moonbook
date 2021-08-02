@@ -144,7 +144,7 @@ public class SellbookController {
 		return mv;
 	}
 	
-	@RequestMapping("/sellbookController/bigview.do")
+	@RequestMapping("/sellbookController/bigview.do") //모델엔 뷰로 넘ㅈ기기
 	public String bigview(String img) {
 		System.out.println("페이지이동");
 		return "bigview";
