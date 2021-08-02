@@ -10,12 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.rar.khbook.gift.model.service.GiftService;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -86,4 +84,21 @@ public class GiftController {
 		return "{\"result\":\"NO\"}";
 	}
 
+	 @RequestMapping("/gift/moreThing.do")
+	 public String moreThing(String giftCate) {
+		 System.out.println(giftCate);
+		 String loc="";
+		 switch(giftCate) {
+		 case "e" : loc="gift/categoryPage1";break;
+		 case "s" : loc="gift/categoryPage2";break;
+		 case "r" : loc="gift/categoryPage3";break;
+		 case "g" : loc="gift/categoryPage4";break;
+		 default : break;
+		 
+		 }
+		 System.out.println(loc);
+		 
+		 return loc;
+		 
+	 }
 }

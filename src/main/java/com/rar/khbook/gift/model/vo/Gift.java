@@ -26,5 +26,5 @@ public class Gift {
 //	private int gift_discount;
 	private int gift_giftcate_code;
 	private GiftCate giftcate;
-	
+	private int gift_salesvolume;
 }
