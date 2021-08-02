@@ -1,16 +1,23 @@
 package com.rar.khbook.usedboard.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.usedboard.model.service.UsedboardService;
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -119,5 +126,77 @@ public class UsedboardController {
 	@RequestMapping("/usedboard/usedboardInsert.do")
 	public String usedboardInsert() {
 		return "/usedboard/usedboardInsert";
+	}
+	
+	@RequestMapping("/usedboard/usedboardInsertEnd.do")
+	public ModelAndView usedboardInsertEnd(Usedboard b,MultipartFile[] upFile,ModelAndView mv,HttpServletRequest req) {
+		log.debug("Usedboard : "+b);
+		log.debug("fileName : "+upFile[0].getOriginalFilename());
+		log.debug("fileSize : "+upFile[0].getSize());
+		log.debug("fileName : "+upFile[1].getOriginalFilename());
+		log.debug("fileSize : "+upFile[1].getSize());
+		String path=req.getServletContext().getRealPath("/resources/upload/usedboard/");
+		File dir=new File(path);//폴더
+		if(!dir.exists()) dir.mkdirs();
+		
+		for(MultipartFile f : upFile) {
+			if(!f.isEmpty()) {
+				String oriFilename=f.getOriginalFilename();
+				String ext=oriFilename.substring(oriFilename.lastIndexOf("."));
+				
+				//리네임규칙설정하기
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+				int rndNum=(int)(Math.random()*10000);
+				String reName=sdf.format(System.currentTimeMillis())+"_"+rndNum+ext;
+				
+				//리네임으로 파일업로드 처리하기
+				//MultipartFile객체를 이용해서 저장처리를 해야함.
+				//transfetTo()매소드를 이용 -> 하드에 파일을 저장
+				try {
+					f.transferTo(new File(path+reName));
+					b.getUsedboardfiles().add(Usedboardfile.builder().usedboardfile_Oriname(oriFilename).usedboardfile_Rename(reName).build());
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		String msg="등록성공";
+		try {
+			service.usedboardInsertEnd(b);
+		}catch(Exception e) {
+			msg=e.getMessage();
+		}
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardList.do");
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardDelete.do")
+	public ModelAndView usedboardDelete(int no, ModelAndView mv,HttpServletRequest req) {
+		List<Usedboardfile> f=service.usedboardfileSelect(no);
+		String path=req.getServletContext().getRealPath("/resources/upload/usedboard/");
+		String paths="";
+		for(Usedboardfile ff : f) {
+			paths=path+ff.getUsedboardfile_Rename();
+			File deleteFile=new File(paths);
+			deleteFile.delete();
+		}
+		int result=service.usedboardDelete(no);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="삭제성공";
+			loc="/usedboard/usedboardList.do";
+		}else {
+			msg="삭제실패";
+			loc="/usedboard/usedboardView.do?no="+no;
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
 	}
 }

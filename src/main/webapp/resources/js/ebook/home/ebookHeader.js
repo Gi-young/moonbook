@@ -1,4 +1,5 @@
 let contextPath = document.getElementById("contextPath").value;
+let loginMemberId = document.getElementById("memberId").value;
 
 function moonbookDatabind() {
     let keywordStr = "";

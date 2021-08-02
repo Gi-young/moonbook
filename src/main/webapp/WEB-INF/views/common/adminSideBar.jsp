@@ -26,10 +26,10 @@
 		<li class="sub-menu2">
 				<p onclick="" class="adminColor">제품 관리</p>
 			<ul class="sub_content2">
-			<li><p onclick="location.assign('${path}/admin')" class="adminColor2">입고</p></li>
-			<li><p onclick="" class="adminColor2">출고</p></li>
-			<li><p onclick="" class="adminColor2">재고현황</p></li>
-			<li><p onclick="" class="adminColor2">입출고현황</p></li><!-- 차트활용 -->
+			<li><p onclick="location.assign('${path}/admin/addProductPage.do')" class="adminColor2">등록</p></li>
+			<li><p onclick="location.assign('${path}/admin/inputProductPage2.do')" class="adminColor2">입고</p></li>
+			<li><p onclick="location.assign('${path}/admin/removeProductPage.do')" class="adminColor2">출고</p></li>
+			<li><p onclick="location.assign('${path}/admin/stockProductPage.do')" class="adminColor2">재고현황</p></li>
 		</ul>
 			</li>
 		<li class="sub-menu3">
@@ -49,12 +49,15 @@
 			<ul class="sub_content4">
 			<li><p onclick="" class="adminColor2">공지사항</p></li>
 			<li><p onclick="" class="adminColor2">FAQ관리</p></li>
+			<li><p onclick="" class="adminColor2">이벤트</p></li>
 			<li><p onclick="" class="adminColor2">1대1채팅</p></li>
-			<li><p onclick="" class="adminColor2">기업정보</p></li>
 		</ul>
 			</li>
 		<li class="sub-menu5">
 			<p onclick="" class="adminColor">쿠폰관리</a>
+		</li>
+		<li class="sub-menu6">
+			<p onclick="" class="adminColor">경매관리</a>
 		</li>
 	</ul>
 </div>

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
+import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AdminDao {
@@ -23,4 +24,22 @@ public interface AdminDao {
 	List<Member> memberHowT2(SqlSession session,Map param);
 	
 	List<Order> selectOrderList(SqlSession session,int cPage,int numPerpage);
+	
+	int insertProduct1(SqlSession session,Map param);
+	
+	int insertProduct3(SqlSession session,Map param);	
+	
+	int updateProduct1(SqlSession session,Map param);
+	
+	EbookDatabind searchBringPrice(SqlSession session,int bindNo); 
+	
+	EbookDatabind checkStock1(SqlSession session, int bindNo);
+	
+	int outputProduct1(SqlSession session,Map param);
+	
+	int updateSalesVolume1(SqlSession session,Map param);
+	
+	List<EbookDatabind> selectEbookDatabindList(SqlSession session,int cPage,int numPerpage);
+	int selectEbookDataCount(SqlSession session);
+	
 }

@@ -1,4 +1,5 @@
-@import url("style.css");
+@charset "UTF-8";
+ @import url(style.css); 
 .wrap{
     display: flex;
     flex-direction: column;
@@ -180,11 +181,12 @@
     transition: 0.s;
 }
 .naverPay{
-    width: 400px;
-    height: 40px;
+    width: 500px;
+    height: 50px;
     border-radius: 10px;
-    color: white;
-    background: green;
+    color: black;
+    background: yellow;
+    font-weight: 800;
 }
 
 /* 상품 카테고리 Bar */
