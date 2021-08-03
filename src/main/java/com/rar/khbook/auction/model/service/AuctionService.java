@@ -17,4 +17,18 @@ public interface AuctionService {
 	List<Auction> selectTimeList(int cPage, int numPerpage);
 
 	int auctionCount();
+
+	List<AuctionCate> selectAuctionCate();
+
+	List<Auction> selectAuctionList(Map param, int cPage, int numPerpage);
+
+	int auctionListCount(Map param);
+
+	Auction selectauctionNo(Map param);
+
+	int insertauctionBid(Map param);
+
+	void updatestate();
+
+	List<Auction> selectpoplist();
 }

@@ -18,6 +18,47 @@ public class AuctionServiceImpl implements AuctionService {
 	@Autowired
 	private SqlSession session;
 	
+	
+
+
+	@Override
+	public void updatestate() {
+		dao.updatestate(session);
+		
+	}
+
+	@Override
+	public int insertauctionBid(Map param) {
+		int result=dao.insertauctionBid(session,param);
+		if(result>0) {
+			result=dao.memberpointchange(session,param);
+			return result;
+		}else {
+			return 0;
+		}
+
+	}
+
+	@Override
+	public Auction selectauctionNo(Map param) {
+		return dao.selectauctionNo(session,param);
+	}
+
+	@Override
+	public int auctionListCount(Map param) {
+		return dao.auctionListCount(session,param);
+	}
+
+	@Override
+	public List<AuctionCate> selectAuctionCate() {
+		return dao.selectAuctionCate(session);
+	}
+	
+	@Override
+	public List<Auction> selectpoplist() {
+		return dao.selectpoplist(session);
+	}
+
 	@Override
 	public List<Auction> selectTimeList(int cPage,int numPerpage) {
 		return dao.selectTimeList(session,cPage,numPerpage);
@@ -42,6 +83,11 @@ public class AuctionServiceImpl implements AuctionService {
 	@Override
 	public AuctionCate selectauctioncateCode(Map param) {
 		return dao.selectauctioncateCode(session,param);
+	}
+
+	@Override
+	public List<Auction> selectAuctionList(Map param, int cPage, int numPerpage) {
+		return dao.selectAuctionList(session,param,cPage,numPerpage);
 	}
 
 }

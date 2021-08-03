@@ -1,17 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="auction">
+	
+	
+	<update id="updatestate">
+		update auction set auction_state='N' where (end_date-sysdate)&lt;0
+	</update>
+	<update id="memberpointchange">
+	UPDATE MEMBER SET MEMBER_POINT = MEMBER_POINT - #{bidPrice} WHERE MEMBER_ID=#{bidId}
+	</update>
+	<insert id="insertauctionBid">
+	INSERT INTO AUCTIONBID VALUES(SEQ_AUCTIONBID_NO.NEXTVAL,#{auctionNo},#{bidId},#{bidPrice},#{auctionName})
+	</insert>
+	
+	<select id="auctionNo" resultMap="AuctionMap">
+	    select * from auctioncate join auction using(auctioncate_code) left join auctionbid using(auction_no) where auction_no=#{auctionNo} ORDER BY BID_PRICE desc
+	
+	</select>
+	<select id="auctionListCount" resultType="_int">
+	SELECT COUNT(*) FROM AUCTION JOIN AUCTIONCATE USING(AUCTIONCATE_CODE) WHERE AUCTIONCATE_FIRST=#{auctioncateFrist}
+	</select>
+	<select id="selectAuctionList" resultMap="AuctionMap">
+	select * from auctioncate join auction using(auctioncate_code) left join auctionbid using(auction_no) WHERE 1=1
+	
+	<if test="auctioncateFrist != null and auctioncateFrist != ''">
+	AND AUCTIONCATE_FIRST=#{auctioncateFrist} AND AUCTION_STATE='Y'
+	</if>
+	<if test="memberId != null and memberId != ''">
+	AND MEMBER_ID=#{memberid} 
+	</if>
+	<if test="bidId != null and bidId != ''">
+	AND BID_ID=#{bidid} 
+	</if>
+	<if test="type != null and type != ''">
+	AND ${type} like '%'||#{keyword}||'%' 
+	</if>
+	ORDER BY BID_PRICE DESC,
+	<choose>
+			<when test="desc != null">
+					${desc} DESC
+			</when>
+			<otherwise>
+				  START_DATE DESC
+			</otherwise>
+	</choose>
 
+	</select>
+	<select id="selectAuctionCate" resultMap="AuctionCateMap">
+	SELECT * FROM AUCTIONCATE
+	</select>
+	
 	<insert id="auctionWriteEnd">
 	INSERT INTO AUCTION VALUES(SEQ_AUCTION_NO.NEXTVAL,#{memberId},#{auctioncateCode},#{auctionName},#{auctionEx},DEFAULT,#{endDate},#{startPrice},#{buyNow},#{priceUnit},'Y',#{auctionImg, typeHandler=strArr})
 	</insert>
 	
 	<select id="auctionCount" resultType="_int">
-	SELECT COUNT(*) FROM AUCTION
+	SELECT COUNT(*) FROM AUCTION where auction_state='Y'
+	</select>
+	
+	<select id="selectpoplist" resultMap="AuctionMap">
+	SELECT auction_no,member_id,end_date,start_price,buy_now,auction_img,auction_state,auction_name,count(bid_id) as count FROM 
+    AUCTION JOIN AUCTIONBID USING(AUCTION_NO) 
+    group by auction_no,member_id,end_date,start_price,buy_now,auction_img ,auction_state,auction_name
+    HAVING auction_state='Y'
+    order by count desc
 	</select>
 	
 	<select id="selectTimeList" resultMap="AuctionMap">
-	SELECT * FROM AUCTION ORDER BY (end_date-start_date)
+	select * from auction left join auctionbid on auction.auction_no=auctionbid.auction_no where auction_state='Y' ORDER BY (end_date-start_date)
 	</select>
 	
 	<select id="selectauctioncate" resultMap="AuctionCateMap">
@@ -41,7 +97,21 @@
 		<result column="buy_now" property="buyNow"/>
 		<result column="price_unit" property="priceUnit"/>
 		<result column="auction_state" property="auctionState"/>
+		<result column="count" property="count"/>
+		
 		<result column="auction_img" property="auctionImg" typeHandler="strArr"/>
+	<collection property="auctionbid" ofType="com.rar.khbook.auction.model.vo.AuctionBid">
+		<result column="bid_no" property="bidNo"/>
+		<result column="bid_id" property="bidId"/>
+		<result column="bid_price" property="bidPrice"/>
+		<result column="bid_name" property="bidName"/>	
+	</collection>
+	<collection property="auctioncate" ofType="com.rar.khbook.auction.model.vo.AuctionCate">
+		<result column="auctioncate_code" property="auctioncateCode"/>
+		<result column="auctioncate_name" property="auctioncateName"/>
+		<result column="auctioncate_first" property="auctioncateFirst"/>
+	</collection>
+
 		
 	</resultMap>
 </mapper>

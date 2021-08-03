@@ -20,4 +20,20 @@ public interface AuctionDao {
 
 	int auctionCount(SqlSession session);
 
+	List<AuctionCate> selectAuctionCate(SqlSession session);
+
+	List<Auction> selectAuctionList(SqlSession session, Map param, int cPage, int numPerpage);
+
+	int auctionListCount(SqlSession session, Map param);
+
+	Auction selectauctionNo(SqlSession session, Map param);
+
+	int insertauctionBid(SqlSession session, Map param);
+
+	int memberpointchange(SqlSession session, Map param);
+
+	void updatestate(SqlSession session);
+
+	List<Auction> selectpoplist(SqlSession session);
+
 }

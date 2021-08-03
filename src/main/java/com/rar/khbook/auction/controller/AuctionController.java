@@ -32,10 +32,15 @@ public class AuctionController {
 	public String auctionMain(Model m,
 			@RequestParam(value="cPage",defaultValue ="1") int cPage,
 			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage) {
+		//시간 지난 애들 자동업데이트
+		service.updatestate();
+		
+		
 		
 		int totalData =	service.auctionCount();
-		
+		m.addAttribute("auctioncate",service.selectAuctionCate());
 		m.addAttribute("timelist", service.selectTimeList(cPage,numPerpage));
+		m.addAttribute("poplist",service.selectpoplist());
 		m.addAttribute("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "auction/auction.do"));
 			
 		return "auction/auction";
@@ -100,5 +105,51 @@ public class AuctionController {
 
 	
 	/////////////////////////////////////////////////////
+	
+	
+	//리스트 
+	
+	@RequestMapping("/auction/auctionlist.do")
+	public ModelAndView selectAuctionList(@RequestParam Map param,ModelAndView mv,	
+			@RequestParam(value="cPage",defaultValue ="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage){
+		System.out.println(param);
+		int totalData=service.auctionListCount(param);
+		mv.addObject("auctioncate",service.selectAuctionCate());
+		mv.addObject("auctionlist",service.selectAuctionList(param,cPage,numPerpage));
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "auction/auctionlist.do"));
+		mv.setViewName("auction/auctionlist");
+		
+		return mv;
+	}
+	
+	//////////////옥션 입찰
+	
+	@RequestMapping("/action/actionbid")
+	public String actionbid(@RequestParam Map param,Model m) {
+		
+		m.addAttribute("auction",service.selectauctionNo(param));
+		System.out.println(param);
+		return "auction/auctionbid";
+	}
+	@RequestMapping("/auction/auctionbidEnd")
+	public String auctionbidEnd(@RequestParam Map param,Model m) {
+	
+		int result = service.insertauctionBid(param);
+		if (result>0) {			
+			m.addAttribute("msg","등록성공");
+		}else {
+			m.addAttribute("msg","등록실패");
+		}
+		return "common/openmsg";
+	}
+	//물품 클릭
+	@RequestMapping("/auction/acutionview.do")
+	public String auctionview(@RequestParam Map param,Model m) {
+		m.addAttribute("auction",service.selectauctionNo(param));
+		return "auction/auctionview";
+	}
+	
+	
 	
 }
