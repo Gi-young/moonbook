@@ -917,7 +917,7 @@ transition: all 0.2s linear;
                     <li>미리보기</li>
                 </ul> -->
                 <div>
-                    <a href="${path}/sellbookController/bigview.do?image=${book.image}" 
+                    <a href="${path}/sellbookController/bigview.do?bindNo=${book.bindNo}" 
 	onclick="window.open(this.href, '_blank', 'width=600, height=800'); return false;">크게보기</a>
                 </div>
             </div>
@@ -1036,8 +1036,8 @@ transition: all 0.2s linear;
                     </div>
                     <div class="bcontent">
                         <strong>책 내용</strong> <br>
-                        <a href="${book.link }">${book.description }</a><br><br>
-                        <p><span> 위 글을 누르시면 상세 페이지로 이동합니다.</span></p>
+                        ${book.description }<br><br>
+                        <a href="${book.link }"><p><span> 위 글을 누르시면 상세 페이지로 이동합니다.</span></p></a>
                    </div>
                    <div>
                        <h2>저자소개</h2>

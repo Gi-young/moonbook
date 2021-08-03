@@ -20,5 +20,11 @@ public class SellbookDaoImpl implements SellbookDao {
 		
 		return session.selectOne("SellbookDatabind.checkMember",memberId);
 	}
+
+	@Override
+	public SellbookDatabind selectBigView(SqlSession session, int bindNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("SellbookDatabind.selectBigView",bindNo);
+	}
 	
 }
