@@ -8,10 +8,12 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
+
 <link rel="stylesheet"
 	href="${path}/resources/css/admin/adminMemberPage.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 
 <div class="admin-container">
 	<div class="admin-box1">

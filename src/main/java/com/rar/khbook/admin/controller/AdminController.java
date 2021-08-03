@@ -423,9 +423,11 @@ public class AdminController {
 			mv.addObject("stockParam", "book");
 		}
 		
-		mv.addObject("pageBar",PageFactoryAdmin.getPageBar(totalData, cPage, numPerpage,"stockProductPage.do","book"));
-		mv.addObject("pageBar3",PageFactory.getOwnPageBar(totalData, cPage, numPerpage,"stockProductPage.do"));		
-		mv.addObject("pageBar2",PageFactoryAdmin.getPageBar(totalData2, cPage, numPerpage,"stockProductPage.do","gift"));
+
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage,"stockProductPage.do","book"));
+		
+		mv.addObject("pageBar2",PageFactoryAdmin.getOwnPageBar(totalData2, cPage, numPerpage,"stockProductPage.do","gift"));
+
 		
 		mv.setViewName("admin/stockProduct");
 		
