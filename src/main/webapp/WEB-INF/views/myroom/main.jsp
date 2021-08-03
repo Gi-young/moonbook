@@ -9,6 +9,7 @@
 </jsp:include>
 <link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
 <link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
+<link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <div class="wrap">
 	<div class="container margin_top2e">
 		<jsp:include page="/WEB-INF/views/common/myroomMenubar.jsp">
