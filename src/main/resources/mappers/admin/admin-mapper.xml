@@ -153,7 +153,7 @@
   	</select>
   	
   	<!--재고현황 book 검색-->
-  	<select id="searchTextStockList">
+  	<select id="searchTextStockList" resultMap="ebookDatabindMap">
   		SELECT * FROM BOOK_EBOOK_DATABIND WHERE
   		<choose>
 			<when test="type4 == 'no'">
@@ -167,7 +167,7 @@
   	
   	
   	<!--재고현황 gift 검색-->
-  	<select id="searchTextStockList3">
+  	<select id="searchTextStockList3" resultMap="giftMap">
   		SELECT * FROM GIFT WHERE
   		<choose>
 			<when test="type4 == 'no'">
@@ -181,7 +181,7 @@
   	
   	<!-- 재고현황 책테이블 수정  -->
   	<update id="stockUpdate">
-  		
+  		UPDATE BOOK_EBOOK_DATABIND SET TITLE=#{title} , PRICE=#{price} , PUBLISHER =#{publisher},CATEGORY_CODE=#{categoryCode} WHERE BIND_NO=#{bindNo}
   	</update>
   	
 </mapper>

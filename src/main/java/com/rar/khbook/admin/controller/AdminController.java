@@ -481,7 +481,7 @@ public class AdminController {
 	}
 	// 책 수정하기
 	
-	@RequestMapping("/admin/stockUpdate.do")
+	@RequestMapping("/admin/stockTUpdate.do")
 	@ResponseBody
 	public boolean stockTUpdate(@RequestParam Map param) {
 		

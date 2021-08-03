@@ -123,7 +123,7 @@
 			        	</div> 
 			        
 					</div>
-					<div class="stockT-container2">
+					<div class="stockT-container2" >
 						<p class="memberTFont">총 <span class="turnRed">${totalContents2 }</span>개의 상품이 있습니다.</p>
 						<p class="memberTFont2">※ 상품명, 상품소개, 가격, 제조사, 제조국, AS/상담여부, 수입여부, 판매여부  수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
@@ -224,13 +224,16 @@ function adMemberDelete(event){
 
 
 function changeStockV(event){
+	let bindNo=event.target.parentElement.parentElement.children[0].children[0].value;
 	let title=event.target.parentElement.parentElement.children[1].children[0].value;
 	let price=event.target.parentElement.parentElement.children[3].children[0].value;
 	let publisher=event.target.parentElement.parentElement.children[5].children[0].value;
 	let categoryCode=event.target.parentElement.parentElement.children[6].children[0].value;
 
+	$.ajax({
 		url:"${path}/admin/stockTUpdate.do",
-		data:{
+		data: {
+			bindNo:bindNo,
 			title:title,
 			price:price,
 			publisher:publisher,
@@ -259,7 +262,7 @@ const searchStockT =()=>{
 	if(typeT === "stockBookT"){
 		$.ajax({
 			url: "${path}/admin/searchTextStockList.do",
-			data:{
+			data: {
 				type4 :type4,
 				search5:search5
 			},
@@ -307,7 +310,7 @@ const searchStockT =()=>{
 	}else if(typeT === "stockGiftT"){
 		$.ajax({
 			url: "${path}/admin/searchTextStockList3.do",
-			data:{
+			data: {
 				type4 :type4,
 				search5:search5
 			},
@@ -354,7 +357,7 @@ const searchStockT =()=>{
 		});
 	}
 	
-}
+} 
 
 const orderList3 = () => {
 	console.log("test");
