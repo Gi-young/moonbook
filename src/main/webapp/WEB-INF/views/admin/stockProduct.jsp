@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/admin/stockProduct.css">
-
+<link rel="stylesheet"
+	href="${path}/resources/css/admin/stockProduct.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <div class="admin-container">
 	<div class="admin-box1">
@@ -20,173 +22,193 @@
 		</div>
 		<div class="admin-box2">
 			<div class="admin-box4">
-					<div class="admin-search3">
-				<form class="admin-search" action="">
+				<div class="admin-search3">
+					<form class="admin-search" action="">
 						<table class="adminHowTable">
 							<tr>
 								<th>정렬방법</th>
-								
-								<td>
-									<input class="howASCSearch" type="radio" name="HowStockT" id="stockBookT" value="stockBookT"><label for="stockBookT">book</label>
-									<input class="howDESCSearch2" type="radio" name="HowStockT" id="stockGiftT" value="stockGiftT"><label for="stockGiftT">gift</label>
+
+								<td><input class="howASCSearch" type="radio"
+									name="HowStockT" id="stockBookT" value="stockBookT"><label
+									for="stockBookT">book</label> <input class="howDESCSearch2"
+									type="radio" name="HowStockT" id="stockGiftT"
+									value="stockGiftT"><label for="stockGiftT">gift</label>
 								</td>
-								<td>
-								
-									<span>재고 </span> <input type="number" style="width:60px; height:27px;" min="0" name="stockNum1"><span> 이상 </span><input type="number" style="width:60px; height:27px;" min="1" name="stockNum2"><span> 미만 </span>
-								
-								</td>
-								<td>
-									<input type="button" value="조회하기" onclick="orderList3();">
-								</td>
+								<td><span>재고 </span> <input type="number"
+									style="width: 60px; height: 27px;" min="0" name="stockNum1"><span>
+										이상 </span><input type="number" style="width: 60px; height: 27px;"
+									min="1" name="stockNum2"><span> 미만 </span></td>
+								<td><input type="button" value="조회하기"
+									onclick="orderList3();"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
-								<td class="admin-search2">
-								<select name="type2">
-									<option value="" selected>책 제목</option>
-									<option value="" >책 번호</option>
-									<option value="">상품명</option>
-									<option value="" >상품 번호</option>
-								</select>
+								<td class="admin-search2"><select name="type2">
+										<option value="" selected>책 제목</option>
+										<option value="">책 번호</option>
+										<option value="">상품명</option>
+										<option value="">상품 번호</option>
+								</select></td>
+								<td class="search-box"><input type="text" name="searchHow3">
 								</td>
-								<td class="search-box">
-									<input type="text" name="searchHow3"> 
-								</td>
-								<td class="search-box">
-									<img alt="검색하기"
-									src="${path }/resources/img/admin/search.png" onclick="searchMT();">
-								</td>
+								<td class="search-box"><img alt="검색하기"
+									src="${path }/resources/img/admin/search.png"
+									onclick="searchMT();"></td>
 							</tr>
 						</table>
-					
-	
-				</form>
-					</div>
+
+
+					</form>
+				</div>
 			</div>
 			<div class="stockT-container">
-						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>개의 책이 있습니다.</p>
-						<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
-						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
-						<table class="stockT">
-							
-							<tr>
-								<th>책 번호</th>
-								<th>책 제목</th>
-								<th>저자</th>
-								<th>가격</th>
-								<th>ISBN</th>
-								<th>출판사</th>
-								<th>카테고리 코드</th>
-								<th>재고</th>
-								<th>판매량</th>
-								<th>eBook판매량</th>
-								<th>수정하기</th>
-								<th>삭제하기</th>
-							</tr>
-							
-							
-							<c:forEach var="e" items="${list }">
-							<tr>
-									<td><input type="text" value="${e.bindNo }" name="bindNo" readonly></td>
-									<td><input type="text" value="${e.title }" name="title" ></td>
-									<td><input type="text" value="${e.author }" name="author" readonly></td>
-									<td><input type="text" value="${e.price }" name="price"></td>
-									<td><input type="text" value="${e.isbn }" name="isbn" readonly></td>
-									<td><input type="text" value="${e.publisher }" name="publisher"></td>
-									<td><input type="text" value="${e.categoryCode }" name="categoryCode"></td>
-									<td><input type="text" value="${e.stock }" name="stock" readonly></td>
-									<td><input type="text" value="${e.salesVolume }" name="salesVolume" readonly></td>
-									<td><input type="text" value="${e.ebookSalesVolume }" name="ebookSalesVolume" readonly></td>
-									<td>
-										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
-									</td>
-									
-									<td>
-										
-											<input type="hidden" value="${e.bindNo }" name="bindNo" readonly>
-											
-											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
-											
-									
-										</td>
-								
-							</tr>
-							</c:forEach>
-							
+				<p class="memberTFont">
+					총 <span class="turnRed">${totalContents }</span>개의 책이 있습니다.
+				</p>
+				<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
+				<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
+				<table class="stockT">
 
-						</table>
-						<!-- </form> -->
-						
-						<div id="pagebar-container">
-			        		<c:if test="${stockParam.equals('book')}">
-			        			${pageBar }
+					<tr>
+						<th>책 번호</th>
+						<th>책 제목</th>
+						<th>저자</th>
+						<th>가격</th>
+						<th>ISBN</th>
+						<th>출판사</th>
+						<th>카테고리 코드</th>
+						<th>재고</th>
+						<th>판매량</th>
+						<th>eBook판매량</th>
+						<th>수정하기</th>
+						<th>삭제하기</th>
+					</tr>
+
+
+					<c:forEach var="e" items="${list }">
+						<tr>
+							<td><input type="text" value="${e.bindNo }" name="bindNo"
+								readonly></td>
+							<td><input type="text" value="${e.title }" name="title"></td>
+							<td><input type="text" value="${e.author }" name="author"
+								readonly></td>
+							<td><input type="text" value="${e.price }" name="price"></td>
+							<td><input type="text" value="${e.isbn }" name="isbn"
+								readonly></td>
+							<td><input type="text" value="${e.publisher }"
+								name="publisher"></td>
+							<td><input type="text" value="${e.categoryCode }"
+								name="categoryCode"></td>
+							<td><input type="text" value="${e.stock }" name="stock"
+								readonly></td>
+							<td><input type="text" value="${e.salesVolume }"
+								name="salesVolume" readonly></td>
+							<td><input type="text" value="${e.ebookSalesVolume }"
+								name="ebookSalesVolume" readonly></td>
+							<td><img alt="수정하기"
+								src="${path }/resources/img/admin/checkgreen.png"
+								onclick="changeMemberV(event);" class="updateCheck updateImg">
+							</td>
+
+							<td><input type="hidden" value="${e.bindNo }" name="bindNo"
+								readonly> <img
+								src="${path }/resources/img/admin/delete2.png" alt=""
+								class="updateCheck deleteImg" onclick="adMemberDelete(event);">
+
+
+							</td>
+
+						</tr>
+					</c:forEach>
+
+
+				</table>
+				<!-- </form> -->
+
+				<div id="pagebar-container">
+					<c:if test="${stockParam.equals('book')}">
+			        			${pageBar3 }
 			        		</c:if>
-			        	</div> 
-			        
-					</div>
-					<div class="stockT-container2">
-						<p class="memberTFont">총 <span class="turnRed">${totalContents2 }</span>개의 상품이 있습니다.</p>
-						<p class="memberTFont2">※ 상품명, 상품소개, 가격, 제조사, 제조국, AS/상담여부, 수입여부, 판매여부  수정 가능합니다.</p>
-						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
-						<table class="stockT2">
-							
-							<tr>
-								<th>상품 번호</th>
-								<th>상품명</th>
-								<th>상품소개</th>
-								<th>가격</th>
-								<th>제조사</th>
-								<th>제조국</th>
-								<th>AS/상담여부</th>
-								<th>수입여부</th>
-								<th>재고</th>
-								<th>판매여부</th>
-								<th>카테고리코드</th>
-								<th>수정하기</th>
-								<th>삭제하기</th>
-							</tr>
-							
-							
-							<c:forEach var="g" items="${list2 }">
-							<tr>
-									<td><input type="text" value="${g.gift_no }" name="gift_no" readonly></td>
-									<td><input type="text" value="${g.gift_title }" name="gift_title" ></td>
-									<td><input type="text" value="${g.gift_content }" name="gift_content" ></td>
-									<td><input type="text" value="${g.gift_price }" name="author" readonly></td>
-									<td><input type="text" value="${g.gift_maker }" name="gift_price"></td>
-									<td><input type="text" value="${g.gift_made }" name="gift_made" readonly></td>
-									<td><input type="text" value="${g.gift_as }" name="gift_as" readonly></td>
-									<td><input type="text" value="${g.gift_import }" name="gift_import"></td>
-									<td><input type="text" value="${g.gift_count }" name="gift_count"></td>
-									<td><input type="text" value="${g.gift_for_sale }" name="gift_for_sale" readonly></td>
-									<td><input type="text" value="${g.gift_giftcate_code}" name="gift_giftcate_code" readonly></td>
-									<td>
-										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
-									</td>
-									
-									<td>
-										
-											<input type="hidden" value="${g.gift_no }" name="gift_no" readonly>
-											
-											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
-											
-									
-										</td>
-								
-							</tr>
-							</c:forEach>
-							
+				</div>
 
-						</table>
-						<!-- </form> -->
-						
-						<div id="pagebar-container">
-							<c:if test="${stockParam.equals('gift')}">
+			</div>
+			<div class="stockT-container2">
+				<p class="memberTFont">
+					총 <span class="turnRed">${totalContents2 }</span>개의 상품이 있습니다.
+				</p>
+				<p class="memberTFont2">※ 상품명, 상품소개, 가격, 제조사, 제조국, AS/상담여부,
+					수입여부, 판매여부 수정 가능합니다.</p>
+				<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
+				<table class="stockT2">
+
+					<tr>
+						<th>상품 번호</th>
+						<th>상품명</th>
+						<th>상품소개</th>
+						<th>가격</th>
+						<th>제조사</th>
+						<th>제조국</th>
+						<th>AS/상담여부</th>
+						<th>수입여부</th>
+						<th>재고</th>
+						<th>판매여부</th>
+						<th>카테고리코드</th>
+						<th>수정하기</th>
+						<th>삭제하기</th>
+					</tr>
+
+
+					<c:forEach var="g" items="${list2 }">
+						<tr>
+							<td><input type="text" value="${g.gift_no }" name="gift_no"
+								readonly></td>
+							<td><input type="text" value="${g.gift_title }"
+								name="gift_title"></td>
+							<td><input type="text" value="${g.gift_content }"
+								name="gift_content"></td>
+							<td><input type="text" value="${g.gift_price }"
+								name="author" readonly></td>
+							<td><input type="text" value="${g.gift_maker }"
+								name="gift_price"></td>
+							<td><input type="text" value="${g.gift_made }"
+								name="gift_made" readonly></td>
+							<td><input type="text" value="${g.gift_as }" name="gift_as"
+								readonly></td>
+							<td><input type="text" value="${g.gift_import }"
+								name="gift_import"></td>
+							<td><input type="text" value="${g.gift_count }"
+								name="gift_count"></td>
+							<td><input type="text" value="${g.gift_for_sale }"
+								name="gift_for_sale" readonly></td>
+							<td><input type="text" value="${g.gift_giftcate_code}"
+								name="gift_giftcate_code" readonly></td>
+							<td><img alt="수정하기"
+								src="${path }/resources/img/admin/checkgreen.png"
+								onclick="changeMemberV(event);" class="updateCheck updateImg">
+							</td>
+
+							<td><input type="hidden" value="${g.gift_no }"
+								name="gift_no" readonly> <img
+								src="${path }/resources/img/admin/delete2.png" alt=""
+								class="updateCheck deleteImg" onclick="adMemberDelete(event);">
+
+
+							</td>
+
+						</tr>
+					</c:forEach>
+
+
+				</table>
+				<!-- </form> -->
+
+				<div id="pagebar-container">
+					<c:if test="${stockParam.equals('gift')}">
 			        			${pageBar2 }
 			        		</c:if>
-			        	</div> 
-			        
-					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
 </div>

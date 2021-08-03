@@ -30,7 +30,11 @@ public class SellbookController {
 		
 	}
 	
-	
+	@RequestMapping("/sellbookController/order.do")
+	public String order() {
+		
+		return "order/main";
+	}
 	
 	
 	
