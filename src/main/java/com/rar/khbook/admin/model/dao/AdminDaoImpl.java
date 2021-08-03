@@ -176,6 +176,14 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.update("admin.stockUpdate",param);
 	}
+
+	@Override
+	public int stockTUpdate2(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("admin.stockUpdate2",param);
+	}
+	
+	
 	
 	
 	

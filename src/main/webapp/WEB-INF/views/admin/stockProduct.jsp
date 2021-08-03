@@ -125,7 +125,7 @@
 					</div>
 					<div class="stockT-container2" >
 						<p class="memberTFont">총 <span class="turnRed">${totalContents2 }</span>개의 상품이 있습니다.</p>
-						<p class="memberTFont2">※ 상품명, 상품소개, 가격, 제조사, 제조국, AS/상담여부, 수입여부, 판매여부  수정 가능합니다.</p>
+						<p class="memberTFont2">※ 상품명, 상품소개, 가격, AS/상담여부,카테고리코드 수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
 						<table class="stockT2">
 							
@@ -151,14 +151,14 @@
 									<td><input type="text" value="${g.gift_no }" name="gift_no" readonly></td>
 									<td><input type="text" value="${g.gift_title }" name="gift_title" ></td>
 									<td><input type="text" value="${g.gift_content }" name="gift_content" ></td>
-									<td><input type="text" value="${g.gift_price }" name="gift_price" readonly></td>
-									<td><input type="text" value="${g.gift_maker }" name="gift_price"></td>
+									<td><input type="text" value="${g.gift_price }" name="gift_price" ></td>
+									<td><input type="text" value="${g.gift_maker }" name="gift_maker" readonly></td>
 									<td><input type="text" value="${g.gift_made }" name="gift_made" readonly></td>
-									<td><input type="text" value="${g.gift_as }" name="gift_as" readonly></td>
-									<td><input type="text" value="${g.gift_import }" name="gift_import"></td>
-									<td><input type="text" value="${g.gift_count }" name="gift_count"></td>
+									<td><input type="text" value="${g.gift_as }" name="gift_as"></td>
+									<td><input type="text" value="${g.gift_import }" name="gift_import" readonly></td>
+									<td><input type="text" value="${g.gift_count }" name="gift_count" readonly></td>
 									<td><input type="text" value="${g.gift_for_sale }" name="gift_for_sale" readonly></td>
-									<td><input type="text" value="${g.gift_giftcate_code}" name="gift_giftcate_code" readonly></td>
+									<td><input type="text" value="${g.gift_giftcate_code}" name="gift_giftcate_code"></td>
 									<td>
 										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV2(event);" class="updateCheck updateImg">
 									</td>
@@ -242,12 +242,46 @@ function changeStockV(event){
 		success: data=>{
 			if(data){
 				alert("수정이 정상적으로 성공 하였습니다");
+				
 			}else if(!data){
 				alert("수정 실패 하였습니다");
+				
 			}
+			location.assign("${path}/admin/stockProductPage.do");
 		}
 	})
 } 
+
+function changeStockV2(event){
+	let gift_no=event.target.parentElement.parentElement.children[0].children[0].value;
+	let gift_title=event.target.parentElement.parentElement.children[1].children[0].value;
+	let gift_content=event.target.parentElement.parentElement.children[2].children[0].value;
+	let gift_price=event.target.parentElement.parentElement.children[3].children[0].value;
+	let gift_as=event.target.parentElement.parentElement.children[6].children[0].value;
+	let gift_giftcate_code=event.target.parentElement.parentElement.children[10].children[0].value;
+	
+	$.ajax({
+		url:"${path}/admin/stockTUpdate2.do",
+		data: {
+			gift_no : gift_no,
+			gift_title : gift_title,
+			gift_content : gift_content,
+			gift_price : gift_price,
+			gift_as : gift_as,
+			gift_giftcate_code : gift_giftcate_code
+		},
+		success: data=>{
+			if(data){
+				alert("수정이 정상적으로 성공 하였습니다");
+				
+			}else if(!data){
+				alert("수정 실패 하였습니다");
+				
+			}
+			location.assign("${path}/admin/stockProductPage.do");
+		}
+	})
+}
 
 const searchStockT =()=>{
 	let typeT = "";

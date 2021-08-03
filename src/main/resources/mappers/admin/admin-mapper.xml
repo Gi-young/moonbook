@@ -183,5 +183,9 @@
   	<update id="stockUpdate">
   		UPDATE BOOK_EBOOK_DATABIND SET TITLE=#{title} , PRICE=#{price} , PUBLISHER =#{publisher},CATEGORY_CODE=#{categoryCode} WHERE BIND_NO=#{bindNo}
   	</update>
+  	<!-- 재고현황 gift테이블 수정  -->
+  	<update id="stockUpdate2">
+  		UPDATE GIFT SET GIFT_TITLE=#{gift_title}, GIFT_CONTENT=#{gift_content}, GIFT_PRICE=#{gift_price}, GIFT_AS=#{gift_as},GIFT_GIFTCATE_CODE=#{gift_giftcate_code} WHERE GIFT_NO=#{gift_no}
+  	</update>
   	
 </mapper>

@@ -182,6 +182,14 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.stockTUpdate(session,param);
 	}
+
+	@Override
+	public int stockTUpdate2(Map param) {
+		// TODO Auto-generated method stub
+		return dao.stockTUpdate2(session, param);
+	}
+	
+	
 	
 	
 	

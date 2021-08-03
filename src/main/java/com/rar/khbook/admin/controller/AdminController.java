@@ -479,8 +479,8 @@ public class AdminController {
 		
 		return list2;
 	}
-	// 책 수정하기
 	
+	// 책 수정하기
 	@RequestMapping("/admin/stockTUpdate.do")
 	@ResponseBody
 	public boolean stockTUpdate(@RequestParam Map param) {
@@ -493,7 +493,18 @@ public class AdminController {
 			return false;
 		}
 	}
-	
+	@RequestMapping("/admin/stockTUpdate2.do")
+	@ResponseBody
+	public boolean stockTUpdate2(@RequestParam Map param) {
+		
+		int result=service.stockTUpdate2(param);
+		
+		if(result>0) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	
 
