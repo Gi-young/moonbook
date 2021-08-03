@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/admin/adminMemberPage.css">
-
+<link rel="stylesheet"
+	href="${path}/resources/css/admin/adminMemberPage.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 <div class="admin-container">
 	<div class="admin-box1">
@@ -20,105 +22,111 @@
 		</div>
 		<div class="admin-box2">
 			<div class="admin-box4">
-					<div class="admin-search3">
-				<form class="admin-search" action="">
+				<div class="admin-search3">
+					<form class="admin-search" action="">
 						<table class="adminHowTable">
 							<tr>
 								<th>정렬방법</th>
-								<td>
-								<select name="type1">
-									<option value="MEMBER_TOTAL_SALE" selected>총 매출</option>
-									<option value="MEMBER_POINT" >회원포인트</option>
-									<option value="MEMBER_VISIT" >방문횟수</option>
-								</select>
-								</td>
-								<td>
-									<input class="howASCSearch" type="radio" name="searchHow2" id="asc" value="ASC" checked><label for="asc">오름차순</label>
-									<input class="howDESCSearch2" type="radio" name="searchHow2" id="desc" value="DESC"><label for="desc">내림차순</label>
-								</td>
-								<td><input type="button" value="조회하기" onclick="orderList();"></td>
+								<td><select name="type1">
+										<option value="MEMBER_TOTAL_SALE" selected>총 매출</option>
+										<option value="MEMBER_POINT">회원포인트</option>
+										<option value="MEMBER_VISIT">방문횟수</option>
+								</select></td>
+								<td><input class="howASCSearch" type="radio"
+									name="searchHow2" id="asc" value="ASC" checked><label
+									for="asc">오름차순</label> <input class="howDESCSearch2"
+									type="radio" name="searchHow2" id="desc" value="DESC"><label
+									for="desc">내림차순</label></td>
+								<td><input type="button" value="조회하기"
+									onclick="orderList();"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
-								<td class="admin-search2">
-								<select name="type2">
-									<option value="MEMBER_ID" selected>Id</option>
-									<option value="MEMBER_NAME" >Name</option>
-								</select>
+								<td class="admin-search2"><select name="type2">
+										<option value="MEMBER_ID" selected>Id</option>
+										<option value="MEMBER_NAME">Name</option>
+								</select></td>
+								<td class="search-box"><input type="text" name="searchHow3">
 								</td>
-								<td class="search-box">
-									<input type="text" name="searchHow3"> 
-								</td>
-								<td class="search-box">
-									<img alt="검색하기"
-									src="${path }/resources/img/admin/search.png" onclick="searchMT();">
-								</td>
+								<td class="search-box"><img alt="검색하기"
+									src="${path }/resources/img/admin/search.png"
+									onclick="searchMT();"></td>
 							</tr>
 						</table>
-					
-	
-				</form>
-					</div>
+
+
+					</form>
+				</div>
 			</div>
 			<div class="memberT-container">
-						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>명의 회원이 있습니다.</p>
-						<p class="memberTFont2">※ 전화번호, 주소, 회원 포인트, 회원 등급만 수정 가능합니다.</p>
-						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
-						<table class="memberT">
-							
-							<tr>
-								<th>등록일</th>
-								<th>회원 아이디</th>
-								<th>회원 이름</th>
-								<th>회원 전화번호</th>
-								<th>회원 성별</th>
-								<th>회원 주소</th>
-								<th>회원 포인트</th>
-								<th>회원 등급</th>
-								<th>총 매출</th>
-								<th>방문 횟수</th>
-								<th>수정하기</th>
-								<th>삭제하기</th>
-							</tr>
-							
-							
-							<c:forEach var="e" items="${list }">
-							<tr>
-									<td><input type="text" value="${e.memberRegiDate }" name="memberRegiDate" readonly></td>
-									<td><input type="text" value="${e.memberId }" name="memberId" readonly></td>
-									<td><input type="text" value="${e.memberName }" name="memberName" readonly></td>
-									<td><input type="text" value="${e.memberPhone }" name="memberPhone"></td>
-									<td><input type="text" value="${e.memberGender }" name="memberGender" readonly></td>
-									<td><input type="text" value="${e.memberAddress }" name="memberAddress"></td>
-									<td><input type="text" value="${e.memberPoint }" name="memberPoint"></td>
-									<td><input type="text" value="${e.memberGradeNo }" name="memberGradeNo"></td>
-									<td><input type="text" value="${e.memberTotalSale }" name="memberTotalSale" readonly></td>
-									<td><input type="text" value="${e.memberVisit }" name="memberVisit" readonly></td>
-									<td>
-										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
-									</td>
-									
-									<td>
-										
-											<input type="hidden" value="${e.memberId }" name="memberId" readonly>
-											
-											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
-											
-									
-										</td>
-								
-							</tr>
-							</c:forEach>
-							
+				<p class="memberTFont">
+					총 <span class="turnRed">${totalContents }</span>명의 회원이 있습니다.
+				</p>
+				<p class="memberTFont2">※ 전화번호, 주소, 회원 포인트, 회원 등급만 수정 가능합니다.</p>
+				<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
+				<table class="memberT">
 
-						</table>
-						<!-- </form> -->
-						
-						<div id="pagebar-container">
-			        		${pageBar }
-			        	</div> 
-			        
-					</div>
+					<tr>
+						<th>등록일</th>
+						<th>회원 아이디</th>
+						<th>회원 이름</th>
+						<th>회원 전화번호</th>
+						<th>회원 성별</th>
+						<th>회원 주소</th>
+						<th>회원 포인트</th>
+						<th>회원 등급</th>
+						<th>총 매출</th>
+						<th>방문 횟수</th>
+						<th>수정하기</th>
+						<th>삭제하기</th>
+					</tr>
+
+
+					<c:forEach var="e" items="${list }">
+						<tr>
+							<td><input type="text" value="${e.memberRegiDate }"
+								name="memberRegiDate" readonly></td>
+							<td><input type="text" value="${e.memberId }"
+								name="memberId" readonly></td>
+							<td><input type="text" value="${e.memberName }"
+								name="memberName" readonly></td>
+							<td><input type="text" value="${e.memberPhone }"
+								name="memberPhone"></td>
+							<td><input type="text" value="${e.memberGender }"
+								name="memberGender" readonly></td>
+							<td><input type="text" value="${e.memberAddress }"
+								name="memberAddress"></td>
+							<td><input type="text" value="${e.memberPoint }"
+								name="memberPoint"></td>
+							<td><input type="text" value="${e.memberGradeNo }"
+								name="memberGradeNo"></td>
+							<td><input type="text" value="${e.memberTotalSale }"
+								name="memberTotalSale" readonly></td>
+							<td><input type="text" value="${e.memberVisit }"
+								name="memberVisit" readonly></td>
+							<td><img alt="수정하기"
+								src="${path }/resources/img/admin/checkgreen.png"
+								onclick="changeMemberV(event);" class="updateCheck updateImg">
+							</td>
+
+							<td><input type="hidden" value="${e.memberId }"
+								name="memberId" readonly> <img
+								src="${path }/resources/img/admin/delete2.png" alt=""
+								class="updateCheck deleteImg" onclick="adMemberDelete(event);">
+
+
+							</td>
+
+						</tr>
+					</c:forEach>
+
+
+				</table>
+				<!-- </form> -->
+
+				<div id="pagebar-container">${pageBar }</div>
+
+			</div>
 		</div>
 	</div>
 </div>
