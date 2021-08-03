@@ -128,5 +128,75 @@
   		SELECT COUNT(*) FROM GIFT
   	</select>
   	
+  	<!--재고 book 정렬 -->
+  	<select id="orderStockList" resultMap="ebookDatabindMap">
+  		SELECT * FROM BOOK_EBOOK_DATABIND
+  		WHERE 1=1
+  		<if test="stockNum1 !=null and stockNum1!=''">
+  		 	AND STOCK >= #{stockNum1}
+  		</if>
+  		<if test="stockNum2 !=null and stockNum2!=''">
+  		 	AND STOCK &lt; #{stockNum2}
+  		</if>
+  	</select>
+  	
+  	<!--재고 gift 정렬 -->
+  	<select id="orderStockList3" resultMap="giftMap">
+  		SELECT * FROM GIFT
+  		WHERE 1=1
+  		<if test="stockNum1 !=null and stockNum1!=''">
+  		 	AND GIFT_COUNT >= #{stockNum1}
+  		</if>
+  		<if test="stockNum2 !=null and stockNum2!=''">
+  		 	AND GIFT_COUNT &lt; #{stockNum2}
+  		 </if>
+  	</select>
+  	
+  	<!--재고현황 book 검색-->
+  	<select id="searchTextStockList" resultMap="ebookDatabindMap">
+  		SELECT * FROM BOOK_EBOOK_DATABIND WHERE
+  		<choose>
+			<when test="type4 == 'no'">
+				 BIND_NO=#{search5}
+			</when>
+			<when test="type4 == 'title'">
+				TITLE LIKE '%'||#{search5}||'%'
+			</when>
+		</choose>
+  	</select>
+  	
+  	
+  	<!--재고현황 gift 검색-->
+  	<select id="searchTextStockList3" resultMap="giftMap">
+  		SELECT * FROM GIFT WHERE
+  		<choose>
+			<when test="type4 == 'no'">
+				 GIFT_NO=#{search5}
+			</when>
+			<when test="type4 == 'title'">
+				GIFT_TITLE LIKE '%'||#{search5}||'%'
+			</when>
+		</choose>
+  	</select>
+  	
+  	<!-- 재고현황 책테이블 수정  -->
+  	<update id="stockUpdate">
+  		UPDATE BOOK_EBOOK_DATABIND SET TITLE=#{title} , PRICE=#{price} , PUBLISHER =#{publisher},CATEGORY_CODE=#{categoryCode} WHERE BIND_NO=#{bindNo}
+  	</update>
+  	<!-- 재고현황 gift테이블 수정  -->
+  	<update id="stockUpdate2">
+  		UPDATE GIFT SET GIFT_TITLE=#{gift_title}, GIFT_CONTENT=#{gift_content}, GIFT_PRICE=#{gift_price}, GIFT_AS=#{gift_as},GIFT_GIFTCATE_CODE=#{gift_giftcate_code} WHERE GIFT_NO=#{gift_no}
+  	</update>
+  	
+  	<!-- 재고현황 book 삭제 -->
+  	<delete id="stockTDelete">
+  		DELETE FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+  	</delete>
+  	
+  	<!-- 재고현황 gift 삭제 -->
+  	<delete id="stockTDelete2">
+  		DELETE FROM GIFT WHERE GIFT_NO=#{gift_no}
+  	</delete>
+  	
   	
 </mapper>

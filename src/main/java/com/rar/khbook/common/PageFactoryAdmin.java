@@ -10,9 +10,9 @@ public class PageFactoryAdmin {
 		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
 		int pageBarSize=5;
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
-		int pageEnd=pageNo+pageBarSize-1;
+		int pageEnd=pageNo+pageBarSize-1; 
 		
-		if(pageNo==1) {
+		if(pageNo==1) { 
 			pageBar+="<li class='page-item disabled'>";
 			pageBar+="<a class='page-link' href='#'>이전</a>";
 			pageBar+="</li>";

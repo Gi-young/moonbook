@@ -216,6 +216,8 @@ public class AdminController {
 		return mv;
 		
 	}
+	
+	
 	@RequestMapping("/admin/updateProduct1.do")
 	public ModelAndView updateProduct1(ModelAndView mv,@RequestParam Map param) {
 		//책 입고
@@ -261,7 +263,7 @@ public class AdminController {
 	}
 	
 	
-	//이익을 위한 가격 가져오기 책버전
+	//이익을 위한 가격 가져오기 책버전 -->기능 이전 분석파트
 	@RequestMapping("/admin/bringPrice.do")
 	@ResponseBody
 	public EbookDatabind searchBringPrice(int bindNo) {
@@ -270,7 +272,7 @@ public class AdminController {
 		
 		return price1;
 	}
-	//이익을 위한 가격 가져오기 기프트
+	//이익을 위한 가격 가져오기 기프트 --> 기능 이전 분석파트
 	
 	
 	//출고 전 재고 체크 book버전
@@ -401,7 +403,7 @@ public class AdminController {
 										 @RequestParam(value="stockParam", required=false) String stockParam,
 										 ModelAndView mv) {
 		
-		System.out.println("컨트롤러 테스트 : " + stockParam);
+		//System.out.println("컨트롤러 테스트 : " + stockParam);
 		
 		List<EbookDatabind> listT=service.selectEbookDatabindList(cPage,numPerpage);
 		List<Gift> listT2=service.selectGiftList(cPage,numPerpage);
@@ -429,9 +431,111 @@ public class AdminController {
 		
 		return mv;
 	}
+	//재고 ~이상 ~ 미만 book버전
+	@RequestMapping("/admin/orderStockList.do")
+	@ResponseBody
+	public List<EbookDatabind> orderStockList(@RequestParam Map param) {
+		
+		int stockNum1 = Integer.parseInt((String)param.get("stockNum1"));
+		param.put("stockNum1", stockNum1);
+		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
+		param.put("stockNum2", stockNum2);
+		
+		
+		List<EbookDatabind> list=service.orderStockList(param);
+		
+		return list;
+	}
+	//재고 ~이상 ~ 미만 gift버전
+	@RequestMapping("/admin/orderStockList3.do")
+	@ResponseBody
+	public List<Gift> orderStockList3(@RequestParam Map param) {
+		
+		int stockNum1 = Integer.parseInt((String)param.get("stockNum1"));
+		param.put("stockNum1", stockNum1);
+		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
+		param.put("stockNum2", stockNum2);
+		
+		
+		List<Gift> list2=service.orderStockList3(param);
+		
+		return list2;
+	}
+	
+	//검색 책
+	@RequestMapping("/admin/searchTextStockList.do")
+	@ResponseBody
+	public List<EbookDatabind> searchTextStockList(@RequestParam Map param) {
+		
+		
+		List<EbookDatabind> list=service.searchTextStockList(param);
+		
+		return list;
+	}
+	//검색 gift
+	@RequestMapping("/admin/searchTextStockList3.do")
+	@ResponseBody
+	public List<Gift> searchTextStockList3(@RequestParam Map param) {
+		
+		
+		List<Gift> list2=service.searchTextStockList3(param);
+		
+		return list2;
+	}
+	
+	// 책 수정하기
+	@RequestMapping("/admin/stockTUpdate.do")
+	@ResponseBody
+	public boolean stockTUpdate(@RequestParam Map param) {
+		
+		int result=service.stockTUpdate(param);
+		
+		if(result>0) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
+	// gift 수정하기
+	@RequestMapping("/admin/stockTUpdate2.do")
+	@ResponseBody
+	public boolean stockTUpdate2(@RequestParam Map param) {
+		
+		int result=service.stockTUpdate2(param);
+		
+		if(result>0) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
+	// book 삭제하기 
+	@RequestMapping("/admin/stockTDelete.do")
+	@ResponseBody
+	public boolean stockTDelete(@RequestParam Map param) {
+		
+		int result=service.stockTDelete(param);
+		
+		if(result>0) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
+	// gift 삭제하기 
+	@RequestMapping("/admin/stockTDelete2.do")
+	@ResponseBody
+	public boolean stockTDelete2(@RequestParam Map param) {
+		
+		int result=service.stockTDelete2(param);
+		
+		if(result>0) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	
 	
-	
-
 }
