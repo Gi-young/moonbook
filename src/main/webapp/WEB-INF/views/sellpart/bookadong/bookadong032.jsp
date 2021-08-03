@@ -7,7 +7,9 @@
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
-
+<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
+<jsp:param name="" value=""/>
+</jsp:include>
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHome.css">
 	<main>

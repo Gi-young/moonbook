@@ -778,6 +778,9 @@ transition: all 0.2s linear;
 <section id="content">
 
 	<div class="wrap">
+<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
+<jsp:param name="" value=""/>
+</jsp:include>
     <div id="level_container" class="line">
         <div>
            <!--<div id="level_cho">
@@ -948,21 +951,15 @@ transition: all 0.2s linear;
                 
                 <div>
                     <span>주문수량</span>
-                    <input type="number">
+                    <input type="number" id="bookVolume">
                 </div>
                 <div style="display:flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
                     <a href="" >장바구니담기</a>
                     <a href="" id="payBtn">바로구매</a>
-                    <!-- <a href="">바로드림 주문</a>
-                    <a href="">선물하기</a>
-                    <a href="">보관함담기</a> -->
                 </div>
             </div>
         </div>
 
-        <!-- <div class="line backgroundColor" style="height: 300px;">
-            이공간은 고민중
-        </div> -->
 
         <div class="bookView_info" style="display: flex;">
             <div class="bookView_info_left line">
@@ -999,13 +996,7 @@ transition: all 0.2s linear;
 
 
                 </div>
-                <!-- <div class="bookView_info_left_btn line">
-                    <a href="#event">이벤트</a>
-                    <a href="#product" name="product">상품정보</a>
-                    <a href="#review">회원리뷰</a>            
-                    <a href="#storyk">스토리k</a>
-                    <a href="#err">교환/반품/품절</a>
-                </div> -->
+
                 <div class="bookView_info_left_product">
                     <div class="" style="text-align: right; padding: 15px;">
                         <a href="" class="btn_small">문의하기</a>
@@ -1036,8 +1027,9 @@ transition: all 0.2s linear;
                     </div>
                     <div class="bcontent">
                         <strong>책 내용</strong> <br>
-                        ${book.description }<br><br>
-                        <a href="${book.link }"><p><span> 위 글을 누르시면 상세 페이지로 이동합니다.</span></p></a>
+                        ${book.description }<br><br><br><br>
+                        <a href="${book.link }"><strong>[ 책 상세 페이지로 이동 ]</strong></a>
+                        <br><br><br>
                    </div>
                    <div>
                        <h2>저자소개</h2>
@@ -1477,6 +1469,8 @@ transition: all 0.2s linear;
 
 
 <input type="hidden" id="loginMember" value="${loginMember.memberId}">
+<input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
+
 <%System.out.println("test : " + session.getAttribute("loginMember")); %>
 
 <input type="hidden" id="contextPath" value="${path }">
