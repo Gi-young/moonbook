@@ -12,6 +12,7 @@
 
 <title>${param.title }</title>
 <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
+<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 
 <!-- <link rel="stylesheet"

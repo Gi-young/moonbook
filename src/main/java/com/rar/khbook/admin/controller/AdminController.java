@@ -57,7 +57,7 @@ public class AdminController {
 		int totalData=service.selectMemberCount();
 		
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
+		mv.addObject("pageBar",PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
 		mv.setViewName("admin/adminMemberPage");
 		
 		return mv;
