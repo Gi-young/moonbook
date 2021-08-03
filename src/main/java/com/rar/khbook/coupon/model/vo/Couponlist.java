@@ -6,7 +6,7 @@ import lombok.Data;
 //쿠폰의 부모
 public class Couponlist {
 	private int couponlistNo;
-	private String couponlistGrade;
+	private int couponlistMembergradeNo;
 	private double couponlistPercent;
 	private int couponlistAmount;
 	private String couponlistForuse;

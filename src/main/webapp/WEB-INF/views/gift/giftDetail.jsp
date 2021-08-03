@@ -15,43 +15,20 @@
     <title>문곰책방 | 문곰템</title>
     <link rel="stylesheet" href="${path }/resources/css/gift/giftDetail.css">
     <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/plugin/slick/slick.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="/plugin/slick/slick.css"/>
 <link rel="stylesheet" type="text/css" href="/plugin/slick/slick-theme.css"/>
 <script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/plugin/slick/slick.js"></script>
- <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript" src="/plugin/slick/slick.js"></script> -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="${path }/resources/js/gift/gift_detail.js"></script>
 </head>
 <!-- 문곰템의 모든 상품의 상세 보기는 여기서 -->
 <body>
     <div class="wrap">
-        <div class="hotTracks">
-            <!-- 상단 핫트랙스 메뉴바 -->
-            <div class="category-open">
-                <img src="${path }/resources/images/gift/기프트헤더로고.png" alt="" style="height: 50px;">
-            </div>
-            <div class="hotTracks-menu">
-                <ul>
-                    <!-- 페이지 전환할 때 스크립트로 전환 -->
-                    <li>
-                        <a style="color:#696969;" class="hot" href="#">전자기기</a>
-                    </li>
-                    <p>·</p>
-                    <li>
-                        <a style="color:#696969;" class="hot" href="#">수납/정리</a>
-                    </li>
-                    <p>·</p>
-                    <li>
-                        <a style="color:#696969;" class="hot" href="#">독서 필수템</a>
-                    </li>
-                    <p>·</p>
-                    <li>
-                        <a style="color:#696969;" class="hot" href="#">잡화</a> 
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <jsp:include page="/WEB-INF/views/gift/hotTracksMenu.jsp">
+        <jsp:param name="" value=""/>
+        </jsp:include>
         <div class="crossLine1"></div>
         <div class="proDetail-box">
             <div class="proDetail-img">
@@ -94,10 +71,10 @@
                 <div class="purBtn-box">
                     <button>구매하기</button>
                     <button>장바구니</button>
-                    <button>찜하기</button>
+                    <!-- <button>찜하기</button> -->
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
-                    <button class="naverPay">네이버페이</button>
+                    <button class="naverPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
         </div>
@@ -115,46 +92,53 @@
                 </div>
                 <div class="reco-content">
                     <img src="${path }/resources/images/gift/만년필2.jpg" alt="">
+                    <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
                     <p class="price margin-bottom24">가격</p>
                 </div>
                 <div class="reco-content">
                     <img src="${path }/resources/images/gift/만년필3.jpg" alt="">
+                    <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
                     <p class="price margin-bottom24">가격</p>
                 </div>
                 <div class="reco-content">
                     <img src="${path }/resources/images/gift/만년필4.jpg" alt="">
+                    <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
                     <p class="price margin-bottom24">가격</p>
                 </div>
                 <div class="reco-content">
                     <img src="${path }/resources/images/gift/만년필1.jpg" alt="">
+                    <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
                     <p class="price margin-bottom24">가격</p>
                 </div>
                 <div class="reco-content">
                     <img src="${path }/resources/images/gift/만년필2.jpg" alt="">
+                    <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
                     <p class="price margin-bottom24">가격</p>
                 </div>
                 <div class="reco-content">
                     <img src="${path }/resources/images/gift/만년필3.jpg" alt="">
+                    <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
                     <p class="price margin-bottom24">가격</p>
                 </div>
                 <div class="reco-content">
                     <img src="${path }/resources/images/gift/만년필4.jpg" alt="">
+                    <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
                     <p class="price margin-bottom24">가격</p>
                 </div>
     </div>
         <div class="crossLine3"></div>
         <div class="proDetail-bar">
-            <p id="bar1">상품설명</p>
-            <p id="bar2">상품리뷰</p>
-            <p id="bar3">상품Q&A</p>
-            <p id="bar4">알려드립니다</p>
+            <a id="bar1">상품설명</a>
+            <a id="bar2" href="${path }/gift/productReview.do?gift_no=1">상품리뷰</a>
+            <a id="bar3" href="">상품Q&A</a>
+            <a id="bar4">알려드립니다</a>
         </div>
         <div class="product-exp">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
@@ -315,25 +299,25 @@
         <!-- 상품Q&A -->
         <div class="product-q_a">
             <div class="writeBox">
-                <button class="reviewWrite">상품 리뷰 작성하기</button>
+                <button class="reviewWrite">질문 작성하기</button>
             </div>
             <table class="review-exp">
                 <tr>
                     <th style="width:105px;">번호</th>
-                    <th style="width:145px;">만족도</th>
-                    <th style="width:370px;">상품평</th>
+                    <!-- <th style="width:145px;"></th> -->
+                    <th style="width:515px;">질문내용</th>
                     <th style="width:165px;">작성자</th>
                     <th style="width:165px;">작성일</th>
                 </tr>
                 <tr class="review-text">
                     <td>0</td>
-                    <td class="gpa">
+                    <!-- <td class="gpa">
                      <div class="gpa-circle">
                          <p>3</p>
                      </div>    
-                 </td>
+                 </td> -->
                      <td>
-                        <div class="review">
+                        <div class="review_qna">
                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                         </div>
                      </td>
@@ -342,13 +326,13 @@
                  </tr>
                  <tr class="review-text">
                      <td>0</td>
-                     <td class="gpa">
+                     <!-- <td class="gpa">
                          <div class="gpa-circle">
                              <p>3</p>
                          </div>    
-                     </td>
+                     </td> -->
                      <td>
-                         <div class="review">
+                         <div class="review_qna">
                           제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                          </div>
                       </td>
@@ -357,13 +341,13 @@
                  </tr>
                  <tr class="review-text">
                      <td>0</td>
-                     <td class="gpa">
+                    <!--  <td class="gpa">
                          <div class="gpa-circle">
                              <p>3</p>
                          </div>    
-                     </td>
+                     </td> -->
                      <td>
-                         <div class="review">
+                         <div class="review_qna">
                           제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                          </div>
                       </td>
@@ -372,13 +356,13 @@
                  </tr>
                  <tr class="review-text">
                      <td>0</td>
-                     <td class="gpa">
+                     <!-- <td class="gpa">
                          <div class="gpa-circle">
                              <p>3</p>
                          </div>    
-                     </td>
+                     </td> -->
                      <td>
-                         <div class="review">
+                         <div class="review_qna">
                           제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                          </div>
                       </td>
@@ -387,13 +371,13 @@
                  </tr>
                  <tr class="review-text">
                      <td>0</td>
-                     <td class="gpa">
+                     <!-- <td class="gpa">
                          <div class="gpa-circle">
                              <p>3</p>
                          </div>    
-                     </td>
+                     </td> -->
                      <td>
-                         <div class="review">
+                         <div class="review_qna">
                           제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                          </div>
                       </td>
@@ -402,13 +386,13 @@
                  </tr>
                  <tr class="review-text">
                      <td>0</td>
-                     <td class="gpa">
+                     <!-- <td class="gpa">
                          <div class="gpa-circle">
                              <p>3</p>
                          </div>    
-                     </td>
+                     </td> -->
                      <td>
-                         <div class="review">
+                         <div class="review_qna">
                           제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                          </div>
                       </td>
@@ -417,13 +401,13 @@
                  </tr>
                  <tr class="review-text">
                      <td>0</td>
-                     <td class="gpa">
+                     <!-- <td class="gpa">
                          <div class="gpa-circle">
                              <p>3</p>
                          </div>    
-                     </td>
+                     </td> -->
                      <td>
-                         <div class="review">
+                         <div class="review_qna">
                           제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                          </div>
                       </td>
@@ -432,13 +416,13 @@
                  </tr>
                  <tr class="review-text">
                      <td>0</td>
-                     <td class="gpa">
+                     <!-- <td class="gpa">
                          <div class="gpa-circle">
                              <p>3</p>
                          </div>    
-                     </td>
+                     </td> -->
                      <td>
-                         <div class="review">
+                         <div class="review_qna">
                           제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                          </div>
                       </td>
@@ -447,13 +431,13 @@
                  </tr>
                  <tr class="review-text">
                      <td>0</td>
-                     <td class="gpa">
+                     <!-- <td class="gpa">
                          <div class="gpa-circle">
                              <p>3</p>
                          </div>    
-                     </td>
+                     </td> -->
                      <td>
-                         <div class="review">
+                         <div class="review_qna">
                           제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                          </div>
                       </td>
@@ -494,10 +478,14 @@
                 </li>
             </ul>
         </div> -->
-    <div class="quickBar"></div>    
+	<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
+		<jsp:param name="" value=""/>
+	</jsp:include>
 
-</body>
-</html>
+   <%--   <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
+			<jsp:param name="" value=""/> 
+	 </jsp:include>  --%>   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
 <script>
       $('#slider-div').slick({
           slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
@@ -513,13 +501,13 @@
           vertical : false,		// 세로 방향 슬라이드 옵션
           prevArrow : "<button type='button' class='slick-prev'>⊲</button>",		// 이전 화살표 모양 설정
           nextArrow : "<button type='button' class='slick-next'>⊳</button>",		// 다음 화살표 모양 설정
-          dotsClass : "slick-dots", 	//아래 나오는 페이지네이션(점) css class 지정
+           	//아래 나오는 페이지네이션(점) css class 지정
           draggable : true, 	//드래그 가능 여부 
         //   centerMode : true,
         //   variableWidth : true,
         //   focusOnSelect : true,
-          pauseOnHover : true,
-          responsive: [ // 반응형 웹 구현 옵션
+          pauseOnHover : true
+          /* responsive: [ // 반응형 웹 구현 옵션
               {  
                   breakpoint: 1350, //화면 사이즈 960px
                   settings: {
@@ -534,7 +522,7 @@
                       slidesToShow:2 
                   } 
               }
-          ]
+          ] */
 
       });
     let slickBtn = $('.slick-dots li>button');
@@ -551,4 +539,19 @@
     $(hot).mouseout(function(){
         $(this).css("color","#696969");
     })
+    $("#kakaoPay").click(function(){
+    	$.ajax({
+    		url: '${path}/kakaopay.do',
+    		dataType:'json',
+    		success:function(data){   			
+    			console.log("정상 실행 : "+data.tid);
+    			window.open(data.next_redirect_pc_url);
+    		},
+    		error:function(error){
+    			console.log("에러 : "+error);
+    		}  		
+    	})
+    });
 </script>
+</body>
+</html>

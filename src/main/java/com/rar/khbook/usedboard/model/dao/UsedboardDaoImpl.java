@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 @Repository
@@ -57,4 +58,66 @@ public class UsedboardDaoImpl implements UsedboardDao {
 		// TODO Auto-generated method stub
 		return session.insert("usedboard.insertUsedcomment",c);
 	}
+	
+	@Override
+	public int deleteUsedcomment(SqlSession session, int commentNo) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.deleteUsedcomment",commentNo);
+	}
+	
+	@Override
+	public int deleteUsedcommentRef(SqlSession session, int commentNo) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.deleteUsedcommentRef",commentNo);
+	}
+	
+	@Override
+	public int usedboardUpdateEnd(SqlSession session, Usedboard b) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardUpdateEnd",b);
+	}
+	
+	@Override
+	public int usedboardInsertEnd(SqlSession session, Usedboard b) {
+		// TODO Auto-generated method stub
+		return session.insert("usedboard.usedboardInsertEnd",b);
+	}
+	
+	@Override
+	public int usedboardfileInsertEnd(SqlSession session, Usedboardfile f) {
+		// TODO Auto-generated method stub
+		return session.insert("usedboard.usedboardfileInsertEnd",f);
+	}
+	
+	@Override
+	public int usedboardDelete(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.usedboardDelete",no);
+	}
+	
+	@Override
+	public int usedcommentDelete(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.usedcommentDelete",no);
+	}
+	
+	@Override
+	public int usedboardfileDelete(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.usedboardfileDelete",no);
+	}
+	
+	@Override
+	public List<Usedboardfile> usedboardfileSelect(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.selectList("usedboard.usedboardfileSelect",no);
+	}
+	
+	@Override
+	public int usedboardPayment(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardPayment",no);
+	}
+	
+	
 }

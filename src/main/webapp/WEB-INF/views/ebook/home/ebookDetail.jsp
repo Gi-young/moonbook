@@ -8,11 +8,27 @@
 	<jsp:param name="title" value="책 상세 - 문곰e북"/>
 </jsp:include>
 
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/commonStyle.css">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookDetail.css">
 
 	<main>
-		<p>책 상세 페이지</p>
+		<img src="${ebookDatabind.image}">
+		<p><c:out value="${ebookDatabind.title}"/></p>
+		<p><c:out value="${ebookDatabind.author}"/></p>
+		<p><c:out value="${ebookDatabind.price}"/>원</p>
+		<p><c:out value="${ebookDatabind.isbn}"/></p>
+		<p><c:out value="${ebookDatabind.pubdate}"/></p>
+		<p><c:out value="${ebookDatabind.publisher}"/></p>
+		<p><c:out value="${ebookDatabind.description}"/></p>
+		<a href="${ebookDatabind.link}">상세보기 페이지로 이동</a>
+		<p><c:out value="${ebookDatabind.categoryCode}"/></p>
+		
+		<input type="button" value="좋아요" onclick="loveOrUnlove();">
+		<input type="checkbox" id="checkLoved" onclick="return false;">
+		
+		<input type="button" value="장바구니에 넣기" onclick="putInShoppingBasket();">
+		<input type="checkbox" id="checkShopped" onclick="return false;">
+
+		<input type="hidden" id="bindNo" value="${ebookDatabind.bindNo}">
 	</main>
 
 	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>

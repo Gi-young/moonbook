@@ -3,132 +3,131 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<jsp:include page="/WEB-INF/views/common/header.jsp">
-	<jsp:param name="title" value="마이페이지 - KH문고" />
+<c:set var="prevMonth" value="<%=new java.util.Date().getMonth()%>" />
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
+	<jsp:param name="title" value="마이페이지 - 문곰책방" />
 </jsp:include>
 <link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
+<link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
+<link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <div class="wrap">
-	<div class="container margin_top30">
+	<div class="container margin_top2e">
 		<jsp:include page="/WEB-INF/views/common/myroomMenubar.jsp">
-			<jsp:param name="title" value="마이룸 - KH문고" />
-			<jsp:param name="subtitle" value="main" />
+			<jsp:param name="" value="" />
+		</jsp:include>
+		<jsp:include page="/WEB-INF/views/common/myroomHead.jsp">
+			<jsp:param name="" value="" />
 		</jsp:include>
 		<div class="myroom_contents">
-			<div class="content_head">
-				<div class="user_section">
-					<img class="padding10"
-						src="${path }/resources/images/${membergrade.membergradeImg }">
-					<div class="user_name">${loginMember.memberName }님
-						(${membergrade.membergradeName })</div>
-				</div>
-			</div>
-			<h3 class="bul_green20">
-				<span class="bold">나의 최근 주문현황</span>
+			<div class="content_middle padding10 flex">
+				<div class="bold">이번달 등급 |</div>
 				<div class="sub_title">
-					<span class="col">|</span>최근 1개월 기준
-				</div>
-			</h3>
-			<div class=order_tracking_section>
-				<ul class="process_list">
-					<li class="cell1">주문접수<span>0</span></li>
-					<li class="cell2">결제완료<span>0</span></li>
-					<li class="cell3">상품준비중<span>0</span></li>
-					<li class="cell4">출고작업중<span>0</span></li>
-					<li class="cell5">배송중<span>0</span></li>
-					<li class="cell6">배송완료<span>0</span></li>
-				</ul>
-				<div class="total_order">
-					<ul>
-						<li><span class="tit">취소</span><a href="#"><strong
-								class="bold">75</strong></a>건</li>
-						<li><span class="tit">교환</span><a href="#"><strong
-								class="bold">150</strong></a>건</li>
-						<li><span class="tit">반품</span><a href="#"><strong
-								class="bold">2222</strong></a>건</li>
-					</ul>
+					<span class="fs8 padding10">당월 제외, 최근 3개월 기준</span>
 				</div>
 			</div>
-			<table class="table_myroom td_font_12 margin_top20">
-				<%-- <caption>최근 주문 내용</caption> --%>
-				<colgroup>
-					<col width="14%">
-					<col width="14%">
-					<col width="70">
-					<col>
-					<col width="5%">
-					<col width="14%">
-					<col width="14%">
-				</colgroup>
+			<table class="tbl_nextGrade">
 				<tr>
-					<th class="first" scope="col">주문번호</th>
-					<th scope="col">주문금액</th>
-					<th scope="col" colspan="2">상품정보</th>
-					<th scope="col">수량</th>
-					<th scope="col">주문상태</th>
-					<th scope="col">주문변경</th>
+					<th></th>
+					<c:if test="${prevMonth-2 <= 0}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth + 10}" type="number" /></th>
+					</c:if>
+					<c:if test="${prevMonth-2 > 0}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth -2}" type="number" /></th>
+					</c:if>
+					<c:if test="${prevMonth-1 < 1}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth + 11}" type="number" /></th>
+					</c:if>
+					<c:if test="${prevMonth-1 >= 0}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth  - 1}" type="number" /></th>
+					</c:if>
+					<c:if test="${prevMonth < 1}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth  + 12}" type="number" /></th>
+					</c:if>
+					<c:if test="${prevMonth >= 1}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth }" type="number" /></th>
+					</c:if>
 				</tr>
 				<tr>
-					<td class="first none_data" colspan="7">최근 주문내용 목록이 없습니다.</td>
+					<td class="td_first">순수구매액</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td rowspan="2" class="td_first">총합</td>
+					<td rowspan="2">0</td>
+					<td colspan="2" rowspan="2" class="td_first"><div
+							class="padding10">이번달 등급</div> <a href="${path }/member/grade.do"><img
+							src="${path }/resources/images/${membergrade.membergradeImg }"></a></td>
 				</tr>
 			</table>
-			<div class="paging_num_my">
-				<img src="${path }/resources/images/btn_prev02.gif" class="imover">
-				<img src="${path }/resources/images/btn_next02.gif" class="imover">
+			<div class="content_middle padding10 flex">
+				<div class="bold">다음 등급까지 남은 금액 |</div>
+				<div class="sub_title">
+					<span class="fs8 padding10">당월 포함, 3개월 기준</span>
+				</div>
 			</div>
-			<div class="box_info_my margin_top30">
-				<h3>
-					<img src="${path }/resources/images/icon_info.gif">안내사항
-				</h3>
-				<ul>
-					<li>● 주문번호를 클릭하면 주문/배송 상세내역을 확인하실 수 있습니다.</li>
-					<li>● 주문정보 수정은 (주문취소/배송지변경, 교환/반품신청) 주문/배송 상세페이지에서 가능합니다.</li>
-					<li>● 배송조회는 택배사로 상품전달 후 조회 가능합니다.</li>
-					<li>● e-Book은 구매 후 e-Book서재를 통해 이용가능합니다.</li>
-					<li>● 주문한 상품이 품절될 경우 해당 상품은 자동 주문취소되며, 결제금액은 승인 취소됩니다.</li>
-				</ul>
-			</div>
-
-			<h3 class="bul_green20 padding10 margin_top30">
-				<span class="bold">나의 관심상품</span>
-			</h3>
-			<div class="myroom_wishlist margin_top30">
-				<div class="tab_menu02">
+			<table class="tbl_nextGrade">
+				<tr>
+					<th></th>
+					<c:if test="${prevMonth-1 < 1}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth + 11}" type="number" /></th>
+					</c:if>
+					<c:if test="${prevMonth-1 >= 0}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth  - 1}" type="number" /></th>
+					</c:if>
+					<c:if test="${prevMonth < 1}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth  + 12}" type="number" /></th>
+					</c:if>
+					<c:if test="${prevMonth >= 1}">
+						<th><fmt:formatNumber minIntegerDigits="2"
+								value="${prevMonth }" type="number" /></th>
+					</c:if>
+					<th><fmt:formatNumber minIntegerDigits="2"
+							value="${prevMonth  + 1}" type="number" /></th>
+				</tr>
+				<tr>
+					<td class="td_first">순수구매액</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td rowspan="2" class="td_first">남은 금액</td>
+					<td rowspan="2"><fmt:formatNumber type="currency"
+							value="${membergrade.membergradeStandard +100000}"></fmt:formatNumber></td>
+					<td colspan="2" rowspan="2" class="td_first"><div
+							class="padding10">다음달 등급</div> <a href="${path }/member/grade.do"><img
+							src="${path }/resources/images/${membergrade.membergradeImg }"></a></td>
+				</tr>
+			</table>
+			<div class="margin_top30 flex">
+				<div>
+					<img src="${path }/resources/images/hello.png" />
+				</div>
+				<div class="myroom_info">
 					<ul>
-						<li class="myTab"><a href="#">최근 본 도서</a></li>
-						<li class="myTab on"><a href="#">최근 본 기프트</a></li>
+						<li>매월 순수구매액은 전월 1일 ~ 당월 1일까지 구매내역입니다.<br> <span>ex)
+								7월 : 6월 1일 ~ 7월 1일</span>
+						</li>
+						<li>순수구매액은 도서, 기프트 상품 구입시 결제한 실제 금액이며, 쿠폰과 적립금을 통한 할인 금액은
+							순수구매액에서 제외됩니다.</li>
+						<li>쿠폰은 발급일 기준 30일 후에 재충전 됩니다.</li>
 					</ul>
-				</div>
-				<div class="myroom_wishlist_slide" style="display: none;">
-					<p class="no_data">최근에 본 도서가 없습니다.</p>
-				</div>
-				<div class="myroom_wishlist_slide">
-					<div class="mask">
-						<ul class="myroom_wishlist_roll">
-							<li><dl class="prod_type01">
-									<dt>
-										<a href="#"><img
-											src="${path }/resources/images/m9791190885843.jpg"></a>
-									</dt>
-									<dd class="title">
-										<a href="#">[도서분류]책제목</a>
-									</dd>
-									<dd class="writer">작가지음</dd>
-									<dd class="price">
-										<strong class="bold">가격</strong>
-									</dd>
-								</dl>
-						</ul>
-					</div>
-					<a href="#" class="btn_prev"> <img
-						src="${path }/resources/images/gifts_list_arr1.gif">
-					</a> <a href="#" class="btn_next"> <img
-						src="${path }/resources/images/gifts_list_arr2.gif">
-					</a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp">
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
