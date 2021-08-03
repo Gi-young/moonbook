@@ -28,6 +28,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.service.MemberService;
@@ -405,6 +406,7 @@ public class MemberController {
 
 		List<Membergrade> mg = service.memberGrade();
 		m.addAttribute("allMembergrade", mg);
+		m.addAttribute("pageBar", PageFactory.getOwnPageBar(10, 1, 5, "adMemberPage.do"));
 
 		return "myroom/couponBox";
 	}
