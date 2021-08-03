@@ -66,4 +66,8 @@ public interface AdminDao {
 	
 	int stockTUpdate2(SqlSession session,Map param);
 	
+	int stockTDelete(SqlSession session,Map param);
+	
+	int stockTDelete2(SqlSession session,Map param);
+	
 }

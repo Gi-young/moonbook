@@ -188,4 +188,15 @@
   		UPDATE GIFT SET GIFT_TITLE=#{gift_title}, GIFT_CONTENT=#{gift_content}, GIFT_PRICE=#{gift_price}, GIFT_AS=#{gift_as},GIFT_GIFTCATE_CODE=#{gift_giftcate_code} WHERE GIFT_NO=#{gift_no}
   	</update>
   	
+  	<!-- 재고현황 book 삭제 -->
+  	<delete id="stockTDelete">
+  		DELETE FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+  	</delete>
+  	
+  	<!-- 재고현황 gift 삭제 -->
+  	<delete id="stockTDelete2">
+  		DELETE FROM GIFT WHERE GIFT_NO=#{gift_no}
+  	</delete>
+  	
+  	
 </mapper>

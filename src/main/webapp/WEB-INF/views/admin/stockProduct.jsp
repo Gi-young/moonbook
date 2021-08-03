@@ -104,7 +104,7 @@
 										
 											<input type="hidden" value="${e.bindNo }" name="bindNo" readonly>
 											
-											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
+											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adStockDelete(event);">
 											
 									
 										</td>
@@ -167,7 +167,7 @@
 										
 											<input type="hidden" value="${g.gift_no }" name="gift_no" readonly>
 											
-											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
+											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adStockDelete2(event);">
 											
 									
 										</td>
@@ -215,11 +215,46 @@ $("input[name=HowStockT]").click(e=>{
 	});
 });
 
-function adMemberDelete(event){
-	let memberId=$(event.target).prev().val();
+function adStockDelete(event){
+	let bindNo=event.target.parentElement.parentElement.children[0].children[0].value;
 	
-	location.assign('${path}/admin/memberDelete.do?memberId='+memberId);
+	$.ajax({
+		url:"${path}/admin/stockTDelete.do",
+		data: {
+			bindNo:bindNo,
+		},
+		success: data=>{
+			if(data){
+				alert("book 삭제가 정상적으로 성공 하였습니다");
+				
+			}else if(!data){
+				alert("book 삭제 실패 하였습니다");
+				
+			}
+			location.assign("${path}/admin/stockProductPage.do");
+		}
+	})
+}
+
+function adStockDelete2(event){
+	let gift_no=event.target.parentElement.parentElement.children[0].children[0].value;
 	
+	$.ajax({
+		url:"${path}/admin/stockTDelete2.do",
+		data: {
+			gift_no:gift_no,
+		},
+		success: data=>{
+			if(data){
+				alert("gift 삭제가 정상적으로 성공 하였습니다");
+				
+			}else if(!data){
+				alert("gift 삭제 실패 하였습니다");
+				
+			}
+			location.assign("${path}/admin/stockProductPage.do");
+		}
+	})
 }
 
 
@@ -241,10 +276,10 @@ function changeStockV(event){
 		},
 		success: data=>{
 			if(data){
-				alert("수정이 정상적으로 성공 하였습니다");
+				alert("book 수정이 정상적으로 성공 하였습니다");
 				
 			}else if(!data){
-				alert("수정 실패 하였습니다");
+				alert("book 수정 실패 하였습니다");
 				
 			}
 			location.assign("${path}/admin/stockProductPage.do");
@@ -272,10 +307,10 @@ function changeStockV2(event){
 		},
 		success: data=>{
 			if(data){
-				alert("수정이 정상적으로 성공 하였습니다");
+				alert("gift 수정이 정상적으로 성공 하였습니다");
 				
 			}else if(!data){
-				alert("수정 실패 하였습니다");
+				alert("gift 수정 실패 하였습니다");
 				
 			}
 			location.assign("${path}/admin/stockProductPage.do");
@@ -333,10 +368,10 @@ const searchStockT =()=>{
 					
 				}
 				document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
-					v.addEventListener("click", function() {changeMember(event)});
+					v.addEventListener("click", function() {changeStockV(event)});
 				});
 				document.querySelectorAll(".stockT td>img.deleteImg").forEach((v, i) => {
-					v.addEventListener("click", function() {adMemberDelete(event)});
+					v.addEventListener("click", function() {adStockDelete(event)});
 				});
 			}
 			
@@ -381,10 +416,10 @@ const searchStockT =()=>{
 					
 				}
 				document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
-					v.addEventListener("click", function() {changeMember(event)});
+					v.addEventListener("click", function() {changeStockV2(event)});
 				});
 				document.querySelectorAll(".stockT2 td>img.deleteImg").forEach((v, i) => {
-					v.addEventListener("click", function() {adMemberDelete(event)});
+					v.addEventListener("click", function() {adStockDelete2(event)});
 				});
 			}
 			
@@ -445,10 +480,10 @@ const orderList3 = () => {
 					
 				}
 				document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
-					v.addEventListener("click", function() {changeMember(event)});
+					v.addEventListener("click", function() {changeStockV(event)});
 				});
 				document.querySelectorAll(".stockT td>img.deleteImg").forEach((v, i) => {
-					v.addEventListener("click", function() {adMemberDelete(event)});
+					v.addEventListener("click", function() {adStockDelete(event)});
 				});
 			}
 		});
@@ -494,10 +529,10 @@ const orderList3 = () => {
 					
 				}
 				document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
-					v.addEventListener("click", function() {changeMember(event)});
+					v.addEventListener("click", function() {changeStockV2(event)});
 				});
 				document.querySelectorAll(".stockT2 td>img.deleteImg").forEach((v, i) => {
-					v.addEventListener("click", function() {adMemberDelete(event)});
+					v.addEventListener("click", function() {adStockDelete2(event)});
 				});
 			}
 		});

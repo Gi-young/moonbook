@@ -493,6 +493,7 @@ public class AdminController {
 			return false;
 		}
 	}
+	// gift 수정하기
 	@RequestMapping("/admin/stockTUpdate2.do")
 	@ResponseBody
 	public boolean stockTUpdate2(@RequestParam Map param) {
@@ -505,7 +506,33 @@ public class AdminController {
 			return false;
 		}
 	}
+	// book 삭제하기 
+	@RequestMapping("/admin/stockTDelete.do")
+	@ResponseBody
+	public boolean stockTDelete(@RequestParam Map param) {
+		
+		int result=service.stockTDelete(param);
+		
+		if(result>0) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
+	// gift 삭제하기 
+	@RequestMapping("/admin/stockTDelete2.do")
+	@ResponseBody
+	public boolean stockTDelete2(@RequestParam Map param) {
+		
+		int result=service.stockTDelete2(param);
+		
+		if(result>0) { 
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	
-
+	
 }

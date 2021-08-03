@@ -68,5 +68,12 @@ public interface AdminService {
 	//재고 gift 수정
 	int stockTUpdate2(Map param);
 	
+	//재고 책 삭제
+	int stockTDelete(Map param);
+	
+	//재고 gift 삭제
+	int stockTDelete2(Map param);
+	
+	
 	
 }
