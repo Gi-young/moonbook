@@ -30,6 +30,7 @@ public class SellbookController {
 		return "sellpart/level1";
 		
 	}
+
 	@RequestMapping("/sellbookController/bookadong03.do")
 	public String bookadong03() {
 		System.out.println("한국그림책");
@@ -70,36 +71,21 @@ public class SellbookController {
 		
 	}
 	
-	////////////////////////////////
 	
-	
-	@RequestMapping("/sellbookController/bookchodongdonghwa12.do")
-	public String bookchodongdonghwa12() {
-		System.out.println("초등동화");
-		return "sellpart/bookchodong/bookchodongdonghwa12";
-		
-	}
-	@RequestMapping("/sellbookController/bookchodongdonghwa34.do")
-	public String bookchodongdonghwa34() {
-		System.out.println("초등동화");
-		return "sellpart/bookchodong/bookchodongdonghwa34";
-		
-	}
-	@RequestMapping("/sellbookController/bookchodongdonghwa56.do")
-	public String bookchodongdonghwa56() {
-		System.out.println("초등동화");
-		return "sellpart/bookchodong/bookchodongdonghwa56";
-		
-	}
-	@RequestMapping("/sellbookController/bookchodongdonghwa99.do")
-	public String bookchodongdonghwa99() {
-		System.out.println("초등동화");
-		return "sellpart/bookchodong/bookchodongdonghwa99";
+	@RequestMapping("/sellbookController/sellbookDetail.do")
+	public String sellbookDetail() {
+		System.out.println("나와라이놈아2");
+		return "sellpart/bookDetail";
 		
 	}
 	
+	@RequestMapping("/sellbookController/order.do")
+	public String order() {
+		
+		return "order/main";
+	}
 	
-	////////////////////////////////////////
+	
 	
 	
 	@RequestMapping("/sellbookController/bookjoongdong.do")

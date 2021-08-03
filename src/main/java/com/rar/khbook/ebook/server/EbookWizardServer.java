@@ -1,9 +1,7 @@
 package com.rar.khbook.ebook.server;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -12,33 +10,23 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.rar.khbook.member.model.vo.Member;
 
-public class EbookDebateServer extends TextWebSocketHandler{
+public class EbookWizardServer extends TextWebSocketHandler{
 
 	private Map<String, WebSocketSession> clients = new HashMap();
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("afterConnectionEstablishe: " + session);
+		System.out.println("afterConnectionEstablisher: " + session);
 		
-		String senderId = getId(session);
+		String userId = getId(session);
 		
-		clients.put(senderId, session);
+		clients.put(userId, session);
 	}
 	
 	@Override
-	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		System.out.println("handelTextMessage: " + session + " : " + message);
+	protected void handleTextMessage(WebSocketSession session,TextMessage message) throws Exception {
+		System.out.println("handleTextMessage: " + session + " / " + message);
 		
-		Set keySet = clients.keySet();
-		Iterator itr = keySet.iterator();
-		
-		while (itr.hasNext()) {
-			WebSocketSession client = clients.get((String)itr.next());
-			
-			String senderId = getId(session);
-			
-			client.sendMessage(new TextMessage(senderId + ": " + message.getPayload()));
-		}
 		
 		
 	}
@@ -57,7 +45,7 @@ public class EbookDebateServer extends TextWebSocketHandler{
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		
+		System.out.println("afterConnectionClosed: " + session + " / " + status);
 	}
 	
 }

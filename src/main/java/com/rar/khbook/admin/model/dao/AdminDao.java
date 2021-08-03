@@ -53,4 +53,21 @@ public interface AdminDao {
 	
 	List<Gift> selectGiftList(SqlSession session,int cPage,int numPerpage);
 	int selectGiftCount(SqlSession session);
+	
+	List<EbookDatabind> orderStockList(SqlSession session,Map param);
+	
+	List<Gift> orderStockList3(SqlSession session,Map param);
+	
+	List<EbookDatabind> searchTextStockList(SqlSession session,Map param);
+	
+	List<Gift> searchTextStockList3(SqlSession session,Map param);
+	
+	int stockTUpdate(SqlSession session,Map param);
+	
+	int stockTUpdate2(SqlSession session,Map param);
+	
+	int stockTDelete(SqlSession session,Map param);
+	
+	int stockTDelete2(SqlSession session,Map param);
+	
 }

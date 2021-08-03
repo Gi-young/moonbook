@@ -38,9 +38,9 @@
         </div>
     </div>
     <script>
-        var lnb = $(".hotTracks").offset().top;
-        $(window).scroll(function() {
-            var window = $(this).scrollTop();
+        var lnb = $(".hotTracks").offset().top; 
+        $(window).scroll(function() { 
+            var window = $(this).scrollTop();              
             if(lnb <= window) {
             $(".hotTracks").addClass("fixed");
             } else {

@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>e독서토론 - 문곰책방</title>
+	<title>${param.title}</title>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/commonStyle.css">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookClub.css">
 	<script defer src="${path}/resources/js/jquery-3.6.0.min.js"></script>
@@ -20,21 +20,15 @@
 			<a href="${path}/ebook/openEbookWizard.do">e북 마법사</a>
 			<a href="${path}/ebook/pageEbookReport.do">e독서록</a>
 			<a href="${path}/ebook/pageEbookPlanner.do">e북 플래너</a>
-			<a href="${path}/ebook/pageEbookClub.do">e독서토론 </a>
+			<a href="${path}/ebook/pageEbookClubManager.do">e독서토론 </a>
 			<a href="${path}/ebook/pageEbookPublisher.do">e노트 출판</a>
 		</header>
 		
 		<aside>
-			<div></div>
+			<ul>
+				<li><a href="${path}/ebook/pageEookClubManager.do">나의 클럽 관리하기</a></li>
+				<li><a href="${path}/ebook/pageEookClubBoard.do">클럽 게시판</a></li>
+				<li><a href="${path}/ebook/pageEookClubDebate.do">독서 토론</a></li>
+				<li><a href="${path}/ebook/pageEookClubDebateManager.do">독서 토론 관리</a></li>
+			</ul>
 		</aside>
-		
-		<section>
-			<div id="debateBox">메시지</div>
-			<input type="text" id="debateMessage">
-			<input type="button" id="submitBtn" value="입력"/>
-		</section>
-	</div>
-
-	<input type="hidden" id="contextPath" value="${path}">
-</body>
-</html>

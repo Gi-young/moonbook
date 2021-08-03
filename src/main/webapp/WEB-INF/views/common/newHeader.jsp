@@ -1,33 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
-<c:set var="path" value="${pageContext.request.contextPath }"/> 
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>${param.title }</title> 
-    <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
-    <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+<title>${param.title }</title>
+<link rel="stylesheet" href="${path }/resources/css/newHeader.css">
+<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --> 
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>  
+<!-- Latest compiled JavaScript -->
+<!-- <script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+ -->
+
 </head>
 <body>
-<div class="header">
-     <div class="header-top">
-         <ul class="header-top-info1">
-        <!--
+	<div class="header">
+		<div class="header-top">
+			<ul class="header-top-info1">
+				<!--
                 <li class="store-info"><a href="#">매장안내 ▼</a></li>
                 <div>    
                     <li><a href="#">회원혜택 ▼</a></li>
@@ -41,9 +47,9 @@
                 <li><a href="#">주문배송</a></li>
                 <li><a href="#"><img src="../components/image/baguni.svg" style="width: 24px; height: 24px;"></a></li>
         -->
-            </ul> 
-    </div> 
-    <!--
+			</ul>
+		</div>
+		<!--
         <div class="info">
             <ul>
                 <li><a href="#">강남지원 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F</a></li>
@@ -54,10 +60,10 @@
                 <li><a href="#">이태원지원 : 서울특별시 용산구 보광로 73 한국폴리텍제1대학</a></li>
             </ul>
         </div> -->
-    
-        <div class="header-mid">
-            <img src="${path }/resources/images/common/mgbanner.png" alt="">
-            <!-- <h1 class="logo">
+
+		<div class="header-mid">
+			<img src="${path }/resources/images/common/mgbanner.png" alt="">
+			<!-- <h1 class="logo">
                 <a href="#">
                     <img src="../components/image/kh문고 로고 final.png" style="width: 250px;">
                 </a> 
@@ -94,8 +100,8 @@
                     </button>
                 </div>
             </div> -->
-            <!-- 딱딱해 보이는 슬라이드  -->
-            <!-- <div class="slide-box">
+			<!-- 딱딱해 보이는 슬라이드  -->
+			<!-- <div class="slide-box">
                 <div class="slide-list">
                     <div class="slide-content">
                         <a href="#"><img src="../components/image/배너1.png" alt=""></a><span class="header-slide-explan">책은 마음의 양식.</span>                   
@@ -119,17 +125,18 @@
                 <button class="slide-button-prev"><span><</span></button>
                 <button class="slide-button-next"><span>></span></button>
             </div>  -->
-        </div>
-  
-    <div class="header-bottom">
-        <div class="header-bottom-div">
-            <!-- <div style="background-color: #353f67;">
+		</div>
+
+		<div class="header-bottom">
+			<div class="header-bottom-div">
+				<!-- <div style="background-color: #353f67;">
                 <a href="#"><img src="../components/image/작은삼선2.png" alt="" style="
                 padding-top: 10px; 
                 padding-left: 10px; 
                 padding-right: 10px;
                 "></a>
             </div> -->
+
             <div class="header-menuBar1">
                 <ul class="flex">
                     <li>

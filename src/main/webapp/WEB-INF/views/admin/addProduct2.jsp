@@ -34,7 +34,7 @@
 				</form>
 			</div> -->
 			<div class="addProduct-container3">
-				<form action="${path}/admin/insertProduct1.do" method="post">
+				<form action="${path}/admin/insertProduct1.do" method="post" id="addProductBook">
 					<table class="ChooseTable1">
 						<!--자동 넘버처리 -->
 						<!-- <tr>
@@ -59,7 +59,7 @@
 						<tr>
 							<th>도서 이미지</th>
 							<td>
-								<input type="text" name="image">
+								<input type="text" name="image" class="adCheckImg">
 							</td>
 						</tr>
 						<tr>
@@ -114,7 +114,7 @@
 						
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="등록">
+								<input type="submit" value="등록" onclick="return checkImgLong(event);">
 							</td>
 						</tr>
 					</table>
@@ -122,7 +122,7 @@
  
 			</div>
 			
-			<div class="addProduct-container5" style="display:none;">
+			<%-- <div class="addProduct-container5" style="display:none;">
 				<form action="${path}/admin/insertProduct3.do" method="post">
 					<table class="ChooseTable3">
 						<!-- <tr>
@@ -209,7 +209,7 @@
 					</table>
 				</form>	
  
-			</div>
+			</div> --%>
 			
 		</div>
 	</div>
@@ -247,6 +247,20 @@
 		const bookPriceAd3=$(e.target).val();
 		$("#discountPriceAd3").val(bookPriceAd3*0.9);
 	});
+	
+	function checkImgLong2(event){ 
+		//도서 이미지가 db 저장보다 길때 return false 
+		
+		let checkImg= document.getElementsByClassName("adCheckImg")[0].value;
+		
+		if(checkImg.length>99){
+			alert("해당하는 도서 이미지 파일이 큽니다 \n 이미지를 대체하세요");
+			return false;
+		}else{
+			return true;
+		}
+		
+	}
 </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

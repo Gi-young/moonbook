@@ -127,7 +127,7 @@
 						<tr>
 							<th>상품 이미지</th>
 							<td>
-								<input type="text" name="gift_img">
+								<input type="text" name="gift_img" class="adCheckImg2">
 							</td>
 						</tr>
 						<tr>
@@ -202,7 +202,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="등록">
+								<input type="submit" value="등록" onclick="return checkImgLong2(event);">
 							</td>
 						</tr>
 					</table>
@@ -246,6 +246,19 @@
 		const bookPriceAd3=$(e.target).val();
 		$("#discountPriceAd3").val(bookPriceAd3*0.9);
 	});
+	function checkImgLong2(event){ 
+		//gift 이미지가 db 저장보다 길때 return false 
+		
+		let checkImg= document.getElementsByClassName("adCheckImg2")[0].value;
+		
+		if(checkImg.length>99){
+			alert("해당하는 도서 이미지 파일이 큽니다 \n 이미지를 대체하세요");
+			return false;
+		}else{
+			return true;
+		}
+		
+	}
 </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

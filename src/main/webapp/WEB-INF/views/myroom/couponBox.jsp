@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
 <link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
-   <jsp:param name="title" value="쿠폰함 - 문곰책방"/>
+	<jsp:param name="title" value="쿠폰함 - 문곰책방" />
 </jsp:include>
 <div class="wrap">
 	<div class="container margin_top2e">
@@ -59,7 +59,8 @@
 				<tr>
 					<td>결제내역</td>
 					<td>골드곰 등업 축하 쿠폰</td>
-					<td><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy.MM.dd HH:mm:ss"/></td>
+					<td><fmt:formatDate value="<%=new java.util.Date()%>"
+							pattern="yyyy.MM.dd HH:mm:ss" /></td>
 				</tr>
 				<%-- <tr>
 					<td>결제내역</td>
@@ -72,6 +73,14 @@
 					<td><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 				</tr> --%>
 			</table>
+			<!-- <ul class="pageBar_ul">
+				<li class="pageBar_li disabled"><a href="#">이전</a></li>
+				<li class="pageBar_li active"><a href="#" class="pageBar_a">1</a></li>
+				<li class="pageBar_li"><a href="#">2</a></li>
+				<li class="pageBar_li"><a href="#">3</a></li>
+				<li class="pageBar_li"><a href="#">다음</a></li>
+			</ul> -->
+			${pageBar }
 		</div>
 	</div>
 </div>
