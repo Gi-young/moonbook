@@ -1116,9 +1116,11 @@ padding-bottom: 5px;
 <link rel="stylesheet" href="${path }/resources/css/index/stickymenu.css">
 <!-- ////////////////////////상위배너/////////////////////// -->
 <div class="wrap">
+
 <jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickymenu.jsp">
 <jsp:param name="" value=""/>
 </jsp:include>
+
 <div class="bannerBg">
 <div class="flex bannerwrap">
 <div class="">

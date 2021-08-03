@@ -997,6 +997,9 @@ transition: all 0.2s linear;
 
  
    <div class="wrap">
+<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
+<jsp:param name="" value=""/>
+</jsp:include>
     <div id="container" class="line">
         <div id="main_snb" class="line">
             <div class="leftlongbanner" style="background-image: url('${path}/resources/img/sellLev1/sellpartlong4.png">

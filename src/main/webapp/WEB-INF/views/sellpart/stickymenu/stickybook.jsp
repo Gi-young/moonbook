@@ -13,29 +13,25 @@
 <body>
 	<div class="stickycontainer">
         <div class="category-open">
-            <a href="${path}"><img src="${path }/resources/img/sticky/stickybook.png" alt="" style="height: 50px;"></a>
+            <a href="${path}"><img src="${path }/resources/img/sticky/stickyfast.png" alt="" style="height: 50px;"></a>
         </div>
         <div class="stickymenu">
             <ul>
                 <!-- 페이지 전환할 때 스크립트로 전환 -->
                 <li>
-                    <a style="color:#582810;" href="${path}/sellbookController/sellbook.do">문곰도서</a>
+                    <a style="color:#582810;" href="${path}/sellbookController/bookadong99.do">아동도서(공통)</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#582810;" href="${path}/ebook/pageEbook.do">문곰e북</a>
+                    <a style="color:#582810;" href="${path}/sellbookController/bookchodongdonghwa99.do">초등도서(공통)</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#582810;" href="${path }/gift/giftView.do">문곰템</a>
+                    <a style="color:#582810;" href="${path}/sellbookController/bookjoongdongworld.do">중등도서(세계)</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#582810;" href="${path}/usedboard/usedboardList.do">중고</a> 
-                </li>
-                <p>·</p>
-                <li>
-                    <a style="color:#582810;" href="${path}/auction/auction.do">경매</a> 
+                    <a style="color:#582810;" href="${path}/sellbookController/bookgojunkorea.do">고전도서(한국)</a> 
                 </li>
             </ul>
         </div>

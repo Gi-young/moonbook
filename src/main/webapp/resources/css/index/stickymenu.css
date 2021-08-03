@@ -9,8 +9,8 @@
     height: 50px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    box-shadow: 0px 5px 5px #C3C3C3;
-    display: flex;
+    box-shadow: 0px 5px 5px #804000;
+    display: none;
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
@@ -31,13 +31,15 @@
     display: flex;
     justify-content: space-around;
     width: 700px;
-    font-size: 12px;
+    font-size: 20px;
     font-weight: bold;
-    color: #696969;
+    font-family: "한컴 말랑말랑","돋움";
+    color: #582810;
 }
 .stickymenu a{
-    color:#696969;
+    color:#582810;
     cursor: pointer;
+    
 }
 .fixed{
     position: fixed;
@@ -46,8 +48,14 @@
     min-width: 1600px;
     width: 100%;
     z-index: 15;
-    background-color: #FFFFFF;
+    background-color: white;
 }
 
+.none{
+	display: none;
+}
+.flex{
+	display: flex;
+}
 
 /* 핫트랙스 css 끝 */
