@@ -141,6 +141,10 @@ h1 a, h3 a {
 	font-size: 15px;
 }
 
+.myroom_infoBox{
+	display:flex;
+	margin-top:30px;
+}
 .myroom_info {
 	align-self: flex-end;
 }
