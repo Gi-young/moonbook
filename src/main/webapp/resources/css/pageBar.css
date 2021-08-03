@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+.pageBar_ul {
+	display: flex;
+	justify-content: center;
+}
+
+.pageBar_li {
+	border: gray 1px solid;
+	padding: 5px;
+}
+
+.disabled {
+	pointer-events: none;
+}
+
+.active {
+	background-color: #582810;
+	border-color: #582810;
+}
+.pageBar_a{
+	color: #fff;
+}

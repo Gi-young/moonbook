@@ -36,7 +36,7 @@
 								<div class="padding10">이메일</div>
 								<div>
 									<input type="text" name="memberEmail"
-										value="${loginMember.memberEmail}" id="memberEmail" readonly>
+										value="${loginMember.memberEmail}" id="memberEmail" class= "input" readonly>
 									<button type="button" class="btn" id="sendEmail">코드전송</button>
 								</div>
 							</div>
@@ -44,7 +44,7 @@
 								<div class="word4">코드입력</div>
 								<div class="div4">
 									<input type="text" id="codeVal"
-										placeholder="이메일로 인증코드를 전송했습니다.">
+										placeholder="이메일로 인증코드를 전송했습니다." class= "input">
 									<button type="button" class="btn" id="checkCode">인증하기</button>
 								</div>
 							</div>
@@ -86,7 +86,7 @@
 								<div class="padding10">이메일</div>
 								<div>
 									<input type="text" name="memberEmail"
-										value="${loginMember.memberEmail}" id="memberEmail" readonly>
+										value="${loginMember.memberEmail}" id="memberEmail" class= "input" readonly>
 									<button type="button" class="btn" id="sendEmail">코드전송</button>
 								</div>
 							</div>
@@ -94,7 +94,7 @@
 								<div class="word4">코드입력</div>
 								<div class="div4">
 									<input type="text" id="codeVal"
-										placeholder="이메일로 인증코드를 전송했습니다.">
+										placeholder="이메일로 인증코드를 전송했습니다." class= "input">
 									<button type="button" class="btn" id="checkCode">인증하기</button>
 								</div>
 							</div>

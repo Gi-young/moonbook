@@ -229,7 +229,7 @@ a img {
 }
 
 .btn:hover {
-	color: #fff;
+	color: #fff !important;
 	background-color: #582810;
 }
 
@@ -311,4 +311,8 @@ a img {
 }
 .div4{
 	margin-left:10px;
+}
+.input{
+	vertical-align: middle;
+	font-size:18px;
 }

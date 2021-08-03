@@ -164,7 +164,7 @@
 	<insert id="insertCoupon">
 		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,
 		SYSDATE+30, #{memberId},
-		1, 'Y', '');
+		1, 'Y', '')
 	</insert>
 
 	<!-- 회원 정보 수정 -->
