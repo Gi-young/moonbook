@@ -26,6 +26,7 @@ public interface AdminService {
 	
 	int insertProduct1(Map param); // 책등록
 	int insertProduct3(Map param); // 상품등록
+	
 	 
 	int updateProduct1(Map param); //책입고
 	int updateProduct3(Map param); //상품입고

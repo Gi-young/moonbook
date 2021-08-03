@@ -216,6 +216,8 @@ public class AdminController {
 		return mv;
 		
 	}
+	
+	
 	@RequestMapping("/admin/updateProduct1.do")
 	public ModelAndView updateProduct1(ModelAndView mv,@RequestParam Map param) {
 		//책 입고
@@ -261,7 +263,7 @@ public class AdminController {
 	}
 	
 	
-	//이익을 위한 가격 가져오기 책버전
+	//이익을 위한 가격 가져오기 책버전 -->기능 이전 분석파트
 	@RequestMapping("/admin/bringPrice.do")
 	@ResponseBody
 	public EbookDatabind searchBringPrice(int bindNo) {
@@ -270,7 +272,7 @@ public class AdminController {
 		
 		return price1;
 	}
-	//이익을 위한 가격 가져오기 기프트
+	//이익을 위한 가격 가져오기 기프트 --> 기능 이전 분석파트
 	
 	
 	//출고 전 재고 체크 book버전
@@ -460,7 +462,7 @@ public class AdminController {
 		return list2;
 	}
 	
-	//
+	//검색 책
 	@RequestMapping("/admin/searchTextStockList.do")
 	@ResponseBody
 	public List<EbookDatabind> searchTextStockList(@RequestParam Map param) {
@@ -470,6 +472,7 @@ public class AdminController {
 		
 		return list;
 	}
+	//검색 gift
 	@RequestMapping("/admin/searchTextStockList3.do")
 	@ResponseBody
 	public List<Gift> searchTextStockList3(@RequestParam Map param) {
