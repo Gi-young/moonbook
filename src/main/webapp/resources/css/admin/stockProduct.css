@@ -144,7 +144,11 @@
 	hight:20px;
 	cursor: pointer;
 }
-.turnRed{
+.turnRed1{
+	color:red;
+	font-weight: bold;
+}
+.turnRed2{
 	color:red;
 	font-weight: bold;
 }

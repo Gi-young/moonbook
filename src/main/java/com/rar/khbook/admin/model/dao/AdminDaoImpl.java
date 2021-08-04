@@ -150,13 +150,26 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<EbookDatabind> orderStockList(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.orderStockList",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		return session.selectList("admin.orderStockList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	@Override
+	public int getPageBarOrderList(SqlSession session,Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarOrderList",param);
 	}
 
 	@Override
 	public List<Gift> orderStockList3(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		return session.selectList("admin.orderStockList3",param);
+	}
+	@Override
+	public int getPageBarOrderList3(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarOrderList3");
 	}
 
 	@Override

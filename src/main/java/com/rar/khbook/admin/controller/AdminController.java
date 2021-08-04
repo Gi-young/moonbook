@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.common.PageFactoryAdmin;
+
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.member.model.vo.Member;
@@ -380,12 +381,6 @@ public class AdminController {
 		
 		String msg="";
 		String loc="";
-		if(result>0) {
-			msg="상품 출고가 정상적으로 처리되었습니다";
-		}else {
-			msg="상품 출고가 실패되었습니다.";
-		}
-		loc="/admin/removeProductPage.do";
 		
 		
 		mv.addObject("msg", msg);
@@ -417,22 +412,19 @@ public class AdminController {
 		mv.addObject("totalContents", totalData);
 		mv.addObject("totalContents2", totalData2);
 		
-		if(stockParam != null) {
-			mv.addObject("stockParam", stockParam);
-		} else {
-			mv.addObject("stockParam", "book");
-		}
+		
 		
 
-		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage,"stockProductPage.do","book"));
+		mv.addObject("pageBar",PageFactoryAdmin.getPageBar(totalData, cPage, numPerpage,"stockProductPage.do","book"));
 		
-		mv.addObject("pageBar2",PageFactoryAdmin.getOwnPageBar(totalData2, cPage, numPerpage,"stockProductPage.do","gift"));
+		mv.addObject("pageBar2",PageFactoryAdmin.getPageBar2(totalData2, cPage, numPerpage,"stockProductPage.do","gift"));
 
-		
+		mv.addObject("stockParam",stockParam);
 		mv.setViewName("admin/stockProduct");
 		
 		return mv;
 	}
+	
 	//재고 ~이상 ~ 미만 book버전
 	@RequestMapping("/admin/orderStockList.do")
 	@ResponseBody
@@ -443,11 +435,44 @@ public class AdminController {
 		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
 		param.put("stockNum2", stockNum2);
 		
+		System.out.println(param.get("cPage"));
+		System.out.println(param.get("numPerPage"));
+		
+		
 		
 		List<EbookDatabind> list=service.orderStockList(param);
 		
+		
+		
 		return list;
 	}
+	// 재고 정렬 book 페이지바 
+	@RequestMapping("/admin/getPageBarOrderList.do")
+	@ResponseBody
+	public String[] getPageBarOrderList(@RequestParam Map param) {
+		
+		
+		
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarOrderList(param);
+		
+		//mv.addObject("totalContents", totalData);
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar3(totalContents, cPage, numPerpage,null,null);
+		resultArr[0]=pageBar;
+		resultArr[1]= Integer.toString(totalContents);
+		
+		System.out.println("컨트롤러 테스트");
+		System.out.println(pageBar);
+		System.out.println(totalContents);
+		
+		return resultArr;
+	}
+	
 	//재고 ~이상 ~ 미만 gift버전
 	@RequestMapping("/admin/orderStockList3.do")
 	@ResponseBody
@@ -459,9 +484,39 @@ public class AdminController {
 		param.put("stockNum2", stockNum2);
 		
 		
+		
 		List<Gift> list2=service.orderStockList3(param);
 		
 		return list2;
+	}
+	// 재고 정렬 gift 페이지바 
+	@RequestMapping("/admin/getPageBarOrderList3.do")
+	@ResponseBody
+	public String[] getPageBar2(@RequestParam Map param) {
+		
+		if (param.get("cPage") == null ) {
+			param.put("cPage","1");
+		}
+		
+		if (param.get("numPerPage") == null) {
+			param.put("numPerPage", "10");
+		}
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents2=service.getPageBarOrderList3(); //gift
+		
+		String[] resultArr2 = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar3(totalContents2, cPage, numPerpage,null,null);
+		
+		resultArr2[0] = pageBar;
+		resultArr2[1] = Integer.toString(totalContents2);
+		
+		//mv.addObject("totalContents2", totalData2);
+		
+		return resultArr2;
 	}
 	
 	//검색 책

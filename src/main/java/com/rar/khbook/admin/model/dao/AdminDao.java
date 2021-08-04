@@ -56,7 +56,11 @@ public interface AdminDao {
 	
 	List<EbookDatabind> orderStockList(SqlSession session,Map param);
 	
+	int getPageBarOrderList(SqlSession session,Map param);
+	
 	List<Gift> orderStockList3(SqlSession session,Map param);
+	
+	int getPageBarOrderList3(SqlSession session);
 	
 	List<EbookDatabind> searchTextStockList(SqlSession session,Map param);
 	

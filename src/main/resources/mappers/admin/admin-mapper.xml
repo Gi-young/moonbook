@@ -120,6 +120,7 @@
   		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND
   	</select>
   	
+  	
   	<!-- 상품 재고조회 -->
   	<select id="selectGiftList" resultMap="giftMap">
   		SELECT * FROM GIFT
@@ -127,6 +128,7 @@
   	<select id="selectGiftCount" resultType="_int">
   		SELECT COUNT(*) FROM GIFT
   	</select>
+  	
   	
   	<!--재고 book 정렬 -->
   	<select id="orderStockList" resultMap="ebookDatabindMap">
@@ -140,9 +142,33 @@
   		</if>
   	</select>
   	
+  	<!-- 재고 book 페이지바 정렬 -->
+  	<select id="getPageBarOrderList" resultType="_int">
+  		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND
+  		WHERE 1=1
+  		<if test="stockNum1 !=null and stockNum1!=''">
+  		 	AND STOCK >= #{stockNum1}
+  		</if>
+  		<if test="stockNum2 !=null and stockNum2!=''">
+  		 	AND STOCK &lt; #{stockNum2}
+  		</if>
+  	</select>
+  	
   	<!--재고 gift 정렬 -->
   	<select id="orderStockList3" resultMap="giftMap">
   		SELECT * FROM GIFT
+  		WHERE 1=1
+  		<if test="stockNum1 !=null and stockNum1!=''">
+  		 	AND GIFT_COUNT >= #{stockNum1}
+  		</if>
+  		<if test="stockNum2 !=null and stockNum2!=''">
+  		 	AND GIFT_COUNT &lt; #{stockNum2}
+  		 </if>
+  	</select>
+  	
+  	<!-- 재고 GIFT 페이지바 정렬 -->
+  	<select id="getPageBarOrderList3" resultType="_int">
+  		SELECT COUNT(*) FROM GIFT
   		WHERE 1=1
   		<if test="stockNum1 !=null and stockNum1!=''">
   		 	AND GIFT_COUNT >= #{stockNum1}

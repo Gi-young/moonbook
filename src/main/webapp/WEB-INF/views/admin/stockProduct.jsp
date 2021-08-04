@@ -30,17 +30,17 @@
 								<th>정렬방법</th>
 
 								<td><input class="howASCSearch" type="radio"
-									name="HowStockT" id="stockBookT" value="stockBookT"><label
-									for="stockBookT">book</label> <input class="howDESCSearch2"
+									name="HowStockT" id="stockBookT" value="stockBookT" checked><label
+									for="stockBookT" >book</label> <input class="howDESCSearch2"
 									type="radio" name="HowStockT" id="stockGiftT"
-									value="stockGiftT"><label for="stockGiftT">gift</label>
+									value="stockGiftT" ><label for="stockGiftT">gift</label>
 								</td>
 								<td><span>재고 </span> <input type="number"
 									style="width: 60px; height: 27px;" min="0" name="stockNum1"><span>
 										이상 </span><input type="number" style="width: 60px; height: 27px;"
 									min="1" name="stockNum2"><span> 미만 </span></td>
 								<td><input type="button" value="조회하기"
-									onclick="orderList3();"></td>
+									onclick="orderList3(1,10);"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
@@ -63,7 +63,7 @@
 			</div>
 			<div class="stockT-container">
 				<p class="memberTFont">
-					총 <span class="turnRed">${totalContents }</span>개의 책이 있습니다.
+					총 <span class="turnRed1">${totalContents }</span>개의 책이 있습니다.
 				</p>
 				<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
 				<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
@@ -125,16 +125,14 @@
 				</table>
 				<!-- </form> -->
 
-				<div id="pagebar-container">
-					<c:if test="${stockParam.equals('book')}">
-			        			${pageBar }
-			        		</c:if>
+				<div id="pagebar-container1">
+			        ${pageBar }
 				</div>
 
 			</div>
-			<div class="stockT-container2">
+			<div class="stockT-container2" style="display:none;">
 				<p class="memberTFont">
-					총 <span class="turnRed">${totalContents2 }</span>개의 상품이 있습니다.
+					총 <span class="turnRed2">${totalContents2 }</span>개의 상품이 있습니다.
 				</p>
 				<p class="memberTFont2">※ 상품명, 상품소개, 가격, AS/상담여부,카테고리코드 수정
 					가능합니다.</p>
@@ -201,10 +199,8 @@
 				</table>
 				<!-- </form> -->
 
-				<div id="pagebar-container">
-					<c:if test="${stockParam.equals('gift')}">
-			        			${pageBar2 }
-			        		</c:if>
+				<div id="pagebar-container2">
+			        ${pageBar2 }
 				</div>
 
 			</div>
@@ -216,18 +212,28 @@
 <script>
 
 window.onload = function () {
-	if("${stockParam}" === "book") {
-		$("#stockBookT").attr("checked","checked");
-		$(".stockT-container").css("display","block");
-		$(".stockT-container2").css("display","none");
-	} else {
-		$("#stockGiftT").attr("checked","checked");
-		$(".stockT-container").css("display","none");
-		$(".stockT-container2").css("display","block");
+	let stockParam = "${stockParam}";
+	
+	console.log("test : " + stockParam);
+	
+	if (stockParam != null && stockParam != "") {
+		
+		if(stockParam=="book"){
+			$("#stockBookT").attr("checked","checked");
+			$(".stockT-container").css("display","block");
+			$(".stockT-container2").css("display","none");
+			
+		}else if(stockParam=="gift"){
+			$("#stockGiftT").attr("checked","checked");
+			$(".stockT-container").css("display","none");
+			$(".stockT-container2").css("display","block");
+			
+		}
 	}
-}
+	
+}  
 
-$("input[name=HowStockT]").click(e=>{
+/* $("input[name=HowStockT]").click(e=>{
 	$("input[name=HowStockT]").each((i,v)=>{
 		if(v.checked){
 			if(v.value == "stockBookT") location.assign("${path}/admin/stockProductPage.do?stockParam="+"book");
@@ -235,7 +241,35 @@ $("input[name=HowStockT]").click(e=>{
 			
 		}
 	});
-});
+}); */
+
+$("input[name=HowStockT]").click(e=>{
+	$("input[name=HowStockT]").each((i,v)=>{
+		if(v.checked){
+			if(v.value=="stockBookT"){
+				$(".stockT-container").css("display","block");
+				$(".stockT-container2").css("display","none");
+				
+				
+			}else{
+				$(".stockT-container").css("display","none");
+				$(".stockT-container2").css("display","block");
+				
+				
+			}
+		}
+	})
+})
+/* $("#pagebar-container1 li,#pagebar-container1 a").click(e=>{ 
+	$("#stockBookT").attr("checked","checked");
+	$(".stockT-container").css("display","block");
+	$(".stockT-container2").css("display","none");
+})
+$("#pagebar-container2 li,#pagebar-container1 a").click(e=>{ 
+	$("#stockGiftT").attr("checked","checked");
+	$(".stockT-container").css("display","none");
+	$(".stockT-container2").css("display","block");
+}) */
 
 function adStockDelete(event){
 	let bindNo=event.target.parentElement.parentElement.children[0].children[0].value;
@@ -356,6 +390,7 @@ const searchStockT =()=>{
 			data: {
 				type4 :type4,
 				search5:search5
+				
 			},
 			success: data=>{
 				document.querySelectorAll(".stockT td").forEach((v,i) => {
@@ -448,9 +483,9 @@ const searchStockT =()=>{
 		});
 	}
 	
-} 
+}
 
-const orderList3 = () => {
+function orderList3(cPage, numPerpage) {
 	console.log("test");
 	let typeT = "";
 	let stockNum1= document.getElementsByName("stockNum1")[0].value;
@@ -463,13 +498,16 @@ const orderList3 = () => {
 	
 	if(typeT === "stockBookT"){
 		console.log("book");
+		console.log(typeT);
 		
 		$.ajax({
 			url: "${path}/admin/orderStockList.do",
 			data: {
 				typeT: typeT,
 				stockNum1: stockNum1,
-				stockNum2: stockNum2
+				stockNum2: stockNum2,
+				cPage: cPage,
+				numPerpage: numPerpage
 			},
 			success: data => {
 				document.querySelectorAll(".stockT td").forEach((v,i) => {
@@ -509,25 +547,56 @@ const orderList3 = () => {
 				});
 			}
 		});
+		
+		$.ajax({
+			url: "${path}/admin/getPageBarOrderList.do",
+			data: {
+				typeT: typeT,
+				stockNum1: stockNum1,
+				stockNum2: stockNum2,
+				cPage: cPage,
+				numPerpage: numPerpage
+			},
+			success: data => {
+				console.log("success");
+				console.log(data);
+				$("#pagebar-container1").html(data[0]);
+				$(".turnRed1").html(data[1]);
+				
+			}
+		});
 	}else if(typeT === "stockGiftT"){
 		console.log("gift");
+		console.log(typeT);
 		
 		$.ajax({
 			url: "${path}/admin/orderStockList3.do",
 			data: {
 				typeT: typeT,
 				stockNum1: stockNum1,
-				stockNum2: stockNum2
+				stockNum2: stockNum2,
+				cPage: cPage,
+				numPerpage: numPerpage
 			},
 			success: data => {
+				
+				console.log("gift success");
+				
+				console.log(data);
+				
 				document.querySelectorAll(".stockT2 td").forEach((v,i) => {
 					v.remove();
 				});
 				
 				let table=document.querySelector(".stockT2");
 				for(let i=0;i<data.length;i++){
+					
+					
 					let tr=document.createElement("tr");
 					for(let j=0;j<13;j++){
+						
+						console.log("td test");
+						
 						let td=document.createElement("td");
 						td.style.border="1px solid black";
 						td.style.height="27px";
@@ -556,6 +625,22 @@ const orderList3 = () => {
 				document.querySelectorAll(".stockT2 td>img.deleteImg").forEach((v, i) => {
 					v.addEventListener("click", function() {adStockDelete2(event)});
 				});
+			}
+		});
+		$.ajax({
+			url: "${path}/admin/getPageBarOrderList3.do",
+			data: {
+				typeT: typeT,
+				stockNum1: stockNum1,
+				stockNum2: stockNum2,
+				cPage: cPage,
+				numPerpage: numPerpage
+			},
+			success: data => {
+				console.log("success");
+				console.log(data);
+				$("#pagebar-container2").html(data[0]);
+				$(".turnRed2").html(data[1]);
 			}
 		});
 	}

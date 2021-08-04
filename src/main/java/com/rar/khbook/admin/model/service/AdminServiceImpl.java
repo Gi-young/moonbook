@@ -158,11 +158,24 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.orderStockList(session,param);
 	}
+	
+	@Override
+	public int getPageBarOrderList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarOrderList(session,param);
+	}
 
 	@Override
 	public List<Gift> orderStockList3(Map param) {
 		// TODO Auto-generated method stub
 		return dao.orderStockList3(session,param);
+	}
+	
+
+	@Override
+	public int getPageBarOrderList3() {
+		// TODO Auto-generated method stub
+		return dao.getPageBarOrderList3(session);
 	}
 
 	@Override

@@ -55,8 +55,12 @@ public interface AdminService {
 	//재고 책 정렬방법
 	List<EbookDatabind> orderStockList(Map param);
 	
+	int getPageBarOrderList(Map param);
+	
 	//재고 gift 정렬
 	List<Gift> orderStockList3(Map param);
+	
+	int getPageBarOrderList3();
 	
 	//재고 책 검색
 	List<EbookDatabind> searchTextStockList(Map param);
