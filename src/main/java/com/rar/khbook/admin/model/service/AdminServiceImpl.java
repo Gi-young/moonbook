@@ -173,9 +173,9 @@ public class AdminServiceImpl implements AdminService {
 	
 
 	@Override
-	public int getPageBarOrderList3() {
+	public int getPageBarOrderList3(Map param) {
 		// TODO Auto-generated method stub
-		return dao.getPageBarOrderList3(session);
+		return dao.getPageBarOrderList3(session,param);
 	}
 
 	@Override
@@ -183,11 +183,23 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.searchTextStockList(session,param);
 	}
+	
+	@Override
+	public int getPageBarTextStockList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarTextStockList(session,param);
+	}
 
 	@Override
 	public List<Gift> searchTextStockList3(Map param) {
 		// TODO Auto-generated method stub
 		return dao.searchTextStockList3(session,param);
+	}
+	
+	@Override
+	public int getPageBarTextStockList3(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarTextStockList3(session,param);
 	}
 
 	@Override

@@ -53,7 +53,7 @@
 								</td>
 								<td class="search-box"><img alt="검색하기"
 									src="${path }/resources/img/admin/search.png"
-									onclick="searchStockT();"></td>
+									onclick="searchStockT(1,10);"></td>
 							</tr>
 						</table>
 
@@ -214,7 +214,6 @@
 window.onload = function () {
 	let stockParam = "${stockParam}";
 	
-	console.log("test : " + stockParam);
 	
 	if (stockParam != null && stockParam != "") {
 		
@@ -374,7 +373,7 @@ function changeStockV2(event){
 	})
 }
 
-const searchStockT =()=>{
+function searchStockT(cPage, numPerpage){
 	let typeT = "";
 	let type4 =document.getElementsByName("type4")[0].value;
 	let search5=document.getElementsByName("searchHow5")[0].value;
@@ -389,8 +388,9 @@ const searchStockT =()=>{
 			url: "${path}/admin/searchTextStockList.do",
 			data: {
 				type4 :type4,
-				search5:search5
-				
+				search5:search5,
+				cPage:cPage,
+				numPerpage:numPerpage
 			},
 			success: data=>{
 				document.querySelectorAll(".stockT td").forEach((v,i) => {
@@ -416,8 +416,8 @@ const searchStockT =()=>{
 						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].stock + "'>";
 						if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].salesVolume + "'>";
 						if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].ebookSalesVolume + "'>";
-						if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="" class="updateCheck updateImg">'
-						if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].bindNo +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+						if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV(event);" class="updateCheck updateImg">'
+						if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].bindNo +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" onclick="adStockDelete(event);" class="updateCheck deleteImg">';
 						
 						tr.appendChild(td);
 					}
@@ -433,12 +433,28 @@ const searchStockT =()=>{
 			}
 			
 		});
+		$.ajax({
+			url: "${path}/admin/getPageBarTextStockList.do",
+			data: {
+				type4 :type4,
+				search5:search5,
+				cPage:cPage,
+				numPerpage:numPerpage
+			},
+			success: data => {
+				$("#pagebar-container1").html(data[0]);
+				$(".turnRed1").html(data[1]);
+				
+			}
+		});
 	}else if(typeT === "stockGiftT"){
 		$.ajax({
 			url: "${path}/admin/searchTextStockList3.do",
 			data: {
 				type4 :type4,
-				search5:search5
+				search5:search5,
+				cPage:cPage,
+				numPerpage:numPerpage
 			},
 			success: data=>{
 				
@@ -457,15 +473,16 @@ const searchStockT =()=>{
 						if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].gift_no+"'>";
 						if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].gift_title + "'>";
 						if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].gift_content + "'>";
-						if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].price + "'>";
-						if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].isbn + "'>";
-						if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].publisher + "'>";
-						if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].categoryCode + "'>";
-						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].stock + "'>";
-						if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].salesVolume + "'>";
-						if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].ebookSalesVolume + "'>";
-						if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="" class="updateCheck updateImg">'
-						if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].gift_no +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+						if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].gift_price + "'>";
+						if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].gift_maker + "'>";
+						if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].gift_made + "'>";
+						if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].gift_as + "'>";
+						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].gift_import + "'>";
+						if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].gift_count + "'>";
+						if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].gift_for_sale + "'>";
+						if(j == 10) td.innerHTML = "<input type='text' value='" + data[i].gift_giftcate_code + "'>";
+						if(j == 11) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV2(event);" class="updateCheck updateImg">'
+						if(j == 12) td.innerHTML = '<input type="hidden" value="'+ data[i].gift_no +'" name="gift_no" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" onclick="adStockDelete2(event);" alt="" class="updateCheck deleteImg">';
 						
 						tr.appendChild(td);
 					}
@@ -481,12 +498,24 @@ const searchStockT =()=>{
 			}
 			
 		});
+		$.ajax({
+			url: "${path}/admin/getPageBarTextStockList3.do",
+			data: {
+				type4 :type4,
+				search5:search5,
+				cPage:cPage,
+				numPerpage:numPerpage
+			},
+			success: data => {
+				$("#pagebar-container2").html(data[0]);
+				$(".turnRed2").html(data[1]);
+			}
+		});
 	}
 	
 }
 
 function orderList3(cPage, numPerpage) {
-	console.log("test");
 	let typeT = "";
 	let stockNum1= document.getElementsByName("stockNum1")[0].value;
 	let stockNum2= document.getElementsByName("stockNum2")[0].value;
@@ -497,9 +526,6 @@ function orderList3(cPage, numPerpage) {
 	});
 	
 	if(typeT === "stockBookT"){
-		console.log("book");
-		console.log(typeT);
-		
 		$.ajax({
 			url: "${path}/admin/orderStockList.do",
 			data: {
@@ -531,8 +557,8 @@ function orderList3(cPage, numPerpage) {
 						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].stock + "'>";
 						if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].salesVolume + "'>";
 						if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].ebookSalesVolume + "'>";
-						if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="" class="updateCheck updateImg">'
-						if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].bindNo +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+						if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV(event);" class="updateCheck updateImg">'
+						if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].bindNo +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" onclick="adStockDelete2(event);" class="updateCheck deleteImg">';
 						
 						tr.appendChild(td);
 					}
@@ -558,16 +584,12 @@ function orderList3(cPage, numPerpage) {
 				numPerpage: numPerpage
 			},
 			success: data => {
-				console.log("success");
-				console.log(data);
 				$("#pagebar-container1").html(data[0]);
 				$(".turnRed1").html(data[1]);
 				
 			}
 		});
 	}else if(typeT === "stockGiftT"){
-		console.log("gift");
-		console.log(typeT);
 		
 		$.ajax({
 			url: "${path}/admin/orderStockList3.do",
@@ -580,9 +602,6 @@ function orderList3(cPage, numPerpage) {
 			},
 			success: data => {
 				
-				console.log("gift success");
-				
-				console.log(data);
 				
 				document.querySelectorAll(".stockT2 td").forEach((v,i) => {
 					v.remove();
@@ -611,8 +630,8 @@ function orderList3(cPage, numPerpage) {
 						if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].gift_count + "'>";
 						if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].gift_for_sale + "'>";
 						if(j == 10) td.innerHTML = "<input type='text' value='" + data[i].gift_giftcate_code + "'>";
-						if(j == 11) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="" class="updateCheck updateImg">'
-						if(j == 12) td.innerHTML = '<input type="hidden" value="'+ data[i].gift_no +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+						if(j == 11) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV2(event);" class="updateCheck updateImg">'
+						if(j == 12) td.innerHTML = '<input type="hidden" value="'+ data[i].gift_no +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" onclick="adStockDelete2(event);" class="updateCheck deleteImg">';
 						
 						tr.appendChild(td);
 					}
@@ -637,8 +656,6 @@ function orderList3(cPage, numPerpage) {
 				numPerpage: numPerpage
 			},
 			success: data => {
-				console.log("success");
-				console.log(data);
 				$("#pagebar-container2").html(data[0]);
 				$(".turnRed2").html(data[1]);
 			}

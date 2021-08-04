@@ -435,8 +435,8 @@ public class AdminController {
 		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
 		param.put("stockNum2", stockNum2);
 		
-		System.out.println(param.get("cPage"));
-		System.out.println(param.get("numPerPage"));
+		System.out.println("재고 정렬 book:"+param.get("cPage"));
+		System.out.println("재고 정렬 book:"+param.get("numPerpage"));
 		
 		
 		
@@ -466,9 +466,8 @@ public class AdminController {
 		resultArr[0]=pageBar;
 		resultArr[1]= Integer.toString(totalContents);
 		
-		System.out.println("컨트롤러 테스트");
-		System.out.println(pageBar);
-		System.out.println(totalContents);
+		System.out.println("재고 정렬바 book:"+param.get("cPage"));
+		System.out.println("재고 정렬바 book:"+param.get("numPerpage"));
 		
 		return resultArr;
 	}
@@ -494,18 +493,11 @@ public class AdminController {
 	@ResponseBody
 	public String[] getPageBar2(@RequestParam Map param) {
 		
-		if (param.get("cPage") == null ) {
-			param.put("cPage","1");
-		}
-		
-		if (param.get("numPerPage") == null) {
-			param.put("numPerPage", "10");
-		}
 		
 		int cPage = Integer.parseInt((String)param.get("cPage"));
 		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
 		
-		int totalContents2=service.getPageBarOrderList3(); //gift
+		int totalContents2=service.getPageBarOrderList3(param); //gift
 		
 		String[] resultArr2 = new String[2];
 		
@@ -514,7 +506,6 @@ public class AdminController {
 		resultArr2[0] = pageBar;
 		resultArr2[1] = Integer.toString(totalContents2);
 		
-		//mv.addObject("totalContents2", totalData2);
 		
 		return resultArr2;
 	}
@@ -524,22 +515,86 @@ public class AdminController {
 	@ResponseBody
 	public List<EbookDatabind> searchTextStockList(@RequestParam Map param) {
 		
+		String type4=(String)param.get("type4");
+		param.put("type4", type4);
+		String search5=(String)param.get("search5");
+		param.put("search5", search5);
+		
+		System.out.println("검색책에서"+param.get("cPage"));
+		System.out.println("검색책에서"+param.get("numPerpage"));
 		
 		List<EbookDatabind> list=service.searchTextStockList(param);
 		
 		return list;
 	}
+	// 재고 검색 book 페이지바 
+	@RequestMapping("/admin/getPageBarTextStockList.do")
+	@ResponseBody
+	public String[] getPageBarTextStockList(@RequestParam Map param) {
+		
+		String type4=(String)param.get("type4");
+		param.put("type4", type4);
+		String search5=(String)param.get("search5");
+		param.put("search5", search5);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarTextStockList(param);
+		
+		System.out.println("검색바에서"+param.get("cPage"));
+		System.out.println("검색바에서"+param.get("numPerpage"));
+		
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar4(totalContents, cPage, numPerpage,null,null);
+		resultArr[0]=pageBar;
+		resultArr[1]= Integer.toString(totalContents);
+		
+		
+		return resultArr;
+	}
+	
 	//검색 gift
 	@RequestMapping("/admin/searchTextStockList3.do")
 	@ResponseBody
 	public List<Gift> searchTextStockList3(@RequestParam Map param) {
 		
+		String type4=(String)param.get("type4");
+		param.put("type4", type4);
+		String search5=(String)param.get("search5");
+		param.put("search5", search5);
 		
 		List<Gift> list2=service.searchTextStockList3(param);
 		
 		return list2;
 	}
 	
+	// 재고 검색 gift 페이지바
+	@RequestMapping("/admin/getPageBarTextStockList3.do")
+	@ResponseBody
+	public String[] getPageBarTextStockList3(@RequestParam Map param) {
+		
+		String type4=(String)param.get("type4");
+		param.put("type4", type4);
+		String search5=(String)param.get("search5");
+		param.put("search5", search5);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents2=service.getPageBarTextStockList3(param); //gift
+		
+		String[] resultArr2 = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar4(totalContents2, cPage, numPerpage,null,null);
+		
+		resultArr2[0] = pageBar;
+		resultArr2[1] = Integer.toString(totalContents2);
+		
+		
+		return resultArr2;
+	}
 	// 책 수정하기
 	@RequestMapping("/admin/stockTUpdate.do")
 	@ResponseBody

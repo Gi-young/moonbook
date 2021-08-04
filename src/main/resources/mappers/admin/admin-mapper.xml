@@ -191,10 +191,36 @@
 		</choose>
   	</select>
   	
+  	<!-- 재고 book 페이지바 정렬 -->
+  	<select id="getPageBarTextStockList" resultType="_int">
+  		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND WHERE
+  		<choose>
+			<when test="type4 == 'no'">
+				 BIND_NO=#{search5}
+			</when>
+			<when test="type4 == 'title'">
+				TITLE LIKE '%'||#{search5}||'%'
+			</when>
+		</choose>
+  	</select>
+  	
   	
   	<!--재고현황 gift 검색-->
   	<select id="searchTextStockList3" resultMap="giftMap">
   		SELECT * FROM GIFT WHERE
+  		<choose>
+			<when test="type4 == 'no'">
+				 GIFT_NO=#{search5}
+			</when>
+			<when test="type4 == 'title'">
+				GIFT_TITLE LIKE '%'||#{search5}||'%'
+			</when>
+		</choose>
+  	</select>
+  	
+  	<!-- 재고 GIFT 페이지바 정렬 -->
+  	<select id="getPageBarTextStockList3" resultType="_int">
+  		SELECT COUNT(*) FROM GIFT WHERE
   		<choose>
 			<when test="type4 == 'no'">
 				 GIFT_NO=#{search5}

@@ -164,24 +164,42 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<Gift> orderStockList3(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.orderStockList3",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.orderStockList3",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
 	@Override
-	public int getPageBarOrderList3(SqlSession session) {
+	public int getPageBarOrderList3(SqlSession session,Map param) {
 		// TODO Auto-generated method stub
-		return session.selectOne("admin.getPageBarOrderList3");
+		return session.selectOne("admin.getPageBarOrderList3",param);
 	}
 
 	@Override
 	public List<EbookDatabind> searchTextStockList(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.searchTextStockList",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.searchTextStockList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	
+	@Override
+	public int getPageBarTextStockList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarTextStockList",param);
 	}
 
 	@Override
 	public List<Gift> searchTextStockList3(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.searchTextStockList3",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.searchTextStockList3",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	
+	@Override
+	public int getPageBarTextStockList3(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarTextStockList3",param);
 	}
 
 	@Override
