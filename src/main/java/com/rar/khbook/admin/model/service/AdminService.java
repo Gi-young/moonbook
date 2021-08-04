@@ -18,9 +18,11 @@ public interface AdminService {
 	
 	int memberUpdate(Map param);
 
-	List<Member> memberHowT(Map param);
+	List<Member> memberHowT(Map param); //회원 정렬 조회
+	int getPageBarOrderedMemberList(Map param); //회원 정렬 조회 페이지 바
 	
 	List<Member> memberHowT2(Map param);
+	int getPageBarSearchTextMemberList(Map param);
 	
 	List<Order> selectOrderList(int cPage,int numPerpage);
 	

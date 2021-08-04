@@ -3,6 +3,8 @@ package com.rar.khbook.admin.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
@@ -21,8 +23,10 @@ public interface AdminDao {
 	int memberUpdate(SqlSession session,Map param);
 	
 	List<Member> memberHowT(SqlSession session,Map param);
+	int getPageBarOrderedMemberList(SqlSession session,Map param);
 	
 	List<Member> memberHowT2(SqlSession session,Map param);
+	int getPageBarSearchTextMemberList(SqlSession session,Map param);
 	
 	List<Order> selectOrderList(SqlSession session,int cPage,int numPerpage);
 	

@@ -43,14 +43,34 @@ public class AdminDaoImpl implements AdminDao {
 	public List<Member> memberHowT(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		System.out.println(param);
-		return session.selectList("member.memberHowT",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		return session.selectList("member.memberHowT",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	
+
+	@Override
+	public int getPageBarOrderedMemberList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.getPageBarOrderedMemberList",param);
 	}
 
 	@Override
 	public List<Member> memberHowT2(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("member.memberHowT2",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("member.memberHowT2",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
+	
+	
+	@Override
+	public int getPageBarSearchTextMemberList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.getPageBarSearchTextMemberList",param);
+	}
+
 	@Override
 	public List<Order> selectOrderList(SqlSession session, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub

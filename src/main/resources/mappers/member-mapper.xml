@@ -28,9 +28,26 @@
 		${type1} ${order}
 
 	</select>
+	<select id="getPageBarOrderedMemberList" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+		ORDER BY
+		${type1} ${order}
+	</select>
 
 	<select id="memberHowT2" resultMap="memberMap">
 		SELECT * FROM MEMBER WHERE
+		<choose>
+			<when test="type2=='MEMBER_ID'">
+				${type2} LIKE '%'||#{search}||'%'
+			</when>
+			<when test="type2=='MEMBER_NAME'">
+				${type2} LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+	</select>
+	
+	<select id="getPageBarSearchTextMemberList" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE
 		<choose>
 			<when test="type2=='MEMBER_ID'">
 				${type2} LIKE '%'||#{search}||'%'

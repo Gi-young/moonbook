@@ -38,7 +38,7 @@
 									<input class="howASCSearch" type="radio" name="searchHow2" id="asc" value="ASC" checked><label for="asc">오름차순</label>
 									<input class="howDESCSearch2" type="radio" name="searchHow2" id="desc" value="DESC"><label for="desc">내림차순</label>
 								</td>
-								<td><input type="button" value="조회하기" onclick="orderList();"></td>
+								<td><input type="button" value="조회하기" onclick="orderList(1,10);"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
@@ -53,7 +53,7 @@
 								</td>
 								<td class="search-box">
 									<img alt="검색하기"
-									src="${path }/resources/img/admin/search.png" onclick="searchMT();">
+									src="${path }/resources/img/admin/search.png" onclick="searchMT(1,10);">
 								</td>
 							</tr>
 						</table>
@@ -116,7 +116,7 @@
 						</table>
 						<!-- </form> -->
 						
-						<div id="pagebar-container">
+						<div id="pagebar-container3">
 			        		${pageBar }
 			        	</div> 
 			        
@@ -147,7 +147,7 @@ function changeMemberV(event){
 	
 } 
 
-const searchMT =()=>{
+function searchMT(cPage,numPerpage){
 	let type2 =document.getElementsByName("type2")[0].value;
 	let search=document.getElementsByName("searchHow3")[0].value;
 	
@@ -155,7 +155,9 @@ const searchMT =()=>{
 		url: "${path}/admin/searchTextMemberList.do",
 		data:{
 			type2 :type2,
-			search:search
+			search:search,
+			cPage: cPage,
+			numPerpage: numPerpage
 		},
 		success: data=>{
 		document.querySelectorAll(".memberT td").forEach((v,i) => {
@@ -210,9 +212,23 @@ const searchMT =()=>{
 		}
 		
 	});
+	$.ajax({
+		url: "${path}/admin/getPageBarSearchTextMemberList.do",
+		data: {
+			type2 :type2,
+			search:search,
+			cPage: cPage,
+			numPerpage: numPerpage
+		},
+		success: data => {
+			$("#pagebar-container3").html(data[0]);
+			$(".turnRed").html(data[1]);
+			
+		}
+	});
 } 
 
-const orderList = () => {
+function orderList(cPage,numPerpage){
 	let type1 = document.getElementsByName("type1")[0].value;
 	let order="";
 	document.getElementsByName("searchHow2").forEach((v,i) => {
@@ -225,7 +241,9 @@ const orderList = () => {
 		url: "${path}/admin/orderedMemberList.do",
 		data: {
 			type1: type1,
-			order: order==="" ? "asc":order
+			order: order==="" ? "asc":order,
+			cPage: cPage,
+			numPerpage: numPerpage
 		},
 		success: data => {
 			document.querySelectorAll(".memberT td").forEach((v,i) => {
@@ -274,6 +292,20 @@ const orderList = () => {
 			document.querySelectorAll(".memberT td>img.deleteImg").forEach((v, i) => {
 				v.addEventListener("click", function() {adMemberDelete(event)});
 			});
+		}
+	});
+	$.ajax({
+		url: "${path}/admin/getPageBarOrderedMemberList.do",
+		data: {
+			type1: type1,
+			order: order==="" ? "asc":order,
+			cPage: cPage,
+			numPerpage: numPerpage
+		},
+		success: data => {
+			$("#pagebar-container3").html(data[0]);
+			$(".turnRed").html(data[1]);
+			
 		}
 	});
 	

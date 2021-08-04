@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.common.PageFactoryAdmin;
-
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.member.model.vo.Member;
@@ -108,19 +107,80 @@ public class AdminController {
 	@RequestMapping("/admin/orderedMemberList.do")
 	@ResponseBody
 	public List<Member> orderedMemberList(@RequestParam Map param) {
+		
+		String type1=(String)param.get("type1");
+		param.put("type1", type1);
+		String order=(String)param.get("order");
+		param.put("order", order);
+		
+		
 		List<Member> list = service.memberHowT(param);
 		/* new Gson().toJson(list); */
 		
 		/* return new Gson().toJson(list).toString(); */
+		
 		return list;
+	}
+	@RequestMapping("/admin/getPageBarOrderedMemberList.do")
+	@ResponseBody
+	public String[] getPageBarOrderedMemberList(@RequestParam Map param) {
+		
+		String type1=(String)param.get("type1");
+		param.put("type1", type1);
+		String order=(String)param.get("order");
+		param.put("order", order);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarOrderedMemberList(param); //gift
+		
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar5(totalContents, cPage, numPerpage,null);
+		
+		resultArr[0] = pageBar;
+		resultArr[1] = Integer.toString(totalContents);
+		
+		
+		return resultArr;
 	}
 	@RequestMapping("/admin/searchTextMemberList.do")
 	@ResponseBody
 	public List<Member> searchTextMemberList(@RequestParam Map param){
 		
+		String type2=(String)param.get("type2");
+		param.put("type2", type2);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
 		List<Member> list =service.memberHowT2(param);
 		
 		return list;
+	}
+	@RequestMapping("/admin/getPageBarSearchTextMemberList.do")
+	@ResponseBody
+	public String[] getPageBarSearchTextMemberList(@RequestParam Map param) {
+		
+		String type2=(String)param.get("type2");
+		param.put("type2", type2);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarSearchTextMemberList(param); 
+		
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar6(totalContents, cPage, numPerpage,null);
+		
+		resultArr[0] = pageBar;
+		resultArr[1] = Integer.toString(totalContents);
+		
+		
+		return resultArr;
 	}
 	
 	//판매내역 페이지 멈춤
@@ -450,9 +510,6 @@ public class AdminController {
 	@RequestMapping("/admin/getPageBarOrderList.do")
 	@ResponseBody
 	public String[] getPageBarOrderList(@RequestParam Map param) {
-		
-		
-		
 		
 		int cPage = Integer.parseInt((String)param.get("cPage"));
 		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));

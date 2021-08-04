@@ -51,11 +51,23 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.memberHowT(session,param);
 	}
+	@Override
+	public int getPageBarOrderedMemberList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarOrderedMemberList(session,param);
+	}
 
 	@Override
 	public List<Member> memberHowT2(Map param) {
 		// TODO Auto-generated method stub
 		return dao.memberHowT2(session, param);
+	}
+	
+
+	@Override
+	public int getPageBarSearchTextMemberList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarSearchTextMemberList(session,param);
 	}
 
 	@Override
