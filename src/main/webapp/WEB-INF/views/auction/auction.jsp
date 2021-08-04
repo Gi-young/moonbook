@@ -17,12 +17,12 @@
             	<c:choose>
             	<c:when test="${sessionScope.loginMember!=null }">
  		
-                <p><span>${loginMember.memberName}</span>님 환영합니다.</p>
-                <p>경매 포인트 :<span><fmt:formatNumber value="${loginMember.memberPoint }" type="currency"/>point</span> </p> 
-                <button>포인트 충전하기</button>
+                <p><span>${member.memberName}</span>님 환영합니다.</p>
+                <p>경매 포인트 :<span><fmt:formatNumber value="${member.memberPoint }" type="currency"/>point</span> </p> 
+                <button onclick="location.assign('${path}/auction/auctionpay.do')">포인트 충전하기</button>
                 <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
-                <button>내 경매 등록품 확인</button>
-                <button>내 경매 입찰목록 확인</button>
+                <button onclick="location.assign('${path}/auction/auctionmyselllist.do?memberId=${member.memberId} ')">내 판매 목록 확인</button>
+   			    <button onclick="location.assign('${path}/auction/auctionmybuylist.do?bidId=${member.memberId} ')">내 구매 목록 확인</button>	
     		    </c:when>
     		    <c:otherwise>
     		    	<p style="font-size:12px">로그인후 이용가능합니다.</p>
@@ -40,7 +40,7 @@
                     <div>
        			      <c:forEach items="${auctioncate }" var="a">
 	                    	<c:if test="${a.auctioncateName=='도서' }">
-	                    		 <a href="${path }/auction/auctionlist.do?auctioncateFrist=${a.auctioncateFirst}">${a.auctioncateFirst }</a>
+	                    		 <a href="${path }/auction/auctionlist?auctioncateFrist=${a.auctioncateFirst}&auctioncateName=${a.auctioncateName}">${a.auctioncateFirst }</a>
 	     					</c:if>
 	                   </c:forEach>
                     </div>                   
@@ -51,7 +51,7 @@
                     <div>
        			      <c:forEach items="${auctioncate }" var="a">
 	                    	<c:if test="${a.auctioncateName=='문구' }">
-	                    		 <a href="${path }/auction/auctionlist.do?auctioncateFrist=${a.auctioncateFirst}">${a.auctioncateFirst }</a>
+	                    		 <a href="${path }/auction/auctionlist?auctioncateFrist=${a.auctioncateFirst}&auctioncateName=${a.auctioncateName}">${a.auctioncateFirst }</a>
 	     					</c:if>
 	                   </c:forEach>
                     </div>                   
@@ -62,7 +62,7 @@
                     <div>
                        <c:forEach items="${auctioncate }" var="a">
 	                    	<c:if test="${a.auctioncateName=='기타' }">
-	                    		 <a href="${path }/auction/auctionlist.do?auctioncateFrist=${a.auctioncateFirst}">${a.auctioncateFirst }</a>
+	                    		 <a href="${path }/auction/auctionlist?auctioncateFrist=${a.auctioncateFirst}&auctioncateName=${a.auctioncateName}">${a.auctioncateFirst }</a>
 	     					</c:if>
 	                   </c:forEach>
                     </div>                   
@@ -83,12 +83,12 @@
             <c:forEach var="t" items="${timelist }">
 	            <div style="display: flex;" class="line">
 	                <div class="auction_main_po_img">
-	                    <a href="${path }/auction/acutionview.do?auctionNo=${t.auctionNo}">
+	                    <a href="${path }/auction/acutionview?auctionNo=${t.auctionNo}">
 	                    <img src="${path }/resources/auction/images/${t.auctionImg[0]}" alt="#">
 	                    </a>
 	                </div>
 	                <div class="auction_main_po_center">
-	                  	<a href="${path }/auction/acutionview.do?auctionNo=${t.auctionNo}">
+	                  	<a href="${path }/auction/acutionview?auctionNo=${t.auctionNo}">
 	                   		 <strong>${t.auctionName} </strong>
 	                    </a>
 	                
@@ -99,8 +99,8 @@
 	                    <p class="">바로 구매 : <span>${t.buyNow }</span></p>   
 	                </div>
 	                <div class="auction_main_po_right">
-	                    <div class="btn1" onclick="open('${path}/action/actionbid?auctionNo=${t.auctionNo }','auctionbid','width=500,height=600')">입찰하기</div>
-	                    <div class="btn1">바로구매</div> 
+	                    <div class="btn1" onclick="open('${path}/auction/actionbid.do?auctionNo=${t.auctionNo }','auctionbid','width=500,height=600')">입찰하기</div>
+	                      <div class="btn1" onclick="open('${path}/auction/actionbuyNow.do?auctionNo=${t.auctionNo }','auctionbuynow','width=500,height=600')">바로구매</div> 
 	                </div>
 	            </div>
             </c:forEach>
@@ -128,8 +128,8 @@
 	                    <p class="">바로 구매 : <span>${t.buyNow }</span></p>   
 	                </div>
 	                <div class="auction_main_po_right">
-	                    <div class="btn1" onclick="open('${path}/action/actionbid?auctionNo=${t.auctionNo }','auctionbid','width=500,height=600')">입찰하기</div>
-	                    <div class="btn1">바로구매</div> 
+	                    <div class="btn1" onclick="open('${path}/action/actionbid.do?auctionNo=${t.auctionNo }','auctionbid','width=500,height=600')">입찰하기</div>
+	                    <div class="btn1" onclick="open('${path}/action/actionbuyNow.do?auctionNo=${t.auctionNo }','auctionbuynow','width=500,height=600')">바로구매</div> 
 	                </div>
 	            </div>
             </c:forEach>

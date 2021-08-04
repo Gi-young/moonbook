@@ -23,4 +23,8 @@ public class Auction {
 	private List<AuctionCate> auctioncate;
 	private List<AuctionBid> auctionbid;
 	private int count;
+	private String sellerState;
+	private String buylerState;
+	//실험용
+	private String state;
 }

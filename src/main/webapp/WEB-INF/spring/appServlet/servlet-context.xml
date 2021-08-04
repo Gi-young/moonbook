@@ -66,6 +66,10 @@
 			<mapping path="/member/myroom/*"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/auction/*.do"/>
+			<beans:bean class="com.rar.khbook.auction.intercepter.LoginCheck"/>		
+		</interceptor>
 	</interceptors>
 	
 	<context:component-scan base-package="com.rar.khbook" />

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
+import com.rar.khbook.member.model.vo.Member;
 
 public interface AuctionDao {
 
@@ -32,8 +33,21 @@ public interface AuctionDao {
 
 	int memberpointchange(SqlSession session, Map param);
 
-	void updatestate(SqlSession session);
 
 	List<Auction> selectpoplist(SqlSession session);
+
+	List<Auction> selectstatelist(SqlSession session);
+
+	void updatestate(SqlSession session, Auction a);
+
+	int auctionStateCount(SqlSession session,Map param);
+
+	List<Auction> selectStateList(SqlSession session, Map param);
+
+	Member selectbidMember(SqlSession session, Map param);
+
+	void updateauctionPay(SqlSession session, Map param);
+
+	void updatestateS(SqlSession session, Map param);
 
 }

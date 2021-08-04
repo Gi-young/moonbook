@@ -7,16 +7,17 @@
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
+
     <div id="wrap">
     <div id="container">
         <div>
-            <p><span>${auctionlist[0].auctioncate[0].auctioncateName }</span> > <span>${auctioncateFirst }</span></p>
+            <p><span>${param["auctioncateName"]}</span> > <span>${param["auctioncateFrist"] }</span></p>
         </div>
         <div class="auctionlist_level2">
          <c:forEach items="${auctioncate }" var="a">         
-		           <c:if test="${a.auctioncateName==auctionlist[0].auctioncate[0].auctioncateName  }">
+		           <c:if test="${a.auctioncateName eq param['auctioncateName']}">
 		      		    <div>
-		     				 <a href="${path }/auction/auctionlist.do?auctioncateFrist=${a.auctioncateFirst}">${a.auctioncateFirst }</a>
+		     				 <a href="${path }/auction/auctionlist?auctioncateFrist=${a.auctioncateFirst}&auctioncateName=${a.auctioncateName}">${a.auctioncateFirst }</a>
 		     		    </div>
 					</c:if>
          </c:forEach>
@@ -51,7 +52,7 @@
 		console.log($(e.target))
 		console.log($(e.target).children("input[type=hidden]").val())
 		let value=$(e.target).children("input[type=hidden]").val();
-		location.replace('${path}/auction/auctionlist.do?auctioncateFrist=${auctioncateFirst}&desc='+value)
+		location.replace('${path}/auction/auctionlist?auctioncateFrist=${auctioncateFirst}&desc='+value)
 	})
 </script>
                 </tr>
@@ -59,13 +60,13 @@
 	                <tr>
 	                 
 	                   	 <td class="auctionlist_img">
-	                   	 <a href="${path }/auction/acutionview.do?auctionNo=${a.auctionNo}">
+	                   	 <a href="${path }/auction/acutionview?auctionNo=${a.auctionNo}">
 	                   	 	<img src="${path }/resources/auction/images/${a.auctionImg[0]}" alt="리스트사진" width="150px;" height="100px;">  	 	
 	                    </a>
 	                    </td>
 	                    
 	                 	   <td class="auctionlist_title">
-	                 	   <a href="${path }/auction/acutionview.do?auctionNo=${a.auctionNo}">${a.auctionName } </a>
+	                 	   <a href="${path }/auction/acutionview?auctionNo=${a.auctionNo}">${a.auctionName } </a>
 	                 	   </td>
 	                  
 	                    <td class="auctionlist_price">${a.startPrice }</td>
@@ -232,6 +233,7 @@ a{
 }
 .auctionlist table tr td{
     border-right: silver 1px dotted;
+    vertical-align: middle;
 }
 .auctionlist_img{
    width: 150px;

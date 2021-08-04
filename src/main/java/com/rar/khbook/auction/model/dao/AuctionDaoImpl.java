@@ -9,16 +9,49 @@ import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
+import com.rar.khbook.member.model.vo.Member;
 @Repository
 public class AuctionDaoImpl implements AuctionDao {
 	
 	
 	
 	
+	@Override
+	public void updatestateS(SqlSession session, Map param) {
+		session.update("auction.updatestateS",param);
+		
+	}
+
+	@Override
+	public void updateauctionPay(SqlSession session,Map param) {
+		session.update("auction.updateauctionPay",param);
+		
+	}
+
+	@Override
+	public Member selectbidMember(SqlSession session, Map param) {
+		return session.selectOne("auction.selectbidMember",param);
+	}
+
+	@Override
+	public List<Auction> selectStateList(SqlSession session, Map param) {
+		return session.selectList("auction.selectStateList",param);
+	}
+
+	@Override
+	public int auctionStateCount(SqlSession session,Map param) {
+		return session.selectOne("auction.auctionStateCount",param);
+	}
+	
 //자동으로 접속하면 업데이트 시켜버리기
 	@Override
-	public void updatestate(SqlSession session) {
-		session.update("auction.updatestate");
+	public void updatestate(SqlSession session,Auction a) {
+		session.update("auction.updatestate",a);
+		
+	}
+	@Override
+	public List<Auction> selectstatelist(SqlSession session) {
+		return session.selectList("auction.selectstatelist");
 		
 	}
 	@Override

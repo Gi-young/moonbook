@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
+import com.rar.khbook.member.model.vo.Member;
 
 public interface AuctionService {
 
@@ -31,4 +32,19 @@ public interface AuctionService {
 	void updatestate();
 
 	List<Auction> selectpoplist();
+
+	int auctionStateCount(Map param);//마이리스트
+
+	List<Auction> selectStateList(Map param);
+
+	Member selectbidMember(Map param);
+
+	void updateauctionPay(Map param);
+
+	void updatestateS(Map param);
+	
+
+
+
+	
 }

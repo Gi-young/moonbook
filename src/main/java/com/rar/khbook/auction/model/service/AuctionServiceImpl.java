@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.rar.khbook.auction.model.dao.AuctionDao;
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
+import com.rar.khbook.member.model.vo.Member;
 @Service
 public class AuctionServiceImpl implements AuctionService {
 
@@ -22,8 +23,41 @@ public class AuctionServiceImpl implements AuctionService {
 
 
 	@Override
+	public void updatestateS(Map param) {
+		dao.updatestateS(session,param);
+		
+	}
+
+	@Override
+	public void updateauctionPay(Map param) {
+		dao.updateauctionPay(session,param);
+		
+	}
+
+	@Override
+	public Member selectbidMember(Map param) {
+		return dao.selectbidMember(session,param);
+	}
+
+	@Override
+	public List<Auction> selectStateList(Map param) {
+		return dao.selectStateList(session,param);
+	}
+
+	@Override
+	public int auctionStateCount(Map param) {
+		return dao.auctionStateCount(session,param);
+	}
+
+	@Override
 	public void updatestate() {
-		dao.updatestate(session);
+		List<Auction> list=dao.selectstatelist(session);
+		for(Auction a:list) {
+				System.out.println(a);
+				dao.updatestate(session,a);
+		}
+		
+		
 		
 	}
 
@@ -89,5 +123,7 @@ public class AuctionServiceImpl implements AuctionService {
 	public List<Auction> selectAuctionList(Map param, int cPage, int numPerpage) {
 		return dao.selectAuctionList(session,param,cPage,numPerpage);
 	}
+
+
 
 }
