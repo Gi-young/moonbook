@@ -1,5 +1,7 @@
 @charset "UTF-8";
+
 @import url(../css/style.css);
+
 
 .wrap{
     display: flex;

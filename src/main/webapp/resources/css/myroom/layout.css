@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-@import url("nextGrade.css");
-
 .myroom_sideMenu {
 	float: left;
 	width: 19%;
@@ -143,6 +141,13 @@ h1 a, h3 a {
 	font-size: 15px;
 }
 
+.fs48{
+	font-size:48px;
+}
+.myroom_infoBox{
+	display:flex;
+	margin-top:30px;
+}
 .myroom_info {
 	align-self: flex-end;
 }
@@ -229,7 +234,7 @@ a img {
 }
 
 .btn:hover {
-	color: #fff;
+	color: #fff !important;
 	background-color: #582810;
 }
 
@@ -311,4 +316,8 @@ a img {
 }
 .div4{
 	margin-left:10px;
+}
+.input{
+	vertical-align: middle;
+	font-size:18px;
 }

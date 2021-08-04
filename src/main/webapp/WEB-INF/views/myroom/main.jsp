@@ -110,7 +110,7 @@
 							src="${path }/resources/images/${membergrade.membergradeImg }"></a></td>
 				</tr>
 			</table>
-			<div class="margin_top30 flex">
+			<div class="myroom_infoBox">
 				<div>
 					<img src="${path }/resources/images/hello.png" />
 				</div>

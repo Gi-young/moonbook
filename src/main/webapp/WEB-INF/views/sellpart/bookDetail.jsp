@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.rar.khbook.member.model.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value=""/>
 </jsp:include>
 <style>
@@ -778,6 +778,9 @@ transition: all 0.2s linear;
 <section id="content">
 
 	<div class="wrap">
+<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
+<jsp:param name="" value=""/>
+</jsp:include>
     <div id="level_container" class="line">
         <div>
            <!--<div id="level_cho">
@@ -911,51 +914,33 @@ transition: all 0.2s linear;
 
         <div id="content_middle" style="display: flex;">
             <div class="bookView_img line">
-                <img src="${path}/resources/img/sellLev1/200300book.png" alt="200300book">
+                <img src="${book.image }" alt="200300book">
                 <!-- <ul>
                     <li>크게보기</li>
                     <li>미리보기</li>
                 </ul> -->
                 <div>
-                    <a href="">크게보기</a>
+                    <a href="${path}/sellbookController/bigview.do?bindNo=${book.bindNo}" 
+	onclick="window.open(this.href, '_blank', 'width=600, height=800'); return false;">크게보기</a>
                 </div>
             </div>
             <div class="bookView_order" style="margin-left: 50px;">
                 <div>
-                    <h2>먹어야 산다</h2>
-                    <span>지은이</span>
-                    <span>옮김이</span>
-                    <span>출판사</span>
-                    <span>출간일</span>
-                    <p>리뷰점수: <span>리뷰 개수</span> <button>리뷰쓰기:</button></p>
+                    <h2><span>${book.title }</span></h2>
+                    <p>글쓴이 : <span>${book.author }</span>
+                    <!-- <span>옮김이</span> -->
+                    <p>출판사 : <span>${book.publisher }</span>
+                    <p>출간일 : <span>${book.pubdate }</span>
+                    <p>리뷰점수: <span>${book.rating }</span> <button>평점주기:</button></p>
                 </div>
                 <div>
-                    <p>정가 : <span>16000</span>원</p>
-                    <p>판매가 : <span style="font-size: 18px; color: red;">13000</span>원 <span>할인율: [ <span>10%</span> ] </span></p>
-                    <p>혜텍</p>
-                    <p>추가혜텍</p>
+                    <p>정가 : <span>${book.price }</span>원</p>
+                    <p>판매가 : <span style="font-size: 18px; color: red;">${(book.price * 0.9) }</span>원 <span>할인율: [ <span>10%</span> ] </span></p>
                 </div>
                 <div>
-                    <p>배송비</p>
-                    <!-- <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p>
-                    <p>배송비</p>
-                    <p>예약판매</p> -->
+                    <p>쿠폰사용 : <button>쿠폰사용</button></p>
+                    <p>배송비 : <span>3,000원</span></p>
+
                 </div>
                 <div>
                     <p>알림</p>
@@ -966,22 +951,15 @@ transition: all 0.2s linear;
                 
                 <div>
                     <span>주문수량</span>
-                    <input type="number">
+                    <input type="number" id="bookVolume">
                 </div>
                 <div style="display:flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
                     <a href="" >장바구니담기</a>
-                    <a href="">바로구매</a>
-                    <!-- <a href="">바로드림 주문</a>
-                    <a href="">선물하기</a>
-                    <a href="">보관함담기</a> -->
+                    <a href="" id="payBtn">바로구매</a>
                 </div>
-                
             </div>
         </div>
 
-        <!-- <div class="line backgroundColor" style="height: 300px;">
-            이공간은 고민중
-        </div> -->
 
         <div class="bookView_info" style="display: flex;">
             <div class="bookView_info_left line">
@@ -1018,13 +996,7 @@ transition: all 0.2s linear;
 
 
                 </div>
-                <!-- <div class="bookView_info_left_btn line">
-                    <a href="#event">이벤트</a>
-                    <a href="#product" name="product">상품정보</a>
-                    <a href="#review">회원리뷰</a>            
-                    <a href="#storyk">스토리k</a>
-                    <a href="#err">교환/반품/품절</a>
-                </div> -->
+
                 <div class="bookView_info_left_product">
                     <div class="" style="text-align: right; padding: 15px;">
                         <a href="" class="btn_small">문의하기</a>
@@ -1033,7 +1005,7 @@ transition: all 0.2s linear;
                     <table id="table_1">
                         <tr>
                             <th>ISBN</th>
-                            <td>값입력</td>
+                            <td>${book.isbn }</td>
                         </tr>
                         <tr>
                             <th>쪽수</th>
@@ -1054,10 +1026,10 @@ transition: all 0.2s linear;
                         <p><span>레벨1</span> > <span>레벨2</span> ><span>레벨3</span></p>
                     </div>
                     <div class="bcontent">
-                        <strong>책 부제목</strong> <br>
-                        박원재의 장편소설 『밤의 여행자들』. 문학성과 다양성, 참신성을 기치로 한국문학의 미래를 이끌어 갈 신예들의 작품을 엄선한 「오늘의 젊은 작가」의 세 번째 작품이다. 한겨레문학상, 이효석문학상을 수상하며 문단에서 뜨거운 주목을 받고 있는 저자의 두 번째 장편소설로 EBS 《라디오 연재소설》을 통해 방송된 작품이다. 독특한 상상과 놀라운 현실의 세계를 엿볼 수 있다.
-
-                        재난으로 폐허가 된 지역을 관광하는 재난 여행 상품만을 판매하는 여행사 ‘정글’의 수석 프로그래머 박원재가 육식을 전도하는 육식전도사 '육식이'를 만나면서 벌어지는 이야기를 담았다. '육식이'를 따라 인도행 비행기를 타기 위해 공항으로 가던 중 일행에서 낙오된 원재는 일행들과 묵었던 리조트 ‘서울24불한증막’으로 돌아가 그곳의 매니저의 부탁을 받고 채식 위기에 놓인 육식이를 되살리기 위한 인공 재난 시나리오에 동참하게 되는데…….
+                        <strong>책 내용</strong> <br>
+                        ${book.description }<br><br><br><br>
+                        <a href="${book.link }"><strong>[ 책 상세 페이지로 이동 ]</strong></a>
+                        <br><br><br>
                    </div>
                    <div>
                        <h2>저자소개</h2>
@@ -1493,7 +1465,20 @@ transition: all 0.2s linear;
     })
     </script>
 
-
 </section>
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<input type="hidden" id="loginMember" value="${loginMember.memberId}">
+<input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
+
+<%System.out.println("test : " + session.getAttribute("loginMember")); %>
+
+<input type="hidden" id="contextPath" value="${path }">
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
+
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>
