@@ -153,6 +153,67 @@ public class AdminServiceImpl implements AdminService {
 		return dao.selectGiftCount(session);
 	}
 
+	@Override
+	public List<EbookDatabind> orderStockList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.orderStockList(session,param);
+	}
+
+	@Override
+	public List<Gift> orderStockList3(Map param) {
+		// TODO Auto-generated method stub
+		return dao.orderStockList3(session,param);
+	}
+
+	@Override
+	public List<EbookDatabind> searchTextStockList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchTextStockList(session,param);
+	}
+
+	@Override
+	public List<Gift> searchTextStockList3(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchTextStockList3(session,param);
+	}
+
+	@Override
+	public int stockTUpdate(Map param) {
+		// TODO Auto-generated method stub
+		return dao.stockTUpdate(session,param);
+	}
+
+	@Override
+	public int stockTUpdate2(Map param) {
+		// TODO Auto-generated method stub
+		return dao.stockTUpdate2(session, param);
+	}
+
+	@Override
+	public int stockTDelete(Map param) {
+		// TODO Auto-generated method stub
+		return dao.stockTDelete(session,param);
+	}
+
+	@Override
+	public int stockTDelete2(Map param) {
+		// TODO Auto-generated method stub
+		return dao.stockTDelete2(session,param);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	
 	

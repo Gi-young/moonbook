@@ -38,4 +38,26 @@ public interface EbookDao {
 	
 	int writePurchaseLog(SqlSession session, Map param);
 	
+	int checkClubName(SqlSession session, String clubName);
+	
+	int createClub(SqlSession session, Map param);
+	
+	List<HashMap> showMyClubList(SqlSession session, String memberId);
+	
+	List<HashMap> showClubInfo(SqlSession session, String clubName);
+	
+	HashMap checkAuthority(SqlSession session, String clubName);
+	
+	int deleteClub(SqlSession session, String clubName);
+	
+	int joinClub(SqlSession session, Map param);
+	
+	int deportMember(SqlSession session, Map param);
+	
+	int saveMessage(SqlSession session, Map param);
+	
+	int deleteMessage(SqlSession session, Map param);
+	
+	List<HashMap> loadMessage(SqlSession session, String memberId);
+	
 }

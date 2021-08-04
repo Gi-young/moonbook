@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="${path }/resources/css/myroom/layout.css">
 <link rel="stylesheet" href="${path }/resources/css/memberGrade.css">
 <link rel="stylesheet" href="${path }/resources/css/mainCss.css">
-<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value="쿠폰함 - 문곰책방" />
 </jsp:include>

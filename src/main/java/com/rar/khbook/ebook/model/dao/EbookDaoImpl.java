@@ -94,4 +94,59 @@ public class EbookDaoImpl implements EbookDao {
 		return session.insert("ebook.writePurchaseLog", param);
 	}
 	
+	@Override
+	public int checkClubName(SqlSession session, String clubName) {
+		return session.selectOne("ebook.checkClubName", clubName);
+	}
+	
+	@Override
+	public int createClub(SqlSession session, Map param) {
+		return session.insert("ebook.createClub", param);
+	}
+	
+	@Override
+	public List<HashMap> showMyClubList(SqlSession session, String memberId) {
+		return session.selectList("ebook.showMyClubList", memberId);
+	}
+	
+	@Override
+	public List<HashMap> showClubInfo(SqlSession session, String clubName) {
+		return session.selectList("ebook.showClubInfo", clubName);
+	}
+	
+	@Override
+	public HashMap checkAuthority(SqlSession session, String clubName) {
+		return session.selectOne("ebook.checkAuthority", clubName);
+	}
+	
+	@Override
+	public int deleteClub(SqlSession session, String clubName) {
+		return session.delete("ebook.deleteClub", clubName);
+	}
+	
+	@Override
+	public int joinClub(SqlSession session, Map param) {
+		return session.insert("ebook.joinClub", param);
+	}
+	
+	@Override
+	public int deportMember(SqlSession session, Map param) {
+		return session.delete("ebook.deportMember", param);
+	}
+	
+	@Override
+	public int saveMessage(SqlSession session, Map param) {
+		return session.insert("ebook.saveMessage", param);
+	}
+	
+	@Override
+	public int deleteMessage(SqlSession session, Map param) {
+		return session.delete("ebook.deleteMessage", param);
+	}
+	
+	@Override
+	public List<HashMap> loadMessage(SqlSession session, String memberId) {
+		return session.selectList("ebook.loadMessage", memberId);
+	}
+	
 }

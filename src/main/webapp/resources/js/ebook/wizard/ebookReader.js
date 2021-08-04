@@ -1,5 +1,3 @@
-const contextPath = $('#contextPath').val();
-
 let url = contextPath + "/resources/ebook/test.pdf";
 let pdfjsLib = window['pdfjs-dist/build/pdf'];
 pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
