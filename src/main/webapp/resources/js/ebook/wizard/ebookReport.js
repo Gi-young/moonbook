@@ -1,5 +1,3 @@
-
-
 const editor = new EditorJS({
     holderId: "editorBox",
     tools: {

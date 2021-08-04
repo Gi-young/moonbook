@@ -15,12 +15,13 @@
 <body>
 	<form action="${path}/ebook/login.do" method="post">
 		<div id="loginBox">
-			<input type="text" id="memberId" name="memberId" placeholder="아이디를 입력하세요" value="${cookie.saveId.value}">
+		 	<!-- value="${cookie.saveId.value}" --> 
+			<input type="text" id="memberId" name="memberId" placeholder="아이디를 입력하세요" value="admin">
 			
 			<label for="saveId">아이디 저장</label>
 			<input type="checkbox" id="saveId" name="saveId">
 			
-			<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+			<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" value="1234">
 		
 			<input type="submit" value="로그인">
 		</div>

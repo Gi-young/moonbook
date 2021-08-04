@@ -3,25 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>e북 마법사 - 문곰책방</title>
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/commonStyle.css">
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookWizard.css">
-	<script defer src="${path}/resources/js/jquery-3.6.0.min.js"></script>
-	<script defer src="${path}/resources/js/ebook/wizard/ebookWizard.js"></script>
-</head>
-<body>
-	<div id="container">
-		<header>
-			<a href="${path}/ebook/openEbookWizard.do">e북 마법사</a>
-			<a href="${path}/ebook/pageEbookReport.do">e독서록</a>
-			<a href="${path}/ebook/pageEbookPlanner.do">e북 플래너</a>
-			<a href="${path}/ebook/pageEbookClubManager.do">e독서토론 </a>
-			<a href="${path}/ebook/pageEbookPublisher.do">e노트 출판</a>
-		</header>
+<jsp:include page="/WEB-INF/views/ebook/wizard/wizardHeader.jsp">
+	<jsp:param name="title" value="e북 마법사 - 문곰책방"/>
+</jsp:include>
+
+		<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookWizard.css"/>
 		
 		<aside>
 			<div></div>
@@ -34,5 +20,8 @@
 	</div>
 
 	<input type="hidden" id="contextPath" value="${path}">
+	
+	<script src="${path}/resources/js/ebook/wizard/ebookWizard.js"></script>
+	
 </body>
 </html>
