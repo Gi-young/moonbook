@@ -59,14 +59,14 @@
             	<span style="font-size: 20px; color: red;">
                 	거래중 
                 </span></c:if>
-            <c:if test="${usedboard.usedboard_State == 'n' }">
+            <c:if test="${usedboard.usedboard_State != 'y' }">
 				<span style="font-size: 20px; color: blue;">
                 	거래완료
                 </span></c:if>
             </div></center>
             <div id="article" style="font-size: 20px;">${usedboard.usedboard_Content }</div><br>
             <c:if test="${loginMember!=null }">
-            <c:if test="${usedboard.usedboard_State!='n'}">
+            <c:if test="${usedboard.usedboard_State=='y'}">
             <center><div class="wrap">
 			  <button class="button">결제하기</button>
 			</div></center>
@@ -317,7 +317,7 @@
 		// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 		// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
 		IMP.request_pay({
-		pg: 'inicis', // version 1.1.0부터 지원.
+		pg: 'html5_inicis', // version 1.1.0부터 지원.
 		/*
 		'kakao':카카오페이,
 		html5_inicis':이니시스(웹표준결제)
@@ -363,7 +363,7 @@
 		}, function (rsp) {
 		console.log(rsp);
 		if (rsp.success) {
-			location.href="${path}/usedboard/usedboardPayment.do?no=${no}";
+			location.href="${path}/usedboard/usedboardPayment.do?no=${no}&title=${usedboard.usedboard_Title}&price=${usedboard.usedboard_Price}&id=${usedboard.member_Id}&impuid="+rsp.imp_uid+"&muid="+rsp.merchant_uid;
 		} else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;

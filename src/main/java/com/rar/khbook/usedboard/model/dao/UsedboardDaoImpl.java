@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -119,5 +120,58 @@ public class UsedboardDaoImpl implements UsedboardDao {
 		return session.update("usedboard.usedboardPayment",no);
 	}
 	
+	@Override
+	public int usedboardPaymentInsert(SqlSession session, UsedboardPayment p) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardPaymentInsert",p);
+	}
 	
+	@Override
+	public List<Usedboard> selectUsedboardMyList(SqlSession session, int cPage, int numPerpage, String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectList("usedboard.selectUsedboardMyList",memberId);
+	}
+	
+	@Override
+	public int selectUsedboardMyCount(SqlSession session, String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("usedboard.selectUsedboardMyCount",memberId);
+	}
+	
+	@Override
+	public List<UsedboardPayment> usedboardMyPaymentList(SqlSession session, int cPage, int numPerpage,
+			String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectList("usedboard.usedboardMyPaymentList",memberId);
+	}
+	
+	@Override
+	public int usedboardMyPaymentCount(SqlSession session, String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("usedboard.usedboardMyPaymentCount",memberId);
+	}
+	
+	@Override
+	public int usedboardPay1(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardPay1",no);
+	}
+	
+	@Override
+	public int usedboardPay11(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardPay11",no);
+	}
+	
+	@Override
+	public int usedboardPay2(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardPay2",no);
+	}
+	
+	@Override
+	public int usedboardPay22(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.usedboardPay22",no);
+	}
 }
