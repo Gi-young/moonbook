@@ -82,4 +82,6 @@ public interface AdminDao {
 	
 	int stockTDelete2(SqlSession session,Map param);
 	
+	int addCouponList(SqlSession session,Map param);
+	
 }

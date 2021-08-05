@@ -81,6 +81,7 @@ public interface AdminService {
 	//재고 gift 삭제
 	int stockTDelete2(Map param);
 	
-	
+	//쿠폰 등록
+	int addCouponList(Map param);
 	
 }
