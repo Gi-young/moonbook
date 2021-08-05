@@ -3,36 +3,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>e북 마법사 - 문곰책방</title>
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/commonStyle.css">
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookWizard.css">
-	<script defer src="${path}/resources/js/jquery-3.6.0.min.js"></script>
-	<script defer src="${path}/resources/js/ebook/wizard/ebookWizard.js"></script>
-</head>
-<body>
-	<div id="container">
-		<header>
-			<a href="${path}/ebook/openEbookWizard.do">e북 마법사</a>
-			<a href="${path}/ebook/pageEbookReport.do">e독서록</a>
-			<a href="${path}/ebook/pageEbookPlanner.do">e북 플래너</a>
-			<a href="${path}/ebook/pageEbookClubManager.do">e독서토론 </a>
-			<a href="${path}/ebook/pageEbookPublisher.do">e노트 출판</a>
-		</header>
+<jsp:include page="/WEB-INF/views/ebook/wizard/wizardHeader.jsp">
+	<jsp:param name="title" value="e북 마법사 - 문곰책방"/>
+</jsp:include>
+
+		<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookWizard.css"/>
 		
 		<aside>
-			<div></div>
+			<h2>내 서재</h2>
+			
+			<ul>
+				<li>나의 모든 e북</li>
+			</ul>
+			
+			<div class="library-controller">
+				<input type="text" placeholder="분류 이름">
+				<button onclick="">분류 추가</button>
+				<select></select>
+				<button onclick="">분류 삭제</button>
+			</div>
 		</aside>
 		
 		<section>
-			<button id="readBookBtn">책 읽기</button>
-			
+			<div class="pseudo-box"></div>
 		</section>
 	</div>
 
 	<input type="hidden" id="contextPath" value="${path}">
+	
+	<script src="${path}/resources/js/ebook/wizard/ebookWizard.js"></script>
+	
 </body>
 </html>

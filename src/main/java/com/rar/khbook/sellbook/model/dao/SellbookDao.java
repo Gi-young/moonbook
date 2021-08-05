@@ -11,4 +11,6 @@ public interface SellbookDao {
 
 	Member checkMember(SqlSession session, String memberId);
 
+	SellbookDatabind selectBigView(SqlSession session, int bindNo);
+
 }

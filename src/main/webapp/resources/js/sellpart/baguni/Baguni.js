@@ -7,6 +7,7 @@ let loginMember = document.getElementById("loginMember").value;
 let contextPath = document.getElementById("contextPath").value;
 
 
+
 payBtn.addEventListener("click", (e) => {
 
 	e.preventDefault();
@@ -19,7 +20,9 @@ payBtn.addEventListener("click", (e) => {
     //    }
     //});
     
-	
+	let bookVolume = document.getElementById("bookVolume").value;
+	let bookPrice09 = document.getElementById("bookPrice09").value;
+	let totalPrice = bookVolume * bookPrice09;
 	
 	
     $.ajax({
@@ -29,6 +32,10 @@ payBtn.addEventListener("click", (e) => {
         memberId: loginMember
         },
         success: data => {
+        
+        console.log("수량"+bookVolume);
+		console.log("할인가"+bookPrice09);
+		console.log("총금액"+totalPrice);
             let buyerName;
             let buyerEmail;
             let merchant_uid;
@@ -48,7 +55,7 @@ payBtn.addEventListener("click", (e) => {
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
                             name: "eBook",
-                            amount: 100
+                            amount: totalPrice
                         }, function(rsp) {
                             if (rsp.success) {
                                 $.ajax({

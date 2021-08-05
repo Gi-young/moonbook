@@ -9,4 +9,6 @@ public interface SellbookService {
 
 	Member checkMember(String memberId);
 
+	SellbookDatabind selectBigView(int bindNo);
+
 }

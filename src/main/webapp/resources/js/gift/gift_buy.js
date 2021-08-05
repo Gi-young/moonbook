@@ -1,23 +1,26 @@
-IMP.init("imp47672833");
+(function() {
+IMP.init("imp33769544");
 
-let payBtn = document.getElementById("payBtn");
-let refundBtn = document.getElementById("refundBtn");
+let payBtn = document.getElementById("byBuy");
+let memberId = document.getElementById("loginMemberId").value;
+let contextPath = document.getElementById("contextPath").value; 
 
 payBtn.addEventListener("click", () => {
     let totalPrice = Number(document.getElementById("totalPrice").innerText);
-
+	console.log(totalPrice);
     let purchaseArr = new Array();
-    document.querySelectorAll("input[name=selectEbook]").forEach((v, i) => {
+    console.log(purchaseArr);
+    document.querySelectorAll("input[name=selectGift]").forEach((v, i) => {
         if (v.checked) {
             purchaseArr.push(v.value);
         }
     });
 
     $.ajax({
-        url: contextPath + "/ebook/getMemberInfo.do",
+        url: contextPath + "/gift/searchMember.do",
         type: "POST",
         data: {
-            memberId: loginMemberId
+            memberId: memberId
         },
         success: data => {
             let buyerName;
@@ -72,16 +75,4 @@ payBtn.addEventListener("click", () => {
         }
     });
 });
-
-refundBtn.addEventListener("click", () => {
-    $.ajax({
-        url: contextPath + "/ebook/cancelPayment.do",
-        type: "POST",
-        data: {
-            impUid: "imp_223195009712"
-        },
-        success: () => {
-            console.log("환불 성공");
-        }
-    });
-});
+})();

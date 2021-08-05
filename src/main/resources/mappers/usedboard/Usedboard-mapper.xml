@@ -65,7 +65,7 @@
 	</update>
 	
 	<insert id="usedboardInsertEnd">
-		INSERT INTO USEDBOARD VALUES(SEQ_USEDBOARD.NEXTVAL,#{usedboard_Title},#{usedboard_Content},SYSDATE,#{usedboard_Price},'y',#{usedboard_Category, typeHandler=strArr},#{member_Id},#{usedboard_BookTitle},null)
+		INSERT INTO USEDBOARD VALUES(SEQ_USEDBOARD.NEXTVAL,#{usedboard_Title},#{usedboard_Content},SYSDATE,#{usedboard_Price},'y',#{usedboard_Category, typeHandler=strArr},#{member_Id},#{usedboard_BookTitle})
 		<selectKey keyProperty="usedboard_No" resultType="_int" order="AFTER">
 			SELECT SEQ_USEDBOARD.CURRVAL FROM DUAL
 		</selectKey>
@@ -92,6 +92,41 @@
 	</select>
 	
 	<update id="usedboardPayment">
-		UPDATE USEDBOARD SET USEDBOARD_STATE='n',USEDBOARD_PAYMENTDATE=SYSDATE WHERE USEDBOARD_NO=${value}
+		UPDATE USEDBOARD SET USEDBOARD_STATE='1' WHERE USEDBOARD_NO=${value}
+	</update>
+	
+	<insert id="usedboardPaymentInsert">
+		INSERT INTO USEDBOARDPAYMENT VALUES(SEQ_USEDBOARDPAYMENT_NO.NEXTVAL,#{usedboardPayment_Title},SYSDATE,'1',#{usedboardPayment_Price},#{usedboardPayment_BoardNo},'n',#{member_Id},#{imp_uid},#{merchant_uid})
+	</insert>
+	
+	<select id="selectUsedboardMyList" resultMap="usedboardMap">
+		SELECT * FROM USEDBOARD B LEFT JOIN USEDBOARDFILE A ON B.USEDBOARD_NO=A.USEDBOARD_NO WHERE MEMBER_ID='${value}' ORDER BY B.USEDBOARD_NO DESC
+	</select>
+	<select id="selectUsedboardMyCount" resultType="_int">
+		SELECT COUNT(*) FROM USEDBOARD WHERE MEMBER_ID='${value}'
+	</select>
+	
+	<select id="usedboardMyPaymentList" resultType="usedboardpayment">
+		SELECT * FROM USEDBOARDPAYMENT WHERE MEMBER_ID='${value}'
+	</select>
+	
+	<select id="usedboardMyPaymentCount" resultType="_int">
+		SELECT COUNT(*) FROM USEDBOARDPAYMENT WHERE MEMBER_ID='${value}'
+	</select>
+	
+	<update id="usedboardPay1">
+		UPDATE USEDBOARD SET  USEDBOARD_STATE='2' WHERE USEDBOARD_NO='${value}'
+	</update>
+	
+	<update id="usedboardPay11">
+		UPDATE USEDBOARDPAYMENT SET  USEDBOARDPAYMENT_STATE='2' WHERE USEDBOARDPAYMENT_BOARDNO='${value}' 
+	</update>
+	
+	<update id="usedboardPay2">
+		UPDATE USEDBOARD SET  USEDBOARD_STATE='3' WHERE USEDBOARD_NO='${value}'
+	</update>
+	
+	<update id="usedboardPay22">
+		UPDATE USEDBOARDPAYMENT SET  USEDBOARDPAYMENT_STATE='3' WHERE USEDBOARDPAYMENT_BOARDNO='${value}' 
 	</update>
 </mapper>

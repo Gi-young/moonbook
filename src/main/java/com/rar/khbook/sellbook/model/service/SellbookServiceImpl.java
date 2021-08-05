@@ -33,6 +33,14 @@ public class SellbookServiceImpl implements SellbookService {
 		
 		return dao.checkMember(session, memberId);
 	}
+
+
+
+	@Override
+	public SellbookDatabind selectBigView(int bindNo) {
+		// TODO Auto-generated method stub
+		return dao.selectBigView(session, bindNo);
+	}
 	
 	
 }

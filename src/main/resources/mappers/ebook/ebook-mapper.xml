@@ -23,13 +23,11 @@
 		<association property="ebook" javaType="ebook">
 			<id column="EBOOK_NO" property="ebookNo"/>
 			<result column="FILEPATH" property="filepath"/>
-			<result column="SALES_VOLUME" property="salesVolume"/>
 		</association>
 	</resultMap>
 	
 	<resultMap id="ebookMap" type="ebook">
 		<id column="EBOOK_NO" property="ebookNo"/>
-		<result column="SALES_VOLUME" property="salesVolume"/>
 	</resultMap>
 	
 	<resultMap type="member" id="memberMap">
@@ -269,5 +267,63 @@
 	<insert id="writePurchaseLog">
 		INSERT INTO EBOOK_PURCHASE_HISTORY VALUES(SEQ_EBOOK_PURCHASE_HISTORY.NEXTVAL,#{impUid},#{merchantUid},#{memberId},#{payMethod},#{paidAmount},#{paidAt},#{pgProvider},#{receiptUrl},#{purchaseEbookNoList})
 	</insert>
+	
+	<select id="checkClubName" resultType="_int">
+		SELECT COUNT(*) FROM READING_CLUB WHERE CLUB_NAME=#{clubName}
+	</select>
+	
+	<insert id="createClub">
+		INSERT INTO READING_CLUB VALUES(#{clubName},#{memberId},NULL)
+	</insert>
+	
+	<select id="showMyClubList" resultType="HashMap">
+		SELECT * FROM READING_CLUB C, READING_CLUB_MEMBER M WHERE C.CLUB_NAME=M.CLUB_NAME(+)
+		AND M.MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="showClubInfo" resultType="HashMap">
+		SELECT C.CLUB_NAME, C.LEADER, CM.MEMBER_ID, M.MEMBER_NAME, M.MEMBER_GENDER, M.MEMBER_EMAIL, M.MEMBER_ADDRESS
+		FROM MEMBER M, READING_CLUB C, READING_CLUB_MEMBER CM 
+		WHERE M.MEMBER_ID=C.LEADER AND C.CLUB_NAME=CM.CLUB_NAME
+		AND C.CLUB_NAME=#{clubName}
+	</select>
+	
+	<select id="checkAuthority" resultType="HashMap">
+		SELECT * FROM READING_CLUB WHERE CLUB_NAME=#{clubName}
+	</select>
+	
+	<delete id="deleteClub">
+		DELETE FROM READING_CLUB WHERE CLUB_NAME=#{clubName}
+	</delete>
+	
+	<insert id="joinClub">
+		INSERT INTO READING_CLUB_MEMBER VALUES(#{clubName},#{memberId})
+	</insert>
+	
+	<delete id="deportMember">
+		DELETE FROM READING_CLUB_MEMBER WHERE CLUB_NAME=#{clubName} AND MEMBER_ID=#{memberId}
+	</delete>
+	
+	<insert id="saveMessage">
+		INSERT INTO EBOOK_NOTICE VALUES(#{memberId},#{message})
+	</insert>
+	
+	<delete id="deleteMessage">
+		DELETE FROM EBOOK_NOTICE WHERE MEMBER_ID=#{memberId} AND MESSAGE=#{message}
+	</delete>
+	
+	<select id="loadMessage" resultType="HashMap">
+		SELECT MESSAGE FROM EBOOK_NOTICE WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="getMyEbooks" resultType="HashMap">
+		SELECT * FROM BOOK_EBOOK_DATABIND D, MEMBER_EBOOK_LIST L
+		WHERE D.BIND_NO=L.EBOOK_NO
+		AND L.MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="getEbookFilepath" resultType="string">
+		SELECT FILEPATH FROM EBOOK WHERE EBOOK_NO=#{bindNo}
+	</select>
 
 </mapper>

@@ -1,12 +1,16 @@
 package com.rar.khbook.gift.model.vo;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@Builder
 public class Gift {
 	
 	private int gift_no;
@@ -20,12 +24,11 @@ public class Gift {
 	private String gift_as;
 	private String gift_size;
 	private int gift_count;
-	private String gift_rowprice;
-	private String gift_for_sale;
+	private String gift_forSale;
+	private String gift_rowPrice;
 //	private int gift_safecount;
-	private int gift_giftcate_code;
-	private String gift_discount; //할인 여부
+//	private int gift_giftcate_code;
+	private String gift_discount;
 	private int gift_salesVolume;
-	private GiftCate giftcate;
-	private int gift_salesvolume;
+	private GiftCate giftCate;
 }

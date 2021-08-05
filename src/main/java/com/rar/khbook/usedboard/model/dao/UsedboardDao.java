@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -45,4 +46,22 @@ public interface UsedboardDao {
 	List<Usedboardfile> usedboardfileSelect(SqlSession session,int no);
 	
 	int usedboardPayment(SqlSession session,int no);
+	
+	int usedboardPaymentInsert(SqlSession session,UsedboardPayment p);
+	
+	List<Usedboard> selectUsedboardMyList(SqlSession session, int cPage, int numPerpage,String memberId);
+	
+	int selectUsedboardMyCount(SqlSession session,String memberId);
+	
+	List<UsedboardPayment> usedboardMyPaymentList(SqlSession session, int cPage, int numPerpage,String memberId);
+	
+	int usedboardMyPaymentCount(SqlSession session,String memberId);
+	
+	int usedboardPay1(SqlSession session,int no);
+	
+	int usedboardPay11(SqlSession session,int no);
+	
+	int usedboardPay2(SqlSession session,int no);
+	
+	int usedboardPay22(SqlSession session,int no);
 }

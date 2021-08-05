@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="gift">
+
+	<resultMap type="nGift" id="giftMap">
+		<id column="NGIFT_NO" property="gift_no"/>
+		<result column="NGIFT_TITLE" property="gift_title"/>
+		<result column="NGIFT_IMG" property="gift_img"/>
+		<result column="NGIFT_PRICE" property="gift_price"/>
+		<result column="NGIFT_BRAND" property="gift_brand"/>
+		<result column="NGIFT_MAKER" property="gift_maker"/>
+		<result column="NGIFT_COUNT" property="gift_count"/>
+		<result column="NGIFT_PRODUCT_TYPE" property="gift_productType"/>		
+		<result column="NGIFT_ROWPRICE" property="gift_rowPrice"/>
+		<result column="NGIFT_DISCOUNT" property="gift_discount"/>
+		<result column="NGIFT_SALESVOLUME" property="gift_salesVolume"/>	
+		<association javaType="giftCate" property="gift_category">
+			<id column="NGIFT_CATE_CODE" property="giftCateCode"/>
+			<result column="GIFTCATE_NAME" property="giftCateName"/>
+			<result column="GIFTCATE_FIRSTREF" property="giftCateFirstRef"/>
+			<result column="GIFTCATE_SECONDREF" property="giftCateSecondRef"/>
+		</association>
+	</resultMap>
+	
+	<resultMap type="giftCate" id="giftCateMap">
+		<id column="GIFTCATE_CODE" property="giftCateCode" />
+		<result column="GIFTCATE_NAME" property="giftCateName" />
+		<result column="GIFTCATE_FIRSTREF" property="giftCateFirstRef" />
+		<result column="GIFTCATE_SECONDREF" property="giftCateSecondRef" />
+	</resultMap>
+
+	<select id="selectGiftAll" resultMap="giftMap">
+		SELECT * FROM NGIFT
+	</select> 
+	
+	 <insert id="insertGift">
+		INSERT INTO NGIFT VALUES(SEQ_GIFT_NO.NEXTVAL, #{title}, #{img}, #{price}, #{brand}, #{maker}, 12, DEFAULT, #{productType}, DEFAULT, 'N', DEFAULT)	
+	</insert> 
 </mapper>

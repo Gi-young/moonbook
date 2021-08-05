@@ -100,4 +100,73 @@ public class EbookServiceImpl implements EbookService {
 		return result;
 	}
 	
+	@Override
+	public int checkClubName(String clubName) {
+		int result = dao.checkClubName(session, clubName);
+		return result;
+	}
+	
+	@Override
+	public int createClub(Map param) {
+		int result = dao.createClub(session, param);
+		return result;
+	}
+	
+	@Override
+	public List<HashMap> showMyClubList(String memberId) {
+		List<HashMap> list = dao.showMyClubList(session, memberId);
+		return list;
+	}
+	
+	@Override
+	public List<HashMap> showClubInfo(String clubName) {
+		List<HashMap> list = dao.showClubInfo(session, clubName);
+		return list;
+	}
+	
+	@Override
+	public HashMap checkAuthority(String clubName) {
+		return dao.checkAuthority(session, clubName);
+	}
+	
+	@Override
+	public int deleteClub(String clubName) {
+		return dao.deleteClub(session, clubName);
+	}
+	
+	@Override
+	public int joinClub(Map param) {
+		return dao.joinClub(session, param);
+	}
+	
+	@Override
+	public int deportMember(Map param) {
+		return dao.deportMember(session, param);
+	}
+	
+	@Override
+	public int saveMessage(Map param) {
+		return dao.saveMessage(session, param);
+	}
+	
+	@Override
+	public int deleteMessage(Map param) {
+		return dao.deleteMessage(session, param);
+	}
+	
+	@Override
+	public List<HashMap> loadMessage(String memberId) {
+		return dao.loadMessage(session, memberId);
+	}
+	
+	@Override
+	public List<HashMap> getMyEbooks(Map param) {
+		return dao.getMyEbooks(session, param);
+	}
+	
+	@Override
+	public String getEbookFilepath(String bindNo) {
+		return dao.getEbookFilepath(session, bindNo);
+	}
+	
 }

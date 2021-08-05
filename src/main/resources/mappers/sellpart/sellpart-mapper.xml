@@ -42,4 +42,7 @@
 	<select id="checkMember" resultMap="memberMap">
 		SELECT * FROM MEMBER WHERE MEMBER_ID=#{memberId}
 	</select>
+	<select id="selectBigView" resultMap="SellbookDatabind">
+		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
 </mapper>

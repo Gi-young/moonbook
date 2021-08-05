@@ -116,7 +116,11 @@ public class EbookController {
 	}
 	
 	@RequestMapping(value="/ebook/pageEbookReader.do")
-	public String pageEbookReader() {
+	public String pageEbookReader(String bindNo, Model model) {
+		String filepath = service.getEbookFilepath(bindNo);
+		
+		model.addAttribute("filepath", filepath);
+		
 		return "ebook/wizard/ebookReader";
 	}
 	
@@ -148,6 +152,11 @@ public class EbookController {
 	@RequestMapping(value = "/ebook/pageEbookClubDebateManager.do")
 	public String pageEbookClubDebateManager() {
 		return "ebook/wizard/club/ebookClubDebateManager";
+	}
+	
+	@RequestMapping(value = "/ebook/pageEbookClubGather.do")
+	public String pageEbookClubGatherManager() {
+		return "ebook/wizard/club/ebookClubGather";
 	}
 	
 	@RequestMapping(value="/ebook/pageEbookPublisher.do")
@@ -427,6 +436,88 @@ public class EbookController {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping(value = "/ebook/checkClubName.do")
+	@ResponseBody
+	public int checkClubName(String clubName) {
+		int result = service.checkClubName(clubName);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/ebook/createClub.do")
+	@ResponseBody
+	public int createClub(@RequestParam Map param) {
+		int result = service.createClub(param);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/ebook/showMyClubList.do")
+	@ResponseBody
+	public List<HashMap> showMyClubList(String memberId) {
+		List<HashMap> list = service.showMyClubList(memberId);
+		
+		return list;
+	}
+	
+	@RequestMapping(value = "/ebook/showClubInfo.do")
+	@ResponseBody
+	public List<HashMap> showClubInfo(String clubName) {
+		System.out.println("컨트롤러 테스트 : " + clubName);
+		
+		List<HashMap> list = service.showClubInfo(clubName);
+		
+		return list;
+	}
+	
+	@RequestMapping(value = "/ebook/checkAuthority.do")
+	@ResponseBody
+	public HashMap checkAuthority(String clubName) {
+		return service.checkAuthority(clubName);
+	}
+	
+	@RequestMapping(value = "/ebook/deleteClub.do")
+	@ResponseBody
+	public int deleteClub(String clubName) {
+		return service.deleteClub(clubName);
+	}
+	
+	@RequestMapping(value = "/ebook/joinClub.do")
+	@ResponseBody
+	public int joinClub(@RequestParam Map param) {
+		return service.joinClub(param);
+	}
+	
+	@RequestMapping(value = "/ebook/deportMember.do")
+	@ResponseBody
+	public int deportMember(@RequestParam Map param) {
+		return service.deportMember(param);
+	}
+	
+	@RequestMapping(value = "/ebook/saveMessage.do")
+	@ResponseBody
+	public int saveMessage(@RequestParam Map param) {
+		return service.saveMessage(param);
+	}
+	
+	@RequestMapping(value = "/ebook/deleteMessage.do")
+	@ResponseBody
+	public int deleteMessage(@RequestParam Map param) {
+		return service.deleteMessage(param);
+	}
+	
+	@RequestMapping(value = "/ebook/loadMessage.do")
+	@ResponseBody
+	public List<HashMap> loadMessage(String memberId) {
+		return service.loadMessage(memberId);
+	}
+	
+	@RequestMapping(value = "/ebook/getMyEbooks.do")
+	@ResponseBody
+	public List<HashMap> getMyEbooks(@RequestParam Map param) {
+		return service.getMyEbooks(param);
 	}
 	
 }

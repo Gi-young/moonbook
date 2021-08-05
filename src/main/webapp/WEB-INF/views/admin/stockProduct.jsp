@@ -48,12 +48,16 @@
 										<option value="title" selected>제품명</option>
 										<option value="no">번호</option>
 
+
 								</select></td>
+								
 								<td class="search-box"><input type="text" name="searchHow5">
 								</td>
 								<td class="search-box"><img alt="검색하기"
 									src="${path }/resources/img/admin/search.png"
+
 									onclick="searchStockT(1,10);"></td>
+
 							</tr>
 						</table>
 
@@ -62,8 +66,10 @@
 				</div>
 			</div>
 			<div class="stockT-container">
+
 				<p class="memberTFont">
 					총 <span class="turnRed1">${totalContents }</span>개의 책이 있습니다.
+
 				</p>
 				<p class="memberTFont2">※ 책 제목, 가격, 출판사, 카테고리코드만 수정 가능합니다.</p>
 				<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
@@ -121,15 +127,16 @@
 						</tr>
 					</c:forEach>
 
-
 				</table>
 				<!-- </form> -->
+
 
 				<div id="pagebar-container1">
 			        ${pageBar }
 				</div>
 
-			</div>
+				</div>
+				
 			<div class="stockT-container2" style="display:none;">
 				<p class="memberTFont">
 					총 <span class="turnRed2">${totalContents2 }</span>개의 상품이 있습니다.
@@ -139,74 +146,74 @@
 				<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
 				<table class="stockT2">
 
-					<tr>
-						<th>상품 번호</th>
-						<th>상품명</th>
-						<th>상품소개</th>
-						<th>가격</th>
-						<th>제조사</th>
-						<th>제조국</th>
-						<th>AS/상담여부</th>
-						<th>수입여부</th>
-						<th>재고</th>
-						<th>판매여부</th>
-						<th>카테고리코드</th>
-						<th>수정하기</th>
-						<th>삭제하기</th>
-					</tr>
-
-
-					<c:forEach var="g" items="${list2 }">
 						<tr>
-							<td><input type="text" value="${g.gift_no }" name="gift_no"
-								readonly></td>
-							<td><input type="text" value="${g.gift_title }"
-								name="gift_title"></td>
-							<td><input type="text" value="${g.gift_content }"
-								name="gift_content"></td>
-							<td><input type="text" value="${g.gift_price }"
-								name="gift_price"></td>
-							<td><input type="text" value="${g.gift_maker }"
-								name="gift_maker" readonly></td>
-							<td><input type="text" value="${g.gift_made }"
-								name="gift_made" readonly></td>
-							<td><input type="text" value="${g.gift_as }" name="gift_as"></td>
-							<td><input type="text" value="${g.gift_import }"
-								name="gift_import" readonly></td>
-							<td><input type="text" value="${g.gift_count }"
-								name="gift_count" readonly></td>
-							<td><input type="text" value="${g.gift_for_sale }"
-								name="gift_for_sale" readonly></td>
-							<td><input type="text" value="${g.gift_giftcate_code}"
-								name="gift_giftcate_code"></td>
-							<td><img alt="수정하기"
-								src="${path }/resources/img/admin/checkgreen.png"
-								onclick="changeStockV2(event);" class="updateCheck updateImg">
-							</td>
-
-							<td><input type="hidden" value="${g.gift_no }"
-								name="gift_no" readonly> <img
-								src="${path }/resources/img/admin/delete2.png" alt=""
-								class="updateCheck deleteImg" onclick="adStockDelete2(event);">
-
-
-							</td>
-
+							<th>상품 번호</th>
+							<th>상품명</th>
+							<th>상품소개</th>
+							<th>가격</th>
+							<th>제조사</th>
+							<th>제조국</th>
+							<th>AS/상담여부</th>
+							<th>수입여부</th>
+							<th>재고</th>
+							<th>판매여부</th>
+							<th>카테고리코드</th>
+							<th>수정하기</th>
+							<th>삭제하기</th>
 						</tr>
-					</c:forEach>
 
 
-				</table>
-				<!-- </form> -->
+
+						<c:forEach var="g" items="${list2 }">
+							<tr>
+								<td><input type="text" value="${g.gift_no }" name="gift_no"
+									readonly></td>
+								<td><input type="text" value="${g.gift_title }"
+									name="gift_title"></td>
+								<td><input type="text" value="${g.gift_content }"
+									name="gift_content"></td>
+								<td><input type="text" value="${g.gift_price }"
+									name="gift_price"></td>
+								<td><input type="text" value="${g.gift_maker }"
+									name="gift_maker" readonly></td>
+								<td><input type="text" value="${g.gift_made }"
+									name="gift_made" readonly></td>
+								<td><input type="text" value="${g.gift_as }" name="gift_as"></td>
+								<td><input type="text" value="${g.gift_import }"
+									name="gift_import" readonly></td>
+								<td><input type="text" value="${g.gift_count }"
+									name="gift_count" readonly></td>
+								<td><input type="text" value="${g.gift_for_sale }"
+									name="gift_for_sale" readonly></td>
+								<td><input type="text" value="${g.gift_giftcate_code}"
+									name="gift_giftcate_code"></td>
+								<td><img alt="수정하기"
+									src="${path }/resources/img/admin/checkgreen.png"
+									onclick="changeStockV2(event);" class="updateCheck updateImg">
+								</td>
+
+								<td><input type="hidden" value="${g.gift_no }"
+									name="gift_no" readonly> <img
+									src="${path }/resources/img/admin/delete2.png" alt=""
+									class="updateCheck deleteImg" onclick="adStockDelete2(event);">
+								</td>
+							</tr>
+							</c:forEach>
+					</table>
+
+						
+						
 
 				<div id="pagebar-container2">
 			        ${pageBar2 }
 				</div>
+		
 
+
+				</div>		
 			</div>
-		</div>
-	</div>
-</div>
+			
+						
 
 
 <script>
@@ -669,6 +676,12 @@ function orderList3(cPage, numPerpage) {
 
 </script>
 
+<<<<<<< HEAD
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
+=======
+						<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
+							<jsp:param name="" value="" />
+						</jsp:include>
+>>>>>>> 9c8ad780369c10e5e474ba42a2eb3cf1ab0336d0

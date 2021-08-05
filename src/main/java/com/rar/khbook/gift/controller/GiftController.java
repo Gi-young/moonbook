@@ -9,11 +9,17 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.rar.khbook.gift.model.service.GiftService;
+import com.rar.khbook.gift.model.vo.Ngift;
+import com.rar.khbook.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,13 +27,26 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GiftController {
 	
-//	@Autowired
-//	private GiftService service;
+	@Autowired
+	private GiftService service;
+    
+	public static StringBuilder sb;
+	 
+	/* private List<Ngift> list; */
 	
 //	기프트 메인페이지 이동
 	@RequestMapping("/gift/giftView.do")
-	public String giftView() {
-		return "gift/gift";
+	public ModelAndView giftView(ModelAndView mv) {		
+		/*
+		 * List<Gift> list = service.giftAll();
+		 * System.out.println("== 기프트 페이지로 넘기기전 가져온 데이터 == "+list);
+		 * mv.addObject("giftList", list);
+		 */
+		List<Ngift> list = service.giftAll();
+		
+		mv.addObject("list", list);
+		mv.setViewName("gift/gift");
+		return mv;
 	}
 	
 //	기프트 상세페이지 이동
@@ -101,4 +120,78 @@ public class GiftController {
 		 return loc;
 		 
 	 }
+	 
+	 @RequestMapping("/gift/searchMember.do")
+	 @ResponseBody
+	 public String searchMember(String memberId) {
+		 Member m = service.searchMember(memberId);
+		 System.out.println("============== "+m+" ==============");
+		 return "common/msg";
+		 
+	 }
+	 
+
+	    
+//	    @RequestMapping(value="/gift/naverGift.do" , produces = "text/plain;charset=utf-8")	
+//	    @ResponseBody
+//	    	public StringBuilder main(String[] args, ModelAndView mv) {
+//		        String clientId = "h6kv1hW6Ko8D4Yfr7kvc";// 애플리케이션 클라이언트 아이디값";
+//		        String clientSecret = "MUlrXb9ksH";// 애플리케이션 클라이언트 시크릿값";\
+//		        int display = 100; // 검색결과갯수. 최대100개
+//		        try {
+//		            String text = URLEncoder.encode("", "utf-8");
+//		            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query=" + text + "&display=" + display + "&";
+//		 
+//		            URL url = new URL(apiURL);
+//		            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+//		            con.setRequestMethod("GET");
+//		            con.setRequestProperty("X-Naver-Client-Id", clientId);
+//		            con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+//		            int responseCode = con.getResponseCode();
+//		            BufferedReader br;
+//		            if (responseCode == 200) { 
+//		                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+//		            } else { 
+//		                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+//		            }
+//		            sb = new StringBuilder();
+//		            String line = null;
+//		           
+//		            while ((line = br.readLine()) != null) {	      
+//		                sb.append(line + "\n");
+//		                System.out.println(line);
+//		            }
+//		            br.close();
+//		            con.disconnect();
+//		            
+//		            mv.addObject("sb", sb);
+//		            mv.setViewName("gift/naverGift");
+//		        } catch (Exception e) {
+//		            e.printStackTrace();
+//		        }
+//	    	
+//		        return sb;
+//		        
+//		        
+//	    }
+
+//	    @RequestMapping("/gift/insertGift.do")  
+//	    @ResponseBody
+//	    public int insertGift(@RequestParam Map param) {
+//	    	
+//	    	System.out.println("============== ajax로 넘어온 값 : "+param.get("title"));
+//	    	
+//	    	
+//	    	int result = service.insertGift(param);
+//	    	
+//	    	System.out.println("============== 결과 : "+result);
+//	    	
+//	    	return result;
+//	    }
+	    
+
+
+
+	
 }
+

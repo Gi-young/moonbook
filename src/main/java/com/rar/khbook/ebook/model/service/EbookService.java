@@ -36,4 +36,30 @@ public interface EbookService {
 	
 	int writePurchaseLog(Map param);
 	
+	int checkClubName(String clubName);
+	
+	int createClub(Map param);
+	
+	List<HashMap> showMyClubList(String memberId);
+	
+	List<HashMap> showClubInfo(String clubName);
+	
+	HashMap checkAuthority(String clubName);
+	
+	int deleteClub(String clubName);
+	
+	int joinClub(Map param);
+	
+	int deportMember(Map param);
+	
+	int saveMessage(Map param);
+	
+	int deleteMessage(Map param);
+	
+	List<HashMap> loadMessage(String memberId);
+	
+	List<HashMap> getMyEbooks(Map param);
+	
+	String getEbookFilepath(String bindNo);
+	
 }

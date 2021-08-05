@@ -85,7 +85,31 @@ public class SellbookController {
 		return "order/main";
 	}
 	
-	
+
+	@RequestMapping("/sellbookController/bookchodongdonghwa12.do")
+	public String bookchodongdonghwa12() {
+		System.out.println("초등동화");
+		return "sellpart/bookchodong/bookchodongdonghwa12";
+		
+	}
+	@RequestMapping("/sellbookController/bookchodongdonghwa34.do")
+	public String bookchodongdonghwa34() {
+		System.out.println("초등동화");
+		return "sellpart/bookchodong/bookchodongdonghwa34";
+		
+	}
+	@RequestMapping("/sellbookController/bookchodongdonghwa56.do")
+	public String bookchodongdonghwa56() {
+		System.out.println("초등동화");
+		return "sellpart/bookchodong/bookchodongdonghwa56";
+		
+	}
+	@RequestMapping("/sellbookController/bookchodongdonghwa99.do")
+	public String bookchodongdonghwa99() {
+		System.out.println("초등동화");
+		return "sellpart/bookchodong/bookchodongdonghwa99";
+		
+	}
 	
 	
 	@RequestMapping("/sellbookController/bookjoongdong.do")
@@ -133,9 +157,11 @@ public class SellbookController {
 	}
 	
 	@RequestMapping("/sellbookController/bigview.do") //모델엔 뷰로 넘ㅈ기기
-	public String bigview(String img) {
+	public ModelAndView bigview(int bindNo, ModelAndView mv) {
 		System.out.println("페이지이동");
-		return "bigview";
+		mv.addObject("bigview",service.selectBigView(bindNo));
+		mv.setViewName("bigview");
+		return mv;
 		
 	}
 	

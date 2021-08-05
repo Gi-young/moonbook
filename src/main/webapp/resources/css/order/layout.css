@@ -1,17 +1,94 @@
 @charset "UTF-8";
-.orderHead h1{
-	font-size:36px;
+
+.orderHead h1 {
+	font-size: 36px;
 	font-weight: 900;
-	margin-top:1.3em;
+	margin-top: 1.3em;
 }
-.orderInfoBox h3{
-	font-size:18px;
+
+.orderInfoBox h3 {
+	font-size: 18px;
 	font-weight: 600;
-	margin-top:1.3em;
+	margin-top: 1.3em;
 }
-.tbl_box{
-	margin-top:1.3em;
+
+.tbl_box {
+	margin-top: 1.3em;
 }
-.tbl_deli tr, td{
-	padding:10px;
+
+.tbl_deli {
+	width: 100%;
+}
+
+.tbl_deli tr, .tbl_deli td {
+	padding: 10px;
+	border-bottom: 1px solid #F1CB63;
+}
+
+.tbl_deli th {
+	width: 20%;
+	background-color: #F1CB63;
+}
+
+.tbl_first {
+	border-top: 2px solid #582810;
+}
+
+.tbl_last {
+	border-bottom: 2px solid #582810 !important;
+}
+
+.tbl_row2 {
+	vertical-align: middle;
+}
+
+.tbl_order {
+	width: 100%;
+}
+
+.tbl_order tr, .tbl_order td {
+	text-align: center;
+	padding: 10px;
+	border-bottom: 1px solid #F1CB63;
+}
+
+.tbl_order th {
+	background-color: #F1CB63;
+}
+
+.margin_bottom3em {
+	margin-bottom: 1.3em;
+}
+
+.tbl_payment {
+	width: 100%;
+	height: 10%;
+	border: 2px solid #582810;
+}
+
+.tbl_payment td {
+	width: 20%;
+	font-weight: 900;
+	font-size: 20px;
+	text-align: center;
+	padding: 20px;
+}
+
+.btnPay {
+	width: 150px;
+	height: 60px;
+	border-radius: 10px;
+	color: white;
+	background: black;
+}
+.btnPay:hover{
+	border: 3px solid #E5E2DB;
+    color: black;
+    background-color: #E5E2DB;
+    cursor: pointer;
+}
+.btnCenter{
+	justify-content: center;
+	margin:10px;
+	display:flex;
 }
