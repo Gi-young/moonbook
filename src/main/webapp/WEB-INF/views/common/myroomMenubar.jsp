@@ -12,7 +12,7 @@
 	</h1>
 	<ul class="sideMenu padding10">
 		<li><h3>
-				<a href="#">구매내역</a>
+				<a href="${path }/member/myroom/payList.do">구매내역</a>
 			</h3></li>
 		<li><h3>
 				<a href="javascript:openEbookWizard();">e-Book</a>

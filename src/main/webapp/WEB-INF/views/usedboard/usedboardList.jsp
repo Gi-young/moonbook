@@ -11,8 +11,8 @@
     <br><br><br>
     <div class="side" style="float: left; margin-top: 20px; margin-left: 150px">
         <div class="">
-            <center><h2 style="margin-bottom: 20px;"><a style="color: orange;">카테고리</a></h2></center>
-            <div style="border:1px solid #666; width: 140px;">
+            <center><h2 style="margin-bottom: 20px	;"><a style="color: orange;">카테고리</a></h2></center>
+            <div style="border:1px solid #666; width: 160px;">
                 <ul id="ul1" style="border-bottom:1px solid #666;">
                     <li><a href="${path}/usedboard/usedboardList.do?catagory='소설'">소설</a></li>
                     <li><a href="${path}/usedboard/usedboardList.do?catagory='시/에세이'">시/에세이</a></li>
@@ -60,7 +60,11 @@
         </div>
     </div>
     <div style="height: 1250px">
-        <p id="titi" style="font-size: 35px; color: cornflowerblue;">  중고게시판</p>
+        <p id="titi" style="font-size: 35px; color: cornflowerblue;">  중고게시판 &nbsp;&nbsp;&nbsp;
+        <c:if test="${loginMember!=null }">
+        <a href="${path }/usedboard/usedboardList.do?memberId=${loginMember.memberId}" style="font-size: 20px; color: #964b00">내 중고게시판</a> <a style="font-size: 20px; color: #964b00;">/</a> 
+        <a href="${path }/usedboard/usedboardMyPayment.do?memberId=${loginMember.memberId}" style="font-size: 20px; color: #964b00;">내 중고구매목록</a>
+        </c:if></p>
         <c:if test="${loginMember!=null }">
         <a href="${path }/usedboard/usedboardInsert.do" id="insertborad" style="left: 65%; font-size: 18px;">거래 등록</a>
         </c:if>
@@ -77,7 +81,8 @@
         <c:forEach var="b" items="${list }">
         <div id="secondBorad" style="padding-left: 300px;">
             <div class="side">
-                    <a href="${path }/usedboard/usedboardView.do?no=${b.usedboard_No }" class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
+            	<div  class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
+                    <a href="${path }/usedboard/usedboardView.do?no=${b.usedboard_No }">
                         <span class="artice">
                             <span style="font-size: 15px;">
 	                            <c:if test="${b.usedboard_Category != '' }">
@@ -95,7 +100,7 @@
                             </strong>
                             <span id="ddssaa" style="font-size: 17px;">책제목 : ${b.usedboard_BookTitle } / 가격 : ${b.usedboard_Price }</span>
                             <br>
-                            <span id="ddssaa" style="font-size: 17px;">${b.usedboard_Content }</span>
+                            <span id="ddssaa" style="font-size: 17px;">${b.usedboard_Content }</span></a>
                             <span class="txt_info">
                                 <span class="username" style="font-size: 17px;">
                                     ${b.member_Id }
@@ -110,15 +115,35 @@
                                     거래중 
                                 	</span>
 								</c:if>
-                                <c:if test="${b.usedboard_State == 'n' }">
+                                <c:if test="${b.usedboard_State != 'y' }">
 									<span style="font-size: 17px; color: blue;">
                                     거래완료
                                 	</span>
-								</c:if>
+								</c:if>	
+								<c:if test="${b.usedboard_State == '1' }">
+                                	<c:if test="${b.member_Id == loginMember.memberId }">
+                                		<span style="font-size: 17px;"> || </span>
+                                		<span style="font-size: 17px; color: black;"> 배송확인중 </span>
+                                		<span style="font-size: 17px;"> || </span>
+                                		<button onclick="location.assign('${path}/usedboard/usedboardPay1.do?no=${b.usedboard_No }&memberId=${loginMember.memberId }');" style="height: 20px;width: 100px;font-size: 14px">배송확인</button>
+                                	</c:if>
+								</c:if>	
+								<c:if test="${b.usedboard_State == '2' }">
+                                	<c:if test="${b.member_Id == loginMember.memberId }">
+                                		<span style="font-size: 17px;"> || </span>
+                                		<span style="font-size: 17px; color: black;"> 배송중 </span>
+                                	</c:if>
+								</c:if>	
+								<c:if test="${b.usedboard_State == '3' }">
+                                	<c:if test="${b.member_Id == loginMember.memberId }">
+                                		<span style="font-size: 17px;"> || </span>
+                                		<span style="font-size: 17px; color: black;"> 배송완료 </span>
+                                	</c:if>
+								</c:if>	
                             </span>
                         </span>
                         
-                    </a>
+                    </div>
                 </div>
             </div>
         </c:forEach>

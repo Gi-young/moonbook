@@ -321,3 +321,50 @@ a img {
 	vertical-align: middle;
 	font-size:18px;
 }
+.content_title{
+	padding:10px;
+	display:flex;
+	align-items: center;
+	float:left;
+}
+.content_title a{
+	color:#582810;
+}
+.dateBox{
+	margin-left:1.3em;
+}
+.optionBox{
+	float:right;
+	padding:10px;
+}
+.selectBox{
+	height:24px;
+}
+.payCate{
+	background-color:#F1CB63;
+	font-weight:900;
+	padding:10px;
+}
+.orderHead{
+width:100%;	
+}
+.orderTh{
+	width:50%;
+}
+.tbl_order{
+	width:100%;
+}
+.tbl_order th {
+	border-top: 1px solid #582810;
+	color: #582810;
+	background-color: #F1CB63;
+	font-weight: bold;
+	padding: 10px;
+	text-align: center;
+}
+.tbl_order td {
+	padding: 1.3em;
+	vertical-align: middle;
+	text-align: center;
+	color: black;
+}

@@ -100,9 +100,9 @@
                     </tr>
                     <tr>
                         <tr>
-                            <th>물품 사진</th>
+                            <th>대표 이미지</th>
                             <td>
-                            <input type="file" name="upfile"> <button>추가</button>
+                            <input type="file" name="upfile"> <span id="img_add">추가</span>
                         </td>
                     </tr>
                 </table>
@@ -148,6 +148,29 @@
 			
 		});
 	})
+	                //이미지 추가 삭제 기능
+                $(document).on("click","#img_del",e=>{
+                    $(e.target).parent().parent().remove();
+                })
+      
+                $("#img_add").click(e=>{
+                    if($("input[name=upfile]").length>3){
+                        alert("최대 3개까지 등록가능합니다");
+                        return;
+                    }
+                    let tr=$("<tr>")
+                    let th=$("<th>").text("추가된 이미지")
+                    let td=$("<td>");
+                    let span=$("<span>").text("삭제").attr({
+                        id:"img_del"
+                    })
+                    let inputfile=$("<input>").attr({
+                        type:"file",
+                        name:"upfile"
+                    })
+                    tr.append(th).append(td.append(inputfile).append(span))           
+                    $(e.target).parent().parent().parent().append(tr);
+                })
 </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

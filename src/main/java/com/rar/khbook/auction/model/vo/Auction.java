@@ -1,6 +1,7 @@
 package com.rar.khbook.auction.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -19,4 +20,11 @@ public class Auction {
 	private int priceUnit;
 	private String auctionState;
 	private String[] auctionImg;
+	private List<AuctionCate> auctioncate;
+	private List<AuctionBid> auctionbid;
+	private int count;
+	private String sellerState;
+	private String buylerState;
+	//실험용
+	private String state;
 }

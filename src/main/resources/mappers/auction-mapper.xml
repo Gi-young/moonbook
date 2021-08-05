@@ -1,17 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="auction">
+	<!-- 낙찰 받기 -->
+	<update id="updatestateS">
+	UPDATE AUCTION SET AUCTION_STATE='S' WHERE AUCTION_NO=#{auctionNo}
+	</update>
+	
+	<!-- 포인트 충전하기 -->
+	<update id="updateauctionPay">
+	UPDATE MEMBER SET MEMBER_POINT = MEMBER_POINT + #{memberPoint} WHERE MEMBER_ID=#{memberId}
+	</update>
 
+	<!-- 경매 확인하기 -->
+	<select id="selectbidMember" resultMap="memberMap">
+	SELECT * FROM MEMBER WHERE MEMBER_ID=#{bidId}
+	</select>
+	<!-- 마이 경매 리스트 -->
+	<select id="auctionStateCount" resultType="_int">
+	select count(*) from auction LEFT JOIN AUCTIONBID USING(AUCTION_NO) WHERE 1=1
+	<if test="memberId !=null and memberId!=''">
+	AND member_id=#{memberId}
+	</if>
+	<if test="bidId !=null and bidId!=''">
+	AND BID_ID=#{bidId}
+	</if>
+	</select>
+	
+	<select id="selectStateList" resultMap="AuctionMap">
+	SELECT * FROM AUCTION LEFT JOIN AUCTIONBID USING(AUCTION_NO) where 1=1
+	<if test="memberId !=null and memberId!=''">
+	AND member_id=#{memberId}
+	</if>
+	<if test="bidId !=null and bidId!=''">
+	AND BID_ID=#{bidId}
+	</if>
+	</select>
+
+	<!-- 물품마다 자동 업데이트 시키기 -->
+	<select id="selectstatelist" resultMap="AuctionMap">
+	SELECT * FROM AUCTION LEFT JOIN AUCTIONBID USING(AUCTION_NO) WHERE AUCTION_STATE='Y'
+	</select>
+	<update id="updatestate">
+		<if test="auctionbid.size()==0">
+		update auction set auction_state='N' where (end_date-sysdate)&lt;0 AND AUCTION_NO=#{auctionNo}
+		</if>
+		<if test="auctionbid.size()!=0">
+		update auction set auction_state='S' where (end_date-sysdate)&lt;0 AND AUCTION_NO=#{auctionNo}
+		</if>
+	</update>
+	<!-- =========================== -->	
+	
+	<update id="memberpointchange">
+	UPDATE MEMBER SET MEMBER_POINT = MEMBER_POINT - #{bidPrice} WHERE MEMBER_ID=#{bidId}
+	</update>
+	<insert id="insertauctionBid">
+	INSERT INTO AUCTIONBID VALUES(SEQ_AUCTIONBID_NO.NEXTVAL,#{auctionNo},#{bidId},#{bidPrice},#{auctionName})
+	</insert>
+	
+	<select id="auctionNo" resultMap="AuctionMap">
+	    select * from auctioncate join auction using(auctioncate_code) left join auctionbid using(auction_no) where auction_no=#{auctionNo} ORDER BY BID_PRICE desc
+	
+	</select>
+	<select id="auctionListCount" resultType="_int">
+	SELECT COUNT(*) FROM AUCTION JOIN AUCTIONCATE USING(AUCTIONCATE_CODE) WHERE AUCTIONCATE_FIRST=#{auctioncateFrist}
+	</select>
+	<select id="selectAuctionList" resultMap="AuctionMap">
+	select * from auctioncate join auction using(auctioncate_code) left join auctionbid using(auction_no) WHERE 1=1
+	
+	<if test="auctioncateFrist != null and auctioncateFrist != ''">
+	AND AUCTIONCATE_FIRST=#{auctioncateFrist} AND AUCTION_STATE='Y'
+	</if>
+	<if test="memberId != null and memberId != ''">
+	AND MEMBER_ID=#{memberId} 
+	</if>
+	<if test="bidId != null and bidId != ''">
+	AND bid_id=#{bidId} 
+	</if>
+	<if test="type != null and type != ''">
+	AND ${type} like '%'||#{keyword}||'%' 
+	</if>
+	ORDER BY BID_PRICE DESC,
+	<choose>
+			<when test="desc != null">
+					${desc} DESC
+			</when>
+			<otherwise>
+				  START_DATE DESC
+			</otherwise>
+	</choose>
+
+	</select>
+	<select id="selectAuctionCate" resultMap="AuctionCateMap">
+	SELECT * FROM AUCTIONCATE
+	</select>
+	
 	<insert id="auctionWriteEnd">
-	INSERT INTO AUCTION VALUES(SEQ_AUCTION_NO.NEXTVAL,#{memberId},#{auctioncateCode},#{auctionName},#{auctionEx},DEFAULT,#{endDate},#{startPrice},#{buyNow},#{priceUnit},'Y',#{auctionImg, typeHandler=strArr})
+	INSERT INTO AUCTION VALUES(SEQ_AUCTION_NO.NEXTVAL,#{memberId},#{auctioncateCode},#{auctionName},#{auctionEx},DEFAULT,#{endDate},#{startPrice},#{buyNow},#{priceUnit},'Y',#{auctionImg, typeHandler=strArr},'N','N')
 	</insert>
 	
 	<select id="auctionCount" resultType="_int">
-	SELECT COUNT(*) FROM AUCTION
+	SELECT COUNT(*) FROM AUCTION where auction_state='Y'
+	</select>
+	
+	<select id="selectpoplist" resultMap="AuctionMap">
+	SELECT auction_no,member_id,end_date,start_price,buy_now,auction_img,auction_state,auction_name,count(bid_id) as count FROM 
+    AUCTION JOIN AUCTIONBID USING(AUCTION_NO) 
+    group by auction_no,member_id,end_date,start_price,buy_now,auction_img ,auction_state,auction_name
+    HAVING auction_state='Y'
+    order by count desc
 	</select>
 	
 	<select id="selectTimeList" resultMap="AuctionMap">
-	SELECT * FROM AUCTION ORDER BY (end_date-start_date)
+	select * from auction left join auctionbid on auction.auction_no=auctionbid.auction_no where auction_state='Y' ORDER BY (end_date-start_date)
 	</select>
 	
 	<select id="selectauctioncate" resultMap="AuctionCateMap">
@@ -41,7 +141,41 @@
 		<result column="buy_now" property="buyNow"/>
 		<result column="price_unit" property="priceUnit"/>
 		<result column="auction_state" property="auctionState"/>
-		<result column="auction_img" property="auctionImg" typeHandler="strArr"/>
+		<result column="count" property="count"/>
+		<result column="seller_state" property="sellerState"/>
+		<result column="buyler_state" property="buylerState"/>
 		
+		
+		<result column="auction_img" property="auctionImg" typeHandler="strArr"/>
+	<collection property="auctionbid" ofType="com.rar.khbook.auction.model.vo.AuctionBid">
+		<result column="bid_no" property="bidNo"/>
+		<result column="bid_id" property="bidId"/>
+		<result column="bid_price" property="bidPrice"/>
+		<result column="bid_name" property="bidName"/>	
+	</collection>
+	<collection property="auctioncate" ofType="com.rar.khbook.auction.model.vo.AuctionCate">
+		<result column="auctioncate_code" property="auctioncateCode"/>
+		<result column="auctioncate_name" property="auctioncateName"/>
+		<result column="auctioncate_first" property="auctioncateFirst"/>
+	</collection>
+
+		
+	</resultMap>
+	
+		<resultMap type="member" id="memberMap">
+		<result column="member_id" property="memberId" />
+		<result column="member_pw" property="memberPw" />
+		<result column="member_name" property="memberName" />
+		<result column="member_email" property="memberEmail" />
+		<result column="member_phone" property="memberPhone" />
+		<result column="member_address" property="memberAddress" />
+		<result column="member_gender" property="memberGender" />
+		<result column="member_birth" property="memberBirth" />
+		<result column="member_point" property="memberPoint" />
+		<result column="member_regidate" property="memberRegiDate" />
+		<result column="member_memberGrade_no" property="memberGradeNo" />
+		<result column="member_total_sale" property="memberTotalSale" />
+		<result column="member_visit" property="memberVisit" />
+		<result column="member_today" property="memberToday" />
 	</resultMap>
 </mapper>
