@@ -101,6 +101,11 @@ function showMyClubList() {
                 selectClub.appendChild(option);
             });
 
+            if (data.length === 0) {
+                let totalMember = document.getElementById("totalMember");
+                totalMember.innerText = 0;
+            }
+
             showClubInfo();
         }
     });

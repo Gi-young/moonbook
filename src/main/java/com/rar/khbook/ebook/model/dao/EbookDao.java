@@ -60,4 +60,8 @@ public interface EbookDao {
 	
 	List<HashMap> loadMessage(SqlSession session, String memberId);
 	
+	List<HashMap> getMyEbooks(SqlSession session, Map param);
+	
+	String getEbookFilepath(SqlSession session, String bindNo);
+	
 }

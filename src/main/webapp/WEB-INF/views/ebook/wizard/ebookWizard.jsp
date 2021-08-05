@@ -10,12 +10,22 @@
 		<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookWizard.css"/>
 		
 		<aside>
-			<div></div>
+			<h2>내 서재</h2>
+			
+			<ul>
+				<li>나의 모든 e북</li>
+			</ul>
+			
+			<div class="library-controller">
+				<input type="text" placeholder="분류 이름">
+				<button onclick="">분류 추가</button>
+				<select></select>
+				<button onclick="">분류 삭제</button>
+			</div>
 		</aside>
 		
 		<section>
-			<button id="readBookBtn">책 읽기</button>
-			
+			<div class="pseudo-box"></div>
 		</section>
 	</div>
 

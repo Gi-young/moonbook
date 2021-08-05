@@ -149,4 +149,19 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectList("ebook.loadMessage", memberId);
 	}
 	
+	@Override
+	public List<HashMap> getMyEbooks(SqlSession session, Map param) {
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerPage = Integer.parseInt((String)param.get("numPerPage"));
+		
+		RowBounds rb = new RowBounds(numPerPage * (cPage - 1), numPerPage);
+		
+		return session.selectList("ebook.getMyEbooks", param, rb);
+	}
+	
+	@Override
+	public String getEbookFilepath(SqlSession session, String bindNo) {
+		return session.selectOne("ebook.getEbookFilepath", bindNo);
+	}
+	
 }

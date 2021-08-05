@@ -315,5 +315,15 @@
 	<select id="loadMessage" resultType="HashMap">
 		SELECT MESSAGE FROM EBOOK_NOTICE WHERE MEMBER_ID=#{memberId}
 	</select>
+	
+	<select id="getMyEbooks" resultType="HashMap">
+		SELECT * FROM BOOK_EBOOK_DATABIND D, MEMBER_EBOOK_LIST L
+		WHERE D.BIND_NO=L.EBOOK_NO
+		AND L.MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="getEbookFilepath" resultType="string">
+		SELECT FILEPATH FROM EBOOK WHERE EBOOK_NO=#{bindNo}
+	</select>
 
 </mapper>

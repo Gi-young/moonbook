@@ -116,7 +116,11 @@ public class EbookController {
 	}
 	
 	@RequestMapping(value="/ebook/pageEbookReader.do")
-	public String pageEbookReader() {
+	public String pageEbookReader(String bindNo, Model model) {
+		String filepath = service.getEbookFilepath(bindNo);
+		
+		model.addAttribute("filepath", filepath);
+		
 		return "ebook/wizard/ebookReader";
 	}
 	
@@ -132,18 +136,6 @@ public class EbookController {
 	
 	@RequestMapping(value="/ebook/pageEbookClubManager.do")
 	public String pageEbookClubManager() {
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		return "ebook/wizard/club/ebookClubManager";
 	}
 	
@@ -520,6 +512,12 @@ public class EbookController {
 	@ResponseBody
 	public List<HashMap> loadMessage(String memberId) {
 		return service.loadMessage(memberId);
+	}
+	
+	@RequestMapping(value = "/ebook/getMyEbooks.do")
+	@ResponseBody
+	public List<HashMap> getMyEbooks(@RequestParam Map param) {
+		return service.getMyEbooks(param);
 	}
 	
 }

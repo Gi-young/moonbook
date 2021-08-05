@@ -1,5 +1,9 @@
-let url = contextPath + "/resources/ebook/test.pdf";
+let filepath = document.getElementById("filepath").value;
+
+let url = contextPath + "/resources/ebook/" + filepath;
+
 let pdfjsLib = window['pdfjs-dist/build/pdf'];
+
 pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
 let pageFlippingSound = new Audio(contextPath + '/resources/audio/ebook/pageFlipping.wav');

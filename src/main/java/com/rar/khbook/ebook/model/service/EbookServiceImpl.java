@@ -159,4 +159,14 @@ public class EbookServiceImpl implements EbookService {
 		return dao.loadMessage(session, memberId);
 	}
 	
+	@Override
+	public List<HashMap> getMyEbooks(Map param) {
+		return dao.getMyEbooks(session, param);
+	}
+	
+	@Override
+	public String getEbookFilepath(String bindNo) {
+		return dao.getEbookFilepath(session, bindNo);
+	}
+	
 }

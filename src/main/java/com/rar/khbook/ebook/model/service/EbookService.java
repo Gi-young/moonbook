@@ -58,4 +58,8 @@ public interface EbookService {
 	
 	List<HashMap> loadMessage(String memberId);
 	
+	List<HashMap> getMyEbooks(Map param);
+	
+	String getEbookFilepath(String bindNo);
+	
 }
