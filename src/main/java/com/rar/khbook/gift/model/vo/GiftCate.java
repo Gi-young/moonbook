@@ -13,9 +13,9 @@ import lombok.ToString;
 @Builder
 public class GiftCate {
 
-	
 	private int giftCateCode;
 	private String giftCateName;
 	private int giftCateFirstRef;
 	private int giftCateSecondRef;
+	
 }
