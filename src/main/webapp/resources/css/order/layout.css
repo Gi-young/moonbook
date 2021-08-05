@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+input[type=text], input[type= email]{
+	width:50%;
+}
 .orderHead h1 {
 	font-size: 36px;
 	font-weight: 900;

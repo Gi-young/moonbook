@@ -1,10 +1,11 @@
 IMP.init("imp26745696");
 
 
-let payBtn = document.getElementById("payBtn");
+let btnPay = document.getElementById("btnPay");
 let refundBtn = document.getElementById("refundBtn");
 let loginMember = document.getElementById("loginMember").value;
 let contextPath = document.getElementById("contextPath").value;
+let bindNo = document.getElementById("bindNo").value;
 
 
 

@@ -32,7 +32,7 @@ function searchBook(searchData) {
 		data: searchData,
 		dataType: "json",
 		success: data => {
-			console.log(data);
+			console.log("과연 객체로 들어오나?"+data);
 			
 			let main = document.getElementsByTagName("main")[0];
 

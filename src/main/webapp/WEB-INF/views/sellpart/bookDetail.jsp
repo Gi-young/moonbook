@@ -951,11 +951,11 @@ transition: all 0.2s linear;
                 
                 <div>
                     <span>주문수량</span>
-                    <input type="number" id="bookVolume">
+                    <input type="number" id="bookVolume" value="1">
                 </div>
                 <div style="display:flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
                     <a href="" >장바구니담기</a>
-                    <a href="" id="payBtn">바로구매</a>
+                    <a href="${path }/SellbookController/bookpayment.do?bindNo=${book.bindNo}">바로구매</a>
                 </div>
             </div>
         </div>
@@ -1468,17 +1468,5 @@ transition: all 0.2s linear;
 </section>
 
 
-<input type="hidden" id="loginMember" value="${loginMember.memberId}">
-<input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
-
-<%System.out.println("test : " + session.getAttribute("loginMember")); %>
-
-<input type="hidden" id="contextPath" value="${path }">
-<!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<!-- iamport.payment.js -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
-<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>
