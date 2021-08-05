@@ -164,7 +164,7 @@
 					</ul>
 				</div>
 				<div class="header-menuBar2">
-					<ul class="flex">
+					<ul class="flex" style="align-items:center;">
 						<c:if test="${loginMember==null }">
 							<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
 							<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
@@ -204,6 +204,5 @@
 			})
 		});
 	</script>
-	>>>>>>> sm
 </body>
 </html>

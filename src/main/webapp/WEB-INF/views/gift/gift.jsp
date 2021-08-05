@@ -46,7 +46,7 @@
      });
      
      </script> --%>  
-     <%! int num=0; %>
+     
     <div class="slide-container">
         <!-- 리스트를 담고 있는 박스 -->
        <div class="firstSlide-list">
@@ -55,7 +55,7 @@
 	           <div class="firstSlide-content">
 	               <!-- 리스트 안 각각의 컨텐츠  -->
 	            <div class="first">
-	            	<a href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}"><img src="${i.gift_img }" alt="${i.gift_title }"></a>
+	            	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="${i.gift_title }"></a>
 	            </div>     
 	           </div>
            </c:forEach>
@@ -507,7 +507,7 @@
                 <ul class="reco-product-ul">
 	                <c:forEach var="i" begin="0" end="3" items="${list }">
 	                    <li>
-	                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
 	                            <div>
 	                                <img src="${i.gift_img }" alt="" class="reco-img">
 	                            </div> 
@@ -563,7 +563,7 @@
                 <ul class="reco-product-ul">    
                     <c:forEach var="i" begin="4" end="7" items="${list }">
                     <li>
-                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                             <div>
                                 <img src="${i.gift_img }" alt="" class="reco-img">
                             </div> 
@@ -619,7 +619,7 @@
                 <ul class='reco-product-ul'>                    
                     <c:forEach var="i" begin="8" end="11" items="${list }">
 	                    <li>
-	                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
 	                            <div>
 	                                <img src="${i.gift_img }" alt="" class="reco-img">
 	                            </div> 

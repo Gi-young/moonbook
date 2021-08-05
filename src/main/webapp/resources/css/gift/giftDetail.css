@@ -84,6 +84,13 @@
 
 /* 상품 사진, 설명, 결제 영역 */
 
+.proDetail-img img{
+	width:400px;
+	height:400px;
+}
+.proDetail-exp{
+	width: 500px;
+}
 .proDetail-box{
     display: flex;
     width: 1000px;
@@ -184,12 +191,17 @@
     transition: 0.s;
 }
 .kakaoPay{
-    width: 450px;
+    width: 400px;
     height: 50px;
     border-radius: 10px;
     color: black;
     background: yellow;
     font-weight: 800;
+    cursor: pointer;
+    margin-right: 50px;
+}
+.kakaoPay:hover{
+	border: 1px solid black;
 }
 
 /* 상품 카테고리 Bar */

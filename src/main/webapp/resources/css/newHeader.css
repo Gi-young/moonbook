@@ -18,7 +18,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	vertical-align: baseline;	
 }
 
 article, aside, details, figcaption, figure, 
@@ -325,6 +325,7 @@ input:focus{
     align-items: center;
     font-weight: 600;
     position: relative;
+    font-family: "한컴 말랑말랑";
 }
 .header-menuBar1>ul li:not(:last-child){
     margin-right: 30px;
@@ -336,6 +337,8 @@ input:focus{
     color: silver;
     font-size: 13px;
     font-weight: 500;
+    margin-left: 300px;
+    font-family: "한컴 말랑말랑";
 }
 .header-menuBar2>ul li:not(:last-child){
     margin-right: 30px;

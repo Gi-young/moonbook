@@ -21,7 +21,7 @@
 <script type="text/javascript" src="/plugin/slick/slick.js"></script> -->
  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="${path }/resources/js/gift/gift_detail.js"></script>
+
 </head>
 <!-- 문곰템의 모든 상품의 상세 보기는 여기서 -->
 <body>
@@ -32,14 +32,14 @@
         <div class="crossLine1"></div>
         <div class="proDetail-box">
             <div class="proDetail-img">
-                <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+                <img src="${gift.gift_img }" alt="">
                 <!-- 400x400 -->
                 <div class="detailImg-box">
                     <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
                 </div>
             </div>
             <div class="proDetail-exp">
-                <p class="expTitle">[퍼펙트] 10분 플래너 100DAYS - 인피니티 </p>
+                <p class="expTitle">${gift.gift_title } </p>
                 <div class="crossLine2"></div>
                 <div class="expChoice">
                     <div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="discount-price">
                     <p class="discount">할인율</p>
-                    <p class="price" id="totalPrice">12000</p>
+                    <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/></p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
@@ -137,10 +137,115 @@
         <div class="crossLine3"></div>
         <div class="proDetail-bar">
             <a id="bar1">상품설명</a>
-            <a id="bar2" href="${path }/gift/productReview.do?gift_no=${gift_no}">상품리뷰</a>
-            <a id="bar3" href="${path }/gift/productReview.do?gift_no=${gift_no}">상품Q&A</a>
+            <a id="bar2" class="productR">상품리뷰</a>
+            <a id="bar3" class="productQ">상품Q&A</a>
             <a id="bar4">알려드립니다</a>
         </div>
+        <input type="hidden" value="${gift.gift_no }" id="giftNo"/>
+        <script>
+        
+        /* 상품리뷰, 상품문의 */
+    	    var btnR = document.getElementById("bar2");
+    	    var btnQ = document.getElementById("bar3");
+    	    var giftNo = document.getElementById("giftNo").value;
+    	    
+    	  /*   console.log(btnR);
+    	    console.log(btnQ);
+    	    console.log(giftNo); */
+    	    
+    	    let exp = document.getElementsByClassName('review-board');
+    	    let text = document.getElementsByClassName("review-text");
+    	    let num = document.getElementsByClassName("review-num");
+    	    let gpa = document.getElementsByClassName("gpa");
+    	    let gpaCircle = document.getElementsByClassName("gpa-circle");
+    	    let gpaCircleA = document.getElementsByClassName("gpa-circle-a");
+    	    let review = document.getElementsByClassName("review");
+    	    let writer = document.getElementsByClassName("review-writer");
+    	    let date = document.getElementsByClassName("review-date");
+    	    let html = '
+    	    <tr class="review-text review-tr">
+                <td class="review-num"></td>
+                <td class="gpa">
+                 <div class="gpa-circle">
+                     <p class="gpa-circle-a"></p>
+                 </div>    
+                </td>
+                 <td>
+                    <div class="review">
+                          
+                    </div>
+                 </td>
+                <td class="review-writer"></td>
+                <td class="review-date"></td>
+		     </tr>
+		             ';
+    	    /*console.log(exp);
+    	    console.log(text);
+    	    console.log(num);
+    	    console.log(gpa);
+    	    console.log(gpaCircle);
+    	    console.log(gpaCircleA);
+    	    console.log(review);
+    	    console.log(writer);
+    	    console.log(date);*/    	    
+        $(btnR).on('click', function(){
+        
+        	$.ajax({
+             	type: 'post',
+             	url: '${path}/gift/productReview.do',
+             	data: {
+             		giftNo: giftNo
+             	},
+             	dataType: "json",
+             	success: data => {            		
+             		data.forEach((v, i) => {   
+             			console.log(v.gift_board_no);
+             			num.innerText = v.gift_board_no,
+             			console.log(num);
+             			gpaCircleA.innerText = v.gift_score,
+             			review.innerText = v.gift_content,
+             			writer.innerText = v.writer,
+             			date.innerText = v.write_date,
+             			console.log(html);
+             			console.log(exp);
+             			exp.append(html);
+             		});
+             	 } 
+             });
+        })
+        	  
+	       /*  $(btnQ).on('click', function(){
+	        	$.ajax({
+	             	type: 'get',
+	             	url: '${path}/gift/productReview.do',
+	             	data: {
+	             		giftNo: giftNo
+	             	},
+	             	success: data => {
+	             		console.log(data);
+	             	},
+	             	error : {
+	             		console.log("error 발생");
+	             	}
+	             });
+	        }) */
+	       /*  
+		       btnQ.onclick = function() {	
+		       	 $.ajax({
+		            	type: 'POST',
+		            	url: '${path}/gift/productReview.do',
+		            	data: {
+		            		giftNo: giftNo
+		            	},
+		            	success: data => {
+		            		console.log(data);
+		            	},
+		            	error : {
+		            		console.log("error 발생");
+		            	}
+		            });
+		       } */
+        </script>
         <div class="product-exp">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
@@ -151,7 +256,8 @@
             <div class="writeBox">
                 <button class="reviewWrite">상품 리뷰 작성하기</button>
             </div>
-           <table class="review-exp">
+           <table class="review-exp review-board">
+           
                <tr>
                    <th style="width:105px;">번호</th>
                    <th style="width:145px;">만족도</th>
@@ -159,141 +265,23 @@
                    <th style="width:165px;">작성자</th>
                    <th style="width:165px;">작성일</th>
                </tr>
-               <tr class="review-text">
-                   <td>0</td>
+               
+               <tr class="review-text review-tr">
+                   <td class="review-num">0</td>
                    <td class="gpa">
                     <div class="gpa-circle">
-                        <p>3</p>
+                        <p class="gpa-circle-a">3</p>
                     </div>    
-                </td>
+                   </td>
                     <td>
                        <div class="review">
                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                        </div>
                     </td>
-                   <td>관리자</td>
-                   <td>SYSDATE or 수정일</td>
+                   <td class="review-writer">관리자</td>
+                   <td class="review-date">SYSDATE or 수정일</td>
                 </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
+                
             </table>
             <div>&lt;pageBar&gt;</div>
         </div>
@@ -302,7 +290,7 @@
             <div class="writeBox">
                 <button class="reviewWrite">질문 작성하기</button>
             </div>
-            <table class="review-exp">
+            <table class="review-exp" id="qna-exp">
                 <tr>
                     <th style="width:105px;">번호</th>
                     <!-- <th style="width:145px;"></th> -->
@@ -487,12 +475,13 @@
    <%--   <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
 			<jsp:param name="" value=""/> 
 	 </jsp:include>  --%>   
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
   <!-- jQuery -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
   <!-- iamport.payment.js -->
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="${path }/resources/js/gift/gift_buy.js"></script>
+<script src="${path }/resources/js/gift/gift_detail.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
 <script>
       $('#slider-div').slick({
           slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
@@ -533,19 +522,21 @@
 
       });
     let slickBtn = $('.slick-dots li>button');
-    console.log(slickBtn);
+    /* console.log(slickBtn); */
     $(slickBtn).click(function(){
         $(this).css('transform',"rotate( 90deg )");
         $(this).css('transition',"all ease 0.5s");
     })
     let hot = $('.hot');
-    console.log(hot);
+    /* console.log(hot); */
     $(hot).mouseover(function(){
         $(this).css("color","black");
     })
     $(hot).mouseout(function(){
         $(this).css("color","#696969");
     })
+    
+    /* 카카오 페이 */
     $("#kakaoPay").click(function(){
     	$.ajax({
     		url: '${path}/kakaopay.do',
@@ -559,6 +550,7 @@
     		}  		
     	})
     });
+   
 </script>
 </body>
 </html>
