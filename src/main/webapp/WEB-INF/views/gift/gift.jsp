@@ -16,27 +16,60 @@
     </jsp:include>
     
     <!-- 상단 핫트랙스 메뉴바 -->
-       
+    <%--  ${giftList }   --%>
+    <%-- <a href="${path }/gift/naverGift.do"><button>네이버 기프트 이동</button></a> <- 얘도 ajax로 보내나여?
+     
+     <script>
+     $.ajax({
+    	url: "${path}/gift/naverGift.do ",
+    	success: data => {
+    		 console.log(JSON.parse(data).items); 
+    		let name = JSON.parse(data).items.forEach((v, i) => {
+    			$.ajax({
+        			url: "${path}/gift/insertGift.do",
+        			data: {
+        				 title: v.title,
+        				 img: v.image,
+        				 price: v.lprice,
+        				 brand: v.brand,
+        				 maker: v.maker,
+        				 category1: v.category1,
+        				 category2: v.category2,
+        				 productType: v.productType
+        			},
+        			success: data =>{
+        					console.log(data);
+        				}       			
+        		});
+    		}); 		  
+    	 }
+     });
+     
+     </script> --%>  
     <div class="slide-container">
         <!-- 리스트를 담고 있는 박스 -->
        <div class="firstSlide-list">
            <!-- 길게 늘어뜨린 리스트 -->
-           <div class="firstSlide-content">
-               <!-- 리스트 안 각각의 컨텐츠  -->
-            <div class="first">
-            </div>     
-           </div>
-           <div class="firstSlide-content">
-            <!-- 리스트 안 각각의 컨텐츠  -->
+           <c:forEach var="i" begin="192" end="197" items="${list }">
+	           <div class="firstSlide-content">
+	               <!-- 리스트 안 각각의 컨텐츠  -->
+	            <div class="first">
+	            	<img src="${i.gift_img }" alt="${i.gift_title }">
+	            </div>     
+	           </div>
+           </c:forEach>
+           <!-- <div class="firstSlide-content">
+            리스트 안 각각의 컨텐츠 
             <div class="second">
+            	
             </div> 
            </div>
            <div class="firstSlide-content">
-            <!-- 리스트 안 각각의 컨텐츠  -->
+            리스트 안 각각의 컨텐츠 
             <div class="third">    
-               
+             	 
             </div>   
-           </div>
+           </div> -->
         </div>
         <div class="heads-pagination"></div>    
         <div class="btn-box"> 
@@ -52,54 +85,54 @@
         <!-- <a href="#">
             <div class="slide-modal"></div>
         </a>  -->
-        <div class="modal-pop-back">
-        </div>
+        <!-- <div class="modal-pop-back">
+        </div> -->
     </div> 
-    <div class="modal-pop-content">
+    <!-- <div class="modal-pop-content">
         <a href="#" class="exit-modal">
             <span class="modal-exitBtn">✕</span>
         </a>
         <div class="modal-img">
             <a href="#">
-                <img src="../components/image/modal1.jpg" alt="">
+                <img src="" alt="">
             </a>
         </div>
         <div class="modal-img">
             <a href="#">
-                <img src="../components/image/modal1.jpg" alt="">
+                <img src="" alt="">
             </a>
         </div>
         <div class="modal-img">
             <a href="#">
-                <img src="../components/image/modal1.jpg" alt="">
+                <img src="" alt="">
             </a>
         </div>
         <div class="modal-img">
             <a href="#">
-                <img src="../components/image/modal1.jpg" alt="">
+                <img src="" alt="">
             </a>
         </div>
         <div class="modal-img">
             <a href="#">
-                <img src="../components/image/modal1.jpg" alt="">
+                <img src="" alt="">
             </a>
         </div>
         <div class="modal-img">
             <a href="#">
-                <img src="../components/image/modal1.jpg" alt="">
+                <img src="" alt="">
             </a>
         </div>
         <div class="modal-img">
             <a href="#">
-                <img src="../components/image/modal1.jpg" alt="">
+                <img src="" alt="">
             </a>
         </div>
         <div class="modal-img">
             <a href="#">
-                <img src="../components/image/modal1.jpg" alt="">
+                <img src="" alt="">
             </a>
         </div>
-    </div>
+    </div> -->
     <div class="wrap">
         <!-- 맨 위 슬라이드 배너를 제외한 나머지 부분을 감싸고 있는 div -->
         <div class="giftFooter">
@@ -154,7 +187,7 @@
                             </ul>
                             <ul class="flex">
                                 <li>
-                                    <img src="../components/image/과자집씰스티커.jpg" alt="">
+                                    <img src="" alt="">
                                     <p style="font-weight: 800; padding-top: 20px;">과자집 씰스티커</p>
                                     <div class="flex" style="margin-top: 30px;">
                                         <p class="discount">10%</p>
@@ -162,7 +195,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <img src="../components/image/과자집씰스티커.jpg" alt="">
+                                    <img src="" alt="">
                                     <p style="font-weight: 800; padding-top: 20px;">과자집 씰스티커</p>
                                     <div class="flex" style="margin-top: 30px;">
                                         <p class="discount">10%</p>
@@ -178,7 +211,7 @@
             <div class='left-cont'>
                     <p class="todayPop-title">오늘만 특가 〉</p>
                     <div class="timer-img">
-                        <img src="../components/image/hourglass.png" alt="" style="width: 25px; height: 25px;">
+                        <img src="" alt="" style="width: 25px; height: 25px;">
                         <p class="timer"></p>
                     </div>
                     <div class="remain-timeBox">
@@ -206,20 +239,20 @@
                             <ul class="toSale-ul">
                                 <li>
                                 	<a href="#">
-	                                    <img src="../components/image/버섯조명jpg.jpg" alt="">
+	                                    <img src="" alt="">
 	                                    <p class="toSale-dc">할인율</p>
                                     </a>
                                 </li>
                                 <li>
-                                    <img src="../components/image/라핀선크림.png" alt="">
+                                    <img src="" alt="">
                                     <p class="toSale-dc">할인율</p>
                                 </li>
                                 <li>
-                                    <img src="../components/image/전신거울스탠드.jpg" alt="">
+                                    <img src="" alt="">
                                     <p class="toSale-dc">할인율</p>
                                 </li>
                                 <li>
-                                    <img src="../components/image/led스탠드레드.jpg" alt="">
+                                    <img src="" alt="">
                                     <p class="toSale-dc">할인율</p>
                                 </li>
                             </ul>
@@ -229,26 +262,29 @@
             </div>
             <div class="right-cont">
                     <p class="todayPop-title">인기베스트 〉</p>
-                    <p class="todayPop-cg">문구/기프트</p>
+                    <p class="todayPop-cg">독서 필수템</p>
                     <hr class="cg-line"></hr>
                     <!-- 아마도 카테고리는 특정 시간마다 바뀌는듯, 아니면 문구/기프트 
                         고정-->
                     <div class="todayPop-contentList">
                         <ul>
-                            <li>
-                                <a href="#" class="todayPop-contentTop">
-                                    <p style="font-style: italic; font-weight: 900;">1</p>
-                                    <img src="../components/image/까사니.jpg" alt="">
-                                    <div class="todayPop-contentEnd">
-                                        <p class="endFont-top">[까사니]스텐 양면도마</p>
-                                        <div class="flex" style="padding-top: 10px;">
-                                            <p class="endFont-mid">90%</p>
-                                            <p class="endFont-bot">19,900</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
+                         <c:forEach var="i" begin="284" end="288" items="${list }">
+                         	<c:set var="o" value="${o+1 }"/>
+	                            <li>
+	                                <a href="#" class="todayPop-contentTop">
+	                                    <p style="font-style: italic; font-weight: 900;">${o }</p>
+	                                    <img src="${i.gift_img }" alt="${i.gift_title }">
+	                                    <div class="todayPop-contentEnd">
+	                                        <p class="endFont-top">${i.gift_title }</p>
+	                                        <div class="flex" style="padding-top: 10px;">
+	                                            <p class="endFont-mid">${i.gift_discount }</p>
+	                                            <p class="endFont-bot"><fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/></p>
+	                                        </div>
+	                                    </div>
+	                                </a>
+	                            </li>
+                           </c:forEach>
+                            <!-- <li>
                                 <a href="#" class="todayPop-content">
                                     <p style="font-style: italic; font-weight: 900;">2</p>
                                     <img src="../components/image/주방가위.jpg" alt="">
@@ -299,7 +335,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
             </div>
@@ -468,14 +504,29 @@
             <div class="reco-product">
                 <!-- 나에게 맞는 추천 상품 -->
                 <ul class="reco-product-ul">
-                    <li>
+	                <c:forEach var="i" begin="0" end="3" items="${list }">
+	                    <li>
+	                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+	                            <div>
+	                                <img src="${i.gift_img }" alt="" class="reco-img">
+	                            </div> 
+	                            <p style="margin-top: 25px; font-weight: 550;">${i.gift_title }</p>
+	                            <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
+	                                <!-- 할인율 -->
+	                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span>  
+	                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/>
+	                            </p>
+	                        </a>
+	                    </li>
+	                 </c:forEach>   
+                    <!-- <li>
                         <a class="reco-a">
                             <div>
                                 <img src="" alt="" class="reco-img">
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
@@ -488,7 +539,7 @@
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
@@ -501,35 +552,37 @@
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
                         </a>
-                    </li>
-                    <li>
-                        <a class="reco-a">
-                            <div>
-                                <img src="" alt="" class="reco-img">
-                            </div> 
-                            <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
-                            <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
-                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
-                                9,900
-                            </p>
-                        </a>
-                    </li>
+                    </li> -->
                 </ul>
                 <ul class="reco-product-ul">    
+                    <c:forEach var="i" begin="4" end="7" items="${list }">
                     <li>
+                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+                            <div>
+                                <img src="${i.gift_img }" alt="" class="reco-img">
+                            </div> 
+                            <p style="margin-top: 25px; font-weight: 550;">${i.gift_title }</p>
+                            <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
+                                <!-- 할인율 -->
+                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span>  
+                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/>
+                            </p>
+                        </a>
+                    </li>
+                    </c:forEach>
+                   <!--  <li>
                         <a class="reco-a">
                             <div>
                                 <img src="" alt="" class="reco-img">
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
@@ -542,7 +595,7 @@
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
@@ -555,35 +608,37 @@
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
                         </a>
-                    </li>
-                    <li>
-                        <a class="reco-a">
-                            <div>
-                                <img src="" alt="" class="reco-img">
-                            </div> 
-                            <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
-                            <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
-                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
-                                9,900
-                            </p>
-                        </a>
-                    </li>
+                    </li> -->
                 </ul>
                 <ul class='reco-product-ul'>                    
-                    <li>
+                    <c:forEach var="i" begin="8" end="11" items="${list }">
+	                    <li>
+	                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+	                            <div>
+	                                <img src="${i.gift_img }" alt="" class="reco-img">
+	                            </div> 
+	                            <p style="margin-top: 25px; font-weight: 550;">${i.gift_title }</p>
+	                            <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
+	                                <!-- 할인율 -->
+	                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span>  
+	                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/>
+	                            </p>
+	                        </a>
+	                    </li>
+                    </c:forEach>
+                    <!-- <li>
                         <a class="reco-a">
                             <div>
                                 <img src="" alt="" class="reco-img">
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
@@ -596,7 +651,7 @@
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
@@ -609,25 +664,12 @@
                             </div> 
                             <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
+                                할인율
                                 <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
                                 9,900
                             </p>
                         </a>
-                    </li>
-                    <li>
-                        <a class="reco-a">
-                            <div>
-                                <img src="" alt="" class="reco-img">
-                            </div> 
-                            <p style="margin-top: 25px; font-weight: 550;">아에르 어드밴스드 라이트핏 KF80 마스크 핑크 10매</p>
-                            <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
-                                <!-- 할인율 -->
-                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">67%</span>  
-                                9,900
-                            </p>
-                        </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- 더보기 버튼 -->
@@ -921,7 +963,7 @@
         </div>
     </div> 
 </div> 
-
+<input type="hidden" value="${path }" id="contextPath">
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value=""/>
 </jsp:include>

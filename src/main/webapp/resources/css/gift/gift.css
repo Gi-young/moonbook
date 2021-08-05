@@ -51,7 +51,7 @@
     z-index: 1;
 }
 .first{
-    background-color: orange;
+    /* background-color: orange; */
     min-width: 950px;
     width: 100%;
     height: 500px;

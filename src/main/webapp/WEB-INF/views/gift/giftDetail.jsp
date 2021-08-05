@@ -137,8 +137,8 @@
         <div class="crossLine3"></div>
         <div class="proDetail-bar">
             <a id="bar1">상품설명</a>
-            <a id="bar2" href="${path }/gift/productReview.do?gift_no=1">상품리뷰</a>
-            <a id="bar3" href="">상품Q&A</a>
+            <a id="bar2" href="${path }/gift/productReview.do?gift_no=${gift_no}">상품리뷰</a>
+            <a id="bar3" href="${path }/gift/productReview.do?gift_no=${gift_no}">상품Q&A</a>
             <a id="bar4">알려드립니다</a>
         </div>
         <div class="product-exp">

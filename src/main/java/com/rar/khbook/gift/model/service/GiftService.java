@@ -1,13 +1,21 @@
 package com.rar.khbook.gift.model.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Map;
 
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 
 public interface GiftService {
 
-	@Autowired
+	
 	Member searchMember(String memberId);
+	
+	
+	List<Ngift> giftAll();
+	
+	
+	int insertGift(Map param);
+	
 }
