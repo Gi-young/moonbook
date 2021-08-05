@@ -17,6 +17,7 @@ import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.common.PageFactoryAdmin;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -255,8 +256,9 @@ public class AdminController {
 	}
 	//기프트 등록
 	@RequestMapping("/admin/insertProduct3.do")
-	public ModelAndView insertProduct3(ModelAndView mv,@RequestParam Map param,int gift_giftcate_code) {
+	public ModelAndView insertProduct3(ModelAndView mv,@RequestParam Map param,int gift_category) {
 		
+	
 		int result=service.insertProduct3(param);
 		
 		String msg="";
@@ -266,12 +268,12 @@ public class AdminController {
 		}else {
 			msg="상품 등록이 실패되었습니다.";
 		}
-		loc="/admin/addProductPage3.do?categoryCode="+gift_giftcate_code;
+		loc="/admin/addProductPage3.do?categoryCode="+gift_category;
 		
 		
 		mv.addObject("msg", msg);
 		mv.addObject("loc", loc);
-		mv.addObject("categoryCode", gift_giftcate_code);
+		mv.addObject("categoryCode", gift_category);
 		mv.setViewName("common/msg");
 		
 		return mv;
@@ -360,7 +362,7 @@ public class AdminController {
 	@ResponseBody
 	public boolean checkStock3(int gift_no,int gift_count) {
 		
-		Gift result=service.checkStock3(gift_no);
+		Ngift result=service.checkStock3(gift_no);
 		
 		System.out.println("출고전 재고 체크:" +result);
 		System.out.println("출고전 output할 stock 체크:" +gift_count);
@@ -441,6 +443,12 @@ public class AdminController {
 		
 		String msg="";
 		String loc="";
+		if(result>0) {
+			msg="기프트 출고가 정상적으로 처리되었습니다";
+		}else {
+			msg="기프트 출고가 실패되었습니다.";
+		}
+		loc="/admin/removeProductPage.do";
 		
 		
 		mv.addObject("msg", msg);
@@ -461,7 +469,7 @@ public class AdminController {
 		//System.out.println("컨트롤러 테스트 : " + stockParam);
 		
 		List<EbookDatabind> listT=service.selectEbookDatabindList(cPage,numPerpage);
-		List<Gift> listT2=service.selectGiftList(cPage,numPerpage);
+		List<Ngift> listT2=service.selectGiftList(cPage,numPerpage);
 		
 		mv.addObject("list", listT);
 		mv.addObject("list2", listT2);
@@ -532,7 +540,7 @@ public class AdminController {
 	//재고 ~이상 ~ 미만 gift버전
 	@RequestMapping("/admin/orderStockList3.do")
 	@ResponseBody
-	public List<Gift> orderStockList3(@RequestParam Map param) {
+	public List<Ngift> orderStockList3(@RequestParam Map param) {
 		
 		int stockNum1 = Integer.parseInt((String)param.get("stockNum1"));
 		param.put("stockNum1", stockNum1);
@@ -541,7 +549,7 @@ public class AdminController {
 		
 		
 		
-		List<Gift> list2=service.orderStockList3(param);
+		List<Ngift> list2=service.orderStockList3(param);
 		
 		return list2;
 	}
@@ -615,14 +623,14 @@ public class AdminController {
 	//검색 gift
 	@RequestMapping("/admin/searchTextStockList3.do")
 	@ResponseBody
-	public List<Gift> searchTextStockList3(@RequestParam Map param) {
+	public List<Ngift> searchTextStockList3(@RequestParam Map param) {
 		
 		String type4=(String)param.get("type4");
 		param.put("type4", type4);
 		String search5=(String)param.get("search5");
 		param.put("search5", search5);
 		
-		List<Gift> list2=service.searchTextStockList3(param);
+		List<Ngift> list2=service.searchTextStockList3(param);
 		
 		return list2;
 	}

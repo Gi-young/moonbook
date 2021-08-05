@@ -83,7 +83,7 @@
 						<tr>
 							<th>입고가</th>
 							<td>
-								<input type="number" min="0" name="gift_rowprice">
+								<input type="number" min="0" name="gift_rowPrice">
 							</td>
 						</tr> 
 						<tr>

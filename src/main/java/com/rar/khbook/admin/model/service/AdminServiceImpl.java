@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.rar.khbook.admin.model.dao.AdminDao;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 @Service
@@ -136,7 +137,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public Gift checkStock3(int gift_no) {
+	public Ngift checkStock3(int gift_no) {
 		// TODO Auto-generated method stub
 		return dao.checkStock3(session, gift_no);
 	}
@@ -154,7 +155,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Gift> selectGiftList(int cPage, int numPerpage) {
+	public List<Ngift> selectGiftList(int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return dao.selectGiftList(session,cPage,numPerpage);
 	}
@@ -178,7 +179,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Gift> orderStockList3(Map param) {
+	public List<Ngift> orderStockList3(Map param) {
 		// TODO Auto-generated method stub
 		return dao.orderStockList3(session,param);
 	}
@@ -203,7 +204,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Gift> searchTextStockList3(Map param) {
+	public List<Ngift> searchTextStockList3(Map param) {
 		// TODO Auto-generated method stub
 		return dao.searchTextStockList3(session,param);
 	}

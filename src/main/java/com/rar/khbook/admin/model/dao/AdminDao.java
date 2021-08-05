@@ -3,13 +3,12 @@ package com.rar.khbook.admin.model.dao;
 import java.util.List;
 import java.util.Map;
 
-import javax.mail.Session;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AdminDao {
@@ -42,7 +41,7 @@ public interface AdminDao {
 	
 	EbookDatabind checkStock1(SqlSession session, int bindNo);
 	
-	Gift checkStock3(SqlSession session, int gift_no);
+	Ngift checkStock3(SqlSession session, int gift_no);
 	
 	int outputProduct1(SqlSession session,Map param);
 	
@@ -55,14 +54,14 @@ public interface AdminDao {
 	List<EbookDatabind> selectEbookDatabindList(SqlSession session,int cPage,int numPerpage);
 	int selectEbookDataCount(SqlSession session);
 	
-	List<Gift> selectGiftList(SqlSession session,int cPage,int numPerpage);
+	List<Ngift> selectGiftList(SqlSession session,int cPage,int numPerpage);
 	int selectGiftCount(SqlSession session);
 	
 	List<EbookDatabind> orderStockList(SqlSession session,Map param);
 	
 	int getPageBarOrderList(SqlSession session,Map param);
 	
-	List<Gift> orderStockList3(SqlSession session,Map param);
+	List<Ngift> orderStockList3(SqlSession session,Map param);
 	
 	int getPageBarOrderList3(SqlSession session,Map param);
 	
@@ -70,7 +69,7 @@ public interface AdminDao {
 	
 	int getPageBarTextStockList(SqlSession session,Map param);
 	
-	List<Gift> searchTextStockList3(SqlSession session,Map param);
+	List<Ngift> searchTextStockList3(SqlSession session,Map param);
 	
 	int getPageBarTextStockList3(SqlSession session,Map param);
 	

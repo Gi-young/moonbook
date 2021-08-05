@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
-import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AdminService {
@@ -37,7 +37,7 @@ public interface AdminService {
 	
 	EbookDatabind checkStock1(int bindNo); //book 재고 체크
 	
-	Gift checkStock3(int gift_no); // gift 재고 체크
+	Ngift checkStock3(int gift_no); // gift 재고 체크
 	
 	int outputProduct1(Map param); //book재고에서 -출고 개수
 	
@@ -51,7 +51,7 @@ public interface AdminService {
 	List<EbookDatabind> selectEbookDatabindList(int cPage,int numPerpage);//재고 구하기
 	int selectEbookDataCount();
 	
-	List<Gift> selectGiftList(int cPage,int numPerpage);
+	List<Ngift> selectGiftList(int cPage,int numPerpage);
 	int selectGiftCount();
 	
 	//재고 책 정렬방법
@@ -59,7 +59,7 @@ public interface AdminService {
 	int getPageBarOrderList(Map param);
 	
 	//재고 gift 정렬
-	List<Gift> orderStockList3(Map param);
+	List<Ngift> orderStockList3(Map param);
 	int getPageBarOrderList3(Map param);
 	
 	//재고 책 검색
@@ -67,7 +67,7 @@ public interface AdminService {
 	int getPageBarTextStockList(Map param);
 	
 	//재고 gift 검색
-	List<Gift> searchTextStockList3(Map param);
+	List<Ngift> searchTextStockList3(Map param);
 	int getPageBarTextStockList3(Map param);
 	//재고 책 수정
 	int stockTUpdate(Map param);

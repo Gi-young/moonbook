@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 @Repository
@@ -112,7 +113,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	@Override
-	public Gift checkStock3(SqlSession session, int gift_no) {
+	public Ngift checkStock3(SqlSession session, int gift_no) {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.checkStock3",gift_no);
 	}
@@ -156,7 +157,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	//상품 재고현황
 	@Override
-	public List<Gift> selectGiftList(SqlSession session, int cPage, int numPerpage) {
+	public List<Ngift> selectGiftList(SqlSession session, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return session.selectList("admin.selectGiftList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
@@ -182,7 +183,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<Gift> orderStockList3(SqlSession session, Map param) {
+	public List<Ngift> orderStockList3(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		int cPage = Integer.parseInt((String)param.get("cPage"));
 		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
@@ -209,7 +210,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<Gift> searchTextStockList3(SqlSession session, Map param) {
+	public List<Ngift> searchTextStockList3(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		int cPage = Integer.parseInt((String)param.get("cPage"));
 		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));

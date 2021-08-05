@@ -141,7 +141,7 @@
 				<p class="memberTFont">
 					총 <span class="turnRed2">${totalContents2 }</span>개의 상품이 있습니다.
 				</p>
-				<p class="memberTFont2">※ 상품명, 상품소개, 가격, AS/상담여부,카테고리코드 수정
+				<p class="memberTFont2">※ 상품명,  가격, 카테고리코드 수정
 					가능합니다.</p>
 				<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
 				<table class="stockT2">
@@ -149,14 +149,11 @@
 						<tr>
 							<th>상품 번호</th>
 							<th>상품명</th>
-							<th>상품소개</th>
 							<th>가격</th>
+							<th>브랜드</th>
 							<th>제조사</th>
-							<th>제조국</th>
-							<th>AS/상담여부</th>
-							<th>수입여부</th>
 							<th>재고</th>
-							<th>판매여부</th>
+							<th>제품 타입</th>
 							<th>카테고리코드</th>
 							<th>수정하기</th>
 							<th>삭제하기</th>
@@ -170,23 +167,19 @@
 									readonly></td>
 								<td><input type="text" value="${g.gift_title }"
 									name="gift_title"></td>
-								<td><input type="text" value="${g.gift_content }"
-									name="gift_content"></td>
+								
 								<td><input type="text" value="${g.gift_price }"
 									name="gift_price"></td>
+								<td><input type="text" value="${g.gift_brand}" name="gift_brand"></td>
 								<td><input type="text" value="${g.gift_maker }"
 									name="gift_maker" readonly></td>
-								<td><input type="text" value="${g.gift_made }"
-									name="gift_made" readonly></td>
-								<td><input type="text" value="${g.gift_as }" name="gift_as"></td>
-								<td><input type="text" value="${g.gift_import }"
-									name="gift_import" readonly></td>
 								<td><input type="text" value="${g.gift_count }"
 									name="gift_count" readonly></td>
-								<td><input type="text" value="${g.gift_for_sale }"
-									name="gift_for_sale" readonly></td>
-								<td><input type="text" value="${g.gift_giftcate_code}"
-									name="gift_giftcate_code"></td>
+								<td><input type="text" value="${g.gift_productType }"
+									name="gift_productType" readonly></td>
+								<td><input type="text" value="${g.gift_category.giftCateCode}"
+									name="giftCateCode"></td>
+								
 								<td><img alt="수정하기"
 									src="${path }/resources/img/admin/checkgreen.png"
 									onclick="changeStockV2(event);" class="updateCheck updateImg">
@@ -209,13 +202,16 @@
 				</div>
 		
 
-
-				</div>		
+	
+				</div>
+				
 			</div>
 			
-						
+		</div>				
 
-
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
+	<jsp:param name="" value="" />
+</jsp:include>	
 <script>
 
 window.onload = function () {
@@ -352,20 +348,17 @@ function changeStockV(event){
 function changeStockV2(event){
 	let gift_no=event.target.parentElement.parentElement.children[0].children[0].value;
 	let gift_title=event.target.parentElement.parentElement.children[1].children[0].value;
-	let gift_content=event.target.parentElement.parentElement.children[2].children[0].value;
-	let gift_price=event.target.parentElement.parentElement.children[3].children[0].value;
-	let gift_as=event.target.parentElement.parentElement.children[6].children[0].value;
-	let gift_giftcate_code=event.target.parentElement.parentElement.children[10].children[0].value;
+	let gift_price=event.target.parentElement.parentElement.children[2].children[0].value;
+	let gift_category=event.target.parentElement.parentElement.children[7].children[0].value;
 	
+
 	$.ajax({
 		url:"${path}/admin/stockTUpdate2.do",
 		data: {
 			gift_no : gift_no,
 			gift_title : gift_title,
-			gift_content : gift_content,
 			gift_price : gift_price,
-			gift_as : gift_as,
-			gift_giftcate_code : gift_giftcate_code
+			gift_category : gift_category
 		},
 		success: data=>{
 			if(data){
@@ -473,23 +466,20 @@ function searchStockT(cPage, numPerpage){
 				let table=document.querySelector(".stockT2");
 				for(let i=0;i<data.length;i++){
 					let tr=document.createElement("tr");
-					for(let j=0;j<13;j++){
+					for(let j=0;j<10;j++){
 						let td=document.createElement("td");
 						td.style.border="1px solid black";
 						td.style.height="27px";
 						if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].gift_no+"'>";
 						if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].gift_title + "'>";
-						if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].gift_content + "'>";
-						if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].gift_price + "'>";
+						if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].gift_price + "'>";
+						if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].gift_brand + "'>";
 						if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].gift_maker + "'>";
-						if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].gift_made + "'>";
-						if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].gift_as + "'>";
-						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].gift_import + "'>";
-						if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].gift_count + "'>";
-						if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].gift_for_sale + "'>";
-						if(j == 10) td.innerHTML = "<input type='text' value='" + data[i].gift_giftcate_code + "'>";
-						if(j == 11) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV2(event);" class="updateCheck updateImg">'
-						if(j == 12) td.innerHTML = '<input type="hidden" value="'+ data[i].gift_no +'" name="gift_no" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" onclick="adStockDelete2(event);" alt="" class="updateCheck deleteImg">';
+						if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].gift_count + "'>";
+						if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].gift_productType + "'>";
+						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].gift_category.giftCateCode + "'>";
+						if(j == 8) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV2(event);" class="updateCheck updateImg">'
+						if(j == 9) td.innerHTML = '<input type="hidden" value="'+ data[i].gift_no +'" name="gift_no" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" onclick="adStockDelete2(event);" alt="" class="updateCheck deleteImg">';
 						
 						tr.appendChild(td);
 					}
@@ -619,26 +609,20 @@ function orderList3(cPage, numPerpage) {
 					
 					
 					let tr=document.createElement("tr");
-					for(let j=0;j<13;j++){
-						
-						console.log("td test");
-						
+					for(let j=0;j<10;j++){
 						let td=document.createElement("td");
 						td.style.border="1px solid black";
 						td.style.height="27px";
 						if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].gift_no+"'>";
 						if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].gift_title + "'>";
-						if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].gift_content + "'>";
-						if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].gift_price + "'>";
+						if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].gift_price + "'>";
+						if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].gift_brand + "'>";
 						if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].gift_maker + "'>";
-						if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].gift_made + "'>";
-						if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].gift_as + "'>";
-						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].gift_import + "'>";
-						if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].gift_count + "'>";
-						if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].gift_for_sale + "'>";
-						if(j == 10) td.innerHTML = "<input type='text' value='" + data[i].gift_giftcate_code + "'>";
-						if(j == 11) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV2(event);" class="updateCheck updateImg">'
-						if(j == 12) td.innerHTML = '<input type="hidden" value="'+ data[i].gift_no +'" name="bindNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" onclick="adStockDelete2(event);" class="updateCheck deleteImg">';
+						if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].gift_count + "'>";
+						if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].gift_productType + "'>";
+						if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].gift_category.giftCateCode + "'>";
+						if(j == 8) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeStockV2(event);" class="updateCheck updateImg">'
+						if(j == 9) td.innerHTML = '<input type="hidden" value="'+ data[i].gift_no +'" name="gift_no" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" onclick="adStockDelete2(event);" alt="" class="updateCheck deleteImg">';
 						
 						tr.appendChild(td);
 					}
@@ -676,12 +660,7 @@ function orderList3(cPage, numPerpage) {
 
 </script>
 
-<<<<<<< HEAD
-<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
-	<jsp:param name="" value="" />
-</jsp:include>
-=======
-						<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
-							<jsp:param name="" value="" />
-						</jsp:include>
->>>>>>> 9c8ad780369c10e5e474ba42a2eb3cf1ab0336d0
+
+
+
+
