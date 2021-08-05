@@ -12,19 +12,22 @@
 
 <title>${param.title }</title>
 <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
+<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 
 <!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --> 
 <!-- jQuery library -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <!-- Popper JS -->
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>  
 <!-- Latest compiled JavaScript -->
 <!-- <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+ -->
+
 </head>
 <body>
 	<div class="header">
@@ -133,6 +136,7 @@
                 padding-right: 10px;
                 "></a>
             </div> -->
+<<<<<<< HEAD
 				<div class="header-menuBar1">
 					<ul class="flex">
 						<li><a href="${path}/sellbookController/sellbook.do"><div>문곰도서▼</div></a>
@@ -175,35 +179,80 @@
 							<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
 							<li><a href="${path }/member/logout.do">로그아웃</a></li>
 
-						</c:if>
-						<li><a href="${path }/member/myroom/main.do">마이룸</a></li>
-						<li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
-						<li><a href="${path }/service/servicePage.do">고객센터</a></li>
-					</ul>
-				</div>
-				<div></div>
-			</div>
-		</div>
-	</div>
-	<script>
-		let item = $('.item');
-		let tab = $('.giftTab');
-		$(function() {
-			$(item).mouseover(function() {
-				// tab.slideDown(500);
-				tab.css('display', "flex");
-				$(tab).mouseover(function() {
-					tab.css('display', "flex");
-				})
-			})
-			$(tab).mouseout(function() {
-				tab.css('display', "none");
-			})
-			$(item).mouseout(function() {
-				tab.css('display', "none");
-			})
-		});
-	</script>
-	>>>>>>> sm
+						</c:if>		
+            <div class="header-menuBar1">
+                <ul class="flex">
+                    <li>
+                    	<a href="${path}/sellbookController/sellbook.do"><div>문곰도서▼</div></a>
+                     	<ul class="eBook">
+                            <li><a href="${path}/sellbookController/bookadong.do">아동 도서</a></li>
+                            <li><a href="${path}/sellbookController/bookchodong.do">초등 도서</a></li>
+                            <li><a href="${path}/sellbookController/bookjoongdong.do">중등 도서</a></li>
+                        </ul>
+                    </li>
+                   <!--  <li><a href="#">외국도서</a></li> -->
+                    <li>
+                        <a href="${path}/ebook/pageEbook.do"><div>문곰e북 ▼</div></a>
+                        <ul class="eBook">
+                            <li><a href="#">일반도서</a></li>
+                            <li><a href="#">판타지/무협</a></li>
+                            <li><a href="#">로맨스</a></li>
+                            <li><a href="#">코믹스</a></li>
+                            <li><a href="#">오디오북</a></li>
+                        </ul>
+                    </li>
+                    <li class="item">
+                    	<a href="${path }/gift/giftView.do">문곰템 ▼</a>
+                    	<ul class="giftTab">
+                            <li><a href='${path }/gift/moreThing.do?giftCate=e'>전자기기</a></li>
+                            <li><a href='${path }/gift/moreThing.do?giftCate=s'>수납/정리</a></li>
+                            <li><a href='${path }/gift/moreThing.do?giftCate=r'>독서 필수템</a></li>
+                            <li><a href="${path }/gift/moreThing.do?giftCate=g">잡화</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="${path}/usedboard/usedboardList.do">중고</a></li>
+                     <li><a href="${path}/auction/auction.do">경매</a></li>
+                </ul>
+            </div>
+            <div class="header-menuBar2">
+                <ul class="flex">
+                    <c:if test="${loginMember==null }">
+                	<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
+                	<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
+                </c:if>
+                <c:if test="${loginMember!=null }">
+                	<li class="user1"><a href="${path }/member/myroom.do">${loginMember.memberName }님 (${loginMember.memberGradeNo}) ▽</a></li>
+                	<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
+                	<li><a href="${path }/member/logout.do">로그아웃</a></li>
+                	
+                </c:if>
+                    <li><a href="${path }/member/myroom/main.do">마이룸</a></li>
+                    <li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
+                	<li><a href="${path }/service/servicePage.do">고객센터</a></li>
+                </ul>
+            </div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<script>
+    let item = $('.item');
+    let tab = $('.giftTab');
+    $(function(){
+        $(item).mouseover(function(){
+            // tab.slideDown(500);
+            tab.css('display',"flex");   
+            $(tab).mouseover(function(){
+                tab.css('display',"flex"); 
+            })
+        })
+        $(tab).mouseout(function(){
+            tab.css('display',"none");
+        }) 
+        $(item).mouseout(function(){
+            tab.css('display',"none");
+        }) 
+    });
+</script>
 </body>
 </html>
