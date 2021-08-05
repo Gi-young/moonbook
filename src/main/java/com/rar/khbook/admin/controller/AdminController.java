@@ -713,6 +713,39 @@ public class AdminController {
 		}
 	}
 	
+	//쿠폰관리 시작
+	//add 등록 페이지
+	@RequestMapping("/admin/addCouponPage.do")
+	public String addCouponPage() {
+		
+		return "admin/addCoupon";
+	}
+	//input 발급 페이지
+	@RequestMapping("/admin/inputCouponPage.do")
+	public String inputCouponPage() {
+		
+		return "admin/inputCoupon";
+	}
+	
+	//쿠폰시작 
+	@RequestMapping("/admin/addCouponList.do")
+	public ModelAndView addCouponList(ModelAndView mv,@RequestParam Map param) {
+		
+		int result=service.addCouponList(param);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="쿠폰이 등록되었습니다";
+			
+		}else {
+			msg="쿠폰 등록 실패";
+		}
+		loc="/admin/addCouponPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
 	
 	
 }

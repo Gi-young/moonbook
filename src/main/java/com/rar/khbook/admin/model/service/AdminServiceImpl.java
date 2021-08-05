@@ -238,6 +238,14 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.stockTDelete2(session,param);
 	}
+
+	@Override
+	public int addCouponList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.addCouponList(session,param);
+	}
+	
+	
 	
 	
 	

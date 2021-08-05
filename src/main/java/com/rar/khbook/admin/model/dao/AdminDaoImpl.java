@@ -246,6 +246,12 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.delete("admin.stockTDelete2",param);
 	}
+
+	@Override
+	public int addCouponList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("admin.addCouponList",param);
+	}
 	
 	
 	

@@ -269,6 +269,9 @@
   	<delete id="stockTDelete2">
   		DELETE FROM NGIFT WHERE NGIFT_NO=#{gift_no}
   	</delete>
-  	
+  	<!-- 쿠폰 등록 -->
+  	<insert id="addCouponList">
+  		INSERT INTO COUPONLIST VALUES(SEQ_COUPONLIST_NO.NEXTVAL,SEQ_MEMBERGRADE_NO.NEXTVAL,#{couponlistAmount},#{couponlistForuse},#{couponlistInvalid},#{couponlistName})
+  	</insert>
   	
 </mapper>
