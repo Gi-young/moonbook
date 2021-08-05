@@ -25,6 +25,8 @@ public class Auction {
 	private int count;
 	private String sellerState;
 	private String buylerState;
+	private String auctionSize;
+	private String auctionQuality;
 	//실험용
 	private String state;
 }

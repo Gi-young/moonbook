@@ -32,7 +32,7 @@
 						<span style="color:red">유찰</span><br><button>포인트 회수</button>
 						</c:if>	
 						<c:if test="${a.state eq '낙찰' }">
-						<span style="color:blue">낙찰</span>
+						<span style="color:blue">낙찰<button>배송 확인</button></span>
 						</c:if>	
 							</td>
 						</tr>		

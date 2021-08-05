@@ -95,7 +95,7 @@
 	</select>
 	
 	<insert id="auctionWriteEnd">
-	INSERT INTO AUCTION VALUES(SEQ_AUCTION_NO.NEXTVAL,#{memberId},#{auctioncateCode},#{auctionName},#{auctionEx},DEFAULT,#{endDate},#{startPrice},#{buyNow},#{priceUnit},'Y',#{auctionImg, typeHandler=strArr},'N','N')
+	INSERT INTO AUCTION VALUES(SEQ_AUCTION_NO.NEXTVAL,#{memberId},#{auctioncateCode},#{auctionName},#{auctionEx},DEFAULT,#{endDate},#{startPrice},#{buyNow},#{priceUnit},'Y',#{auctionImg, typeHandler=strArr},'N','N',#{auctionSize},#{auctionQuality})
 	</insert>
 	
 	<select id="auctionCount" resultType="_int">
@@ -144,6 +144,8 @@
 		<result column="count" property="count"/>
 		<result column="seller_state" property="sellerState"/>
 		<result column="buyler_state" property="buylerState"/>
+		<result column="auction_size" property="auctionSize"/>
+		<result column="auction_quality" property="auctionQuality"/>
 		
 		
 		<result column="auction_img" property="auctionImg" typeHandler="strArr"/>
