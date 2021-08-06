@@ -218,7 +218,7 @@ $("input[name=deliMethod]").change(e=>{
 <input type="hidden" id="loginMember" value="${loginMember.memberId}">
 <input type="hidden" id="sellStock" value="${sellStock}">
 <input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
-<input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock }">
+<input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock+3000 }">
 <input type="hidden" id="deliveryFee" value="3000">
 
 
