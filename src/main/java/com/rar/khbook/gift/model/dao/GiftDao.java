@@ -21,4 +21,6 @@ public interface GiftDao {
 	Ngift giftOne(SqlSession session, int giftNo);
 	
 	List<GiftBoard>  selectReview(SqlSession session, int giftNo);
+	
+	int reviewWrite(SqlSession session, int giftNo);
 }

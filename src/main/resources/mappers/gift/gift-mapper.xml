@@ -37,6 +37,7 @@
 		<result column="WRITE_DATE" property="write_date"/>
 		<result column="GROUP_ORD" property="groupOrd"/>
 		<result column="GROUP_LAYER" property="groupLayer"/>
+		<result column="NGIFT_SCORE" property="gift_score"/>
 	</resultMap>
 
 	<select id="selectGiftAll" resultMap="giftMap">
@@ -54,5 +55,9 @@
 	<select id="selectReview" resultMap="giftReviewMap">
 		SELECT * FROM NGIFT_REVIEW WHERE NGIFT_NO=#{gift_no}
 	</select>
+	
+	<insert id="insertReview">
+		INSERT INTO NGIFT_REVIEW VALUES();
+	</insert>
 	
 </mapper>

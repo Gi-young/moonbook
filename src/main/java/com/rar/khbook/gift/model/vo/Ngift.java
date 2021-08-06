@@ -25,5 +25,5 @@ public class Ngift {
 	private int gift_rowPrice;
 	private String gift_discount;
 	private int gift_salesVolume;
-	private int gift_score;
+	
 }

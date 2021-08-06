@@ -49,7 +49,6 @@ public class GiftController {
 		
 		mv.addObject("list", list);
 		mv.setViewName("gift/gift");
-		mv.setViewName("");
 		return mv;
 	}
 	
@@ -214,6 +213,23 @@ public class GiftController {
 		 return gb;
 	 }
 
+	@RequestMapping("/gift/reviewWrite.do")
+	public ModelAndView reviewWrite(int giftNo, ModelAndView mv, Ngift n) {
+		System.out.println("리뷰 작성하기 위해 넘어가는 : "+giftNo);
+		int result = service.reviewWrite(giftNo);
+		
+		
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping("/gift/insertReview")
+	public ModelAndView insertReview(int giftNo, ModelAndView mv) {
+		mv.addObject("giftNo", giftNo);
+		mv.setViewName("gift/insertReview");
+		return mv;
+	}
 	
 }
 

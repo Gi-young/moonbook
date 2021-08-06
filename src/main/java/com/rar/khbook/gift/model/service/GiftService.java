@@ -19,4 +19,6 @@ public interface GiftService {
 	Ngift giftOne(int giftNo);
 	
 	List<GiftBoard>  selectReview(int giftNo);
+	
+	int reviewWrite(int giftNo);
 }

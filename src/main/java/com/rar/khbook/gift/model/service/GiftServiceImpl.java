@@ -52,4 +52,10 @@ public class GiftServiceImpl implements GiftService {
 		return gb;
 	}
 	
+	@Override
+	public int reviewWrite(int giftNo) {
+		// TODO Auto-generated method stub
+		int result = dao.reviewWrite(session, giftNo);
+		return result;
+	}
 }

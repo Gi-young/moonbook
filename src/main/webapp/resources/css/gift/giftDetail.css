@@ -273,10 +273,11 @@
 .review-exp{
     display: flex;
     width: 950px;
-    height: 700px;
     border: 0.5px solid silver;
     justify-content: center;
     margin-bottom: 30px;
+    flex-direction: column;
+   
 }
 .review-exp th{
     width: 190px;

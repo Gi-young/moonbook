@@ -47,5 +47,8 @@ public class GiftDaoImpl implements GiftDao {
 		return session.selectList("gift.selectReview", giftNo);
 	}
 
-	
+	@Override
+	public int reviewWrite(SqlSession session, int giftNo, Ngift n) {
+		return session.insert("gift.insertReview", giftNo);
+	}
 }

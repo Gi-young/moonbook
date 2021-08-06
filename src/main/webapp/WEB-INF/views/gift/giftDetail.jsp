@@ -153,43 +153,16 @@
     	    console.log(btnQ);
     	    console.log(giftNo); */
     	    
+    	    
     	    let exp = document.getElementsByClassName('review-board');
     	    let text = document.getElementsByClassName("review-text");
-    	    let num = document.getElementsByClassName("review-num");
-    	    let gpa = document.getElementsByClassName("gpa");
-    	    let gpaCircle = document.getElementsByClassName("gpa-circle");
-    	    let gpaCircleA = document.getElementsByClassName("gpa-circle-a");
-    	    let review = document.getElementsByClassName("review");
-    	    let writer = document.getElementsByClassName("review-writer");
-    	    let date = document.getElementsByClassName("review-date");
-    	    let html = '
-    	    <tr class="review-text review-tr">
-                <td class="review-num"></td>
-                <td class="gpa">
-                 <div class="gpa-circle">
-                     <p class="gpa-circle-a"></p>
-                 </div>    
-                </td>
-                 <td>
-                    <div class="review">
-                          
-                    </div>
-                 </td>
-                <td class="review-writer"></td>
-                <td class="review-date"></td>
-		     </tr>
-		             ';
-    	    /*console.log(exp);
-    	    console.log(text);
-    	    console.log(num);
-    	    console.log(gpa);
-    	    console.log(gpaCircle);
-    	    console.log(gpaCircleA);
-    	    console.log(review);
-    	    console.log(writer);
-    	    console.log(date);*/    	    
+    	    let review = document.getElementsByClassName("review-test");
+    	    let tb = document.getElementsByTagName("tbody");
+    	             
+		           
+   	    
         $(btnR).on('click', function(){
-        
+        	
         	$.ajax({
              	type: 'post',
              	url: '${path}/gift/productReview.do',
@@ -199,21 +172,33 @@
              	dataType: "json",
              	success: data => {            		
              		data.forEach((v, i) => {   
-             			console.log(v.gift_board_no);
-             			num.innerText = v.gift_board_no,
-             			console.log(num);
-             			gpaCircleA.innerText = v.gift_score,
-             			review.innerText = v.gift_content,
-             			writer.innerText = v.writer,
-             			date.innerText = v.write_date,
-             			console.log(html);
-             			console.log(exp);
-             			exp.append(html);
-             		});
+             			
+             		     let html = "<tr class='review-text review-tr'>";   
+                	     html += "<td class='review-num'>"+v.gift_board_no+"</td>";
+                	     html += "<td class='gpa'>";
+                	     html += "<div class='gpa-circle'>";
+                	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>";
+                	     html += "<td><div class='review'>"+v.gift_board_content+"</div></td>";
+                	     html += " <td class='review-writer'>"+v.writer+"</td>";
+                	     html += "<td class='review-date'>"+v.write_date+"</td></tr>";
+                	    
+                	    let tr = document.createElement('tr'); 
+                	    tr.classList.add('review-text');
+                	    tr.classList.add('review-tr');
+                	    tr.innerHTML=html;
+                	    /* console.log(tr); */
+                	    
+                	    console.log(tb[0]);
+                	    
+                	    exp[0].appendChild(tb[0]).appendChild(tr);
+                	   
+             		});	
              	 } 
+             	
              });
-        })
-        	  
+          })
+        
+        
 	       /*  $(btnQ).on('click', function(){
 	        	$.ajax({
 	             	type: 'get',
@@ -254,10 +239,10 @@
         </div>
         <div class="product-review">
             <div class="writeBox">
-                <button class="reviewWrite">상품 리뷰 작성하기</button>
+                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
             </div>
            <table class="review-exp review-board">
-           
+          
                <tr>
                    <th style="width:105px;">번호</th>
                    <th style="width:145px;">만족도</th>
@@ -265,8 +250,8 @@
                    <th style="width:165px;">작성자</th>
                    <th style="width:165px;">작성일</th>
                </tr>
-               
-               <tr class="review-text review-tr">
+              
+               <!-- <tr class="review-text review-tr">
                    <td class="review-num">0</td>
                    <td class="gpa">
                     <div class="gpa-circle">
@@ -280,10 +265,11 @@
                     </td>
                    <td class="review-writer">관리자</td>
                    <td class="review-date">SYSDATE or 수정일</td>
-                </tr>
-                
+                </tr> -->
+               
+          
             </table>
-            <div>&lt;pageBar&gt;</div>
+            <!-- <div>&lt;pageBar&gt;</div> -->
         </div>
         <!-- 상품Q&A -->
         <div class="product-q_a">
@@ -312,129 +298,9 @@
                      </td>
                     <td>관리자</td>
                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                    <!--  <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
+                 </tr>                 
              </table>
-             <div>&lt;pageBar&gt;</div>
+             <!-- <div>&lt;pageBar&gt;</div> -->
         </div>
         <div class="notify">
             <img src="${path }/resources/images/gift/교환반품1.PNG" alt="">
@@ -551,6 +417,8 @@
     	})
     });
    
+    
+    
 </script>
 </body>
 </html>
