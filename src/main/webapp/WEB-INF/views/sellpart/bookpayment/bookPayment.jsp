@@ -97,6 +97,7 @@
 							<th colspan="2">상품정보</th>
 							<th>상품금액</th>
 							<th>수량</th>
+							<th>주문 가능 수량</th>
 							<th>결제금액</th>
 							<th>배송비</th>
 						</tr>
@@ -104,8 +105,9 @@
 							<td><img src="${book.image }"></td>
 							<td>${book.title }</td>
 							<td>${book.price*0.9 }</td>
-							<td>1개</td>
-							<td>${book.price*0.9 }원</td>
+							<td>${sellStock } 개</td>
+							<td>전체수량-${sellStock } 개</td>
+							<td>${(book.price*0.9)*sellStock }원</td>
 							<td rowspan="99" class="tbl_row2">3000원</td>
 						</tr>
 
@@ -121,21 +123,21 @@
 					<table class="tbl_payment">
 						<tr class="tbl_first">
 							<td>도서 금액</td>
-							<td>${book.price }원</td>
+							<td>${(book.price*0.9)*sellStock }원</td>
 							<td>+</td>
 							<td>배송비</td>
 							<td>3000원</td>
 							<td>=</td>
 							<td>총 </td>
-							<td>${book.price+3000 }원</td>
+							<td>${(book.price*0.9)*sellStock+3000 }원</td>
 						</tr>
 					</table>
 				</div>
 			</div>
+		</form>
 			<div class="btnCenter">
 				<button class="btnPay">결제하기</button>
 			</div>
-		</form>
 	</div>
 </div>
 <script>
@@ -214,9 +216,11 @@ $("input[name=deliMethod]").change(e=>{
 
 
 <input type="hidden" id="loginMember" value="${loginMember.memberId}">
+<input type="hidden" id="sellStock" value="${sellStock}">
 <input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
+<input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock }">
 <input type="hidden" id="deliveryFee" value="3000">
-<input type="hidden" id="bindNo" value="${book.bindNo }">
+
 
 <%System.out.println("test : " + session.getAttribute("loginMember")); %>
 

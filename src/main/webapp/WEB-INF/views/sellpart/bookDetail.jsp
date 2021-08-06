@@ -911,7 +911,8 @@ transition: all 0.2s linear;
      
  
         </div> 
-
+	<form action="${path }/SellbookController/bookpayment.do">
+	<input type="hidden" name="bindNo" value="${book.bindNo }">
         <div id="content_middle" style="display: flex;">
             <div class="bookView_img line">
                 <img src="${book.image }" alt="200300book">
@@ -926,40 +927,42 @@ transition: all 0.2s linear;
             </div>
             <div class="bookView_order" style="margin-left: 50px;">
                 <div>
-                    <h2><span>${book.title }</span></h2>
-                    <p>글쓴이 : <span>${book.author }</span>
+                    <h2><span style="font-size:30px;">${book.title }</span></h2><br><br>
+                    <p>글쓴이 : <span>${book.author }</span><br><br>
                     <!-- <span>옮김이</span> -->
-                    <p>출판사 : <span>${book.publisher }</span>
-                    <p>출간일 : <span>${book.pubdate }</span>
-                    <p>리뷰점수: <span>${book.rating }</span> <button>평점주기:</button></p>
+                    <p>출판사 : <span>${book.publisher }</span><br><br>
+                    <p>출간일 : <span>${book.pubdate }</span><br><br>
+                    <p>리뷰점수: <span>${book.rating }</span> <button>평점주기:</button></p><br><br><br>
                 </div>
-                <div>
-                    <p>정가 : <span>${book.price }</span>원</p>
-                    <p>판매가 : <span style="font-size: 18px; color: red;">${(book.price * 0.9) }</span>원 <span>할인율: [ <span>10%</span> ] </span></p>
+                <div><br><br>
+                    <p>정가 : <span>${book.price }</span>원</p><br><br>
+                    <p>판매가 : <span style="font-size: 18px; color: red;">${(book.price * 0.9) }</span>원 <span>할인율: [ <span>10%</span> ] </span></p><br><br>
                 </div>
-                <div>
-                    <p>쿠폰사용 : <button>쿠폰사용</button></p>
-                    <p>배송비 : <span>3,000원</span></p>
+                <div><br><br>
+                    <p>쿠폰사용 : <button>쿠폰사용</button></p><br><br>
+                    <p>배송비 : <span>3,000원</span></p><br><br>
 
                 </div>
-                <div>
+                <div><br><br>
                     <p>알림</p>
-                    <p>
-                         도서정보가 달라질 수 있습니다. 이 점 양해 부탁드립니다.
+                    <p><br><br>
+                         도서정보가 달라질 수 있습니다. 이 점 양해 부탁드립니다.<br><br><br><br>
                     </p>
                 </div>
                 
-                <div>
-                    <span>주문수량</span>
-                    <input type="number" id="bookVolume" value="1">
+                <div><br><br>
+                	<span>주문가능수량</span>
+                    <input type="number" id="stock" name="stock" value="${book.stock }" readonly><br><br>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;주문수량&nbsp;&nbsp;</span>
+                    <input type="number" id="sellStock" name="sellStock" value="1"><br><br><br><br>
                 </div>
                 <div style="display:flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
                     <a href="" >장바구니담기</a>
-                    <a href="${path }/SellbookController/bookpayment.do?bindNo=${book.bindNo}">바로구매</a>
+                    <button type="submit">바로구매</button>
                 </div>
             </div>
         </div>
-
+	</form>
 
         <div class="bookView_info" style="display: flex;">
             <div class="bookView_info_left line">

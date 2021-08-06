@@ -165,10 +165,12 @@ public class SellbookController {
 		
 	}
 	@RequestMapping("/SellbookController/bookpayment.do") 
-	public ModelAndView bookpayment(int bindNo, ModelAndView mv) {
+	public ModelAndView bookpayment(int bindNo, int sellStock ,ModelAndView mv) {
 		System.out.println("결제할 책 데이터 넘기기 여긴가");
 		System.out.println(bindNo);
-		mv.addObject("book",service.selectBigView(bindNo));
+		System.out.println("판매수량"+sellStock);
+		mv.addObject("book",service.selectBookPayment(bindNo));
+		mv.addObject("sellStock",sellStock);
 		mv.setViewName("sellpart/bookpayment/bookPayment");
 		System.out.println("mv임"+mv);
 		return mv;

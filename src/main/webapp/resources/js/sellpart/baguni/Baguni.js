@@ -1,15 +1,16 @@
 IMP.init("imp26745696");
 
 
-let btnPay = document.getElementById("btnPay");
+let btnPay = document.getElementsByClassName("btnPay");
 let refundBtn = document.getElementById("refundBtn");
 let loginMember = document.getElementById("loginMember").value;
 let contextPath = document.getElementById("contextPath").value;
-let bindNo = document.getElementById("bindNo").value;
+let sellStock = document.getElementById("sellStock").value;
+let totalPrice = document.getElementById("totalPrice").value;
+console.log("총금액"+totalPrice);
 
 
-
-payBtn.addEventListener("click", (e) => {
+$(".btnPay").click(e=> {
 
 	e.preventDefault();
     //let totalPrice = Number(document.getElementById("totalPrice").innerText);
@@ -21,9 +22,9 @@ payBtn.addEventListener("click", (e) => {
     //    }
     //});
     
-	let bookVolume = document.getElementById("bookVolume").value;
+	let sellStock = document.getElementById("sellStock").value;
 	let bookPrice09 = document.getElementById("bookPrice09").value;
-	let totalPrice = bookVolume * bookPrice09;
+	//let totalPrice = bookVolume * bookPrice09;
 	
 	
     $.ajax({
@@ -34,9 +35,9 @@ payBtn.addEventListener("click", (e) => {
         },
         success: data => {
         
-        console.log("수량"+bookVolume);
+        console.log("수량"+sellStock);
 		console.log("할인가"+bookPrice09);
-		console.log("총금액"+totalPrice);
+		//console.log("총금액"+totalPrice);
             let buyerName;
             let buyerEmail;
             let merchant_uid;
@@ -48,6 +49,7 @@ payBtn.addEventListener("click", (e) => {
                 type: "POST",
                 success: data => {
                     merchant_uid = data;
+                    console.log(merchant_uid);
                     IMP.request_pay(
                         {
                             pg: "html5_inicis",
@@ -56,7 +58,7 @@ payBtn.addEventListener("click", (e) => {
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
                             name: "eBook",
-                            amount: totalPrice
+                            amount: Number(totalPrice)
                         }, function(rsp) {
                             if (rsp.success) {
                                 $.ajax({

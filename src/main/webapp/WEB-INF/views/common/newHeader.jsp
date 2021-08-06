@@ -13,7 +13,7 @@
 <title>${param.title }</title>
 <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-
+<link rel="icon" href="${path }/resources/img/favicon/bazy.png">
 <!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 <!-- jQuery library -->
