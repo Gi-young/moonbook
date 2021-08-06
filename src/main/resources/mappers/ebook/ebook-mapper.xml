@@ -325,5 +325,50 @@
 	<select id="getEbookFilepath" resultType="string">
 		SELECT FILEPATH FROM EBOOK WHERE EBOOK_NO=#{bindNo}
 	</select>
+	
+	<insert id="createSort">
+		INSERT INTO MEMBER_EBOOK_LIST VALUES(#{memberId},NULL,#{sortName})
+	</insert>
+	
+	<select id="listMySorts" resultType="string">
+		SELECT DISTINCT SORT FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<update id="changeSort">
+		UPDATE MEMBER_EBOOK_LIST SET SORT=#{selectedSort} WHERE MEMBER_ID=#{memberId} AND EBOOK_NO IN (${selectedEbookArr})
+	</update>
+	
+	<delete id="cleanPseudoSortRow">
+		DELETE FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID=#{memberId} AND SORT=#{selectedSort} AND EBOOK_NO IS NULL
+	</delete>
+	
+	<update id="deleteSort">
+		UPDATE MEMBER_EBOOK_LIST SET SORT=NULL WHERE MEMBER_ID=#{memberId} AND SORT=#{selectedSort}
+	</update>
+	
+	<delete id="cleanData">
+		DELETE FROM MEMBER_EBOOK_LIST WHERE EBOOK_NO IS NULL AND SORT IS NULL
+	</delete>
+	
+	<select id="changeBookshelf" resultType="hashmap">
+		SELECT * FROM BOOK_EBOOK_DATABIND D, MEMBER_EBOOK_LIST L
+		WHERE D.BIND_NO = L.EBOOK_NO
+		AND L.MEMBER_ID = #{memberId}
+		<if test="sortName != '나의 모든 e북'">
+			AND L.SORT = #{sortName}
+		</if>
+	</select>
+	
+	<select id="dataCountFromSort" resultType="_int">
+		SELECT COUNT(EBOOK_NO) FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID=#{memberId} AND SORT=#{sortName}
+	</select>
+	
+	<update id="liftFromSort">
+		UPDATE MEMBER_EBOOK_LIST SET SORT=NULL WHERE MEMBER_ID=#{memberId} AND SORT=#{sortName} AND EBOOK_NO IN (${checkedArr})
+	</update>
+	
+	<select id="dataCountAll" resultType="_int">
+		SELECT COUNT(EBOOK_NO) FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
 
 </mapper>
