@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.rar.khbook.usedboard.model.dao.UsedboardDao;
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -125,10 +126,47 @@ public class UsedboardServiceImpl implements UsedboardService {
 	}
 	
 	@Override
-	public int usedboardPayment(int no) {
+	public int usedboardPayment(int no,UsedboardPayment p) {
 		// TODO Auto-generated method stub
+		dao.usedboardPaymentInsert(session,p);
 		return dao.usedboardPayment(session,no);
 	}
 	
+	@Override
+	public List<Usedboard> selectUsedboardMyList(int cPage, int numPerpage, String memberId) {
+		// TODO Auto-generated method stub
+		return dao.selectUsedboardMyList(session,cPage,numPerpage,memberId);
+	}
 	
+	@Override
+	public int selectUsedboardMyCount(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.selectUsedboardMyCount(session,memberId);
+	}
+	
+	@Override
+	public List<UsedboardPayment> usedboardMyPaymentList(int cPage, int numPerpage, String memberId) {
+		// TODO Auto-generated method stub
+		return dao.usedboardMyPaymentList(session,cPage,numPerpage,memberId);
+	}
+	
+	@Override
+	public int usedboardMyPaymentCount(String memberId) {
+		// TODO Auto-generated method stub
+		return dao.usedboardMyPaymentCount(session,memberId);
+	}
+	
+	@Override
+	public int usedboardPay1(int no) {
+		// TODO Auto-generated method stub
+		dao.usedboardPay11(session,no);
+		return dao.usedboardPay1(session,no);
+	}
+	
+	@Override
+	public int usedboardPay2(int no) {
+		// TODO Auto-generated method stub
+		dao.usedboardPay22(session,no);
+		return dao.usedboardPay2(session,no);
+	}
 }

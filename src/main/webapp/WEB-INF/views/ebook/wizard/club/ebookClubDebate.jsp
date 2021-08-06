@@ -20,9 +20,15 @@
 	</aside>
 	
 		<section>
+			<select id="selectClub"></select>
+		
 			<div id="debateBox">메시지</div>
+			
 			<input type="text" id="debateMessage">
-			<input type="button" id="submitBtn" value="입력"/>
+			<input type="button" id="submitBtn" value="입력">
+			
+			<input type="file" id="uploadImage">
+			
 		</section>
 	</div>
 	

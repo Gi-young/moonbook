@@ -18,7 +18,6 @@
 				<li><a href="${path}/ebook/pageEbookReport.do">e독서록</a></li>
 				<li><a href="${path}/ebook/pageEbookPlanner.do">e북 플래너</a></li>
 				<li><a href="${path}/ebook/pageEbookClubManager.do">e독서토론[<span id="noticeAlert">0</span>]</a></li>
-				<li><a href="${path}/ebook/pageEbookPublisher.do">e노트 출판</a></li>
 			</ul>
 		</header>
 		

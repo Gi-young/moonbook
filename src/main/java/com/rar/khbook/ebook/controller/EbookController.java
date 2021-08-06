@@ -72,16 +72,6 @@ public class EbookController {
 		return "ebook/home/bookstallMiddle";
 	}
 	
-	@RequestMapping(value="/ebook/pageBookstallNotes.do")
-	public String pageBookstallNotes() {
-		return "ebook/home/bookstallNotes";
-	}
-	
-	@RequestMapping(value="/ebook/pageBookstallSearch.do")
-	public String pageBookstallSearch() {
-		return "ebook/home/bookstallSearch";
-	}
-	
 	@RequestMapping(value="/ebook/pageShoppingBasket.do")
 	public String pageShoppingBasket() {
 		return "ebook/home/shoppingBasket";
@@ -116,7 +106,11 @@ public class EbookController {
 	}
 	
 	@RequestMapping(value="/ebook/pageEbookReader.do")
-	public String pageEbookReader() {
+	public String pageEbookReader(String bindNo, Model model) {
+		String filepath = service.getEbookFilepath(bindNo);
+		
+		model.addAttribute("filepath", filepath);
+		
 		return "ebook/wizard/ebookReader";
 	}
 	
@@ -132,18 +126,6 @@ public class EbookController {
 	
 	@RequestMapping(value="/ebook/pageEbookClubManager.do")
 	public String pageEbookClubManager() {
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		return "ebook/wizard/club/ebookClubManager";
 	}
 	
@@ -165,11 +147,6 @@ public class EbookController {
 	@RequestMapping(value = "/ebook/pageEbookClubGather.do")
 	public String pageEbookClubGatherManager() {
 		return "ebook/wizard/club/ebookClubGather";
-	}
-	
-	@RequestMapping(value="/ebook/pageEbookPublisher.do")
-	public String pageEbookPublisher() {
-		return "ebook/wizard/ebookPublisher";
 	}
 	
 	@RequestMapping(value = "/ebook/getBookDataFromAPI.do", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
@@ -520,6 +497,68 @@ public class EbookController {
 	@ResponseBody
 	public List<HashMap> loadMessage(String memberId) {
 		return service.loadMessage(memberId);
+	}
+	
+	@RequestMapping(value = "/ebook/getMyEbooks.do")
+	@ResponseBody
+	public List<HashMap> getMyEbooks(@RequestParam Map param) {
+		return service.getMyEbooks(param);
+	}
+	
+	@RequestMapping(value = "/ebook/createSort.do")
+	@ResponseBody
+	public int createSort(@RequestParam Map param) {
+		return service.createSort(param);
+	}
+	
+	@RequestMapping(value = "/ebook/listMySorts.do")
+	@ResponseBody
+	public List<String> listMySorts(String memberId) {
+		return service.listMySorts(memberId);
+	}
+	
+	@RequestMapping(value = "/ebook/changeSort.do")
+	@ResponseBody
+	public int changeSort(@RequestParam Map param) {
+		int result = service.changeSort(param);
+		
+		int cleanResult = service.cleanPseudoSortRow(param);
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/ebook/deleteSort.do")
+	@ResponseBody
+	public int deleteSort(@RequestParam Map param) {
+		int result = service.deleteSort(param);
+		
+		int cleanResult = service.cleanData();
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/ebook/changeBookshelf.do")
+	@ResponseBody
+	public List<HashMap> changeBookshelf(@RequestParam Map param) {
+		return service.changeBookshelf(param);
+	}
+	
+	@RequestMapping(value = "/ebook/dataCountFromSort.do")
+	@ResponseBody
+	public int dataCountFromSort(@RequestParam Map param) {
+		return service.dataCountFromSort(param);
+	}
+	
+	@RequestMapping(value = "/ebook/liftFromSort.do")
+	@ResponseBody
+	public int liftFromSort(@RequestParam Map param) {
+		return service.liftFromSort(param);
+	}
+	
+	@RequestMapping(value = "/ebook/dataCountAll.do")
+	@ResponseBody
+	public int dataCountAll(@RequestParam Map param) {
+		return service.dataCountAll(param);
 	}
 	
 }

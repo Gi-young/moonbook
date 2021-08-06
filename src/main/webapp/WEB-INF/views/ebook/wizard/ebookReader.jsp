@@ -9,7 +9,9 @@
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookReader.css">
 
-	<div id="container">
+	<aside></aside>
+
+	<section id="container">
 		<div id="bookController">
 			<span>
 				<span id="page-num"></span> / <span id="page-count"></span>
@@ -35,9 +37,9 @@
 			<img id="left-canvas-img">
 			<img id="right-canvas-img">
 		</div>
-	</div>
+	</section>
 
-	<input type="hidden" id="contextPath" value="${path}">
+	<input type="hidden" id="filepath" value="${filepath}">
 	
 	<script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 	<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>

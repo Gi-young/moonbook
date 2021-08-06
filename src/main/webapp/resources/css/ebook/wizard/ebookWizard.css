@@ -1,0 +1,160 @@
+section {
+    overflow: scroll;
+    padding: 0;
+    position: relative;
+}
+
+section::-webkit-scrollbar {
+    display: none;
+}
+
+aside {
+    position: relative;
+}
+
+div.ebookItem {
+    position: relative;
+    width: 180px;
+    height: 230px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+img.coverImg {
+    width: 120px;
+    height: 170px;
+}
+
+img.coverImg:hover {
+    cursor: pointer;
+}
+
+p.title {
+    font-size: 14px;
+    font-weight: bolder;
+    padding: 0;
+    margin: 5px 10px 0 10px;
+}
+
+.ebookItem input[type=checkbox] {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.ebookItem input[type=checkbox]:hover {
+    cursor: pointer;
+}
+
+.loaderBox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.loader {
+    border: 7px solid wheat;
+    border-top: 7px solid saddlebrown;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
+
+.message {
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+@Keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.pseudo-box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    height: 101%;
+    width: 100%;
+    padding: 20px;
+}
+
+.library-controller {
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+}
+
+.library-controller>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.library-controller>div:first-child {
+    margin-bottom: 10px;
+}
+
+.library-controller>div>input[type=text] {
+    margin-bottom: 5px;
+}
+
+.library-controller>div>select {
+    margin-bottom: 5px;
+}
+
+.library-controller button {
+    margin-bottom: 5px;
+}
+
+#sortList>li {
+    margin-bottom: 10px;
+}
+
+#sortList>li:hover {
+    cursor: pointer;
+}
+
+.embodyMarker {
+    position: absolute;
+    left: 100px;
+    top: 9px;
+    color: white;
+    background-color: pink;
+    font-weight: bolder;
+    font-size: 13px;
+    padding: 3px;
+}
+
+#scrollIndicator {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    color: white;
+    font-weight: bolder;
+    background-color: burlywood;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.display-none {
+    display: none;
+}
+
+.underline {
+    text-decoration: underline;
+    font-weight: bold;
+}

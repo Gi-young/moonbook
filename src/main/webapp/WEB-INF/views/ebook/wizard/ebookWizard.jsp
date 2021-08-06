@@ -10,12 +10,30 @@
 		<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookWizard.css"/>
 		
 		<aside>
-			<div></div>
+			<h2>내 서재</h2>
+			
+			<ul id="sortList">
+				<li>나의 모든 e북</li>
+			</ul>
+			
+			<div class="library-controller">
+				<div>
+					<input type="text" id="sortName" placeholder="분류 이름">
+					<button onclick="createSort();">분류 추가</button>
+					<button onclick="liftFromSort();">현재 분류에서 제거</button>
+				</div>
+				
+				<div>
+					<select id="selectSort"></select>
+					<button onclick="changeSort();">해당 분류로 e북 이동</button>
+					<button onclick="deleteSort();">분류 삭제</button>
+				</div>
+			</div>
 		</aside>
 		
 		<section>
-			<button id="readBookBtn">책 읽기</button>
-			
+			<div class="pseudo-box"></div>
+			<div id="scrollIndicator">↓ 스크롤</div>
 		</section>
 	</div>
 

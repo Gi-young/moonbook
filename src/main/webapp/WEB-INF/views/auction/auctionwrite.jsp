@@ -16,7 +16,7 @@
              <h2>경매 등록하기</h2>
         </div>
 
-       <form action="${path }/auction/auctionwriteEnd.do" method="post" enctype="multipart/form-data">
+       <form action="${path }/auction/auctionwriteEnd.do" method="post" enctype="multipart/form-data" onsubmit="return check();">
         <div class="auctionwrite">
                 <table>
                     <tr>
@@ -45,49 +45,51 @@
                     <tr>
                         <th>물품명</th>
                         <td>
-                            <input type="text" name="auctionName">
+                            <input type="text" name="auctionName" required>
                         </td>
                     </tr>
                     <tr>
-                        <tr>
-                            <th>물품크기</th>
-                            <td>
-                            <input type="text">
-                        </td>
+                              <th>물품크기</th>
+                                <td>
+                                <input type="text" name="auctionSize" required> <span>크기/쪽 첨부</span>
+                            </td>
                     </tr>
                     <tr>
-                        <tr>
-                            <th>현상태</th>
-                            <td>
-                            <textarea style="width: 810px; height: 100px;" name=""></textarea>
-                        </td>
+                              <th>보관상태</th>
+                                <td>
+                               <input type="radio" name="auctionQuality" value="상" required>상
+                               <input type="radio" name="auctionQuality" value="중상">중상
+                               <input type="radio" name="auctionQuality" value="중">중
+                               <input type="radio" name="auctionQuality" value="중하">중하
+                               <input type="radio" name="auctionQuality" value="하">하
+                            </td>
                     </tr>
                     <tr>
                         <tr>
                             <th>경매 기간</th>
                             <td> 
-                            <input type="date" name="endDate"> 까지
+                            <input type="date" name="endDate" required> 까지
                         </td>
                     </tr>
                     <tr>
                         <tr>
                             <th>시작가</th>
                             <td>
-                            <input type="number" value="0" name="startPrice">
+                            <input type="number" value="0" name="startPrice" required>
                         </td>
                     </tr>
                     <tr>
                         <tr>
                             <th>즉시 구매가</th>
                             <td>
-                            <input type="number" value="0" name="buyNow">
+                            <input type="number" value="0" name="buyNow" required>
                         </td>
                     </tr>
                     <tr>
                         <tr>
                             <th>응찰 단위</th>
                             <td>
-                            <input type="number" value="0" step="1000" name="priceUnit"> <span>1000원 단위로 입력해주세요</span>
+                            <input type="number" value="0" step="1000" name="priceUnit" required> <span>1000원 단위로 입력해주세요</span>
                      
                         </td>
                     </tr>
@@ -95,14 +97,14 @@
                         <tr>
                             <th>물품 설명</th>
                             <td>
-                            <textarea style="width: 810px; height: 240px;" name="auctionEx"></textarea>
+                            <textarea style="width: 810px; height: 240px;" name="auctionEx" required></textarea>
                         </td>
                     </tr>
                     <tr>
                         <tr>
                             <th>대표 이미지</th>
                             <td>
-                            <input type="file" name="upfile"> <span id="img_add">추가</span>
+                            <input type="file" name="upfile" required> <span id="img_add">추가</span>
                         </td>
                     </tr>
                 </table>
@@ -171,6 +173,26 @@
                     tr.append(th).append(td.append(inputfile).append(span))           
                     $(e.target).parent().parent().parent().append(tr);
                 })
+                
+                   const check=()=>{
+                      let endDate= new Date($("input[name=endDate]").val());
+                      let sysdate = new Date();
+                      if(endDate<sysdate){
+                          alert("적어도 하루이상의 날짜의 선택해주세요")
+                              return false;
+                      }
+
+                      if(parseInt($("input[name=startPrice]").val())>parseInt($("input[name=buyNow]").val())){
+                          alert("시작가는 즉시 구매가 보다 높을수 없습니다");
+                          return false;
+                      }else if(parseInt($("input[name=buyNow]").val())-parseInt($("input[name=startPrice]").val()) < parseInt($("input[name=priceUnit]").val())){
+                          alert("응찰가격은 즉시 구매가 보다 높을 수 없습니다");
+                          return false;
+                      }
+                    
+
+
+                  }
 </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

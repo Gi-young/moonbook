@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.usedboard.model.service.UsedboardService;
 import com.rar.khbook.usedboard.model.vo.Usedboard;
+import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -33,8 +34,16 @@ public class UsedboardController {
 	public ModelAndView usedboardPage(@RequestParam(value="cPage", defaultValue="1") int cPage,
 			@RequestParam(value="numPerpage",defaultValue="5") int numPerpage,
 			ModelAndView mv,HttpServletRequest request) {
+		String memberId=request.getParameter("memberId");
 		String catagory=request.getParameter("catagory");
-		if(catagory==null) {
+		if(memberId!=null) {
+			mv.addObject("list",service.selectUsedboardMyList(cPage,numPerpage,memberId));
+			int totalData=service.selectUsedboardMyCount(memberId);
+			mv.addObject("totalContents",totalData);
+			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardList.do"));
+			
+			mv.setViewName("usedboard/usedboardList");
+		}else if(catagory==null) {
 		
 			mv.addObject("list",service.selectUsedboardList(cPage,numPerpage));
 			int totalData=service.selectUsedboardCount();
@@ -201,8 +210,15 @@ public class UsedboardController {
 	}
 	
 	@RequestMapping("/usedboard/usedboardPayment.do")
-	public ModelAndView usedboardPayment(int no, ModelAndView mv) {
-		int result=service.usedboardPayment(no);
+	public ModelAndView usedboardPayment(int no,UsedboardPayment p, ModelAndView mv,HttpServletRequest req) {
+		p.setUsedboardPayment_Title(req.getParameter("title"));
+		p.setUsedboardPayment_Price(Integer.parseInt(req.getParameter("price")));
+		p.setUsedboardPayment_BoardNo(Integer.parseInt(req.getParameter("no")));
+		p.setImp_uid(req.getParameter("impuid"));
+		p.setMerchant_uid(req.getParameter("muid"));
+		p.setMember_Id(req.getParameter("id"));
+		System.out.println(p);
+		int result=service.usedboardPayment(no,p);
 		String msg="";
 		String loc="";
 		if(result>0) {
@@ -212,6 +228,48 @@ public class UsedboardController {
 		}
 		mv.addObject("msg",msg);
 		mv.addObject("loc","/usedboard/usedboardView.do?no="+no);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardMyPayment.do")
+	public ModelAndView usedboardMyPayment(@RequestParam(value="cPage", defaultValue="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,
+			ModelAndView mv,HttpServletRequest request,String memberId) {
+		mv.addObject("list",service.usedboardMyPaymentList(cPage,numPerpage,memberId));
+		int totalData=service.usedboardMyPaymentCount(memberId);
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardMyPayment.do"));
+		mv.setViewName("usedboard/usedboardMyPayment");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardPay1.do")
+	public ModelAndView usedboardPay1(int no, ModelAndView mv,String memberId) {
+		int result=service.usedboardPay1(no);
+		String msg="";
+		if(result>0) {
+			msg="주문확인성공";
+		}else {
+			msg="주문확인실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardList.do?memberId="+memberId);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardPay2.do")
+	public ModelAndView usedboardPay2(int no, ModelAndView mv,String id) {
+		int result=service.usedboardPay2(no);
+		String msg="";
+		if(result>0) {
+			msg="배송완료성공";
+		}else {
+			msg="배송완료실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardMyPayment.do?memberId="+id);
 		mv.setViewName("common/msg");
 		return mv;
 	}

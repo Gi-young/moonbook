@@ -149,4 +149,74 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectList("ebook.loadMessage", memberId);
 	}
 	
+	@Override
+	public List<HashMap> getMyEbooks(SqlSession session, Map param) {
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerPage = Integer.parseInt((String)param.get("numPerPage"));
+		
+		RowBounds rb = new RowBounds(numPerPage * (cPage - 1), numPerPage);
+		
+		return session.selectList("ebook.getMyEbooks", param, rb);
+	}
+	
+	@Override
+	public String getEbookFilepath(SqlSession session, String bindNo) {
+		return session.selectOne("ebook.getEbookFilepath", bindNo);
+	}
+	
+	@Override
+	public int createSort(SqlSession session, Map param) {
+		return session.insert("ebook.createSort", param);
+	}
+	
+	@Override
+	public List<String> listMySorts(SqlSession session, String memberId) {
+		return session.selectList("ebook.listMySorts", memberId);
+	}
+	
+	@Override
+	public int changeSort(SqlSession session, Map param) {
+		return session.update("ebook.changeSort", param);
+	}
+	
+	@Override
+	public int cleanPseudoSortRow(SqlSession session, Map param) {
+		return session.delete("ebook.cleanPseudoSortRow", param);
+	}
+	
+	@Override
+	public int deleteSort(SqlSession session, Map param) {
+		return session.update("ebook.deleteSort", param);
+	}
+	
+	@Override
+	public int cleanData(SqlSession session) {
+		return session.delete("ebook.cleanData");
+	}
+	
+	@Override
+	public List<HashMap> changeBookshelf(SqlSession session, Map param) {
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerPage = Integer.parseInt((String)param.get("numPerPage"));
+		
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		
+		return session.selectList("ebook.changeBookshelf", param, rb);
+	}
+	
+	@Override
+	public int dataCountFromSort(SqlSession session, Map param) {
+		return session.selectOne("ebook.dataCountFromSort", param);
+	}
+	
+	@Override
+	public int liftFromSort(SqlSession session, Map param) {
+		return session.update("ebook.liftFromSort", param);
+	}
+	
+	@Override
+	public int dataCountAll(SqlSession session, Map param) {
+		return session.selectOne("ebook.dataCountAll", param);
+	}
+	
 }

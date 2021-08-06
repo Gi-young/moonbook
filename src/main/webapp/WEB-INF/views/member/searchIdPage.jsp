@@ -86,7 +86,7 @@
 <script>
 	$("input[name=searchHow]").click(e=>{
 		$("input[name=searchHow]").each((i,v)=>{
-			if(v.checked){
+			if(v.checked=="stockBookT"){
 				if(v.value=="phone"){
 					$(".search1Ver-container").css("display","block");
 					$(".search2Ver-container").css("display","none");

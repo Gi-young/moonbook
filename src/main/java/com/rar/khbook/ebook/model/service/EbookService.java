@@ -58,4 +58,28 @@ public interface EbookService {
 	
 	List<HashMap> loadMessage(String memberId);
 	
+	List<HashMap> getMyEbooks(Map param);
+	
+	String getEbookFilepath(String bindNo);
+	
+	int createSort(Map param);
+	
+	List<String> listMySorts(String memberId);
+	
+	int changeSort(Map param);
+	
+	int cleanPseudoSortRow(Map param);
+	
+	int deleteSort(Map param);
+	
+	int cleanData();
+	
+	List<HashMap> changeBookshelf(Map param);
+	
+	int dataCountFromSort(Map param);
+	
+	int liftFromSort(Map param);
+	
+	int dataCountAll(Map param);
+	
 }
