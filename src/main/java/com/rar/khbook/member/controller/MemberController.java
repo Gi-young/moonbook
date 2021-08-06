@@ -530,7 +530,8 @@ public class MemberController {
 	
 //	결제 내역 리스트
 	@RequestMapping("/member/myroom/payList.do")
-	public String payList() {
+	public String payList(HttpSession session, Model m) {
+		
 		
 		return "myroom/payList";
 	}
