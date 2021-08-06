@@ -5,24 +5,40 @@
 
 <jsp:include page="/WEB-INF/views/ebook/wizard/wizardHeader.jsp">
 	<jsp:param name="title" value="e북 리더 - 문곰책방"/>
+	<jsp:param name="currentPageIndex" value="0"/>
 </jsp:include>
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookReader.css">
 
-	<aside></aside>
-
-	<section id="container">
-		<div id="bookController">
-			<span>
-				<span id="page-num"></span> / <span id="page-count"></span>
-			</span>
+	<aside>
+			<div id="asideController">
+				<button>북마크</button>
+				<button>TESSERACT</button>
+			</div>
+	
+			<div id="bookMark">
+				<div></div>
+			</div>
+			
 			<div id="textTurmoil">
 				<div id="parsedTextData"></div>
-				<button id="pageToTextBtn">텍스트로 변환</button>
-				<button id="textToSpeechBtn">읽어 줘</button>
+				<div>
+					<button id="pageToTextBtn">텍스트로 변환</button>
+					<button id="textToSpeechBtn">읽어 줘</button>
+				</div>
 			</div>
-		</div>
+			
+			<div id="pageController">
+				<span id="page-num"></span> / <span id="page-count"></span>
+			</div>
+			
+			<div id="readingInfo">
+				<div id="readingTime">time</div>
+				<div id="readingPage">page</div>
+			</div>
+	</aside>
 
+	<section>
 		<div id="book">
 			<div id="binding">
 				<c:forEach begin="1" end="27">

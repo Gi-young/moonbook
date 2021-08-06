@@ -1,7 +1,15 @@
 let contextPath = document.getElementById("contextPath").value;
 let loginMemberId = document.getElementById("loginMemberId").value;
+let currentPageIndex = document.getElementById("currentPageIndex").value;
 
 console.log(loginMemberId);
+console.log(currentPageIndex);
+
+document.querySelectorAll("header li").forEach((v, i) => {
+    if (i === Number(currentPageIndex)) {
+        v.classList.add("selectedBranch");
+    }
+});
 
 let sockWizard = new SockJS("http://localhost:9090" + contextPath + "/wizard");
 

@@ -12,11 +12,16 @@ aside {
     position: relative;
 }
 
+aside>h2 {
+    margin-left: 15px;
+}
+
 div.ebookItem {
     position: relative;
     width: 180px;
     height: 230px;
-    border: 1px solid black;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -118,6 +123,26 @@ p.title {
 
 .library-controller button {
     margin-bottom: 5px;
+    background-color: white;
+    border: 2px solid silver;
+}
+
+.library-controller button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+#sortList {
+    background-color: ivory;
+    border-radius: 10px;
+    overflow: scroll;
+    height: 450px;
+    padding-left: 30px;
+}
+
+#sortList::-webkit-scrollbar {
+    display: none;
 }
 
 #sortList>li {

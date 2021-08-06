@@ -3,20 +3,19 @@ let filepath = document.getElementById("filepath").value;
 let url = contextPath + "/resources/ebook/" + filepath;
 
 let pdfjsLib = window['pdfjs-dist/build/pdf'];
-
 pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
 let pageFlippingSound = new Audio(contextPath + '/resources/audio/ebook/pageFlipping.wav');
 pageFlippingSound.volume = 0.5;
 
-let pdfDoc = null,
-    pageNum = 1,
-    pageRendering = false,
-    pageNumPending = null,
-    leftCanvas = document.getElementById('left-canvas'),
-    rightCanvas = document.getElementById('right-canvas'),
-    leftCtx = leftCanvas.getContext('2d');
-    rightCtx = rightCanvas.getContext('2d');
+let pdfDoc = null;
+let pageNum = 1;
+let pageRendering = false;
+let pageNumPending = null;
+let leftCanvas = document.getElementById('left-canvas');
+let rightCanvas = document.getElementById('right-canvas');
+let leftCtx = leftCanvas.getContext('2d');
+let rightCtx = rightCanvas.getContext('2d');
 
 function renderLeftPage(num) {
     pageRendering = true;
