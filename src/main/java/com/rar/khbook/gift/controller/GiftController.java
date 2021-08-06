@@ -49,6 +49,7 @@ public class GiftController {
 		
 		mv.addObject("list", list);
 		mv.setViewName("gift/gift");
+		mv.setViewName("");
 		return mv;
 	}
 	

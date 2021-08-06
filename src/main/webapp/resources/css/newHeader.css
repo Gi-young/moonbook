@@ -347,7 +347,74 @@ input:focus{
     color: white;
 }
 .eBook{
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    border: 3px solid silver;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 150px;
+    height: 240px;
+    margin-top: 25px;
+    z-index: 5;
+    /*  display: flex;  */
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    display: none; 
+}
+.eBook li{
+    background-color: #E5E2DB;
+    height: 60px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+}
+.eBook li:not(:last-child){
+    border-bottom: 0.5px solid silver;
+}
+.eBook a{
+    color: #582810;
+    font-weight: 900;
+}
+.book{
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    border: 3px solid silver;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 150px;
+    height: 240px;
+    margin-top: 25px;
+    z-index: 5;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
     display: none;
+}
+.book li{
+    background-color: #E5E2DB;
+    height: 60px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+}
+.book li:not(:last-child){
+    border-bottom: 0.5px solid silver;
+}
+.book a{
+    color: #582810;
+    font-weight: 900;
 }
 
 /* 헤더에서 기프트메뉴 호버시 */
@@ -355,7 +422,7 @@ input:focus{
 .giftTab{
     position: absolute;
     top: 50%;
-    left: 42.5%;
+    left: 40%;
     border: 3px solid silver;
     border-top: none;
     border-bottom-left-radius: 5px;
