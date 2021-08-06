@@ -17,6 +17,7 @@ import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.common.PageFactoryAdmin;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
@@ -107,19 +108,80 @@ public class AdminController {
 	@RequestMapping("/admin/orderedMemberList.do")
 	@ResponseBody
 	public List<Member> orderedMemberList(@RequestParam Map param) {
+		
+		String type1=(String)param.get("type1");
+		param.put("type1", type1);
+		String order=(String)param.get("order");
+		param.put("order", order);
+		
+		
 		List<Member> list = service.memberHowT(param);
 		/* new Gson().toJson(list); */
 		
 		/* return new Gson().toJson(list).toString(); */
+		
 		return list;
+	}
+	@RequestMapping("/admin/getPageBarOrderedMemberList.do")
+	@ResponseBody
+	public String[] getPageBarOrderedMemberList(@RequestParam Map param) {
+		
+		String type1=(String)param.get("type1");
+		param.put("type1", type1);
+		String order=(String)param.get("order");
+		param.put("order", order);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarOrderedMemberList(param); //gift
+		
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar5(totalContents, cPage, numPerpage,null);
+		
+		resultArr[0] = pageBar;
+		resultArr[1] = Integer.toString(totalContents);
+		
+		
+		return resultArr;
 	}
 	@RequestMapping("/admin/searchTextMemberList.do")
 	@ResponseBody
 	public List<Member> searchTextMemberList(@RequestParam Map param){
 		
+		String type2=(String)param.get("type2");
+		param.put("type2", type2);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
 		List<Member> list =service.memberHowT2(param);
 		
 		return list;
+	}
+	@RequestMapping("/admin/getPageBarSearchTextMemberList.do")
+	@ResponseBody
+	public String[] getPageBarSearchTextMemberList(@RequestParam Map param) {
+		
+		String type2=(String)param.get("type2");
+		param.put("type2", type2);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarSearchTextMemberList(param); 
+		
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar6(totalContents, cPage, numPerpage,null);
+		
+		resultArr[0] = pageBar;
+		resultArr[1] = Integer.toString(totalContents);
+		
+		
+		return resultArr;
 	}
 	
 	//판매내역 페이지 멈춤
@@ -194,8 +256,9 @@ public class AdminController {
 	}
 	//기프트 등록
 	@RequestMapping("/admin/insertProduct3.do")
-	public ModelAndView insertProduct3(ModelAndView mv,@RequestParam Map param,int gift_giftcate_code) {
+	public ModelAndView insertProduct3(ModelAndView mv,@RequestParam Map param,int gift_category) {
 		
+	
 		int result=service.insertProduct3(param);
 		
 		String msg="";
@@ -205,12 +268,12 @@ public class AdminController {
 		}else {
 			msg="상품 등록이 실패되었습니다.";
 		}
-		loc="/admin/addProductPage3.do?categoryCode="+gift_giftcate_code;
+		loc="/admin/addProductPage3.do?categoryCode="+gift_category;
 		
 		
 		mv.addObject("msg", msg);
 		mv.addObject("loc", loc);
-		mv.addObject("categoryCode", gift_giftcate_code);
+		mv.addObject("categoryCode", gift_category);
 		mv.setViewName("common/msg");
 		
 		return mv;
@@ -299,7 +362,7 @@ public class AdminController {
 	@ResponseBody
 	public boolean checkStock3(int gift_no,int gift_count) {
 		
-		Gift result=service.checkStock3(gift_no);
+		Ngift result=service.checkStock3(gift_no);
 		
 		System.out.println("출고전 재고 체크:" +result);
 		System.out.println("출고전 output할 stock 체크:" +gift_count);
@@ -381,9 +444,9 @@ public class AdminController {
 		String msg="";
 		String loc="";
 		if(result>0) {
-			msg="상품 출고가 정상적으로 처리되었습니다";
+			msg="기프트 출고가 정상적으로 처리되었습니다";
 		}else {
-			msg="상품 출고가 실패되었습니다.";
+			msg="기프트 출고가 실패되었습니다.";
 		}
 		loc="/admin/removeProductPage.do";
 		
@@ -406,7 +469,7 @@ public class AdminController {
 		//System.out.println("컨트롤러 테스트 : " + stockParam);
 		
 		List<EbookDatabind> listT=service.selectEbookDatabindList(cPage,numPerpage);
-		List<Gift> listT2=service.selectGiftList(cPage,numPerpage);
+		List<Ngift> listT2=service.selectGiftList(cPage,numPerpage);
 		
 		mv.addObject("list", listT);
 		mv.addObject("list2", listT2);
@@ -417,22 +480,19 @@ public class AdminController {
 		mv.addObject("totalContents", totalData);
 		mv.addObject("totalContents2", totalData2);
 		
-		if(stockParam != null) {
-			mv.addObject("stockParam", stockParam);
-		} else {
-			mv.addObject("stockParam", "book");
-		}
+		
 		
 
-		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage,"stockProductPage.do","book"));
+		mv.addObject("pageBar",PageFactoryAdmin.getPageBar(totalData, cPage, numPerpage,"stockProductPage.do","book"));
 		
-		mv.addObject("pageBar2",PageFactoryAdmin.getOwnPageBar(totalData2, cPage, numPerpage,"stockProductPage.do","gift"));
+		mv.addObject("pageBar2",PageFactoryAdmin.getPageBar2(totalData2, cPage, numPerpage,"stockProductPage.do","gift"));
 
-		
+		mv.addObject("stockParam",stockParam);
 		mv.setViewName("admin/stockProduct");
 		
 		return mv;
 	}
+	
 	//재고 ~이상 ~ 미만 book버전
 	@RequestMapping("/admin/orderStockList.do")
 	@ResponseBody
@@ -443,15 +503,44 @@ public class AdminController {
 		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
 		param.put("stockNum2", stockNum2);
 		
+		System.out.println("재고 정렬 book:"+param.get("cPage"));
+		System.out.println("재고 정렬 book:"+param.get("numPerpage"));
+		
+		
 		
 		List<EbookDatabind> list=service.orderStockList(param);
 		
+		
+		
 		return list;
 	}
+	// 재고 정렬 book 페이지바 
+	@RequestMapping("/admin/getPageBarOrderList.do")
+	@ResponseBody
+	public String[] getPageBarOrderList(@RequestParam Map param) {
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarOrderList(param);
+		
+		//mv.addObject("totalContents", totalData);
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar3(totalContents, cPage, numPerpage,null,null);
+		resultArr[0]=pageBar;
+		resultArr[1]= Integer.toString(totalContents);
+		
+		System.out.println("재고 정렬바 book:"+param.get("cPage"));
+		System.out.println("재고 정렬바 book:"+param.get("numPerpage"));
+		
+		return resultArr;
+	}
+	
 	//재고 ~이상 ~ 미만 gift버전
 	@RequestMapping("/admin/orderStockList3.do")
 	@ResponseBody
-	public List<Gift> orderStockList3(@RequestParam Map param) {
+	public List<Ngift> orderStockList3(@RequestParam Map param) {
 		
 		int stockNum1 = Integer.parseInt((String)param.get("stockNum1"));
 		param.put("stockNum1", stockNum1);
@@ -459,9 +548,31 @@ public class AdminController {
 		param.put("stockNum2", stockNum2);
 		
 		
-		List<Gift> list2=service.orderStockList3(param);
+		
+		List<Ngift> list2=service.orderStockList3(param);
 		
 		return list2;
+	}
+	// 재고 정렬 gift 페이지바 
+	@RequestMapping("/admin/getPageBarOrderList3.do")
+	@ResponseBody
+	public String[] getPageBar2(@RequestParam Map param) {
+		
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents2=service.getPageBarOrderList3(param); //gift
+		
+		String[] resultArr2 = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar3(totalContents2, cPage, numPerpage,null,null);
+		
+		resultArr2[0] = pageBar;
+		resultArr2[1] = Integer.toString(totalContents2);
+		
+		
+		return resultArr2;
 	}
 	
 	//검색 책
@@ -469,22 +580,86 @@ public class AdminController {
 	@ResponseBody
 	public List<EbookDatabind> searchTextStockList(@RequestParam Map param) {
 		
+		String type4=(String)param.get("type4");
+		param.put("type4", type4);
+		String search5=(String)param.get("search5");
+		param.put("search5", search5);
+		
+		System.out.println("검색책에서"+param.get("cPage"));
+		System.out.println("검색책에서"+param.get("numPerpage"));
 		
 		List<EbookDatabind> list=service.searchTextStockList(param);
 		
 		return list;
 	}
+	// 재고 검색 book 페이지바 
+	@RequestMapping("/admin/getPageBarTextStockList.do")
+	@ResponseBody
+	public String[] getPageBarTextStockList(@RequestParam Map param) {
+		
+		String type4=(String)param.get("type4");
+		param.put("type4", type4);
+		String search5=(String)param.get("search5");
+		param.put("search5", search5);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarTextStockList(param);
+		
+		System.out.println("검색바에서"+param.get("cPage"));
+		System.out.println("검색바에서"+param.get("numPerpage"));
+		
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar4(totalContents, cPage, numPerpage,null,null);
+		resultArr[0]=pageBar;
+		resultArr[1]= Integer.toString(totalContents);
+		
+		
+		return resultArr;
+	}
+	
 	//검색 gift
 	@RequestMapping("/admin/searchTextStockList3.do")
 	@ResponseBody
-	public List<Gift> searchTextStockList3(@RequestParam Map param) {
+	public List<Ngift> searchTextStockList3(@RequestParam Map param) {
 		
+		String type4=(String)param.get("type4");
+		param.put("type4", type4);
+		String search5=(String)param.get("search5");
+		param.put("search5", search5);
 		
-		List<Gift> list2=service.searchTextStockList3(param);
+		List<Ngift> list2=service.searchTextStockList3(param);
 		
 		return list2;
 	}
 	
+	// 재고 검색 gift 페이지바
+	@RequestMapping("/admin/getPageBarTextStockList3.do")
+	@ResponseBody
+	public String[] getPageBarTextStockList3(@RequestParam Map param) {
+		
+		String type4=(String)param.get("type4");
+		param.put("type4", type4);
+		String search5=(String)param.get("search5");
+		param.put("search5", search5);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents2=service.getPageBarTextStockList3(param); //gift
+		
+		String[] resultArr2 = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar4(totalContents2, cPage, numPerpage,null,null);
+		
+		resultArr2[0] = pageBar;
+		resultArr2[1] = Integer.toString(totalContents2);
+		
+		
+		return resultArr2;
+	}
 	// 책 수정하기
 	@RequestMapping("/admin/stockTUpdate.do")
 	@ResponseBody
@@ -538,6 +713,39 @@ public class AdminController {
 		}
 	}
 	
+	//쿠폰관리 시작
+	//add 등록 페이지
+	@RequestMapping("/admin/addCouponPage.do")
+	public String addCouponPage() {
+		
+		return "admin/addCoupon";
+	}
+	//input 발급 페이지
+	@RequestMapping("/admin/inputCouponPage.do")
+	public String inputCouponPage() {
+		
+		return "admin/inputCoupon";
+	}
+	
+	//쿠폰시작 
+	@RequestMapping("/admin/addCouponList.do")
+	public ModelAndView addCouponList(ModelAndView mv,@RequestParam Map param) {
+		
+		int result=service.addCouponList(param);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="쿠폰이 등록되었습니다";
+			
+		}else {
+			msg="쿠폰 등록 실패";
+		}
+		loc="/admin/addCouponPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
 	
 	
 }

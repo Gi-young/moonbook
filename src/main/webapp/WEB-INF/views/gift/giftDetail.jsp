@@ -65,16 +65,17 @@
                 </div>
                 <div class="discount-price">
                     <p class="discount">할인율</p>
-                    <p class="price">가격</p>
+                    <p class="price" id="totalPrice">12000</p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
-                    <button>구매하기</button>
+                    <button id="byBuy">구매하기</button>
+                    <input type="hidden" value="${loginMember.memberId }" id="loginMemberId">
                     <button>장바구니</button>
                     <!-- <button>찜하기</button> -->
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
-                    <button class="naverPay" id="kakaoPay">[간편결제] 카카오페이</button>
+                    <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
         </div>
@@ -136,8 +137,8 @@
         <div class="crossLine3"></div>
         <div class="proDetail-bar">
             <a id="bar1">상품설명</a>
-            <a id="bar2" href="${path }/gift/productReview.do?gift_no=1">상품리뷰</a>
-            <a id="bar3" href="">상품Q&A</a>
+            <a id="bar2" href="${path }/gift/productReview.do?gift_no=${gift_no}">상품리뷰</a>
+            <a id="bar3" href="${path }/gift/productReview.do?gift_no=${gift_no}">상품Q&A</a>
             <a id="bar4">알려드립니다</a>
         </div>
         <div class="product-exp">
@@ -478,6 +479,7 @@
                 </li>
             </ul>
         </div> -->
+        <input type="hidden" value="${path }" id="contextPath">
 	<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 		<jsp:param name="" value=""/>
 	</jsp:include>
@@ -486,6 +488,11 @@
 			<jsp:param name="" value=""/> 
 	 </jsp:include>  --%>   
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+  <!-- iamport.payment.js -->
+  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="${path }/resources/js/gift/gift_buy.js"></script>
 <script>
       $('#slider-div').slick({
           slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 

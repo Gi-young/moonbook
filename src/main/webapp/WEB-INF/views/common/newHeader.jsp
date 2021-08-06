@@ -12,19 +12,22 @@
 
 <title>${param.title }</title>
 <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
+<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="icon" href="${path }/resources/img/favicon/bazy.png">
 <!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --> 
 <!-- jQuery library -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 <!-- Popper JS -->
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>  
 <!-- Latest compiled JavaScript -->
 <!-- <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+ -->
+
 </head>
 <body>
 	<div class="header">
@@ -133,6 +136,7 @@
                 padding-right: 10px;
                 "></a>
             </div> -->
+
 				<div class="header-menuBar1">
 					<ul class="flex">
 						<li><a href="${path}/sellbookController/sellbook.do"><div>문곰도서▼</div></a>
@@ -175,6 +179,7 @@
 							<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
 							<li><a href="${path }/member/logout.do">로그아웃</a></li>
 
+
 						</c:if>
 						<li><a href="${path }/member/myroom/main.do">마이룸</a></li>
 						<li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
@@ -204,6 +209,12 @@
 			})
 		});
 	</script>
-	>>>>>>> sm
+	
+
+						
+            
+        
+       
+
 </body>
 </html>

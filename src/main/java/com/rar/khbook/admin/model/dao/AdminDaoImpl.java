@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 @Repository
@@ -43,14 +44,34 @@ public class AdminDaoImpl implements AdminDao {
 	public List<Member> memberHowT(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		System.out.println(param);
-		return session.selectList("member.memberHowT",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		return session.selectList("member.memberHowT",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	
+
+	@Override
+	public int getPageBarOrderedMemberList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.getPageBarOrderedMemberList",param);
 	}
 
 	@Override
 	public List<Member> memberHowT2(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("member.memberHowT2",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("member.memberHowT2",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
+	
+	
+	@Override
+	public int getPageBarSearchTextMemberList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.getPageBarSearchTextMemberList",param);
+	}
+
 	@Override
 	public List<Order> selectOrderList(SqlSession session, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
@@ -92,7 +113,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	
 	@Override
-	public Gift checkStock3(SqlSession session, int gift_no) {
+	public Ngift checkStock3(SqlSession session, int gift_no) {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.checkStock3",gift_no);
 	}
@@ -136,7 +157,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 	//상품 재고현황
 	@Override
-	public List<Gift> selectGiftList(SqlSession session, int cPage, int numPerpage) {
+	public List<Ngift> selectGiftList(SqlSession session, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return session.selectList("admin.selectGiftList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
@@ -150,25 +171,56 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<EbookDatabind> orderStockList(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.orderStockList",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		return session.selectList("admin.orderStockList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	@Override
+	public int getPageBarOrderList(SqlSession session,Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarOrderList",param);
 	}
 
 	@Override
-	public List<Gift> orderStockList3(SqlSession session, Map param) {
+	public List<Ngift> orderStockList3(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.orderStockList3",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.orderStockList3",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	@Override
+	public int getPageBarOrderList3(SqlSession session,Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarOrderList3",param);
 	}
 
 	@Override
 	public List<EbookDatabind> searchTextStockList(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.searchTextStockList",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.searchTextStockList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	
+	@Override
+	public int getPageBarTextStockList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarTextStockList",param);
 	}
 
 	@Override
-	public List<Gift> searchTextStockList3(SqlSession session, Map param) {
+	public List<Ngift> searchTextStockList3(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.searchTextStockList3",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.searchTextStockList3",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	
+	@Override
+	public int getPageBarTextStockList3(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarTextStockList3",param);
 	}
 
 	@Override
@@ -193,6 +245,12 @@ public class AdminDaoImpl implements AdminDao {
 	public int stockTDelete2(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		return session.delete("admin.stockTDelete2",param);
+	}
+
+	@Override
+	public int addCouponList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("admin.addCouponList",param);
 	}
 	
 	

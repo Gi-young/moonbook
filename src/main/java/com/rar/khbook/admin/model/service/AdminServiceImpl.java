@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.rar.khbook.admin.model.dao.AdminDao;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 @Service
@@ -51,11 +52,23 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.memberHowT(session,param);
 	}
+	@Override
+	public int getPageBarOrderedMemberList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarOrderedMemberList(session,param);
+	}
 
 	@Override
 	public List<Member> memberHowT2(Map param) {
 		// TODO Auto-generated method stub
 		return dao.memberHowT2(session, param);
+	}
+	
+
+	@Override
+	public int getPageBarSearchTextMemberList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarSearchTextMemberList(session,param);
 	}
 
 	@Override
@@ -124,7 +137,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public Gift checkStock3(int gift_no) {
+	public Ngift checkStock3(int gift_no) {
 		// TODO Auto-generated method stub
 		return dao.checkStock3(session, gift_no);
 	}
@@ -142,7 +155,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Gift> selectGiftList(int cPage, int numPerpage) {
+	public List<Ngift> selectGiftList(int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return dao.selectGiftList(session,cPage,numPerpage);
 	}
@@ -158,11 +171,24 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.orderStockList(session,param);
 	}
+	
+	@Override
+	public int getPageBarOrderList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarOrderList(session,param);
+	}
 
 	@Override
-	public List<Gift> orderStockList3(Map param) {
+	public List<Ngift> orderStockList3(Map param) {
 		// TODO Auto-generated method stub
 		return dao.orderStockList3(session,param);
+	}
+	
+
+	@Override
+	public int getPageBarOrderList3(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarOrderList3(session,param);
 	}
 
 	@Override
@@ -170,11 +196,23 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.searchTextStockList(session,param);
 	}
+	
+	@Override
+	public int getPageBarTextStockList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarTextStockList(session,param);
+	}
 
 	@Override
-	public List<Gift> searchTextStockList3(Map param) {
+	public List<Ngift> searchTextStockList3(Map param) {
 		// TODO Auto-generated method stub
 		return dao.searchTextStockList3(session,param);
+	}
+	
+	@Override
+	public int getPageBarTextStockList3(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarTextStockList3(session,param);
 	}
 
 	@Override
@@ -200,6 +238,14 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.stockTDelete2(session,param);
 	}
+
+	@Override
+	public int addCouponList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.addCouponList(session,param);
+	}
+	
+	
 	
 	
 	

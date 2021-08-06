@@ -166,7 +166,7 @@
 .purBtn-box{
     display: flex;
     justify-content: space-around;
-    width: 500px;
+    width: 450px;
     margin-top: 50px;
 }
 .purBtn-box button{
@@ -183,8 +183,8 @@
     cursor: pointer;
     transition: 0.s;
 }
-.naverPay{
-    width: 500px;
+.kakaoPay{
+    width: 450px;
     height: 50px;
     border-radius: 10px;
     color: black;
@@ -203,14 +203,14 @@
     align-items: center;
     margin-bottom: 60px;
 }
-.proDetail-bar p{
+.proDetail-bar a{
     width: 237.5px;
     text-align: center;
     padding-top: 22px;
     padding-bottom: 22px;
     cursor: pointer;
 }
-.proDetail-bar p:not(:first-child){
+.proDetail-bar a:not(:first-child){
     border-left: 2px solid black;
 }
 .barActive{
@@ -223,6 +223,7 @@
 .product-exp{
     display: flex;
     flex-direction: column;
+    margin-bottom: 150px;
 }
 .product-exp img{
     width: 900px;

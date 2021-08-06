@@ -33,87 +33,7 @@
 					</table>
 				</form>
 			</div> -->
-			<div class="addProduct-container3" style="display:none;">
-				<form action="${path}/admin/insertProduct1.do" method="post" >
-					<table class="ChooseTable1">
-						<!--자동 넘버처리 -->
-						<!-- <tr>
-							<th>도서 번호</th>
-							<td>
-								<input type="number" min="1" name="BOOK_NO">
-							</td>
-						</tr> -->
-						
-					<tr>
-							<th>책 제목</th>
-							<td>
-								<input type="text" name="title">
-							</td>
-						</tr>
-						<tr>
-							<th>저자</th>
-							<td>
-								<input type="text" name="author">
-							</td>
-						</tr>
-						<tr>
-							<th>도서 이미지</th>
-							<td>
-								<input type="text" name="image">
-							</td>
-						</tr>
-						<tr>
-							<th>가격</th>
-							<td>
-								<input type="number" min="10000" max="99000" name="price">
-							</td>
-						</tr>
-						<tr>
-							<th>ISBN</th>
-							<td>
-								<input type="text" name="isbn">
-							</td>
-						</tr>
-						<tr>
-							<th>출판일</th>
-							<td>
-								<input type="Date" name="pubdate">
-							</td>
-						</tr>
-						<tr>
-							<th>출판사</th>
-							<td>
-								<input type="text" name="publisher">
-							</td>
-						</tr>
-						<tr>
-							<th>설명</th>
-							<td>
-								<input type="text" name="description">
-							</td>
-						</tr>
-						<tr>
-							<th>링크</th>
-							<td>
-								<input type="text" name="link">
-							</td>
-						</tr>
-						<tr>
-							<th>카테고리 코드</th>
-							<td>
-								<input type="number" min="1" value="${categoryCode }" readonly name="categoryCode">
-							</td>
-						</tr>
-						
-						<tr>
-							<td colspan="2">
-								<input type="submit" value="등록">
-							</td>
-						</tr>
-					</table>
-				</form>	
- 
-			</div>
+			
 			
 			<div class="addProduct-container5" style="display:block;">
 				<form action="${path}/admin/insertProduct3.do" method="post">
@@ -125,27 +45,28 @@
 							</td>
 						</tr> -->
 						<tr>
-							<th>상품 이미지</th>
-							<td>
-								<input type="text" name="gift_img" class="adCheckImg2">
-							</td>
-						</tr>
-						<tr>
 							<th>상품명</th>
 							<td>
 								<input type="text" name="gift_title">
 							</td>
 						</tr>
 						<tr>
-							<th>상품 소개</th>
+							<th>상품 이미지</th>
 							<td>
-								<input type="text" name="gift_content">
+								<input type="text" name="gift_img" class="adCheckImg2">
 							</td>
 						</tr>
+						
 						<tr>
 							<th>가격</th>
 							<td>
 								<input type="number" min="1000" max="9900000" class="bookPriceAd3" name="gift_price">
+							</td>
+						</tr>
+						<tr>
+							<th>브렌드</th>
+							<td>
+								<input type="text" name="gift_brand">
 							</td>
 						</tr>
 						<tr>
@@ -155,36 +76,16 @@
 							</td>
 						</tr>
 						<tr>
-							<th>제조국</th>
+							<th>카테고리 코드</th>
 							<td>
-								<input type="text" name="gift_made">
+								<input type="number" min="1" value="${categoryCode }" name="gift_category" readonly>
 							</td>
 						</tr>
 						<tr>
-							<th>수입여부</th>
+							<th>제품 타입</th>
 							<td>
-								<input class="chooseBookAdd" type="radio" name="gift_import" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
-								<input class="chooseBookAdd2" type="radio" name="gift_import" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
-							</td>
-						</tr>
-						<tr>
-							<th>A/S및 소비자 상담</th>
-							<td>
-								<input type="text" name="gift_as">
-							</td>
-						</tr>
-						<tr>
-							<th>치수</th>
-							<td>
-								<input type="text" name="gift_size">
-							</td>
-						</tr>
-						
-						<tr>
-							<th>판매 여부</th>
-							<td>
-								<input class="chooseBookAdd" type="radio" name="gift_for_sale" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
-								<input class="chooseBookAdd2" type="radio" name="gift_for_sale" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
+								<input class="chooseBookAdd" type="radio" name="gift_productType" id="1" value="1" checked><label for="1" class="chooseBookAdd3">1</label>
+								<input class="chooseBookAdd2" type="radio" name="gift_productType" id="2" value="2"><label for="2" class="chooseBookAdd4">2</label>
 							</td>
 						</tr>
 						<tr>
@@ -194,12 +95,7 @@
 								<input class="chooseBookAdd2" type="radio" name="gift_discount" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
 							</td>
 						</tr>
-						<tr>
-							<th>카테고리 코드</th>
-							<td>
-								<input type="number" min="1" value="${categoryCode }" name="gift_giftcate_code" readonly>
-							</td>
-						</tr>
+						
 						<tr>
 							<td colspan="2">
 								<input type="submit" value="등록" onclick="return checkImgLong2(event);">
