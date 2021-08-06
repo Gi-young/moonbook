@@ -55,6 +55,11 @@
 			</li>
 		<li class="sub-menu5">
 			<p onclick="" class="adminColor">쿠폰관리</a>
+			<ul class="sub_content5">
+				<li><p onclick="location.assign('${path}/admin/addCouponPage.do')" class="adminColor2">등록</p></li>
+			<li><p onclick="location.assign('${path}/admin/inputCouponPage.do')" class="adminColor2">발급</p></li>
+			
+			</ul>
 		</li>
 		<li class="sub-menu6">
 			<p onclick="" class="adminColor">경매관리</a>

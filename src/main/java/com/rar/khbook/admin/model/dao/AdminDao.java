@@ -8,6 +8,7 @@ import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AdminDao {
@@ -21,8 +22,10 @@ public interface AdminDao {
 	int memberUpdate(SqlSession session,Map param);
 	
 	List<Member> memberHowT(SqlSession session,Map param);
+	int getPageBarOrderedMemberList(SqlSession session,Map param);
 	
 	List<Member> memberHowT2(SqlSession session,Map param);
+	int getPageBarSearchTextMemberList(SqlSession session,Map param);
 	
 	List<Order> selectOrderList(SqlSession session,int cPage,int numPerpage);
 	
@@ -38,7 +41,7 @@ public interface AdminDao {
 	
 	EbookDatabind checkStock1(SqlSession session, int bindNo);
 	
-	Gift checkStock3(SqlSession session, int gift_no);
+	Ngift checkStock3(SqlSession session, int gift_no);
 	
 	int outputProduct1(SqlSession session,Map param);
 	
@@ -51,16 +54,24 @@ public interface AdminDao {
 	List<EbookDatabind> selectEbookDatabindList(SqlSession session,int cPage,int numPerpage);
 	int selectEbookDataCount(SqlSession session);
 	
-	List<Gift> selectGiftList(SqlSession session,int cPage,int numPerpage);
+	List<Ngift> selectGiftList(SqlSession session,int cPage,int numPerpage);
 	int selectGiftCount(SqlSession session);
 	
 	List<EbookDatabind> orderStockList(SqlSession session,Map param);
 	
-	List<Gift> orderStockList3(SqlSession session,Map param);
+	int getPageBarOrderList(SqlSession session,Map param);
+	
+	List<Ngift> orderStockList3(SqlSession session,Map param);
+	
+	int getPageBarOrderList3(SqlSession session,Map param);
 	
 	List<EbookDatabind> searchTextStockList(SqlSession session,Map param);
 	
-	List<Gift> searchTextStockList3(SqlSession session,Map param);
+	int getPageBarTextStockList(SqlSession session,Map param);
+	
+	List<Ngift> searchTextStockList3(SqlSession session,Map param);
+	
+	int getPageBarTextStockList3(SqlSession session,Map param);
 	
 	int stockTUpdate(SqlSession session,Map param);
 	
@@ -70,4 +81,5 @@ public interface AdminDao {
 	
 	int stockTDelete2(SqlSession session,Map param);
 	
+	int addCouponList(SqlSession session,Map param);
 }

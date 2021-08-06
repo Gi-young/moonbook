@@ -18,46 +18,50 @@
 		</div>
 		<div class="addProduct-box2">
 			<div class="addProduct-box4">
-				<p>제품 입고</p>
+				<p>쿠폰 등록</p>
 			</div>
-			<div class="addProduct-container2">
-				<form action="" method="post">
-					<table class="ChooseTable1">
-						<tr>
-							<th>타입</th>
-							<td>
-								<input class="chooseBookAdd" type="radio" name="chooseBookAdd" id="book" value="book" checked><label for="book" class="chooseBookAdd3">book</label>
-								<input class="chooseBookAdd6" type="radio" name="chooseBookAdd" id="gift" value="gift"><label for="gift" class="chooseBookAdd5">gift</label>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
+			
 			<div class="addProduct-container3">
-				<form action="${path}/admin/updateProduct1.do" method="post">
+				<form action="${path}/admin/addCouponList.do" method="post">
 					<table class="ChooseTable1">
 						<!--자동 넘버처리 -->
+						<!-- 여기서 문제 멤버등급_넘버는 자동 넘번데 게다가 등급이 이미 4개로 고정이다.
+						 그렇다면 쿠폰등록도 이미 4개로 고정이지 않는가, 쿠폰 등록 처리시 억지로 쿠폰을 더 넣으려면 멤버등급이 4를 넘어가게 줄수밖에 없었다 -->
 						<tr>
-							<th>도서 번호</th>
+							<th>쿠폰이름</th>
 							<td>
-								<input type="number" min="1" name="bindNo">
+								<input type="text" min="1" name="couponlistName">
 							</td>
 						</tr> 
 						<tr>
-							<th>입고 개수</th>
+							<th>할인금액</th>
 							<td>
-								<input type="number" min="1" name="stock">
+								<input type="number" min="1000" name="couponlistAmount">
 							</td>
 						</tr> 
 						<tr>
-							<th>입고가</th>
+							<th>발급가능여부</th>
 							<td>
-								<input type="number" min="0" name="primeCost">
+								<input class="chooseBookAdd" type="radio" name="couponlistForuse" id="Y" value="Y" checked><label for="Y" class="chooseBookAdd3">Y</label>
+								<input class="chooseBookAdd2" type="radio" name="couponlistForuse" id="N" value="N"><label for="N" class="chooseBookAdd4">N</label>
 							</td>
 						</tr> 
+						<tr>
+							<th>사용가능일수</th>
+							<td>
+								<input type="number" min="1" name="couponlistInvalid">
+							</td>
+						</tr>
+						<!-- <tr>
+							<th>등급 번호</th>
+							<td>
+								<input type="number" min="1" name="couponlistInvalid">
+							</td>
+						</tr> -->
+						
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="입고">
+								<input type="submit" value="등록">
 							</td>
 						</tr>
 					</table>
@@ -65,36 +69,7 @@
  
 			</div>
 			
-			<div class="addProduct-container5" style="display:none;">
-				<form action="${path}/admin/updateProduct3.do" method="post">
-					<table class="ChooseTable3">
-						<tr>
-							<th>상품 번호</th>
-							<td>
-								<input type="number" min="1" name="gift_no">
-							</td>
-						</tr>
-						<tr>
-							<th>입고 개수</th>
-							<td>
-								<input type="number" min="1" name="gift_count">
-							</td>
-						</tr> 
-						<tr>
-							<th>입고가</th>
-							<td>
-								<input type="number" min="0" name="gift_rowPrice">
-							</td>
-						</tr> 
-						<tr>
-							<td colspan="2">
-								<input type="submit" value="입고">
-							</td>
-						</tr>
-					</table>
-				</form>	
- 
-			</div>
+			
 			
 		</div>
 	</div>

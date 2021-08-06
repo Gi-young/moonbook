@@ -37,7 +37,7 @@
 
 
 		<!-- 기프트 -->
-		<typeAlias type="com.rar.khbook.gift.model.vo.Gift" alias="gift"/>
+		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift" alias="nGift"/>
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftCate" alias="giftCate"/>
 
 	</typeAliases>

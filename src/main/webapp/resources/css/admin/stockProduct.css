@@ -117,7 +117,7 @@
 .stockT2{
 	/* width: 730px; */ 
 	/* width:auto; */
-	width: 2100px;
+	width: 1620px;
 	/* overflow-x: auto; */
 	margin-left: 20px;
 	/* margin-top:30px;  */
@@ -144,7 +144,11 @@
 	hight:20px;
 	cursor: pointer;
 }
-.turnRed{
+.turnRed1{
+	color:red;
+	font-weight: bold;
+}
+.turnRed2{
 	color:red;
 	font-weight: bold;
 }
