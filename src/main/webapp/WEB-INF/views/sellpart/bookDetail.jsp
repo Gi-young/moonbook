@@ -950,7 +950,7 @@ transition: all 0.2s linear;
                     </p>
                 </div>
                 
-                <div><br><br>
+                <div><br><br>d
                 	<span>주문가능수량</span>
                     <input type="number" id="stock" name="stock" value="${book.stock }" readonly><br><br>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;주문수량&nbsp;&nbsp;</span>
