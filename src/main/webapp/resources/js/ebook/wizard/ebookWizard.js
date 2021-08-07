@@ -7,7 +7,7 @@ let pendingLoading = false;
 let isFinalLoad = false;
 
 window.onload = function() {
-    getMyEbooks(1, 18);
+    getMyEbooks(1, 15);
     
     listMySorts();
 
@@ -31,7 +31,7 @@ function getMyEbooks(cPage, numPerPage) {
         success: data => {
             console.log(data);
 
-            if (data.length < 18) {
+            if (data.length < 15) {
                 isFinalLoad = true;
                 document.getElementById("scrollIndicator").classList.add("display-none");
             }
@@ -105,11 +105,11 @@ section.addEventListener("scroll", () => {
     if (pendingLoading === false && !isFinalLoad) {
         if (pendingLoading === false && scrollTop > scrollHeight - clientHeight - 10) {
             if (currentSort === "ALL") {
-                getMyEbooks(cPage, 18);
+                getMyEbooks(cPage, 15);
     
                 cPage++;
             } else {
-                changeBookshelf(cPage, 18, currentSort);
+                changeBookshelf(cPage, 15, currentSort);
 
                 cPage++;
             }
@@ -240,7 +240,7 @@ function listMySorts() {
                                     pseudoBox.removeChild(pseudoBox.lastChild);
                                 }
                                 
-                                changeBookshelf(1, 18, v);
+                                changeBookshelf(1, 15, v);
 
                                 listMySorts();
 
@@ -384,7 +384,7 @@ if (sortAll != null) {
             pseudoBox.removeChild(pseudoBox.lastChild);
         }
         
-        getMyEbooks(1, 18);
+        getMyEbooks(1, 15);
 
         listMySorts();
 
@@ -417,7 +417,7 @@ function changeBookshelf(cPage, numPerPage, sortName) {
             success: data => {
                 console.log(data);
 
-                if (data.length < 18) {
+                if (data.length < 15) {
                     isFinalLoad = true;
                     document.getElementById("scrollIndicator").classList.add("display-none");
                 }

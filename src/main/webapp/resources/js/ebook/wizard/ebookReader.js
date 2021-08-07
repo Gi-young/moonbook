@@ -1,3 +1,4 @@
+// PDJ.JS
 let filepath = document.getElementById("filepath").value;
 
 let url = contextPath + "/resources/ebook/" + filepath;
@@ -17,11 +18,15 @@ let rightCanvas = document.getElementById('right-canvas');
 let leftCtx = leftCanvas.getContext('2d');
 let rightCtx = rightCanvas.getContext('2d');
 
+let section = document.getElementsByTagName("section")[0];
+
+console.log(section.clientHeight);
+
 function renderLeftPage(num) {
     pageRendering = true;
 
     pdfDoc.getPage(num).then(function(page) {
-        let desiredHeight = window.innerHeight - 30;
+        let desiredHeight = section.clientHeight - 20;
         let viewport = page.getViewport({ scale: 1 });
         let scale = desiredHeight / viewport.height;
         let scaledViewport = page.getViewport({ scale: scale });
@@ -42,15 +47,15 @@ function renderLeftPage(num) {
             }
         });
 
-        bindingWidth = leftCanvas.width / 7;
-        bindingXPos = leftCanvas.width - bindingWidth / 2.5;
-        $('#binding>img').css('width', bindingWidth + 'px')
-        $('#binding').css('left', bindingXPos + 'px');
+        // bindingWidth = leftCanvas.width / 7;
+        // bindingXPos = leftCanvas.width - bindingWidth / 2.5;
+        // $('#binding>img').css('width', bindingWidth + 'px')
+        // $('#binding').css('left', bindingXPos + 'px');
 
-        $('#bookController').css('height', leftCanvas.height);
-        $('#bookController').css('width', window.innerWidth - leftCanvas.width * 2.2);
+        // $('#bookController').css('height', leftCanvas.height);
+        // $('#bookController').css('width', window.innerWidth - leftCanvas.width * 2.2);
 
-        $('#container').css('height', (window.innerHeight + 5) + 'px');
+        // $('#container').css('height', (window.innerHeight + 5) + 'px');
     });
 
     document.getElementById('page-num').textContent = num;
@@ -60,7 +65,7 @@ function renderRightPage(num) {
     pageRendering = true;
 
     pdfDoc.getPage(num).then(function(page) {
-        let desiredHeight = window.innerHeight - 30;
+        let desiredHeight = section.clientHeight - 20;
         let viewport = page.getViewport({ scale: 1 });
         let scale = desiredHeight / viewport.height;
         let scaledViewport = page.getViewport({ scale: scale });
@@ -127,6 +132,7 @@ window.addEventListener('resize',() => {
     renderRightPage(pageNum+1);
 });
 
+// TESEERACT.JS
 document.getElementById("pageToTextBtn").addEventListener("click", () => {
 
     console.log("working OCR");
@@ -156,6 +162,7 @@ document.getElementById("pageToTextBtn").addEventListener("click", () => {
     });
 });
 
+// SPEECH SYNTHESIS UTTRERANCE
 document.getElementById("textToSpeechBtn").addEventListener("click", () => {
     let targetText = document.getElementById("parsedTextData").innerText;
     console.log(targetText);
@@ -163,3 +170,14 @@ document.getElementById("textToSpeechBtn").addEventListener("click", () => {
     utterance.rate = 1;
     window.speechSynthesis.speak(utterance);
 });
+
+// NORMAL JAVASCRIPT
+function showBookMark() {
+    document.getElementById("bookMark").style.display = "block";
+    document.getElementById("textTurmoil").style.display = "none";
+}
+
+function showTesseract() {
+    document.getElementById("bookMark").style.display = "none";
+    document.getElementById("textTurmoil").style.display = "block";
+}

@@ -9,11 +9,13 @@ section::-webkit-scrollbar {
 }
 
 aside {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
 
 aside>h2 {
-    margin-left: 15px;
+    margin: 0 0 0 15px;
 }
 
 div.ebookItem {
@@ -27,8 +29,6 @@ div.ebookItem {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
-    margin-bottom: 10px;
 }
 
 img.coverImg {
@@ -89,19 +89,16 @@ p.title {
 
 .pseudo-box {
     box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
+    grid-auto-rows: 250px;
     height: 101%;
     width: 100%;
     padding: 20px;
-}
-
-.library-controller {
-    position: absolute;
-    left: 30px;
-    bottom: 30px;
+    align-content: start;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 .library-controller>div {
@@ -135,10 +132,12 @@ p.title {
 
 #sortList {
     background-color: ivory;
+    border: 1px solid lightgray;
     border-radius: 10px;
     overflow: scroll;
-    height: 450px;
+    flex-grow: 1;
     padding-left: 30px;
+    padding-top: 20px;
 }
 
 #sortList::-webkit-scrollbar {

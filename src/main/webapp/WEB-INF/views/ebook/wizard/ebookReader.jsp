@@ -12,8 +12,8 @@
 
 	<aside>
 			<div id="asideController">
-				<button>북마크</button>
-				<button>TESSERACT</button>
+				<button onclick="showBookMark();">북마크</button>
+				<button onclick="showTesseract();">TESSERACT</button>
 			</div>
 	
 			<div id="bookMark">
@@ -22,14 +22,19 @@
 			
 			<div id="textTurmoil">
 				<div id="parsedTextData"></div>
-				<div>
+				<div id="tesseractController">
 					<button id="pageToTextBtn">텍스트로 변환</button>
 					<button id="textToSpeechBtn">읽어 줘</button>
 				</div>
 			</div>
 			
 			<div id="pageController">
-				<span id="page-num"></span> / <span id="page-count"></span>
+				<div id="pageStatus">
+					<span id="page-num"></span> / <span id="page-count"></span>
+				</div>
+				
+				<input type="number" id="moveToPage" min="1" step="2">
+				<button>이동</button>
 			</div>
 			
 			<div id="readingInfo">
@@ -40,11 +45,11 @@
 
 	<section>
 		<div id="book">
-			<div id="binding">
+			<%-- <div id="binding">
 				<c:forEach begin="1" end="27">
 					<img src="${path}/resources/images/ebook/binding.png">
 				</c:forEach>
-			</div>
+			</div> --%>
 			<canvas id="left-canvas" class="canvas"></canvas>
 			<canvas id="right-canvas" class="canvas"></canvas>
 		</div>
