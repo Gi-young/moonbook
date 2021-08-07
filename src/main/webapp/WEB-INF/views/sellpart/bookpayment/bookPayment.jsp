@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
+<c:set var="FmtTotalPrice" value="${(book.price*0.9)*sellStock+3000 }" />
+
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <link rel="stylesheet" href="${path }/resources/css/order/layout.css">
@@ -123,13 +125,13 @@
 					<table class="tbl_payment">
 						<tr class="tbl_first">
 							<td>도서 금액</td>
-							<td>${(book.price*0.9)*sellStock }원</td>
+							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock }" type="currency"/></td>
 							<td>+</td>
 							<td>배송비</td>
-							<td>3000원</td>
+							<td><fmt:formatNumber value="3000" type="currency"/></td>
 							<td>=</td>
 							<td>총 </td>
-							<td>${(book.price*0.9)*sellStock+3000 }원</td>
+							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock+3000 }" type="currency"/></td>
 						</tr>
 					</table>
 				</div>

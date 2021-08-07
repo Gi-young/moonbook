@@ -1309,7 +1309,7 @@ transition: all 0.2s linear;
             <!--hover시 ajax 사용해서 데이터 보내기 4개씩-->
             <div class="content line"> 
                 <div class="content_body2">
-                   <div class="content_body2_left line">
+                  <!--  <div class="content_body2_left line">
                     <a href="#" class="contenttitle">예약판매</a><span class="moreview">더보기 +</span> 
                      <div class="content_body2_book line">
                          <div>
@@ -1342,7 +1342,7 @@ transition: all 0.2s linear;
                         </div>                 
              
                      </div>
-                     </div>
+                     </div> 
                      <div class="content_body2_right2">        
                         <a href="#" class="contenttitle">할인 도서</a>
                          <span id="rightclick2">></span>
@@ -1382,7 +1382,7 @@ transition: all 0.2s linear;
 
 
                 </div>
-            </div>
+            </div>-->
 
             <div class="content line"> 
                 <div class="content_body2">

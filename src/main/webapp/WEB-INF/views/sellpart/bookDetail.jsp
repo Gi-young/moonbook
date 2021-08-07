@@ -932,15 +932,16 @@ transition: all 0.2s linear;
                     <!-- <span>옮김이</span> -->
                     <p>출판사 : <span>${book.publisher }</span><br><br>
                     <p>출간일 : <span>${book.pubdate }</span><br><br>
+                    <p>ISBN : <span>${book.isbn }</span><br><br>
                     <p>리뷰점수: <span>${book.rating }</span> <button>평점주기:</button></p><br><br><br>
                 </div>
                 <div><br><br>
-                    <p>정가 : <span>${book.price }</span>원</p><br><br>
-                    <p>판매가 : <span style="font-size: 18px; color: red;">${(book.price * 0.9) }</span>원 <span>할인율: [ <span>10%</span> ] </span></p><br><br>
+                    <p>정가 : <span><fmt:formatNumber value="${book.price}" type="currency"/></span></p><br><br>
+                    <p>판매가 : <span style="font-size: 18px; color: red;"><fmt:formatNumber value="${book.price*0.9 }" type="currency"/></span> <span>할인율: [ <span>10%</span> ] </span></p><br><br>
                 </div>
                 <div><br><br>
                     <p>쿠폰사용 : <button>쿠폰사용</button></p><br><br>
-                    <p>배송비 : <span>3,000원</span></p><br><br>
+                    <p>배송비 : <span><fmt:formatNumber value="3000" type="currency"/></span></p><br><br>
 
                 </div>
                 <div><br><br>
@@ -1005,7 +1006,7 @@ transition: all 0.2s linear;
                         <a href="" class="btn_small">문의하기</a>
                     </div>
                     <div id="table_div">
-                    <table id="table_1">
+                    <%-- <table id="table_1">
                         <tr>
                             <th>ISBN</th>
                             <td>${book.isbn }</td>
@@ -1022,19 +1023,19 @@ transition: all 0.2s linear;
                             <th>이책의 원서/번역서</th>
                             <td>값입력</td>
                         </tr>
-                    </table>
+                    </table> --%>
                     <div>
                         <h2>책소개</h2>
-                        <strong>이 책이 속한 분야</strong>
-                        <p><span>레벨1</span> > <span>레벨2</span> ><span>레벨3</span></p>
+                        <!-- <strong>이 책이 속한 분야</strong>
+                        <p><span>레벨1</span> > <span>레벨2</span> ><span>레벨3</span></p> -->
                     </div>
                     <div class="bcontent">
-                        <strong>책 내용</strong> <br>
+                       <!--  <strong>책 내용</strong>  --><br>
                         ${book.description }<br><br><br><br>
                         <a href="${book.link }"><strong>[ 책 상세 페이지로 이동 ]</strong></a>
                         <br><br><br>
                    </div>
-                   <div>
+<!--                    <div>
                        <h2>저자소개</h2>
                        <div style="display: flex;">
                             <div>
@@ -1045,7 +1046,7 @@ transition: all 0.2s linear;
                                 <p>육식을 좋아하는 작가</p>
                             </div>
                        </div>
-                   </div>
+                   </div> -->
 
                    <div>
 
@@ -1181,7 +1182,7 @@ transition: all 0.2s linear;
                         <div id="next"> <button>&gt;</button></div>
                     </div>
                  </div>
-                 <div>
+                <!--  <div>
                     <strong>목차</strong>
                     <br>
                     1 정글 <br>
@@ -1210,7 +1211,7 @@ transition: all 0.2s linear;
                     4 dasdasv <br>
                     5 dasdasc <br>
                     7 dassdas <br>
-                 </div>
+                 </div> -->
                    </div>
                 
                     </div>
