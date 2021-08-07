@@ -23,7 +23,9 @@ public class GiftBoard {
 	private String writer; // 작성자
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private Date write_date; // 작성일
-	private int gift_score;
+	
+	private int gift_score; // 만족도
+	
 	private int groupOrd; // 글 순서
 	private int groupLayer; // 답글 계층
 }

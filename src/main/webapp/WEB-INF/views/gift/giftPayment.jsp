@@ -3,16 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-<c:set var="FmtTotalPrice" value="${(book.price*0.9)*sellStock+3000 }" />
-
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <link rel="stylesheet" href="${path }/resources/css/order/layout.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value="" />
-</jsp:include>
-<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
-<jsp:param name="" value=""/>
 </jsp:include>
 <div class="wrap">
 	<div class="orderHead">
@@ -82,8 +77,8 @@
 								<label for="after">착불</label></td>
 						</tr>
 						<tr>
-							<td id="preMsg">배송비는 <fmt:formatNumber value="3000" type="currency"/>입니다.</td>
-							<td id="afterMsg" style="display:none">착불. 배송비 <fmt:formatNumber value="0" type="currency"/></td>
+							<td id="preMsg">배송비는 3000원입니다.</td>
+							<td id="afterMsg" style="display:none">착불. 배송비 0원</td>
 						</tr>
 						<tr class="tbl_last">
 							<th>배송요청사항</th>
@@ -101,17 +96,20 @@
 						<tr class="tbl_first">
 							<th colspan="2">상품정보</th>
 							<th>상품금액</th>
+							<th>수량</th>
 							<th>주문 가능 수량</th>
-							<th>주문 수량</th>
 							<th>결제금액</th>
+							<th>배송비</th>
 						</tr>
 						<tr>
-							<td><img src="${book.image }"></td>
-							<td>${book.title }</td>
-							<td><fmt:formatNumber value="${book.price*0.9 }" type="currency"/></td>
-							<td>${book.stock } 개</td>
-							<td>${sellStock } 개</td>
-							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock }" type="currency"/></td>
+							<td><img src="${gift.gift_img}" style="width: 82px; height: 82px;"></td>
+							<td>${gift.gift_title }</td>
+							<td><fmt:formatNumber value="${gift.gift_price }" type="currency"/></td>
+							<td>${quan } 개</td>
+							<input type="hidden" value="${quan }" name="sellStock" id="sellStock">
+							<td>${gift.gift_count } 개</td>
+							<td><fmt:formatNumber value="${gift.gift_price*quan }" type="currency"/></td>
+							<td rowspan="99" class="tbl_row2"><fmt:formatNumber value="3000" type="currency"/>원</td>
 						</tr>
 
 					</table>
@@ -126,13 +124,15 @@
 					<table class="tbl_payment">
 						<tr class="tbl_first">
 							<td>도서 금액</td>
-							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock }" type="currency"/></td>
+							<td><fmt:formatNumber value="${gift.gift_price*quan }" type="currency"/>원</td>
 							<td>+</td>
 							<td>배송비</td>
-							<td id="delifee"><fmt:formatNumber value="3000" type="currency"/></td>
+							<%-- <fmt:formatNumber value="" type="currency"/> --%>
+ 							<td><fmt:formatNumber value="3000" type="currency"/>원</td>
 							<td>=</td>
-							<td>총 </td>
-							<td id="totalfee"><fmt:formatNumber value="${(book.price*0.9)*sellStock+3000 }" type="currency"/></td>
+							<td>총 </td>				
+							<td><fmt:formatNumber value="${(gift.gift_price*quan)+3000 }" type="currency" />원</td>
+							<input type="hidden" value="${(gift.gift_price*quan)+3000 }" name="totalPrice" id="totalPrice">
 						</tr>
 					</table>
 				</div>
@@ -143,56 +143,7 @@
 			</div>
 	</div>
 </div>
-<div id=divhidden>
-</div>
-<input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock+3000 }">
 <script>
-let html="";
-let fmt = document.createElement("fmt");
-console.log("에1엑따"+fmt);
-html = "<fmt:formatNumber value='3000' type='currency'/>";
-let html2 = "<fmt:formatNumber value='0' type='currency'/>";
-let totalfee = "<fmt:formatNumber value='${(book.price*0.9)*sellStock+3000 }' type='currency'/>"
-let totalfee2 = "<fmt:formatNumber value='${(book.price*0.9)*sellStock }' type='currency'/>"
-let deliboolean = "";
-let inputhidden = "";
-
-var tp = document.createElement("input");
-tp.setAttribute("type","hidden");
-tp.setAttribute("id","totalPrice");
-
-
-
-
-
-$("input[id=pre]").click(e=>{
-	document.getElementById("delifee").innerHTML=html;
-	document.getElementById("totalfee").innerHTML=totalfee;
-	//deliboolean=true;
-	//document.getElementById("totalPrice").value=${(book.price*0.9)*sellStock+3000 };
-	//inputhidden+="<input type='hidden' id='totalPrice' value='${(book.price*0.9)*sellStock+3000 }'>";
-	//document.getElementById("divhidden").innerHTML=inputhidden;
-	tp.value = "${(book.price*0.9)*sellStock+3000 }";
-	document.body.appendChild(tp);
-let totalPrice = document.getElementById("totalPrice").value;
-	console.log("총금액 선불"+totalPrice);
-});
-
-$("input[id=after]").click(e=>{
-	document.getElementById("delifee").innerHTML=html2;
-	document.getElementById("totalfee").innerHTML=totalfee2;
-	//deliboolean=false;
-	//document.getElementById("totalPrice").value=${(book.price*0.9)*sellStock };
-	//inputhidden+="<input type='hidden' id='totalPrice' value='${(book.price*0.9)*sellStock }'>";
-	//document.getElementById("divhidden").innerHTML=inputhidden;
-	tp.value = "${(book.price*0.9)*sellStock }";
-	document.body.appendChild(tp);
-let totalPrice = document.getElementById("totalPrice").value;
-	console.log("총금액 착불"+totalPrice);
-});
-
-	
-
 /* 	let samePhone = $("input:checkbox[name=samePhone]");
 	if(!$(samePhone) == true) {
 		$("#senderPhone").attr("value","${loginMember.memberPhone}");
@@ -269,22 +220,20 @@ $("input[name=deliMethod]").change(e=>{
 
 <input type="hidden" id="loginMember" value="${loginMember.memberId}">
 <input type="hidden" id="sellStock" value="${sellStock}">
-<input type="hidden" id="stock" value="${book.stock}">
 <input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
-
+<input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock+3000 }">
 <input type="hidden" id="deliveryFee" value="3000">
 
 
 <%System.out.println("test : " + session.getAttribute("loginMember")); %>
 
 <input type="hidden" id="contextPath" value="${path }">
-
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
+<script src="${path}/resources/js/gift/gift_buy.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
