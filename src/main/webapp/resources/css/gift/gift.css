@@ -322,6 +322,10 @@ a[class^="todayPop-content"]{
 }
 .endFont-top{
     font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 250px; 
 }
 .endFont-mid{
     font-weight: 900;

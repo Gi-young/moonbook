@@ -20,19 +20,19 @@
             <ul>
                 <!-- 페이지 전환할 때 스크립트로 전환 -->
                 <li>
-                    <a style="color:#696969;" href="${path }/gift/moreThing.do?giftCate=e">전자기기</a>
+                    <a class="hot-a" href="${path }/gift/moreThing.do?giftCate=e">전자기기</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;" href="${path }/gift/moreThing.do?giftCate=s">수납/정리</a>
+                    <a class="hot-a" href="${path }/gift/moreThing.do?giftCate=s">수납/정리</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;" href="${path }/gift/moreThing.do?giftCate=r">독서 필수템</a>
+                    <a class="hot-a" href="${path }/gift/moreThing.do?giftCate=r">독서 필수템</a>
                 </li>
                 <p>·</p>
                 <li>
-                    <a style="color:#696969;" href="${path }/gift/moreThing.do?giftCate=g">잡화</a> 
+                    <a class="hot-a" href="${path }/gift/moreThing.do?giftCate=g">잡화</a> 
                 </li>
             </ul>
         </div>

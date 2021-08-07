@@ -139,36 +139,38 @@
 
 				<div class="header-menuBar1">
 					<ul class="flex">
-						<li><a href="${path}/sellbookController/sellbook.do"><div>문곰도서▼</div></a>
+						<li id="books"><a href="${path}/sellbookController/sellbook.do">문곰도서▼</a>
+							<ul class="book">
+								<li><a href="${path }/sellbookController/bookadong99.do">아동도서(공통)</a></li>
+								<li><a href="${path }/sellbookController/bookchodongdonghwa99.do">초등도서(공통)</a></li>
+								<li><a href="${path }/sellbookController/bookjoongdongworld.do">중등도서(세계문학)</a></li>
+								<li><a href="${path }/sellbookController/bookgojunkorea.do">고전도서(한국)</a></li>
+							</ul>
+						</li>					
+						<li id="eBooks"><a href="${path}/ebook/pageEbook.do">문곰e북
+									▼</a>
 							<ul class="eBook">
-								<li><a href="#">아동 도서</a></li>
-								<li><a href="#">초등 도서</a></li>
-								<li><a href="#">중등 도서</a></li>
-							</ul></li>
-						<!--  <li><a href="#">외국도서</a></li> -->
-						<li><a href="${path}/ebook/pageEbook.do"><div>문곰e북
-									▼</div></a>
-							<ul class="eBook">
-								<li><a href="#">일반도서</a></li>
-								<li><a href="#">판타지/무협</a></li>
-								<li><a href="#">로맨스</a></li>
-								<li><a href="#">코믹스</a></li>
-								<li><a href="#">오디오북</a></li>
-							</ul></li>
+								<li><a href="${path }/ebook/pageEbook.do">일반</a></li>
+								<li><a href="${path }/ebook/pageBookstallJuvenile.do">아동</a></li>
+								<li><a href="${path }/ebook/pageBookstallElementary.do">초등</a></li>
+								<li><a href="${path }/ebook/pageBookstallMiddle.do">중등</a></li>
+							</ul>
+						</li>
 						<li class="item"><a href="${path }/gift/giftView.do">문곰템
 								▼</a>
 							<ul class="giftTab">
-								<li><a href='#'>전자기기</a></li>
-								<li><a href='#'>수납/정리</a></li>
-								<li><a href='#'>독서 필수템</a></li>
-								<li><a href="#">잡화</a></li>
-							</ul></li>
+								<li><a href='${path }/gift/moreThing.do?giftCate=e'>전자기기</a></li>
+								<li><a href='${path }/gift/moreThing.do?giftCate=s'>수납/정리</a></li>
+								<li><a href='${path }/gift/moreThing.do?giftCate=r'>독서 필수템</a></li>
+								<li><a href="${path }/gift/moreThing.do?giftCate=g">잡화</a></li>
+							</ul>
+						</li>
 						<li><a href="${path}/usedboard/usedboardList.do">중고</a></li>
 						<li><a href="${path}/auction/auction">경매</a></li>
 					</ul>
 				</div>
 				<div class="header-menuBar2">
-					<ul class="flex">
+					<ul class="flex" style="align-items:center;">
 						<c:if test="${loginMember==null }">
 							<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
 							<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
@@ -191,9 +193,49 @@
 		</div>
 	</div>
 	<script>
+	
+	  /* 문곰템 */
+		$(function() {
 		let item = $('.item');
 		let tab = $('.giftTab');
+			$(item).mouseover(function() {
+				// tab.slideDown(500);
+				tab.css('display', "flex");
+				$(tab).mouseover(function() {
+					tab.css('display', "flex");
+				})
+			})
+			$(tab).mouseout(function() {
+				tab.css('display', "none");
+			})
+			$(item).mouseout(function() {
+				tab.css('display', "none");
+			})
+		});
+		
+	  /* 문곰e북 */
 		$(function() {
+		let item = $('#eBooks');
+		let tab = $('.eBook');
+			$(item).mouseover(function() {
+				// tab.slideDown(500);
+				tab.css('display', "flex");
+				$(tab).mouseover(function() {
+					tab.css('display', "flex");
+				})
+			})
+			$(tab).mouseout(function() {
+				tab.css('display', "none");
+			})
+			$(item).mouseout(function() {
+				tab.css('display', "none");
+			})
+		});
+			
+	  /* 문곰도서 */	
+		$(function() {
+		let item = $('#books');
+		let tab = $('.book');
 			$(item).mouseover(function() {
 				// tab.slideDown(500);
 				tab.css('display', "flex");
@@ -209,12 +251,5 @@
 			})
 		});
 	</script>
-	
-
-						
-            
-        
-       
-
 </body>
 </html>
