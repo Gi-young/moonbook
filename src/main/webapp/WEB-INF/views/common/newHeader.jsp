@@ -234,22 +234,22 @@
 			
 	  /* 문곰도서 */	
 		$(function() {
-		let item = $('#books');
-		let tab = $('.book');
-			$(item).mouseover(function() {
-				// tab.slideDown(500);
-				tab.css('display', "flex");
-				$(tab).mouseover(function() {
+			let item = $('#books');
+			let tab = $('.book');
+				$(item).mouseover(function() {
+					// tab.slideDown(500);
 					tab.css('display', "flex");
+					$(tab).mouseover(function() {
+						tab.css('display', "flex");
+					})
 				})
-			})
-			$(tab).mouseout(function() {
-				tab.css('display', "none");
-			})
-			$(item).mouseout(function() {
-				tab.css('display', "none");
-			})
-		});
+				$(tab).mouseout(function() {
+					tab.css('display', "none");
+				})
+				$(item).mouseout(function() {
+					tab.css('display', "none");
+				})
+			});
 	</script>
 </body>
 </html>

@@ -6,12 +6,19 @@ let refundBtn = document.getElementById("refundBtn");
 let loginMember = document.getElementById("loginMember").value;
 let contextPath = document.getElementById("contextPath").value;
 let sellStock = document.getElementById("sellStock").value;
+let stock = document.getElementById("stock").value;
 let totalPrice = document.getElementById("totalPrice").value;
 console.log("총금액"+totalPrice);
+console.log("재고"+stock);
+console.log("구매시도"+sellStock);
 
 
 $(".btnPay").click(e=> {
-
+	if(Number(stock)<Number(sellStock)){
+	console.log("stock==="+Number(stock));
+	console.log("sellStock==="+Number(sellStock));
+		alert('주문 가능한 수량을 초과하였습니다.');
+	}else{
 	e.preventDefault();
     //let totalPrice = Number(document.getElementById("totalPrice").innerText);
 
@@ -57,7 +64,7 @@ $(".btnPay").click(e=> {
                             merchant_uid: merchant_uid,
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
-                            name: "eBook",
+                            name: "문곰도서",
                             amount: Number(totalPrice)
                         }, function(rsp) {
                             if (rsp.success) {
@@ -90,6 +97,7 @@ $(".btnPay").click(e=> {
             });
         }
     });
+    }
 });
 
 
