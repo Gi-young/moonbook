@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -35,6 +36,19 @@ public class GiftDaoImpl implements GiftDao {
 	   return result;
 	}
 	
-	
+	@Override
+	public Ngift giftOne(SqlSession session,int giftNo) {
+		return session.selectOne("gift.selectGiftOne", giftNo);
+	}
 
+	@Override
+	public List<GiftBoard> selectReview(SqlSession session, int giftNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectReview", giftNo);
+	}
+
+	@Override
+	public int reviewWrite(SqlSession session, int giftNo) {
+		return session.insert("gift.insertReview", giftNo);
+	}
 }

@@ -13,11 +13,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.gift.model.service.GiftService;
+import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -51,9 +54,15 @@ public class GiftController {
 	
 //	기프트 상세페이지 이동
 	@RequestMapping("/gift/giftDetail.do")
-	public String giftDetail(int giftNo) {
+	public ModelAndView giftDetail(
+			int giftNo, ModelAndView mv) {
+		/* System.out.println(giftNo); */
+		/* System.out.println(Integer.parseInt(giftNo)); */
+		Ngift g = service.giftOne(giftNo);
 		
-		return "gift/giftDetail";
+		mv.addObject("gift", g);
+		mv.setViewName("gift/giftDetail");
+		return mv;
 	}
 	
 // 	내 쿠폰 페이지 
@@ -115,7 +124,7 @@ public class GiftController {
 		 default : break;
 		 
 		 }
-		 System.out.println(loc);
+			/* System.out.println(loc); */
 		 
 		 return loc;
 		 
@@ -125,7 +134,7 @@ public class GiftController {
 	 @ResponseBody
 	 public String searchMember(String memberId) {
 		 Member m = service.searchMember(memberId);
-		 System.out.println("============== "+m+" ==============");
+			/* System.out.println("============== "+m+" =============="); */
 		 return "common/msg";
 		 
 	 }
@@ -190,8 +199,37 @@ public class GiftController {
 //	    }
 	    
 
+	 @RequestMapping("/gift/productReview.do")
+	 @ResponseBody
+	 public List<GiftBoard> review(int giftNo, Model m) {
+		 System.out.println("ajax 타고 넘어온 giftNo : "+giftNo);
+		 
+		 List<GiftBoard>  gb = service.selectReview(giftNo);
+		 
+		 System.out.println("service까지 갔다 온 gb : "+gb);
+		 
+//		 m.addAttribute("pageBar", PageFactory.getOwnPageBar(totalData, cPage, numPerpage, url));
+		  
+		 return gb;
+	 }
 
-
+	@RequestMapping("/gift/reviewWrite.do")
+	public ModelAndView reviewWrite(int giftNo, ModelAndView mv, Ngift n) {
+		System.out.println("리뷰 작성하기 위해 넘어가는 : "+giftNo);
+		int result = service.reviewWrite(giftNo);
+		
+		
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping("/gift/insertReview")
+	public ModelAndView insertReview(int giftNo, ModelAndView mv) {
+		mv.addObject("giftNo", giftNo);
+		mv.setViewName("gift/insertReview");
+		return mv;
+	}
 	
 }
 
