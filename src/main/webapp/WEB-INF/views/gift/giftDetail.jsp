@@ -25,6 +25,7 @@
 </head>
 <!-- 문곰템의 모든 상품의 상세 보기는 여기서 -->
 <body>
+
     <div class="wrap">
         <jsp:include page="/WEB-INF/views/gift/hotTracksMenu.jsp">
         <jsp:param name="" value=""/>
@@ -38,46 +39,51 @@
                     <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
                 </div>
             </div>
+        <form action="${path }/gift/giftPayment.do"> 
             <div class="proDetail-exp">
                 <p class="expTitle">${gift.gift_title } </p>
                 <div class="crossLine2"></div>
-                <div class="expChoice">
-                    <div>
-                        <p>포인트 적립</p>
-                    </div>
-                    <div class="exp-couponBox">
-                        <p>쿠폰등록</p>
-                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="window.open('${path}/gift/myCoupon.do','내 쿠폰','width=430, height=500, location=no, status=no, scrollbars=yes')">
-                    </div>
-                    <div class="exp-quanBox">
-                        <p>구매수량</p>
-                        <div class="exp-quan">
-                            <input type="number" name="quan" id="quan" value="1" maxlength="3" min="1">
-                            <span>
-                                <a href=""></a>
-                                <!-- 클릭시 수량 증가 -->
-                                <a href=""></a>
-                                <!-- 클릭시 수량 감소 -->
-                            </span>
-                            <span>개</span>
-                        </div>
-                    </div>
-                </div>
+	                <div class="expChoice">
+	                    <div>
+	                        <p>포인트 적립</p>
+	                    </div>
+	                    <div class="exp-couponBox">
+	                        <p>쿠폰등록</p>
+	                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="window.open('${path}/gift/myCoupon.do','내 쿠폰','width=430, height=500, location=no, status=no, scrollbars=yes')">
+	                    </div>
+	                    <div class="exp-quanBox">
+	                        <p>구매수량</p>
+	                        <div class="exp-quan">
+	                          
+	                            <input type="number" name="quan" id="quan" value="1" maxlength="3" min="1">
+	                            <!-- <span>
+	                                <a href=""></a>
+	                                클릭시 수량 증가
+	                                <a href=""></a>
+	                                클릭시 수량 감소
+	                            </span> -->
+	                            <span>개</span>
+	                           
+	                        </div>
+	                    </div>
+	                </div>
+                 <input type="hidden" value="${gift.gift_no }" name="giftNo" id="giftNo">
                 <div class="discount-price">
                     <p class="discount">할인율</p>
                     <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/></p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
-                    <button id="byBuy">구매하기</button>
+                    <button type="submit">구매하기</button>
                     <input type="hidden" value="${loginMember.memberId }" id="loginMemberId">
-                    <button>장바구니</button>
+                    <button type="button">장바구니</button>
                     <!-- <button>찜하기</button> -->
                 </div>
                 <div style="text-align: center; margin-top: 30px;">
                     <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
+            </form> 
         </div>
         <div class="crossLine3"></div>
         <div class="wrap">
@@ -147,22 +153,40 @@
         /* 상품리뷰, 상품문의 */
     	    var btnR = document.getElementById("bar2");
     	    var btnQ = document.getElementById("bar3");
-    	    var giftNo = document.getElementById("giftNo").value;
-    	    
-    	  /*   console.log(btnR);
-    	    console.log(btnQ);
-    	    console.log(giftNo); */
-    	    
-    	    
+    	    var giftNo = document.getElementById("giftNo").value; 	     
+ 	    
+    	   	
     	    let exp = document.getElementsByClassName('review-board');
-    	    let text = document.getElementsByClassName("review-text");
-    	    let review = document.getElementsByClassName("review-test");
     	    let tb = document.getElementsByTagName("tbody");
-    	             
-		           
-   	    
-        $(btnR).on('click', function(){
+  			let tr = ""; 
+  			let tr2 = ""; 
+       		let html2 = ""; /* thead */
+       		html2 += "<tr><th style='width:105px;'>번호</th>";
+            html2 += "<th style='width:145px;'>만족도</th>";    
+            html2 += "<th style='width:370px;'>상품평</th>";    
+            html2 += "<th style='width:165px;'>작성자</th>";    
+            html2 += "<th style='width:165px;'>작성일</th></tr>";    
+            console.log(html2);    
+  			tr2 = document.createElement("tr");
+  			tr2.innerHTML=html2;
+  			
+  			
+         $(btnR).on('click', function(){
         	
+        	 /* console.log(exp[0].children[0].children);
+        	 console.log(exp[0].firstChild); */
+        	 /*  console.log(exp[0].lastChild.childNodes);
+        	 console.log($(".review-board").children(".review-text")); */
+        	 /* console.log(tr); */
+        	 /*  console.log(exp[0].child[0]);
+        	 console.log(exp[0].child); */
+        	 /* exp[0].children[0].html(); */
+        	 /* exp[0].children.html(); */
+        	    
+        	 /*  exp[0].children[0].children.html();  */
+        	 exp[0].lastChild.innerHTML = "";
+        	 /* console.log(exp[0].lastChild.childNodes); */
+        	 console.log("================= ajax 실행 후 ==================");
         	$.ajax({
              	type: 'post',
              	url: '${path}/gift/productReview.do',
@@ -170,10 +194,13 @@
              		giftNo: giftNo
              	},
              	dataType: "json",
-             	success: data => {            		
+             	success: data => {  
+             		
+             		exp[0].appendChild(tb[0]).appendChild(tr2);
              		data.forEach((v, i) => {   
-             			
-             		     let html = "<tr class='review-text review-tr'>";   
+
+             			 let html = ""; /* 테이블 본문 내용 */
+             		     html += "<tr class='review-text review-tr'>";   
                 	     html += "<td class='review-num'>"+v.gift_board_no+"</td>";
                 	     html += "<td class='gpa'>";
                 	     html += "<div class='gpa-circle'>";
@@ -181,23 +208,19 @@
                 	     html += "<td><div class='review'>"+v.gift_board_content+"</div></td>";
                 	     html += " <td class='review-writer'>"+v.writer+"</td>";
                 	     html += "<td class='review-date'>"+v.write_date+"</td></tr>";
-                	    
-                	    let tr = document.createElement('tr'); 
-                	    tr.classList.add('review-text');
+    
+                	    tr = document.createElement('tr'); 
+              			tr.classList.add('review-text');
                 	    tr.classList.add('review-tr');
                 	    tr.innerHTML=html;
-                	    /* console.log(tr); */
-                	    
-                	    console.log(tb[0]);
-                	    
+                	                      	                  	    
                 	    exp[0].appendChild(tb[0]).appendChild(tr);
-                	   
-             		});	
-             	 } 
-             	
-             });
-          })
-        
+                	             	
+            		 });              		
+             	  }            	  	
+              });
+          }) 
+             		  			
         
 	       /*  $(btnQ).on('click', function(){
 	        	$.ajax({
@@ -337,7 +360,15 @@
 	<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 		<jsp:param name="" value=""/>
 	</jsp:include>
-
+<script>
+	var tp = document.createElement("input");
+	tp.setAttribute("type","hidden");
+	tp.setAttribute("id","good");
+	tp.value = "${가격}";
+	document.body.appendChild(tp);
+	let g = document.getElementById("good");
+	console.log(document.getElementById("good").value);
+</script>
    <%--   <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
 			<jsp:param name="" value=""/> 
 	 </jsp:include>  --%>   

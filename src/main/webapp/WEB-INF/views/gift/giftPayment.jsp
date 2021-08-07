@@ -102,13 +102,14 @@
 							<th>배송비</th>
 						</tr>
 						<tr>
-							<td><img src="${book.image }"></td>
-							<td>${book.title }</td>
-							<td>${book.price*0.9 }</td>
-							<td>${sellStock } 개</td>
-							<td>전체수량-${sellStock } 개</td>
-							<td>${(book.price*0.9)*sellStock }원</td>
-							<td rowspan="99" class="tbl_row2">3000원</td>
+							<td><img src="${gift.gift_img}" style="width: 82px; height: 82px;"></td>
+							<td>${gift.gift_title }</td>
+							<td><fmt:formatNumber value="${gift.gift_price }" type="currency"/></td>
+							<td>${quan } 개</td>
+							<input type="hidden" value="${quan }" name="sellStock" id="sellStock">
+							<td>${gift.gift_count } 개</td>
+							<td><fmt:formatNumber value="${gift.gift_price*quan }" type="currency"/></td>
+							<td rowspan="99" class="tbl_row2"><fmt:formatNumber value="3000" type="currency"/>원</td>
 						</tr>
 
 					</table>
@@ -123,13 +124,15 @@
 					<table class="tbl_payment">
 						<tr class="tbl_first">
 							<td>도서 금액</td>
-							<td>${(book.price*0.9)*sellStock }원</td>
+							<td><fmt:formatNumber value="${gift.gift_price*quan }" type="currency"/>원</td>
 							<td>+</td>
 							<td>배송비</td>
-							<td>3000원</td>
+							<%-- <fmt:formatNumber value="" type="currency"/> --%>
+ 							<td><fmt:formatNumber value="3000" type="currency"/>원</td>
 							<td>=</td>
-							<td>총 </td>
-							<td>${(book.price*0.9)*sellStock+3000 }원</td>
+							<td>총 </td>				
+							<td><fmt:formatNumber value="${(gift.gift_price*quan)+3000 }" type="currency" />원</td>
+							<input type="hidden" value="${(gift.gift_price*quan)+3000 }" name="totalPrice" id="totalPrice">
 						</tr>
 					</table>
 				</div>
@@ -230,7 +233,7 @@ $("input[name=deliMethod]").change(e=>{
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
+<script src="${path}/resources/js/gift/gift_buy.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />

@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>${param.title }</title>
+<title>문곰책방</title>
 <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
 <link rel="stylesheet" href="${path }/resources/css/pageBar.css">
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>

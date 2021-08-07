@@ -231,5 +231,14 @@ public class GiftController {
 		return mv;
 	}
 	
+	@RequestMapping("/gift/giftPayment.do")
+	public ModelAndView giftPayment(int giftNo, ModelAndView mv, int quan) {
+		Ngift g = service.giftOne(giftNo);
+		mv.setViewName("gift/giftPayment");
+		mv.addObject("gift", g);
+		mv.addObject("quan", quan);
+		return mv;
+	}
+	
 }
 

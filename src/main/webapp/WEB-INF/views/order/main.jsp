@@ -55,7 +55,7 @@
                   </tr>
                   <tr class="tbl_last">
                      <th>주문 요청사항</th>
-                     <td><input type="text" name=""></td>
+                     <td><input type="text" name="" style="resize:none;"></td>
                   </tr>
                </table>
             </div>
@@ -78,7 +78,7 @@
                   </tr>
                   <tr class="tbl_last">
                      <th>배송요청사항</th>
-                     <td><input></td>
+                     <td><input type="text"  style="resize:none;"></td>
                   </tr>
                </table>
             </div>
