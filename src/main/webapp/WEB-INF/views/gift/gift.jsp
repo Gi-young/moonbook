@@ -46,6 +46,7 @@
      });
      
      </script> --%>  
+     
     <div class="slide-container">
         <!-- 리스트를 담고 있는 박스 -->
        <div class="firstSlide-list">
@@ -54,7 +55,7 @@
 	           <div class="firstSlide-content">
 	               <!-- 리스트 안 각각의 컨텐츠  -->
 	            <div class="first">
-	            	<img src="${i.gift_img }" alt="${i.gift_title }">
+	            	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="${i.gift_title }"></a>
 	            </div>     
 	           </div>
            </c:forEach>
@@ -506,7 +507,7 @@
                 <ul class="reco-product-ul">
 	                <c:forEach var="i" begin="0" end="3" items="${list }">
 	                    <li>
-	                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
 	                            <div>
 	                                <img src="${i.gift_img }" alt="" class="reco-img">
 	                            </div> 
@@ -562,7 +563,7 @@
                 <ul class="reco-product-ul">    
                     <c:forEach var="i" begin="4" end="7" items="${list }">
                     <li>
-                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                             <div>
                                 <img src="${i.gift_img }" alt="" class="reco-img">
                             </div> 
@@ -618,7 +619,7 @@
                 <ul class='reco-product-ul'>                    
                     <c:forEach var="i" begin="8" end="11" items="${list }">
 	                    <li>
-	                        <a class="reco-a" href="${path }/gift/giftDetail.do?gift_no=${i.gift_no}">
+	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
 	                            <div>
 	                                <img src="${i.gift_img }" alt="" class="reco-img">
 	                            </div> 
@@ -942,19 +943,19 @@
                 <ul class="ht-ul">
                     <li class="footer-hotTracksImg">
                         <a href="#">
-                            <img src="../components/image/free-icon-gps-73364.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
+                            <img src="${path }/resources/images/gift/free-icon-gps-73364.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
                             <p class="htFont">매장안내</p>
                         </a>
                     </li>
                     <li class="footer-hotTracksImg">
                         <a href="#">
-                            <img src="../components/image/vip.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
+                            <img src="${path }/resources/images/gift/vip.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
                             <p class="htFont">멤버십 혜택</p>
                         </a>
                     </li>
                     <li class="footer-hotTracksImg">
                         <a href="#">
-                            <img src="../components/image/대량구매.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
+                            <img src="${path }/resources/images/gift/대량구매.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
                             <p class="htFont">대량구매</p>
                         </a>
                     </li>

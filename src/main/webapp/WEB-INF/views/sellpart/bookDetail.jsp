@@ -911,7 +911,8 @@ transition: all 0.2s linear;
      
  
         </div> 
-
+	<form action="${path }/SellbookController/bookpayment.do">
+	<input type="hidden" name="bindNo" value="${book.bindNo }">
         <div id="content_middle" style="display: flex;">
             <div class="bookView_img line">
                 <img src="${book.image }" alt="200300book">
@@ -926,40 +927,43 @@ transition: all 0.2s linear;
             </div>
             <div class="bookView_order" style="margin-left: 50px;">
                 <div>
-                    <h2><span>${book.title }</span></h2>
-                    <p>글쓴이 : <span>${book.author }</span>
+                    <h2><span style="font-size:30px;">${book.title }</span></h2><br><br>
+                    <p>글쓴이 : <span>${book.author }</span><br><br>
                     <!-- <span>옮김이</span> -->
-                    <p>출판사 : <span>${book.publisher }</span>
-                    <p>출간일 : <span>${book.pubdate }</span>
-                    <p>리뷰점수: <span>${book.rating }</span> <button>평점주기:</button></p>
+                    <p>출판사 : <span>${book.publisher }</span><br><br>
+                    <p>출간일 : <span>${book.pubdate }</span><br><br>
+                    <p>ISBN : <span>${book.isbn }</span><br><br>
+                    <p>리뷰점수: <span>${book.rating }</span> <button>평점주기:</button></p><br><br><br>
                 </div>
-                <div>
-                    <p>정가 : <span>${book.price }</span>원</p>
-                    <p>판매가 : <span style="font-size: 18px; color: red;">${(book.price * 0.9) }</span>원 <span>할인율: [ <span>10%</span> ] </span></p>
+                <div><br><br>
+                    <p>정가 : <span><fmt:formatNumber value="${book.price}" type="currency"/></span></p><br><br>
+                    <p>판매가 : <span style="font-size: 18px; color: red;"><fmt:formatNumber value="${book.price*0.9 }" type="currency"/></span> <span>할인율: [ <span>10%</span> ] </span></p><br><br>
                 </div>
-                <div>
-                    <p>쿠폰사용 : <button>쿠폰사용</button></p>
-                    <p>배송비 : <span>3,000원</span></p>
+                <div><br><br>
+                    <p>쿠폰사용 : <button>쿠폰사용</button></p><br><br>
+                    <p>배송비 : <span><fmt:formatNumber value="3000" type="currency"/></span></p><br><br>
 
                 </div>
-                <div>
+                <div><br><br>
                     <p>알림</p>
-                    <p>
-                         도서정보가 달라질 수 있습니다. 이 점 양해 부탁드립니다.
+                    <p><br><br>
+                         도서정보가 달라질 수 있습니다. 이 점 양해 부탁드립니다.<br><br><br><br>
                     </p>
                 </div>
                 
-                <div>
-                    <span>주문수량</span>
-                    <input type="number" id="bookVolume">
+                <div><br><br>
+                	<span>주문가능수량</span>
+                    <input type="number" id="stock" name="stock" value="${book.stock }" readonly><br><br>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;주문수량&nbsp;&nbsp;</span>
+                    <input type="number" id="sellStock" name="sellStock" value="1"><br><br><br><br>
                 </div>
                 <div style="display:flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
                     <a href="" >장바구니담기</a>
-                    <a href="" id="payBtn">바로구매</a>
+                    <button type="submit">바로구매</button>
                 </div>
             </div>
         </div>
-
+	</form>
 
         <div class="bookView_info" style="display: flex;">
             <div class="bookView_info_left line">
@@ -1002,7 +1006,7 @@ transition: all 0.2s linear;
                         <a href="" class="btn_small">문의하기</a>
                     </div>
                     <div id="table_div">
-                    <table id="table_1">
+                    <%-- <table id="table_1">
                         <tr>
                             <th>ISBN</th>
                             <td>${book.isbn }</td>
@@ -1019,19 +1023,19 @@ transition: all 0.2s linear;
                             <th>이책의 원서/번역서</th>
                             <td>값입력</td>
                         </tr>
-                    </table>
+                    </table> --%>
                     <div>
                         <h2>책소개</h2>
-                        <strong>이 책이 속한 분야</strong>
-                        <p><span>레벨1</span> > <span>레벨2</span> ><span>레벨3</span></p>
+                        <!-- <strong>이 책이 속한 분야</strong>
+                        <p><span>레벨1</span> > <span>레벨2</span> ><span>레벨3</span></p> -->
                     </div>
                     <div class="bcontent">
-                        <strong>책 내용</strong> <br>
+                       <!--  <strong>책 내용</strong>  --><br>
                         ${book.description }<br><br><br><br>
                         <a href="${book.link }"><strong>[ 책 상세 페이지로 이동 ]</strong></a>
                         <br><br><br>
                    </div>
-                   <div>
+<!--                    <div>
                        <h2>저자소개</h2>
                        <div style="display: flex;">
                             <div>
@@ -1042,7 +1046,7 @@ transition: all 0.2s linear;
                                 <p>육식을 좋아하는 작가</p>
                             </div>
                        </div>
-                   </div>
+                   </div> -->
 
                    <div>
 
@@ -1178,7 +1182,7 @@ transition: all 0.2s linear;
                         <div id="next"> <button>&gt;</button></div>
                     </div>
                  </div>
-                 <div>
+                <!--  <div>
                     <strong>목차</strong>
                     <br>
                     1 정글 <br>
@@ -1207,7 +1211,7 @@ transition: all 0.2s linear;
                     4 dasdasv <br>
                     5 dasdasc <br>
                     7 dassdas <br>
-                 </div>
+                 </div> -->
                    </div>
                 
                     </div>
@@ -1468,17 +1472,5 @@ transition: all 0.2s linear;
 </section>
 
 
-<input type="hidden" id="loginMember" value="${loginMember.memberId}">
-<input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
-
-<%System.out.println("test : " + session.getAttribute("loginMember")); %>
-
-<input type="hidden" id="contextPath" value="${path }">
-<!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<!-- iamport.payment.js -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
-<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

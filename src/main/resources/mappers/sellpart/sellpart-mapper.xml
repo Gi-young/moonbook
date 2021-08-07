@@ -45,4 +45,7 @@
 	<select id="selectBigView" resultMap="SellbookDatabind">
 		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
 	</select>
+	<select id="selectBookPayment" resultMap="SellbookDatabind">
+		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
 </mapper>

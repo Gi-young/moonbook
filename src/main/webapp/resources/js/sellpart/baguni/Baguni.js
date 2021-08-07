@@ -1,15 +1,24 @@
 IMP.init("imp26745696");
 
 
-let payBtn = document.getElementById("payBtn");
+let btnPay = document.getElementsByClassName("btnPay");
 let refundBtn = document.getElementById("refundBtn");
 let loginMember = document.getElementById("loginMember").value;
 let contextPath = document.getElementById("contextPath").value;
+let sellStock = document.getElementById("sellStock").value;
+let stock = document.getElementById("stock").value;
+let totalPrice = document.getElementById("totalPrice").value;
+console.log("총금액"+totalPrice);
+console.log("재고"+stock);
+console.log("구매시도"+sellStock);
 
 
-
-payBtn.addEventListener("click", (e) => {
-
+$(".btnPay").click(e=> {
+	if(Number(stock)<Number(sellStock)){
+	console.log("stock==="+Number(stock));
+	console.log("sellStock==="+Number(sellStock));
+		alert('주문 가능한 수량을 초과하였습니다.');
+	}else{
 	e.preventDefault();
     //let totalPrice = Number(document.getElementById("totalPrice").innerText);
 
@@ -20,9 +29,9 @@ payBtn.addEventListener("click", (e) => {
     //    }
     //});
     
-	let bookVolume = document.getElementById("bookVolume").value;
+	let sellStock = document.getElementById("sellStock").value;
 	let bookPrice09 = document.getElementById("bookPrice09").value;
-	let totalPrice = bookVolume * bookPrice09;
+	//let totalPrice = bookVolume * bookPrice09;
 	
 	
     $.ajax({
@@ -33,9 +42,9 @@ payBtn.addEventListener("click", (e) => {
         },
         success: data => {
         
-        console.log("수량"+bookVolume);
+        console.log("수량"+sellStock);
 		console.log("할인가"+bookPrice09);
-		console.log("총금액"+totalPrice);
+		//console.log("총금액"+totalPrice);
             let buyerName;
             let buyerEmail;
             let merchant_uid;
@@ -47,6 +56,7 @@ payBtn.addEventListener("click", (e) => {
                 type: "POST",
                 success: data => {
                     merchant_uid = data;
+                    console.log(merchant_uid);
                     IMP.request_pay(
                         {
                             pg: "html5_inicis",
@@ -54,8 +64,8 @@ payBtn.addEventListener("click", (e) => {
                             merchant_uid: merchant_uid,
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
-                            name: "eBook",
-                            amount: totalPrice
+                            name: "문곰도서",
+                            amount: Number(totalPrice)
                         }, function(rsp) {
                             if (rsp.success) {
                                 $.ajax({
@@ -87,6 +97,7 @@ payBtn.addEventListener("click", (e) => {
             });
         }
     });
+    }
 });
 
 
