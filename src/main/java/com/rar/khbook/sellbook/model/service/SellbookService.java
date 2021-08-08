@@ -11,4 +11,6 @@ public interface SellbookService {
 
 	SellbookDatabind selectBigView(int bindNo);
 
+	SellbookDatabind selectBookPayment(int bindNo);
+
 }

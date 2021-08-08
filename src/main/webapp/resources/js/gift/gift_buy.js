@@ -1,28 +1,48 @@
-(function() {
-IMP.init("imp33769544");
+IMP.init("imp26745696");
 
-let payBtn = document.getElementById("byBuy");
-let memberId = document.getElementById("loginMemberId").value;
-let contextPath = document.getElementById("contextPath").value; 
 
-payBtn.addEventListener("click", () => {
-    let totalPrice = Number(document.getElementById("totalPrice").innerText);
-	console.log(totalPrice);
-    let purchaseArr = new Array();
-    console.log(purchaseArr);
-    document.querySelectorAll("input[name=selectGift]").forEach((v, i) => {
-        if (v.checked) {
-            purchaseArr.push(v.value);
-        }
-    });
+let btnPay = document.getElementsByClassName("btnPay");
+let refundBtn = document.getElementById("refundBtn");
+let loginMember = document.getElementById("loginMember").value;
+let contextPath = document.getElementById("contextPath").value;
+let sellStock = document.getElementById("sellStock").value;
+let totalPrice = document.getElementById("totalPrice").value;
+console.log("시작시작시작시자ㅣㄱ시작시작시작");
+console.log(btnPay );
+console.log(loginMember);
+console.log(contextPath);
+console.log(sellStock);
+console.log(totalPrice);
+console.log("ㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲ");
 
+$(".btnPay").click(e=> {
+
+	e.preventDefault();
+    //let totalPrice = Number(document.getElementById("totalPrice").innerText);
+
+    //let purchaseArr = new Array();
+    //document.querySelectorAll("input[name=selectEbook]").forEach((v, i) => {
+     //   if (v.checked) {
+       //     purchaseArr.push(v.value);
+    //    }
+    //});
+    
+	let sellStock = document.getElementById("sellStock").value;
+	let bookPrice09 = document.getElementById("bookPrice09").value;
+	//let totalPrice = bookVolume * bookPrice09;
+	
+	
     $.ajax({
-        url: contextPath + "/gift/searchMember.do",
+        url: contextPath + "/sellpart/checkMember.do",
         type: "POST",
-        data: {
-            memberId: memberId
+        data: { 
+        memberId: loginMember
         },
         success: data => {
+        
+        console.log("수량"+sellStock);
+		console.log("할인가"+bookPrice09);
+		//console.log("총금액"+totalPrice);
             let buyerName;
             let buyerEmail;
             let merchant_uid;
@@ -34,6 +54,7 @@ payBtn.addEventListener("click", () => {
                 type: "POST",
                 success: data => {
                     merchant_uid = data;
+                    console.log(merchant_uid);
                     IMP.request_pay(
                         {
                             pg: "html5_inicis",
@@ -41,8 +62,8 @@ payBtn.addEventListener("click", () => {
                             merchant_uid: merchant_uid,
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
-                            name: "eBook",
-                            amount: 100
+                            name: "문곰템",
+                            amount: Number(totalPrice)
                         }, function(rsp) {
                             if (rsp.success) {
                                 $.ajax({
@@ -57,7 +78,7 @@ payBtn.addEventListener("click", () => {
                                         paidAt: rsp.paid_at,
                                         pgProvider: rsp.pg_provider,
                                         receiptUrl: rsp.receipt_url,
-                                        purchaseEbookNoList: purchaseArr.toString()
+                                        purchaseEbookNoList: "1,2"
                                     },
                                     success: data => {
                                         console.log("결제 로그 추가 결과 : " + data);
@@ -75,4 +96,17 @@ payBtn.addEventListener("click", () => {
         }
     });
 });
-})();
+
+
+//refundBtn.addEventListener("click", () => {
+//    $.ajax({
+//        url: contextPath + "/ebook/cancelPayment.do",
+ //       type: "POST",
+  //      data: {
+ //           impUid: "imp_223195009712"
+  //      },
+  //      success: () => {
+  //          console.log("환불 성공");
+ //       }
+ //   });
+// });

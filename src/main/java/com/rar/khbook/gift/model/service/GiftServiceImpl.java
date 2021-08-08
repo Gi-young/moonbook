@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rar.khbook.gift.model.dao.GiftDao;
-import com.rar.khbook.gift.model.vo.Gift;
+import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -39,4 +39,23 @@ public class GiftServiceImpl implements GiftService {
 		return result;
 	}
 	
+	@Override
+	public Ngift giftOne(int giftNo) {
+		Ngift g = dao.giftOne(session, giftNo);
+		return g;
+	}
+
+	@Override
+	public List<GiftBoard>  selectReview(int giftNo) {
+		// TODO Auto-generated method stub
+		List<GiftBoard>  gb = dao.selectReview(session, giftNo);
+		return gb;
+	}
+	
+	@Override
+	public int reviewWrite(int giftNo) {
+		// TODO Auto-generated method stub
+		int result = dao.reviewWrite(session, giftNo);
+		return result;
+	}
 }

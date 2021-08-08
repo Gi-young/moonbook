@@ -169,4 +169,54 @@ public class EbookServiceImpl implements EbookService {
 		return dao.getEbookFilepath(session, bindNo);
 	}
 	
+	@Override
+	public int createSort(Map param) {
+		return dao.createSort(session, param);
+	}
+	
+	@Override
+	public List<String> listMySorts(String memberId) {
+		return dao.listMySorts(session, memberId);
+	}
+	
+	@Override
+	public int changeSort(Map param) {
+		return dao.changeSort(session, param);
+	}
+	
+	@Override
+	public int cleanPseudoSortRow(Map param) {
+		return dao.cleanPseudoSortRow(session, param);
+	}
+	
+	@Override
+	public int deleteSort(Map param) {
+		return dao.deleteSort(session, param);
+	}
+	
+	@Override
+	public int cleanData() {
+		return dao.cleanData(session);
+	}
+	
+	@Override
+	public List<HashMap> changeBookshelf(Map param) {
+		return dao.changeBookshelf(session, param);
+	}
+	
+	@Override
+	public int dataCountFromSort(Map param) {
+		return dao.dataCountFromSort(session, param);
+	}
+	
+	@Override
+	public int liftFromSort(Map param) {
+		return dao.liftFromSort(session, param);
+	}
+	
+	@Override
+	public int dataCountAll(Map param) {
+		return dao.dataCountAll(session, param);
+	}
+	
 }

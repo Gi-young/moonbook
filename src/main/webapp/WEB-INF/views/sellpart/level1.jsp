@@ -10,26 +10,12 @@
 <script>
 
 window.onload = function() {
-	adong({
-		keyword: "",
-		searchType: "title",
-		categoryCode: "310040020",
-		pubdateOrder: "DESC",
-		salesOrder: "DESC",
-		priceOrder: "DESC",
-		importancePubdate: "1",
-		importanceSales: "2",
-		importanceRating: "3",
-		importancePrice: "4",
-		dataVolume: 4
-		
-	});
-	
+
 	
 	searchHotnew({
 		keyword: "",
 		searchType: "title",
-		categoryCode: "310010010",
+		categoryCode: "310010020",
 		pubdateOrder: "DESC",
 		salesOrder: "DESC",
 		priceOrder: "DESC",
@@ -44,15 +30,15 @@ window.onload = function() {
 	searchBestseller({
 		keyword: "",
 		searchType: "title",
-		categoryCode: "100020020",
+		categoryCode: "310040030",
 		pubdateOrder: "DESC",
 		salesOrder: "DESC",
 		priceOrder: "DESC",
-		importancePubdate: "2",
-		importanceSales: "1",
+		importancePubdate: "1",
+		importanceSales: "2",
 		importanceRating: "3",
 		importancePrice: "4",
-		dataVolume: 5
+		dataVolume: 4
 	});
 	
 }
@@ -186,7 +172,7 @@ function searchHotnew(searchData) {
 		data: searchData,
 		dataType: "json",
 		success: data=>{
-			console.log("나와라뿅뿅");
+			console.log("베스트셀러인데 어떻게 못나올까요?");
 			console.log(data[0].title+"구분할수있는문자열");
 			/* 베스트셀러 이미지 */
 			$(bestsellerimg0).attr('src',data[0].image );
@@ -217,6 +203,7 @@ function searchHotnew(searchData) {
 }   
 
 </script>
+
 <style>
 
 a{
@@ -1007,7 +994,7 @@ transition: all 0.2s linear;
             
             <ul class="main_ul">     
                 <li class="main_sub_title" >
-                     <a href="#" class="atag" >아동 도서</a>
+                     <a href="${path}/sellbookController/bookadong03.do" class="atag" >아동 도서</a>
                     <ul style="display: none;" class="layer">
                         <li><a href="${path}/sellbookController/bookadong03.do">한국 그림책 (0~3세)</a></li>
                         <li><a href="${path}/sellbookController/bookadong032.do">외국 그림책 (0~3세)</a></li>
@@ -1018,7 +1005,7 @@ transition: all 0.2s linear;
                     </ul>
                 </li> 
                 <li class="main_sub_title">
-                    <a href="#" class="atag" >초등 도서</a>
+                    <a href="${path}/sellbookController/bookchodongdonghwa12.do" class="atag" >초등 도서</a>
                     <ul style="display: none;" class="layer">
                         <li><a href="${path}/sellbookController/bookchodongdonghwa12.do">초등 동화(1~2학년)</a></li>
                         <li><a href="${path}/sellbookController/bookchodongdonghwa34.do">초등 동화(3~4학년)</a></li>
@@ -1027,14 +1014,14 @@ transition: all 0.2s linear;
                     </ul>
                 </li> 
                 <li class="main_sub_title" >
-                    <a href="#" class="atag" >중등 도서</a>
+                    <a href="${path}/sellbookController/bookjoongdong.do" class="atag" >중등 도서</a>
                     <ul style="display: none;" class="layer">
                         <li><a href="${path}/sellbookController/bookjoongdong.do">중등 문학</a></li>
                         <li><a href="${path}/sellbookController/bookjoongdongworld.do">세계 문학</a></li>
                     </ul>
                 </li> 
                 <li class="main_sub_title" >
-                    <a href="#" class="atag" >고전 도서</a>
+                    <a href="${path}/sellbookController/bookgojunkorea.do" class="atag" >고전 도서</a>
                     <ul style="display: none;" class="layer">
                         <li><a href="${path}/sellbookController/bookgojunkorea.do">한국 고전</a></li>
                         <li><a href="${path}/sellbookController/bookgojunworld.do">세계 고전</a></li>
@@ -1309,7 +1296,7 @@ transition: all 0.2s linear;
             <!--hover시 ajax 사용해서 데이터 보내기 4개씩-->
             <div class="content line"> 
                 <div class="content_body2">
-                   <div class="content_body2_left line">
+                  <!--  <div class="content_body2_left line">
                     <a href="#" class="contenttitle">예약판매</a><span class="moreview">더보기 +</span> 
                      <div class="content_body2_book line">
                          <div>
@@ -1342,7 +1329,7 @@ transition: all 0.2s linear;
                         </div>                 
              
                      </div>
-                     </div>
+                     </div> 
                      <div class="content_body2_right2">        
                         <a href="#" class="contenttitle">할인 도서</a>
                          <span id="rightclick2">></span>
@@ -1382,36 +1369,36 @@ transition: all 0.2s linear;
 
 
                 </div>
-            </div>
+            </div>-->
 
             <div class="content line"> 
                 <div class="content_body2">
                    <div class="content_body2_left line">
-                    <a href="#" class="contenttitle">베스트 셀러</a><span class="moreview">더보기 +</span>
+                    <a href="#" class="contenttitle"><span style="color:red;">HOT!</span> 국내 창작동화</a><span class="moreview">더보기 +</span>
                      <div class="content_body2_book line">
                          <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
+                            <img src="#" class="bestsellerimg0" alt="">
                             <div class="bcategory">[category]</div>
                             <strong class="btitle">책 제목 넣기</strong>
                             <div class="bcontent">책 내용 20자 </div>
                             <div class="bprice">700원</div>      
                         </div>
                         <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
+                            <img src="#" class="bestsellerimg1" alt="">
                             <div class="bcategory">[category]</div>
                             <strong class="btitle">책 제목 넣기</strong>
                             <div class="bcontent">책 내용 20자 </div>
                             <div class="bprice">700원</div>      
                         </div>
                         <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
+                            <img src="#" class="bestsellerimg2" alt="">
                             <div class="bcategory">[category]</div>
                             <strong class="btitle">책 제목 넣기</strong>
                             <div class="bcontent">책 내용 20자 </div>
                             <div class="bprice">700원</div>      
                         </div>
                         <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
+                            <img src="#"  class="bestsellerimg3"alt="">
                             <div class="bcategory">[category]</div>
                             <strong class="btitle">책 제목 넣기</strong>
                             <div class="bcontent">책 내용 20자 </div>
@@ -1478,30 +1465,6 @@ transition: all 0.2s linear;
 
 
 
-             <!-- <div class=""> 
-                <div class="">
-                   <div class="content_body2_event line">
-                    <div class="content-title"> 
-                        <a href="#" class="contenttitle">이벤트(게시판으로만들기)</a><span class="moreview">더보기 +</span> 
-                    </div>
-                    <div class="body_2_event_img"> 
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                        <img src="p.xng" alt="">
-                    </div>
-                     </div>
-       
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

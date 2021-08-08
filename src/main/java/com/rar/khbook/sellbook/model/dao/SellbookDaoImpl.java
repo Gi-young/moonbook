@@ -26,5 +26,11 @@ public class SellbookDaoImpl implements SellbookDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("SellbookDatabind.selectBigView",bindNo);
 	}
+
+	@Override
+	public SellbookDatabind selectBookPayment(SqlSession session, int bindNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("SellbookDatabind.selectBookPayment",bindNo);
+	}
 	
 }

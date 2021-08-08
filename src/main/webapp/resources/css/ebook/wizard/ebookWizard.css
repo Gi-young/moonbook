@@ -13,6 +13,7 @@ aside {
 }
 
 div.ebookItem {
+    position: relative;
     width: 180px;
     height: 230px;
     border: 1px solid black;
@@ -25,20 +26,29 @@ div.ebookItem {
     margin-bottom: 10px;
 }
 
-div.ebookItem:hover {
+img.coverImg {
+    width: 120px;
+    height: 170px;
+}
+
+img.coverImg:hover {
     cursor: pointer;
 }
 
-img.coverImg {
-    width: 100px;
-    height: 150px;
-}
-
 p.title {
-    font-size: 13px;
+    font-size: 14px;
     font-weight: bolder;
     padding: 0;
     margin: 5px 10px 0 10px;
+}
+
+.ebookItem input[type=checkbox] {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.ebookItem input[type=checkbox]:hover {
+    cursor: pointer;
 }
 
 .loaderBox {
@@ -87,4 +97,64 @@ p.title {
     position: absolute;
     left: 30px;
     bottom: 30px;
+}
+
+.library-controller>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.library-controller>div:first-child {
+    margin-bottom: 10px;
+}
+
+.library-controller>div>input[type=text] {
+    margin-bottom: 5px;
+}
+
+.library-controller>div>select {
+    margin-bottom: 5px;
+}
+
+.library-controller button {
+    margin-bottom: 5px;
+}
+
+#sortList>li {
+    margin-bottom: 10px;
+}
+
+#sortList>li:hover {
+    cursor: pointer;
+}
+
+.embodyMarker {
+    position: absolute;
+    left: 100px;
+    top: 9px;
+    color: white;
+    background-color: pink;
+    font-weight: bolder;
+    font-size: 13px;
+    padding: 3px;
+}
+
+#scrollIndicator {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    color: white;
+    font-weight: bolder;
+    background-color: burlywood;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.display-none {
+    display: none;
+}
+
+.underline {
+    text-decoration: underline;
+    font-weight: bold;
 }

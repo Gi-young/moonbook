@@ -60,7 +60,6 @@
 				<li><a href="${path}/ebook/pageBookstallJuvenile.do">아동</a></li>
 				<li><a href="${path}/ebook/pageBookstallElementary.do">초등</a></li>
 				<li><a href="${path}/ebook/pageBookstallMiddle.do">중등</a></li>
-				<li><a href="${path}/ebook/pageBookstallNotes.do">우리들의 노트</a></li>
 			</ul>
 		</nav>
 		

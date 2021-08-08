@@ -13,4 +13,6 @@ public interface SellbookDao {
 
 	SellbookDatabind selectBigView(SqlSession session, int bindNo);
 
+	SellbookDatabind selectBookPayment(SqlSession session, int bindNo);
+
 }

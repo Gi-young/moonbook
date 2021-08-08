@@ -64,4 +64,24 @@ public interface EbookDao {
 	
 	String getEbookFilepath(SqlSession session, String bindNo);
 	
+	int createSort(SqlSession session, Map param);
+	
+	List<String> listMySorts(SqlSession session, String memberId);
+	
+	int changeSort(SqlSession session, Map param);
+	
+	int cleanPseudoSortRow(SqlSession session, Map param);
+	
+	int deleteSort(SqlSession session, Map param);
+	
+	int cleanData(SqlSession session);
+	
+	List<HashMap> changeBookshelf(SqlSession session, Map param);
+	
+	int dataCountFromSort(SqlSession session, Map param);
+	
+	int liftFromSort(SqlSession session, Map param);
+	
+	int dataCountAll(SqlSession session, Map param);
+	
 }
