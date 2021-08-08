@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.gift.model.vo.Ngift;
@@ -252,6 +254,41 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.insert("admin.addCouponList",param);
 	}
+
+	@Override
+	public Member searchGrade(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.searchGrade",param);
+	}
+
+	@Override
+	public Couponlist searchCoupon(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.searchCoupon",param);
+	}
+	
+	
+
+	@Override
+	public Couponlist searchInvalidNImg(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.searchInvalidNImg",param);
+	}
+
+	@Override
+	public int inputCouponAdminOne(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("admin.inputCouponAdminOne",param);
+	}
+
+	@Override
+	public List<Couponlist> searchCouponList(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.searchCouponlist");
+	}
+	
+	
+	
 	
 	
 	

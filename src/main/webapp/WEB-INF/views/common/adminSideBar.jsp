@@ -58,7 +58,7 @@
 			<ul class="sub_content5">
 				<li><p onclick="location.assign('${path}/admin/addCouponPage.do')" class="adminColor2">등록</p></li>
 			<li><p onclick="location.assign('${path}/admin/inputCouponPage.do')" class="adminColor2">발급</p></li>
-			
+			<li><p onclick="location.assign('${path}/admin/searchCouponlist.do')" class="adminColor2">조회</p></li>
 			</ul>
 		</li>
 		<li class="sub-menu6">

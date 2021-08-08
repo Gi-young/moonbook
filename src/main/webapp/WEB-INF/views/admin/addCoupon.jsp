@@ -25,14 +25,19 @@
 				<form action="${path}/admin/addCouponList.do" method="post">
 					<table class="ChooseTable1">
 						<!--자동 넘버처리 -->
-						<!-- 여기서 문제 멤버등급_넘버는 자동 넘번데 게다가 등급이 이미 4개로 고정이다.
-						 그렇다면 쿠폰등록도 이미 4개로 고정이지 않는가, 쿠폰 등록 처리시 억지로 쿠폰을 더 넣으려면 멤버등급이 4를 넘어가게 줄수밖에 없었다 -->
+						
 						<tr>
 							<th>쿠폰이름</th>
 							<td>
 								<input type="text" min="1" name="couponlistName">
 							</td>
-						</tr> 
+						</tr>
+						<tr>
+							<th>회원 등급번호</th>
+							<td>
+								<input type="text" min="1" name="couponlistMembergradeNo">
+							</td>
+						</tr>  
 						<tr>
 							<th>할인금액</th>
 							<td>

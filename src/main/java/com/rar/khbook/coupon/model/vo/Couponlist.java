@@ -7,10 +7,10 @@ import lombok.Data;
 public class Couponlist {
 	private int couponlistNo;
 	private int couponlistMembergradeNo;
-	private double couponlistPercent;
+	//private double couponlistPercent;
 	private int couponlistAmount;
 	private String couponlistForuse;
 	private int couponlistInvalid;
 	private String couponlistName;
-	private int couponlistCondition;
+	//private int couponlistCondition;
 }
