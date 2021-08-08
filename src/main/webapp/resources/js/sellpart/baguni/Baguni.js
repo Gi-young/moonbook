@@ -1,19 +1,20 @@
 IMP.init("imp26745696");
 
 
-let btnPay = document.getElementsByClassName("btnPay");
-let refundBtn = document.getElementById("refundBtn");
-let loginMember = document.getElementById("loginMember").value;
-let contextPath = document.getElementById("contextPath").value;
-let sellStock = document.getElementById("sellStock").value;
-let stock = document.getElementById("stock").value;
-let totalPrice = document.getElementById("totalPrice").value;
-console.log("총금액"+totalPrice);
-console.log("재고"+stock);
-console.log("구매시도"+sellStock);
 
 
+
+	
 $(".btnPay").click(e=> {
+
+	let btnPay = document.getElementsByClassName("btnPay");
+	let refundBtn = document.getElementById("refundBtn");
+	let loginMember = document.getElementById("loginMember").value;
+	let contextPath = document.getElementById("contextPath").value;
+	let sellStock = document.getElementById("sellStock").value;
+	let stock = document.getElementById("stock").value;
+	let totalPrice = document.getElementById("totalPrice").value;
+	console.log(totalPrice);
 	if(Number(stock)<Number(sellStock)){
 	console.log("stock==="+Number(stock));
 	console.log("sellStock==="+Number(sellStock));
@@ -29,8 +30,8 @@ $(".btnPay").click(e=> {
     //    }
     //});
     
-	let sellStock = document.getElementById("sellStock").value;
-	let bookPrice09 = document.getElementById("bookPrice09").value;
+	//let sellStock = document.getElementById("sellStock").value;
+	//let bookPrice09 = document.getElementById("bookPrice09").value;
 	//let totalPrice = bookVolume * bookPrice09;
 	
 	

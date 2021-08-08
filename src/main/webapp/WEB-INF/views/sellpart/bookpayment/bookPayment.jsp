@@ -145,51 +145,64 @@
 </div>
 <div id=divhidden>
 </div>
-<input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock+3000 }">
+<%-- <input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock+3000 }"> --%>
+<input type="hidden" id="loginMember" value="${loginMember.memberId}">
+<input type="hidden" id="sellStock" value="${sellStock}">
+<input type="hidden" id="stock" value="${book.stock }">
+<input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
+<input type="hidden" id="contextPath" value="${path }">
+<input type="hidden" id="deliveryFee" value="3000">
 <script>
+
 let html="";
-let fmt = document.createElement("fmt");
-console.log("에1엑따"+fmt);
 html = "<fmt:formatNumber value='3000' type='currency'/>";
 let html2 = "<fmt:formatNumber value='0' type='currency'/>";
 let totalfee = "<fmt:formatNumber value='${(book.price*0.9)*sellStock+3000 }' type='currency'/>"
 let totalfee2 = "<fmt:formatNumber value='${(book.price*0.9)*sellStock }' type='currency'/>"
 let deliboolean = "";
-let inputhidden = "";
+let divHidden = document.getElementById("divhidden");
+/* let stock = document.getElementById("stock");
+console.log("stock입니다 = ==== = == = = = = === = = "+stock); */
 
 var tp = document.createElement("input");
 tp.setAttribute("type","hidden");
 tp.setAttribute("id","totalPrice");
-
-
-
-
+tp.value="${(book.price*0.9)*sellStock+3000 }";
+divHidden.appendChild(tp);
 
 $("input[id=pre]").click(e=>{
 	document.getElementById("delifee").innerHTML=html;
 	document.getElementById("totalfee").innerHTML=totalfee;
+	/* var tp = document.createElement("input");
+	tp.setAttribute("type","hidden");
+	tp.setAttribute("id","totalPrice");
+	tp.value="${(book.price*0.9)*sellStock+3000 }";
+	divHidden.appendChild(tp); */
+	console.log("선불 tp : "+ tp.value);
 	//deliboolean=true;
 	//document.getElementById("totalPrice").value=${(book.price*0.9)*sellStock+3000 };
 	//inputhidden+="<input type='hidden' id='totalPrice' value='${(book.price*0.9)*sellStock+3000 }'>";
 	//document.getElementById("divhidden").innerHTML=inputhidden;
-	tp.value = "${(book.price*0.9)*sellStock+3000 }";
-	document.body.appendChild(tp);
-let totalPrice = document.getElementById("totalPrice").value;
-	console.log("총금액 선불"+totalPrice);
+	/* console.log("총 금액 선불"+document.getElementById("totalPrice").value); */
 });
 
 $("input[id=after]").click(e=>{
+	document.getElementById("totalPrice").remove();
 	document.getElementById("delifee").innerHTML=html2;
 	document.getElementById("totalfee").innerHTML=totalfee2;
 	//deliboolean=false;
 	//document.getElementById("totalPrice").value=${(book.price*0.9)*sellStock };
 	//inputhidden+="<input type='hidden' id='totalPrice' value='${(book.price*0.9)*sellStock }'>";
 	//document.getElementById("divhidden").innerHTML=inputhidden;
-	tp.value = "${(book.price*0.9)*sellStock }";
-	document.body.appendChild(tp);
-let totalPrice = document.getElementById("totalPrice").value;
-	console.log("총금액 착불"+totalPrice);
+	var tp = document.createElement("input");
+	tp.setAttribute("type","hidden");
+	tp.setAttribute("id","totalPrice");
+	tp.value="${(book.price*0.9)*sellStock }";
+	divHidden.appendChild(tp);
+	console.log("착불 tp : "+ tp.value);
 });
+
+
 
 	
 
@@ -253,9 +266,9 @@ $("input[name=memberAddress]").change(e=>{
 })
 
 $("input[name=deliMethod]").change(e=>{
-	console.log(e.target.id);
+	/* console.log(e.target.id); */
 	let targetId = e.target.id;
-	console.log(typeof(targetId));
+	/* console.log(typeof(targetId)); */
 	if(targetId == "pre"){
 		$("#preMsg").css("display", "block");
 		$("#afterMsg").css("display", "none");
@@ -267,24 +280,19 @@ $("input[name=deliMethod]").change(e=>{
 </script>
 
 
-<input type="hidden" id="loginMember" value="${loginMember.memberId}">
-<input type="hidden" id="sellStock" value="${sellStock}">
-<input type="hidden" id="stock" value="${book.stock}">
-<input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
 
-<input type="hidden" id="deliveryFee" value="3000">
 
 
 <%System.out.println("test : " + session.getAttribute("loginMember")); %>
 
-<input type="hidden" id="contextPath" value="${path }">
+
 
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script>
+<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script> 
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
