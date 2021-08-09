@@ -360,15 +360,7 @@
 	<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 		<jsp:param name="" value=""/>
 	</jsp:include>
-<script>
-	var tp = document.createElement("input");
-	tp.setAttribute("type","hidden");
-	tp.setAttribute("id","good");
-	tp.value = "${가격}";
-	document.body.appendChild(tp);
-	let g = document.getElementById("good");
-	console.log(document.getElementById("good").value);
-</script>
+
    <%--   <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
 			<jsp:param name="" value=""/> 
 	 </jsp:include>  --%>   
