@@ -1,22 +1,28 @@
 IMP.init("imp26745696");
 
 
-let btnPay = document.getElementsByClassName("btnPay");
-let refundBtn = document.getElementById("refundBtn");
-let loginMember = document.getElementById("loginMember").value;
-let contextPath = document.getElementById("contextPath").value;
-let sellStock = document.getElementById("sellStock").value;
-let totalPrice = document.getElementById("totalPrice").value;
-console.log("시작시작시작시자ㅣㄱ시작시작시작");
-console.log(btnPay );
-console.log(loginMember);
-console.log(contextPath);
-console.log(sellStock);
-console.log(totalPrice);
-console.log("ㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲㄲ");
 
+
+
+	
 $(".btnPay").click(e=> {
 
+	let btnPay = document.getElementsByClassName("btnPay");
+	let refundBtn = document.getElementById("refundBtn");
+	let loginMember = document.getElementById("loginMember").value;
+	let contextPath = document.getElementById("contextPath").value;
+	let sellStock = document.getElementById("sellStock").value;
+	let stock = document.getElementById("stock").value;
+	let totalPrice = document.getElementById("totalPrice").value;
+	console.log(totalPrice);
+	console.log(stock);
+	console.log(sellStock);
+	console.log(Number(stock)<=Number(sellStock));
+	if(!(Number(stock)<=Number(sellStock))){
+	console.log("stock==="+Number(stock));
+	console.log("sellStock==="+Number(sellStock));
+		alert('주문 가능한 수량을 초과하였습니다.');
+	}else{
 	e.preventDefault();
     //let totalPrice = Number(document.getElementById("totalPrice").innerText);
 
@@ -27,8 +33,8 @@ $(".btnPay").click(e=> {
     //    }
     //});
     
-	let sellStock = document.getElementById("sellStock").value;
-	let bookPrice09 = document.getElementById("bookPrice09").value;
+	//let sellStock = document.getElementById("sellStock").value;
+	//let bookPrice09 = document.getElementById("bookPrice09").value;
 	//let totalPrice = bookVolume * bookPrice09;
 	
 	
@@ -95,6 +101,7 @@ $(".btnPay").click(e=> {
             });
         }
     });
+    }
 });
 
 

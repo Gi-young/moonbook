@@ -1,9 +1,6 @@
 IMP.init("imp26745696");
 
 
-
-
-
 	
 $(".btnPay").click(e=> {
 

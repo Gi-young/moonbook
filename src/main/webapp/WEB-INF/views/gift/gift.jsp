@@ -53,11 +53,20 @@
            <!-- 길게 늘어뜨린 리스트 -->
            <c:forEach var="i" begin="192" end="197" items="${list }">
 	           <div class="firstSlide-content">
-	               <!-- 리스트 안 각각의 컨텐츠  -->
+            <p class="first-title">
+            	${i.gift_title }	
+	        </p>           		
+	        <p class="first-price">
+           		<%-- <fmt:formatNumber value="${i.gift_price }" type="number" />	 --%>
+           		<%-- <fmt:formatNumber value="${price }" type="number"/> --%>
+     		</p> 
+	            <!-- 리스트 안 각각의 컨텐츠  -->	         
 	            <div class="first">
-	            	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="${i.gift_title }"></a>
-	            </div>     
-	           </div>
+	            	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+	            		<img src="${i.gift_img }" alt="${i.gift_title }">
+	            	</a>
+	            </div> 	                
+	           </div>  
            </c:forEach>
            <!-- <div class="firstSlide-content">
             리스트 안 각각의 컨텐츠 
@@ -79,6 +88,9 @@
             <span class="second-num"></span>
             </div>
             <div class="slide-btn-box">
+            <%-- <p class="first-price">
+            	<fmt:formatNumber value="${price }" type="number"/>
+            </p> --%>	
                 <a class="slide-btn headsBtn-prev">〈</a>
                 <a class="slide-btn headsBtn-next">〉</a>
             </div>

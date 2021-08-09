@@ -171,6 +171,7 @@ tp.value="${(book.price*0.9)*sellStock+3000 }";
 divHidden.appendChild(tp);
 
 $("input[id=pre]").click(e=>{
+	document.getElementById("totalPrice").remove();
 	document.getElementById("delifee").innerHTML=html;
 	document.getElementById("totalfee").innerHTML=totalfee;
 	/* var tp = document.createElement("input");
@@ -178,6 +179,11 @@ $("input[id=pre]").click(e=>{
 	tp.setAttribute("id","totalPrice");
 	tp.value="${(book.price*0.9)*sellStock+3000 }";
 	divHidden.appendChild(tp); */
+	var tp = document.createElement("input");
+	tp.setAttribute("type","hidden");
+	tp.setAttribute("id","totalPrice");
+	tp.value="${(book.price*0.9)*sellStock+3000 }";
+	divHidden.appendChild(tp);
 	console.log("선불 tp : "+ tp.value);
 	//deliboolean=true;
 	//document.getElementById("totalPrice").value=${(book.price*0.9)*sellStock+3000 };
