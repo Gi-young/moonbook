@@ -10,7 +10,7 @@
 
     <div id="wrap">
     <div id="container">
-        <div>
+        <div class="auction_cate">
             <p><span>${param["auctioncateName"]}</span> > <span>${param["auctioncateFrist"] }</span></p>
         </div>
         <div class="auctionlist_level2">
@@ -52,7 +52,7 @@
 		console.log($(e.target))
 		console.log($(e.target).children("input[type=hidden]").val())
 		let value=$(e.target).children("input[type=hidden]").val();
-		location.replace('${path}/auction/auctionlist?auctioncateFrist=${auctioncateFirst}&desc='+value)
+		location.replace('${path}/auction/auctionlist?auctioncateFrist=${param["auctioncateFrist"] }&auctioncateName=${param["auctioncateName"]}&desc='+value)
 	})
 </script>
                 </tr>
@@ -306,6 +306,9 @@ span{
 	font-size:20px;
 	font-weight: bolder;
 	
+}
+.auction_cate{
+	padding:10px
 }
 
 </style>

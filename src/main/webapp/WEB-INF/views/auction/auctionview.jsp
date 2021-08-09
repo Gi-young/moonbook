@@ -11,7 +11,7 @@
 		<c:set var="a" value="${auction }"/>
    <div id="wrap">
     <div id="container">
-        <div>
+        <div class="auction_cate">
             <p><span>${a.auctioncate[0].auctioncateName }</span> > <span>${a.auctioncate[0].auctioncateFirst }</span> > <span>${a.auctionName }</span></p>
         </div>
 
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div>
+        <div id="auctionview_main">
             <h2>물품 이미지</h2>
                 <div class="auctionview_img">
                 	<c:forEach items="${auction.auctionImg }" var="img">
@@ -325,7 +325,7 @@ auctionview_img img{
 }
 .auctionview_right p{
    padding: 0px;
-   margin: 0px;
+   margin: 10px;
    font-weight: bold;
    font-size: 12px;
 }
@@ -341,14 +341,21 @@ auctionview_img img{
     height: 40px;
     margin: 20px;
 }
+.auctionview_btn{
+	text-align:center;
+}
 
 .auctionview_btn a{
     text-align: center;
-    width: 25%;
+    width: 50%;
     border: 1px solid black;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 60px 10px 60px;
     background-color: chartreuse;
-    color: white;
+    color: black;
+}
+.auctionview_btn a:hover{
+	color:white;
+	background-color:blue;
 }
 
 
@@ -372,7 +379,16 @@ span{
 	font-weight: bolder;
 	
 }
-    
+.auction_cate{
+	padding:10px
+}
+#auctionview_main h2{
+color:red;
+font-weight: bolder;
+    font-size: 18px;
+    border-bottom: 1px dotted black;
+
+}
     </style>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

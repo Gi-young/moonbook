@@ -14,7 +14,7 @@ ${auction }
 	<span>판매자 아이디</span>	<input type="text" value="${auction.memberId }" readonly="readonly" id="seller"> <br>
 
 	<span>시작 금액</span>	<fmt:formatNumber value="${auction.startPrice }" type="currency"/> <br>
-	<input type="hidden" value="${auction.startPrice }" readonly="readonly" >
+	<input type="hidden" value="${auction.startPrice }" readonly="readonly" id="startPrice">
 	<span>즉시 구매가</span><fmt:formatNumber value="${auction.buyNow }" type="currency"/> <br>
 	<input type="hidden" value="${auction.buyNow }" readonly="readonly" >
 	</div>
@@ -43,6 +43,8 @@ ${auction }
 	 	<tr>
 			<td>${bid.bidId }</td>
 			<td>${bid.bidPrice }</td>
+			<input type="hidden" value="${bid.bidId }" name="hiddenbidId">
+			<input type="hidden" value="${bid.bidPrice }" name="hiddenbidPrice">
 		</tr>
 		</c:forEach>
 	</table>
@@ -69,13 +71,23 @@ console.log($("#bid").val())
 		 alert("자신이 올린 물품입니다.")
 		 return false;
 	 }
+	 $("input[name='hiddenbidId']").each((i,v)=>{
+		 if($(v).val()==$("#bidid").val()){
+			 alert("입찰 기록이있습니다.")
+			 return false;
+		 }
+		 
+	 })
 
 	 
 	 if($("#bidid").val()==$("#bidid2").val()){
 		 alert("이미 최고 입찰자입니다.")
 		 return false;
-	 }else if($("#point").val()<$("#bid").val()){
+	 }else if(parseInt($("#point").val())<parseInt($("#bid").val())){
 		 alert("포인트가 부족합니다")
+		 return false;
+	 }else if(parseInt($("#point").val())<parseInt($("#startPrice").val())){
+		 alert("시작금액보단 높게 설정해야합니다.")
 		 return false;
 	 }
  }
