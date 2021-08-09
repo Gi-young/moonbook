@@ -262,7 +262,7 @@
         </div>
         <div class="product-review">
             <div class="writeBox">
-                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
+                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }&loginMember=${loginMember. }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
             </div>
            <table class="review-exp review-board">
           

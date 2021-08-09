@@ -17,7 +17,7 @@
     
     <!-- 상단 핫트랙스 메뉴바 -->
     <%--  ${giftList }   --%>
-    <%-- <a href="${path }/gift/naverGift.do"><button>네이버 기프트 이동</button></a> <- 얘도 ajax로 보내나여?
+    <%-- <a href="${path }/gift/naverGift.do"><button>네이버 기프트 이동</button></a>
      
      <script>
      $.ajax({
@@ -151,75 +151,111 @@
         <div class="giftFooter">
             <!-- 기프트 하단 -->
                 <ul class="gfBar">
-                    <li>
+                    <li id="electric">
                         전자기기
                     </li>
-                    <li>
+                    <li id="storage">
                        수납/정리
                     </li>
-                    <li>
+                    <li id="readingItem">
                         독서 필수템
                     </li>
-                    <li>
+                    <li id="etc">
                         잡화
                     </li>
                 </ul>
-                    <div class="gf-content">
+                    <div class="gf-content" id="gf-elec">
                         <!-- 상품 테마 설명 -->
                         <!-- 테마별 대표 상품 사진 -->
                         <div class="gf-content-circle"></div>
                             <a href="#" class="gf-content-left">
-                                <span class="gf-content-discount">~33%</span>
+                               <!--  <span class="gf-content-discount">~33%</span> -->
                                 <div>
                                     <div class="gf-left">
-                                        <p class="gf-left-title">시원한 마린시티로 떠나볼까요~?</p>
-                                        <p class="gf-left-subTitle">덤덤프렌즈 여름 신상 출시! 전품목 할인!</p>
-                                        <p class="gf-left-date">2021.07.09 ~ 2021.07.29</p>
+                                        <p class="gf-left-title">전자기기</p>
+                                        <p class="gf-left-subTitle">당신의 삶을 더욱 윤택하게 만들어 줄 여러 전자기기들이 이곳에!</p>
+                                        <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
                                     <img src="${path }/resources/images/마린시티스티커.jpg" alt="">
                                 </div>
                             </a>
                         <div class="gf-content-right">
-                            <ul class="flex">
-                                <li>
-                                    <img src="${path }/resources/image/과자집씰스티커.jpg" alt="">
-                                    <p style="font-weight: 800; padding-top: 20px;">과자집 씰스티커</p>
-                                    <div class="flex" style="margin-top: 30px;">
-                                        <p class="discount">10%</p>
-                                        <p class="price">2,430</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="../components/image/과자집씰스티커.jpg" alt="">
-                                    <p style="font-weight: 800; padding-top: 20px;">과자집 씰스티커</p>
-                                    <div class="flex" style="margin-top: 30px;">
-                                        <p class="discount">10%</p>
-                                        <p class="price">2,430</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="flex">
-                                <li>
-                                    <img src="" alt="">
-                                    <p style="font-weight: 800; padding-top: 20px;">과자집 씰스티커</p>
-                                    <div class="flex" style="margin-top: 30px;">
-                                        <p class="discount">10%</p>
-                                        <p class="price">2,430</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="" alt="">
-                                    <p style="font-weight: 800; padding-top: 20px;">과자집 씰스티커</p>
-                                    <div class="flex" style="margin-top: 30px;">
-                                        <p class="discount">10%</p>
-                                        <p class="price">2,430</p>
-                                    </div>
-                                </li>
+                            <ul id="gf-right">                         
+                            	<li><img src="" /></li>
+                            	<li><img src="" /></li>                         
                             </ul>
                         </div>
                     </div>
-           
-            </div>
+                     <div class="gf-content" id="gf-storage">
+                        <!-- 상품 테마 설명 -->
+                        <!-- 테마별 대표 상품 사진 -->
+                        <div class="gf-content-circle"></div>
+                            <a href="#" class="gf-content-left">
+                                <!-- <span class="gf-content-discount">~33%</span> -->
+                                <div>
+                                    <div class="gf-left">
+                                        <p class="gf-left-title">수납/정리</p>
+                                        <p class="gf-left-subTitle">일이나 독서를 하다보면 필요한 수납장,<br>정리공간 여기에서 찾아보세요!</p>
+                                        <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
+                                    </div>
+                                    <img src="${path }/resources/images/마린시티스티커.jpg" alt="">
+                                </div>
+                            </a>
+                        <div class="gf-content-right">
+                            <ul id="gf-right">                         
+                            	<li><img src="" /></li>
+                            	<li><img src="" /></li>                         
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="gf-content" id="gf-reading">
+                        <!-- 상품 테마 설명 -->
+                        <!-- 테마별 대표 상품 사진 -->
+                        <div class="gf-content-circle"></div>
+                            <a href="#" class="gf-content-left">
+                                <!-- <span class="gf-content-discount">~33%</span> -->
+                                <div>
+                                    <div class="gf-left">
+                                        <p class="gf-left-title">독서 필수템</p>
+                                        <p class="gf-left-subTitle">독서하기 전 반드시(아닐수도 있음) 준비해야 할 필수템들!</p>
+                                        <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
+                                    </div>
+                                    <img src="${path }/resources/images/마린시티스티커.jpg" alt="">
+                                </div>
+                            </a>
+                        <div class="gf-content-right">
+                            <ul id="gf-right">                         
+                            	<li><img src="" /></li>
+                            	<li><img src="" /></li>                         
+                            </ul>
+                        </div>
+                    </div>
+                     <div class="gf-content" id="gf-etc">
+                        <!-- 상품 테마 설명 -->
+                        <!-- 테마별 대표 상품 사진 -->
+                        <div class="gf-content-circle"></div>
+                            <a href="#" class="gf-content-left">
+                                <!-- <span class="gf-content-discount">~33%</span> -->
+                                <div>
+                                    <div class="gf-left">
+                                        <p class="gf-left-title">잡화</p>
+                                        <p class="gf-left-subTitle">당신에게 필요한 여러가지 상품들을 준비해봤어요!</p>
+                                        <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
+                                    </div>
+                                    <img src="${path }/resources/images/마린시티스티커.jpg" alt="">
+                                </div>
+                            </a>
+                        <div class="gf-content-right">
+                            <ul id="gf-right">                         
+                            	<li><img src="" /></li>
+                            	<li><img src="" /></li>                         
+                            </ul>
+                        </div>
+                    </div>
+            	</div>          
+            <script>
+            	
+            </script>
         <div class="container">
             <div class='left-cont'>
                     <p class="todayPop-title">오늘만 특가 〉</p>
@@ -253,20 +289,20 @@
                                 <li>
                                 	<a href="#">
 	                                    <img src="" alt="">
-	                                    <p class="toSale-dc">할인율</p>
+	                                   <!--  <p class="toSale-dc">할인율</p> -->
                                     </a>
                                 </li>
                                 <li>
                                     <img src="" alt="">
-                                    <p class="toSale-dc">할인율</p>
+                                    <!-- <p class="toSale-dc">할인율</p> -->
                                 </li>
                                 <li>
                                     <img src="" alt="">
-                                    <p class="toSale-dc">할인율</p>
+                                    <!-- <p class="toSale-dc">할인율</p> -->
                                 </li>
                                 <li>
                                     <img src="" alt="">
-                                    <p class="toSale-dc">할인율</p>
+                                    <!-- <p class="toSale-dc">할인율</p> -->
                                 </li>
                             </ul>
                         </div>
@@ -290,8 +326,8 @@
 	                                    <div class="todayPop-contentEnd">
 	                                        <p class="endFont-top">${i.gift_title }</p>
 	                                        <div class="flex" style="padding-top: 10px;">
-	                                            <p class="endFont-mid">${i.gift_discount }</p>
-	                                            <p class="endFont-bot"><fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/></p>
+	                                            <%-- <p class="endFont-mid">${i.gift_discount }</p> --%>
+	                                            <p class="endFont-bot"><fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/>원</p>
 	                                        </div>
 	                                    </div>
 	                                </a>
@@ -445,7 +481,7 @@
                                                 <div class="img-info dis-none">
                                                     <p>태풍을 이기는 우산 블런트 메트로2</p>
                                                     <p>
-                                                        <span class="img-info-per">36%</span>
+                                                       <!--  <span class="img-info-per">36%</span> -->
                                                         54,800
                                                     </p>
                                                 </div>
@@ -459,7 +495,7 @@
                                                 <div class="img-info dis-none">
                                                     <p>태풍을 이기는 우산 블런트 메트로2</p>
                                                     <p>
-                                                        <span class="img-info-per">36%</span>
+                                                        <!-- <span class="img-info-per">36%</span> -->
                                                         54,800
                                                     </p>
                                                 </div>
@@ -475,7 +511,7 @@
                                                 <div class="img-info dis-none">
                                                     <p>태풍을 이기는 우산 블런트 메트로2</p>
                                                     <p>
-                                                        <span class="img-info-per">36%</span>
+                                                       <!--  <span class="img-info-per">36%</span> -->
                                                         54,800
                                                     </p>
                                                 </div>
@@ -489,7 +525,7 @@
                                                 <div class="img-info dis-none">
                                                     <p>태풍을 이기는 우산 블런트 메트로2</p>
                                                     <p>
-                                                        <span class="img-info-per">36%</span>
+                                                        <!-- <span class="img-info-per">36%</span> -->
                                                         54,800
                                                     </p>
                                                 </div>
@@ -526,7 +562,7 @@
 	                            <p style="margin-top: 25px; font-weight: 550;">${i.gift_title }</p>
 	                            <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
 	                                <!-- 할인율 -->
-	                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span>  
+	                                <%-- <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span> --%>  
 	                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/>
 	                            </p>
 	                        </a>
@@ -582,7 +618,7 @@
                             <p style="margin-top: 25px; font-weight: 550;">${i.gift_title }</p>
                             <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
                                 <!-- 할인율 -->
-                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span>  
+                                <%-- <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span> --%>  
                                 <fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/>
                             </p>
                         </a>
@@ -638,7 +674,7 @@
 	                            <p style="margin-top: 25px; font-weight: 550;">${i.gift_title }</p>
 	                            <p style="font-size: 24px; font-weight: 800; margin-top: 10px;">
 	                                <!-- 할인율 -->
-	                                <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span>  
+	                                <%-- <span style="color: red; font-weight: 800; font-size: 24px; margin-right: 10px;">${i.gift_discount }</span>  --%> 
 	                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${i.gift_price }"/>
 	                            </p>
 	                        </a>
@@ -823,16 +859,16 @@
                     <ul class="seasonbox-ul">
                         <!-- ajax -->
                         <li>
-                            <a href="#" class="seasonbox-a">인테리어</a>
+                            <a href="#" class="seasonbox-a">전자기기</a>
                         </li>
                         <li>
-                            <a href="#" class="seasonbox-a">홈트레이닝</a>
+                            <a href="#" class="seasonbox-a">수납/정리</a>
                         </li>
                         <li>
-                            <a href="#" class="seasonbox-a">여름 홈 웨어</a>
+                            <a href="#" class="seasonbox-a">독서 필수템</a>
                         </li>
                         <li>
-                            <a href="#" class="seasonbox-a">쿨매트</a>
+                            <a href="#" class="seasonbox-a">잡화</a>
                         </li>
                     </ul>
                 </div>
@@ -841,8 +877,8 @@
                 <img src="../components/image/미니세탁기.jpg" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
-                        <p class="discount">~20%</p>
-                        <p class="price">36000</p>
+                        <!-- <p class="discount">~20%</p> -->
+                        <p class="price">36000원</p>
                     </div>    
                     <p class="season-imgEx">미니미니한 미니세탁기</p>
                 </div>

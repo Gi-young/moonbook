@@ -226,7 +226,8 @@ public class GiftController {
 	
 	@RequestMapping("/gift/insertReview")
 	public ModelAndView insertReview(int giftNo, ModelAndView mv) {
-		mv.addObject("giftNo", giftNo);
+		Ngift g = service.giftOne(giftNo);
+		mv.addObject("g", g);
 		mv.setViewName("gift/insertReview");
 		return mv;
 	}
