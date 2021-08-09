@@ -18,6 +18,10 @@ input[type=text], input[type= email]{
 .tbl_box {
 	margin-top: 1.3em;
 }
+.tbl_box img{
+	width:82px;
+	height:82px;
+}
 
 .tbl_deli {
 	width: 100%;
@@ -36,6 +40,7 @@ input[type=text], input[type= email]{
 .tbl_first {
 	border-top: 2px solid #582810;
 }
+
 
 .tbl_last {
 	border-bottom: 2px solid #582810 !important;
