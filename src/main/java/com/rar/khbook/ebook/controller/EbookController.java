@@ -117,10 +117,16 @@ public class EbookController {
 	
 	@RequestMapping(value="/ebook/pageEbookReader.do")
 	public String pageEbookReader(String bindNo, Model model, HttpServletRequest request) {
+		Member loginMember = (Member)request.getSession().getAttribute("loginMember");
+		String loginMemberId = loginMember.getMemberId();
+		
+		int lastPage = service.getLastPage(bindNo, loginMemberId);
+		
 		String filepath = service.getEbookFilepath(bindNo);
 		
 		model.addAttribute("bindNo", bindNo);
 		model.addAttribute("filepath", filepath);
+		model.addAttribute("lastPage", lastPage);
 		
 		return "ebook/wizard/ebookReader";
 	}
@@ -640,6 +646,18 @@ public class EbookController {
 	@ResponseBody
 	public List<HashMap> getCustomBookmark(@RequestParam Map param) {
 		return service.getCustomBookmark(param);
+	}
+	
+	@RequestMapping(value = "/ebook/deleteCustomBookmark.do")
+	@ResponseBody
+	public int deleteCustomBookmark(@RequestParam Map param) {
+		return service.deleteCustomBookmark(param);
+	}
+	
+	@RequestMapping(value = "/ebook/lastPage.do")
+	@ResponseBody
+	public int lastPage(@RequestParam Map param) {
+		return service.lastPage(param);
 	}
 	
 }

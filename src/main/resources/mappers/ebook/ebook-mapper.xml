@@ -402,5 +402,17 @@
 	<select id="getCustomBookmark" resultType="hashmap">
 		SELECT * FROM CUSTOM_EBOOKMARK WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
 	</select>
+	
+	<delete id="deleteCustomBookmark">
+		DELETE FROM CUSTOM_EBOOKMARK WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo} AND PAGE=#{page} AND BOOKMARK_NAME=#{bookmarkName}
+	</delete>
+	
+	<update id="lastPage">
+		UPDATE MEMBER_EBOOK_LIST SET LAST_PAGE=#{lastPage} WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</update>
+	
+	<select id="getLastPage" resultType="_int">
+		SELECT LAST_PAGE FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</select>
 
 </mapper>

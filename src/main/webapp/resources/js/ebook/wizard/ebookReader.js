@@ -1,6 +1,7 @@
 // PDJ.JS
 let bindNo = Number(document.getElementById("bindNo").value);
 let filepath = document.getElementById("filepath").value;
+let lastPage = document.getElementById("lastPage").value;
 
 let url = contextPath + "/resources/ebook/" + filepath;
 
@@ -16,13 +17,16 @@ let pageFlippingSound = new Audio(contextPath + '/resources/audio/ebook/pageFlip
 pageFlippingSound.volume = 0.5;
 
 let pdfDoc = null;
-let pageNum = 1;
 let pageRendering = false;
 let pageNumPending = null;
 let leftCanvas = document.getElementById('left-canvas');
 let rightCanvas = document.getElementById('right-canvas');
 let leftCtx = leftCanvas.getContext('2d');
 let rightCtx = rightCanvas.getContext('2d');
+
+let pageNum;
+if (lastPage !== null || lastPage !== "") pageNum = Number(lastPage);
+else pageNum = 1;
 
 let section = document.getElementsByTagName("section")[0];
 
@@ -50,7 +54,7 @@ window.onload = function() {
 
     getReadTime();
 
-    //loadBookmarkList();
+    loadBookmarkList();
 }
 
 function renderLeftPage(num) {
@@ -88,6 +92,7 @@ function renderLeftPage(num) {
     });
 
     moveToPage.value = num;
+    updateLastPage();
 }
 
 function renderRightPage(num) {
@@ -453,132 +458,209 @@ function countReadTime() {
 
 window.setInterval(countReadTime, 1000 * 60);
 
-function getBasicBookMarks() {
-    return new Promise((resolve, reject) => {
-
-    });
-}
-
 function createCustomBookMark() {
     let bookMarkName = document.getElementById("bookMarkName").value;
     let targetPage = document.getElementById("bookMarkTargetPage").value;
     
+    if (bookMarkName === "" || bookMarkName === null) {
+        alert("북마크 이름을 입력하세요");
+
+        return false;
+    } else if (Number(targetPage) > pdfDoc.numPages) {
+        alert("책의 총 페이지 수를 초과하였습니다");
+
+        return false;
+    } else if (!(Number(targetPage) % 2 === 0 || Number(targetPage) % 2 === 1)) {
+        alert("책의 페이지는 양의 정수여야 합니다");
+
+        return false;
+    } else {
+        let flag = true;
+
+        $.ajax({
+            url: contextPath + "/ebook/getCustomBookmark.do",
+            type: "GET",
+            data: {
+                loginMemberId: loginMemberId,
+                bindNo: bindNo
+            },
+            success: data => {
+                console.log(data);
+
+                data.forEach((v, i) => {
+                    if (bookMarkName === v.BOOKMARK_NAME) {
+                        flag = false;
+                    }
+                });
+
+                if (flag) {
+                    $.ajax({
+                        url: contextPath + "/ebook/createCustomBookMark.do",
+                        type: "GET",
+                        data: {
+                            loginMemberId: loginMemberId,
+                            bindNo: bindNo,
+                            bookMarkName: bookMarkName,
+                            targetPage: targetPage
+                        },
+                        success: data => {
+                            console.log(data);
+                
+                            loadBookmarkList();
+            
+                            alert("북마크 생성에 성공했습니다");
+                        }
+                    });
+                } else {
+                    alert("이미 있는 북마크 이름입니다. 다른 이름을 입력해주세요");
+
+                    return false;
+                }
+            }
+        });
+    }
+}
+
+function loadBookmarkList() {
     $.ajax({
-        url: contextPath + "/ebook/createCustomBookMark.do",
+        url: contextPath + "/ebook/getBasicBookMarks.do",
         type: "GET",
         data: {
-            loginMemberId: loginMemberId,
-            bindNo: bindNo,
-            bookMarkName: bookMarkName,
-            targetPage: targetPage
+            bindNo: bindNo
         },
         success: data => {
             console.log(data);
 
-            loadBookmarkList();
+            if (markList.children[0] !== undefined) {
+                markList.children[0].remove();
+            }
+            
+            let ul = document.createElement("ul");
+            
+            data.forEach((v, i) => {
+                let li = document.createElement("li");
+                let textNode = document.createTextNode(" " + v.BOOKMARK_NAME + "..." + v.PAGE);
+
+                li.addEventListener("click", (event) => {
+                    let lowUl = event.target.children[0];
+
+                    console.log(lowUl.style.display);
+
+                    if (lowUl.style.display !== "block") {
+                        lowUl.style.display = "block";
+                    } else {
+                        lowUl.style.display = "none";
+                    }
+                });
+
+                let lowRankUl = document.createElement("ul");
+                let lowRankLi = document.createElement("li");
+                lowRankUl.classList.add("lowRankUl");
+                lowRankLi.innerText = "하위 북마크 요소가 아직 없습니다";
+                
+                lowRankUl.appendChild(lowRankLi);
+
+                lowRankUl.addEventListener("click", (event) => {
+                    event.stopPropagation();
+                });
+
+                $.ajax({
+                    url: contextPath + "/ebook/getCustomBookmark.do",
+                    type: "GET",
+                    data: {
+                        loginMemberId: loginMemberId,
+                        bindNo: bindNo
+                    },
+                    success: data2 => {
+                        console.log(data2);
+
+                        data2.forEach((w, j) => {
+                            let customBookmark = document.createElement("li");
+                            let customTextNode = document.createTextNode(w.BOOKMARK_NAME + "..." + w.PAGE);
+                            let deleteBtn = document.createElement("button");
+
+                            deleteBtn.innerText = "삭제";
+
+                            customBookmark.appendChild(customTextNode);
+                            customBookmark.appendChild(deleteBtn);
+
+                            deleteBtn.addEventListener("click", (event) => {
+                                event.stopPropagation();
+
+                                $.ajax({
+                                    url: contextPath + "/ebook/deleteCustomBookmark.do",
+                                    type: "GET",
+                                    data: {
+                                        loginMemberId: loginMemberId,
+                                        bindNo: bindNo,
+                                        page: w.PAGE,
+                                        bookmarkName: w.BOOKMARK_NAME
+                                    },
+                                    success: data => {
+                                        console.log(data);
+
+                                        loadBookmarkList();
+                                    }
+                                });
+                            });
+
+                            customBookmark.addEventListener("click", (event) => {
+                                if (w.PAGE % 2 === 0) {
+                                    queueRenderPage(w.PAGE - 1);
+                                } else {
+                                    queueRenderPage(w.PAGE);
+                                }
+                            });
+
+                            if (i === 0) {
+                                if (data[i].PAGE > w.PAGE) {
+                                    if (lowRankUl.children[0].innerText === "하위 북마크 요소가 아직 없습니다") {
+                                        lowRankUl.children[0].remove();
+                                    }
+                                    lowRankUl.appendChild(customBookmark);
+                                }
+                            } else if (i !== data.length - 1) {
+                                if (data[i].PAGE <= w.PAGE && w.PAGE< data[i + 1].PAGE) {
+                                    if (lowRankUl.children[0].innerText === "하위 북마크 요소가 아직 없습니다") {
+                                        lowRankUl.children[0].remove();
+                                    }
+                                    lowRankUl.appendChild(customBookmark);
+                                }
+                            } else {
+                                if (v.PAGE <= w.PAGE) {
+                                    if (lowRankUl.children[0].innerText === "하위 북마크 요소가 아직 없습니다") {
+                                        lowRankUl.children[0].remove();
+                                    }
+                                    lowRankUl.appendChild(customBookmark);
+                                }
+                            }
+                        });
+                    }
+                });
+
+                li.appendChild(textNode);
+                li.appendChild(lowRankUl);
+
+                ul.appendChild(li);
+            });
+
+            markList.appendChild(ul);
+        }
+    });
+    
+}
+
+function updateLastPage() {
+    $.ajax({
+        url: contextPath + "/ebook/lastPage.do",
+        type: "GET",
+        data: {
+            loginMemberId: loginMemberId,
+            bindNo: bindNo,
+            lastPage: pageNum
+        },
+        success: data => {
+            console.log(data);
         }
     });
 }
-
-// function loadBookmarkList() {
-//     return new Promise((resolve, reject) => {
-//         $.ajax({
-//             url: contextPath + "/ebook/getBasicBookMarks.do",
-//             type: "GET",
-//             data: {
-//                 bindNo: bindNo
-//             },
-//             success: data => {
-//                 console.log(data);
-
-//                 let ul = document.createElement("ul");
-                
-//                 data.forEach((v, i) => {
-//                     let li = document.createElement("li");
-//                     let textNode = document.createTextNode(" " + v.BOOKMARK_NAME + "..." + v.PAGE);
-
-//                     li.addEventListener("click", (event) => {
-//                         let rowUl = event.target.children[0];
-
-//                         console.log(rowUl.style.display);
-
-//                         if (rowUl.style.display !== "block") {
-//                             rowUl.style.display = "block";
-//                         } else {
-//                             rowUl.style.display = "none";
-//                         }
-//                     });
-
-//                     let lowRankUl = document.createElement("ul");
-//                     let lowRankLi = document.createElement("li");
-//                     lowRankUl.classList.add("lowRankUl");
-//                     lowRankLi.innerText = "하위 북마크 요소가 아직 없습니다";
-                    
-//                     lowRankUl.appendChild(lowRankLi);
-
-//                     li.appendChild(textNode);
-//                     li.appendChild(lowRankUl);
-
-//                     ul.appendChild(li);
-//                 });
-
-//                 markList.appendChild(ul);
-//             }
-//         });
-//     });
-// }
-
-// function getCustomBookmarks() {
-//     $.ajax({
-//         url: contextPath + "/ebook/getCustomBookmark.do",
-//         type: "GET",
-//         data: {
-//             loginMemberId: loginMemberId,
-//             bindNo: bindNo
-//         },
-//         success: data => {
-//             console.log(data);
-
-//             let basicMarks = document.querySelectorAll("#markList>ul>li");
-
-//             for (let i = 0; i < basicMarks.length; i ++) {
-                
-//             }
-
-
-
-
-
-
-//             data.forEach((v, i) => {
-//                 let customBookmark = document.createElement("li");
-//                 let customTextNode = document.createTextNode(w.BOOKMARK_NAME + "..." + w.PAGE);
-//                 let openBtn = document.createElement("button");
-//                 let deleteBtn = document.createElement("button");
-
-//                 openBtn.innerText = "찾기";
-//                 deleteBtn.innerText = "삭제";
-
-//                 customBookmark.appendChild(customTextNode);
-//                 customBookmark.appendChild(openBtn);
-//                 customBookmark.appendChild(deleteBtn);
-
-//                 if (i !== data.length - 1) {
-//                     if (data[i].PAGE <= w.PAGE < data[i + 1].PAGE) {
-//                         if (lowRankUl.children[0].innerText === "하위 북마크 요소가 아직 없습니다") {
-//                             lowRankUl.children[0].remove();
-//                         }
-//                         lowRankUl.appendChild(customBookmark);
-//                     }
-//                 } else {
-//                     if (v.PAGE <= w.PAGE) {
-//                         if (lowRankUl.children[0].innerText === "하위 북마크 요소가 아직 없습니다") {
-//                             lowRankUl.children[0].remove();
-//                         }
-//                         lowRankUl.appendChild(customBookmark);
-//                     }
-//                 }
-//             });
-//         }
-//     });
-// }
