@@ -1,5 +1,6 @@
 package com.rar.khbook.admin.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -90,6 +91,11 @@ public interface AdminDao {
 	Couponlist searchInvalidNImg(SqlSession session,Map param);
 	
 	int inputCouponAdminOne(SqlSession session,Map param);
+	
+	//int inputCouponAdminGrade(SqlSession session,Map param);
+	List<HashMap> searchMemberByGrade(SqlSession session,int memberGradeNo);
+	int insertCoupon(SqlSession session,Map param);
+	
 	
 	List<Couponlist> searchCouponList(SqlSession session);
 }

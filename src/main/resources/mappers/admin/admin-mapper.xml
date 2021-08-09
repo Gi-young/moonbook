@@ -350,8 +350,19 @@
   	
   	<!-- 쿠폰발급 1인용-->
   	<insert id="inputCouponAdminOne">
-  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO,SYSDATE+#{couponinvalid},#{couponMemberId},#{couponCouponListNo},#{couponCanuse},#{couponImg})
+  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,SYSDATE+${couponinvalid},#{couponMemberId},#{couponCouponListNo},#{couponCanuse},#{couponImg})
   	</insert>
+  	
+  	<!-- 쿠폰발급 다수 조회 -->
+  	<select id="searchMemberByGrade" resultType="hashmap">
+  		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_MEMBERGRADE_NO=#{memberGradeNo}
+  	</select>
+  	
+  	<!-- 쿠폰발급 다수 -->
+  	<insert id="insertCoupon">
+  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,SYSDATE+${couponinvalid},#{memberId},#{couponCouponListNo},#{couponCanuse},#{couponImg})
+  	</insert>
+  	
   	
   	<!-- 쿠폰 조회  -->
   	

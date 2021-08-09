@@ -1,5 +1,6 @@
 package com.rar.khbook.admin.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -267,6 +268,18 @@ public class AdminServiceImpl implements AdminService {
 	public int inputCouponAdminOne(Map param) {
 		// TODO Auto-generated method stub
 		return dao.inputCouponAdminOne(session,param);
+	}
+	
+	@Override
+	public List<HashMap> searchMemberByGrade(int memberGradeNo) {
+		// TODO Auto-generated method stub
+		return dao.searchMemberByGrade(session,memberGradeNo);
+	}
+
+	@Override
+	public int insertCoupon(Map param) {
+		// TODO Auto-generated method stub
+		return dao.insertCoupon(session,param);
 	}
 
 	@Override

@@ -58,7 +58,7 @@ public class MemberController {
 	public String login(@RequestParam Map param,Model model,HttpSession session,HttpServletResponse res) {
 		
 		boolean visitFlag=false;
-		SimpleDateFormat sdf= new SimpleDateFormat("yy/MM/dd");
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
 		String today=sdf.format(new Date());
 		
 		String saveId=(String)param.get("saveId");
@@ -92,7 +92,9 @@ public class MemberController {
 				//최근 로그인한 날짜 구하기
 				//컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
 				//컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
-				if(m.getMemberToday().toString().equals(today)) {
+				System.out.print(m.getMemberToday().toString());
+				System.out.println("today :" +today);
+				if(!m.getMemberToday().toString().equals(today)) {
 					int memberVisit =service.updateMemberVisit(param);
 					int memberToday =service.updateMemberToday(param);
 				}

@@ -63,6 +63,9 @@
 		</li>
 		<li class="sub-menu6">
 			<p onclick="" class="adminColor">경매관리</a>
+			<ul class="sub_content6">
+				<li><p onclick="" class="adminColor2">카테고리 등록</p></li>
+			</ul>
 		</li>
 		<li class="sub-menu7">
 			<p onclick="" class="adminColor">배송관리</a>

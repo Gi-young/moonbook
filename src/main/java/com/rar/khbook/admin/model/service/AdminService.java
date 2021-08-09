@@ -1,5 +1,6 @@
 package com.rar.khbook.admin.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -96,6 +97,12 @@ public interface AdminService {
 	
 	//쿠폰 발급
 	int inputCouponAdminOne(Map param);
+	
+	//쿠폰 단체 발급
+	//int inputCouponAdminGrade(Map param);
+	List<HashMap> searchMemberByGrade(int memberGradeNo);
+	int insertCoupon(Map param);
+	
 	
 	// 쿠폰리스트 조회
 	List<Couponlist> searchCouponList();

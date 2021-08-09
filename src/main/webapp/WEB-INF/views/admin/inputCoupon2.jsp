@@ -34,7 +34,7 @@
 				</form>
 			</div> -->
 			<div class="addProduct-container3">
-				<form action="${path}/admin/inputCouponAdminOne.do" method="post" id="addProductBook">
+				<form action="${path}/admin/inputCouponAdminOne.do" method="post" id="couponOne">
 					<table class="ChooseTable1">
 						<!--자동 넘버처리 -->
 						<!-- <tr>
@@ -79,7 +79,7 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="발급" onclick="return checkCouponNum(event);">
+								<input type="submit" id="submitBtn" value="발급" onclick="return checkCouponNum(event);">
 							</td>
 						</tr>
 					</table>
@@ -222,10 +222,12 @@
 			},
 			success: data=>{
 				if(data){
-					return true;
+					$("#couponOne").submit();
+					//return true;
+					
 				}else if(!data){
-					alert("발급할 쿠폰번호가 존재하지 않습니다")
-					return false;
+					alert("발급할 쿠폰번호가 존재하지 않습니다");
+					//return false;
 				}
 			}
 		})

@@ -1,5 +1,6 @@
 package com.rar.khbook.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -811,13 +812,62 @@ public class AdminController {
 		}else {
 			msg="쿠폰 발급 실패";
 		}
-		loc="/admin/adMemberPage.do";
+		loc="/admin/inputCoupon2.do";
 		mv.addObject("msg",msg);
 		mv.addObject("loc",loc);
 		mv.setViewName("common/msg");
 		
 		return mv;
 		
+	}
+	
+	//단체 쿠폰 페이지 바로가기
+	@RequestMapping("/admin/inputCoupon3Page.do")
+	public ModelAndView inputCoupon3Page(ModelAndView mv, int memberGrade) {
+		
+		mv.addObject("memberGrade",memberGrade);
+		mv.setViewName("admin/inputCoupon3");
+		
+		return mv;
+	}
+	//단체 쿠폰 발급하기
+	@RequestMapping("/admin/inputCouponAdminGrade.do")
+	public ModelAndView inputCouponAdminGrade(ModelAndView mv,@RequestParam Map param) {
+		
+		int memberGradeNo = Integer.parseInt((String)param.get("memberGradeNo"));
+		
+		List<HashMap> memberList = service.searchMemberByGrade(memberGradeNo);
+		
+		int result=0;
+		
+		for (HashMap member : memberList) {
+			String memberId = (String)member.get("MEMBER_ID");
+			
+			param.put("memberId", memberId);
+			
+			 result +=service.insertCoupon(param);
+		}
+		
+		
+		
+		
+		//int result =service.inputCouponAdminGrade(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="쿠폰 발급이 정상적으로 성공하였습니다";
+			
+		}else {
+			msg="쿠폰 발급 실패";
+		}
+		loc="/admin/inputCoupon3Page.do?memberGrade="+param.get("memberGradeNo");
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.rar.khbook.admin.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -279,6 +280,21 @@ public class AdminDaoImpl implements AdminDao {
 	public int inputCouponAdminOne(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		return session.insert("admin.inputCouponAdminOne",param);
+	}
+
+	
+	
+
+	@Override
+	public List<HashMap> searchMemberByGrade(SqlSession session, int memberGradeNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.searchMemberByGrade",memberGradeNo);
+	}
+
+	@Override
+	public int insertCoupon(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("admin.insertCoupon",param);
 	}
 
 	@Override
