@@ -219,4 +219,44 @@ public class EbookServiceImpl implements EbookService {
 		return dao.dataCountAll(session, param);
 	}
 	
+	@Override
+	public List<HashMap> loadMusic() {
+		return dao.loadMusic(session);
+	}
+	
+	@Override
+	public HashMap getTodayRecord(String loginMemberId) {
+		return dao.getTodayRecord(session, loginMemberId);
+	}
+	
+	@Override
+	public int insertTodayRecord(String loginMemberId) {
+		return dao.insertTodayRecord(session, loginMemberId);
+	}
+	
+	@Override
+	public int countReadPage(String loginMemberId) {
+		return dao.countReadPage(session, loginMemberId);
+	}
+	
+	@Override
+	public int countReadTime(String loginMemberId) {
+		return dao.countReadTime(session, loginMemberId);
+	}
+	
+	@Override
+	public List<HashMap> getBasicBookMarks(int bindNo) {
+		return dao.getBasicBookMarks(session, bindNo);
+	}
+	
+	@Override
+	public int createCustomBookMark(Map param) {
+		return dao.createCustomBookMark(session, param);
+	}
+	
+	@Override
+	public List<HashMap> getCustomBookmark(Map param) {
+		return dao.getCustomBookmark(session, param);
+	}
+	
 }

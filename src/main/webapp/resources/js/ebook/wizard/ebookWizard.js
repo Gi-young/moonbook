@@ -6,8 +6,14 @@ let pendingLoading = false;
 
 let isFinalLoad = false;
 
+let section = document.getElementsByTagName("section")[0];
+
+let pseudoBox = document.getElementById("pseudoBox");
+
 window.onload = function() {
     getMyEbooks(1, 15);
+
+    section.scrollTop = 0;
     
     listMySorts();
 
@@ -36,6 +42,8 @@ function getMyEbooks(cPage, numPerPage) {
                 document.getElementById("scrollIndicator").classList.add("display-none");
             }
             
+            section.style.opacity = "1";
+
             document.querySelector("div.loaderBox").remove();
 
             let pseudoBox = document.querySelector("div.pseudo-box");
@@ -94,8 +102,7 @@ function getMyEbooks(cPage, numPerPage) {
     }, 1000);
 }
 
-let section = document.getElementsByTagName("section")[0];
-let pseudoBox = document.querySelector("div.pseudo-box");
+let aside = document.getElementsByTagName("aside")[0];
 
 section.addEventListener("scroll", () => {
     let clientHeight = section.clientHeight;
@@ -103,7 +110,7 @@ section.addEventListener("scroll", () => {
     let scrollTop = section.scrollTop;
 
     if (pendingLoading === false && !isFinalLoad) {
-        if (pendingLoading === false && scrollTop > scrollHeight - clientHeight - 10) {
+        if (pendingLoading === false && scrollTop > scrollHeight - clientHeight) {
             if (currentSort === "ALL") {
                 getMyEbooks(cPage, 15);
     
@@ -126,12 +133,17 @@ function loader() {
     loader.classList.add("loader");
     message.classList.add("message");
 
+    section.style.opacity = "0.3";
+
+    loaderBox.style.left = (225 + section.clientWidth / 2 - 90) + "px";
+    loaderBox.style.top = (50 + section.clientHeight / 2 - 70) + "px";
+
     message.innerText = "잠시만 기다려주세요";
 
     loaderBox.appendChild(loader);
     loaderBox.appendChild(message);
 
-    pseudoBox.appendChild(loaderBox);
+    aside.appendChild(loaderBox);
 }
 
 function createSort() {
@@ -241,6 +253,8 @@ function listMySorts() {
                                 }
                                 
                                 changeBookshelf(1, 15, v);
+
+                                section.scrollTop = 0;
 
                                 listMySorts();
 
@@ -386,6 +400,8 @@ if (sortAll != null) {
         
         getMyEbooks(1, 15);
 
+        section.scrollTop = 0;
+
         listMySorts();
 
         selectSort();
@@ -421,6 +437,8 @@ function changeBookshelf(cPage, numPerPage, sortName) {
                     isFinalLoad = true;
                     document.getElementById("scrollIndicator").classList.add("display-none");
                 }
+
+                section.style.opacity = "1";
 
                 document.querySelector("div.loaderBox").remove();
 

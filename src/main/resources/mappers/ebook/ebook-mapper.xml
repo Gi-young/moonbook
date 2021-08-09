@@ -370,5 +370,37 @@
 	<select id="dataCountAll" resultType="_int">
 		SELECT COUNT(EBOOK_NO) FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID=#{memberId}
 	</select>
+	
+	<select id="loadMusic" resultType="hashmap">
+		SELECT * FROM RANDOM_CLASSICAL_MUSIC ORDER BY DBMS_RANDOM.VALUE
+	</select>
+	
+	<select id="getTodayRecord" resultType="hashmap">
+		SELECT * FROM EBOOK_PLANNER WHERE MEMBER_ID=#{memberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
+	</select>
+	
+	<insert id="insertTodayRecord">
+		INSERT INTO EBOOK_PLANNER VALUES(SEQ_EBOOK_PLANNER.NEXTVAL,#{loginMemberId},DEFAULT,DEFAULT,DEFAULT)
+	</insert>
+	
+	<update id="countReadPage">
+		UPDATE EBOOK_PLANNER SET READ_PAGE=READ_PAGE+2 WHERE MEMBER_ID=#{loginMemberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
+	</update>
+	
+	<update id="countReadTime">
+		UPDATE EBOOK_PLANNER SET READ_TIME_IN_MINUTES=READ_TIME_IN_MINUTES+1 WHERE MEMBER_ID=#{loginMemberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
+	</update>
+	
+	<select id="getBasicBookMarks" resultType="hashmap">
+		SELECT * FROM BASIC_EBOOKMARK WHERE EBOOK_NO=#{bindNo} ORDER BY PAGE ASC
+	</select>
+	
+	<insert id="createCustomBookMark">
+		INSERT INTO CUSTOM_EBOOKMARK VALUES(#{loginMemberId},#{bindNo},#{targetPage},#{bookMarkName})
+	</insert>
+	
+	<select id="getCustomBookmark" resultType="hashmap">
+		SELECT * FROM CUSTOM_EBOOKMARK WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+	</select>
 
 </mapper>

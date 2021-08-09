@@ -219,4 +219,44 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectOne("ebook.dataCountAll", param);
 	}
 	
+	@Override
+	public List<HashMap> loadMusic(SqlSession session) {
+		return session.selectList("ebook.loadMusic");
+	}
+	
+	@Override
+	public HashMap getTodayRecord(SqlSession session, String loginMemberId) {
+		return session.selectOne("ebook.getTodayRecord", loginMemberId);
+	}
+	
+	@Override
+	public int insertTodayRecord(SqlSession session, String loginMemberId) {
+		return session.insert("ebook.insertTodayRecord", loginMemberId);
+	}
+	
+	@Override
+	public int countReadPage(SqlSession session, String loginMemberId) {
+		return session.update("ebook.countReadPage", loginMemberId);
+	}
+	
+	@Override
+	public int countReadTime(SqlSession session, String loginMemberId) {
+		return session.update("ebook.countReadTime", loginMemberId);
+	}
+	
+	@Override
+	public List<HashMap> getBasicBookMarks(SqlSession session, int bindNo) {
+		return session.selectList("ebook.getBasicBookMarks", bindNo);
+	}
+	
+	@Override
+	public int createCustomBookMark(SqlSession session, Map param) {
+		return session.insert("ebook.createCustomBookMark", param);
+	}
+	
+	@Override
+	public List<HashMap> getCustomBookmark(SqlSession session, Map param) {
+		return session.selectList("ebook.getCustomBookmark", param);
+	}
+	
 }

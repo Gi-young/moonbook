@@ -8,6 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>${param.title}</title>
+	<link rel="icon" href="${path}/resources/images/ebook/favicon.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHeader.css">
 </head>
 <body>

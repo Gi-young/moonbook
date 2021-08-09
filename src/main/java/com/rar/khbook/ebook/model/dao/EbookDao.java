@@ -84,4 +84,20 @@ public interface EbookDao {
 	
 	int dataCountAll(SqlSession session, Map param);
 	
+	List<HashMap> loadMusic(SqlSession session);
+	
+	HashMap getTodayRecord(SqlSession session, String loginMemberId);
+	
+	int insertTodayRecord(SqlSession session, String loginMemberId);
+	
+	int countReadPage(SqlSession session, String loginMemberId);
+	
+	int countReadTime(SqlSession session, String loginMemberId);
+	
+	List<HashMap> getBasicBookMarks(SqlSession session, int bindNo);
+	
+	int createCustomBookMark(SqlSession session, Map param);
+	
+	List<HashMap> getCustomBookmark(SqlSession session, Map param);
+	
 }

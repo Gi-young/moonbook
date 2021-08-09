@@ -12,6 +12,11 @@ aside {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    overflow: scroll;
+}
+
+aside::-webkit-scrollbar {
+    display: none;
 }
 
 aside>h2 {
@@ -57,14 +62,13 @@ p.title {
 }
 
 .loaderBox {
-    width: 100%;
+    position: fixed;
+    width: fit-content;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .loader {
@@ -92,7 +96,7 @@ p.title {
     display: grid;
     grid-template-columns: repeat(5, 200px);
     grid-auto-rows: 250px;
-    height: 101%;
+    height: 110%;
     width: 100%;
     padding: 20px;
     align-content: start;

@@ -8,6 +8,8 @@ console.log(currentPageIndex);
 document.querySelectorAll("header li").forEach((v, i) => {
     if (i === Number(currentPageIndex)) {
         v.classList.add("selectedBranch");
+    } else if (Number(currentPageIndex) === 7 && i === 0) {
+        v.classList.add("selectedBranch");
     }
 });
 
