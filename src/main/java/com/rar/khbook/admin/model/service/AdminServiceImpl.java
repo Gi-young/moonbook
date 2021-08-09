@@ -1,5 +1,6 @@
 package com.rar.khbook.admin.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +10,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import com.rar.khbook.admin.model.dao.AdminDao;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
-import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -244,6 +245,49 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.addCouponList(session,param);
 	}
+
+	@Override
+	public Member searchGrade(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchGrade(session,param);
+	}
+
+	@Override
+	public Couponlist searchCoupon(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchCoupon(session,param);
+	}
+
+	@Override
+	public Couponlist searchInvalidNImg(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchInvalidNImg(session,param);
+	}
+
+	@Override
+	public int inputCouponAdminOne(Map param) {
+		// TODO Auto-generated method stub
+		return dao.inputCouponAdminOne(session,param);
+	}
+	
+	@Override
+	public List<HashMap> searchMemberByGrade(int memberGradeNo) {
+		// TODO Auto-generated method stub
+		return dao.searchMemberByGrade(session,memberGradeNo);
+	}
+
+	@Override
+	public int insertCoupon(Map param) {
+		// TODO Auto-generated method stub
+		return dao.insertCoupon(session,param);
+	}
+
+	@Override
+	public List<Couponlist> searchCouponList() {
+		// TODO Auto-generated method stub
+		return dao.searchCouponList(session);
+	}
+	
 	
 	
 	

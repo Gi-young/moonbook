@@ -1,5 +1,6 @@
 package com.rar.khbook.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.common.PageFactoryAdmin;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
-import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -714,20 +715,20 @@ public class AdminController {
 	}
 	
 	//쿠폰관리 시작
-	//add 등록 페이지
+	//add 등록 페이지 가기
 	@RequestMapping("/admin/addCouponPage.do")
 	public String addCouponPage() {
 		
 		return "admin/addCoupon";
 	}
-	//input 발급 페이지
+	//input 발급 페이지 가기
 	@RequestMapping("/admin/inputCouponPage.do")
 	public String inputCouponPage() {
 		
 		return "admin/inputCoupon";
 	}
 	
-	//쿠폰시작 
+	//쿠폰등록
 	@RequestMapping("/admin/addCouponList.do")
 	public ModelAndView addCouponList(ModelAndView mv,@RequestParam Map param) {
 		
@@ -747,5 +748,140 @@ public class AdminController {
 		return mv;
 	}
 	
+	// 발급2 페이지 가기
+	@RequestMapping("/admin/inputCoupon2.do")
+	public ModelAndView inputCoupon2(ModelAndView mv) {
+		
+		mv.addObject(mv);
+		mv.setViewName("admin/inputCoupon2");
+		return mv;
+	}
+	// 쿠폰 발급 전 아이디로 등급 확인
+	@RequestMapping("/admin/searchGrade.do")
+	@ResponseBody
+	public Member searchGrade(@RequestParam Map param) {
+		
+		String id=(String)param.get("id");
+		param.put("id", id);
+		
+		Member result=service.searchGrade(param);
+		
+		
+		return result;
+	}
+	// 발급할 쿠폰 종류를 찾으면 알아서 만료기간 넣기 img는 jsp에서
+	@RequestMapping("/admin/searchInvalidNImg.do")
+	@ResponseBody
+	public Couponlist searchInvalidNImg(@RequestParam Map param) {
+		//내가 구하고자 하는것 쿠폰테이블의 coupon_invalid
+		//사용가능일수는 couponlist_invalid 쿠폰리스트테이블에 있음
+		String couponlistNum=(String)param.get("couponlistNum");
+		param.put("couponlistNum", couponlistNum);
+		
+		Couponlist result=service.searchInvalidNImg(param);
+		
+		return result;
+		
+	}
+	
+	//쿠폰 발급 전 발급할 쿠폰넘버가 있는지 확인
+	@RequestMapping("/admin/searchCoupon.do")
+	@ResponseBody
+	public boolean searchCoupon(@RequestParam Map param) {
+		String couponlistNo=(String)param.get("couponlistNo");
+		param.put("couponlistNo", couponlistNo);
+		
+		Couponlist result=service.searchCoupon(param);
+		
+		if(result!=null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	//쿠폰 발급
+	@RequestMapping("/admin/inputCouponAdminOne.do")
+	public ModelAndView inputCouponAdminOne(@RequestParam Map param,ModelAndView mv) {
+		
+		int result=service.inputCouponAdminOne(param);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="쿠폰 발급이 정상적으로 성공하였습니다";
+			
+		}else {
+			msg="쿠폰 발급 실패";
+		}
+		loc="/admin/inputCoupon2.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+		
+	}
+	
+	//단체 쿠폰 페이지 바로가기
+	@RequestMapping("/admin/inputCoupon3Page.do")
+	public ModelAndView inputCoupon3Page(ModelAndView mv, int memberGrade) {
+		
+		mv.addObject("memberGrade",memberGrade);
+		mv.setViewName("admin/inputCoupon3");
+		
+		return mv;
+	}
+	//단체 쿠폰 발급하기
+	@RequestMapping("/admin/inputCouponAdminGrade.do")
+	public ModelAndView inputCouponAdminGrade(ModelAndView mv,@RequestParam Map param) {
+		
+		int memberGradeNo = Integer.parseInt((String)param.get("memberGradeNo"));
+		
+		List<HashMap> memberList = service.searchMemberByGrade(memberGradeNo);
+		
+		int result=0;
+		
+		for (HashMap member : memberList) {
+			String memberId = (String)member.get("MEMBER_ID");
+			
+			param.put("memberId", memberId);
+			
+			 result +=service.insertCoupon(param);
+		}
+		
+		
+		
+		
+		//int result =service.inputCouponAdminGrade(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="쿠폰 발급이 정상적으로 성공하였습니다";
+			
+		}else {
+			msg="쿠폰 발급 실패";
+		}
+		loc="/admin/inputCoupon3Page.do?memberGrade="+param.get("memberGradeNo");
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
+	}
+	
+	
+	// 쿠폰 조회해보기
+	@RequestMapping("/admin/searchCouponlist.do")
+	public ModelAndView searchCouponList(ModelAndView mv){
+		
+		List<Couponlist> list =service.searchCouponList();
+		
+		mv.addObject("list", list);
+		
+		mv.setViewName("admin/inputCoupon2");
+		
+		return mv;
+	}
 	
 }

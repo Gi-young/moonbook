@@ -43,7 +43,7 @@ console.log($("#bid").val())
 	 if($("#bidid").val()==$("#bidid2").val()){
 		 alert("이미 최고 입찰자입니다.")
 		 return false;
-	 }else if($("#point").val()<$("#bid").val()){
+	 }else if(paseInt($("#point").val())<paseInt($("#bid").val())){
 		 alert("포인트가 부족합니다")
 		 return false;
 	 }

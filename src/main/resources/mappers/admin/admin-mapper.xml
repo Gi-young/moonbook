@@ -74,6 +74,65 @@
 		</association>
 	</resultMap>
 	
+	<!-- 쿠폰에 상속해줄 부모 VO -->
+	<resultMap type="couponlist" id="couponlistMap">
+		<result column="couponlist_no" property="couponlistNo" />
+		<result column="couponlist_membergrade_no"
+			property="couponlistMembergradeNo" />
+		<result column="couponlist_percent"
+			property="couponlistPercent" />
+		<result column="couponlist_amount" property="couponlistAmount" />
+		<result column="couponlist_foruse" property="couponlistForuse" />
+		<result column="couponlist_invalid"
+			property="couponlistInvalid" />
+		<result column="couponlist_name" property="couponlistName" />
+		<result column="couponlist_condition"
+			property="couponlistCondition" />
+	</resultMap>
+
+	<!-- 쿠폰리스트를 상속받는 쿠폰 VO -->
+	<resultMap type="coupon" id="couponMap"
+		extends="couponlistMap">
+		<result column="coupon_no" property="couponNo" />
+		<result column="coupon_invalid" property="couponInvalid" />
+		<result column="coupon_couponlist_no"
+			property="couponCouponlistNo" />
+		<result column="coupon_canuse" property="couponCanuse" />
+		<result column="coupon_img" property="couponImg" />
+		<result column="coupon_member_id" property="couponMemberId" />
+	</resultMap>
+	
+	<!-- 멤버에 상속해줄 부모 VO -->
+	<resultMap type="membergrade" id="membergradeMap">
+		<result column="membergrade_no" property="membergradeNo" />
+		<result column="membergrade_name" property="membergradeName" />
+		<result column="membergrade_standard"
+			property="membergradeStandard" />
+		<result column="membergrade_content"
+			property="membergradeContent" />
+		<result column="membergrade_img" property="membergradeImg" />
+		<result column="membergrade_percent"
+			property="membergradePercent" />
+	</resultMap>
+
+	<resultMap type="member" id="memberMap"
+		extends="membergradeMap">
+		<result column="member_id" property="memberId" />
+		<result column="member_pw" property="memberPw" />
+		<result column="member_name" property="memberName" />
+		<result column="member_email" property="memberEmail" />
+		<result column="member_phone" property="memberPhone" />
+		<result column="member_address" property="memberAddress" />
+		<result column="member_gender" property="memberGender" />
+		<result column="member_birth" property="memberBirth" />
+		<result column="member_point" property="memberPoint" />
+		<result column="member_regidate" property="memberRegiDate" />
+		<result column="member_memberGrade_no" property="memberGradeNo" />
+		<result column="member_total_sale" property="memberTotalSale" />
+		<result column="member_visit" property="memberVisit" />
+		<result column="member_today" property="memberToday" />
+	</resultMap>
+	
 	<resultMap id="ebookMap" type="ebook">
 		<id column="EBOOK_NO" property="ebookNo"/>
 		<result column="SALES_VOLUME" property="salesVolume"/>
@@ -271,7 +330,44 @@
   	</delete>
   	<!-- 쿠폰 등록 -->
   	<insert id="addCouponList">
-  		INSERT INTO COUPONLIST VALUES(SEQ_COUPONLIST_NO.NEXTVAL,SEQ_MEMBERGRADE_NO.NEXTVAL,#{couponlistAmount},#{couponlistForuse},#{couponlistInvalid},#{couponlistName})
+  		INSERT INTO COUPONLIST VALUES(SEQ_COUPONLIST_NO.NEXTVAL,#{couponlistMembergradeNo},#{couponlistAmount},#{couponlistForuse},#{couponlistInvalid},#{couponlistName})
   	</insert>
+  	
+  	<!-- 쿠폰 발급전 등급조회 -->
+  	<select id="searchGrade" resultMap="memberMap">
+  		SELECT MEMBER_MEMBERGRADE_NO FROM MEMBER WHERE MEMBER_Id=#{id}
+  	</select>
+  	
+  	<!-- 쿠폰 발급전 만료기간 -->
+  	<select id="searchInvalidNImg" resultMap="couponlistMap">
+  		SELECT COUPONLIST_INVALID FROM COUPONLIST WHERE COUPONLIST_NO=#{couponlistNum}
+  	</select>
+  	
+  	<!-- 쿠폰 발급전 쿠폰번호가 있는지 조회 -->
+  	<select id="searchCoupon" resultMap="couponlistMap">
+  		SELECT COUPONLIST_NO FROM COUPONLIST WHERE COUPONLIST_NO=#{couponlistNo}
+  	</select>
+  	
+  	<!-- 쿠폰발급 1인용-->
+  	<insert id="inputCouponAdminOne">
+  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,SYSDATE+${couponinvalid},#{couponMemberId},#{couponCouponListNo},#{couponCanuse},#{couponImg})
+  	</insert>
+  	
+  	<!-- 쿠폰발급 다수 조회 -->
+  	<select id="searchMemberByGrade" resultType="hashmap">
+  		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_MEMBERGRADE_NO=#{memberGradeNo}
+  	</select>
+  	
+  	<!-- 쿠폰발급 다수 -->
+  	<insert id="insertCoupon">
+  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,SYSDATE+${couponinvalid},#{memberId},#{couponCouponListNo},#{couponCanuse},#{couponImg})
+  	</insert>
+  	
+  	
+  	<!-- 쿠폰 조회  -->
+  	
+  	
+  	
+  	
   	
 </mapper>

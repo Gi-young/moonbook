@@ -1,10 +1,12 @@
 package com.rar.khbook.admin.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.core.annotation.Order;
 
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
@@ -84,6 +86,24 @@ public interface AdminService {
 	//쿠폰 등록
 	int addCouponList(Map param);
 	
+	//쿠폰 발급 전 등급 조회
+	Member searchGrade(Map param);
+	
+	//쿠폰 발급 전 쿠폰리스트의 번호 조회
+	Couponlist searchCoupon(Map param);
+	
+	//쿠폰 발급 전 발급할 쿠폰 종류의 만료기간 서치
+	Couponlist searchInvalidNImg(Map param);
+	
+	//쿠폰 발급
+	int inputCouponAdminOne(Map param);
+	
+	//쿠폰 단체 발급
+	//int inputCouponAdminGrade(Map param);
+	List<HashMap> searchMemberByGrade(int memberGradeNo);
+	int insertCoupon(Map param);
 	
 	
+	// 쿠폰리스트 조회
+	List<Couponlist> searchCouponList();
 }

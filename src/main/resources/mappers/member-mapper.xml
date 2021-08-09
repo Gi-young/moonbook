@@ -201,7 +201,7 @@
 	<!-- 최근 로그인 날짜 변경 -->
 	<update id="updateMemberToday">
 		UPDATE MEMBER SET
-		MEMBER_TODAY=TO_DATE(SYSDATE,'YY/MM/DD') WHERE MEMBER_ID=#{memberId}
+		MEMBER_TODAY=SYSDATE WHERE MEMBER_ID=#{memberId}
 	</update>
 
 	<!-- 회원 삭제 -->
