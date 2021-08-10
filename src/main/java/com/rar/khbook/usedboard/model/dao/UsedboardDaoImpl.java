@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
 import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
+import com.rar.khbook.usedboard.model.vo.UsedboardSingo;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -129,7 +130,7 @@ public class UsedboardDaoImpl implements UsedboardDao {
 	@Override
 	public List<Usedboard> selectUsedboardMyList(SqlSession session, int cPage, int numPerpage, String memberId) {
 		// TODO Auto-generated method stub
-		return session.selectList("usedboard.selectUsedboardMyList",memberId);
+		return session.selectList("usedboard.selectUsedboardMyList",memberId,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
 	
 	@Override
@@ -142,7 +143,7 @@ public class UsedboardDaoImpl implements UsedboardDao {
 	public List<UsedboardPayment> usedboardMyPaymentList(SqlSession session, int cPage, int numPerpage,
 			String memberId) {
 		// TODO Auto-generated method stub
-		return session.selectList("usedboard.usedboardMyPaymentList",memberId);
+		return session.selectList("usedboard.usedboardMyPaymentList",memberId,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
 	
 	@Override
@@ -173,5 +174,41 @@ public class UsedboardDaoImpl implements UsedboardDao {
 	public int usedboardPay22(SqlSession session, int no) {
 		// TODO Auto-generated method stub
 		return session.update("usedboard.usedboardPay22",no);
+	}
+	
+	@Override
+	public List<UsedboardSingo> checkSingo(SqlSession session, UsedboardSingo s) {
+		// TODO Auto-generated method stub
+		return session.selectList("usedboard.checkSingo",s);
+	}
+	
+	@Override
+	public int insertSingo(SqlSession session, UsedboardSingo s) {
+		// TODO Auto-generated method stub
+		return session.insert("usedboard.insertSingo",s);
+	}
+	
+	@Override
+	public List<UsedboardSingo> usedboardSingoList(SqlSession session, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return session.selectList("usedboard.usedboardSingoList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	
+	@Override
+	public int usedboardSingoCount(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("usedboard.usedboardSingoCount");
+	}
+	
+	@Override
+	public int usedboardSingoDelete(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.usedboardSingoDelete",no);
+	}
+	
+	@Override
+	public int usedboardMySingoDelete(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.delete("usedboard.usedboardMySingoDelete",no);
 	}
 }

@@ -129,4 +129,35 @@
 	<update id="usedboardPay22">
 		UPDATE USEDBOARDPAYMENT SET  USEDBOARDPAYMENT_STATE='3' WHERE USEDBOARDPAYMENT_BOARDNO='${value}' 
 	</update>
+	
+	<select id="checkSingo" resultType="usedboardsingo">
+		SELECT * FROM USEDBOARDSINGO WHERE USEDBOARDSINGO_BOARDNO=#{usedboardsingo_BoardNo} AND USEDBOARDSINGO_ID=#{usedboardsingo_Id}
+	</select>
+	
+	<insert id="insertSingo">
+		INSERT INTO USEDBOARDSINGO VALUES(SEQ_USEDBOARDSINGO_NO.NEXTVAL, #{usedboardsingo_BoardNo}, #{usedboardsingo_Id})
+	</insert>
+	
+	<select id="usedboardSingoList" resultMap="usedboardsingoMap">
+		SELECT * FROM USEDBOARDSINGO B LEFT JOIN USEDBOARD A ON B.USEDBOARDSINGO_BOARDNO=A.USEDBOARD_NO ORDER BY B.USEDBOARDSINGO_NO DESC
+	</select>
+	
+	<resultMap type="usedboardsingo" id="usedboardsingoMap">
+		<id column="usedboardsingo_No" property="usedboardsingo_No"/>
+		<result column="usedboardsingo_BoardNo" property="usedboardsingo_BoardNo"/>
+		<result column="usedboardsingo_Id" property="usedboardsingo_Id"/>
+		<collection property="usedboards" resultMap="usedboardMap"></collection>
+	</resultMap>
+	
+	<select id="usedboardSingoCount" resultType="_int">
+		SELECT COUNT(*) FROM USEDBOARDSINGO
+	</select>
+	
+	<delete id="usedboardSingoDelete">
+		DELETE FROM USEDBOARDSINGO WHERE USEDBOARDSINGO_NO=${value}
+	</delete>
+	
+	<delete id="usedboardMySingoDelete">
+		DELETE FROM USEDBOARDSINGO WHERE USEDBOARDSINGO_BOARDNO=${value}
+	</delete>
 </mapper>

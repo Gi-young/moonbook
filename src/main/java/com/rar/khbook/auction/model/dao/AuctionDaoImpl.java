@@ -15,10 +15,17 @@ public class AuctionDaoImpl implements AuctionDao {
 	
 	
 	
+	//경매 관리 페이지
 	
 	@Override
-	public void updatestateS(SqlSession session, Map param) {
-		session.update("auction.updatestateS",param);
+	public List<Auction> auctionAdmin(SqlSession session, Map param) {
+		return session.selectList("auction.auctionAdmin");
+	}
+	
+	
+	@Override
+	public int updatestateS(SqlSession session, Map param) {
+		return session.update("auction.updatestateS",param);
 		
 	}
 
@@ -58,6 +65,12 @@ public class AuctionDaoImpl implements AuctionDao {
 	public int memberpointchange(SqlSession session, Map param) {
 		return session.update("auction.memberpointchange",param);
 	}
+	
+	@Override
+	public int updateAddbid(SqlSession session, Map param) {
+		return session.update("auction.updateAddbid",param);
+	}
+
 	@Override
 	public int insertauctionBid(SqlSession session, Map param) {
 		return session.insert("auction.insertauctionBid",param);
@@ -106,6 +119,12 @@ public class AuctionDaoImpl implements AuctionDao {
 	@Override
 	public List<AuctionCate> selectauctioncate(SqlSession session, String level1) {
 		return session.selectList("auction.selectauctioncate",level1);
+	}
+
+//buysell
+	@Override
+	public int auctionBuySell(SqlSession session, Map param) {
+		return session.update("auction.auctionBuySell",param);
 	}
 
 }

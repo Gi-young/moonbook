@@ -42,6 +42,14 @@ public interface AuctionService {
 	void updateauctionPay(Map param);
 
 	void updatestateS(Map param);
+
+	int updateAddbid(Map param);
+
+
+	List<Auction> auctionAdmin(Map param);
+	int auctionBuySell(Map param);
+
+	int auctionAdminCal(Map param);
 	
 
 
