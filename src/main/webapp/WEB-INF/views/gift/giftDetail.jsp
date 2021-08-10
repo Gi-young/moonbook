@@ -39,7 +39,7 @@
                     <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
                 </div>
             </div>
-        <form action="${path }/gift/giftPayment.do"> 
+        <form action="${path }/gift/giftPayment.do" method="post"> 
             <div class="proDetail-exp">
                 <p class="expTitle">${gift.gift_title } </p>
                 <div class="crossLine2"></div>
@@ -78,7 +78,7 @@
                     <input type="hidden" value="${loginMember.memberId }" id="loginMemberId">
                     <button type="button">장바구니</button>
                     <!-- <button>찜하기</button> -->
-                </div>
+                </div>           
                 <div style="text-align: center; margin-top: 30px;">
                     <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
@@ -262,7 +262,7 @@
         </div>
         <div class="product-review">
             <div class="writeBox">
-                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
+                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
             </div>
            <table class="review-exp review-board">
           
