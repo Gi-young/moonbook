@@ -389,6 +389,13 @@
   	<select id="selectAuctionList" resultMap="AuctionCateMap">
   		SELECT * FROM AUCTIONCATE
   	</select>
-  	
+  	<!-- 경매 카테고리 추가  -->
+  	<insert id="addAuctionCate">
+  		INSERT INTO AUCTIONCATE VALUES(SEQ_AUCTIONCATE_NO.NEXTVAL,#{type9},#{type10})
+  	</insert>
+  	<!-- 경매 카테고리 삭제 -->
+  	<delete id="deleteAuctionCate">
+  		DELETE FROM AUCTIONCATE WHERE AUCTIONCATE_NAME=#{type20} AND AUCTIONCATE_FIRST=#{type21}
+  	</delete>
   	
 </mapper>

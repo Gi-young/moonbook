@@ -111,4 +111,11 @@ public interface AdminService {
 	
 	//경매 조회
 	List<AuctionCate> selectAuctionList();
+	
+	//경매 카테고리 추가
+	int addAuctionCate(Map param);
+	
+	//경매 카테고리 삭제
+	int deleteAuctionCate(Map param);
+	
 }

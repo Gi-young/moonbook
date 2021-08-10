@@ -23,38 +23,41 @@
 		<div class="admin-box2">
 			<div class="admin-box4">
 					<div class="admin-search3">
-				<form class="admin-search" action="">
+				<form class="admin-search" action="${path }/admin/addAuctionCate.do" id="addDeleteAuction">
 						<table class="adminHowTable">
+							
 							<tr>
-								<th>경매 종류 추가</th>
+								<th>카테고리 내 종류 추가</th>
 								<td class="admin-search2">
-								<select name="type2">
-									<option value="COUPONLIST_NO" selected>도서</option>
-									<option value="COUPONLIST_NAME" >문구</option>
-									<option value="COUPONLIST_NAME" >기타</option>
+								<select name="type9">
+									<option value="도서" >도서</option>
+									<option value="문구" >문구</option>
+									<option value="음반" >음반</option>
 								</select>
 								</td>
 								<td class="search-box">
-									<input type="text" name="searchHow3"> 
+									<input type="text" name="type10"> 
 								</td>
 								<td class="search-box">
-									<button>추가</button> 
+									<input type="submit" value="추가"/>
+									<!-- <button onclick="addAuctionCate(event)">추가</button>  -->
 								</td>
 							</tr>
+							
 							<tr>
-								<th>경매 종류 추가</th>
+								<th>카테고리 내 종류 삭제</th>
 								<td class="admin-search2">
-								<select name="type2">
-									<option value="COUPONLIST_NO" selected>도서</option>
-									<option value="COUPONLIST_NAME" >문구</option>
-									<option value="COUPONLIST_NAME" >기타</option>
+								<select name="type20">
+									<option value="도서" >도서</option>
+									<option value="문구" >문구</option>
+									<option value="음반" >음반</option>
 								</select>
 								</td>
 								<td class="search-box">
-									<input type="text" name="searchHow3"> 
+									<input type="text" name="type21"> 
 								</td>
 								<td class="search-box">
-									<button>추가</button> 
+									<input type="button" value="삭제" onclick="deleteAuctionCate('deleteAuctionCate.do');"/>
 								</td>
 							</tr>
 						</table>
@@ -64,6 +67,7 @@
 					</div>
 			</div>
 			<div class="memberT-container">
+				<%-- <c:forEach var="c" items="${list2 }"> --%>
 				<div class="auction_box1">
 					<ul class="auction_cate2" >
 						<li>도서</li>
@@ -73,32 +77,33 @@
 							<c:if test="${e.auctioncateName eq '도서'}">
 								<li>${e.auctioncateFirst}</li>
 							</c:if> 
-						</c:forEach>
+						</c:forEach> 
 					</ul>
 				</div>
-				<div class="auction_box1">
+			
+				 <div class="auction_box1">
 					<ul class="auction_cate2" >
 						<li>문구</li>
 					</ul>
-					<ul class="auction_cate1">
-						<li>test1</li>
-						<li>test1</li>
-						<li>test1</li>
-						<li>test1</li>
-						
+					<ul class="auction_cate1" >
+						<c:forEach var="e" items="${list }">
+							<c:if test="${e.auctioncateName eq '문구'}">
+								<li>${e.auctioncateFirst}</li>
+							</c:if> 
+						</c:forEach> 
 					</ul>
 				</div>
 				
 				<div class="auction_box1">
 					<ul class="auction_cate2" >
-						<li>기타</li>
+						<li>음반</li>
 					</ul>
-					<ul class="auction_cate1">
-						<li>test1</li>
-						<li>test1</li>
-						<li>test1</li>
-						<li>test1</li>
-						
+					<ul class="auction_cate1" >
+						<c:forEach var="e" items="${list }">
+							<c:if test="${e.auctioncateName eq '음반'}">
+								<li>${e.auctioncateFirst}</li>
+							</c:if> 
+						</c:forEach> 
 					</ul>
 				</div>
 			</div>
@@ -111,190 +116,18 @@
 
 
 <script>
-function adMemberDelete(event){
-	let memberId=$(event.target).prev().val();
-	
-	location.assign('${path}/admin/memberDelete.do?memberId='+memberId);
+
+function addAuctionCate(event){
 	
 }
-
-
-function changeMemberV(event){
-	let memberId=event.target.parentElement.parentElement.children[1].children[0].value;
-	let memberPhone=event.target.parentElement.parentElement.children[3].children[0].value;
-	let memberAddress=event.target.parentElement.parentElement.children[5].children[0].value;
-	let memberPoint=event.target.parentElement.parentElement.children[6].children[0].value;
-	let memberGradeNo=event.target.parentElement.parentElement.children[7].children[0].value;
-	console.dir(memberPhone);
-	console.log("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberAddress="+memberAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
-	location.assign("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberAddress="+memberAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
-	
-} 
-
-function searchMT(cPage,numPerpage){
-	let type2 =document.getElementsByName("type2")[0].value;
-	let search=document.getElementsByName("searchHow3")[0].value;
-	
-	$.ajax({
-		url: "${path}/admin/searchTextMemberList.do",
-		data:{
-			type2 :type2,
-			search:search,
-			cPage: cPage,
-			numPerpage: numPerpage
-		},
-		success: data=>{
-		document.querySelectorAll(".memberT td").forEach((v,i) => {
-				v.remove();
-			});
-			console.dir( data);
-			
-			let table=document.querySelector(".memberT");
-			for(let i=0;i<data.length;i++){
-				let tr=document.createElement("tr");
-				for(let j=0;j<12;j++){
-					let td=document.createElement("td");
-					td.style.border="1px solid black";
-					td.style.height="27px";
-					if(j == 0) {
-						let regiDate = new Date(data[i].memberRegiDate);
-						
-						let regiMonth;
-						if((regiDate.getMonth()+1)<10){
-							regiMonth = ("0"+(regiDate.getMonth()+1));
-						}else{ 
-							regiMonth = (regiDate.getMonth()+1);
-						}	
-						
-						td.innerHTML = "<input type='text' value='"+regiDate.getFullYear() + "-" + 
-						regiMonth
-						+ "-" + regiDate.getDate()+ "'>";
-					}
-					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].memberId + "'>";
-					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
-					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
-					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
-					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
-					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
-					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
-					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
-					
-					tr.appendChild(td);
-				}
-				table.appendChild(tr);
-				
-			}
-			document.querySelectorAll(".memberT td>img.updateImg").forEach((v, i) => {
-				v.addEventListener("click", function() {changeMember(event)});
-			});
-			document.querySelectorAll(".memberT td>img.deleteImg").forEach((v, i) => {
-				v.addEventListener("click", function() {adMemberDelete(event)});
-			});
-		}
-		
-	});
-	$.ajax({
-		url: "${path}/admin/getPageBarSearchTextMemberList.do",
-		data: {
-			type2 :type2,
-			search:search,
-			cPage: cPage,
-			numPerpage: numPerpage
-		},
-		success: data => {
-			$("#pagebar-container3").html(data[0]);
-			$(".turnRed").html(data[1]);
-			
-		}
-	});
-} 
-
-function orderList(cPage,numPerpage){
-	let type1 = document.getElementsByName("type1")[0].value;
-	let order="";
-	document.getElementsByName("searchHow2").forEach((v,i) => {
-		if (v.checked) {
-			order = v.value;
-		}
-	});
-	
-	$.ajax({
-		url: "${path}/admin/orderedMemberList.do",
-		data: {
-			type1: type1,
-			order: order==="" ? "asc":order,
-			cPage: cPage,
-			numPerpage: numPerpage
-		},
-		success: data => {
-			document.querySelectorAll(".memberT td").forEach((v,i) => {
-				v.remove();
-			});
-			let table=document.querySelector(".memberT");
-			for(let i=0;i<data.length;i++){
-				let tr=document.createElement("tr");
-				for(let j=0;j<12;j++){
-					let td=document.createElement("td");
-					td.style.border="1px solid black";
-					td.style.height="27px";
-					if(j == 0) {
-						let regiDate = new Date(data[i].memberRegiDate);
-						let regiMonth;
-						if((regiDate.getMonth()+1)<10){
-							regiMonth = ("0"+(regiDate.getMonth()+1));
-						}else{ 
-							regiMonth = (regiDate.getMonth()+1);
-						}	
-						
-						td.innerHTML = "<input type='text' value='"+regiDate.getFullYear() + "-" + 
-						regiMonth
-						+ "-" + regiDate.getDate()+ "'>";
-					}
-					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].memberId + "'>";
-					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
-					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
-					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
-					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
-					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
-					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
-					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
-					
-					tr.appendChild(td);
-				}
-				table.appendChild(tr);
-				
-			}
-			document.querySelectorAll(".memberT td>img.updateImg").forEach((v, i) => {
-				v.addEventListener("click", function() {changeMember(event)});
-			});
-			document.querySelectorAll(".memberT td>img.deleteImg").forEach((v, i) => {
-				v.addEventListener("click", function() {adMemberDelete(event)});
-			});
-		}
-	});
-	$.ajax({
-		url: "${path}/admin/getPageBarOrderedMemberList.do",
-		data: {
-			type1: type1,
-			order: order==="" ? "asc":order,
-			cPage: cPage,
-			numPerpage: numPerpage
-		},
-		success: data => {
-			$("#pagebar-container3").html(data[0]);
-			$(".turnRed").html(data[1]);
-			
-		}
-	});
-	
-	
+function deleteAuctionCate(url){
+	$("#addDeleteAuction").attr("action","${path}/admin/"+url);
+	$("#addDeleteAuction").submit(); 
+	/* location.assign("${path}/admin/deleteAuctionCate.do"); */
 }
+	
+	
+
 
 
 

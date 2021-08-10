@@ -316,6 +316,21 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.selectAuctionList(session);
 	}
+
+	@Override
+	public int addAuctionCate(Map param) {
+		// TODO Auto-generated method stub
+		return dao.addAuctionCate(session,param);
+	}
+
+	@Override
+	public int deleteAuctionCate(Map param) {
+		// TODO Auto-generated method stub
+		return dao.deleteAuctionCate(session,param);
+	}
+	
+	
+	
 	
 	
 	

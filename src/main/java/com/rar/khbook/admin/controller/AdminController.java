@@ -935,6 +935,45 @@ public class AdminController {
 		mv.setViewName("admin/adminAuctionCate");
 		return mv;
 	}
+	//옥션 카테고리 내 종류 추가
+	@RequestMapping("/admin/addAuctionCate.do")
+	public ModelAndView addAuctionCate(ModelAndView mv,@RequestParam Map param) {
+		
+		int result=service.addAuctionCate(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="카테고리가 추가되었습니다";
+			
+		}else {
+			msg="카테고리 추가 실패";
+		}
+		loc="/admin/adminAuctionCatePage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	//옥션 카테고리 종류 삭제
+	@RequestMapping("/admin/deleteAuctionCate.do")
+	public ModelAndView deleteAuctionCate(ModelAndView mv,@RequestParam Map param) {
+		int result=service.deleteAuctionCate(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="카테고리가 삭제되었습니다";
+			
+		}else {
+			msg="카테고리 삭제 실패";
+		}
+		loc="/admin/adminAuctionCatePage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
 	
 	
 }

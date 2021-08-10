@@ -105,5 +105,8 @@ public interface AdminDao {
 	
 	List<AuctionCate> selectAuctionList(SqlSession session);
 	
+	int addAuctionCate(SqlSession session,Map param);
+	
+	int deleteAuctionCate(SqlSession session,Map param);
 	
 }

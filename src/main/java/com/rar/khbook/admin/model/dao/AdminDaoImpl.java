@@ -322,6 +322,21 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectList("admin.selectAuctionList");
 	}
+
+	@Override
+	public int addAuctionCate(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("admin.addAuctionCate",param);
+	}
+
+	@Override
+	public int deleteAuctionCate(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("admin.deleteAuctionCate",param);
+	}
+	
+	
+	
 	
 	
 	
