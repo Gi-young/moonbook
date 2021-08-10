@@ -1,5 +1,7 @@
 package com.rar.khbook.sellbook.model.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.member.model.vo.Member;
@@ -14,5 +16,7 @@ public interface SellbookDao {
 	SellbookDatabind selectBigView(SqlSession session, int bindNo);
 
 	SellbookDatabind selectBookPayment(SqlSession session, int bindNo);
+
+	int updateSalesVolumeAdd(SqlSession session, Map param);
 
 }

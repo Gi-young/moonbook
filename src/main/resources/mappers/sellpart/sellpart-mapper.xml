@@ -48,4 +48,7 @@
 	<select id="selectBookPayment" resultMap="SellbookDatabind">
 		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
 	</select>
+	<update id="selectSalesVolumeAdd">
+		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME=SALES_VOLUME+#{sellStockInt} WHERE BIND_NO=#{bindNo}
+	</update>
 </mapper>

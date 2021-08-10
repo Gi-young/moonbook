@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "ShopingList">
+
+	<resultMap id="ShopingList" type="ShopingList">
+		<association javaType="Shopinglist" property="shopinglistNo">
+			<id column="SHOPINGLIST_NO" property="shopinglistNo"/>
+			<result column="SHOPINGLIST_CATE" property="shopinglistCate"/>
+			<result column="MEMBER_ID" property="memberId"/>
+		</association>
+	</resultMap>
+	
+	
+
+	
+	<INSERT id="insertShopingList">
+		INSERT INTO SHOPING_LIST VALUES (#{shopinglist})
+	</INSERT>
+</mapper>

@@ -3,10 +3,12 @@ package com.rar.khbook.sellbook.controller;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -195,4 +197,13 @@ public class SellbookController {
 	}
 
 	
+	@RequestMapping("/SellbookController/salesVolumeAdd.do") 
+	@ResponseBody
+	public int salesVolumeAdd(@RequestParam Map param) {
+		System.out.println("판매량수치 넘기기");
+		System.out.println("판매수량"+param);
+		int result = service.updateSalesVolumeAdd(param);
+		
+		return result;
+	}
 }

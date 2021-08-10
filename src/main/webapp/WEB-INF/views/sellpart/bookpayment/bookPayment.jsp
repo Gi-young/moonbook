@@ -152,6 +152,7 @@
 <input type="hidden" id="bookPrice09" value="${(book.price * 0.9) }">
 <input type="hidden" id="contextPath" value="${path }">
 <input type="hidden" id="deliveryFee" value="3000">
+<input type="hidden" id="bindNo" value="${book.bindNo }">
 <script>
 
 let html="";
