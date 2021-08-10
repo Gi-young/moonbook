@@ -23,6 +23,11 @@ public class AuctionServiceImpl implements AuctionService {
 
 
 	@Override
+	public List<Auction> auctionAdmin(Map param) {
+		return dao.auctionAdmin(session,param);
+	}
+
+	@Override
 	public void updatestateS(Map param) {
 		dao.updatestateS(session,param);
 		
@@ -59,6 +64,18 @@ public class AuctionServiceImpl implements AuctionService {
 		
 		
 		
+	}
+
+	@Override
+	public int updateAddbid(Map param) {
+		int result=dao.updateAddbid(session,param);
+		if(result>0) {
+			result=dao.memberpointchange(session,param);
+			return result;
+		}else {
+			return 0;
+		}
+
 	}
 
 	@Override
@@ -125,5 +142,22 @@ public class AuctionServiceImpl implements AuctionService {
 	}
 
 
+///buysell
+	
+	
+	@Override
+	public int auctionBuySell(Map param) {
+		return dao.auctionBuySell(session,param);
+	}
+
+	
+//admin
+	@Override
+	public int auctionAdminCal(Map param) {
+		dao.updateauctionPay(session,param);
+		int result= dao.updatestateS(session, param);
+		return result;
+	}
+	
 
 }

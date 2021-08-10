@@ -13,5 +13,5 @@ public class Coupon extends Couponlist{
 	private String couponMemberId;
 	private int couponCouponlistNo;
 	private String couponCanuse;
-	private String couponImg;
+	//private String couponImg;
 }

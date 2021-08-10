@@ -10,7 +10,7 @@
 		<p>입찰자 주소 : ${member.memberAddress }</p>	
 	</div>
 	<c:if test="${auction.buylerState=='N' }">
-		<button onclick="">배송 확인</button>
+		<button onclick="location.replace('${path}/auction/auctionBuySell?auctionNo=${auction.auctionNo }&state=seller_state')">배송 확인</button>
 	</c:if>
 	<c:if test="${auction.buylerState=='Y' }">
 		<p>배송 완료에 체크하셨습니다.</p>

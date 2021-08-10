@@ -19,6 +19,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate.Param;
 import com.rar.khbook.auction.model.service.AuctionService;
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
@@ -133,7 +134,12 @@ public class AuctionController {
 	//////////////옥션 입찰
 	
 	@RequestMapping("/auction/actionbid.do")
-	public String actionbid(@RequestParam Map param,Model m) {
+	public String actionbid(@RequestParam Map param,Model m,HttpSession session) {
+		if(session.getAttribute("loginMember")!=null){
+		param.put("bidId", ((Member) session.getAttribute("loginMember")).getMemberId());
+		m.addAttribute("member",service.selectbidMember(param));
+		}
+		
 		
 		m.addAttribute("auction",service.selectauctionNo(param));
 		System.out.println(param);
@@ -151,9 +157,24 @@ public class AuctionController {
 		}
 		return "common/openmsg";
 	}
+	//옥션 추가입찰
+	@RequestMapping("/auction/auctionAddbidEnd")
+	public String auctionAddbidEnd(@RequestParam Map param,Model m) {
+		int update = service.updateAddbid(param);
+		if (update>0) {			
+			m.addAttribute("msg","등록성공");
+		}else {
+			m.addAttribute("msg","등록실패");
+		}
+		return "common/openmsg";
+	}
 	//옥션 바로구매
 	@RequestMapping("/auction/actionbuyNow.do")
-	public String auctitonbuynow(@RequestParam Map param,Model m) {	
+	public String auctitonbuynow(@RequestParam Map param,Model m,HttpSession session) {	
+		if(session.getAttribute("loginMember")!=null){
+		param.put("bidId", ((Member) session.getAttribute("loginMember")).getMemberId());
+		m.addAttribute("member",service.selectbidMember(param));
+		}
 		m.addAttribute("auction",service.selectauctionNo(param));
 		System.out.println(param);
 		return "auction/auctionbuynow";
@@ -164,6 +185,7 @@ public class AuctionController {
 		int result = service.insertauctionBid(param);
 		if (result>0) {			
 			m.addAttribute("msg","등록성공");
+			param.put("S", "S");
 			service.updatestateS(param);
 		}else {
 			m.addAttribute("msg","등록실패");
@@ -207,9 +229,14 @@ public class AuctionController {
 	@RequestMapping("/auction/auctionmybuylist.do")
 	public String auctionMyBuylist(@RequestParam Map param,Model m,
 			@RequestParam(value="cPage",defaultValue ="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage) {
+			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage,
+			HttpSession session) {
 		
 		int totalData=service.auctionStateCount(param);
+		if(session.getAttribute("loginMember")!=null){
+		param.put("bidId", ((Member) session.getAttribute("loginMember")).getMemberId());
+		m.addAttribute("member",service.selectbidMember(param));
+		}
 		m.addAttribute("totaldata",totalData);
 		List<Auction> list=service.selectAuctionList(param, cPage, numPerpage);
 		for(Auction a: list) {
@@ -234,6 +261,18 @@ public class AuctionController {
 		m.addAttribute("auction",service.selectauctionNo(param));
 		return "auction/auctionSpage";
 	}
+	//상태 업데이트
+	@RequestMapping("/auction/auctionBuySell")
+	public String auctionSpageEnd(@RequestParam Map param,Model m) {
+		int result = service.auctionBuySell(param);
+		if (result>0) {			
+			m.addAttribute("msg","확인완료");
+		}else {
+			m.addAttribute("msg","확인실패");
+		}
+		return "common/openmsg";
+		
+	}
 	//경매 구매 확인
 	@RequestMapping("/auction/auctionBpage")
 	public String auctionBpage(@RequestParam Map param,Model m) {
@@ -254,6 +293,25 @@ public class AuctionController {
 	
 		
 	}
+	//경매 관리 하기
+	@RequestMapping("/auction/auctionAdmin")
+	public String auctionAdmin(@RequestParam Map param,Model m) {
+		
+		m.addAttribute("auction",service.auctionAdmin(param));
+		return "auction/auctionAdmin";
+	}
+	@RequestMapping("/auction/auctionAdminCal")
+	public String auctionAdminCal(Model m,@RequestParam Map param) {
+		param.put("B", "B");
+		int result = service.auctionAdminCal(param);
+		if (result>0) {			
+			m.addAttribute("msg","확인완료");
+		}else {
+			m.addAttribute("msg","확인실패");
+		}
+		return "common/msg";
+	}
+	
 	
 	
 	

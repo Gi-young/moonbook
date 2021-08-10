@@ -48,6 +48,12 @@ public interface AuctionDao {
 
 	void updateauctionPay(SqlSession session, Map param);
 
-	void updatestateS(SqlSession session, Map param);
+	int updatestateS(SqlSession session, Map param);
+
+	int updateAddbid(SqlSession session, Map param);
+
+	List<Auction> auctionAdmin(SqlSession session, Map param);
+
+	int auctionBuySell(SqlSession session, Map param);
 
 }

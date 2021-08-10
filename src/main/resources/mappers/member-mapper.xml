@@ -104,6 +104,7 @@
 		<result column="couponlist_name" property="couponlistName" />
 		<result column="couponlist_condition"
 			property="couponlistCondition" />
+		<result column="coupon_img" property="couponImg" />
 	</resultMap>
 
 	<!-- 쿠폰리스트를 상속받는 쿠폰 VO -->

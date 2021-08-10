@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
-<c:set var="path" value="${pageContext.request.contextPath }"/>      
+<c:set var="path" value="${pageContext.request.contextPath }"/> 
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +41,7 @@
     <script>
         var lnb = $(".hotTracks").offset().top; 
         $(window).scroll(function() { 
+        console.log(lnb);
             var window = $(this).scrollTop();              
             if(lnb <= window) {
             $(".hotTracks").addClass("fixed");

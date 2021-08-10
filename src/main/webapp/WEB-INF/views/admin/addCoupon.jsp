@@ -22,7 +22,7 @@
 			</div>
 			
 			<div class="addProduct-container3">
-				<form action="${path}/admin/addCouponList.do" method="post">
+				<form action="${path}/admin/addCouponList.do" method="post" enctype="multipart/form-data">
 					<table class="ChooseTable1">
 						<!--자동 넘버처리 -->
 						
@@ -55,6 +55,12 @@
 							<th>사용가능일수</th>
 							<td>
 								<input type="number" min="1" name="couponlistInvalid">
+							</td>
+						</tr>
+						<tr>
+							<th>쿠폰이미지</th>
+							<td>
+								<input type="file" class="" name="couponImg" id="couponImg">
 							</td>
 						</tr>
 						<!-- <tr>
@@ -95,7 +101,9 @@
 				}
 			}
 		})
-	})
+	});
+	
+
 	
 </script>
 

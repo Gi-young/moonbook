@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.core.annotation.Order;
 
+import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
@@ -105,5 +106,16 @@ public interface AdminService {
 	
 	
 	// 쿠폰리스트 조회
-	List<Couponlist> searchCouponList();
+	List<Couponlist> searchCouponList(int cPage,int numPerpage);
+	int selectCouponListCount();
+	
+	//경매 조회
+	List<AuctionCate> selectAuctionList();
+	
+	//경매 카테고리 추가
+	int addAuctionCate(Map param);
+	
+	//경매 카테고리 삭제
+	int deleteAuctionCate(Map param);
+	
 }

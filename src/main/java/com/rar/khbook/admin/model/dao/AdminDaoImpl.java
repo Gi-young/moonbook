@@ -9,6 +9,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
+import com.rar.khbook.coupon.model.vo.CouponAttachment;
+import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
@@ -255,6 +257,12 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.insert("admin.addCouponList",param);
 	}
+	
+//	@Override
+//	public int insertAttachment(SqlSession session, CouponAttachment a) {
+//		// TODO Auto-generated method stub
+//		return session.insert("admin.insertAttachment",a);
+//	}
 
 	@Override
 	public Member searchGrade(SqlSession session, Map param) {
@@ -298,10 +306,39 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public List<Couponlist> searchCouponList(SqlSession session) {
+	public List<Couponlist> searchCouponList(SqlSession session,int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.searchCouponlist");
+		return session.selectList("admin.searchCouponlist",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
+
+	@Override
+	public int selectCouponListCount(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectCouponListCount");
+	}
+
+	@Override
+	public List<AuctionCate> selectAuctionList(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.selectAuctionList");
+	}
+
+	@Override
+	public int addAuctionCate(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("admin.addAuctionCate",param);
+	}
+
+	@Override
+	public int deleteAuctionCate(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("admin.deleteAuctionCate",param);
+	}
+	
+	
+	
+	
+	
 	
 	
 	

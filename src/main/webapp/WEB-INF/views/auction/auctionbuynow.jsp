@@ -18,8 +18,8 @@ ${auction }
 
 	<div>
 	<h2>바로 구매</h2>
-	<span>구매자 아이디</span>	<input type="text" value="${loginMember.memberId }" readonly="readonly" name="bidId" id="bidid"><br>
-	<span>내 경매 포인트</span>	<fmt:formatNumber value="${loginMember.memberPoint }" type="currency"/>
+	<span>구매자 아이디</span>	<input type="text" value="${member.memberId }" readonly="readonly" name="bidId" id="bidid"><br>
+	<span>내 경매 포인트</span>	<fmt:formatNumber value="${member.memberPoint }" type="currency"/>
 	<input type="hidden" value="${loginMember.memberPoint }" readonly="readonly" id="point"> <br>
 	
 	</div>
