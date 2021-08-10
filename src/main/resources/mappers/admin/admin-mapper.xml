@@ -380,11 +380,49 @@
   	
   	<!-- 쿠폰 조회  -->
   	<select id="searchCouponlist" resultMap="couponlistMap">
-  		SELECT * FROM COUPONLIST
+  		SELECT * FROM COUPONLIST ORDER BY COUPONLIST_NO ASC
   	</select>
   	<select id="selectCouponListCount" resultType="_int">
   		SELECT COUNT(*) FROM COUPONLIST
   	</select>
+  	
+  	<!-- 쿠폰검색 -->
+  	<select id="searchCouponL" resultMap="couponlistMap">
+  		SELECT * FROM COUPONLIST WHERE
+  		<choose>
+  			<when test="type15 =='COUPONLIST_NO'">
+  				COUPONLIST_NO=#{search}
+  			</when>
+  			<when test="type15 =='COUPONLIST_NAME'">
+  				COUPONLIST_NAME LIKE '%'||#{search}||'%'
+  			</when>
+  		</choose>
+  	</select>
+  	
+  	<!-- 쿠폰검색 페이지바 -->
+  	<select id="getPageBarSearchCouponList" resultType="_int">
+  		SELECT COUNT(*) FROM COUPONLIST WHERE
+  		<choose>
+  			<when test="type15 =='COUPONLIST_NO'">
+  				COUPONLIST_NO=#{search}
+  			</when>
+  			<when test="type15 =='COUPONLIST_NAME'">
+  				COUPONLIST_NAME LIKE '%'||#{search}||'%'
+  			</when>
+  		</choose>
+  	</select>
+  	<!-- 쿠폰 수정 -->
+  	<update id="updateCouponlist">
+  		UPDATE COUPONLIST SET COUPONLIST_MEMBERGRADE_NO=#{couponlistMembergradeNo},
+  		COUPONLIST_AMOUNT=#{couponlistAmount},COUPONLIST_FORUSE=#{couponlistForuse},
+  		COUPONLIST_INVALID=#{couponlistInvalid},COUPONLIST_NAME=#{couponlistName} WHERE COUPONLIST_NO=#{couponlistNo}
+  	</update>
+  	
+  	<!-- 쿠폰삭제 -->
+  	<delete id="adCouponDelete">
+  		DELETE FROM COUPONLIST WHERE COUPONLIST_NO=#{couponlistNo}
+  	</delete>
+  	
   	
   	<resultMap type="com.rar.khbook.auction.model.vo.AuctionCate" id="AuctionCateMap">
 		<result column="auctioncate_code" property="auctioncateCode"/>
@@ -425,5 +463,6 @@
   	<delete id="deleteDelivery">
   		DELETE FROM DELIVERYT WHERE DELIVERY_NO=#{deliveryType6}
   	</delete>
+  	
   	
 </mapper>

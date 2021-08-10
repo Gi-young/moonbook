@@ -81,11 +81,11 @@
 	align-items: center;
 	justify-content:center;
 }
-.memberT-container{
+.couponT-container{
 	height: 100%;
 	overflow-x:scroll;
 }
-.memberT{
+.couponT{
 	/* width: 730px; */ 
 	/* width:auto; */
 	width: 1400px;
@@ -95,11 +95,11 @@
 	text-align: center;	
 	margin-bottom:20px;
 }
-.memberT tbody{
+.couponT tbody{
 	border: black 1px solid;
     border-collapse: collapse;
 }
-.memberT th{
+.couponT th{
 	width: 100px;
 	height:30px;
 	background-color: #582810;
@@ -107,7 +107,7 @@
 	vertical-align: middle;
 }
 
-.memberT td{
+.couponT td{
 	width: 100px;
 }
 .updateCheck{

@@ -110,6 +110,14 @@ public interface AdminService {
 	List<Couponlist> searchCouponList(int cPage,int numPerpage);
 	int selectCouponListCount();
 	
+	//쿠폰검색
+	List<Couponlist> searchCouponL(Map param);
+	int getPageBarSearchCouponList(Map param);
+	//쿠폰 수정
+	int updateCouponlist(Map param);
+	//쿠폰 삭제
+	int adCouponDelete(Map param);
+	
 	//경매 조회
 	List<AuctionCate> selectAuctionList();
 	
