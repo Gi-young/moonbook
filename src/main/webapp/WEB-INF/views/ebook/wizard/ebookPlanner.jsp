@@ -5,6 +5,7 @@
 
 <jsp:include page="/WEB-INF/views/ebook/wizard/wizardHeader.jsp">
 	<jsp:param name="title" value="e북 플래너 - 문곰책방"/>
+	<jsp:param name="currentPageIndex" value="2"/>
 </jsp:include>
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookPlanner.css">

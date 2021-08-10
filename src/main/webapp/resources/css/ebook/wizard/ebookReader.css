@@ -1,14 +1,12 @@
-body {
-    margin: 0;
-    padding: 0;
-    overflow-y: hidden;
+div#container {
+    grid-template-columns: 400px 1fr;
 }
 
-body::-webkit-scrollbar{
+section::-webkit-scrollbar{
     display: none;
 }
 
-#container {
+section {
     margin: 0;
     padding: 0;
     display: flex;
@@ -16,40 +14,182 @@ body::-webkit-scrollbar{
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    overflow-y: hidden;
 }
 
-#bookController {
-    box-sizing:border-box;
-    width: 250px;
-    background-color: white;
-    margin-right: 7px;
+aside {
     padding: 10px;
-    border: 3px solid lightgrey;
-    min-width: 200px;
-    max-width: 400px;
-    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: scroll;
+}
+
+aside::-webkit-scrollbar {
+    display: none;
+}
+
+aside>div {
+    margin-bottom: 10px;
+}
+
+aside button {
+    background-color: white;
+    border: 2px solid silver;
+    height: 30px;
+}
+
+aside button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+#asideController {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+#asideController>button:nth-child(2) {
+    margin-left: 7px;
+}
+
+#bookMark {
+    box-sizing: border-box;
+    width: 90%;
+    flex-grow: 1;
+    border: 3px solid silver;
+    border-radius: 10px;
+    background-color: white;
+    padding: 7px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#markList {
+    border: 2px solid silver;
+    border-radius: 7px;
+    flex-grow: 1;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#markList>ul {
+    list-style: circle;
+    padding-left: 30px;
+}
+
+#markList>ul>li {
+    margin-bottom: 15px;
+}
+
+#markList ul>li:hover {
+    cursor: pointer;
+}
+
+#markList>ul>li>ul {
+    font-weight: normal;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    width: 100%;
+    display: none;
+}
+
+#markController {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#markController input[type=text] {
+    height: 25px;
+}
+
+#markController>div {
+    margin-top: 7px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#markController input[type=number] {
+    width: 50px;
+    margin-right: 7px;
+}
+
+.lowRankUl {
+    display: none;
+}
+
+.lowRankUl>li {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 3px 10px 3px 10px;
+    width: fit-content;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+
+.lowRankUl>li>button {
+    margin-left: 5px;
+    padding: 0 5px 0 5px;
+}
+
+#textTurmoil {
+    position: relative;
+    box-sizing: border-box;
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    border: 3px solid silver;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 7px;
 }
 
 #parsedTextData {
-    width: 300px;
-    height: 600px;
-    border: 1px solid black;
+    box-sizing: border-box;
+    border: 1px solid lightgray;
+    border-radius: 7px;
+    width: 100%;
+    flex-grow: 1;
+    padding: 10px;
+}
+
+#tesseractController {
+    width: 100%;
+    left: 15px;
+    bottom: 7px;
+    height: 30px;
+    margin-top: 5px;
 }
 
 #binding {
     position:absolute;
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    flex-wrap: nowrap;
 }
 
 #binding>img {
     margin-top: 0;
-    width:90px;
 }
 
 #book {
+    opacity: 0;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -76,6 +216,127 @@ body::-webkit-scrollbar{
     border-bottom-right-radius: 20px;
 }
 
-.hidden {
+#moveToPage {
+    width: 45px;
+    height: 20px;
+}
+
+#pageController {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    width: 90%;
+}
+
+#pageController button {
+    margin-left: 7px;
+}
+
+#pageController input[type=number] {
+    margin-left: 15px;
+}
+
+#pageStatus {
+    font-weight: bold;
+}
+
+#readingInfo {
+    box-sizing: border-box;
+    border: 3px solid silver;
+    width: 90%;
+    height: 50px;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 0 5px 0 5px;
+    margin-bottom: 0;
+}
+
+#readingInfo>div:first-child {
+    margin-right: 10px;
+}
+
+#bookLoaderBox {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#bookLoader {
+    border: 7px solid wheat;
+    border-top: 7px solid saddlebrown;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
+
+@Keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#bookLoaderMessage {
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+#tesseractLoaderBox {
+    position: absolute;
     display: none;
+    /* display: flex; */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-items: center;
+}
+
+#tesseractLoader {
+    border: 10px solid gray;
+    border-top: 10px solid black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 2s linear infinite;
+}
+
+@Keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#tesseractLoaderMessage {
+    margin-left: 7px;
+    font-weight: bolder;
+}
+
+#pseudoBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#moveToPage {
+    font-weight: bold;
+}
+
+#readingInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#readingInfo span {
+    font-weight: bold;
 }

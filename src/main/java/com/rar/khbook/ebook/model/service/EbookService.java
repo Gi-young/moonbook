@@ -82,4 +82,26 @@ public interface EbookService {
 	
 	int dataCountAll(Map param);
 	
+	List<HashMap> loadMusic();
+	
+	HashMap getTodayRecord(String loginMemberId);
+	
+	int insertTodayRecord(String loginMemberId);
+	
+	int countReadPage(String loginMemberId);
+	
+	int countReadTime(String loginMemberId);
+	
+	List<HashMap> getBasicBookMarks(int bindNo);
+	
+	int createCustomBookMark(Map param);
+	
+	List<HashMap> getCustomBookmark(Map param);
+	
+	int deleteCustomBookmark(Map param);
+	
+	int lastPage(Map param);
+	
+	int getLastPage(String bindNo, String loginMemberId);
+	
 }

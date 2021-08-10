@@ -169,7 +169,8 @@ public class SellbookController {
 		System.out.println("결제할 책 데이터 넘기기 여긴가");
 		System.out.println(bindNo);
 		System.out.println("판매수량"+sellStock);
-		mv.addObject("book",service.selectBookPayment(bindNo));
+		SellbookDatabind sd = service.selectBookPayment(bindNo);
+		mv.addObject("book", sd);
 		mv.addObject("sellStock",sellStock);
 		mv.setViewName("sellpart/bookpayment/bookPayment");
 		System.out.println("mv임"+mv);
