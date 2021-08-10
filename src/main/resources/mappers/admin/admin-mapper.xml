@@ -79,15 +79,12 @@
 		<result column="couponlist_no" property="couponlistNo" />
 		<result column="couponlist_membergrade_no"
 			property="couponlistMembergradeNo" />
-		<result column="couponlist_percent"
-			property="couponlistPercent" />
 		<result column="couponlist_amount" property="couponlistAmount" />
 		<result column="couponlist_foruse" property="couponlistForuse" />
 		<result column="couponlist_invalid"
 			property="couponlistInvalid" />
 		<result column="couponlist_name" property="couponlistName" />
-		<result column="couponlist_condition"
-			property="couponlistCondition" />
+		<result column="coupon_img" property="couponImg" />
 	</resultMap>
 
 	<!-- 쿠폰리스트를 상속받는 쿠폰 VO -->
@@ -98,7 +95,6 @@
 		<result column="coupon_couponlist_no"
 			property="couponCouponlistNo" />
 		<result column="coupon_canuse" property="couponCanuse" />
-		<result column="coupon_img" property="couponImg" />
 		<result column="coupon_member_id" property="couponMemberId" />
 	</resultMap>
 	
@@ -329,9 +325,20 @@
   		DELETE FROM NGIFT WHERE NGIFT_NO=#{gift_no}
   	</delete>
   	<!-- 쿠폰 등록 -->
-  	<insert id="addCouponList">
-  		INSERT INTO COUPONLIST VALUES(SEQ_COUPONLIST_NO.NEXTVAL,#{couponlistMembergradeNo},#{couponlistAmount},#{couponlistForuse},#{couponlistInvalid},#{couponlistName})
+  	<!-- <insert id="addCouponList">
+  		INSERT INTO COUPONLIST VALUES(SEQ_COUPONLIST_NO.NEXTVAL,#{couponlistMembergradeNo},#{couponlistAmount},#{couponlistForuse},#{couponlistInvalid},#{couponlistName},#{couponImg})
+  		<selectKey keyProperty="couponlistNo" resultType="_int" order="AFTER">
+  			SELECT SEQ_COUPONLIST_NO.CURRVAL FROM DUAL
+  		</selectKey>
   	</insert>
+  	
+  	<insert id="insertAttachment">
+  		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENT_NO.NEXTVAL,#{couponlistNo},#{originalFilename},#{renamedFilename},DEFAULT,DEFAULT,DEFAULT)
+  	</insert> -->
+  	<insert id="addCouponList">
+  		INSERT INTO COUPONLIST VALUES(SEQ_COUPONLIST_NO.NEXTVAL,#{couponlistMembergradeNo},#{couponlistAmount},#{couponlistForuse},#{couponlistInvalid},#{couponlistName},#{couponImg})
+  	</insert>
+  	<!--  -->
   	
   	<!-- 쿠폰 발급전 등급조회 -->
   	<select id="searchGrade" resultMap="memberMap">
@@ -350,7 +357,7 @@
   	
   	<!-- 쿠폰발급 1인용-->
   	<insert id="inputCouponAdminOne">
-  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,SYSDATE+${couponinvalid},#{couponMemberId},#{couponCouponListNo},#{couponCanuse},#{couponImg})
+  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,SYSDATE+${couponinvalid},#{couponMemberId},#{couponCouponListNo},#{couponCanuse})
   	</insert>
   	
   	<!-- 쿠폰발급 다수 조회 -->
@@ -360,14 +367,28 @@
   	
   	<!-- 쿠폰발급 다수 -->
   	<insert id="insertCoupon">
-  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,SYSDATE+${couponinvalid},#{memberId},#{couponCouponListNo},#{couponCanuse},#{couponImg})
+  		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,SYSDATE+${couponinvalid},#{memberId},#{couponCouponListNo},#{couponCanuse})
   	</insert>
   	
   	
   	<!-- 쿠폰 조회  -->
+  	<select id="searchCouponlist" resultMap="couponlistMap">
+  		SELECT * FROM COUPONLIST
+  	</select>
+  	<select id="selectCouponListCount" resultType="_int">
+  		SELECT COUNT(*) FROM COUPONLIST
+  	</select>
   	
+  	<resultMap type="com.rar.khbook.auction.model.vo.AuctionCate" id="AuctionCateMap">
+		<result column="auctioncate_code" property="auctioncateCode"/>
+		<result column="auctioncate_name" property="auctioncateName"/>
+		<result column="auctioncate_first" property="auctioncateFirst"/>
+	</resultMap>
   	
-  	
+  	<!-- 경매관리 -->
+  	<select id="selectAuctionList" resultMap="AuctionCateMap">
+  		SELECT * FROM AUCTIONCATE
+  	</select>
   	
   	
 </mapper>
