@@ -56,17 +56,34 @@ ${auction }
 	<input type="hidden" value="${loginMember.memberPoint }" readonly="readonly" id="point"> <br>
 	<span>입찰 금액</span>		<input type="number" value="${auction.startPrice }" step="${auction.priceUnit }" id="bid" name="bidPrice"><br>
 	</div>
-	<input type="submit" value="입찰하기">
+	<input type="submit" value="입찰하기" onclick="sendMessage();">
 	<br>
 
 	
 </div>
 </form>
 
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script>
+
+	// gi-young
+	let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
+	
+	sockAuction.onopen = (e) => {
+		console.log(e);
+	}
+	
+	sockAuction.onmessage = (i) => {
+		console.log(i);
+	}
+	
+	sockAuction.onclose = (e) => {
+		console.log(e);
+	}
+
 console.log($("#point").val())
 console.log($("#bid").val())
- const check=()=>{
+ const check=(e)=>{
 	 if($("#bidid").val()==$("#seller").val()){
 		 alert("자신이 올린 물품입니다.")
 		 return false;
@@ -90,7 +107,14 @@ console.log($("#bid").val())
 		 alert("시작금액보단 높게 설정해야합니다.")
 		 return false;
 	 }
+	 
  }
+ 
+ // gi-young
+ function sendMessage() {
+	 sockAuction.send("bid," + "${loginMember.memberId}" + "," + "${auction.auctionNo}" + "," + $("#bid").val());
+ }
+ 
  
 
 

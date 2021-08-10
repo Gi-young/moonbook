@@ -90,7 +90,7 @@
                 <h2>입찰 기록</h2>
                 <div>
                 <c:if test="${a.auctionbid.size()!=0 }">
-                	<table>
+                	<table id="bidLog">
                 	<tr>
                 		<th>입찰 번호</th>
                 		<th>입찰자 아이디</th>
@@ -113,7 +113,38 @@
         </div>
     </div>
     </div>
+    
+   <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
    <script>
+   
+   // gi-young
+   let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
+   
+   sockAuction.onopen = (e) => {
+	   console.log(e);
+   }
+   
+   sockAuction.onmessage = (i) => {
+	   console.log(i);
+	   
+	   let messageArr = i.data.split(",");
+	   
+	   if (messageArr[0] === "bid") {
+		   let bidLog = document.getElementById("bidLog");
+		   
+		   let tr = document.createElement("tr");
+		   let td = document.createElement("td");
+		   td.innerText = messageArr[1] + ", " + messageArr[3];
+		   
+		   tr.appendChild(td);
+		   bidLog.appendChild(tr);
+	   }
+   }
+   
+   sockAuction.onclose = (e) => {
+	   console.log(e);
+   }
+   
    function CountDownTimer(dt, id)
    {
    var end = new Date(dt);
@@ -149,6 +180,7 @@
    }
    CountDownTimer('${auction.endDate}','countdown')
 	</script>
+	
     <style>
     table{
 	border-collapse: separate;

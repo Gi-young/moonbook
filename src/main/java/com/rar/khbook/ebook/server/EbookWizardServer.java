@@ -28,7 +28,7 @@ public class EbookWizardServer extends TextWebSocketHandler{
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("afterConnectionEstablisher: " + session);
+		System.out.println("afterConnectionEstablished: " + session);
 		
 		String userId = getId(session);
 		
