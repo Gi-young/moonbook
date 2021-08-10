@@ -78,6 +78,11 @@
 			<mapping path="/SellbookController/*.do"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
 		</interceptor>
+		<!-- 낄껴 좀 하겠습니다. -->
+		<interceptor>
+			<mapping path="/gift/giftPayment.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
 	</interceptors>
 	
 	<context:component-scan base-package="com.rar.khbook" />

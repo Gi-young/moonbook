@@ -152,6 +152,7 @@
 <input type="hidden" id="bookPrice09" value="${(gift.gift_price) }">
 <input type="hidden" id="contextPath" value="${path }">
 <input type="hidden" id="deliveryFee" value="3000">
+<input type="hidden" id="giftNo" value="${gift.gift_no }">
 <script>
 
 let html="";
