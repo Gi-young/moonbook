@@ -17,6 +17,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -101,15 +102,31 @@ public class EbookController {
 	}
 	
 	@RequestMapping(value="/ebook/openEbookWizard.do")
-	public String openEbookReader() {
+	public String openEbookReader(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String loginMemberId = ((Member)session.getAttribute("loginMember")).getMemberId();
+		
+		HashMap record = service.getTodayRecord(loginMemberId);
+		
+		if (record == null) {
+			service.insertTodayRecord(loginMemberId);
+		}
+		
 		return "ebook/wizard/ebookWizard";
 	}
 	
 	@RequestMapping(value="/ebook/pageEbookReader.do")
-	public String pageEbookReader(String bindNo, Model model) {
+	public String pageEbookReader(String bindNo, Model model, HttpServletRequest request) {
+		Member loginMember = (Member)request.getSession().getAttribute("loginMember");
+		String loginMemberId = loginMember.getMemberId();
+		
+		int lastPage = service.getLastPage(bindNo, loginMemberId);
+		
 		String filepath = service.getEbookFilepath(bindNo);
 		
+		model.addAttribute("bindNo", bindNo);
 		model.addAttribute("filepath", filepath);
+		model.addAttribute("lastPage", lastPage);
 		
 		return "ebook/wizard/ebookReader";
 	}
@@ -559,6 +576,88 @@ public class EbookController {
 	@ResponseBody
 	public int dataCountAll(@RequestParam Map param) {
 		return service.dataCountAll(param);
+	}
+	
+	@RequestMapping(value = "/ebook/loadMusic.do")
+	@ResponseBody
+	public List<HashMap> loadMusic() {
+		return service.loadMusic();
+	}
+	
+	@RequestMapping(value = "/ebook/setAutoplay.do")
+	@ResponseBody
+	public void setAutoplay(String setValue, HttpServletResponse response) {
+		Cookie cookie = null;
+		
+		if (setValue.equals("false")) {
+			cookie = new Cookie("grantAutoplay", setValue);
+			cookie.setMaxAge(60 * 60 * 24 * 7);
+		} else {
+			cookie = new Cookie("grantAutoplay", "");
+			cookie.setMaxAge(0);
+		}
+		
+		response.addCookie(cookie);
+	}
+	
+	@RequestMapping(value = "/ebook/countReadPage.do")
+	@ResponseBody
+	public int countReadPage(String loginMemberId) {
+		return service.countReadPage(loginMemberId);
+	}
+	
+	@RequestMapping(value = "/ebook/getReadPage.do")
+	@ResponseBody
+	public int getReadPage(String loginMemberId) {
+		HashMap result = service.getTodayRecord(loginMemberId);
+		
+		System.out.println("getTodayRecord: " + result);
+		
+		return Integer.parseInt(String.valueOf(result.get("READ_PAGE")));
+	}
+	
+	@RequestMapping(value = "/ebook/getReadTime.do")
+	@ResponseBody
+	public int getReadTime(String loginMemberId) {
+		HashMap result = service.getTodayRecord(loginMemberId);
+		
+		return Integer.parseInt(String.valueOf(result.get("READ_TIME_IN_MINUTES")));
+	}
+	
+	@RequestMapping(value = "/ebook/countReadTime.do")
+	@ResponseBody
+	public int countReadTime(String loginMemberId) {
+		return service.countReadTime(loginMemberId);
+	}
+	
+	@RequestMapping(value = "/ebook/getBasicBookMarks.do")
+	@ResponseBody
+	public List<HashMap> getBasicBookMarks(int bindNo) {
+		return service.getBasicBookMarks(bindNo);
+	}
+	
+	@RequestMapping(value = "/ebook/createCustomBookMark.do")
+	@ResponseBody
+	public int createCustomBookMark(@RequestParam Map param) {
+		return service.createCustomBookMark(param);
+	}
+	
+	@RequestMapping(value = "/ebook/getCustomBookmark.do")
+	@ResponseBody
+	public List<HashMap> getCustomBookmark(@RequestParam Map param) {
+		return service.getCustomBookmark(param);
+	}
+	
+	@RequestMapping(value = "/ebook/deleteCustomBookmark.do")
+	@ResponseBody
+	public int deleteCustomBookmark(@RequestParam Map param) {
+		return service.deleteCustomBookmark(param);
+	}
+	
+	@RequestMapping(value = "/ebook/lastPage.do")
+	@ResponseBody
+	public int lastPage(@RequestParam Map param) {
+		return service.lastPage(param);
 	}
 	
 }

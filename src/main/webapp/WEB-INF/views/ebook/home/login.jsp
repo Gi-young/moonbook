@@ -8,6 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>로그인 - 문곰책방</title>
+	<link rel="icon" href="${path}/resources/images/ebook/favicon.png" sizes="16x16">
 	<style>
 	
 	</style>

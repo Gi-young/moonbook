@@ -1,13 +1,15 @@
 package com.rar.khbook.admin.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
+import com.rar.khbook.auction.model.vo.AuctionCate;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
-import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -81,5 +83,27 @@ public interface AdminDao {
 	
 	int stockTDelete2(SqlSession session,Map param);
 	
+	//쿠폰 등록
 	int addCouponList(SqlSession session,Map param);
+	//int insertAttachment(SqlSession session,CouponAttachment a);
+	
+	Member searchGrade(SqlSession session,Map param);
+	
+	Couponlist searchCoupon(SqlSession session,Map param);
+	
+	Couponlist searchInvalidNImg(SqlSession session,Map param);
+	
+	int inputCouponAdminOne(SqlSession session,Map param);
+	
+	//int inputCouponAdminGrade(SqlSession session,Map param);
+	List<HashMap> searchMemberByGrade(SqlSession session,int memberGradeNo);
+	int insertCoupon(SqlSession session,Map param);
+	
+	
+	List<Couponlist> searchCouponList(SqlSession session,int cPage,int numPerpage);
+	int selectCouponListCount(SqlSession session);
+	
+	List<AuctionCate> selectAuctionList(SqlSession session);
+	
+	
 }

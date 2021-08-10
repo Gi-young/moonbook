@@ -1,0 +1,159 @@
+@charset "UTF-8";
+.admin-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+}
+.admin-box1{
+	width: 950px;
+	display:flex;
+	height:700px;
+	min-height:500px; 
+	box-sizing: border-box;
+}
+.admin-box3{
+	height:100%;
+}
+
+.admin-box2{
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black; 
+	width:770px;
+	text-align: center;
+	/* vertical-align: middle; */
+}
+.admin-box2 ul{
+	width:727px;
+	border:1px solid #582810;
+	text-align: center;
+	margin:0 auto;
+	/* margin-top:20px;  */
+}
+.auction_cate2{
+	background-color:#582810; 
+	color:white;
+	
+}
+.auction_cate1{
+	
+}
+.test1{
+	text-align: center;
+	vertical-align: middle;
+}
+
+.admin-box4{
+	/* border: 1px solid black; */
+	display: flex;
+	align-items: center;
+	justify-content:center;
+	display:flex; 
+	vertical-align:middle; 
+	width:770px;
+	/* height: 100px; */
+	padding-top:42px;
+	padding-bottom:10px;
+	/* overflow:scroll; */
+	
+}
+.auction_box1{
+	padding-top:20px;
+}
+.admin-search3 th{
+	background-color: #582810;
+	color:white;
+}
+.admin-search3{
+	border: 1px solid #582810;
+	height: 100%;
+	width: 730px;
+   
+}
+.admin-search{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.adminHowTable{
+	width:100%;
+	height: 100%;
+	text-align: center;
+	/* height: 100px;  */
+}
+.adminHowTable tr{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.adminHowTable th,.adminHowTable td{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	
+}
+.search-box img{
+	background-color: #804040;
+	width:25px;
+	hight:25px;
+	filter: invert(100%);
+	
+}
+.search-box img:hover{
+	opacity: 0.5;
+}
+.search-box {
+/* 	display: flex; */
+	align-items: center;
+	justify-content:center;
+}
+.memberT-container{
+	height: 100%;
+	overflow:hidden;
+}
+.memberT{
+	/* width: 730px; */ 
+	/* width:auto; */
+	width: 1900px;
+	/* overflow-x: auto; */
+	margin-left: 20px;
+	/* margin-top:30px;  */
+	text-align: center;	
+	margin-bottom:20px;
+}
+.memberT tbody{
+	border: black 1px solid;
+    border-collapse: collapse;
+}
+.memberT th{
+	width: 100px;
+	height:30px;
+	background-color: #582810;
+	color:white;
+	vertical-align: middle;
+}
+
+.memberT td{
+	width: 100px;
+}
+.updateCheck{
+	width:20px;
+	hight:20px;
+	cursor: pointer;
+}
+.turnRed{
+	color:red;
+	font-weight: bold;
+}
+.memberTFont{
+	font-weight: bold;
+	margin-left:20px;
+	margin-bottom:10px;
+}
+.memberTFont2{
+	font-weight: bold;
+	margin-left:20px;
+	margin-bottom:20px;
+}

@@ -42,7 +42,7 @@
     height: 500px;
     display: flex;
     flex-direction: column;
-   
+   	positoin: relative;
 }
 .firstSlide-content img{
     min-width: 950px;
@@ -56,6 +56,33 @@
     width: 100%;
     height: 500px;
 }
+.first-title{
+	background-color: #E5E2DB;
+    width: auto;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid black;
+    color: #582810;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px 5px 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+	position: absolute;
+	top: 88%;
+	font-size: 24px;
+	font-weight: 800;
+	font-family: '한컴 말랑말랑', '돋움';
+	backgrount-color: white;
+}
+/* .first-price{
+	
+	positioin: absolute;
+	top: 90%;
+	left: 50%;
+	font-size: 22px;
+	font-weight: 800;
+} */
 .second{
     background-color: teal;
     min-width: 950px;
@@ -74,13 +101,13 @@
     justify-content: space-around;
     align-items: center;
     align-content: center;
-    padding-left: 20px;
+   /*  padding-left: 20px; */
     background-color: rgba(172, 171, 172, 0.5);
-    width: 130px;
+    width: 80px;
     height: 44px;
     z-index: 10;
     top: 88%;
-    left: 78%; 
+    left: 88%; 
 }
 .slide-btn-box{
    height: 27px;
@@ -268,6 +295,7 @@
 }
 .freeship-wrap{
     margin-right: 20px;
+    margin-top: 20px;
 }
 
 /* 오늘만 특가 css 끝 */
@@ -322,6 +350,10 @@ a[class^="todayPop-content"]{
 }
 .endFont-top{
     font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 250px; 
 }
 .endFont-mid{
     font-weight: 900;
@@ -923,7 +955,7 @@ div[class^="updownBtn"]{
     display: flex;
     width: 950px;
     margin-top: 50px;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     position: relative;
 }
 .gf-content-discount{
@@ -935,17 +967,24 @@ div[class^="updownBtn"]{
 }
 .gf-content-left{
     display: flex;
+    width: 650px;
 }
 .gf-content-left img{
     width: 418px;
     height: 212px;
 }
-.gf-content-right ul:last-child{
+.gf-content-right{
+	padding-left: 35px;
+}
+.gf-content-right ul{
     margin-top: 50px;
 }
 .gf-content-right img{
-    width: 180px;
-    height: 180px;
+    width: 300px;
+    height: 150px;
+}
+.gf-content-right li:not(:first-child){
+	margin-top:30px;
 }
 .gf-content-circle{
     width: 35px;
@@ -953,8 +992,11 @@ div[class^="updownBtn"]{
     border-radius: 50px;
     background-color: rgb(253, 112, 61);
     position: absolute;
-    left: 5.5%;
+    left: -2%;
     top: -2%;
+}
+#gf-elec, #gf-etc, #gf-storage{
+	display:none;
 }
 
 /* 기프트 하단 css 끝 */

@@ -1,28 +1,54 @@
-(function() {
-IMP.init("imp33769544");
+IMP.init("imp26745696");
 
-let payBtn = document.getElementById("byBuy");
-let memberId = document.getElementById("loginMemberId").value;
-let contextPath = document.getElementById("contextPath").value; 
 
-payBtn.addEventListener("click", () => {
-    let totalPrice = Number(document.getElementById("totalPrice").innerText);
+
+
+
+	
+$(".btnPay").click(e=> {
+	let giftNo = document.getElementById("giftNo");
+	let btnPay = document.getElementsByClassName("btnPay");
+	let refundBtn = document.getElementById("refundBtn");
+	let loginMember = document.getElementById("loginMember").value;
+	let contextPath = document.getElementById("contextPath").value;
+	let sellStock = document.getElementById("sellStock").value;
+	let stock = document.getElementById("stock").value;
+	let totalPrice = document.getElementById("totalPrice").value;
 	console.log(totalPrice);
-    let purchaseArr = new Array();
-    console.log(purchaseArr);
-    document.querySelectorAll("input[name=selectGift]").forEach((v, i) => {
-        if (v.checked) {
-            purchaseArr.push(v.value);
-        }
-    });
+	console.log(stock);
+	console.log(sellStock);
+	console.log(Number(stock)<=Number(sellStock));
+	if(!(Number(stock)<=Number(sellStock))){
+	console.log("stock==="+Number(stock));
+	console.log("sellStock==="+Number(sellStock));
+		alert('주문 가능한 수량을 초과하였습니다.');
+	}else{
+	e.preventDefault();
+    //let totalPrice = Number(document.getElementById("totalPrice").innerText);
 
+    //let purchaseArr = new Array();
+    //document.querySelectorAll("input[name=selectEbook]").forEach((v, i) => {
+     //   if (v.checked) {
+       //     purchaseArr.push(v.value);
+    //    }
+    //});
+    
+	//let sellStock = document.getElementById("sellStock").value;
+	//let bookPrice09 = document.getElementById("bookPrice09").value;
+	//let totalPrice = bookVolume * bookPrice09;
+	
+	
     $.ajax({
-        url: contextPath + "/gift/searchMember.do",
+        url: contextPath + "/sellpart/checkMember.do",
         type: "POST",
-        data: {
-            memberId: memberId
+        data: { 
+        memberId: loginMember
         },
         success: data => {
+        
+        console.log("수량"+sellStock);
+		console.log("할인가"+bookPrice09);
+		//console.log("총금액"+totalPrice);
             let buyerName;
             let buyerEmail;
             let merchant_uid;
@@ -34,6 +60,7 @@ payBtn.addEventListener("click", () => {
                 type: "POST",
                 success: data => {
                     merchant_uid = data;
+                    console.log(merchant_uid);
                     IMP.request_pay(
                         {
                             pg: "html5_inicis",
@@ -41,8 +68,8 @@ payBtn.addEventListener("click", () => {
                             merchant_uid: merchant_uid,
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
-                            name: "eBook",
-                            amount: 100
+                            name: "문곰템",
+                            amount: Number(totalPrice)
                         }, function(rsp) {
                             if (rsp.success) {
                                 $.ajax({
@@ -57,11 +84,21 @@ payBtn.addEventListener("click", () => {
                                         paidAt: rsp.paid_at,
                                         pgProvider: rsp.pg_provider,
                                         receiptUrl: rsp.receipt_url,
-                                        purchaseEbookNoList: purchaseArr.toString()
+                                        purchaseEbookNoList: "1,2"
                                     },
                                     success: data => {
-                                        console.log("결제 로그 추가 결과 : " + data);
-                                        alert("결제에 성공했습니다. 감사합니다");
+                                    	$.ajax({
+                                    		url: contextPath + "/gift/salesVolumeAdd.do",
+                                    		type: "POST",
+                                    		data: {
+                                    			stock: stock,
+                                    			giftNo: giftNo
+                                    		},
+                                    		success: data => {
+		                                        console.log("결제 로그 추가 결과 : " + data);
+		                                        alert("결제에 성공했습니다. 감사합니다");                                    		
+                                    		}
+                                    	});
                                     }
                                 });
                             } else {
@@ -74,5 +111,19 @@ payBtn.addEventListener("click", () => {
             });
         }
     });
+    }
 });
-})();
+
+
+//refundBtn.addEventListener("click", () => {
+//    $.ajax({
+//        url: contextPath + "/ebook/cancelPayment.do",
+ //       type: "POST",
+  //      data: {
+ //           impUid: "imp_223195009712"
+  //      },
+  //      success: () => {
+  //          console.log("환불 성공");
+ //       }
+ //   });
+// });

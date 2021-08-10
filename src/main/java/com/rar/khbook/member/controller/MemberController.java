@@ -55,17 +55,17 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/login.do")
-	public String login(@RequestParam Map param, Model model, HttpSession session, HttpServletResponse res) {
-
-		boolean visitFlag = false;
-		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
-		String today = sdf.format(new Date());
-
-		String saveId = (String) param.get("saveId");
-		String memberId = (String) param.get("memberId");
-		if (saveId != null) {
-			Cookie c = new Cookie("saveId", memberId);
-			c.setMaxAge(7 * 24 * 60 * 60);
+	public String login(@RequestParam Map param,Model model,HttpSession session,HttpServletResponse res) {
+		
+		boolean visitFlag=false;
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
+		String today=sdf.format(new Date());
+		
+		String saveId=(String)param.get("saveId");
+		String memberId=(String)param.get("memberId");
+		if(saveId !=null) {
+			Cookie c= new Cookie("saveId",memberId);
+			c.setMaxAge(7*24*60*60);
 
 			res.addCookie(c);
 		} else {
@@ -89,12 +89,14 @@ public class MemberController {
 				Membergrade mg = service.getMembergrade(m);
 				session.setAttribute("membergrade", mg);
 
-				// 최근 로그인한 날짜 구하기
-				// 컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
-				// 컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
-				if (m.getMemberToday().toString().equals(today)) {
-					int memberVisit = service.updateMemberVisit(param);
-					int memberToday = service.updateMemberToday(param);
+				//최근 로그인한 날짜 구하기
+				//컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
+				//컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
+				System.out.print(m.getMemberToday().toString());
+				System.out.println("today :" +today);
+				if(!m.getMemberToday().toString().equals(today)) {
+					int memberVisit =service.updateMemberVisit(param);
+					int memberToday =service.updateMemberToday(param);
 				}
 				msg = "로그인 성공";
 

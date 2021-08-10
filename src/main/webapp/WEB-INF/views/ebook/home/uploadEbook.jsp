@@ -6,8 +6,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="icon" href="${path}/resources/images/ebook/favicon.png" sizes="16x16">
 </head>
 <body>
 	<form action="${path}/ebook/uploadEbook.do" method="post" enctype="multipart/form-data">

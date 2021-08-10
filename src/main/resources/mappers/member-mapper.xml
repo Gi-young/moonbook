@@ -104,6 +104,7 @@
 		<result column="couponlist_name" property="couponlistName" />
 		<result column="couponlist_condition"
 			property="couponlistCondition" />
+		<result column="coupon_img" property="couponImg" />
 	</resultMap>
 
 	<!-- 쿠폰리스트를 상속받는 쿠폰 VO -->
@@ -201,7 +202,7 @@
 	<!-- 최근 로그인 날짜 변경 -->
 	<update id="updateMemberToday">
 		UPDATE MEMBER SET
-		MEMBER_TODAY=TO_DATE(SYSDATE,'YY/MM/DD') WHERE MEMBER_ID=#{memberId}
+		MEMBER_TODAY=SYSDATE WHERE MEMBER_ID=#{memberId}
 	</update>
 
 	<!-- 회원 삭제 -->

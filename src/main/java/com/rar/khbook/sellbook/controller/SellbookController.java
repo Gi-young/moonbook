@@ -79,10 +79,10 @@ public class SellbookController {
 		
 	}
 	
-	@RequestMapping("/sellbookController/order.do")
+	@RequestMapping("/sellbookController/bookpayment.do")
 	public String order() {
-		
-		return "order/main";
+		System.out.println("북페이먼트까지 성공");
+		return "sellpart/bookpayment/bookPayment";
 	}
 	
 
@@ -156,7 +156,7 @@ public class SellbookController {
 		return mv;
 	}
 	
-	@RequestMapping("/sellbookController/bigview.do") //모델엔 뷰로 넘ㅈ기기
+	@RequestMapping("/sellbookController/bigview.do") 
 	public ModelAndView bigview(int bindNo, ModelAndView mv) {
 		System.out.println("페이지이동");
 		mv.addObject("bigview",service.selectBigView(bindNo));
@@ -164,6 +164,25 @@ public class SellbookController {
 		return mv;
 		
 	}
+	@RequestMapping("/SellbookController/bookpayment.do") 
+	public ModelAndView bookpayment(int bindNo, int sellStock ,ModelAndView mv) {
+		System.out.println("결제할 책 데이터 넘기기 여긴가");
+		System.out.println(bindNo);
+		System.out.println("판매수량"+sellStock);
+		SellbookDatabind sd = service.selectBookPayment(bindNo);
+		mv.addObject("book", sd);
+		mv.addObject("sellStock",sellStock);
+		mv.setViewName("sellpart/bookpayment/bookPayment");
+		System.out.println("mv임"+mv);
+		return mv;
+	}
+	
+	@RequestMapping("/SellbookController/order.do") 
+	public String order2() {
+		System.out.println("결제할 책 데이터 넘기기");
+		return "order/main";
+	}
+	
 	
 	@RequestMapping(value = "/sellpart/checkMember.do")
 	@ResponseBody

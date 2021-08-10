@@ -41,6 +41,14 @@ public class SellbookServiceImpl implements SellbookService {
 		// TODO Auto-generated method stub
 		return dao.selectBigView(session, bindNo);
 	}
+
+
+
+	@Override
+	public SellbookDatabind selectBookPayment(int bindNo) {
+		// TODO Auto-generated method stub
+		return dao.selectBookPayment(session, bindNo);
+	}
 	
 	
 }

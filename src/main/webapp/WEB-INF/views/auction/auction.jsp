@@ -239,6 +239,7 @@ a{
 }
 .acution_category_left{
     width: 100%;
+    margin-bottom: 15px;
 }
 .acution_category_left>div>a{
     font-size: 20px;
@@ -287,7 +288,7 @@ a{
     padding: 10px;
 }
 .auction_main_po_center p{
-	margin:0px;
+	margin:10px;
     padding: 0px;
     font-size: 12px;
     font-weight: bold;

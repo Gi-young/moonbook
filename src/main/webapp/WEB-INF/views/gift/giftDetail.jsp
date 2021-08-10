@@ -21,10 +21,11 @@
 <script type="text/javascript" src="/plugin/slick/slick.js"></script> -->
  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="${path }/resources/js/gift/gift_detail.js"></script>
+
 </head>
 <!-- 문곰템의 모든 상품의 상세 보기는 여기서 -->
 <body>
+
     <div class="wrap">
         <jsp:include page="/WEB-INF/views/gift/hotTracksMenu.jsp">
         <jsp:param name="" value=""/>
@@ -32,52 +33,57 @@
         <div class="crossLine1"></div>
         <div class="proDetail-box">
             <div class="proDetail-img">
-                <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+                <img src="${gift.gift_img }" alt="">
                 <!-- 400x400 -->
                 <div class="detailImg-box">
                     <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
                 </div>
             </div>
+        <form action="${path }/gift/giftPayment.do" method="post"> 
             <div class="proDetail-exp">
-                <p class="expTitle">[퍼펙트] 10분 플래너 100DAYS - 인피니티 </p>
+                <p class="expTitle">${gift.gift_title } </p>
                 <div class="crossLine2"></div>
-                <div class="expChoice">
-                    <div>
-                        <p>포인트 적립</p>
-                    </div>
-                    <div class="exp-couponBox">
-                        <p>쿠폰등록</p>
-                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="window.open('${path}/gift/myCoupon.do','내 쿠폰','width=430, height=500, location=no, status=no, scrollbars=yes')">
-                    </div>
-                    <div class="exp-quanBox">
-                        <p>구매수량</p>
-                        <div class="exp-quan">
-                            <input type="number" name="quan" id="quan" value="1" maxlength="3" min="1">
-                            <span>
-                                <a href=""></a>
-                                <!-- 클릭시 수량 증가 -->
-                                <a href=""></a>
-                                <!-- 클릭시 수량 감소 -->
-                            </span>
-                            <span>개</span>
-                        </div>
-                    </div>
-                </div>
+	                <div class="expChoice">
+	                    <div>
+	                        <p>포인트 적립</p>
+	                    </div>
+	                    <div class="exp-couponBox">
+	                        <p>쿠폰등록</p>
+	                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="window.open('${path}/gift/myCoupon.do','내 쿠폰','width=430, height=500, location=no, status=no, scrollbars=yes')">
+	                    </div>
+	                    <div class="exp-quanBox">
+	                        <p>구매수량</p>
+	                        <div class="exp-quan">
+	                          
+	                            <input type="number" name="quan" id="quan" value="1" maxlength="3" min="1">
+	                            <!-- <span>
+	                                <a href=""></a>
+	                                클릭시 수량 증가
+	                                <a href=""></a>
+	                                클릭시 수량 감소
+	                            </span> -->
+	                            <span>개</span>
+	                           
+	                        </div>
+	                    </div>
+	                </div>
+                 <input type="hidden" value="${gift.gift_no }" name="giftNo" id="giftNo">
                 <div class="discount-price">
                     <p class="discount">할인율</p>
-                    <p class="price" id="totalPrice">12000</p>
+                    <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/></p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
-                    <button id="byBuy">구매하기</button>
+                    <button type="submit">구매하기</button>
                     <input type="hidden" value="${loginMember.memberId }" id="loginMemberId">
-                    <button>장바구니</button>
+                    <button type="button">장바구니</button>
                     <!-- <button>찜하기</button> -->
-                </div>
+                </div>           
                 <div style="text-align: center; margin-top: 30px;">
                     <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
+            </form> 
         </div>
         <div class="crossLine3"></div>
         <div class="wrap">
@@ -137,10 +143,117 @@
         <div class="crossLine3"></div>
         <div class="proDetail-bar">
             <a id="bar1">상품설명</a>
-            <a id="bar2" href="${path }/gift/productReview.do?gift_no=${gift_no}">상품리뷰</a>
-            <a id="bar3" href="${path }/gift/productReview.do?gift_no=${gift_no}">상품Q&A</a>
+            <a id="bar2" class="productR">상품리뷰</a>
+            <a id="bar3" class="productQ">상품Q&A</a>
             <a id="bar4">알려드립니다</a>
         </div>
+        <input type="hidden" value="${gift.gift_no }" id="giftNo"/>
+        <script>
+        
+        /* 상품리뷰, 상품문의 */
+    	    var btnR = document.getElementById("bar2");
+    	    var btnQ = document.getElementById("bar3");
+    	    var giftNo = document.getElementById("giftNo").value; 	     
+ 	    
+    	   	
+    	    let exp = document.getElementsByClassName('review-board');
+    	    let tb = document.getElementsByTagName("tbody");
+  			let tr = ""; 
+  			let tr2 = ""; 
+       		let html2 = ""; /* thead */
+       		html2 += "<tr><th style='width:105px;'>번호</th>";
+            html2 += "<th style='width:145px;'>만족도</th>";    
+            html2 += "<th style='width:370px;'>상품평</th>";    
+            html2 += "<th style='width:165px;'>작성자</th>";    
+            html2 += "<th style='width:165px;'>작성일</th></tr>";    
+            console.log(html2);    
+  			tr2 = document.createElement("tr");
+  			tr2.innerHTML=html2;
+  			
+  			
+         $(btnR).on('click', function(){
+        	
+        	 /* console.log(exp[0].children[0].children);
+        	 console.log(exp[0].firstChild); */
+        	 /*  console.log(exp[0].lastChild.childNodes);
+        	 console.log($(".review-board").children(".review-text")); */
+        	 /* console.log(tr); */
+        	 /*  console.log(exp[0].child[0]);
+        	 console.log(exp[0].child); */
+        	 /* exp[0].children[0].html(); */
+        	 /* exp[0].children.html(); */
+        	    
+        	 /*  exp[0].children[0].children.html();  */
+        	 exp[0].lastChild.innerHTML = "";
+        	 /* console.log(exp[0].lastChild.childNodes); */
+        	 console.log("================= ajax 실행 후 ==================");
+        	$.ajax({
+             	type: 'post',
+             	url: '${path}/gift/productReview.do',
+             	data: {
+             		giftNo: giftNo
+             	},
+             	dataType: "json",
+             	success: data => {  
+             		
+             		exp[0].appendChild(tb[0]).appendChild(tr2);
+             		data.forEach((v, i) => {   
+
+             			 let html = ""; /* 테이블 본문 내용 */
+             		     html += "<tr class='review-text review-tr'>";   
+                	     html += "<td class='review-num'>"+v.gift_board_no+"</td>";
+                	     html += "<td class='gpa'>";
+                	     html += "<div class='gpa-circle'>";
+                	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>";
+                	     html += "<td><div class='review'>"+v.gift_board_content+"</div></td>";
+                	     html += " <td class='review-writer'>"+v.writer+"</td>";
+                	     html += "<td class='review-date'>"+v.write_date+"</td></tr>";
+    
+                	    tr = document.createElement('tr'); 
+              			tr.classList.add('review-text');
+                	    tr.classList.add('review-tr');
+                	    tr.innerHTML=html;
+                	                      	                  	    
+                	    exp[0].appendChild(tb[0]).appendChild(tr);
+                	             	
+            		 });              		
+             	  }            	  	
+              });
+          }) 
+             		  			
+        
+	       /*  $(btnQ).on('click', function(){
+	        	$.ajax({
+	             	type: 'get',
+	             	url: '${path}/gift/productReview.do',
+	             	data: {
+	             		giftNo: giftNo
+	             	},
+	             	success: data => {
+	             		console.log(data);
+	             	},
+	             	error : {
+	             		console.log("error 발생");
+	             	}
+	             });
+	        }) */
+	       /*  
+		       btnQ.onclick = function() {	
+		       	 $.ajax({
+		            	type: 'POST',
+		            	url: '${path}/gift/productReview.do',
+		            	data: {
+		            		giftNo: giftNo
+		            	},
+		            	success: data => {
+		            		console.log(data);
+		            	},
+		            	error : {
+		            		console.log("error 발생");
+		            	}
+		            });
+		       } */
+        </script>
         <div class="product-exp">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
@@ -149,9 +262,10 @@
         </div>
         <div class="product-review">
             <div class="writeBox">
-                <button class="reviewWrite">상품 리뷰 작성하기</button>
+                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
             </div>
-           <table class="review-exp">
+           <table class="review-exp review-board">
+          
                <tr>
                    <th style="width:105px;">번호</th>
                    <th style="width:145px;">만족도</th>
@@ -159,150 +273,33 @@
                    <th style="width:165px;">작성자</th>
                    <th style="width:165px;">작성일</th>
                </tr>
-               <tr class="review-text">
-                   <td>0</td>
+              
+               <!-- <tr class="review-text review-tr">
+                   <td class="review-num">0</td>
                    <td class="gpa">
                     <div class="gpa-circle">
-                        <p>3</p>
+                        <p class="gpa-circle-a">3</p>
                     </div>    
-                </td>
+                   </td>
                     <td>
                        <div class="review">
                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
                        </div>
                     </td>
-                   <td>관리자</td>
-                   <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
-                <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                        <div class="gpa-circle">
-                            <p>3</p>
-                        </div>    
-                    </td>
-                    <td>
-                        <div class="review">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                </tr>
+                   <td class="review-writer">관리자</td>
+                   <td class="review-date">SYSDATE or 수정일</td>
+                </tr> -->
+               
+          
             </table>
-            <div>&lt;pageBar&gt;</div>
+            <!-- <div>&lt;pageBar&gt;</div> -->
         </div>
         <!-- 상품Q&A -->
         <div class="product-q_a">
             <div class="writeBox">
                 <button class="reviewWrite">질문 작성하기</button>
             </div>
-            <table class="review-exp">
+            <table class="review-exp" id="qna-exp">
                 <tr>
                     <th style="width:105px;">번호</th>
                     <!-- <th style="width:145px;"></th> -->
@@ -324,129 +321,9 @@
                      </td>
                     <td>관리자</td>
                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                    <!--  <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
-                 <tr class="review-text">
-                     <td>0</td>
-                     <!-- <td class="gpa">
-                         <div class="gpa-circle">
-                             <p>3</p>
-                         </div>    
-                     </td> -->
-                     <td>
-                         <div class="review_qna">
-                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                         </div>
-                      </td>
-                     <td>관리자</td>
-                     <td>SYSDATE or 수정일</td>
-                 </tr>
+                 </tr>                 
              </table>
-             <div>&lt;pageBar&gt;</div>
+             <!-- <div>&lt;pageBar&gt;</div> -->
         </div>
         <div class="notify">
             <img src="${path }/resources/images/gift/교환반품1.PNG" alt="">
@@ -487,12 +364,13 @@
    <%--   <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
 			<jsp:param name="" value=""/> 
 	 </jsp:include>  --%>   
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
   <!-- jQuery -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
   <!-- iamport.payment.js -->
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="${path }/resources/js/gift/gift_buy.js"></script>
+<script src="${path }/resources/js/gift/gift_detail.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
 <script>
       $('#slider-div').slick({
           slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
@@ -533,19 +411,21 @@
 
       });
     let slickBtn = $('.slick-dots li>button');
-    console.log(slickBtn);
+    /* console.log(slickBtn); */
     $(slickBtn).click(function(){
         $(this).css('transform',"rotate( 90deg )");
         $(this).css('transition',"all ease 0.5s");
     })
     let hot = $('.hot');
-    console.log(hot);
+    /* console.log(hot); */
     $(hot).mouseover(function(){
         $(this).css("color","black");
     })
     $(hot).mouseout(function(){
         $(this).css("color","#696969");
     })
+    
+    /* 카카오 페이 */
     $("#kakaoPay").click(function(){
     	$.ajax({
     		url: '${path}/kakaopay.do',
@@ -559,6 +439,9 @@
     		}  		
     	})
     });
+   
+    
+    
 </script>
 </body>
 </html>
