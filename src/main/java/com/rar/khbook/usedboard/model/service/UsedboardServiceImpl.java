@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.rar.khbook.usedboard.model.dao.UsedboardDao;
 import com.rar.khbook.usedboard.model.vo.Usedboard;
 import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
+import com.rar.khbook.usedboard.model.vo.UsedboardSingo;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -168,5 +169,41 @@ public class UsedboardServiceImpl implements UsedboardService {
 		// TODO Auto-generated method stub
 		dao.usedboardPay22(session,no);
 		return dao.usedboardPay2(session,no);
+	}
+	
+	@Override
+	public List<UsedboardSingo> checkSingo(UsedboardSingo s) {
+		// TODO Auto-generated method stub
+		return dao.checkSingo(session,s);
+	}
+	
+	@Override
+	public int insertSingo(UsedboardSingo s) {
+		// TODO Auto-generated method stub
+		return dao.insertSingo(session,s);
+	}
+	
+	@Override
+	public List<UsedboardSingo> usedboardSingoList(int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.usedboardSingoList(session,cPage,numPerpage);
+	}
+	
+	@Override
+	public int usedboardSingoCount() {
+		// TODO Auto-generated method stub
+		return dao.usedboardSingoCount(session);
+	}
+	
+	@Override
+	public int usedboardSingoDelete(int no) {
+		// TODO Auto-generated method stub
+		return dao.usedboardSingoDelete(session,no);
+	}
+	
+	@Override
+	public int usedboardMySingoDelete(int no) {
+		// TODO Auto-generated method stub
+		return dao.usedboardMySingoDelete(session,no);
 	}
 }

@@ -28,6 +28,9 @@
                 <a href="${path}/usedboard/usedboardUpdate.do?no=${no}" role="button" class="btnbtn_2" style="font-size: 15px;">수정</a>
                 <a href="${path}/usedboard/usedboardDelete.do?no=${no}" id="deletebtn" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">삭제</a>
                 </c:if>
+                <c:if test="${loginMember!=null }"><c:if test="${usedboard.usedboard_State=='y' }">
+                <a href="${path}/usedboard/usedboardSingo.do?no=${no}&id=${loginMember.memberId}" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">신고</a>
+                </c:if></c:if>
             </span>
         </div>
         <br>

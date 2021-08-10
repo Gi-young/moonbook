@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
 import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
+import com.rar.khbook.usedboard.model.vo.UsedboardSingo;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -49,4 +50,16 @@ public interface UsedboardService {
 	int usedboardPay1(int no);
 	
 	int usedboardPay2(int no);
+	
+	List<UsedboardSingo> checkSingo(UsedboardSingo s);
+	
+	int insertSingo(UsedboardSingo s);
+	
+	List<UsedboardSingo> usedboardSingoList(int cPage, int numPerpage);
+	
+	int usedboardSingoCount();
+	
+	int usedboardSingoDelete(int no);
+	
+	int usedboardMySingoDelete(int no);
 }
