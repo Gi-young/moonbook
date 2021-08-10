@@ -6,7 +6,7 @@ IMP.init("imp26745696");
 
 	
 $(".btnPay").click(e=> {
-
+	let giftNo = document.getElementById("giftNo");
 	let btnPay = document.getElementsByClassName("btnPay");
 	let refundBtn = document.getElementById("refundBtn");
 	let loginMember = document.getElementById("loginMember").value;
@@ -87,8 +87,18 @@ $(".btnPay").click(e=> {
                                         purchaseEbookNoList: "1,2"
                                     },
                                     success: data => {
-                                        console.log("결제 로그 추가 결과 : " + data);
-                                        alert("결제에 성공했습니다. 감사합니다");
+                                    	$.ajax({
+                                    		url: contextPath + "/gift/salesVolumeAdd.do",
+                                    		type: "POST",
+                                    		data: {
+                                    			stock: stock,
+                                    			giftNo: giftNo
+                                    		},
+                                    		success: data => {
+		                                        console.log("결제 로그 추가 결과 : " + data);
+		                                        alert("결제에 성공했습니다. 감사합니다");                                    		
+                                    		}
+                                    	});
                                     }
                                 });
                             } else {

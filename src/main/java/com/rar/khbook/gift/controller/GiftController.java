@@ -241,5 +241,14 @@ public class GiftController {
 		return mv;
 	}
 	
+	@RequestMapping("/gift/salesVolume.do")
+	public int salesVolume(int giftNo, int stock) {
+		System.out.println("판매량 늘리기 위해 넘어온 : "+giftNo);
+		System.out.println("판매량 늘리기 위해 넘어온 : "+stock);
+		
+		
+		return 1;
+	}
+	
 }
 
