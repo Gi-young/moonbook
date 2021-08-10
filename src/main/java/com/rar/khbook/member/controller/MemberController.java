@@ -2,21 +2,18 @@ package com.rar.khbook.member.controller;
 
 import java.io.Writer;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +31,8 @@ import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
+import com.rar.khbook.order.model.vo.EbookPurchaseHistory;
+import com.rar.khbook.order.model.vo.Order;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,21 +50,22 @@ public class MemberController {
 
 	@RequestMapping("/member/loginPage.do")
 	public String loginPage() {
-		
+
 		return "member/login";
 	}
+
 	@RequestMapping("/member/login.do")
-	public String login(@RequestParam Map param,Model model,HttpSession session,HttpServletResponse res) {
-		
-		boolean visitFlag=false;
-		SimpleDateFormat sdf= new SimpleDateFormat("yy/MM/dd");
-		String today=sdf.format(new Date());
-		
-		String saveId=(String)param.get("saveId");
-		String memberId=(String)param.get("memberId");
-		if(saveId !=null) {
-			Cookie c= new Cookie("saveId",memberId);
-			c.setMaxAge(7*24*60*60);
+	public String login(@RequestParam Map param, Model model, HttpSession session, HttpServletResponse res) {
+
+		boolean visitFlag = false;
+		SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
+		String today = sdf.format(new Date());
+
+		String saveId = (String) param.get("saveId");
+		String memberId = (String) param.get("memberId");
+		if (saveId != null) {
+			Cookie c = new Cookie("saveId", memberId);
+			c.setMaxAge(7 * 24 * 60 * 60);
 
 			res.addCookie(c);
 		} else {
@@ -89,14 +89,14 @@ public class MemberController {
 				Membergrade mg = service.getMembergrade(m);
 				session.setAttribute("membergrade", mg);
 
-				//최근 로그인한 날짜 구하기
-				//컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
-				//컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
-				if(m.getMemberToday().toString().equals(today)) {
-					int memberVisit =service.updateMemberVisit(param);
-					int memberToday =service.updateMemberToday(param);
+				// 최근 로그인한 날짜 구하기
+				// 컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
+				// 컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
+				if (m.getMemberToday().toString().equals(today)) {
+					int memberVisit = service.updateMemberVisit(param);
+					int memberToday = service.updateMemberToday(param);
 				}
-				msg="로그인 성공";
+				msg = "로그인 성공";
 
 				model.addAttribute("loc", "/");
 			} else {
@@ -141,8 +141,8 @@ public class MemberController {
 
 	@RequestMapping("/member/memberEnrollEnd.do")
 
-	public String memberEnrollEnd(Member m,Model model,HttpSession session) {
-		
+	public String memberEnrollEnd(Member m, Model model, HttpSession session) {
+
 		System.out.println(m);
 		log.debug("암호화전 : {}", m.getMemberPw());
 		log.debug("암호화 후 : {}", pwEncoder.encode(m.getMemberPw()));
@@ -169,12 +169,12 @@ public class MemberController {
 
 	}
 
-	
-	@RequestMapping("/member/checkId.do") 
-	public void checkId(@RequestParam Map param,Writer out) { 
-	System.out.println(param); 
-	Member m=service.selectOneMember(param); System.out.println("testtest : "+m); new
-	  Gson().toJson(m==null? "true":"false",out); 
+	@RequestMapping("/member/checkId.do")
+	public void checkId(@RequestParam Map param, Writer out) {
+		System.out.println(param);
+		Member m = service.selectOneMember(param);
+		System.out.println("testtest : " + m);
+		new Gson().toJson(m == null ? "true" : "false", out);
 	}
 
 	@RequestMapping("/member/searchIdPwPage.do")
@@ -235,11 +235,11 @@ public class MemberController {
 		} else {
 			msg = "검색완료";
 			loc = "/member/resultIdPage.do?m2=" + m2.getMemberId();
-			
+
 //			이메일 전송 메소드 호출 후 전송된 코드와 회원 ID 저장
 			model.addAttribute("code", this.checkEmail(memberEmail));
 			model.addAttribute("m2", m2.getMemberId());
-						
+
 //			인증 창 화면으로 이동
 			return "member/checkEmail";
 		}
@@ -308,11 +308,11 @@ public class MemberController {
 			// 회원이 임시 패스워드 생성창으로 바로가기
 			msg = "비밀번호를 재 생성 하세요";
 			loc = "/member/updatePwPage.do?m3=" + m3.getMemberId();
-			
+
 //			이메일 전송 메소드 호출 후 전송된 코드와 회원 ID저장
 			model.addAttribute("code", this.checkEmail(memberEmail));
 			model.addAttribute("m3", m3.getMemberId());
-			
+
 //			인증 창 화면으로 이동
 			return "member/checkEmail";
 		}
@@ -446,26 +446,26 @@ public class MemberController {
 		}
 		String code = new String(temp);
 
-//		이메일 정보 설정
-		final MimeMessagePreparator preparator = new MimeMessagePreparator() {
-
-			@Override
-			public void prepare(MimeMessage mimeMessage) throws Exception {
-				// TODO Auto-generated method stub
-
-				final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-				helper.setFrom("문곰책방<21pm_moonbook@naver.com>");
-				helper.setTo(memberEmail);
-				helper.setSubject("<문곰책방>이메일 인증을 위한 코드 발송");
-				helper.setText(
-						"안녕하세요. 문곰책방입니다.<br><br>이메일 주소 인증을 위한 인증코드입니다.<br><br>이메일 주소 인증코드 : <br><br><span style='font-weight:900; font-size:30px;'>"
-								+ code + "</span>",
-						true);
-			}
-		};
-
-//		이메일 송신
-		mailSender.send(preparator);
+////		이메일 정보 설정
+//		final MimeMessagePreparator preparator = new MimeMessagePreparator() {
+//
+//			@Override
+//			public void prepare(MimeMessage mimeMessage) throws Exception {
+//				// TODO Auto-generated method stub
+//
+//				final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+//				helper.setFrom("문곰책방<21pm_moonbook@naver.com>");
+//				helper.setTo(memberEmail);
+//				helper.setSubject("<문곰책방>이메일 인증을 위한 코드 발송");
+//				helper.setText(
+//						"안녕하세요. 문곰책방입니다.<br><br>이메일 주소 인증을 위한 인증코드입니다.<br><br>이메일 주소 인증코드 : <br><br><span style='font-weight:900; font-size:30px;'>"
+//								+ code + "</span>",
+//						true);
+//			}
+//		};
+//
+////		이메일 송신
+//		mailSender.send(preparator);
 
 		return code;
 	}
@@ -492,47 +492,92 @@ public class MemberController {
 
 		return mv;
 	}
-	
+
 //	회원 비밀번호 수정
 	@RequestMapping("/member/myroom/changePw.do")
 	public String changePw(int del, Model m) {
-		
+
 //		del 값이 0보다 크면 이메일 인증 후 회원탈퇴 로직
-		if(del > 0) {
+		if (del > 0) {
 //			del값 전송
 			m.addAttribute("del", del);
 		}
-		
+
 //		그 외에는 이메일 인증 후 비밀번호 변경 화면으로 이동
 		return "myroom/changePw";
 	}
-	
+
 //	회원 삭제
 	@RequestMapping("/member/myroom/deleteMember.do")
 	public ModelAndView deleteMember(Member m, ModelAndView mv) {
-		
+
 		int result = service.deleteMember(m);
 		String loc = "";
 		String msg = "";
-		if(result>0) {
+		if (result > 0) {
 			msg = "정상적으로 탈퇴 되셨습니다. 그 동안 문곰 책방을 이용해 주셔서 감사합니다.";
 			loc = "/member/logout.do";
-		}else {
+		} else {
 			msg = "예기치 못 한 에러가 발생했습니다. 이와 같은 현상이 반복되면 관리자에게 문의하십시오.";
 			loc = "/member/myroom/main.do";
 		}
 		mv.setViewName("common/msg");
 		mv.addObject("msg", msg);
 		mv.addObject("loc", loc);
-		
+
 		return mv;
 	}
-	
+
 //	결제 내역 리스트
 	@RequestMapping("/member/myroom/payList.do")
-	public String payList(HttpSession session, Model m) {
-		
-		
-		return "myroom/payList";
+	public ModelAndView payList(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, HttpSession session,
+			String searchType, Date startDate, Date finishDate, ModelAndView mv) {
+
+		Member m = (Member) session.getAttribute("loginMember");
+		Map<String, String> param = new HashMap();
+		if (searchType == null || searchType.equals("")) {
+
+			Date date = new Date();
+			long uni = (long) date.getTime() / 1000;
+			param.put("finishDate", "" + uni);
+			long startYear = uni - (60 * 60 * 24 * 365);
+			param.put("startDate", "" + startYear);
+		}
+		param.put("memberId", (String) m.getMemberId());
+		int totalData = service.ebookPurchaseCount(param);
+		List<Order> list = service.ebookPurchaseList(param, cPage, numPerpage);
+		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/payList.do");
+//		System.out.println(((EbookPurchaseHistory)list.get(0)).getPurchaseEbookNoList());
+		System.out.println(list);
+		mv.addObject("list", list);
+		mv.addObject("pageBar", pageBar);
+		mv.setViewName("myroom/payList");
+
+		return mv;
+	}
+
+//	이북 결제 내역 리스트
+	@RequestMapping("/member/myroom/ebookPayList.do")
+	public ModelAndView ebookPayList(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, HttpSession session,
+			ModelAndView mv) {
+
+		Member m = (Member) session.getAttribute("loginMember");
+		Date date = new Date();
+		long uni = (long) date.getTime() / 1000;
+		Map<String, String> param = new HashMap();
+		param.put("finishDate", "" + uni);
+		long startYear = uni - (60 * 60 * 24 * 365);
+		param.put("startDate", "" + startYear);
+		param.put("memberId", (String) m.getMemberId());
+		int totalData = service.ebookPurchaseCount(param);
+		List<Order> list = service.ebookPurchaseList(param, cPage, numPerpage);
+		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/payList.do");
+		mv.addObject("list", list);
+		mv.addObject("pageBar", pageBar);
+		mv.setViewName("myroom/payList");
+
+		return mv;
 	}
 }
