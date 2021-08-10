@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShopingList {
+public class Shopinglist {
 
 	private ShopinglistNo shopinglistNo;
 	private String shopinglistCate;

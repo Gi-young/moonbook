@@ -36,6 +36,9 @@
 		<!-- sellpart -->
 		<typeAlias type="com.rar.khbook.sellbook.model.vo.SellbookDatabind" alias="sellbookDatabind"/>
 
+		<!-- 장바구니 -->
+		<typeAlias type="com.rar.khbook.shopingList.model.vo.ShopingList" alias="shopingList"/>
+		<typeAlias type="com.rar.khbook.shopingList.model.vo.ShopinglistNo" alias="shopingListNo"/>
 
 		<!-- 기프트 -->
 		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift" alias="nGift"/>
