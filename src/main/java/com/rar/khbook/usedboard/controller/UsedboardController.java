@@ -18,6 +18,7 @@ import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.usedboard.model.service.UsedboardService;
 import com.rar.khbook.usedboard.model.vo.Usedboard;
 import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
+import com.rar.khbook.usedboard.model.vo.UsedboardSingo;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -40,7 +41,7 @@ public class UsedboardController {
 			mv.addObject("list",service.selectUsedboardMyList(cPage,numPerpage,memberId));
 			int totalData=service.selectUsedboardMyCount(memberId);
 			mv.addObject("totalContents",totalData);
-			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardList.do"));
+			mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage, "usedboardList.do?memberId="+memberId));
 			
 			mv.setViewName("usedboard/usedboardList");
 		}else if(catagory==null) {
@@ -52,10 +53,11 @@ public class UsedboardController {
 			
 			mv.setViewName("usedboard/usedboardList");
 		}else {
+			String cata=catagory.replace("'","%27");
 			mv.addObject("list",service.searchUsedboardList(cPage,numPerpage,catagory));
 			int totalData=service.searchUsedboardCount(catagory);
 			mv.addObject("totalContents",totalData);
-			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage,"usedboardList.do"));
+			mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage,"usedboardList.do?catagory="+cata));
 			
 			mv.setViewName("usedboard/usedboardList");
 		}
@@ -140,10 +142,6 @@ public class UsedboardController {
 	@RequestMapping("/usedboard/usedboardInsertEnd.do")
 	public ModelAndView usedboardInsertEnd(Usedboard b,MultipartFile[] upFile,ModelAndView mv,HttpServletRequest req) {
 		log.debug("Usedboard : "+b);
-		log.debug("fileName : "+upFile[0].getOriginalFilename());
-		log.debug("fileSize : "+upFile[0].getSize());
-		log.debug("fileName : "+upFile[1].getOriginalFilename());
-		log.debug("fileSize : "+upFile[1].getSize());
 		String path=req.getServletContext().getRealPath("/resources/upload/usedboard/");
 		File dir=new File(path);//폴더
 		if(!dir.exists()) dir.mkdirs();
@@ -185,6 +183,11 @@ public class UsedboardController {
 	
 	@RequestMapping("/usedboard/usedboardDelete.do")
 	public ModelAndView usedboardDelete(int no, ModelAndView mv,HttpServletRequest req) {
+		if(req.getParameter("singoNo")!=null) {
+			int singoNo=Integer.parseInt(req.getParameter("singoNo"));
+			int result2=service.usedboardSingoDelete(singoNo);
+		}
+		int result3=service.usedboardMySingoDelete(no);
 		List<Usedboardfile> f=service.usedboardfileSelect(no);
 		String path=req.getServletContext().getRealPath("/resources/upload/usedboard/");
 		String paths="";
@@ -273,4 +276,54 @@ public class UsedboardController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	
+	@RequestMapping("/usedboard/usedboardSingo.do")
+	public ModelAndView usedboardSingo(int no, ModelAndView mv,String id,UsedboardSingo s) {
+		s.setUsedboardsingo_Id(id);
+		s.setUsedboardsingo_BoardNo(no);
+		List<UsedboardSingo> check=service.checkSingo(s);
+		String msg="";
+		if(check.isEmpty()) {
+			int result=service.insertSingo(s);
+			if(result>0) {
+				msg="신고가 완료되었습니다";
+			}else {
+				msg="신고에 실패하였습니다";
+			}
+		}else {
+			msg="이미 신고하셨습니다";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardView.do?no="+no);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardSingoList.do")
+	public ModelAndView usedboardSingo (@RequestParam(value="cPage", defaultValue="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,
+			ModelAndView mv,HttpServletRequest request) {
+		mv.addObject("list",service.usedboardSingoList(cPage,numPerpage));
+		int totalData=service.usedboardSingoCount();
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardSingoList.do"));
+		mv.setViewName("usedboard/usedboardSingoList");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardSingoDelete.do")
+	public ModelAndView usedboardSingoDelete(ModelAndView mv,int no) {
+		int result=service.usedboardSingoDelete(no);
+		String msg="";
+		if(result>0) {
+			msg="신고취소성공";
+		}else {
+			msg="신고취소실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardSingoList.do");
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
 }
