@@ -7,7 +7,7 @@
 </jsp:include>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
-
+<button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
 <div id="wrap">
 <div id="container">
         <div class="auction_main line">
@@ -18,15 +18,19 @@
             	<c:when test="${sessionScope.loginMember!=null }">
  		
                 <p><span>${member.memberName}</span>님 환영합니다.</p>
-                <p>경매 포인트 :<span><fmt:formatNumber value="${member.memberPoint }" type="currency"/>point</span> </p> 
+                <p class="memberbidpoint">경매포인트<span><fmt:formatNumber value="${member.memberPoint }" type="currency"/></span> </p>
+                <div class="btn_coll">
                 <button onclick="location.assign('${path}/auction/auctionpay.do')">포인트 충전하기</button>
                 <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
                 <button onclick="location.assign('${path}/auction/auctionmyselllist.do?memberId=${member.memberId} ')">내 판매 목록 확인</button>
    			    <button onclick="location.assign('${path}/auction/auctionmybuylist.do?bidId=${member.memberId} ')">내 구매 목록 확인</button>	
+    		    </div> 
     		    </c:when>
     		    <c:otherwise>
+    		    <div class="btn_coll">
     		    	<p style="font-size:12px">로그인후 이용가능합니다.</p>
-    		    	<button>로그인</button>
+    		    	<button onclick="location.assign('${path}/member/loginPage.do')">로그인</button>
+    		    	</div>
     		    </c:otherwise>
               </c:choose>
             </div>
@@ -105,7 +109,6 @@
 	            </div>
             </c:forEach>
 
-            <div class="pagebar">${pageBar }</div>
         </div>
 
         <!--마감 직전 경매물품-->
@@ -201,8 +204,8 @@ table{
     border-spacing: 2px;
 }
 th{
-	   vertical-align: middle;
- 	 display: table-cell;
+	vertical-align: middle;
+ 	display: table-cell;
     font-weight: bold;
     text-align: -internal-center;	
 }
@@ -221,6 +224,26 @@ a{
 .line{
     border: 1px solid black;
 }
+.btn_coll{
+ text-align:center;
+}
+.memberbidpoint{
+	border:1px solid red;
+	text-align:center;
+	font-weight:bold;
+	
+}
+.memberbidpoint>span{
+	color: red;
+    font-size: 20px;
+}
+.btn_coll button{
+	margin:1px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: bolder;
+    border-radius: 10px;
+}
 .auction_main{
     padding: 10px;
     display: flex;
@@ -230,8 +253,13 @@ a{
     height: 300px;
 }
 .auction_main_right{
+    font-weight: bold;
     width: 200px;
     height: 300px;
+}
+.auction_main_right h2{
+	text-align:center;
+	font-size:22px;
 }
 .acution_category{
     margin-top: 10px;

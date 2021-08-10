@@ -9,6 +9,8 @@
    <jsp:param name="" value=""/>
 </jsp:include>
  <div id="wrap">
+ ${auction }
+
         <div id="container">	
 			<div>
 				<table style="width: 100%;  text-align: center;">
@@ -28,12 +30,29 @@
 							<td>${a.endDate }</td>
 							<td>${a.auctionbid[0].bidPrice }</td>
 							<td>
-						<c:if test="${a.state eq '유찰' }">
-						<span style="color:red">유찰</span><br><button>포인트 회수</button>
-						</c:if>	
-						<c:if test="${a.state eq '낙찰' }">
-						<span style="color:blue">낙찰<button>배송 확인</button></span>
-						</c:if>	
+							<c:if test="${a.auctionState eq 'S' && a.state eq '낙찰'}">				
+									<span style="color:blue">낙찰</span>
+									<c:if test="${a.buylerState eq 'N'}">
+									<button onclick="open('${path}/auction/auctionBpage?auctionNo=${a.auctionNo }&bidId=${a.memberId }','auctionbid','width=500,height=600')">배송 확인하기</button>	
+									</c:if>
+									<c:if test="${a.buylerState eq 'Y'}">
+									<span style="color:blue;">배송 확인</span>	
+									</c:if>
+																						
+							</c:if>
+							<c:if test="${a.auctionState eq 'S' && a.state eq '유찰'}">				
+									<span style="color:red">유찰</span>
+									<c:forEach items="${a.auctionbid }" var="bid">
+							
+									<c:if test="${bid.bidId eq member.memberId}">
+										<span>${bid.bidPrice }<button>포인트 돌려받기</button></span>
+									</c:if>
+									</c:forEach>														
+							</c:if>
+							<c:if test="${a.auctionState eq 'Y'}">				
+									<span style="color:blue">진행중</span>																
+							</c:if>
+						
 							</td>
 						</tr>		
 					</c:forEach>	
