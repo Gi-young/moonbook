@@ -11,50 +11,35 @@
     <br><br><br>
     <div class="side" style="float: left; margin-top: 20px; margin-left: 150px">
         <div class="">
-            <center><h2 style="margin-bottom: 20px	;"><a style="color: orange;">카테고리</a></h2></center>
-            <div style="border:1px solid #666; width: 160px;">
+            <center style="margin-bottom: 20px;"><a href="${path }/usedboard/usedboardList.do" style="color: orange; font-size: 20px; font-weight: 900;">카테고리</a></center>
+            <div style="border:1px solid #666; width: 200px; height: 520px">
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='소설'">소설</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='시/에세이'">시/에세이</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='경제/경영'">경제/경영</a></li>
-                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='자기계발'">자기계발</a></li>
+                	<li style="font-size: 20px;font-weight: 900;margin-left: 20px;margin-bottom: 10px;color: ">-고전/문학-</li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='한국고전소설'">한국고전소설</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='세계문학'">세계문학</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='세계고전'">세계고전</a></li>
                 </ul>
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='인문'">인문</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='역사문화'">역사문화</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='종교'">종교</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='정치/사회'">정치/사회</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='예술/대중문화'">예술/대중문화</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='과학'">과학</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='기술/공학'">기술/공학</a></li>
-                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='컴퓨터/IT'">컴퓨터/IT</a></li>
+                	<li style="font-size: 20px;font-weight: 900;margin-left: 35px;margin-bottom: 10px">-청소년-</li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='청소년문학'">청소년문학</a></li>
                 </ul>
                 <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='초등학습'">초등학습</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='중/고등학습'">중/고등학습</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='대학교재'">대학교재</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='취업/수험서'">취업/수험서</a></li>
-                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='외국어'">외국어</a></li>
-                </ul>
-                <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='동화'">동화</a></li>
-                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='아동'">아동</a></li>
-                </ul>
-                <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='가정생활'">가정생활</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='건강'">건강</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='여행'">여행</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='요리'">요리</a></li>
-                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='스포츠'">스포츠</a></li>
-                </ul>
-                <ul id="ul1" style="border-bottom:1px solid #666;">
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='잡지'">잡지</a></li>
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='만화'">만화</a></li>
-                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='사전'">사전</a></li>
+                	<li style="font-size: 20px;font-weight: 900;margin-left: 45px;margin-bottom: 10px">-유아-</li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='한국그림책(0~3세)'">한국그림책(0~3세)</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='외국그림책(0~3세)'">외국그림책(0~3세)</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='한국그림책(4~7세)'">한국그림책(4~7세)</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='외국그림책(4~7세)'">외국그림책(4~7세)</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='세계명작동화'">세계명작동화</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='한국전래동화'">한국전래동화</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='국내창작동화'">국내창작동화</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='다른나라그림책'">다른나라그림책</a></li>
                 </ul>
                 <ul id="ul1">
-                    <li><a href="${path}/usedboard/usedboardList.do?catagory='외서'">외서</a></li>
-                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='일서'">일서</a></li>
+                	<li style="font-size: 20px;font-weight: 900;margin-left: 35px;margin-bottom: 10px">-어린이-</li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='어린이동화(초1~2학년)'">어린이동화(초1~2학년)</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='어린이동화(초3~4학년)'">어린이동화(초3~4학년)</a></li>
+                    <li><a href="${path}/usedboard/usedboardList.do?catagory='어린이동화(초5~6학년)'">어린이동화(초5~6학년)</a></li>
+                    <li style="margin-bottom: 17px;"><a href="${path}/usedboard/usedboardList.do?catagory='스포츠'">어린이동화(공통)</a></li>
                 </ul>
             </div>
         </div>
@@ -63,7 +48,10 @@
         <p id="titi" style="font-size: 35px; color: cornflowerblue;">  중고게시판 &nbsp;&nbsp;&nbsp;
         <c:if test="${loginMember!=null }">
         <a href="${path }/usedboard/usedboardList.do?memberId=${loginMember.memberId}" style="font-size: 20px; color: #964b00">내 중고게시판</a> <a style="font-size: 20px; color: #964b00;">/</a> 
-        <a href="${path }/usedboard/usedboardMyPayment.do?memberId=${loginMember.memberId}" style="font-size: 20px; color: #964b00;">내 중고구매목록</a>
+        <a href="${path }/usedboard/usedboardMyPayment.do?memberId=${loginMember.memberId}" style="font-size: 20px; color: #964b00;">내 중고구매목록</a> 
+        <c:if test="${loginMember.memberId=='admin' }"> 
+        <a style="font-size: 20px; color: #964b00;">/</a> <a href="${path }/usedboard/usedboardSingoList.do" style="font-size: 20px; color: #964b00;">신고관리</a>
+        </c:if>
         </c:if></p>
         <c:if test="${loginMember!=null }">
         <a href="${path }/usedboard/usedboardInsert.do" id="insertborad" style="left: 65%; font-size: 18px;">거래 등록</a>
@@ -79,7 +67,7 @@
 	        </c:if>
         <c:if test="${list != null }">
         <c:forEach var="b" items="${list }">
-        <div id="secondBorad" style="padding-left: 300px;">
+        <div id="secondBorad" style="padding-left: 350px;">
             <div class="side">
             	<div  class="aaa" style="border-bottom: 1px solid #999; width: 1330px;">
                     <a href="${path }/usedboard/usedboardView.do?no=${b.usedboard_No }">
@@ -98,7 +86,7 @@
                             <strong class="tit" style="display: inline-block;">
                                 <span class="txt_de" style="font-size: 23px;">&emsp;${b.usedboard_Title }</span>
                             </strong>
-                            <span id="ddssaa" style="font-size: 17px;">책제목 : ${b.usedboard_BookTitle } / 가격 : ${b.usedboard_Price }</span>
+                            <span id="ddssaa" style="font-size: 17px;">책제목 : ${b.usedboard_BookTitle } / 가격 : ${b.usedboard_Price }원</span>
                             <br>
                             <span id="ddssaa" style="font-size: 17px;">${b.usedboard_Content }</span></a>
                             <span class="txt_info">

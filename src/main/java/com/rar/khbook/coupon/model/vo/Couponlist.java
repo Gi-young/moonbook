@@ -1,5 +1,8 @@
 package com.rar.khbook.coupon.model.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -13,4 +16,6 @@ public class Couponlist {
 	private int couponlistInvalid;
 	private String couponlistName;
 	//private int couponlistCondition;
+	private String couponImg;
+	private List<CouponAttachment> attachments=new ArrayList();
 }

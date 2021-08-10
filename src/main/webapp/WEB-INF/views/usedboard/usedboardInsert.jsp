@@ -24,35 +24,22 @@
 				<br>
 				<li>
 					카테고리 : &nbsp; 
-					<input type="checkbox" name="usedboard_Category" id="category0" value="소설"><label for="category0" class="">소설</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category1" value="시/에세이"><label for="category1" class="">시/에세이</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category2" value="경제/경영"><label for="category2" class="">경제/경영</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category3" value="자기계발"><label for="category3" class="">자기계발</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category4" value="인문"><label for="category4" class="">인문</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category5" value="역사문화"><label for="category5" class="">역사문화</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category6" value="종교"><label for="category6" class="">종교</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category7" value="정치/사회"><label for="category7" class="">정치/사회</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category8" value="예술/대중문화"><label for="category8" class="">예술/대중문화</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category9" value="과학"><label for="category9" class="">과학</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category10" value="기술/공학"><label for="category10" class="">기술/공학</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category11" value="컴퓨터/IT"><label for="category11" class="">컴퓨터/IT</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category12" value="초등학습"><label for="category12" class="">초등학습</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category13" value="중/고등학습"><label for="category13" class="">중/고등학습</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category14" value="대학교재"><label for="category14" class="">대학교재</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category15" value="취업/수험서"><label for="category15" class="">취업/수험서</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category16" value="외국어"><label for="category16" class="">외국어</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category17" value="동화"><label for="category17" class="">동화</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category18" value="아동"><label for="category18" class="">아동</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category19" value="가정생활"><label for="category19" class="">가정생활</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category20" value="건강"><label for="category20" class="">건강</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category21" value="여행"><label for="category21" class="">여행</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category22" value="요리"><label for="category22" class="">요리</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category23" value="스포츠"><label for="category23" class="">스포츠</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category24" value="잡지"><label for="category24" class="">잡지</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category25" value="만화"><label for="category25" class="">만화</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category26" value="사전"><label for="category26" class="">사전</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category27" value="외서"><label for="category27" class="">외서</label>&nbsp;
-					<input type="checkbox" name="usedboard_Category" id="category28" value="일서"><label for="category28" class="">일서</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category0" value="한국고전소설"><label for="category0" class="">한국고전소설</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category1" value="세계문학"><label for="category1" class="">세계문학</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category2" value="세계고전"><label for="category2" class="">세계고전</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category3" value="청소년문학"><label for="category3" class="">청소년문학</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category4" value="한국그림책(0~3세)"><label for="category4" class="">한국그림책(0~3세)</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category5" value="외국그림책(0~3세)"><label for="category5" class="">외국그림책(0~3세)</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category6" value="한국그림책(4~7세)"><label for="category6" class="">한국그림책(4~7세)</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category7" value="외국그림책(4~7세)"><label for="category7" class="">외국그림책(4~7세)</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category8" value="세계명작동화"><label for="category8" class="">세계명작동화</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category9" value="한국전래동화"><label for="category9" class="">한국전래동화</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category10" value="국내창작동화"><label for="category10" class="">국내창작동화</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category11" value="다른나라그림책"><label for="category11" class="">다른나라그림책</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category12" value="어린이동화(초1~2학년)"><label for="category12" class="">어린이동화(초1~2학년)</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category13" value="어린이동화(초3~4학년)"><label for="category13" class="">어린이동화(초3~4학년)</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category14" value="어린이동화(초5~6학년)"><label for="category14" class="">어린이동화(초5~6학년)</label>&nbsp;
+					<input type="checkbox" name="usedboard_Category" id="category15" value="어린이동화(공통)"><label for="category15" class="">어린이동화(공통)</label>&nbsp;
 				</li>
 				<li>
 					<div id="attachFileDiv">
@@ -212,7 +199,7 @@ attachFile = {
 
   		const result=confirm("정말로 취소하시겠습니까?");
 		if(result){
-			location.assign('<%=request.getContextPath()%>/borad/mainBorad');			
+			location.assign('${path}/usedboard/usedboardList.do');			
 		}	
 
 	};

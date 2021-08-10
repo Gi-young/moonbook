@@ -86,7 +86,7 @@ aside button:hover {
     padding-left: 30px;
 }
 
-#markList ul>li {
+#markList>ul>li {
     margin-bottom: 15px;
 }
 
@@ -96,10 +96,11 @@ aside button:hover {
 
 #markList>ul>li>ul {
     font-weight: normal;
-    margin-left: 20px;
     margin-top: 5px;
     padding: 0;
     list-style: none;
+    width: 100%;
+    display: none;
 }
 
 #markController {
@@ -126,6 +127,20 @@ aside button:hover {
 
 .lowRankUl {
     display: none;
+}
+
+.lowRankUl>li {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 3px 10px 3px 10px;
+    width: fit-content;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+
+.lowRankUl>li>button {
+    margin-left: 5px;
+    padding: 0 5px 0 5px;
 }
 
 #textTurmoil {

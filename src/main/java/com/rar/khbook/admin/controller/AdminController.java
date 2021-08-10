@@ -1,8 +1,13 @@
 package com.rar.khbook.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
@@ -11,12 +16,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.admin.model.service.AdminService;
+import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.common.PageFactoryAdmin;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
@@ -730,9 +738,44 @@ public class AdminController {
 	
 	//쿠폰등록
 	@RequestMapping("/admin/addCouponList.do")
-	public ModelAndView addCouponList(ModelAndView mv,@RequestParam Map param) {
+	public ModelAndView addCouponList(ModelAndView mv,MultipartFile couponImg
+			,@RequestParam Map param,HttpServletRequest req) {
 		
+		/*String couponImg=(String)param.get("couponImg");
+		param.put("couponImg", couponImg);*/
+		
+		String path=req.getServletContext().getRealPath("/resources/upload/admin/");
+		File dir=new File(path);
+		
+		String price=(String)param.get("couponlistAmount");
+		
+		if(!dir.exists()) dir.mkdirs();
+		
+		if(!couponImg.isEmpty()) {
+			String oriFilename=couponImg.getOriginalFilename();
+			String ext=oriFilename.substring(oriFilename.lastIndexOf("."));
+			//리넴 규칙 설정
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+			int rndNum=(int)Math.random()*10000;
+			String reName=sdf.format(System.currentTimeMillis())+"_"+rndNum+"_"+price+ext;
+			
+			try {
+				couponImg.transferTo(new File(path+reName));
+				
+				
+				//여기서 선생님은 b 객체를 이용해서 b.getAttachments를 사용
+				param.put("couponImg",reName);
+				//c.getAttachments().add(CouponAttachment.builder().originalFilename(oriFilename).renamedFilename(reName).build());
+				//c.setCouponImg(reName);
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("couponImg"+couponImg);
+
 		int result=service.addCouponList(param);
+				//service.addCouponList();
 		String msg="";
 		String loc="";
 		if(result>0) {
@@ -847,10 +890,6 @@ public class AdminController {
 			
 			 result +=service.insertCoupon(param);
 		}
-		
-		
-		
-		
 		//int result =service.inputCouponAdminGrade(param);
 		
 		String msg="";
@@ -871,17 +910,146 @@ public class AdminController {
 	}
 	
 	
-	// 쿠폰 조회해보기
+	// 쿠폰 조회
 	@RequestMapping("/admin/searchCouponlist.do")
-	public ModelAndView searchCouponList(ModelAndView mv){
+	public ModelAndView searchCouponList(@RequestParam(value="cPage", defaultValue="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv){
 		
-		List<Couponlist> list =service.searchCouponList();
+		List<Couponlist> list =service.searchCouponList(cPage,numPerpage);
+		int totalData=service.selectCouponListCount();
 		
 		mv.addObject("list", list);
-		
-		mv.setViewName("admin/inputCoupon2");
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
+		mv.setViewName("admin/searchCoupon");
 		
 		return mv;
 	}
+	//옥션 종류 페이지 
+	@RequestMapping("/admin/adminAuctionCatePage.do")
+	public ModelAndView adminAuctionCatePage(ModelAndView mv) {
+		
+		List<AuctionCate> list=service.selectAuctionList();
+		
+		mv.addObject("list",list);
+		
+		mv.setViewName("admin/adminAuctionCate");
+		return mv;
+	}
+	//옥션 카테고리 내 종류 추가
+	@RequestMapping("/admin/addAuctionCate.do")
+	public ModelAndView addAuctionCate(ModelAndView mv,@RequestParam Map param) {
+		
+		int result=service.addAuctionCate(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="카테고리가 추가되었습니다";
+			
+		}else {
+			msg="카테고리 추가 실패";
+		}
+		loc="/admin/adminAuctionCatePage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	//옥션 카테고리 종류 삭제
+	@RequestMapping("/admin/deleteAuctionCate.do")
+	public ModelAndView deleteAuctionCate(ModelAndView mv,@RequestParam Map param) {
+		int result=service.deleteAuctionCate(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="카테고리가 삭제되었습니다";
+			
+		}else {
+			msg="카테고리 삭제 실패";
+		}
+		loc="/admin/adminAuctionCatePage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	//배송관리 페이지
+	@RequestMapping("/admin/deliveryManagementPage.do")
+	public ModelAndView deliveryManagementPage(@RequestParam(value="cPage", defaultValue="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
+		
+		List<Delivery> list=service.selectDeliveryList(cPage,numPerpage);
+		int totalData=service.selectDeliveryCount();
+		
+		mv.addObject("list",list);
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "deliveryManagementPage.do"));
+		
+		mv.setViewName("admin/deliveryManagement");
+		return mv;
+	}
+	
+	//배송 insert
+	@RequestMapping("/admin/insertDelivery.do")
+	public ModelAndView insertDelivery(@RequestParam Map param,ModelAndView mv) {
+		
+		int result=service.insertDelivery(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="배송이 추가되었습니다";
+			
+		}else {
+			msg="배송 추가 실패";
+		}
+		loc="/admin/deliveryManagementPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	//배송 update
+	@RequestMapping("/admin/updateDelivery.do")
+	public ModelAndView updateDelivery(@RequestParam Map param,ModelAndView mv) {
+		int result=service.updateDelivery(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="배송이 갱신되었습니다";
+			
+		}else {
+			msg="배송 갱신 실패";
+		}
+		loc="/admin/deliveryManagementPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	//배송 delete
+	@RequestMapping("/admin/deleteDelivery.do")
+	public ModelAndView deleteDelivery(@RequestParam Map param,ModelAndView mv) {
+		int result=service.deleteDelivery(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="해당 배송이 삭제되었습니다";
+			
+		}else {
+			msg="배송 삭제 실패";
+		}
+		loc="/admin/deliveryManagementPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
 	
 }

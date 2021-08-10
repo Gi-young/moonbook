@@ -259,4 +259,19 @@ public class EbookServiceImpl implements EbookService {
 		return dao.getCustomBookmark(session, param);
 	}
 	
+	@Override
+	public int deleteCustomBookmark(Map param) {
+		return dao.deleteCustomBookmark(session, param);
+	}
+	
+	@Override
+	public int lastPage(Map param) {
+		return dao.lastPage(session, param);
+	}
+	
+	@Override
+	public int getLastPage(String bindNo, String loginMemberId) {
+		return dao.getLastPage(session, bindNo, loginMemberId);
+	}
+	
 }

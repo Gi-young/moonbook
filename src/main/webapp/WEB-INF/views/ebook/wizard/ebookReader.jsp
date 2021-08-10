@@ -86,6 +86,7 @@
 	<input type="hidden" id="bindNo" value="${bindNo}">
 	<input type="hidden" id="filepath" value="${filepath}">
 	<input type="hidden" id="autoplay" value="${cookie.grantAutoplay.value}">
+	<input type="hidden" id="lastPage" value="${lastPage}">
 	
 	<script src='https://unpkg.com/tesseract.js@v2.1.0/dist/tesseract.min.js'></script>
 	<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>

@@ -259,4 +259,23 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectList("ebook.getCustomBookmark", param);
 	}
 	
+	@Override
+	public int deleteCustomBookmark(SqlSession session, Map param) {
+		return session.delete("ebook.deleteCustomBookmark", param);
+	}
+	
+	@Override
+	public int lastPage(SqlSession session, Map param) {
+		return session.update("ebook.lastPage", param);
+	}
+	
+	@Override
+	public int getLastPage(SqlSession session, String bindNo, String loginMemberId) {
+		Map param = new HashMap();
+		param.put("bindNo", Integer.parseInt(bindNo));
+		param.put("loginMemberId", loginMemberId);
+		
+		return session.selectOne("ebook.getLastPage", param);
+	}
+	
 }

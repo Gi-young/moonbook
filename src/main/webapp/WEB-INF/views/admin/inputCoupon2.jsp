@@ -71,12 +71,12 @@
 								<input type="number" min="1" value=""  name="couponinvalid" >
 							</td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<th>쿠폰이미지</th>
 							<td>
 								<input type="text"  name="couponImg" required>
 							</td>
-						</tr>
+						</tr> -->
 						<tr>
 							<td colspan="2">
 								<input type="submit" id="submitBtn" value="발급" onclick="return checkCouponNum(event);">
@@ -167,7 +167,7 @@
 				
 				couponInvalid.value =data.couponlistInvalid;
 				
-				if(couponlistNum=== "1"){
+				/* if(couponlistNum=== "1"){
 					couponImg.value="/21PM_moonbook_final/resources/images/icon_level_1_s.png";
 				}else if(couponlistNum==="2"){
 					couponImg.value="/21PM_moonbook_final/resources/images/icon_level_2_s.png";
@@ -175,7 +175,7 @@
 					couponImg.value="/21PM_moonbook_final/resources/images/icon_level_3_s.png";
 				}else if(couponlistNum==="4"){
 					couponImg.value="/21PM_moonbook_final/resources/images/icon_level_4_s.png";
-				}
+				} */
 			}
 		})
 		
@@ -196,7 +196,7 @@
 			success: data=>{
 				couponInvalid.value =data.couponlistInvalid;
 				
-				if(couponlistNum=== "1"){
+				/* if(couponlistNum=== "1"){
 					couponImg.value="/21PM_moonbook_final/resources/images/icon_level_1_s.png";
 				}else if(couponlistNum==="2"){
 					couponImg.value="/21PM_moonbook_final/resources/images/icon_level_2_s.png";
@@ -204,7 +204,7 @@
 					couponImg.value="/21PM_moonbook_final/resources/images/icon_level_3_s.png";
 				}else if(couponlistNum==="4"){
 					couponImg.value="/21PM_moonbook_final/resources/images/icon_level_4_s.png";
-				}
+				} */
 			}
 		})
 		

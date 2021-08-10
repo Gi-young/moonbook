@@ -98,4 +98,10 @@ public interface EbookService {
 	
 	List<HashMap> getCustomBookmark(Map param);
 	
+	int deleteCustomBookmark(Map param);
+	
+	int lastPage(Map param);
+	
+	int getLastPage(String bindNo, String loginMemberId);
+	
 }

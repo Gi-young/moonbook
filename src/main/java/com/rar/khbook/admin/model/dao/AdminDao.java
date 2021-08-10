@@ -7,7 +7,9 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
+import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
@@ -82,7 +84,9 @@ public interface AdminDao {
 	
 	int stockTDelete2(SqlSession session,Map param);
 	
+	//쿠폰 등록
 	int addCouponList(SqlSession session,Map param);
+	//int insertAttachment(SqlSession session,CouponAttachment a);
 	
 	Member searchGrade(SqlSession session,Map param);
 	
@@ -97,5 +101,21 @@ public interface AdminDao {
 	int insertCoupon(SqlSession session,Map param);
 	
 	
-	List<Couponlist> searchCouponList(SqlSession session);
+	List<Couponlist> searchCouponList(SqlSession session,int cPage,int numPerpage);
+	int selectCouponListCount(SqlSession session);
+	
+	List<AuctionCate> selectAuctionList(SqlSession session);
+	
+	int addAuctionCate(SqlSession session,Map param);
+	
+	int deleteAuctionCate(SqlSession session,Map param);
+	
+	List<Delivery> selectDeliveryList(SqlSession session,int cPage,int numPerpage);
+	int selectDeliveryCount(SqlSession session);
+	
+	int insertDelivery(SqlSession session,Map param);
+	
+	int updateDelivery(SqlSession session,Map param);
+	
+	int deleteDelivery(SqlSession session,Map param);
 }

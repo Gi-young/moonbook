@@ -43,10 +43,12 @@
    
    <beans:bean id="wizardHandler" class="com.rar.khbook.ebook.server.EbookWizardServer"/>
    <beans:bean id="debateHandler" class="com.rar.khbook.ebook.server.EbookDebateServer"/>
+   <beans:bean id="auctionHandler" class="com.rar.khbook.auction.server.AuctionServer"/>
    
 	<websocket:handlers>
 		<websocket:mapping handler="wizardHandler" path="/wizard"/>
 		<websocket:mapping handler="debateHandler" path="/debate"/>
+		<websocket:mapping handler="auctionHandler" path="/auction"/>
 		<websocket:handshake-interceptors>
 			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
 		</websocket:handshake-interceptors>
@@ -76,6 +78,11 @@
 		</interceptor>
 		<interceptor>
 			<mapping path="/SellbookController/*.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<!-- 낄껴 좀 하겠습니다. -->
+		<interceptor>
+			<mapping path="/gift/giftPayment.do"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
 		</interceptor>
 	</interceptors>

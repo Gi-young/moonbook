@@ -100,4 +100,10 @@ public interface EbookDao {
 	
 	List<HashMap> getCustomBookmark(SqlSession session, Map param);
 	
+	int deleteCustomBookmark(SqlSession session, Map param);
+	
+	int lastPage(SqlSession session, Map param);
+	
+	int getLastPage(SqlSession session, String bindNo, String loginMemberId);
+	
 }

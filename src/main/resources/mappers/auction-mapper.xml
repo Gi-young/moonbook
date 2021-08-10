@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="auction">
-	<!-- 낙찰 받기 -->
+	<!-- 경매 판매자 구매자 관리 -->
+	<update id="auctionBuySell">
+	UPDATE AUCTION SET ${state} = 'Y' WHERE AUCTION_NO=#{auctionNo}
+	</update>
+	
+	<!-- 경매 관리 -->
+	<select id="auctionAdmin" resultMap="AuctionMap">
+	select * from auctioncate join auction using(auctioncate_code) left join auctionbid using(auction_no) WHERE 1=1
+	ORDER BY BID_PRICE DESC
+	</select>
+	
+
+	<!--경매 상태 체인지-->
 	<update id="updatestateS">
-	UPDATE AUCTION SET AUCTION_STATE='S' WHERE AUCTION_NO=#{auctionNo}
+	UPDATE AUCTION SET 
+	<if test="S !=null and S!=''">
+	AUCTION_STATE='S' 
+	</if>
+	<if test="B !=null and B!=''">
+	AUCTION_STATE='B' 
+	</if>
+	WHERE AUCTION_NO=#{auctionNo}
 	</update>
 	
 	<!-- 포인트 충전하기 -->
@@ -56,6 +75,9 @@
 	<insert id="insertauctionBid">
 	INSERT INTO AUCTIONBID VALUES(SEQ_AUCTIONBID_NO.NEXTVAL,#{auctionNo},#{bidId},#{bidPrice},#{auctionName})
 	</insert>
+	<update id="updateAddbid">
+	UPDATE AUCTIONBID SET BID_PRICE = BID_PRICE + #{bidPrice} WHERE BID_NO=#{bidNo}
+	</update>
 	
 	<select id="auctionNo" resultMap="AuctionMap">
 	    select * from auctioncate join auction using(auctioncate_code) left join auctionbid using(auction_no) where auction_no=#{auctionNo} ORDER BY BID_PRICE desc
@@ -163,7 +185,6 @@
 
 		
 	</resultMap>
-	
 		<resultMap type="member" id="memberMap">
 		<result column="member_id" property="memberId" />
 		<result column="member_pw" property="memberPw" />

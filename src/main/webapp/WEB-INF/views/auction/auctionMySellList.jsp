@@ -57,7 +57,12 @@
 							</c:when>
 							<c:when test="${a.auctionState eq 'S' }">
 								<span>낙찰</span>
+								<c:if test="${a.sellerState eq 'N' }">
 								<button onclick="open('${path}/auction/auctionSpage?auctionNo=${a.auctionNo }&bidId=${a.auctionbid[0].bidId }','auctionbid','width=500,height=600')">배송 확인하기</button>
+								</c:if>
+								<c:if test="${a.sellerState eq 'Y' }">
+								<span style="color:blue;"> 배송 완료</span>
+								</c:if>
 								<p>낙찰자 아이디 ${a.auctionbid[0].bidId }</p>
 								<p>낙찰 가격 : ${a.auctionbid[0].bidPrice }</p>
 						</c:when>
