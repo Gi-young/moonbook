@@ -13,6 +13,7 @@ import com.rar.khbook.admin.model.dao.AdminDao;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.CouponAttachment;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
@@ -328,6 +329,38 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.deleteAuctionCate(session,param);
 	}
+
+	@Override
+	public List<Delivery> selectDeliveryList(int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.selectDeliveryList(session,cPage,numPerpage);
+	}
+
+	@Override
+	public int selectDeliveryCount() {
+		// TODO Auto-generated method stub
+		return dao.selectDeliveryCount(session);
+	}
+
+	@Override
+	public int insertDelivery(Map param) {
+		// TODO Auto-generated method stub
+		return dao.insertDelivery(session,param);
+	}
+
+	@Override
+	public int updateDelivery(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateDelivery(session,param);
+	}
+
+	@Override
+	public int deleteDelivery(Map param) {
+		// TODO Auto-generated method stub
+		return dao.deleteDelivery(session,param);
+	}
+	
+	
 	
 	
 	

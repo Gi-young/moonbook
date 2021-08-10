@@ -24,6 +24,7 @@ import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.common.PageFactoryAdmin;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
@@ -974,6 +975,81 @@ public class AdminController {
 		mv.setViewName("common/msg");
 		return mv;
 	}
+	//배송관리 페이지
+	@RequestMapping("/admin/deliveryManagementPage.do")
+	public ModelAndView deliveryManagementPage(@RequestParam(value="cPage", defaultValue="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
+		
+		List<Delivery> list=service.selectDeliveryList(cPage,numPerpage);
+		int totalData=service.selectDeliveryCount();
+		
+		mv.addObject("list",list);
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "deliveryManagementPage.do"));
+		
+		mv.setViewName("admin/deliveryManagement");
+		return mv;
+	}
+	
+	//배송 insert
+	@RequestMapping("/admin/insertDelivery.do")
+	public ModelAndView insertDelivery(@RequestParam Map param,ModelAndView mv) {
+		
+		int result=service.insertDelivery(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="배송이 추가되었습니다";
+			
+		}else {
+			msg="배송 추가 실패";
+		}
+		loc="/admin/deliveryManagementPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	//배송 update
+	@RequestMapping("/admin/updateDelivery.do")
+	public ModelAndView updateDelivery(@RequestParam Map param,ModelAndView mv) {
+		int result=service.updateDelivery(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="배송이 갱신되었습니다";
+			
+		}else {
+			msg="배송 갱신 실패";
+		}
+		loc="/admin/deliveryManagementPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	//배송 delete
+	@RequestMapping("/admin/deleteDelivery.do")
+	public ModelAndView deleteDelivery(@RequestParam Map param,ModelAndView mv) {
+		int result=service.deleteDelivery(param);
+		
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="해당 배송이 삭제되었습니다";
+			
+		}else {
+			msg="배송 삭제 실패";
+		}
+		loc="/admin/deliveryManagementPage.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
 	
 	
 }

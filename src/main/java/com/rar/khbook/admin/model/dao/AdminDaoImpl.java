@@ -13,6 +13,7 @@ import com.rar.khbook.coupon.model.vo.CouponAttachment;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.gift.model.vo.Ngift;
@@ -334,6 +335,37 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.delete("admin.deleteAuctionCate",param);
 	}
+
+	@Override
+	public List<Delivery> selectDeliveryList(SqlSession session, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.selectDeliveryList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int selectDeliveryCount(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectDeliveryCount");
+	}
+
+	@Override
+	public int insertDelivery(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("admin.insertDelivery",param);
+	}
+
+	@Override
+	public int updateDelivery(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("admin.updateDelivery",param);
+	}
+
+	@Override
+	public int deleteDelivery(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("admin.deleteDelivery",param);
+	}
+	
 	
 	
 	

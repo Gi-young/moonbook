@@ -8,6 +8,7 @@ import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
@@ -117,5 +118,16 @@ public interface AdminService {
 	
 	//경매 카테고리 삭제
 	int deleteAuctionCate(Map param);
+	
+	//배송 페이지
+	List<Delivery> selectDeliveryList(int cPage,int numPerpage);
+	int selectDeliveryCount();
+	
+	//배송 추가
+	int insertDelivery(Map param);
+	//배송 갱신
+	int updateDelivery(Map param);
+	//배송 삭제
+	int deleteDelivery(Map param);
 	
 }
