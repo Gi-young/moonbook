@@ -12,7 +12,27 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMyBuyList.css">
 
 	<div id="wrap">
-        <div id="container">	
+        <div id="container">
+        	<div style="margin-bottom:30px;">
+				<table id="auction_mylist_table" style="width: 100%;">
+				    <tr>
+				        <th>총 건</th>
+				        <th>진행 중</th>
+				        <th>낙찰</th>
+				        <th>유찰</th>
+				        <th>마감</th>
+				    </tr>
+				    <tr>
+				        <td>${totaldata } 건</td>
+				        <td>${Y } </td>
+				        <td>${S }</td>
+				        <td>${N==null?"0":N} </td>
+				        <td>${B==null?"0":B} </td>
+				
+				    </tr>
+				
+				</table>
+        	</div>	
 			<div>
 				<table style="width: 100%;  text-align: center;" id="buylertable">
 					<tr style="    font-weight: bold; font-size: 19px;    ">
@@ -62,6 +82,7 @@
 					</c:forEach>	
 				</table>
 			</div>
+			<div class="pageBar">${pageBar }</div>
         </div>
     </div>
 

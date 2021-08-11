@@ -59,7 +59,7 @@
 		</div>
 		
 		<div style="font-size:20px;"> 총 검색 결과<span style="color:red;"> ${totaldata } </span> 건</div>
-			<div style="overflow-x: scroll;">
+			<div>
 				<table id="table2">
 					<tr style="background-color: beige;">
 						<th>경매 번호</th>
@@ -152,6 +152,7 @@
 					</c:forEach>
 				</table>
 			</div>
+			<div class="pageBar">${pageBar }</div>
 		</div>
 	</div>
 	

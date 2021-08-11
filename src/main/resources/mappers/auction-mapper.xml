@@ -90,7 +90,7 @@
 	</select>
 	<!-- 마이 경매 리스트 -->
 	<select id="auctionStateCount" resultType="_int">
-	select count(*) from auction JOIN AUCTIONBID USING(AUCTION_NO) WHERE 1=1
+	select count(distinct(auction_no)) from auction left JOIN AUCTIONBID USING(AUCTION_NO) WHERE 1=1
 	<if test="memberId !=null and memberId!=''">
 	AND member_id=#{memberId}
 	</if>

@@ -33,7 +33,7 @@
 			                    	<option value="none">===선택===</option>
 			                        <option value="도서">도서</option>
 			                        <option value="문구">문구</option>
-			                        <option value="기타">기타</option>
+			                        <option value="음반">음반</option>
 			                    </select>
 			         
 			                     <select name="level2" id="level2" >
