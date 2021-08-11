@@ -2,41 +2,30 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="path" value="${pageContext.request.contextPath }"/>  
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
-    <div id="wrap">
-   	 <div id="container">
-		 <div class="auctionPay">
-		                <p style="font-weight: bold">카카오페이 결제</p>
-						<label>충전할 금액</label><input type="number" name="cp_item"> <br>			
-		                <button type="button" class="btn btn-lg btn-block  btn-custom" id="charge_kakao">충 전 하 기</button>
-		 	</div>
-		 	</div>
-		 </div>
-		 <style>
- #wrap{
-	text-align:center;
-}
-#container{
-	text-align: left;
-    width: 950px;
-    border: 1px solid black;
-	display: inline-block;
-}
-.auctionPay{
-	text-align: center;
-}
-		 </style>
- <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
-<jsp:param name="" value=""/>
-</jsp:include>
- <script>
-    $('#charge_kakao').click(function () {
+
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionpay.css">
+	
+	<div id="wrap">
+		<div id="container">
+			<div class="auctionPay">
+				<p style="font-weight: bold">카카오페이 결제</p>
+				
+				<label>충전할 금액</label><input type="number" name="cp_item"> <br>			
+				<button type="button" class="btn btn-lg btn-block  btn-custom" id="charge_kakao">충 전 하 기</button>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script>
+	$('#charge_kakao').click(function () {
         // getter
         var IMP = window.IMP;
         IMP.init('imp66510369');
@@ -64,6 +53,9 @@
             alert(msg);
             document.location.href="${path}/auction/auction"; //alert창 확인 후 이동할 url 설정
         });
-    });
+	});
 </script>
 
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
+	<jsp:param name="" value=""/>
+</jsp:include>

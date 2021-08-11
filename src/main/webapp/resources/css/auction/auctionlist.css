@@ -1,0 +1,46 @@
+@charset "UTF-8";
+.auctionlist_level2{
+    border: 1px solid black;
+    height: 150px;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.auctionlist_level2 div{
+    text-align: center;
+    width: 215px;
+    background-color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 20px 10px 20px 10px;
+}
+
+.auctionlist_level2 div a{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.auctionlist>table{
+    width: 100%;
+    border: 1px;
+}
+
+.auctionlist table tr td{
+    border-right: silver 1px dotted;
+    vertical-align: middle;
+}
+
+.auctionlist_img{
+   width: 150px;
+    height: 100px;
+    text-align: center;
+}
+
+.auctionlist_img>img{
+    width: 150px;
+    height: 100px;
+}
+
+.auctionlist_person{
+    text-align: right;
+}

@@ -24,8 +24,10 @@
 					<span>판매자 아이디</span>	<input type="text" value="${auction.memberId }" readonly="readonly" id="seller"> <br>
 				
 					<span>시작 금액</span>	<fmt:formatNumber value="${auction.startPrice }" type="currency"/> <br>
+					
 					<input type="hidden" value="${auction.startPrice }" readonly="readonly" id="startPrice">
 					<span>즉시 구매가</span><fmt:formatNumber value="${auction.buyNow }" type="currency"/> <br>
+					
 					<input type="hidden" value="${auction.buyNow }" readonly="readonly" id="buynow">
 				</div>
 				
@@ -40,23 +42,23 @@
 								<td>${bid.bidPrice }</td>
 									<td>최고입찰자</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th colspan="2">입찰기록</th>
-								</tr>
-								<tr>
+								</tr> -->
+								<!-- <tr>
 									<th>아이디</th>
 									<th>입찰 금액</th>
-								</tr>
+								</tr> -->
 							</c:if>
 							
 							<input type="hidden" value="${bid.bidNo }" class="hiddenbidNo">
 							<input type="hidden" value="${bid.bidId }" class="hiddenbidId">
 							<input type="hidden" value="${bid.bidPrice }" class="hiddenbidPrice">
 						 	
-						 	<tr>
+						 	<%-- <tr>
 								<td>${bid.bidId }</td>
 								<td>${bid.bidPrice }</td>
-							</tr>
+							</tr> --%>
 						</c:forEach>
 					</table>
 				</div>
@@ -161,3 +163,4 @@
 	</script>
 	
 </body>
+</html>

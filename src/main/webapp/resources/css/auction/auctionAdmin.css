@@ -1,0 +1,54 @@
+@charset "UTF-8";
+.table_tr{
+
+}
+
+.bidlogcheck>th{
+	background-color: silver;
+}
+
+#table2 tbody tr td{
+	border:1px solid black;
+	font-size:16px;
+	font-weight:bold;
+	padding:10px;
+}
+
+#table2 tbody tr th{
+	border:1px solid black;
+	font-weight: bolder;
+	vertical-align: middle;
+ 	display: table-cell;
+    text-align: center;	
+    padding:10px;
+}
+
+table{
+	width: max-content;
+	border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+td{
+	text-align:center;
+}
+
+a{
+    text-decoration: none;
+}
+
+#wrap{
+	text-align:center;
+}
+
+#container{
+	text-align: left;
+    width: 950px;
+    border: 1px solid black;
+	display: inline-block;
+}
+
+.bidlog{
+	display:none;
+}

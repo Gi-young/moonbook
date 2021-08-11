@@ -77,8 +77,7 @@
 	            </div>
 	        </div>
 	        
-	
-	        <!--입찰자가 많은 순-->
+			<!--마감 직전 경매물품-->
 	        <div class="auction_main_po">
 	            <h2 class="auction_main_title">마감 임박 매물</h2>
 	          
@@ -110,9 +109,8 @@
 	
 	        </div>
 	
-	        <!--마감 직전 경매물품-->
-	   
-	        <div class="auction_main_de">
+	   		<!--입찰자가 많은 순-->
+	        <%-- <div class="auction_main_de">
 				<h2 class="auction_main_title">인기 매물</h2>
 	           
 				<c:forEach var="t" items="${poplist }">
@@ -135,7 +133,7 @@
 					    </div>
 					</div>
 				</c:forEach>
-	        </div>
+	        </div> --%>
 		</div>
 	</div>
 

@@ -2,15 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="path" value="${pageContext.request.contextPath }"/>  
 
-
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
-   <jsp:param name="" value=""/>
+	<jsp:param name="" value=""/>
 </jsp:include>
- <div id="wrap">
- ${auction }
 
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMyBuyList.css">
+
+	<div id="wrap">
         <div id="container">	
 			<div>
 				<table style="width: 100%;  text-align: center;">
@@ -58,49 +59,9 @@
 					</c:forEach>	
 				</table>
 			</div>
-
         </div>
     </div>
-<style>
-.auction_mylist_img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-.auction_mylist_img img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-#auction_mylist_table{
-    width: 100%;
-    text-align: center;
-}
-#auction_mylist_table>tbody>tr>td{
-	text-aglin:center;
-	vertical-align: middle;
-}
-#wrap{
-	text-align:center;
-}
-#container{
-	text-align: left;
-    width: 950px;
-    border: 1px solid black;
-	display: inline-block;
-}
-.auction_main_po_right{
-	width:300px
-}
-th{
-    font-weight: bolder;
-}
-.buylisttr td{
-	vertical-align: middle;
-}
-
-</style>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
-<jsp:param name="" value=""/>
+	<jsp:param name="" value=""/>
 </jsp:include>

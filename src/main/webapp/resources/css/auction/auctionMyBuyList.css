@@ -1,0 +1,44 @@
+@charset "UTF-8";
+.auction_mylist_img{
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+}
+
+.auction_mylist_img img{
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+}
+#auction_mylist_table{
+    width: 100%;
+    text-align: center;
+}
+
+#auction_mylist_table>tbody>tr>td{
+	text-aglin:center;
+	vertical-align: middle;
+}
+
+#wrap{
+	text-align:center;
+}
+
+#container{
+	text-align: left;
+    width: 950px;
+    border: 1px solid black;
+	display: inline-block;
+}
+
+.auction_main_po_right{
+	width:300px
+}
+
+th{
+    font-weight: bolder;
+}
+
+.buylisttr td{
+	vertical-align: middle;
+}

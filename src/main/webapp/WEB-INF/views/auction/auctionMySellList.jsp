@@ -2,35 +2,37 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="path" value="${pageContext.request.contextPath }"/>  
 
-
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
-   <jsp:param name="" value=""/>
+	<jsp:param name="" value=""/>
 </jsp:include>
- <div id="wrap">
-        <div id="container">
-            <div style="margin-bottom:30px;">
-                <table id="auction_mylist_table" style="width: 100%;">
-                    <tr>
-                        <th>총 건</th>
-                        <th>진행 중</th>
-                        <th>낙찰</th>
-                        <th>유찰</th>
-                    </tr>
-                    <tr>
-                        <td>${totaldata } 건</td>
-                        <td>${Y } </td>
-                        <td>${S }</td>
-                        <td>${N==null?"0":N} </td>
 
-                    </tr>
+	<link ref="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMySellList.css">
 
-                </table>
-                
-            </div>
-          
-   			<div>
+	<div id="wrap">
+		<div id="container">
+			<div style="margin-bottom:30px;">
+				<table id="auction_mylist_table" style="width: 100%;">
+				    <tr>
+				        <th>총 건</th>
+				        <th>진행 중</th>
+				        <th>낙찰</th>
+				        <th>유찰</th>
+				    </tr>
+				    <tr>
+				        <td>${totaldata } 건</td>
+				        <td>${Y } </td>
+				        <td>${S }</td>
+				        <td>${N==null?"0":N} </td>
+				
+				    </tr>
+				
+				</table>
+        	</div>
+      
+			<div>
 				<table id="auction_mylist_table2">
 					<tr style="    font-weight: bold; font-size: 19px;    ">
 						<th>경매번호</th>
@@ -71,62 +73,9 @@
 					</c:forEach>	
 				</table>
 			</div>
-        </div>
-    </div>
-<style>
+		</div>
+	</div>
 
-.auction_mylist_img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-.auction_mylist_img img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-#auction_mylist_table{
-    width: 100%;
-    text-align:center;
-    border: 1px solid black;
-}
-#auction_mylist_table tr td{
-	 border: 1px solid black;
-}
-#auction_mylist_table tr th{
-	 border: 1px solid black;
-}
-#auction_mylist_table2{
-    width: 100%;
-    text-align:center;
-    border: 1px solid black;
-}
-#auction_mylist_table2 tr{
-	border-bottom:1px solid black;
-}
-#auction_mylist_table2 tr td{
-	padding:10px 10px 10px 10px;
-}
-#wrap{
-	text-align:center;
-}
-#container{
-	text-align: left;
-    width: 950px;
-    border: 1px solid black;
-	display: inline-block;
-}
-.auction_main_po_right{
-	width:300px
-}
-tr td{
-	vertical-align: middle;
-}
-tr{
-	border-bottom: 1px solid black;
-}
-
-</style>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
-<jsp:param name="" value=""/>
+	<jsp:param name="" value=""/>
 </jsp:include>
