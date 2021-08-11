@@ -76,6 +76,7 @@ $(".btnPay").click(e=> {
                                     url: contextPath + "/ebook/writePurchaseLog.do",
                                     type: "POST",
                                     data: {
+                                        
                                         impUid: rsp.imp_uid,
                                         merchantUid: rsp.merchant_uid,
                                         memberId: loginMemberId,

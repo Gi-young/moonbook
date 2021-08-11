@@ -1,5 +1,6 @@
 package com.rar.khbook.gift.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,5 +23,7 @@ public interface GiftDao {
 	
 	List<GiftBoard>  selectReview(SqlSession session, int giftNo);
 	
-	int reviewWrite(SqlSession session, int giftNo);
+	int reviewWrite(SqlSession session, HashMap map);
+
+	int selectReviewAll(SqlSession session);
 }
