@@ -15,15 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate.Param;
 import com.rar.khbook.auction.model.service.AuctionService;
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.common.PageFactory;
+import com.rar.khbook.common.PageFactoryAuction;
 import com.rar.khbook.member.model.vo.Member;
 
 @Controller
@@ -303,7 +302,7 @@ public class AuctionController {
 		System.out.println(param.get("type"));
 		m.addAttribute("totaldata",totaldata);
 		m.addAttribute("auction",service.auctionAdmin(param,cPage,numPerpage));
-//		m.addAttribute("pageBar",PageFactory.getOwnPageBar2(totaldata, cPage, numPerpage, "auctionAdmin",""));
+		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totaldata, cPage, numPerpage, "auctionAdmin",""));
 		return "auction/auctionAdmin";
 	}
 	@RequestMapping("/auction/auctionAdminCal")
