@@ -23,8 +23,9 @@ a{
 #container{
 	text-align: left;
     width: 950px;
-    border: 1px solid black;
-	display: inline-block;
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
+    display: inline-block;
 }
 
 .line{
