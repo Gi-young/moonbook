@@ -7,7 +7,7 @@
     align-items: center;
 }
 .admin-box1{
-	width: fit-content;
+	width: fix-content;
 	display:flex;
 	height:700px;
 	min-height:500px; 
@@ -23,7 +23,7 @@
 	flex-direction: column;
 	border-left: 1px solid #deded8;
 	border-right: 1px solid #deded8; 
-	width: 1000px;
+	width:1000px;
 }
 
 .admin-box4{
@@ -83,14 +83,14 @@
 	align-items: center;
 	justify-content:center;
 }
-.couponT-container{
+.bookAnalysisT-container{
 	height: 100%;
 	overflow-x:scroll;
 }
-.couponT{
+.bookAnalysisT{
 	/* width: 730px; */ 
 	/* width:auto; */
-	width: 1300px;
+	width: 1200px;
 	/* overflow-x: auto; */
 	margin-left: 20px;
 	/* margin-top:30px;  */
@@ -98,51 +98,41 @@
 	margin-bottom:20px;
 	table-layout:fixed;
 }
-.couponT input{
-	text-align:center;
-	width:100%;
-}
-.couponT tr>td:nth-child(1), .couponT tr>th:nth-child(1){
-	width: 120px;
-	text-align:center;
-}
-.couponT tr>td:nth-child(2), .couponT tr>th:nth-child(2){
-	width: 120px;
-	text-align:center;
-}
-.couponT tr>td:nth-child(3), .couponT tr>th:nth-child(3){
-	width: 120px;
-	text-align:center;
-}
-.couponT tr>td:nth-child(4), .couponT tr>th:nth-child(4){
-	width: 120px;
-	text-align:center;
-}
-.couponT tr>td:nth-child(5), .couponT tr>th:nth-child(5){
-	width: 120px;
-	text-align:center;
-}
-.couponT tr>td:nth-child(6), .couponT tr>th:nth-child(6){
-	width: 230px;
-	text-align:center;
-}
-.couponT tr>td:nth-child(7), .couponT tr>th:nth-child(7){
-	width: 300px;
-	text-align:center;
-}
-.couponT tr>td:nth-child(8), .couponT tr>th:nth-child(8){
-	width: 70px;
-	text-align:center;
-}
-.couponT tr>td:nth-child(9), .couponT tr>th:nth-child(9){
-	width: 70px;
-	text-align:center;
-}
-.couponT tbody{
+.bookAnalysisT tbody{
 	border: black 1px solid;
     border-collapse: collapse;
 }
-.couponT th{
+.bookAnalysisT input{
+	text-align:center;
+	width:100%;
+}
+
+.bookAnalysisT tr>td:nth-child(1), .bookAnalysisT tr>th:nth-child(1) {
+	width: 70px;
+	text-align: center;
+}
+
+.bookAnalysisT tr>td:nth-child(2), .bookAnalysisT tr>th:nth-child(2) {
+	width: 520px;
+	text-align: center;
+}
+.bookAnalysisT tr>td:nth-child(3), .bookAnalysisT tr>th:nth-child(3) {
+	width: 120px;
+	text-align: center;
+}
+.bookAnalysisT tr>td:nth-child(4), .bookAnalysisT tr>th:nth-child(4) {
+	width: 120px;
+	text-align: center;
+}
+.bookAnalysisT tr>td:nth-child(5), .bookAnalysisT tr>th:nth-child(5) {
+	width: 120px;
+	text-align: center;
+}
+.bookAnalysisT tr>td:nth-child(6), .bookAnalysisT tr>th:nth-child(6) {
+	width: 120px;
+	text-align: center;
+}
+.bookAnalysisT th{
 	/* width: 100px; */
 	height:30px;
 	background-color: #582810;
@@ -150,7 +140,7 @@
 	vertical-align: middle;
 }
 
-.couponT td{
+.bookAnalysisT td{
 	/* width: 100px; */
 }
 .updateCheck{
@@ -158,7 +148,11 @@
 	hight:20px;
 	cursor: pointer;
 }
-.turnRed{
+.turnRed1{
+	color:red;
+	font-weight: bold;
+}
+.turnRed2{
 	color:red;
 	font-weight: bold;
 }
@@ -171,7 +165,4 @@
 	font-weight: bold;
 	margin-left:20px;
 	margin-bottom:20px;
-}
-.Dodo1{
-	border: 1px solid black;
 }

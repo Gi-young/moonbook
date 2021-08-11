@@ -138,4 +138,19 @@ public interface AdminService {
 	//배송 삭제
 	int deleteDelivery(Map param);
 	
+	//매출 분석
+	//책 상세 총 매출액 계산 
+	int selectbookTotalCost(); 
+	
+	//책 상세 정렬방법 
+	List<EbookDatabind> orderBookAList(Map param);
+	//책 상세 정렬 페이지바
+	int getPageBarorderBookAList(Map param);
+	
+	//책 검색 
+	List<EbookDatabind> searchTextbookAList(Map param);
+	
+	int getPageBarsearchTextbookAList(Map param);
+	int searchbookTotalCost(Map param);
+	
 }

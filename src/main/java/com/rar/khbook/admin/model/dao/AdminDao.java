@@ -125,4 +125,16 @@ public interface AdminDao {
 	int updateDelivery(SqlSession session,Map param);
 	
 	int deleteDelivery(SqlSession session,Map param);
+	
+	int selectbookTotalCost(SqlSession session);
+	
+	List<EbookDatabind> orderBookAList(SqlSession session,Map param);
+	int getPageBarorderBookAList(SqlSession session,Map param);
+	
+	List<EbookDatabind> searchTextbookAList(SqlSession session,Map param);
+	
+	int getPageBarsearchTextbookAList(SqlSession session,Map param);
+	
+	int searchbookTotalCost(SqlSession session,Map param);
+	
 }

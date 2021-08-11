@@ -445,7 +445,7 @@
   	
   	<!-- 배송관리 -->
   	<select id="selectDeliveryList" resultMap="deliveryMap">
-  		SELECT * FROM DELIVERYT
+  		SELECT * FROM DELIVERYT ORDER BY DELIVERY_NO ASC
   	</select>
   	<select id="selectDeliveryCount" resultType="_int">
   		SELECT COUNT(*) FROM DELIVERYT
@@ -453,16 +453,87 @@
   	
   	<!-- 배송추가  -->
   	<insert id="insertDelivery">
-  		INSERT INTO DELIVERYT VALUES(SEQ_DELIVERY_NO.NEXTVAL,#{deliveryType1},#{deliveryType2})
+  		INSERT INTO DELIVERYT VALUES(SEQ_DELIVERY_NO.NEXTVAL,#{deliveryType1})
   	</insert>
   	<!-- 배송업데이트  -->
   	<update id="updateDelivery">
-  		UPDATE DELIVERYT SET DELIVERY_PRICE=#{deliveryType4},DELIVERY_STATUS=#{deliveryType5} WHERE DELIVERY_NO=#{deliveryType3}
+  		UPDATE DELIVERYT SET DELIVERY_PRICE=#{deliveryType4} WHERE DELIVERY_NO=#{deliveryType3}
   	</update>
   	<!-- 배송삭제 -->
   	<delete id="deleteDelivery">
   		DELETE FROM DELIVERYT WHERE DELIVERY_NO=#{deliveryType6}
   	</delete>
+  	
+  	<!-- 북 총매출액 계산 -->
+  	<select id="selectbookTotalCost" resultType="_int">
+  		SELECT SUM((PRICE-PRIME_COST)*SALES_VOLUME) AS TOTALCOST FROM BOOK_EBOOK_DATABIND
+  	</select>
+  	<!-- 매출관리 북 정렬 -->
+  	<select id="orderBookAList" resultMap="ebookDatabindMap">
+  		SELECT * FROM BOOK_EBOOK_DATABIND
+  		<if test="type18=='cost'">
+  			ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME ${order} NULLS LAST
+  		</if>
+  		<if test="type18=='profit'">
+  			ORDER BY (PRICE-PRIME_COST) ${order}
+  		</if>
+  		<if test="type18=='salesVolume'">
+  			ORDER BY SALES_VOLUME ${order}
+  		</if>
+  	</select>
+  	<!-- 매출관리 북 정렬 페이지바 -->
+  	<select id="getPageBarorderBookAList" resultType="_int">
+  		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND
+  		<if test="type18=='cost'">
+  			ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME ${order} NULLS LAST
+  		</if>
+  		<if test="type18=='profit'">
+  			ORDER BY (PRICE-PRIME_COST) ${order}
+  		</if>
+  		<if test="type18=='salesVolume'">
+  			ORDER BY SALES_VOLUME ${order}
+  		</if>
+  	</select>
+  	
+  	<!-- 매출관리 북 검색 -->
+  	<select id="searchTextbookAList" resultMap="ebookDatabindMap">
+  		SELECT * FROM BOOK_EBOOK_DATABIND WHERE
+  		<choose>
+			<when test="type19 == 'BIND_NO'">
+				 BIND_NO=#{search}
+			</when>
+			<when test="type19 == 'TITLE'">
+				TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+  		
+  	</select>
+  	<!-- 매출관리 북 검색 페이지바 -->
+  	<select id="getPageBarsearchTextbookAList" resultType="_int">
+  		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND WHERE
+  		<choose>
+			<when test="type19 == 'BIND_NO'">
+				 BIND_NO=#{search}
+			</when>
+			<when test="type19 == 'TITLE'">
+				TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+  	</select>
+  	<!-- 매출관리 북 total cost-->
+  	<select id="searchbookTotalCost" resultType="_int">
+  		SELECT SUM((PRICE-PRIME_COST)*SALES_VOLUME) FROM BOOK_EBOOK_DATABIND WHERE
+  		<choose>
+			<when test="type19 == 'BIND_NO'">
+				 BIND_NO=#{search}
+			</when>
+			<when test="type19 == 'TITLE'">
+				TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+  	</select>
+  	
+  	
   	
   	
 </mapper>

@@ -152,11 +152,17 @@
 
 .memberT td{
 	/* width: 100px; */
+	/* border: 1px solid black; */
 }
 .updateCheck{
 	width:20px;
 	hight:20px;
 	cursor: pointer;
+	/* border:1px solid black; */
+}
+.Dodo1{
+	border:1px solid black;
+	/* border-radius: 30%; */
 }
 .turnRed{
 	color:red;

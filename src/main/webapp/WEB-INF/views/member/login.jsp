@@ -41,7 +41,7 @@
 									value="${cookie.saveId.value}" id="memberId_"
 									placeholder="아이디를 대/소문자 구분하여 입력"> <input
 									type="password" name="memberPw" id="password"
-									placeholder="비밀번호를 대/소문자 구분하여 입력">
+									placeholder="비밀번호를 대/소문자 구분하여 입력" >
 							</div>
 							<div class="loginSubmit">
 								<input type="submit" name="로그인" value="로그인">

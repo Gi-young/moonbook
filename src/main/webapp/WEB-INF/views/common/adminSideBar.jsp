@@ -39,9 +39,9 @@
 			<!-- <li><p onclick="" class="adminColor2">수입및지출집계</p></li>
 			<li><p onclick="" class="adminColor2">일별매출집계</p></li> -->
 			<li><p onclick="" class="adminColor2">차트</p></li>
-			<li><p onclick="" class="adminColor2">책 상세</p></li>
-			<li><p onclick="" class="adminColor2">e북 상세</p></li>
-			<li><p onclick="" class="adminColor2">기프트 상세</p></li>
+			<li><p onclick="location.assign('${path}/admin/bookAnalysisPage.do')" class="adminColor2">책 상세</p></li>
+			<li><p onclick="location.assign('${path}/admin/ebookAnalysisPage.do')" class="adminColor2">e북 상세</p></li>
+			<li><p onclick="location.assign('${path}/admin/giftAnalysisPage.do')" class="adminColor2">기프트 상세</p></li>
 			<!-- <li><p onclick="" class="adminColor2">월별제품매출분석</p></li> -->
 		</ul>
 			</li>
