@@ -88,9 +88,9 @@
 	            <%int num=0; %>
 	            <c:forEach var="t" items="${timelist }">
 		            <div style="display: flex;" class="line">
-		                <div class="auction_main_po_img">
-		                    <a href="${path }/auction/acutionview?auctionNo=${t.auctionNo}">
-		                    <img src="${path }/resources/auction/images/${t.auctionImg[0]}" alt="#">
+		                <div class="auction_main_po_img" onclick="location.assign('${path }/auction/acutionview?auctionNo=${t.auctionNo}');">
+		                    <a>
+		                    	<img src="${path }/resources/auction/images/${t.auctionImg[0]}" alt="#">
 		                    </a>
 		                </div>
 		                <div class="auction_main_po_center">
@@ -99,7 +99,7 @@
 		                    </a>
 		                
 							<input type="hidden" value="${t.endDate }" name="timestemp">
-		                    <p class="countdown">마감까지 남은 시간 : <span id="countdown<%=num++ %>" style="font-size:20px"></span></p>
+		                    <p class="countdown">마감까지 남은 시간 : <span id="countdown<%=num++ %>"></span></p>
 		                    <p>경매시작 가격 : <span>${t.startPrice }</span></p>
 		                    <p>입찰 인원 수: <span>${t.auctionbid.size()}</span></p>
 		                    <p class="">바로 구매 : <span>${t.buyNow }</span></p>   
@@ -114,19 +114,19 @@
 	        </div>
 	
 	   		<!--입찰자가 많은 순-->
-	        <%-- <div class="auction_main_de">
+	        <div class="auction_main_de">
 				<h2 class="auction_main_title">인기 매물</h2>
 	           
 				<c:forEach var="t" items="${poplist }">
 					<div style="display: flex;" class="line">
-					    <div class="auction_main_po_img">
+					    <div class="auction_main_po_img" onclick="location.assign('${path}/auction/acutionview?auctionNo=${t.auctionNo}');">
 					        <img src="${path }/resources/auction/images/${t.auctionImg[0]}" alt="#">
 					    </div>
 					    <div class="auction_main_po_center">
 					        <strong>${t.auctionName} </strong>
 					  
 							<input type="hidden" value="${t.endDate }" name="timestemp">
-					        <p class="countdown">마감까지 남은 시간 : <span id="countdown<%=num++ %>" style="font-size:20px"></span></p>
+					        <p class="countdown">마감까지 남은 시간 : <span id="countdown<%=num++ %>"></span></p>
 					        <p>경매시작 가격 : <span>${t.startPrice }</span></p>
 					        <p>입찰 인원 수: <span>${t.count}</span></p>
 					        <p class="">바로 구매 : <span>${t.buyNow }</span></p>   
@@ -137,7 +137,7 @@
 					    </div>
 					</div>
 				</c:forEach>
-	        </div> --%>
+	        </div>
 		</div>
 	</div>
 
