@@ -41,6 +41,9 @@
 		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift" alias="nGift"/>
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftCate" alias="giftCate"/>
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftBoard" alias="giftBoard"/>
+	
+		<!-- 배송 -->
+		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery" alias="delivery"/>
 	</typeAliases>
 
 </configuration>
