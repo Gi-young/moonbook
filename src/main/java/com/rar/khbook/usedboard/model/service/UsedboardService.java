@@ -1,6 +1,7 @@
 package com.rar.khbook.usedboard.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
 import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
@@ -9,13 +10,9 @@ import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 public interface UsedboardService {
-	List<Usedboard> selectUsedboardList(int cPage, int numPerpage);
+	List<Usedboard> selectUsedboardList(int cPage, int numPerpage,Map<String,Object> map);
 	
-	int selectUsedboardCount();
-	
-	List<Usedboard> searchUsedboardList(int cPage, int numPerpage,String catagory);
-	
-	int searchUsedboardCount(String catagory);
+	int selectUsedboardCount(Map<String,Object> map);
 	
 	Usedboard selectUsedboardOne(int no);
 	
@@ -38,10 +35,6 @@ public interface UsedboardService {
 	List<Usedboardfile> usedboardfileSelect(int no);
 	
 	int usedboardPayment(int no, UsedboardPayment p);
-	
-	List<Usedboard> selectUsedboardMyList(int cPage, int numPerpage,String memberId);
-	
-	int selectUsedboardMyCount(String memberId);
 	
 	List<UsedboardPayment> usedboardMyPaymentList(int cPage, int numPerpage,String memberId);
 	  
