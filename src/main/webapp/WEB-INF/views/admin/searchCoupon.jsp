@@ -43,17 +43,17 @@
 							<tr>
 								<th>검색하기</th>
 								<td class="admin-search2">
-								<select name="type2">
+								<select name="type15">
 									<option value="COUPONLIST_NO" selected>쿠폰번호</option>
 									<option value="COUPONLIST_NAME" >쿠폰이름</option>
 								</select>
 								</td>
 								<td class="search-box">
-									<input type="text" name="searchHow3"> 
+									<input type="text" name="searchCoupon10"> 
 								</td>
 								<td class="search-box">
 									<img alt="검색하기"
-									src="${path }/resources/img/admin/search.png" onclick="searchMT(1,10);">
+									src="${path }/resources/img/admin/search.png" onclick="searchCouponL(1,10);">
 								</td>
 							</tr>
 						</table>
@@ -62,11 +62,11 @@
 				</form>
 					</div>
 			</div>
-			<div class="memberT-container">
+			<div class="couponT-container">
 						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>개의 쿠폰이 있습니다.</p>
 						<p class="memberTFont2">※ 회원등급번호, 할인금액, 발급 여부, 사용가능 일수, 쿠폰 이름만 수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
-						<table class="memberT">
+						<table class="couponT">
 							
 							<tr>
 								<th>쿠폰리스트번호</th>
@@ -83,22 +83,22 @@
 							
 							<c:forEach var="e" items="${list }">
 							<tr>
-									<td><input type="text" value="${e.couponlistNo }" name="memberRegiDate" readonly></td>
-									<td><input type="text" value="${e.couponlistMembergradeNo }" name="memberId" readonly></td>
-									<td><input type="text" value="${e.couponlistAmount }" name="memberName" readonly></td>
-									<td><input type="text" value="${e.couponlistForuse }" name="memberPhone"></td>
-									<td><input type="text" value="${e.couponlistInvalid }" name="memberGender" readonly></td>
-									<td><input type="text" value="${e.couponlistName }" name="memberAddress"></td>
-									<td><input type="text" value="${e.couponImg }" name="memberPoint"></td>
+									<td><input type="text" value="${e.couponlistNo }" name="couponlistNo" readonly></td>
+									<td><input type="text" value="${e.couponlistMembergradeNo }" name="couponlistMembergradeNo" ></td>
+									<td><input type="text" value="${e.couponlistAmount }" name="couponlistAmount" ></td>
+									<td><input type="text" value="${e.couponlistForuse }" name="couponlistForuse"></td>
+									<td><input type="text" value="${e.couponlistInvalid }" name="couponlistInvalid" ></td>
+									<td><input type="text" value="${e.couponlistName }" name="couponlistName"></td>
+									<td><input type="text" value="${e.couponImg }" name="couponImg " readonly></td>
 									<td>
-										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
+										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeCouponV(event);" class="updateCheck updateImg">
 									</td>
 									
 									<td>
 										
-											<input type="hidden" value="${e.couponlistNo}" name="memberId" readonly>
+											<input type="hidden" value="${e.couponlistNo}" name="couponlistNo" readonly>
 											
-											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adMemberDelete(event);">
+											<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg" onclick="adCouponDelete(event);">
 											
 									
 										</td>
@@ -110,7 +110,7 @@
 						</table>
 						<!-- </form> -->
 						
-						<div id="pagebar-container3">
+						<div id="pagebar-container10">
 			        		${pageBar }
 			        	</div> 
 			        
@@ -121,190 +121,93 @@
 
 
 <script>
-function adMemberDelete(event){
-	let memberId=$(event.target).prev().val();
+function adCouponDelete(event){
+	let couponlistNo=$(event.target).prev().val();
 	
-	location.assign('${path}/admin/memberDelete.do?memberId='+memberId);
+	location.assign('${path}/admin/adCouponDelete.do?couponlistNo='+couponlistNo);
 	
 }
 
 
-function changeMemberV(event){
-	let memberId=event.target.parentElement.parentElement.children[1].children[0].value;
-	let memberPhone=event.target.parentElement.parentElement.children[3].children[0].value;
-	let memberAddress=event.target.parentElement.parentElement.children[5].children[0].value;
-	let memberPoint=event.target.parentElement.parentElement.children[6].children[0].value;
-	let memberGradeNo=event.target.parentElement.parentElement.children[7].children[0].value;
-	console.dir(memberPhone);
-	console.log("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberAddress="+memberAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
-	location.assign("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberAddress="+memberAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
+function changeCouponV(event){
+	let couponlistNo=event.target.parentElement.parentElement.children[0].children[0].value;
+	let couponlistMembergradeNo=event.target.parentElement.parentElement.children[1].children[0].value;
+	let couponlistAmount=event.target.parentElement.parentElement.children[2].children[0].value;
+	let couponlistForuse=event.target.parentElement.parentElement.children[3].children[0].value;
+	let couponlistInvalid=event.target.parentElement.parentElement.children[4].children[0].value;
+	let couponlistName=event.target.parentElement.parentElement.children[5].children[0].value;
+	
+	location.assign("${path}/admin/updateCouponlist.do?couponlistNo="+couponlistNo+"&couponlistMembergradeNo="+couponlistMembergradeNo+"&couponlistAmount="+couponlistAmount+"&couponlistForuse="+couponlistForuse+"&couponlistInvalid="+couponlistInvalid+"&couponlistName="+couponlistName);
 	
 } 
 
-function searchMT(cPage,numPerpage){
-	let type2 =document.getElementsByName("type2")[0].value;
-	let search=document.getElementsByName("searchHow3")[0].value;
+function searchCouponL(cPage,numPerpage){
+	let type15 =document.getElementsByName("type15")[0].value;
+	let search=document.getElementsByName("searchCoupon10")[0].value;
 	
 	$.ajax({
-		url: "${path}/admin/searchTextMemberList.do",
+		url: "${path}/admin/searchCouponL.do",
 		data:{
-			type2 :type2,
+			type15 :type15,
 			search:search,
 			cPage: cPage,
 			numPerpage: numPerpage
 		},
 		success: data=>{
-		document.querySelectorAll(".memberT td").forEach((v,i) => {
+		document.querySelectorAll(".couponT td").forEach((v,i) => {
 				v.remove();
 			});
 			console.dir( data);
 			
-			let table=document.querySelector(".memberT");
+			let table=document.querySelector(".couponT");
 			for(let i=0;i<data.length;i++){
 				let tr=document.createElement("tr");
-				for(let j=0;j<12;j++){
+				for(let j=0;j<9;j++){
 					let td=document.createElement("td");
 					td.style.border="1px solid black";
 					td.style.height="27px";
-					if(j == 0) {
-						let regiDate = new Date(data[i].memberRegiDate);
-						
-						let regiMonth;
-						if((regiDate.getMonth()+1)<10){
-							regiMonth = ("0"+(regiDate.getMonth()+1));
-						}else{ 
-							regiMonth = (regiDate.getMonth()+1);
-						}	
-						
-						td.innerHTML = "<input type='text' value='"+regiDate.getFullYear() + "-" + 
-						regiMonth
-						+ "-" + regiDate.getDate()+ "'>";
-					}
-					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].memberId + "'>";
-					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
-					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
-					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
-					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
-					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
-					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
-					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+					
+					if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].couponlistNo + "'>";
+					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].couponlistMembergradeNo + "'>";
+					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].couponlistAmount + "'>";
+					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].couponlistForuse + "'>";
+					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].couponlistInvalid + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].couponlistName + "'>";
+					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].couponImg + "'>";
+					if(j == 7) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
+					if(j == 8) td.innerHTML = '<input type="hidden" value="'+ data[i].couponlistNo+'" name="couponlistNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
 					
 					tr.appendChild(td);
 				}
 				table.appendChild(tr);
 				
 			}
-			document.querySelectorAll(".memberT td>img.updateImg").forEach((v, i) => {
-				v.addEventListener("click", function() {changeMember(event)});
+			document.querySelectorAll(".couponT td>img.updateImg").forEach((v, i) => {
+				v.addEventListener("click", function() {changeCouponV(event)});
 			});
-			document.querySelectorAll(".memberT td>img.deleteImg").forEach((v, i) => {
-				v.addEventListener("click", function() {adMemberDelete(event)});
+			document.querySelectorAll(".couponT td>img.deleteImg").forEach((v, i) => {
+				v.addEventListener("click", function() {adCouponDelete(event)});
 			});
 		}
 		
 	});
 	$.ajax({
-		url: "${path}/admin/getPageBarSearchTextMemberList.do",
+		url: "${path}/admin/getPageBarSearchCouponList.do",
 		data: {
-			type2 :type2,
+			type15 :type15,
 			search:search,
 			cPage: cPage,
 			numPerpage: numPerpage
 		},
 		success: data => {
-			$("#pagebar-container3").html(data[0]);
+			$("#pagebar-container10").html(data[0]);
 			$(".turnRed").html(data[1]);
 			
 		}
 	});
 } 
 
-function orderList(cPage,numPerpage){
-	let type1 = document.getElementsByName("type1")[0].value;
-	let order="";
-	document.getElementsByName("searchHow2").forEach((v,i) => {
-		if (v.checked) {
-			order = v.value;
-		}
-	});
-	
-	$.ajax({
-		url: "${path}/admin/orderedMemberList.do",
-		data: {
-			type1: type1,
-			order: order==="" ? "asc":order,
-			cPage: cPage,
-			numPerpage: numPerpage
-		},
-		success: data => {
-			document.querySelectorAll(".memberT td").forEach((v,i) => {
-				v.remove();
-			});
-			let table=document.querySelector(".memberT");
-			for(let i=0;i<data.length;i++){
-				let tr=document.createElement("tr");
-				for(let j=0;j<12;j++){
-					let td=document.createElement("td");
-					td.style.border="1px solid black";
-					td.style.height="27px";
-					if(j == 0) {
-						let regiDate = new Date(data[i].memberRegiDate);
-						let regiMonth;
-						if((regiDate.getMonth()+1)<10){
-							regiMonth = ("0"+(regiDate.getMonth()+1));
-						}else{ 
-							regiMonth = (regiDate.getMonth()+1);
-						}	
-						
-						td.innerHTML = "<input type='text' value='"+regiDate.getFullYear() + "-" + 
-						regiMonth
-						+ "-" + regiDate.getDate()+ "'>";
-					}
-					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].memberId + "'>";
-					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
-					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
-					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
-					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
-					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
-					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
-					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
-					
-					tr.appendChild(td);
-				}
-				table.appendChild(tr);
-				
-			}
-			document.querySelectorAll(".memberT td>img.updateImg").forEach((v, i) => {
-				v.addEventListener("click", function() {changeMember(event)});
-			});
-			document.querySelectorAll(".memberT td>img.deleteImg").forEach((v, i) => {
-				v.addEventListener("click", function() {adMemberDelete(event)});
-			});
-		}
-	});
-	$.ajax({
-		url: "${path}/admin/getPageBarOrderedMemberList.do",
-		data: {
-			type1: type1,
-			order: order==="" ? "asc":order,
-			cPage: cPage,
-			numPerpage: numPerpage
-		},
-		success: data => {
-			$("#pagebar-container3").html(data[0]);
-			$(".turnRed").html(data[1]);
-			
-		}
-	});
-	
-	
-}
+
 
 
 

@@ -51,7 +51,7 @@
         <!-- 리스트를 담고 있는 박스 -->
        <div class="firstSlide-list">
            <!-- 길게 늘어뜨린 리스트 -->
-           <c:forEach var="i" begin="192" end="197" items="${list }">
+           <c:forEach var="i" begin="167" end="175" items="${list }">
 	           <div class="firstSlide-content">
             <p class="first-title">
             	${i.gift_title }	

@@ -2,18 +2,39 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="path" value="${pageContext.request.contextPath }"/>  
 
-
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
-   <jsp:param name="" value=""/>
+	<jsp:param name="" value=""/>
 </jsp:include>
- <div id="wrap">
- ${auction }
 
-        <div id="container">	
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMyBuyList.css">
+
+	<div id="wrap">
+        <div id="container">
+        	<div style="margin-bottom:30px;">
+				<table id="auction_mylist_table" style="width: 100%;">
+				    <tr>
+				        <th>총 건</th>
+				        <th>진행 중</th>
+				        <th>낙찰</th>
+				        <th>유찰</th>
+				        <th>마감</th>
+				    </tr>
+				    <tr>
+				        <td>${totaldata } 건</td>
+				        <td>${Y } </td>
+				        <td>${S }</td>
+				        <td>${N==null?"0":N} </td>
+				        <td>${B==null?"0":B} </td>
+				
+				    </tr>
+				
+				</table>
+        	</div>	
 			<div>
-				<table style="width: 100%;  text-align: center;">
+				<table style="width: 100%;  text-align: center;" id="buylertable">
 					<tr style="    font-weight: bold; font-size: 19px;    ">
 						<th>경매번호</th>
 						<th>경매이름</th>
@@ -44,8 +65,11 @@
 									<span style="color:red">유찰</span>
 									<c:forEach items="${a.auctionbid }" var="bid">
 							
-									<c:if test="${bid.bidId eq member.memberId}">
-										<span>${bid.bidPrice }<button>포인트 돌려받기</button></span>
+									<c:if test="${bid.bidId eq member.memberId && bid.bidCheck eq 'N'}">
+										<span>${bid.bidPrice }<button onclick="location.replace('${path}/auction/auctionbidCollect?memberId=${member.memberId }&bidNo=${bid.bidNo }&memberPoint=${bid.bidPrice }')">포인트 돌려받기</button></span>
+									</c:if>
+									<c:if test="${bid.bidId eq member.memberId && bid.bidCheck eq 'Y'}">
+										<p>${bid.bidPrice }<span style="color:blue;">회수완료</span></p>
 									</c:if>
 									</c:forEach>														
 							</c:if>
@@ -58,49 +82,10 @@
 					</c:forEach>	
 				</table>
 			</div>
-
+			<div class="pageBar">${pageBar }</div>
         </div>
     </div>
-<style>
-.auction_mylist_img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-.auction_mylist_img img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-#auction_mylist_table{
-    width: 100%;
-    text-align: center;
-}
-#auction_mylist_table>tbody>tr>td{
-	text-aglin:center;
-	vertical-align: middle;
-}
-#wrap{
-	text-align:center;
-}
-#container{
-	text-align: left;
-    width: 950px;
-    border: 1px solid black;
-	display: inline-block;
-}
-.auction_main_po_right{
-	width:300px
-}
-th{
-    font-weight: bolder;
-}
-.buylisttr td{
-	vertical-align: middle;
-}
-
-</style>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
-<jsp:param name="" value=""/>
+	<jsp:param name="" value=""/>
 </jsp:include>

@@ -37,8 +37,7 @@
     let curSlide = slideContents[curIndex]; // 슬라이드 컨텐츠 인덱스
     curSlide.classList.add('slide_active');
 
-    /** 다음 버튼 Event */
-    slideBtnNext.addEventListener('click', function() {
+	slideBtnNext.addEventListener('click', function() {
       if (curIndex <= slideLen - 1) {
         slideList.style.transition = slideSpeed + "ms";
         slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
@@ -57,6 +56,27 @@
       curSlide.classList.add('slide_active');
       pageDots[curIndex].classList.add('dot_active');
     });
+    
+    /** 다음 버튼 Event */
+    slideBtnNext.addEventListener('click', setInterval(function() {
+      if (curIndex <= slideLen - 1) {
+        slideList.style.transition = slideSpeed + "ms";
+        slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
+      }
+      if (curIndex === slideLen - 1) {
+        setTimeout(function() {
+          slideList.style.transition = "0ms";
+          slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
+        }, slideSpeed);
+        curIndex = -1;
+        console.log(curIndex);
+      }
+      curSlide.classList.remove('slide_active');
+      pageDots[(curIndex === -1) ? slideLen - 1 : curIndex].classList.remove('dot_active');
+      curSlide = slideContents[++curIndex];
+      curSlide.classList.add('slide_active');
+      pageDots[curIndex].classList.add('dot_active');
+    }, 8000));
 
     /** 이전 버튼 Event */
     slideBtnPrev.addEventListener('click', function() {

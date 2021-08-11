@@ -57,7 +57,11 @@
 	</select>
 	
 	<insert id="insertReview">
-		INSERT INTO NGIFT_REVIEW VALUES();
+		INSERT INTO NGIFT_REVIEW VALUES(#{giftNo}, SEQ_NGIFT_REVIEW.NEXTVAL, #{content}, #{memberId}, SYSDATE, #{score})
 	</insert>
+	
+	<select id="selectReviewAll" resultType="int">
+		SELECT COUNT(*) FROM NGIFT
+	</select>
 	
 </mapper>

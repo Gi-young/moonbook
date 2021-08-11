@@ -311,6 +311,32 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.selectCouponListCount(session);
 	}
+	
+	@Override
+	public List<Couponlist> searchCouponL(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchCouponL(session,param);
+	}
+	
+	@Override
+	public int updateCouponlist(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateCouponlist(session,param);
+	}
+	
+	
+
+	@Override
+	public int adCouponDelete(Map param) {
+		// TODO Auto-generated method stub
+		return dao.adCouponDelete(session,param);
+	}
+
+	@Override
+	public int getPageBarSearchCouponList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarSearchCouponList(session,param);
+	}
 
 	@Override
 	public List<AuctionCate> selectAuctionList() {

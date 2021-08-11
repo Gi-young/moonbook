@@ -317,6 +317,33 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.selectCouponListCount");
 	}
+	
+
+	@Override
+	public List<Couponlist> searchCouponL(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.searchCouponL",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int getPageBarSearchCouponList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarSearchCouponList",param);
+	}
+	
+	@Override
+	public int adCouponDelete(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("admin.adCouponDelete",param);
+	}
+
+	@Override
+	public int updateCouponlist(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("admin.updateCouponlist",param);
+	}
 
 	@Override
 	public List<AuctionCate> selectAuctionList(SqlSession session) {

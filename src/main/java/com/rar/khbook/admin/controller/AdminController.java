@@ -540,8 +540,6 @@ public class AdminController {
 		resultArr[0]=pageBar;
 		resultArr[1]= Integer.toString(totalContents);
 		
-		System.out.println("재고 정렬바 book:"+param.get("cPage"));
-		System.out.println("재고 정렬바 book:"+param.get("numPerpage"));
 		
 		return resultArr;
 	}
@@ -594,8 +592,6 @@ public class AdminController {
 		String search5=(String)param.get("search5");
 		param.put("search5", search5);
 		
-		System.out.println("검색책에서"+param.get("cPage"));
-		System.out.println("검색책에서"+param.get("numPerpage"));
 		
 		List<EbookDatabind> list=service.searchTextStockList(param);
 		
@@ -925,6 +921,80 @@ public class AdminController {
 		
 		return mv;
 	}
+	//쿠폰 검색
+	@RequestMapping("/admin/searchCouponL.do")
+	@ResponseBody
+	public List<Couponlist> searchCouponL(@RequestParam Map param) {
+		String type15=(String)param.get("type15");
+		param.put("type15", type15);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
+		List<Couponlist> list=service.searchCouponL(param);
+		
+		return list;
+	}
+	//쿠폰 검색 페이지바
+	@RequestMapping("/admin/getPageBarSearchCouponList.do")
+	@ResponseBody
+	public String[] getPageBarSearchCouponList(@RequestParam Map param) {
+
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarSearchCouponList(param);
+		
+		//mv.addObject("totalContents", totalData);
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar7(totalContents, cPage, numPerpage,null);
+		resultArr[0]=pageBar;
+		resultArr[1]= Integer.toString(totalContents);
+		
+		
+		return resultArr;
+	}
+	//쿠폰 수정 
+	@RequestMapping("/admin/updateCouponlist.do")
+	public ModelAndView updateCouponlist(ModelAndView mv,@RequestParam Map param) {
+		
+		
+		int result=service.updateCouponlist(param);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="수정되었습니다";
+			
+		}else {
+			msg="수정실패";
+		}
+		loc="/admin/searchCouponlist.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	//쿠폰 삭제
+	@RequestMapping("/admin/adCouponDelete.do")
+	public ModelAndView adCouponDelete(ModelAndView mv,@RequestParam Map param) {
+		int result=service.adCouponDelete(param);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="삭제되었습니다";
+			
+		}else {
+			msg="삭제실패";
+		}
+		loc="/admin/searchCouponlist.do";
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		return mv;
+	}
+	
 	//옥션 종류 페이지 
 	@RequestMapping("/admin/adminAuctionCatePage.do")
 	public ModelAndView adminAuctionCatePage(ModelAndView mv) {

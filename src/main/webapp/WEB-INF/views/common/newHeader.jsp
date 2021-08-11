@@ -147,7 +147,7 @@
 								<li><a href="${path }/sellbookController/bookgojunkorea.do">고전도서(한국)</a></li>
 							</ul>
 						</li>					
-						<li id="eBooks"><a href="${path}/ebook/pageEbook.do">문곰e북
+						<li id="eBooks"><a href="${path}/ebook/ebookHome.do">문곰e북
 									▼</a>
 							<ul class="eBook">
 								<li><a href="${path }/ebook/pageEbook.do">일반</a></li>

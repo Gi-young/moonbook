@@ -104,6 +104,13 @@ public interface AdminDao {
 	List<Couponlist> searchCouponList(SqlSession session,int cPage,int numPerpage);
 	int selectCouponListCount(SqlSession session);
 	
+	List<Couponlist> searchCouponL(SqlSession session,Map param);
+	int getPageBarSearchCouponList(SqlSession session,Map param);
+	
+	int updateCouponlist(SqlSession session,Map param);
+	
+	int adCouponDelete(SqlSession session,Map param);
+	
 	List<AuctionCate> selectAuctionList(SqlSession session);
 	
 	int addAuctionCate(SqlSession session,Map param);

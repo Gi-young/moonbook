@@ -1,12 +1,10 @@
 @charset "UTF-8";
+
 .wrapper {
 	display: grid;
 	grid-template-rows: 25px 100px 50px 1fr 100px;
-	grid-template-areas: 'portalnav'
-						 'header'
-						 'navbar'
-						 'main'
-						 'footer';
+	grid-template-areas: 'portalnav' 'header' 'navbar' 'main' 'footer';
+	width: 950px;
 }
 
 main {
@@ -61,4 +59,82 @@ main>div {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	justify-content: center;
+}
+
+.padding10 {
+	padding: 10px;
+}
+
+.width70 {
+	width: 70% !important;
+	display: flex;
+}
+
+.width30 {
+	width: 30%;
+	display: flex;
+}
+
+.width25 {
+	width: 25%;
+}
+
+.height60 {
+	height: 60%;
+}
+
+.height30 {
+	height: 30%;
+}
+
+.rank {
+	padding: 10px;
+	color: #582810;
+	font-weight: 900;
+}
+
+.ebookItem {
+	padding: 10px;
+	display: content !important;
+}
+
+.books {
+	display: flex;
+	height: 20%;
+}
+
+.searchBar {
+	justify-content: center;
+}
+
+.itemBox {
+	/* border:1px solid #F1CB63; */
+	padding: 10px;
+	height: 100%;
+	text-align: center;
+}
+
+.itemBox div {
+	padding: 3px;
+}
+
+.marginTop3em {
+	margin-top: 3em;
+}
+
+.titleText {
+	font-size: 16px;
+	font-weight: 900;
+}
+.authorText{
+	font-size:14px;
+	font-weight:300;
+}
+.pubText{
+	font-size:12px;
+	font-weight:100;
+}
+.marginBo2em{
+	margin-bottom:2em;
 }

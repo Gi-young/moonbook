@@ -2,35 +2,39 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:set var="path" value="${pageContext.request.contextPath }"/>  
 
-
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
-   <jsp:param name="" value=""/>
+	<jsp:param name="" value=""/>
 </jsp:include>
- <div id="wrap">
-        <div id="container">
-            <div style="margin-bottom:30px;">
-                <table id="auction_mylist_table" style="width: 100%;">
-                    <tr>
-                        <th>총 건</th>
-                        <th>진행 중</th>
-                        <th>낙찰</th>
-                        <th>유찰</th>
-                    </tr>
-                    <tr>
-                        <td>${totaldata } 건</td>
-                        <td>${Y } </td>
-                        <td>${S }</td>
-                        <td>${N==null?"0":N} </td>
 
-                    </tr>
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMySellList.css">
 
-                </table>
-                
-            </div>
-          
-   			<div>
+	<div id="wrap">
+		<div id="container">
+			<div style="margin-bottom:30px;">
+				<table id="auction_mylist_table" style="width: 100%;">
+				    <tr>
+				        <th>총 건</th>
+				        <th>진행 중</th>
+				        <th>낙찰</th>
+				        <th>유찰</th>
+				        <th>마감</th>
+				    </tr>
+				    <tr>
+				        <td>${totaldata } 건</td>
+				        <td>${Y } </td>
+				        <td>${S }</td>
+				        <td>${N==null?"0":N} </td>
+				        <td>${B==null?"0":B} </td>
+				
+				    </tr>
+				
+				</table>
+        	</div>
+      
+			<div>
 				<table id="auction_mylist_table2">
 					<tr style="    font-weight: bold; font-size: 19px;    ">
 						<th>경매번호</th>
@@ -46,7 +50,12 @@
 							<td>${a.auctionName }</td>
 							<td>${a.startDate }</td>
 							<td>${a.endDate }</td>
-							<td>${a.auctionbid[0].bidPrice }</td>
+							<td>
+							<c:if test="${a.auctionbid.size()==0 }">
+							<span style="color:red;">입찰자가 없습니다.</span>
+							</c:if>
+							${a.auctionbid[0].bidPrice }
+							</td>
 							<td>					      
 							<c:choose>
 							<c:when test="${a.auctionState eq 'Y' }">
@@ -54,6 +63,9 @@
 							</c:when>
 							<c:when test="${a.auctionState eq 'N' }">
 								유찰
+							</c:when>
+							<c:when test="${a.auctionState eq 'B' }">
+								마감
 							</c:when>
 							<c:when test="${a.auctionState eq 'S' }">
 								<span>낙찰</span>
@@ -71,62 +83,10 @@
 					</c:forEach>	
 				</table>
 			</div>
-        </div>
-    </div>
-<style>
+			<div class="pageBar">${pageBar}</div>
+		</div>
+	</div>
 
-.auction_mylist_img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-.auction_mylist_img img{
-    width: 150px;
-    height: 150px;
-    border: 1px solid black;
-}
-#auction_mylist_table{
-    width: 100%;
-    text-align:center;
-    border: 1px solid black;
-}
-#auction_mylist_table tr td{
-	 border: 1px solid black;
-}
-#auction_mylist_table tr th{
-	 border: 1px solid black;
-}
-#auction_mylist_table2{
-    width: 100%;
-    text-align:center;
-    border: 1px solid black;
-}
-#auction_mylist_table2 tr{
-	border-bottom:1px solid black;
-}
-#auction_mylist_table2 tr td{
-	padding:10px 10px 10px 10px;
-}
-#wrap{
-	text-align:center;
-}
-#container{
-	text-align: left;
-    width: 950px;
-    border: 1px solid black;
-	display: inline-block;
-}
-.auction_main_po_right{
-	width:300px
-}
-tr td{
-	vertical-align: middle;
-}
-tr{
-	border-bottom: 1px solid black;
-}
-
-</style>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
-<jsp:param name="" value=""/>
+	<jsp:param name="" value=""/>
 </jsp:include>

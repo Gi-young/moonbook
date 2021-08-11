@@ -23,8 +23,13 @@ public class AuctionServiceImpl implements AuctionService {
 
 
 	@Override
-	public List<Auction> auctionAdmin(Map param) {
-		return dao.auctionAdmin(session,param);
+	public int auctionAdmintotal(Map param) {
+		return dao.auctionAdmintotal(session,param);
+	}
+
+	@Override
+	public List<Auction> auctionAdmin(Map param,int cPage, int numPerpage) {
+		return dao.auctionAdmin(session,param,cPage,numPerpage);
 	}
 
 	@Override
@@ -156,8 +161,18 @@ public class AuctionServiceImpl implements AuctionService {
 	public int auctionAdminCal(Map param) {
 		dao.updateauctionPay(session,param);
 		int result= dao.updatestateS(session, param);
+		result=dao.updatebidStateY(session, param);
 		return result;
 	}
+	//포인트 환급
+
+	@Override
+	public int auctionbidCollect(Map param) {
+		dao.updateauctionPay(session, param);
+		int result=dao.updatebidStateY(session,param);
+		return result;
+	}
+	
 	
 
 }

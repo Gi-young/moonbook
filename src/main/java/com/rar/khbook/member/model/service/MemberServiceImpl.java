@@ -12,6 +12,7 @@ import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.dao.MemberDao;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
+import com.rar.khbook.order.model.vo.Order;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -133,5 +134,19 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMember(Member m) {
 		// TODO Auto-generated method stub
 		return dao.deleteMember(session, m);
+	}
+	
+//	개인 회원 이북 결제 내역 총합
+	@Override
+	public int ebookPurchaseCount(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return dao.ebookPurchaseCount(session, param);
+	}
+	
+//	개인 회원 이북 결제 내역 조회
+	@Override
+	public List<Order> ebookPurchaseList(Map<String, String> param, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.ebookPurchaseList(session, param, cPage, numPerpage);
 	}
 }

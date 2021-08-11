@@ -140,5 +140,46 @@
         </div>
         <br><br>
 		<div id="pageBarb">${pageBar }</div>
+		<br>
+		<div style="padding-left: 40%">
+			<div style="padding-right:10px;float:left;">
+				<select name="searchType" id="searchType" onchange="typeChange()">
+					<option value="title">제목</option>
+					<option value="bookTitle">책이름</option>
+					<option value="memberid">아이디</option>
+					<option value="topPrice">가격(이상)</option>
+					<option value="botPrice">가격(이하)</option>
+				</select>
+			</div>
+			<div style="padding-right:10px;float:left;">
+				<input type="text" name="keyword" id="keyword">
+			</div>
+			<div style="padding-right:10px;float:left;">
+				<button name="btnSearch" id="btnSearch">검색</button>
+			</div>
+		</div>
 </section>
+<script>
+function typeChange() {
+	var searchType=$('#searchType').val();
+	if(searchType=="title"||searchType=="bookTitle"||searchType=="memberid"){
+		$('#keyword').prop("type", "text")
+	}else{
+		$('#keyword').prop("type", "number")
+	}
+}
+$(document).on('click', '#btnSearch', function(e){
+	e.preventDefault();
+	var keyword=$('#keyword').val();
+	var searchType=$('#searchType').val();
+	var url = "${path}/usedboard/usedboardList.do"; 
+	url = url + "?searchType=" + searchType;
+	url = url + "&keyword=" + keyword;
+	if(keyword.replace(/(\s*)/g,"")==null||keyword.replace(/(\s*)/g,"")==""){
+		alert("값을 입력해주세요");
+	}else{
+		location.href = url;
+	}
+});	
+</script>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"></jsp:include>
