@@ -1,5 +1,6 @@
 package com.rar.khbook.gift.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,7 +49,15 @@ public class GiftDaoImpl implements GiftDao {
 	}
 
 	@Override
-	public int reviewWrite(SqlSession session, int giftNo) {
-		return session.insert("gift.insertReview", giftNo);
+	public int reviewWrite(SqlSession session, HashMap map) {
+		return session.insert("gift.insertReview", map);
 	}
+
+	@Override
+	public int selectReviewAll(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("gift.selectReviewAll");
+	}
+	
+	
 }

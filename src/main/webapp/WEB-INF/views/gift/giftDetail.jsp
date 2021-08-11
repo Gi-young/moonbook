@@ -155,7 +155,8 @@
     	    var btnQ = document.getElementById("bar3");
     	    var giftNo = document.getElementById("giftNo").value; 	     
  	    
-    	   	
+    	   	let pageBar = "";
+    	   	let pager = "";
     	    let exp = document.getElementsByClassName('review-board');
     	    let tb = document.getElementsByTagName("tbody");
   			let tr = ""; 
@@ -166,94 +167,94 @@
             html2 += "<th style='width:370px;'>상품평</th>";    
             html2 += "<th style='width:165px;'>작성자</th>";    
             html2 += "<th style='width:165px;'>작성일</th></tr>";    
-            console.log(html2);    
+            /* console.log(html2); */    
   			tr2 = document.createElement("tr");
   			tr2.innerHTML=html2;
   			
   			
-         $(btnR).on('click', function(){
-        	
-        	 /* console.log(exp[0].children[0].children);
-        	 console.log(exp[0].firstChild); */
-        	 /*  console.log(exp[0].lastChild.childNodes);
-        	 console.log($(".review-board").children(".review-text")); */
-        	 /* console.log(tr); */
-        	 /*  console.log(exp[0].child[0]);
-        	 console.log(exp[0].child); */
-        	 /* exp[0].children[0].html(); */
-        	 /* exp[0].children.html(); */
-        	    
-        	 /*  exp[0].children[0].children.html();  */
-        	 exp[0].lastChild.innerHTML = "";
-        	 /* console.log(exp[0].lastChild.childNodes); */
-        	 console.log("================= ajax 실행 후 ==================");
-        	$.ajax({
-             	type: 'post',
-             	url: '${path}/gift/productReview.do',
-             	data: {
-             		giftNo: giftNo
-             	},
-             	dataType: "json",
-             	success: data => {  
-             		
-             		exp[0].appendChild(tb[0]).appendChild(tr2);
-             		data.forEach((v, i) => {   
+         $(btnR).on('click', getTrs); 
+          
+          function getTrs(cPage) {
+        	 $.ajax({
+            		type: 'post',
+            		url: '${path}/gift/productReview2.do',
+            		data: {
+            			giftNo: giftNo,
+            			cPage : ,
+            		    numPerPage ; 		
+            		},
+            		/* dataType: "json", */
+            		success: data => {
+            			
+            			console.log("페이지바 넘겨온 데이터"+data);
+            			pageBar = data;
+            		} 
+            	}); // pageBar ajax
+         	 
+         	 /* console.log(exp[0].children[0].children);
+         	 console.log(exp[0].firstChild); */
+         	 /*  console.log(exp[0].lastChild.childNodes);
+         	 console.log($(".review-board").children(".review-text")); */
+         	 /* console.log(tr); */
+         	 /*  console.log(exp[0].child[0]);
+         	 console.log(exp[0].child); */
+         	 /* exp[0].children[0].html(); */
+         	 /* exp[0].children.html(); */
+         	    
+         	 /*  exp[0].children[0].children.html();  */
+         	 exp[0].lastChild.innerHTML = "";
+         	 /* console.log(exp[0].lastChild.childNodes); */
+         	 console.log("================= ajax 실행 후 ==================");
+         	$.ajax({
+              	type: 'post',
+              	url: '${path}/gift/productReview.do',
+              	data: {
+              		giftNo: giftNo,
+              		cPage:
+              		numPerpage:
+              	},
+              	dataType: "json",
+              	success: data => {  
+              		
+              		exp[0].appendChild(tb[0]).appendChild(tr2);
+              		data.forEach((v, i) => {   
 
-             			 let html = ""; /* 테이블 본문 내용 */
-             		     html += "<tr class='review-text review-tr'>";   
-                	     html += "<td class='review-num'>"+v.gift_board_no+"</td>";
-                	     html += "<td class='gpa'>";
-                	     html += "<div class='gpa-circle'>";
-                	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>";
-                	     html += "<td><div class='review'>"+v.gift_board_content+"</div></td>";
-                	     html += " <td class='review-writer'>"+v.writer+"</td>";
-                	     html += "<td class='review-date'>"+v.write_date+"</td></tr>";
-    
-                	    tr = document.createElement('tr'); 
-              			tr.classList.add('review-text');
-                	    tr.classList.add('review-tr');
-                	    tr.innerHTML=html;
-                	                      	                  	    
-                	    exp[0].appendChild(tb[0]).appendChild(tr);
-                	             	
-            		 });              		
-             	  }            	  	
-              });
-          }) 
+              			 let html = ""; /* 테이블 본문 내용 */
+              		     html += "<tr class='review-text review-tr'>";   
+                 	     html += "<td class='review-num'>"+v.gift_board_no+"</td>";
+                 	     html += "<td class='gpa'>";
+                 	     html += "<div class='gpa-circle'>";
+                 	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>";
+                 	     html += "<td><div class='review'><a class='review-title-a'>"+v.gift_board_content+"</a></div></td>";
+                 	     html += " <td class='review-writer'>"+v.writer+"</td>";
+                 	     html += "<td class='review-date'>"+v.write_date+"</td></tr>";
+     
+                 	    tr = document.createElement('tr'); 
+               			tr.classList.add('review-text');
+                 	    tr.classList.add('review-tr');
+                 	    tr.innerHTML=html;
+                 	       
+                 	    pager = document.createElement('div');
+                 	    pager.innerHTML = pageBar;
+                 	    
+                 	    exp[0].appendChild(tb[0]).appendChild(tr);
+                 	    
+                 	    exp[0].appendChild(pager);    
+                 	  
+                 	    
+             		 });    
+              		
+              	  }   
+               }); // 1번째 ajax 끝
+               
+               
+               $.ajax({
+             	  
+               });
+         }
              		  			
-        
-	       /*  $(btnQ).on('click', function(){
-	        	$.ajax({
-	             	type: 'get',
-	             	url: '${path}/gift/productReview.do',
-	             	data: {
-	             		giftNo: giftNo
-	             	},
-	             	success: data => {
-	             		console.log(data);
-	             	},
-	             	error : {
-	             		console.log("error 발생");
-	             	}
-	             });
-	        }) */
-	       /*  
-		       btnQ.onclick = function() {	
-		       	 $.ajax({
-		            	type: 'POST',
-		            	url: '${path}/gift/productReview.do',
-		            	data: {
-		            		giftNo: giftNo
-		            	},
-		            	success: data => {
-		            		console.log(data);
-		            	},
-		            	error : {
-		            		console.log("error 발생");
-		            	}
-		            });
-		       } */
         </script>
+      
         <div class="product-exp">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
@@ -440,7 +441,13 @@
     	})
     });
    
+    let reviewTitle = document.getElementsByClassName("review-title-a");
     
+    console.log(reviewTitle);
+    
+    reviewTitle.addEventListener("click", function(e){
+    	alert("나와라");
+    });
     
 </script>
 </body>
