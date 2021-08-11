@@ -16,6 +16,7 @@
 }
 .addProduct-box3{
 	height:100%;
+	border-left: 1px solid #deded8;
 }
 .addProduct-box4 p{
 	
@@ -35,7 +36,8 @@
 .addProduct-box2{
 	display: flex;
 	flex-direction: column;
-	border: 1px solid black; 
+	border-left: 1px solid #deded8;
+	border-right: 1px solid #deded8;
 	width:770px;
 }
 
