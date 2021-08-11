@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="auction">
+	<!-- 포인트 환급 처리 -->
+	<update id="updatebidStateY">
+	UPDATE AUCTIONBID SET BID_CHECK='Y' WHERE BID_NO=#{bidNo}
+	</update>
+
 	<!-- 경매 판매자 구매자 관리 -->
 	<update id="auctionBuySell">
 	UPDATE AUCTION SET ${state} = 'Y' WHERE AUCTION_NO=#{auctionNo}
@@ -85,7 +90,7 @@
 	</select>
 	<!-- 마이 경매 리스트 -->
 	<select id="auctionStateCount" resultType="_int">
-	select count(*) from auction LEFT JOIN AUCTIONBID USING(AUCTION_NO) WHERE 1=1
+	select count(distinct(auction_no)) from auction left JOIN AUCTIONBID USING(AUCTION_NO) WHERE 1=1
 	<if test="memberId !=null and memberId!=''">
 	AND member_id=#{memberId}
 	</if>
@@ -225,6 +230,7 @@
 		<result column="bid_id" property="bidId"/>
 		<result column="bid_price" property="bidPrice"/>
 		<result column="bid_name" property="bidName"/>	
+		<result column="bid_check" property="bidCheck"/>	
 	</collection>
 	<collection property="auctioncate" ofType="com.rar.khbook.auction.model.vo.AuctionCate">
 		<result column="auctioncate_code" property="auctioncateCode"/>

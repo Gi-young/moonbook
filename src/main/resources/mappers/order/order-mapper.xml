@@ -1,39 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="order">
-	<resultMap type="order" id="orderMap" >
-		<result column="order_no" property="orderNo"/>
-		<result column="order_count" property="orderCount"/>
-		<result column="order_price" property="orderPrice"/>
-		<result column="order_deliveryfee" property="orderDeliverFee"/>
-		<result column="order_paymentid" property="orderPaymentId"/>
-		<result column="order_paidat" property="orderPaidat"/>
-		<result column="order_paidmethod" property="orderPaidMethod"/>
-		<result column="order_status" property="orderStatus"/>
-		<result column="order_point" property="orderPoint"/>
+	<resultMap type="order" id="orderMap">
+		<result column="order_no" property="orderNo" />
+		<result column="order_count" property="orderCount" />
+		<result column="order_price" property="orderPrice" />
+		<result column="order_deliveryfee" property="orderDeliverFee" />
+		<result column="order_paymentid" property="orderPaymentId" />
+		<result column="order_paidat" property="orderPaidat" />
+		<result column="order_paidmethod" property="orderPaidMethod" />
+		<result column="order_status" property="orderStatus" />
+		<result column="order_point" property="orderPoint" />
 		<association property="member">
-			<id column="member_id" property="memberId"/>
-			<result column="member_id" property="memberId"/>
+			<id column="member_id" property="memberId" />
+			<result column="member_id" property="memberId" />
 		</association>
 		<association property="book">
-			<id column="book_no" property="bookNo"/>
-			<result column="book_no" property="bookNo"/>
+			<id column="book_no" property="bookNo" />
+			<result column="book_no" property="bookNo" />
 		</association>
 		<association property="gift">
-			<id column="gift_no" property="giftNo"/>
-			<result column="gift_no" property="giftNo"/>
+			<id column="gift_no" property="giftNo" />
+			<result column="gift_no" property="giftNo" />
 		</association>
 		<association property="coupon">
-			<id column="coupon_no" property="couponNo"/>
-			<result column="coupon_no" property="coupon_No"/>
+			<id column="coupon_no" property="couponNo" />
+			<result column="coupon_no" property="coupon_No" />
 		</association>
-	</resultMap> 
-	
+	</resultMap>
+
+	<resultMap type="EbookPurchaseHistory"
+		id="EbookPurchaseHistoryMap">
+		<result column="history_no" property="historyNo" />
+		<result column="imp_uid" property="impUid" />
+		<result column="merchant_uid" property="merchantUid" />
+		<result column="member_id" property="memberId" />
+		<result column="pay_method" property="payMethod" />
+		<result column="paid_amount" property="paidAmount" />
+		<result column="paid_at" property="paidAt" />
+		<result column="pg_provider" property="pgProvider" />
+		<result column="receipt_url" property="receiptUrl" />
+		<collection column="purchase_ebook_no_list" property="purchaseEbookNoList" typeHandler="strArr" ofType="ebookDatabind" 
+			select="selectEbookDatabind" />
+	</resultMap>
+
+	<resultMap id="ebookDatabindMap" type="ebookDatabind">
+		<id column="BIND_NO" property="bindNo" />
+		<result column="TITLE" property="title" />
+		<result column="AUTHOR" property="author" />
+		<result column="IMAGE" property="image" />
+		<result column="PRICE" property="price" />
+		<result column="ISBN" property="isbn" />
+		<result column="PUBDATE" property="pubdate" />
+		<result column="PUBLISHER" property="publisher" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="LINK" property="link" />
+		<result column="CATEGORY_CODE" property="categoryCode" />
+		<result column="STOCK" property="stock" />
+		<result column="SALES_VOLUME" property="salesVolume" />
+		<result column="RATING" property="rating" />
+		<result column="EBOOK_RATING" property="ebookRating" />
+		<result column="EBOOK_SALES_VOLUME" property="ebookSalesVolume" />
+		<result column="PRIME_COST" property="primeCost" />
+		<association property="ebook" javaType="ebook">
+			<id column="EBOOK_NO" property="ebookNo" />
+			<result column="FILEPATH" property="filepath" />
+		</association>
+	</resultMap>
+
+	<select id="selectEbookDatabind" resultMap="ebookDatabindMap" >
+		SELECT * FROM
+		BOOK_EBOOK_DATABIND WHERE BIND_NO = #{bindNo}
+	</select>
 	<select id="selectOrderList" resultMap="orderMap">
-	 	SELECT * FROM ORDERT
+		SELECT * FROM ORDERT
 	</select>
 	<select id="selectOrderCount" resultType="_int">
-		SELECT COUNT(*) FROM ORDERT
+		SELECT COUNT(*) FROM
+		ORDERT
 	</select>
 
+	<!-- 개인 회원 이북 결제 내역 총합 -->
+	<select id="ebookPurchaseCount" resultType="int">
+		SELECT COUNT(*) FROM
+		EBOOK_PURCHASE_HISTORY WHERE MEMBER_ID=#{memberId} AND PAID_AT BETWEEN
+		#{startDate} AND #{finishDate}
+	</select>
+
+	<!-- 개인 회원 이북 결제 내역 조회 -->
+	<select id="ebookPurchaseList"
+		resultMap="EbookPurchaseHistoryMap">
+		SELECT * FROM EBOOK_PURCHASE_HISTORY WHERE
+		MEMBER_ID=#{memberId} AND PAID_AT
+		BETWEEN #{startDate} AND
+		#{finishDate}
+	</select>
 </mapper>

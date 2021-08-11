@@ -3,6 +3,7 @@ package com.rar.khbook.member.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,7 @@ import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
+import com.rar.khbook.order.model.vo.Order;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -91,15 +93,15 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int updateMemberVisit(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.update("member.updateMemberVisit",param);
+		return session.update("member.updateMemberVisit", param);
 	}
 
 	@Override
 	public int updateMemberToday(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.update("member.updateMemberToday",param);
+		return session.update("member.updateMemberToday", param);
 	}
-	
+
 //	회원가입 감사 쿠폰 발급
 	@Override
 	public int insertCoupon(SqlSession session, Member m) {
@@ -107,19 +109,35 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println("여기 아이디 들어가는데" + m.getMemberId());
 		return session.insert("member.insertCoupon", m);
 	}
-	
+
 //	회원정보수정
 	@Override
 	public int updateMemberEnd(SqlSession session, Member m) {
 		// TODO Auto-generated method stub
-		
+
 		return session.update("member.updateMemberEnd", m);
 	}
-	
+
 //	회원 탈퇴
 	@Override
 	public int deleteMember(SqlSession session, Member m) {
 		// TODO Auto-generated method stub
 		return session.delete("member.deleteMember", m);
+	}
+
+//	개인 회원 이북 결제 내역 총합
+	@Override
+	public int ebookPurchaseCount(SqlSession session, Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("order.ebookPurchaseCount", param);
+	}
+	
+	@Override
+	public List<Order> ebookPurchaseList(SqlSession session, Map<String, String> param, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		
+		RowBounds row = new RowBounds((cPage-1)*numPerpage, numPerpage);
+//		return session.selectList("order.ebookPurchaseList", param, row);
+		return null;
 	}
 }

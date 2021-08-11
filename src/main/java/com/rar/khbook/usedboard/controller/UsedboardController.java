@@ -3,7 +3,9 @@ package com.rar.khbook.usedboard.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,25 +39,62 @@ public class UsedboardController {
 			ModelAndView mv,HttpServletRequest request) {
 		String memberId=request.getParameter("memberId");
 		String catagory=request.getParameter("catagory");
-		if(memberId!=null) {
-			mv.addObject("list",service.selectUsedboardMyList(cPage,numPerpage,memberId));
-			int totalData=service.selectUsedboardMyCount(memberId);
+		String keyword=request.getParameter("keyword");
+		String searchType=request.getParameter("searchType");
+		Map<String,Object> map = new HashMap<>();
+		if(keyword!=null&&searchType!=null&&memberId!=null) {
+			map.put("keyword", "'"+keyword+"'");
+	        map.put("searchType", searchType);
+	        map.put("keyword2", "memberId");
+	        map.put("searchType2", "'"+memberId+"'");
+	        mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
+			int totalData=service.selectUsedboardCount(map);
+			mv.addObject("totalContents",totalData);
+			mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage, "usedboardList.do?memberId="+memberId+"&keyword="+keyword+"&searchType="+searchType));
+			
+	        mv.setViewName("usedboard/usedboardList");
+		}else if(keyword!=null&&searchType!=null&&catagory!=null) {
+			map.put("keyword", "'"+keyword+"'");
+	        map.put("searchType", searchType);
+	        map.put("keyword2", "catagory");
+	        map.put("searchType2", catagory);
+	        mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
+			int totalData=service.selectUsedboardCount(map);
+			mv.addObject("totalContents",totalData);
+			mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage, "usedboardList.do?catagory="+catagory+"&keyword="+keyword+"&searchType="+searchType));
+			
+			mv.setViewName("usedboard/usedboardList");
+		}else if(keyword!=null&&searchType!=null) {
+			map.put("keyword", "'"+keyword+"'");
+	        map.put("searchType", searchType);
+	        mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
+			int totalData=service.selectUsedboardCount(map);
+			mv.addObject("totalContents",totalData);
+			mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage, "usedboardList.do?keyword="+keyword+"&searchType="+searchType));
+			
+			mv.setViewName("usedboard/usedboardList");
+		}else if(memberId!=null) {
+			map.put("keyword2", "'"+memberId+"'");
+	        map.put("searchType2", "memberId");
+			mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
+			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);
 			mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage, "usedboardList.do?memberId="+memberId));
 			
 			mv.setViewName("usedboard/usedboardList");
 		}else if(catagory==null) {
-		
-			mv.addObject("list",service.selectUsedboardList(cPage,numPerpage));
-			int totalData=service.selectUsedboardCount();
+			mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
+			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);
 			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardList.do"));
 			
 			mv.setViewName("usedboard/usedboardList");
 		}else {
 			String cata=catagory.replace("'","%27");
-			mv.addObject("list",service.searchUsedboardList(cPage,numPerpage,catagory));
-			int totalData=service.searchUsedboardCount(catagory);
+			map.put("keyword2", catagory);
+	        map.put("searchType2", "catagory");
+			mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
+			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);
 			mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage,"usedboardList.do?catagory="+cata));
 			

@@ -1,5 +1,6 @@
 package com.rar.khbook.gift.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,5 +21,7 @@ public interface GiftService {
 	
 	List<GiftBoard>  selectReview(int giftNo);
 	
-	int reviewWrite(int giftNo);
+	int reviewWrite(HashMap map);
+
+	int selectReviewAll();
 }

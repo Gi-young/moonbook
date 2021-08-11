@@ -125,7 +125,7 @@ public class AuctionController {
 		mv.addObject("param",param);
 		mv.addObject("auctioncate",service.selectAuctionCate());
 		mv.addObject("auctionlist",service.selectAuctionList(param,cPage,numPerpage));
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "auction/auctionlist"));
+		mv.addObject("pageBar",PageFactoryAuction.getOwnPageBar(totalData, cPage, numPerpage, "auctionlist",""));
 		mv.setViewName("auction/auctionlist");
 		
 		return mv;
@@ -202,12 +202,15 @@ public class AuctionController {
 	@RequestMapping("/auction/auctionmyselllist.do")
 	public String auctionMylist(@RequestParam Map param,Model m,
 			@RequestParam(value="cPage",defaultValue ="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage) {
+			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage,
+			@RequestParam(value="memberId",defaultValue ="") String memberId) {
+		String query="&memberId="+memberId;
 		int totalData=service.auctionStateCount(param);
 		List<Auction> list=service.selectStateList(param);
 		int Y=0;
 		int S=0;
 		int N=0;
+		int B=0;
 		for(Auction a:list) {
 			if(a.getAuctionState().equals("Y")) {
 				Y++;
@@ -215,14 +218,17 @@ public class AuctionController {
 				N++;
 			}else if(a.getAuctionState().equals("S")) {
 				S++;
+			}else if(a.getAuctionState().equals("B")) {
+				B++;
 			}
 		}
 		m.addAttribute("Y",Y);
 		m.addAttribute("N",N);
 		m.addAttribute("S",S);
+		m.addAttribute("B",B);
 		m.addAttribute("totaldata",totalData);
 		m.addAttribute("auction", service.selectAuctionList(param, cPage, numPerpage));
-		m.addAttribute("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "auction/auctionmylist.do"));
+		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totalData, cPage, numPerpage, "auctionmyselllist.do",query));
 		return "auction/auctionMySellList";
 	}
 	//옥션 구매 내정보
@@ -238,19 +244,33 @@ public class AuctionController {
 		m.addAttribute("member",service.selectbidMember(param));
 		}
 		m.addAttribute("totaldata",totalData);
-		List<Auction> list=service.selectAuctionList(param, cPage, numPerpage);
+		List<Auction> list=service.selectStateList(param);
+		int Y=0;
+		int S=0;
+		int N=0;
+		int B=0;
 		for(Auction a: list) {
 			param.put("auctionNo", a.getAuctionNo());
 			Auction auction=service.selectauctionNo(param);	
-			if(auction.getAuctionbid().get(0).getBidPrice()>a.getAuctionbid().get(0).getBidPrice()) {
+			System.out.println(auction.getAuctionState()=="S");
+			if(auction.getAuctionbid().get(0).getBidPrice()>a.getAuctionbid().get(0).getBidPrice() && auction.getAuctionState().equals("S")) {
 				a.setState("유찰");
-			}else {
+				N++;
+			}else if(a.getAuctionState().equals("B")) {
+				B++;
+			}else if(a.getAuctionState().equals("Y")) {
+				Y++;
+			}else{
 				a.setState("낙찰");
+				S++;
 			}
-		}
-		
+		}	
+		m.addAttribute("Y",Y);
+		m.addAttribute("N",N);
+		m.addAttribute("S",S);
+		m.addAttribute("B",B);
 		m.addAttribute("auction", list);
-		m.addAttribute("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "auction/auctionmylist.do"));
+		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totalData, cPage, numPerpage, "auctionmylist.do",""));
 		
 		return "auction/auctionMyBuyList";
 	}
@@ -324,8 +344,21 @@ public class AuctionController {
 		int result = service.auctionAdminCal(param);
 		if (result>0) {			
 			m.addAttribute("msg","확인완료");
+			m.addAttribute("loc","/auction/auctionAdmin");
 		}else {
 			m.addAttribute("msg","확인실패");
+		}
+		return "common/msg";
+	}
+	//포인트 환급 
+	@RequestMapping("/auction/auctionbidCollect")
+	public String auctionbidCollect(Model m,@RequestParam Map param) {
+		int result=service.auctionbidCollect(param);
+		if (result>0) {			
+			m.addAttribute("msg","포인트 환급 성공");
+			m.addAttribute("loc","/auction/auctionmybuylist.do");
+		}else {
+			m.addAttribute("msg","포인트 환급 실패");
 		}
 		return "common/msg";
 	}

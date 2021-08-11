@@ -1,0 +1,15 @@
+@charset "UTF-8";
+#wrap{
+	text-align:center;
+}
+
+#container{
+	text-align: left;
+    width: 950px;
+    border: 1px solid black;
+	display: inline-block;
+}
+
+.auctionPay{
+	text-align: center;
+}

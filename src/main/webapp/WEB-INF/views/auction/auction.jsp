@@ -29,10 +29,10 @@
 				    		    </div> 
 			                </c:if>
 			                <c:if test="${member.memberId=='admin' }">
-			                 <div class="btn_coll">
-			             	  <button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
-			             	  </div>
-			                </c:if>
+				                 <div class="btn_coll">
+				             	  <button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
+				             	  </div>
+				             </c:if>
 		    		    </c:when>
 		    		    <c:otherwise>
 			    		    <div class="btn_coll">
@@ -47,7 +47,7 @@
 	        <div class="acution_category">
 	            <div class="acution_category_left">
 	                <div>
-	                    <a href="">도서</a>
+	                    <a>도서</a>
 	                    <div>
 	       			      <c:forEach items="${auctioncate }" var="a">
 		                    	<c:if test="${a.auctioncateName=='도서' }">
@@ -58,7 +58,7 @@
 	                </div>
 	
 	                <div>
-	                    <a href="">문구</a>
+	                    <a>문구</a>
 	                    <div>
 	       			      <c:forEach items="${auctioncate }" var="a">
 		                    	<c:if test="${a.auctioncateName=='문구' }">
@@ -69,10 +69,10 @@
 	                </div>
 	
 	                <div>
-	                    <a href="">기타</a>
+	                    <a>음반</a>
 	                    <div>
 	                       <c:forEach items="${auctioncate }" var="a">
-		                    	<c:if test="${a.auctioncateName=='기타' }">
+		                    	<c:if test="${a.auctioncateName=='음반' }">
 		                    		 <a href="${path }/auction/auctionlist?auctioncateFrist=${a.auctioncateFirst}&auctioncateName=${a.auctioncateName}">${a.auctioncateFirst }</a>
 		     					</c:if>
 		                   </c:forEach>
@@ -81,8 +81,7 @@
 	            </div>
 	        </div>
 	        
-	
-	        <!--입찰자가 많은 순-->
+			<!--마감 직전 경매물품-->
 	        <div class="auction_main_po">
 	            <h2 class="auction_main_title">마감 임박 매물</h2>
 	          
@@ -114,9 +113,8 @@
 	
 	        </div>
 	
-	        <!--마감 직전 경매물품-->
-	   
-	        <div class="auction_main_de">
+	   		<!--입찰자가 많은 순-->
+	        <%-- <div class="auction_main_de">
 				<h2 class="auction_main_title">인기 매물</h2>
 	           
 				<c:forEach var="t" items="${poplist }">
@@ -139,7 +137,7 @@
 					    </div>
 					</div>
 				</c:forEach>
-	        </div>
+	        </div> --%>
 		</div>
 	</div>
 

@@ -9,4 +9,5 @@ public class AuctionBid {
 	private String bidId;
 	private int bidPrice;
 	private String bidName;
+	private String bidCheck;
 }

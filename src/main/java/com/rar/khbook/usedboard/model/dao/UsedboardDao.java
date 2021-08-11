@@ -1,6 +1,7 @@
 package com.rar.khbook.usedboard.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -12,13 +13,9 @@ import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 public interface UsedboardDao {
 	
-	List<Usedboard> selectUsedboardList(SqlSession session, int cPage, int numPerpage);
+	List<Usedboard> selectUsedboardList(SqlSession session, int cPage, int numPerpage,Map<String,Object> map);
 	
-	int selectUsedboardCount(SqlSession session);
-	
-	List<Usedboard> searchUsedboardList(SqlSession session, int cPage, int numPerpage,String catagory);
-	
-	int searchUsedboardCount(SqlSession session,String catagory);
+	int selectUsedboardCount(SqlSession session,Map<String,Object> map);
 	
 	Usedboard selectUsedboardOne(SqlSession session, int no);
 	
@@ -50,10 +47,6 @@ public interface UsedboardDao {
 	
 	int usedboardPaymentInsert(SqlSession session,UsedboardPayment p);
 	
-	List<Usedboard> selectUsedboardMyList(SqlSession session, int cPage, int numPerpage,String memberId);
-	
-	int selectUsedboardMyCount(SqlSession session,String memberId);
-	
 	List<UsedboardPayment> usedboardMyPaymentList(SqlSession session, int cPage, int numPerpage,String memberId);
 	
 	int usedboardMyPaymentCount(SqlSession session,String memberId);
@@ -77,4 +70,6 @@ public interface UsedboardDao {
 	int usedboardSingoDelete(SqlSession session,int no);
 	
 	int usedboardMySingoDelete(SqlSession session,int no);
+	
+	int usedboardDeliveryt(SqlSession session,UsedboardPayment p);
 }

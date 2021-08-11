@@ -1,5 +1,7 @@
 package com.rar.khbook.sellbook.model.dao;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -32,5 +34,12 @@ public class SellbookDaoImpl implements SellbookDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("SellbookDatabind.selectBookPayment",bindNo);
 	}
+
+	@Override
+	public int updateSalesVolumeAdd(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("SellbookDatabind.updateSalesVolumeAdd",param);
+	}
+	
 	
 }

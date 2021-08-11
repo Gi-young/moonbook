@@ -1,6 +1,7 @@
 package com.rar.khbook.usedboard.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -16,27 +17,15 @@ import com.rar.khbook.usedboard.model.vo.Usedcomment;
 public class UsedboardDaoImpl implements UsedboardDao {
 	
 	@Override
-	public List<Usedboard> selectUsedboardList(SqlSession session, int cPage, int numPerpage) {
+	public List<Usedboard> selectUsedboardList(SqlSession session, int cPage, int numPerpage,Map<String,Object> map) {
 		// TODO Auto-generated method stub
-		return session.selectList("usedboard.selectUsedboardList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
+		return session.selectList("usedboard.selectUsedboardList",map,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
 
 	@Override
-	public int selectUsedboardCount(SqlSession session) {
+	public int selectUsedboardCount(SqlSession session,Map<String,Object> map) {
 		// TODO Auto-generated method stub
-		return session.selectOne("usedboard.selectUsedboardCount");
-	}
-	
-	@Override
-	public List<Usedboard> searchUsedboardList(SqlSession session, int cPage, int numPerpage,String catagory) {
-		// TODO Auto-generated method stub
-		return session.selectList("usedboard.searchUsedboardList",catagory,new RowBounds((cPage-1)*numPerpage,numPerpage));
-	}
-
-	@Override
-	public int searchUsedboardCount(SqlSession session,String catagory) {
-		// TODO Auto-generated method stub
-		return session.selectOne("usedboard.searchUsedboardCount",catagory);
+		return session.selectOne("usedboard.selectUsedboardCount",map);
 	}
 	
 	@Override
@@ -128,18 +117,6 @@ public class UsedboardDaoImpl implements UsedboardDao {
 	}
 	
 	@Override
-	public List<Usedboard> selectUsedboardMyList(SqlSession session, int cPage, int numPerpage, String memberId) {
-		// TODO Auto-generated method stub
-		return session.selectList("usedboard.selectUsedboardMyList",memberId,new RowBounds((cPage-1)*numPerpage,numPerpage));
-	}
-	
-	@Override
-	public int selectUsedboardMyCount(SqlSession session, String memberId) {
-		// TODO Auto-generated method stub
-		return session.selectOne("usedboard.selectUsedboardMyCount",memberId);
-	}
-	
-	@Override
 	public List<UsedboardPayment> usedboardMyPaymentList(SqlSession session, int cPage, int numPerpage,
 			String memberId) {
 		// TODO Auto-generated method stub
@@ -210,5 +187,11 @@ public class UsedboardDaoImpl implements UsedboardDao {
 	public int usedboardMySingoDelete(SqlSession session, int no) {
 		// TODO Auto-generated method stub
 		return session.delete("usedboard.usedboardMySingoDelete",no);
+	}
+	
+	@Override
+	public int usedboardDeliveryt(SqlSession session, UsedboardPayment p) {
+		// TODO Auto-generated method stub
+		return session.insert("usedboard.usedboardDeliveryt",p);
 	}
 }

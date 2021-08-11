@@ -1,6 +1,7 @@
 package com.rar.khbook.usedboard.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,27 +26,15 @@ public class UsedboardServiceImpl implements UsedboardService {
 	private SqlSession session;
 	
 	@Override
-	public List<Usedboard> selectUsedboardList(int cPage, int numPerpage) {
+	public List<Usedboard> selectUsedboardList(int cPage, int numPerpage,Map<String,Object> map) {
 		// TODO Auto-generated method stub
-		return dao.selectUsedboardList(session,cPage,numPerpage);
+		return dao.selectUsedboardList(session,cPage,numPerpage,map);
 	}
 	
 	@Override
-	public int selectUsedboardCount() {
+	public int selectUsedboardCount(Map<String,Object> map) {
 		// TODO Auto-generated method stub
-		return dao.selectUsedboardCount(session);
-	}
-	
-	@Override
-	public List<Usedboard> searchUsedboardList(int cPage, int numPerpage,String catagory) {
-		// TODO Auto-generated method stub
-		return dao.searchUsedboardList(session,cPage,numPerpage,catagory);
-	}
-	
-	@Override
-	public int searchUsedboardCount(String catagory) {
-		// TODO Auto-generated method stub
-		return dao.searchUsedboardCount(session,catagory);
+		return dao.selectUsedboardCount(session,map);
 	}
 	
 	@Override
@@ -130,19 +119,8 @@ public class UsedboardServiceImpl implements UsedboardService {
 	public int usedboardPayment(int no,UsedboardPayment p) {
 		// TODO Auto-generated method stub
 		dao.usedboardPaymentInsert(session,p);
+		dao.usedboardDeliveryt(session,p);
 		return dao.usedboardPayment(session,no);
-	}
-	
-	@Override
-	public List<Usedboard> selectUsedboardMyList(int cPage, int numPerpage, String memberId) {
-		// TODO Auto-generated method stub
-		return dao.selectUsedboardMyList(session,cPage,numPerpage,memberId);
-	}
-	
-	@Override
-	public int selectUsedboardMyCount(String memberId) {
-		// TODO Auto-generated method stub
-		return dao.selectUsedboardMyCount(session,memberId);
 	}
 	
 	@Override

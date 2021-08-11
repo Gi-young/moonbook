@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shopingList">
+
+	<resultMap id="shopinglist" type="shopinglist">
+		<id column="SHOPINGLIST_NO" property="shopingListNo"/>
+		<result column="SHOPINGLIST_CATE" property="shopingListCate" />
+		<result column="MEMBER_ID" property="memberId" />
+		<association javaType="bookShopingList" property="bsList">
+			<id column="SHOPINGLIST_NO" property="shopingListNo"/>
+			<result column="B_BIND_NO" property="bBindNo"/>
+			<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+		</association>
+	</resultMap>
+	
+		
+	<insert id="insertShopingList">
+		INSERT INTO SHOPING_LIST VALUES (SEQ_SHOPINGLIST_NO.NEXTVAL,#{shopingList_cate},#{memberId})
+		<selectKey keyProperty="shopingListNo" resultType="_int" order="AFTER">
+			SELECT SEQ_SHOPINGLIST_NO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<insert id="insertShopingListBook">
+		INSERT INTO BOOK_SHOPING_LIST VALUES (#{shopingListNo},#{bBindNo},#{shopingListCount})
+	</insert>
+
+</mapper>
