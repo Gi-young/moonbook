@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>  
  <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-
+<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>

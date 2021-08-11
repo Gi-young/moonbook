@@ -51,7 +51,7 @@ public class PageFactoryAuction {
 		
 		pageBar+="<script>";
 		pageBar+="function fn_paging(cPage){";
-		pageBar+="location.assign('"+url+"&cPage='+cPage);}";
+		pageBar+="location.assign('"+url+"?cPage='+cPage+'"+query+"');}";
 		pageBar+="</script>";	
 		
 		

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -296,13 +297,25 @@ public class AuctionController {
 	@RequestMapping("/auction/auctionAdmin")
 	public String auctionAdmin(@RequestParam Map param,Model m,
 			@RequestParam(value="cPage",defaultValue ="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage) {
+			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage,
+			@RequestParam(value="auctionState",defaultValue="") String auctionState,
+			@RequestParam(value="buysellState",defaultValue="") String buysellState,
+			@RequestParam(value="order",defaultValue="") String order,
+			@RequestParam(value="type",defaultValue="") String type,
+			@RequestParam(value="keyword",defaultValue="") String keyword
+			) {
 		
 		int totaldata=service.auctionAdmintotal(param);
-		System.out.println(param.get("type"));
+		String query="";
+		query="&numPerpage="+numPerpage;
+		query+="&auctionState"+auctionState;
+		query+="&buysellState"+buysellState;
+		query+="&order"+order;
+		query+="&type"+type;
+		query+="&keyword"+keyword;					
 		m.addAttribute("totaldata",totaldata);
 		m.addAttribute("auction",service.auctionAdmin(param,cPage,numPerpage));
-		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totaldata, cPage, numPerpage, "auctionAdmin",""));
+		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totaldata, cPage, numPerpage, "auctionAdmin",query));
 		return "auction/auctionAdmin";
 	}
 	@RequestMapping("/auction/auctionAdminCal")
