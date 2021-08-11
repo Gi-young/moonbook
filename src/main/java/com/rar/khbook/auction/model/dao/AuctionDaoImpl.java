@@ -17,12 +17,18 @@ public class AuctionDaoImpl implements AuctionDao {
 	
 	//경매 관리 페이지
 	
+	
 	@Override
-	public List<Auction> auctionAdmin(SqlSession session, Map param) {
-		return session.selectList("auction.auctionAdmin");
+	public List<Auction> auctionAdmin(SqlSession session, Map param,int cPage, int numPerpage) {
+		RowBounds row=new RowBounds((cPage-1)*numPerpage, numPerpage);
+		return session.selectList("auction.auctionAdmin",param,row);
 	}
-	
-	
+	@Override
+	public int auctionAdmintotal(SqlSession session, Map param) {
+		return session.selectOne("auction.auctionAdmintotal",param);
+	}
+
+
 	@Override
 	public int updatestateS(SqlSession session, Map param) {
 		return session.update("auction.updatestateS",param);

@@ -23,8 +23,13 @@ public class AuctionServiceImpl implements AuctionService {
 
 
 	@Override
-	public List<Auction> auctionAdmin(Map param) {
-		return dao.auctionAdmin(session,param);
+	public int auctionAdmintotal(Map param) {
+		return dao.auctionAdmintotal(session,param);
+	}
+
+	@Override
+	public List<Auction> auctionAdmin(Map param,int cPage, int numPerpage) {
+		return dao.auctionAdmin(session,param,cPage,numPerpage);
 	}
 
 	@Override

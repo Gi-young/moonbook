@@ -4,13 +4,59 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>  
  <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-
+<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
 
 <div id="wrap">
 	<div id="container">
+	
+	<div style="padding:10px;" id="formdiv">
+		<form action="">
+			<div>
+			<label>리스트 개수 설정</label>
+				<input type="radio" value="1" name="numPerpage">1개씩 보기
+				<input type="radio" value="5" name="numPerpage">5개씩 보기
+				<input type="radio" value="10" name="numPerpage">10개씩 보기
+				<input type="radio" value="15" name="numPerpage">15개씩 보기
+		
+			</div>
+				<div>
+				<label>경매 상태</label>
+					<input type="radio" value="Y" name="auctionState">진행
+					<input type="radio" value="S" name="auctionState"> 낙찰
+					<input type="radio" value="N" name="auctionState"> 유찰
+					<input type="radio" value="B" name="auctionState"> 마감					
+				</div>
+			<div>
+				<label>배송 확인 물품 </label>	
+					<input type="radio" value="buysell" name="buysellState"> 전부
+					<input type="radio" value="buy" name="buysellState"> 구매자
+					<input type="radio" value="sell" name="buysellState"> 판매자
+									
+			</div>
+				<div>
+				
+					<label>경매 내림차순 설정 </label>	
+						<input type="radio" value="END_DATE-START_DATE" name="order">  남은시간
+						<input type="radio" value="start_date" name="order">	 시작일
+						<input type="radio" value="end_date" name="order">  종료일
+									
+				</div>
+			<div>
+				<div style="text-align:right;">
+					<select name="type">
+						 <option value="auction_name">상품명</option>
+						 <option value="member_id">판매자ID</option>			 
+					</select>
+				 <input type="text" name="keyword"> 
+				 <input type="submit" value="검색하기">			
+				</div>
+			</div>
+		</form>
+	</div>
+	<div style="font-size:20px;"> 총 검색 결과<span style="color:red;"> ${totaldata } </span> 건</div>
 		<div style="overflow-x: scroll;">
 		<table id="table2">
 	
@@ -110,10 +156,19 @@
 				</c:if>
 			</c:forEach>
 	</table>
+	<div class="pageBar">${pageBar }</div>
 	</div>
 	</div>
 </div>
 <style>
+#formdiv div{
+	padding:10px;
+	    border-bottom: 1px dotted silver;
+}
+#formdiv form div label{
+	font-weight: bold;
+    border-right: black 4px solid;
+}
 .table_tr{
 
 }
