@@ -1,4 +1,14 @@
 @charset "UTF-8";
+#formdiv div{
+	padding:10px;
+	    border-bottom: 1px dotted silver;
+}
+
+#formdiv form div label{
+	font-weight: bold;
+    border-right: black 4px solid;
+}
+
 .table_tr{
 
 }

@@ -108,12 +108,13 @@ public class PageFactory {
 		
 		pageBar+="<script>";
 		pageBar+="function fn_paging(cPage){";
-		pageBar+="location.assign('"+url+"?cPage='+cPage);}";
+		pageBar+="location.assign('"+url+"&cPage='+cPage);}";
 		pageBar+="</script>";	
 		
 		
 		return pageBar;
 	}
+	
 	
 	public static String getUsedboardPageBar(int totalData, 
 			int cPage, int numPerpage, String url) {

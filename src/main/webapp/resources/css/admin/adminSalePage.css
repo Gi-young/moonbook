@@ -7,7 +7,7 @@
     align-items: center;
 }
 .admin-box1{
-	width: 950px;
+	width: fit-content;
 	display:flex;
 	height:700px;
 	min-height:500px; 
@@ -15,13 +15,15 @@
 }
 .admin-box3{
 	height:100%;
+	border-left: 1px solid #deded8;
 }
 
 .admin-box2{
 	display: flex;
 	flex-direction: column;
-	border: 1px solid black; 
-	width:770px;
+	border-left: 1px solid #deded8;
+	border-right: 1px solid #deded8; 
+	width:1000px;
 }
 
 .admin-box4{
@@ -100,7 +102,7 @@
     border-collapse: collapse;
 }
 .saleT th{
-	width: 100px;
+	/* width: 100px; */
 	height:30px;
 	background-color: #582810;
 	color:white;
@@ -108,7 +110,7 @@
 }
 
 .saleT td{
-	width: 100px;
+	/* width: 100px; */
 }
 .updateCheck{
 	width:20px;

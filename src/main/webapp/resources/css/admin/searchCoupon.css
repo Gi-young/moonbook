@@ -7,7 +7,7 @@
     align-items: center;
 }
 .admin-box1{
-	width: 950px;
+	width: fit-content;
 	display:flex;
 	height:700px;
 	min-height:500px; 
@@ -15,13 +15,15 @@
 }
 .admin-box3{
 	height:100%;
+	border-left: 1px solid #deded8;
 }
 
 .admin-box2{
 	display: flex;
 	flex-direction: column;
-	border: 1px solid black; 
-	width:770px;
+	border-left: 1px solid #deded8;
+	border-right: 1px solid #deded8; 
+	width: 1000px;
 }
 
 .admin-box4{
@@ -88,19 +90,60 @@
 .couponT{
 	/* width: 730px; */ 
 	/* width:auto; */
-	width: 1400px;
+	width: 1300px;
 	/* overflow-x: auto; */
 	margin-left: 20px;
 	/* margin-top:30px;  */
 	text-align: center;	
 	margin-bottom:20px;
+	table-layout:fixed;
+}
+.couponT input{
+	text-align:center;
+	width:100%;
+}
+.couponT tr>td:nth-child(1), .couponT tr>th:nth-child(1){
+	width: 120px;
+	text-align:center;
+}
+.couponT tr>td:nth-child(2), .couponT tr>th:nth-child(2){
+	width: 120px;
+	text-align:center;
+}
+.couponT tr>td:nth-child(3), .couponT tr>th:nth-child(3){
+	width: 120px;
+	text-align:center;
+}
+.couponT tr>td:nth-child(4), .couponT tr>th:nth-child(4){
+	width: 120px;
+	text-align:center;
+}
+.couponT tr>td:nth-child(5), .couponT tr>th:nth-child(5){
+	width: 120px;
+	text-align:center;
+}
+.couponT tr>td:nth-child(6), .couponT tr>th:nth-child(6){
+	width: 230px;
+	text-align:center;
+}
+.couponT tr>td:nth-child(7), .couponT tr>th:nth-child(7){
+	width: 300px;
+	text-align:center;
+}
+.couponT tr>td:nth-child(8), .couponT tr>th:nth-child(8){
+	width: 70px;
+	text-align:center;
+}
+.couponT tr>td:nth-child(9), .couponT tr>th:nth-child(9){
+	width: 70px;
+	text-align:center;
 }
 .couponT tbody{
 	border: black 1px solid;
     border-collapse: collapse;
 }
 .couponT th{
-	width: 100px;
+	/* width: 100px; */
 	height:30px;
 	background-color: #582810;
 	color:white;
@@ -108,7 +151,7 @@
 }
 
 .couponT td{
-	width: 100px;
+	/* width: 100px; */
 }
 .updateCheck{
 	width:20px;

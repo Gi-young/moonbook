@@ -33,14 +33,16 @@
 		</ul>
 			</li>
 		<li class="sub-menu3">
-				<p onclick="" class="adminColor">분석</a>
+				<p onclick="" class="adminColor">매출 분석</a>
 			
 			<ul class="sub_content3">
-			<li><p onclick="" class="adminColor2">수입및지출집계</p></li>
-			<li><p onclick="" class="adminColor2">일별매출집계</p></li>
-			<li><p onclick="" class="adminColor2">제품별매출집계</p></li>
-			<li><p onclick="" class="adminColor2">매출상세분석</p></li>
-			<li><p onclick="" class="adminColor2">월별제품매출분석</p></li>
+			<!-- <li><p onclick="" class="adminColor2">수입및지출집계</p></li>
+			<li><p onclick="" class="adminColor2">일별매출집계</p></li> -->
+			<li><p onclick="" class="adminColor2">차트</p></li>
+			<li><p onclick="" class="adminColor2">책 상세</p></li>
+			<li><p onclick="" class="adminColor2">e북 상세</p></li>
+			<li><p onclick="" class="adminColor2">기프트 상세</p></li>
+			<!-- <li><p onclick="" class="adminColor2">월별제품매출분석</p></li> -->
 		</ul>
 			</li>
 		<li class="sub-menu4">
