@@ -14,10 +14,15 @@
 		<!-- 회원등급 -->
 		<typeAlias type="com.rar.khbook.member.model.vo.Membergrade"
 			alias="membergrade" />
-
-		<typeAlias alias="strArr" type="com.rar.khbook.common.StringArrayTypeHandler"/>
+		<!-- 이북구매내역 -->
+		<typeAlias
+			type="com.rar.khbook.order.model.vo.EbookPurchaseHistory"
+			alias="ebookPurchaseHistory" />
+		<typeAlias alias="strArr"
+			type="com.rar.khbook.common.StringArrayTypeHandler" />
 
 		<!-- 중고게시판 -->
+
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboard" alias="usedboard"/>
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboardfile" alias="usedboardfile"/>
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedcomment" alias="usedcomment"/>
@@ -26,15 +31,21 @@
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.UsedboardSingo" alias="usedboardsingo"/>
 		
 		<!-- ebook -->
-		<typeAlias type="com.rar.khbook.ebook.model.vo.EbookDatabind" alias="ebookDatabind"/>
-		<typeAlias type="com.rar.khbook.ebook.model.vo.Ebook" alias="ebook"/>
+		<typeAlias
+			type="com.rar.khbook.ebook.model.vo.EbookDatabind"
+			alias="ebookDatabind" />
+		<typeAlias type="com.rar.khbook.ebook.model.vo.Ebook"
+			alias="ebook" />
 
-	
-		<typeAlias type="com.rar.khbook.order.model.vo.Order" alias="order"/>
+
+		<typeAlias type="com.rar.khbook.order.model.vo.Order"
+			alias="order" />
 
 
 		<!-- sellpart -->
-		<typeAlias type="com.rar.khbook.sellbook.model.vo.SellbookDatabind" alias="sellbookDatabind"/>
+		<typeAlias
+			type="com.rar.khbook.sellbook.model.vo.SellbookDatabind"
+			alias="sellbookDatabind" />
 
 
 		<!-- 기프트 -->
@@ -44,6 +55,7 @@
 	
 		<!-- 배송 -->
 		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery" alias="delivery"/>
+
 	</typeAliases>
 
 </configuration>

@@ -351,6 +351,9 @@ width:100%;
 .orderTh{
 	width:50%;
 }
+.tbl_wrap{
+	min-height:300px;
+}
 .tbl_order{
 	width:100%;
 }
