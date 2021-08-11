@@ -29,10 +29,10 @@
 				    		    </div> 
 			                </c:if>
 			                <c:if test="${member.memberId=='admin' }">
-			                 <div class="btn_coll">
-			             	  <button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
-			             	  </div>
-			                </c:if>
+				                 <div class="btn_coll">
+				             	  <button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
+				             	  </div>
+				             </c:if>
 		    		    </c:when>
 		    		    <c:otherwise>
 			    		    <div class="btn_coll">
@@ -47,7 +47,7 @@
 	        <div class="acution_category">
 	            <div class="acution_category_left">
 	                <div>
-	                    <a href="">도서</a>
+	                    <a>도서</a>
 	                    <div>
 	       			      <c:forEach items="${auctioncate }" var="a">
 		                    	<c:if test="${a.auctioncateName=='도서' }">
@@ -58,7 +58,7 @@
 	                </div>
 	
 	                <div>
-	                    <a href="">문구</a>
+	                    <a>문구</a>
 	                    <div>
 	       			      <c:forEach items="${auctioncate }" var="a">
 		                    	<c:if test="${a.auctioncateName=='문구' }">
@@ -69,10 +69,10 @@
 	                </div>
 	
 	                <div>
-	                    <a href="">기타</a>
+	                    <a>음반</a>
 	                    <div>
 	                       <c:forEach items="${auctioncate }" var="a">
-		                    	<c:if test="${a.auctioncateName=='기타' }">
+		                    	<c:if test="${a.auctioncateName=='음반' }">
 		                    		 <a href="${path }/auction/auctionlist?auctioncateFrist=${a.auctioncateFirst}&auctioncateName=${a.auctioncateName}">${a.auctioncateFirst }</a>
 		     					</c:if>
 		                   </c:forEach>

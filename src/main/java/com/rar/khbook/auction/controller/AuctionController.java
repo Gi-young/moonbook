@@ -222,7 +222,7 @@ public class AuctionController {
 		m.addAttribute("S",S);
 		m.addAttribute("totaldata",totalData);
 		m.addAttribute("auction", service.selectAuctionList(param, cPage, numPerpage));
-		m.addAttribute("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "auction/auctionmylist.do"));
+		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totalData, cPage, numPerpage, "auction/auctionmylist.do",""));
 		return "auction/auctionMySellList";
 	}
 	//옥션 구매 내정보
@@ -324,8 +324,21 @@ public class AuctionController {
 		int result = service.auctionAdminCal(param);
 		if (result>0) {			
 			m.addAttribute("msg","확인완료");
+			m.addAttribute("loc","/auction/auctionAdmin");
 		}else {
 			m.addAttribute("msg","확인실패");
+		}
+		return "common/msg";
+	}
+	//포인트 환급 
+	@RequestMapping("/auction/auctionbidCollect")
+	public String auctionbidCollect(Model m,@RequestParam Map param) {
+		int result=service.auctionbidCollect(param);
+		if (result>0) {			
+			m.addAttribute("msg","포인트 환급 성공");
+			m.addAttribute("loc","/auction/auctionmybuylist.do");
+		}else {
+			m.addAttribute("msg","포인트 환급 실패");
 		}
 		return "common/msg";
 	}

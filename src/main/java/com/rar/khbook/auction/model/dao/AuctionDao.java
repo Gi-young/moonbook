@@ -58,4 +58,6 @@ public interface AuctionDao {
 
 	int auctionAdmintotal(SqlSession session, Map param);
 
+	int updatebidStateY(SqlSession session, Map param);
+
 }

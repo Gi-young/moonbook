@@ -52,6 +52,8 @@ public interface AuctionService {
 	int auctionAdminCal(Map param);
 
 	int auctionAdmintotal(Map param);
+
+	int auctionbidCollect(Map param);
 	
 
 

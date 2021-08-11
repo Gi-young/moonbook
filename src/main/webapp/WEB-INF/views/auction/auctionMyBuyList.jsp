@@ -14,7 +14,7 @@
 	<div id="wrap">
         <div id="container">	
 			<div>
-				<table style="width: 100%;  text-align: center;">
+				<table style="width: 100%;  text-align: center;" id="buylertable">
 					<tr style="    font-weight: bold; font-size: 19px;    ">
 						<th>경매번호</th>
 						<th>경매이름</th>
@@ -45,8 +45,11 @@
 									<span style="color:red">유찰</span>
 									<c:forEach items="${a.auctionbid }" var="bid">
 							
-									<c:if test="${bid.bidId eq member.memberId}">
-										<span>${bid.bidPrice }<button>포인트 돌려받기</button></span>
+									<c:if test="${bid.bidId eq member.memberId && bid.bidCheck eq 'N'}">
+										<span>${bid.bidPrice }<button onclick="location.replace('${path}/auction/auctionbidCollect?memberId=${member.memberId }&bidNo=${bid.bidNo }&memberPoint=${bid.bidPrice }')">포인트 돌려받기</button></span>
+									</c:if>
+									<c:if test="${bid.bidId eq member.memberId && bid.bidCheck eq 'Y'}">
+										<p>${bid.bidPrice }<span style="color:blue;">회수완료</span></p>
 									</c:if>
 									</c:forEach>														
 							</c:if>

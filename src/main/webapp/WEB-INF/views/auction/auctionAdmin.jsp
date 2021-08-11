@@ -116,7 +116,7 @@
 							</td>
 							<td>
 							<c:if test="${a.buylerState eq 'Y' && a.sellerState eq 'Y' && a.auctionState eq 'S'}">
-								<button onclick="location.replace('${path}/auction/auctionAdminCal?memberId=${a.memberId }&memberPoint=${a.auctionbid[0].bidPrice }&auctionNo=${a.auctionNo }')">경매 포인트 정산하기</button>
+								<button onclick="location.replace('${path}/auction/auctionAdminCal?memberId=${a.memberId }&memberPoint=${a.auctionbid[0].bidPrice }&auctionNo=${a.auctionNo }&bidNo=${a.auctionbid[0].bidNo }')">경매 포인트 정산하기</button>
 							</c:if>
 							<c:if test="${a.auctionState eq 'B'}">
 								<span>정산 완료</span>

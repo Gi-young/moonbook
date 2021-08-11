@@ -161,8 +161,18 @@ public class AuctionServiceImpl implements AuctionService {
 	public int auctionAdminCal(Map param) {
 		dao.updateauctionPay(session,param);
 		int result= dao.updatestateS(session, param);
+		result=dao.updatebidStateY(session, param);
 		return result;
 	}
+	//포인트 환급
+
+	@Override
+	public int auctionbidCollect(Map param) {
+		dao.updateauctionPay(session, param);
+		int result=dao.updatebidStateY(session,param);
+		return result;
+	}
+	
 	
 
 }

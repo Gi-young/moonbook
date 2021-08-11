@@ -42,3 +42,7 @@ th{
 .buylisttr td{
 	vertical-align: middle;
 }
+#buylertable>tbody>tr{
+	border-bottom: 1px dotted black;
+	
+}
