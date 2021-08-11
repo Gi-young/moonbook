@@ -108,16 +108,10 @@
 		
 		let check2=true;
 	
-		$(".hiddenbidId").each((i,v)=>{
-			console.log($(v).val());
-			
+		$(".hiddenbidId").each((i,v)=>{		
 			if($(v).val()==$("#bidid").val()){
-				alert("입찰 기록이있습니다.")
-				
-				let bidNo=$(v).prev().val()
-				
-				$("input[name=bidNo]").val(bidNo);
-				
+				let bidNo=$(v).prev().val()			
+				$("input[name=bidNo]").val(bidNo);				
 				check2=false;
 				return false;
 			}		

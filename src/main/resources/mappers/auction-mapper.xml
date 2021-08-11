@@ -182,7 +182,7 @@
 	</select>
 	
 	<select id="selectTimeList" resultMap="AuctionMap">
-	select * from auction left join auctionbid on auction.auction_no=auctionbid.auction_no where auction_state='Y' ORDER BY (end_date-start_date)
+	select * from auction left join auctionbid on auction.auction_no=auctionbid.auction_no where auction_state='Y' ORDER BY (end_date-sysdate)
 	</select>
 	
 	<select id="selectauctioncate" resultMap="AuctionCateMap">

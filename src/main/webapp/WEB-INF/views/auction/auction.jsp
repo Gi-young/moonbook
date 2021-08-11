@@ -10,9 +10,6 @@
 </jsp:include>
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auction.css">
-
-	
-	
 	<div id="wrap">
 		<div id="container">
 	        <div class="auction_main line">
