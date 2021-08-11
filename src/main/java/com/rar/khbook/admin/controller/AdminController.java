@@ -1209,7 +1209,7 @@ public class AdminController {
 		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
 		
 		int totalContents=service.getPageBarsearchTextbookAList(param);
-		// 정렬만 할거고 매출액은 바뀔필요 없음 검색은 필요함
+		
 		int totalCost=service.searchbookTotalCost(param);
 		String[] resultArr = new String[3];
 		
@@ -1222,6 +1222,108 @@ public class AdminController {
 		
 		return resultArr;
 	}
-	
+	//매출분석 ebook 상세 페이지 바로가기 /admin/ebookAnalysisPage.do
+	@RequestMapping("/admin/ebookAnalysisPage.do")
+	public ModelAndView ebookAnalysisPage(@RequestParam(value="cPage", defaultValue="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
+		
+		List<EbookDatabind> list=service.selectEbookDatabindList(cPage,numPerpage);
+		mv.addObject("list",list);
+		
+		int totalData=service.selectEbookDataCount();
+		mv.addObject("totalContents", totalData);
+		
+		//e북책 매출액 계산
+		int totalCost=service.selectbookTotalCost2();
+		mv.addObject("totalCost", totalCost);
+		
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "bookAnalysisPage.do"));
+		
+		mv.setViewName("admin/ebookAnalysis");
+		return mv;
+	}
+	//매출분석 EBOOK 정렬 
+	@RequestMapping("/admin/orderEBookAList.do")
+	@ResponseBody
+	public List<EbookDatabind> orderEBookAList(@RequestParam Map param) {
+		
+		String type21=(String)param.get("type21");
+		param.put("type21", type21);
+		String order=(String)param.get("order");
+		param.put("order", order);
+		
+		
+		List<EbookDatabind> list = service.orderEBookAList(param);
+		
+		return list;
+	}
+	//매출분석 EBOOK 정렬 페이징바
+	@RequestMapping("/admin/getPageBarorderEBookAList.do")
+	@ResponseBody
+	public String[] getPageBarorderEBookAList(@RequestParam Map param) {
+		
+		String type21=(String)param.get("type21");
+		param.put("type21", type21);
+		String order=(String)param.get("order");
+		param.put("order", order);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarorderEBookAList(param);
+		
+		//int totalCost=service.orderbookTotalCost();
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar10(totalContents, cPage, numPerpage,null);
+		
+		resultArr[0] = pageBar;
+		resultArr[1] = Integer.toString(totalContents);
+		
+		
+		return resultArr;
+	}
+	//매출분석 EBOOK책 검색
+	@RequestMapping("/admin/searchTextEbookAList.do")
+	@ResponseBody
+	public List<EbookDatabind> searchTextEbookAList(@RequestParam Map param) {
+		
+		String type22=(String)param.get("type22");
+		param.put("type22", type22);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
+		
+		List<EbookDatabind> list = service.searchTextEbookAList(param);
+		
+		return list;
+	}
+	//매출분석 EBOOK책 검색 페이지 바
+	@RequestMapping("/admin/getPageBarsearchTextEbookAList.do")
+	@ResponseBody
+	public String[] getPageBarsearchTextEbookAList(@RequestParam Map param) {
+		
+		String type22=(String)param.get("type22");
+		param.put("type22", type22);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarsearchTextEbookAList(param);
+		
+		int totalCost=service.searchEbookTotalCost(param);
+		String[] resultArr = new String[3];
+		
+		String pageBar = PageFactoryAdmin.getPageBar11(totalContents, cPage, numPerpage,null);
+		
+		resultArr[0] = pageBar;
+		resultArr[1] = Integer.toString(totalContents);
+		resultArr[2] = Integer.toString(totalCost);
+		
+		
+		return resultArr;
+	}
 	
 }

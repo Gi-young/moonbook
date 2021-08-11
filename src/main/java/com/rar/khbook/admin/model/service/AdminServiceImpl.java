@@ -421,6 +421,45 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.searchbookTotalCost(session,param);
 	}
+
+	@Override
+	public int selectbookTotalCost2() {
+		// TODO Auto-generated method stub
+		return dao.selectbookTotalCost2(session);
+	}
+
+	@Override
+	public List<EbookDatabind> orderEBookAList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.orderEBookAList(session,param);
+	}
+
+	@Override
+	public int getPageBarorderEBookAList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarorderEBookAList(session,param);
+	}
+
+	@Override
+	public List<EbookDatabind> searchTextEbookAList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchTextEbookAList(session,param);
+	}
+
+	@Override
+	public int getPageBarsearchTextEbookAList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarsearchTextEbookAList(session,param);
+	}
+
+	@Override
+	public int searchEbookTotalCost(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchEbookTotalCost(session,param);
+	}
+	
+	
+	
 	
 	
 	

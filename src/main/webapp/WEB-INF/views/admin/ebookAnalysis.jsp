@@ -8,7 +8,7 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/admin/bookAnalysis.css">
+<link rel="stylesheet" href="${path}/resources/css/admin/ebookAnalysis.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -28,32 +28,32 @@
 							<tr>
 								<th>정렬방법</th>
 								<td>
-								<select name="type18">
+								<select name="type21">
 									<option value="cost" selected>매출</option>
 									<option value="profit" >이익</option>
 									<option value="salesVolume" >판매량</option>
 								</select>
 								</td>
 								<td>
-									<input class="howASCSearch" type="radio" name="searchBook9" id="asc" value="ASC" checked><label for="asc">오름차순</label>
-									<input class="howDESCSearch2" type="radio" name="searchBook9" id="desc" value="DESC"><label for="desc">내림차순</label>
+									<input class="howASCSearch" type="radio" name="searchEBook9" id="asc" value="ASC" checked><label for="asc">오름차순</label>
+									<input class="howDESCSearch2" type="radio" name="searchEBook9" id="desc" value="DESC"><label for="desc">내림차순</label>
 								</td>
-								<td><input type="button" value="조회하기" onclick="orderBookAList(1,10);"></td>
+								<td><input type="button" value="조회하기" onclick="orderEBookAList(1,10);"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
 								<td class="admin-search2">
-								<select name="type19">
+								<select name="type22">
 									<option value="BIND_NO" selected>책 번호</option>
 									<option value="TITLE" >책 제목</option>
 								</select>
 								</td>
 								<td class="search-box">
-									<input type="text" name="searchbookA1"> 
+									<input type="text" name="searchEbookA1"> 
 								</td>
 								<td class="search-box">
 									<img alt="검색하기"
-									src="${path }/resources/img/admin/search.png" onclick="searchbookA(1,10);">
+									src="${path }/resources/img/admin/search.png" onclick="searchEbookA(1,10);">
 								</td>
 							</tr>
 						</table>
@@ -93,9 +93,9 @@
 							<td><input type="text" value="${e.primeCost}"></td>
 							<td><input type="text" value="${e.price - e.primeCost}"
 								 readonly></td>
-							<td><input type="text" value="${e.salesVolume }"
-								name="salesVolume" readonly></td>
-							<td><input type="text" value="${(e.price - e.primeCost)*e.salesVolume }"
+							<td><input type="text" value="${e.ebookSalesVolume }"
+								name="ebookSalesVolume" readonly></td>
+							<td><input type="text" value="${(e.price - e.primeCost)*e.ebookSalesVolume }"
 								 readonly></td>
 						</tr>
 					</c:forEach>
@@ -105,7 +105,7 @@
 				<!-- </form> -->
 
 
-				<div id="pagebar-container12">
+				<div id="pagebar-container13">
 			        ${pageBar }
 				</div>
 
@@ -118,14 +118,14 @@
 <script>
 
 
-function searchbookA(cPage,numPerpage){
-	let type19 =document.getElementsByName("type19")[0].value;
-	let search=document.getElementsByName("searchbookA1")[0].value;
+function searchEbookA(cPage,numPerpage){
+	let type22 =document.getElementsByName("type22")[0].value;
+	let search=document.getElementsByName("searchEbookA1")[0].value;
 	
 	$.ajax({
-		url: "${path}/admin/searchTextbookAList.do",
+		url: "${path}/admin/searchTextEbookAList.do",
 		data:{
-			type19 :type19,
+			type22 :type22,
 			search:search,
 			cPage: cPage,
 			numPerpage: numPerpage
@@ -147,8 +147,8 @@ function searchbookA(cPage,numPerpage){
 					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].price + "'>";
 					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].primeCost + "'>";
 					if(j == 4) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost) + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].salesVolume + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost)*data[i].salesVolume + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].ebookSalesVolume + "'>";
+					if(j == 6) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost)*data[i].ebookSalesVolume + "'>";
 					
 					tr.appendChild(td);
 				}
@@ -165,15 +165,15 @@ function searchbookA(cPage,numPerpage){
 		
 	});
 	$.ajax({
-		url: "${path}/admin/getPageBarsearchTextbookAList.do",
+		url: "${path}/admin/getPageBarsearchTextEbookAList.do",
 		data: {
-			type19 :type19,
+			type22 :type22,
 			search:search,
 			cPage: cPage,
 			numPerpage: numPerpage
 		},
 		success: data => {
-			$("#pagebar-container12").html(data[0]);
+			$("#pagebar-container13").html(data[0]);
 			$(".turnRed1").html(data[1]);
 			$(".turnRed2").html(data[2]);
 			
@@ -181,19 +181,19 @@ function searchbookA(cPage,numPerpage){
 	});
 } 
 
-function orderBookAList(cPage,numPerpage){
-	let type18 = document.getElementsByName("type18")[0].value;
+function orderEBookAList(cPage,numPerpage){
+	let type21 = document.getElementsByName("type21")[0].value;
 	let order="";
-	document.getElementsByName("searchBook9").forEach((v,i) => {
+	document.getElementsByName("searchEBook9").forEach((v,i) => {
 		if (v.checked) {
 			order = v.value;
 		}
 	});
 	
 	$.ajax({
-		url: "${path}/admin/orderBookAList.do",
+		url: "${path}/admin/orderEBookAList.do",
 		data: {
-			type18: type18,
+			type21: type21,
 			order: order==="" ? "asc":order,
 			cPage: cPage,
 			numPerpage: numPerpage
@@ -215,8 +215,8 @@ function orderBookAList(cPage,numPerpage){
 					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].price + "'>";
 					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].primeCost + "'>";
 					if(j == 4) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost) + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].salesVolume + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost)*data[i].salesVolume + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].ebookSalesVolume + "'>";
+					if(j == 6) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost)*data[i].ebookSalesVolume + "'>";
 					
 					tr.appendChild(td);
 				}
@@ -232,15 +232,15 @@ function orderBookAList(cPage,numPerpage){
 		}
 	});
 	$.ajax({
-		url: "${path}/admin/getPageBarorderBookAList.do",
+		url: "${path}/admin/getPageBarorderEBookAList.do",
 		data: {
-			type18: type18,
+			type21: type21,
 			order: order==="" ? "asc":order,
 			cPage: cPage,
 			numPerpage: numPerpage
 		},
 		success: data => {
-			$("#pagebar-container12").html(data[0]);
+			$("#pagebar-container13").html(data[0]);
 			$(".turnRed1").html(data[1]);
 			
 			

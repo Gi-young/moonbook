@@ -147,10 +147,23 @@ public interface AdminService {
 	//책 상세 정렬 페이지바
 	int getPageBarorderBookAList(Map param);
 	
-	//책 검색 
+	//매출 책 검색 
 	List<EbookDatabind> searchTextbookAList(Map param);
 	
 	int getPageBarsearchTextbookAList(Map param);
 	int searchbookTotalCost(Map param);
 	
+	//ebook 상세 총 매출액 계산
+	int selectbookTotalCost2();
+	
+	//ebook 상세 정렬방법
+	List<EbookDatabind> orderEBookAList(Map param);
+	//ebook 상세 정렬 페이지바
+	int getPageBarorderEBookAList(Map param);
+	
+	//매출 ebook 검색
+	List<EbookDatabind> searchTextEbookAList(Map param);
+	
+	int getPageBarsearchTextEbookAList(Map param);
+	int searchEbookTotalCost(Map param);
 }

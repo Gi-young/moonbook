@@ -434,6 +434,45 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.searchbookTotalCost",param);
 	}
+
+	@Override
+	public int selectbookTotalCost2(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectbookTotalCost2");
+	}
+
+	@Override
+	public List<EbookDatabind> orderEBookAList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.orderEBookAList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int getPageBarorderEBookAList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarorderEBookAList",param);
+	}
+
+	@Override
+	public List<EbookDatabind> searchTextEbookAList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.searchTextEbookAList",param);
+	}
+
+	@Override
+	public int getPageBarsearchTextEbookAList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarsearchTextEbookAList",param);
+	}
+
+	@Override
+	public int searchEbookTotalCost(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.searchEbookTotalCost",param);
+	}
+	
 	
 	
 	

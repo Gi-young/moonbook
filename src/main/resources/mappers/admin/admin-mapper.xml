@@ -533,7 +533,71 @@
 		</choose>
   	</select>
   	
-  	
-  	
-  	
+  	<!-- 매출관리 ebook 매출액 -->
+  	<select id="selectbookTotalCost2" resultType="_int">
+  		SELECT SUM((PRICE-PRIME_COST)*EBOOK_SALES_VOLUME) AS TOTALCOST FROM BOOK_EBOOK_DATABIND
+  	</select>
+  	<!-- 매출관리 ebook북 정렬  -->
+  	<select id="orderEBookAList" resultMap="ebookDatabindMap">
+  		SELECT * FROM BOOK_EBOOK_DATABIND
+  		<if test="type21=='cost'">
+  			ORDER BY (PRICE-PRIME_COST)*EBOOK_SALES_VOLUME ${order} NULLS LAST
+  		</if>
+  		<if test="type21=='profit'">
+  			ORDER BY (PRICE-PRIME_COST) ${order}
+  		</if>
+  		<if test="type21=='salesVolume'">
+  			ORDER BY EBOOK_SALES_VOLUME ${order}
+  		</if>
+  	</select>
+  	<!-- 매출관리 ebook북 정렬 페이지바  -->
+  	<select id="getPageBarorderEBookAList" resultType="_int">
+  		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND
+  		<if test="type21=='cost'">
+  			ORDER BY (PRICE-PRIME_COST)*EBOOK_SALES_VOLUME ${order} NULLS LAST
+  		</if>
+  		<if test="type21=='profit'">
+  			ORDER BY (PRICE-PRIME_COST) ${order}
+  		</if>
+  		<if test="type21=='salesVolume'">
+  			ORDER BY EBOOK_SALES_VOLUME ${order}
+  		</if>
+  	</select>
+  	<!-- 매출관리 ebook 검색 -->
+  	<select id="searchTextEbookAList" resultMap="ebookDatabindMap">
+  		SELECT * FROM BOOK_EBOOK_DATABIND WHERE
+  		<choose>
+			<when test="type22 == 'BIND_NO'">
+				 BIND_NO=#{search}
+			</when>
+			<when test="type22 == 'TITLE'">
+				TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+  		
+  	</select>
+  	<!-- 매출관리 ebook 검색 페이지바-->
+  	<select id="getPageBarsearchTextEbookAList" resultType="_int">
+  		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND WHERE
+  		<choose>
+			<when test="type22 == 'BIND_NO'">
+				 BIND_NO=#{search}
+			</when>
+			<when test="type22 == 'TITLE'">
+				TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+  	</select>
+  	<!-- 매출관리 EBOOK 검색 총 매출액 -->
+  	<select id="searchEbookTotalCost" resultType="_int">
+  		SELECT SUM((PRICE-PRIME_COST)*EBOOK_SALES_VOLUME) FROM BOOK_EBOOK_DATABIND WHERE
+  		<choose>
+			<when test="type22 == 'BIND_NO'">
+				 BIND_NO=#{search}
+			</when>
+			<when test="type22 == 'TITLE'">
+				TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+  	</select>
 </mapper>

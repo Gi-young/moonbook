@@ -137,4 +137,17 @@ public interface AdminDao {
 	
 	int searchbookTotalCost(SqlSession session,Map param);
 	
+	//이건 EBOOK 조회할때 총 매출액임
+	int selectbookTotalCost2(SqlSession session); 
+	
+	List<EbookDatabind> orderEBookAList(SqlSession session,Map param);
+	int getPageBarorderEBookAList(SqlSession session,Map param);
+	
+	List<EbookDatabind> searchTextEbookAList(SqlSession session,Map param);
+	
+	int getPageBarsearchTextEbookAList(SqlSession session,Map param);
+	
+	int searchEbookTotalCost(SqlSession session,Map param);
+	
+	
 }
