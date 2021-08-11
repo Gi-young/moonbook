@@ -7,11 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Shopinglist {
+public class BookShopingList{
 
-	private ShopinglistNo shopinglistNo;
-	private String shopinglistCate;
-	private String memberId;
-	
-	
+	private int shopingListNo;
+	private int bBindNo;
+	private int shopingListCount;
 }

@@ -38,7 +38,7 @@
 
 		<!-- 장바구니 -->
 		<typeAlias type="com.rar.khbook.shopingList.model.vo.ShopingList" alias="shopingList"/>
-		<typeAlias type="com.rar.khbook.shopingList.model.vo.ShopinglistNo" alias="shopingListNo"/>
+		<typeAlias type="com.rar.khbook.shopingList.model.vo.BookShopingList" alias="bookShopingList"/>
 
 		<!-- 기프트 -->
 		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift" alias="nGift"/>

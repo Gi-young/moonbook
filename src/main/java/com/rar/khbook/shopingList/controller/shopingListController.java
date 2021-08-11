@@ -27,13 +27,21 @@ public class shopingListController {
 	
 	
 	@RequestMapping("/shopingList/shopingList.do") 
-	public ModelAndView shopingList(Map param, ModelAndView mv) {
-		
-		
+	public ModelAndView shopingList(@RequestParam Map param, ModelAndView mv) {
+
+		System.out.println("이거파람인데 : "+param);
 		mv.addObject("shopingList",service.insertShopingList(param));
 		
 		return mv;
 		
 	}
+	
+	
+	
+	@RequestMapping("/test")
+	public String test() {
+		return "shopingList/shopingList";
+	}
+	
 }
 

@@ -5,7 +5,7 @@ import java.util.Map;
 public interface ShopingListService {
 
 
-	Object insertShopingList(Map param);
+	int insertShopingList(Map param);
 	
 
 

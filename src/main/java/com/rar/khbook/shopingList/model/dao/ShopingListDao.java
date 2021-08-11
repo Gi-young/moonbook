@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 
 public interface ShopingListDao {
 
-	Object insertShopingList(SqlSession session, Map param);
+	int insertShopingList(SqlSession session, Map param);
+
+	int insertShopingListBook(SqlSession session, Map param);
 
 
 }
