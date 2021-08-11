@@ -32,7 +32,9 @@
 				    		    </div> 
 			                </c:if>
 			                <c:if test="${member.memberId=='admin' }">
+			                 <div class="btn_coll">
 			             	  <button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
+			             	  </div>
 			                </c:if>
 		    		    </c:when>
 		    		    <c:otherwise>
