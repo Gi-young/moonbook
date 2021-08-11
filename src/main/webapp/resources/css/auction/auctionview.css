@@ -1,15 +1,15 @@
 @charset "UTF-8";
 table{
 	border-collapse: separate;
-    text-indent: initial;
-    border-spacing: 2px;
+	text-indent: initial;
+	border-spacing: 2px;
 }
 
 th{
-	vertical-align: middle;
- 	display: table-cell;
+    vertical-align: middle;
+    display: table-cell;
     font-weight: bold;
-    text-align: -internal-center;	
+    text-align: -internal-center;
 }
 
 a{
@@ -23,35 +23,13 @@ a{
 #container{
 	text-align: left;
     width: 950px;
-    border: 1px solid black;
-	display: inline-block;
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
+    display: inline-block;
 }
 
 .line{
     border: 1px solid black;
-}
-
-.btn_coll{
-	text-align:center;
-}
-
-.memberbidpoint{
-	border:1px solid red;
-	text-align:center;
-	font-weight:bold;
-}
-
-.memberbidpoint>span{
-	color: red;
-    font-size: 20px;
-}
-
-.btn_coll button{
-	margin:1px;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bolder;
-    border-radius: 10px;
 }
 
 .auction_main{
@@ -65,14 +43,8 @@ a{
 }
 
 .auction_main_right{
-    font-weight: bold;
     width: 200px;
     height: 300px;
-}
-
-.auction_main_right h2{
-	text-align:center;
-	font-size:22px;
 }
 
 .acution_category{
@@ -82,7 +54,6 @@ a{
 
 .acution_category_left{
     width: 100%;
-    margin-bottom: 15px;
 }
 
 .acution_category_left>div>a{
@@ -124,11 +95,6 @@ a{
    text-align: right;
 }
 
-.auction_main_po_img{
-	width:180px;
-	height:180px;
-}
-
 .auction_main_po_img img{
     width: 180px;
     height: 180px;
@@ -141,8 +107,7 @@ a{
 }
 
 .auction_main_po_center p{
-	margin:10px;
-    padding: 0px;
+    padding: 4px;
     font-size: 12px;
     font-weight: bold;
 }
@@ -219,32 +184,63 @@ a{
 }
 
 /*옥션 view*/
+.auctionview_img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auctionview_img img{
+	width:500px;
+    border: 1px solid silver;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+
+.bid-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 10px 20px 20px 20px;
+}
+
+.auctionview_left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    border-radius: 10px;
+    border: 1px solid silver;
+    overflow: hidden;
+}
 
 .auctionview_left>img{
-    width: 250px;
-    height: 250px;
+    width: 200px;
 }
 
 .auctionview_right{
-    width: 800px;
-    margin-left: 10px;
+    flex-grow: 1;
+    margin-left: 20px;
 }
 
 .auctionview_right p{
    padding: 0px;
-   margin: 0px;
-   font-weight: bold;
-   font-size: 12px;
+   margin: 10px;
+   font-size: 13px;
 }
 
 .auctionview_right h2{
-    font-size: 17px;
+    font-size: 14px;
     padding: 0px;
     margin: 0px;
+    font-weight: bold;
 }
 
 .auctionview_right div{
-    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+    border-bottom: 1px solid silver;
+    padding: 5px;
 }
 
 .auctionview_btn{
@@ -252,13 +248,23 @@ a{
     margin: 20px;
 }
 
+.auctionview_btn{
+	text-align:center;
+}
+
 .auctionview_btn a{
     text-align: center;
-    width: 25%;
+    width: 50%;
     border: 1px solid black;
-    padding: 10px 20px 10px 20px;
-    background-color: chartreuse;
-    color: white;
+    padding: 10px 60px 10px 60px;
+    background-color: blanchedalmond;
+    color: gray;
+    font-weight: bold;
+}
+.auctionview_btn a:hover{
+	color:black;
+    font-weight: bold;
+	background-color:burlywood;
 }
 
 .auction_buy_now{
@@ -280,7 +286,68 @@ span{
 }
 
 .countdown{
-	font-size:20px;
-	font-weight: bolder;
-	
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+#countdown {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.auction_cate{
+    margin-left: 10px;
+    margin-top: 5px;
+	padding:10px;
+    font-size: 13px;
+    color: black;
+}
+
+#auctionview_main {
+    padding: 20px;
+}
+
+#auctionview_main>div {
+    padding: 10px 0 10px 0;
+}
+
+#auctionview_main>div>p {
+    font-size: 14px;
+}
+
+#auctionview_main h2{
+    color:chocolate;
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted silver;
+    margin-bottom: 20px;
+}
+
+.bidTableBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bidLog {
+    border-collapse: collapse;
+    font-size: 20px;
+}
+
+#bidLog th {
+    border: 1px solid silver;
+    padding: 10px;
+    background-color: burlywood;
+    font-weight: bold;
+    text-align: center;
+}
+
+#bidLog td {
+    border: 1px solid silver;
+    padding: 10px;
+    background-color: blanchedalmond;
+    text-align: center;
 }

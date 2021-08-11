@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.usedboard.model.vo.Usedboard;
 import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
+import com.rar.khbook.usedboard.model.vo.UsedboardSingo;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
@@ -64,4 +65,16 @@ public interface UsedboardDao {
 	int usedboardPay2(SqlSession session,int no);
 	
 	int usedboardPay22(SqlSession session,int no);
+	
+	List<UsedboardSingo> checkSingo(SqlSession session,UsedboardSingo s);
+	
+	int insertSingo(SqlSession session,UsedboardSingo s);
+	
+	List<UsedboardSingo> usedboardSingoList(SqlSession session, int cPage, int numPerpage);
+	
+	int usedboardSingoCount(SqlSession session);
+	
+	int usedboardSingoDelete(SqlSession session,int no);
+	
+	int usedboardMySingoDelete(SqlSession session,int no);
 }

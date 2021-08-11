@@ -68,7 +68,7 @@
 			</ul>
 		</li>
 		<li class="sub-menu7">
-			<p onclick="" class="adminColor">배송관리</a>
+			<p onclick="location.assign('${path}/admin/deliveryManagementPage.do')" class="adminColor">배송관리</a>
 		</li>
 	</ul>
 </div>

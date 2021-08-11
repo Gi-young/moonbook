@@ -46,10 +46,12 @@ public interface AuctionService {
 	int updateAddbid(Map param);
 
 
-	List<Auction> auctionAdmin(Map param);
+	List<Auction> auctionAdmin(Map param, int cPage, int numPerpage);
 	int auctionBuySell(Map param);
 
 	int auctionAdminCal(Map param);
+
+	int auctionAdmintotal(Map param);
 	
 
 

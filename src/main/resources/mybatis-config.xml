@@ -23,6 +23,7 @@
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedcomment" alias="usedcomment"/>
 		<typeAlias type="com.rar.khbook.common.StringArrayTypeHandler" alias="strArr"/>
 		<typeAlias type="com.rar.khbook.usedboard.model.vo.UsedboardPayment" alias="usedboardpayment"/>
+		<typeAlias type="com.rar.khbook.usedboard.model.vo.UsedboardSingo" alias="usedboardsingo"/>
 		
 		<!-- ebook -->
 		<typeAlias type="com.rar.khbook.ebook.model.vo.EbookDatabind" alias="ebookDatabind"/>
@@ -40,6 +41,9 @@
 		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift" alias="nGift"/>
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftCate" alias="giftCate"/>
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftBoard" alias="giftBoard"/>
+	
+		<!-- 배송 -->
+		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery" alias="delivery"/>
 	</typeAliases>
 
 </configuration>

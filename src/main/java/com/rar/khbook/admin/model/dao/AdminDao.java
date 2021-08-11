@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
@@ -103,10 +104,25 @@ public interface AdminDao {
 	List<Couponlist> searchCouponList(SqlSession session,int cPage,int numPerpage);
 	int selectCouponListCount(SqlSession session);
 	
+	List<Couponlist> searchCouponL(SqlSession session,Map param);
+	int getPageBarSearchCouponList(SqlSession session,Map param);
+	
+	int updateCouponlist(SqlSession session,Map param);
+	
+	int adCouponDelete(SqlSession session,Map param);
+	
 	List<AuctionCate> selectAuctionList(SqlSession session);
 	
 	int addAuctionCate(SqlSession session,Map param);
 	
 	int deleteAuctionCate(SqlSession session,Map param);
 	
+	List<Delivery> selectDeliveryList(SqlSession session,int cPage,int numPerpage);
+	int selectDeliveryCount(SqlSession session);
+	
+	int insertDelivery(SqlSession session,Map param);
+	
+	int updateDelivery(SqlSession session,Map param);
+	
+	int deleteDelivery(SqlSession session,Map param);
 }

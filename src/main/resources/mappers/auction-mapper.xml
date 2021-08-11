@@ -7,9 +7,58 @@
 	</update>
 	
 	<!-- 경매 관리 -->
+	<select id="auctionAdmintotal" resultType="_int">
+	SELECT COUNT(*) FROM AUCTION WHERE 1=1
+	<if test="auctionState !=null and auctionState!=''">
+	AND AUCTION_STATE=#{auctionState}
+	</if>
+	<if test="buysellState !=null and buysellState!=''">
+		<choose>
+			<when test="buysellState=='buysell'">
+				AND SELLER_STATE='Y' AND BUYLER_STATE='Y'
+			</when>
+			<when test="buysellState=='buy'">
+				AND BUYLER_STATE='Y'
+			</when>
+			<when test="buysellState=='sell'">
+				AND SELLER_STATE='Y'
+			</when>
+		</choose>
+	</if>
+	<if test="type != null and type != ''">
+	AND ${type} like '%'||#{keyword}||'%' 
+	</if>
+	<if test="order !=null and order!=''">
+	ORDER BY ${order}
+	</if>
+	</select>
+	
+	
 	<select id="auctionAdmin" resultMap="AuctionMap">
 	select * from auctioncate join auction using(auctioncate_code) left join auctionbid using(auction_no) WHERE 1=1
+	<if test="auctionState !=null and auctionState!=''">
+	AND AUCTION_STATE=#{auctionState}
+	</if>
+	<if test="buysellState !=null and buysellState!=''">
+		<choose>
+			<when test="buysellState=='buysell'">
+				AND SELLER_STATE='Y' AND BUYLER_STATE='Y'
+			</when>
+			<when test="buysellState=='buy'">
+				AND BUYLER_STATE='Y'
+			</when>
+			<when test="buysellState=='sell'">
+				AND SELLER_STATE='Y'
+			</when>
+		</choose>
+	</if>
+	<if test="type != null and type != ''">
+	AND ${type} like '%'||#{keyword}||'%' 
+	</if>
 	ORDER BY BID_PRICE DESC
+	<if test="order !=null and order!=''">
+	,${order}
+	</if>
 	</select>
 	
 

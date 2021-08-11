@@ -74,7 +74,7 @@ div#pageBar span.cPage {
 				<td>${b.merchant_uid }</td>
 				<td width="300"><a href="${path }/usedboard/usedboardView.do?no=${b.usedboardPayment_BoardNo}">${b.usedboardPayment_Title }</a></td>
 				<td>${b.usedboardPayment_Date }</td>
-				<td>${b.usedboardPayment_Price }</td>
+				<td>￦${b.usedboardPayment_Price }</td>
 				<td>
 					<c:if test="${b.usedboardPayment_State==1 }">
 						배송확인중

@@ -295,9 +295,15 @@ public class AuctionController {
 	}
 	//경매 관리 하기
 	@RequestMapping("/auction/auctionAdmin")
-	public String auctionAdmin(@RequestParam Map param,Model m) {
+	public String auctionAdmin(@RequestParam Map param,Model m,
+			@RequestParam(value="cPage",defaultValue ="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage) {
 		
-		m.addAttribute("auction",service.auctionAdmin(param));
+		int totaldata=service.auctionAdmintotal(param);
+		System.out.println(param.get("type"));
+		m.addAttribute("totaldata",totaldata);
+		m.addAttribute("auction",service.auctionAdmin(param,cPage,numPerpage));
+//		m.addAttribute("pageBar",PageFactory.getOwnPageBar2(totaldata, cPage, numPerpage, "auctionAdmin",""));
 		return "auction/auctionAdmin";
 	}
 	@RequestMapping("/auction/auctionAdminCal")
