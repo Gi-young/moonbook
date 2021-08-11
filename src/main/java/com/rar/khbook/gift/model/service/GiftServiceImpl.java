@@ -1,5 +1,6 @@
 package com.rar.khbook.gift.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -53,9 +54,18 @@ public class GiftServiceImpl implements GiftService {
 	}
 	
 	@Override
-	public int reviewWrite(int giftNo) {
+	public int reviewWrite(HashMap map) {
 		// TODO Auto-generated method stub
-		int result = dao.reviewWrite(session, giftNo);
+		int result = dao.reviewWrite(session,map);
 		return result;
 	}
+
+	@Override
+	public int selectReviewAll() {
+		// TODO Auto-generated method stub
+		int totalData = dao.selectReviewAll(session);
+		return totalData;
+	}
+	
+	
 }
