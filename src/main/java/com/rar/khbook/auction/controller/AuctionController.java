@@ -310,7 +310,7 @@ public class AuctionController {
 	public void auctionpayEnd(@RequestParam Map param) {
 		System.out.println(param);
 		service.updateauctionPay(param);
-	
+		service.insertBank(param);
 		
 	}
 	//경매 관리 하기
@@ -344,10 +344,10 @@ public class AuctionController {
 		int result = service.auctionAdminCal(param);
 		if (result>0) {			
 			m.addAttribute("msg","확인완료");
-			m.addAttribute("loc","/auction/auctionAdmin");
 		}else {
 			m.addAttribute("msg","확인실패");
 		}
+		m.addAttribute("loc","/auction/auctionAdmin");
 		return "common/msg";
 	}
 	//포인트 환급 
@@ -356,12 +356,59 @@ public class AuctionController {
 		int result=service.auctionbidCollect(param);
 		if (result>0) {			
 			m.addAttribute("msg","포인트 환급 성공");
-			m.addAttribute("loc","/auction/auctionmybuylist.do");
 		}else {
 			m.addAttribute("msg","포인트 환급 실패");
 		}
+		m.addAttribute("loc","/auction/auctionmybuylist.do");
 		return "common/msg";
 	}
+	//물품등록 취소하기
+	@RequestMapping("/auction/auctionDel")
+	public String auctionDel(Model m,@RequestParam Map param) {
+		int result=service.auctionDel(param);
+		if (result>0) {			
+			m.addAttribute("msg","등록 취소 성공");		
+		}else {
+			m.addAttribute("msg","등록 취소 실패");
+		}
+			m.addAttribute("loc","/auction/auctionmyselllist.do");
+		return "common/msg";
+		
+	}
+	//출금 관리내역
+	@RequestMapping("/auction/auctionBank.do")
+	public String auctionBank(Model m,@RequestParam  Map param,
+			@RequestParam(value="cPage",defaultValue ="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue ="15") int numPerpage) {
+		int totaldata=service.auctionBankCount(param);
+		m.addAttribute("auctionbank",service.auctionBank(param,cPage,numPerpage));
+		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totaldata, cPage, numPerpage, "auctionBank.do",""));
+		return "auction/auctionbank";
+	}
+	@RequestMapping("/auction/auctionpayout.do")
+	public String auctionpayout(HttpSession session,@RequestParam Map param,Model m) {
+		if(session.getAttribute("loginMember")!=null){
+		param.put("bidId", ((Member) session.getAttribute("loginMember")).getMemberId());
+		m.addAttribute("member",service.selectbidMember(param));
+		}
+		//은행 목록 가져오기
+		m.addAttribute("bank",service.selectbank(param));	
+
+		return "auction/auctionpayout";
+	}
+	@RequestMapping("/auction/auctionpayoutEnd.do")
+	public String auctionpayoutEnd(@RequestParam Map param,Model m) {
+		System.out.println(param);
+		int result=service.insertpayoutEnd(param);
+		if (result>0) {			
+			m.addAttribute("msg","등록 취소 성공");		
+		}else {
+			m.addAttribute("msg","등록 취소 실패");
+		}
+		return "common/openmsg";
+		
+	}
+
 	
 	
 	

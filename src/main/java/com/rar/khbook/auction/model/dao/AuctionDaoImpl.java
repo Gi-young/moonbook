@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
+import com.rar.khbook.auction.model.vo.Bankinfo;
+import com.rar.khbook.auction.model.vo.Transaction;
 import com.rar.khbook.member.model.vo.Member;
 @Repository
 public class AuctionDaoImpl implements AuctionDao {
@@ -137,5 +139,39 @@ public class AuctionDaoImpl implements AuctionDao {
 	public int updatebidStateY(SqlSession session, Map param) {
 		return session.update("auction.updatebidStateY",param);
 	}
+//등록취소
+	@Override
+	public int auctionDel(SqlSession session, Map param) {
+		return session.delete("auction.auctionDel",param);
+	}
+	///////////////////////////////////////////////////
+	@Override
+	public List<Transaction> auctionBank(SqlSession session, Map param, int cPage, int numPerpage) {
+		RowBounds row=new RowBounds((cPage-1)*numPerpage, numPerpage);
+		return session.selectList("bank.auctionBank",param,row);
+	}
+	@Override
+	public int auctionBankCount(SqlSession session, Map param) {
+		return session.selectOne("bank.auctionBankCount",param);
+	}
+	@Override
+	public List<Bankinfo> selectbank(SqlSession session,Map param) {
+		return session.selectList("bank.selectbank",param);
+	}
+	@Override
+	public void insertBank(SqlSession session, Map param) {
+		 session.insert("bank.insertBank",param);
+		
+	}
+	@Override
+	public int insertpayoutEnd(SqlSession session, Map param) {
+		return session.insert("bank.insertBank2",param);
+	}
+	
+	
+
+	
+	
+	
 	
 }
