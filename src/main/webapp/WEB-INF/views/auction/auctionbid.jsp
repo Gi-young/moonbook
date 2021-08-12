@@ -23,18 +23,18 @@
 					<input type="hidden" value="${ auction.auctionName }" name="auctionName">
 					
 					<div>
-						<span>판매자 아이디</span>
+						<span>판매자 아이디 : </span>
 						<input type="text" value="${auction.memberId }" readonly="readonly" id="seller">
 					</div>
 					
 					<div>
-						<span>시작 금액</span>
+						<span>시작 금액 : </span>
 						<fmt:formatNumber value="${auction.startPrice }" type="currency"/>
 					</div>
 					
 					<div>
 						<input type="hidden" value="${auction.startPrice }" readonly="readonly" id="startPrice">
-						<span>즉시 구매가</span><fmt:formatNumber value="${auction.buyNow }" type="currency"/>
+						<span>즉시 구매가 : </span><fmt:formatNumber value="${auction.buyNow }" type="currency"/>
 					</div>
 					
 					<input type="hidden" value="${auction.buyNow }" readonly="readonly" id="buynow">
@@ -74,19 +74,19 @@
 				<div id="bidshow">
 					<h2>입찰서</h2>
 					<div>
-						<span>구매자 아이디</span>
+						<span>구매자 아이디 : </span>
 						<input type="text" value="${member.memberId }" readonly="readonly" name="bidId" id="bidid">
 					</div>
 					
 					<div>
-						<span>내 경매 포인트</span>
+						<span>내 경매 포인트 : </span>
 						<fmt:formatNumber value="${member.memberPoint }" type="currency"/>
 					</div>
 					
 					<input type="hidden" value="${member.memberPoint }" readonly="readonly" id="point">
 					
 					<div>
-						<span>입찰 금액</span>
+						<span>입찰 금액 : </span>
 						<input type="number" value="${auction.startPrice }" step="${auction.priceUnit }" id="bid" name="bidPrice">
 					</div>
 					

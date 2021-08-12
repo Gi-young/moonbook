@@ -1,4 +1,5 @@
-let sockDebate = new SockJS("http://rclass.iptime.org:9999" + contextPath + "/debate");
+//let sockDebate = new SockJS("http://rclass.iptime.org:9999" + contextPath + "/debate");
+let sockDebate = new SockJS("http://localhost:9090" + contextPath + "/debate");
 
 let debateBox = document.getElementById("debateBox");
 let debateMessage = document.getElementById("debateMessage");

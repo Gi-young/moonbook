@@ -49,7 +49,9 @@ body::-webkit-scrollbar {
 }
 
 .auctionPay>p.pay-alert {
-	
+	font-size: 13px;
+	color: red;
+	font-weight: bold;
 }
 
 .auctionPay>div {

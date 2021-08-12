@@ -4,217 +4,169 @@ table{
     text-indent: initial;
     border-spacing: 2px;
 }
+
 th{
-	   vertical-align: middle;
- 	 display: table-cell;
+    vertical-align: middle;
+    display: table-cell;
     font-weight: bold;
     text-align: -internal-center;
-	
 }
+
 a{
     text-decoration: none;
 }
+
 #wrap{
 	text-align:center;
 }
+
 #container{
+    box-sizing: border-box;
 	text-align: left;
     width: 950px;
-    border: 1px solid black;
+    border-left: 1px solid silver;
+    border-right: 1px solid silver;
 	display: inline-block;
+    padding: 20px 20px 20px 20px;
 }
 
-
-.line{
-    border: 1px solid black;
-}
-.auction_main{
-    padding: 10px;
-    display: flex;
-}
-.auction_main_left{
-    width: 800px;
-    height: 300px;
-}
-.auction_main_right{
-    width: 200px;
-    height: 300px;
-}
-
-.acution_category{
-    margin-top: 10px;
-    padding: 10px;
-}
-.acution_category_left{
-    width: 100%;
-}
-.acution_category_left>div>a{
+#container h2 {
     font-size: 20px;
-    padding: 10px 30px 10px 30px;
-    font-weight: bolder;
-    text-align: center;
-    border: 1px solid black;
-    margin-right: 0px;
+    font-weight: bold;
+    padding: 10px;
 }
-.acution_category_left>div{
-    position: relative;
-    display: inline-block;
-}
-.acution_category_left>div>div{
-    padding: 10px 30px 10px 30px;
-    display: none;
-    width: 500px;
-    position: absolute;
-    top: 37px;
+
+div.auctionwrite {
+    box-sizing: border-box;
     border: 1px solid silver;
-    z-index: 10;
-    background-color: white;
-}
-.acution_category_left>div>div>a{
-    text-align: center;
-    padding: 10px;
-}
-.acution_category_left>div>div>a:hover{
-    color: blue;
-    border: 1px solid blue;
-}
-#auction_serach_name>div{
-   text-align: right;
-}
-
-.auction_main_po_img img{
-    width: 180px;
-    height: 180px;
-    border: 1px solid black;
-}
-.auction_main_po_center{
-    width: 550px;
-    padding: 10px;
-}
-.auction_main_po_center p{
-    padding: 4px;
-    font-size: 12px;
-    font-weight: bold;
-}
-.auction_main_title{
-    text-align: center;
-    padding: 15px;
-    border:1px solid black;
     border-radius: 10px;
-    font-weight: bolder;
-    font-size: 20px;
-}
-.auction_main_po_right{
-    margin-left: 40px;
-}
-.btn1{
-    margin: 10px;
-    padding: 10px 20px 10px 20px;
-    color: white;
-    background-color: teal;
-    text-align: center;
-    font-weight: bolder;
-    border: 1px solid black;
-}
-.pagebar{
-    text-align: center;
-}
-
-
-
-/*===========옥션 리스트=============*/
-.auctionlist_level2{
-    border: 1px solid black;
-    height: 150px;
-    flex-wrap: wrap;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.auctionlist_level2 div{
-    text-align: center;
-    width: 215px;
+
+#container input[type=submit] {
     background-color: white;
-    font-size: 12px;
+    color: black;
+    height: 35px;
+    width: 200px;
+}
+
+#container input[type=submit]:hover {
+    background-color: black;
     font-weight: bold;
-    padding: 20px 10px 20px 10px;
-}
-.auctionlist_level2 div a{
-    font-size: 15px;
-    font-weight: bold;
-}
-.auctionlist>table{
-    width: 100%;
-    border: 1px;
-}
-.auctionlist table tr td{
-    border-right: silver 1px dotted;
-}
-.auctionlist_img{
-    text-align: center;
-}
-.auctionlist_img>img{
-    width: 150px;
-    height: 100px;
-}
-.auctionlist_person{
-    text-align: right;
-}
-
-/*옥션 view*/
-
-.auctionview_left>img{
-    width: 250px;
-    height: 250px;
-}
-.auctionview_right{
-    width: 800px;
-    margin-left: 10px;
-}
-.auctionview_right p{
-   padding: 0px;
-   margin: 0px;
-   font-weight: bold;
-   font-size: 12px;
-}
-.auctionview_right h2{
-    font-size: 17px;
-    padding: 0px;
-    margin: 0px;
-}
-.auctionview_right div{
-    border-bottom: 1px solid black;
-}
-.auctionview_btn{
-    height: 40px;
-    margin: 20px;
-}
-
-.auctionview_btn a{
-    text-align: center;
-    width: 25%;
-    border: 1px solid black;
-    padding: 10px 20px 10px 20px;
-    background-color: chartreuse;
     color: white;
+    cursor: pointer;
 }
 
-
-.auction_buy_now{
-    color: red;
-    font-size: 15px;
+div.auctionwrite_submit {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
-.auctionwrite_submit{
-    text-align: center;
+div.auctionwrite th {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
 }
-span{
-    font-size: 12px;
-}
-.auctionwrite>table>tbody>tr>th{
-    background-color: yellow;
 
+div.auctionwrite td {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
-.countdown{
-	font-size:20px;
-	font-weight: bolder;
-	
+
+#container tr {
+    border-bottom: 1px solid silver;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#container tr:last-of-type {
+    border-bottom: none;
+}
+
+textarea.auctionEx {
+    width: 410px;
+    height: 200px;
+}
+
+td.auctionExTd {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+input[type=file] {
+    display: none;
+}
+
+td.uploadImg {
+    display: flex;
+    flex-direction: row;
+}
+
+#img_add {
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    padding: 5px;
+    font-size: 14px;
+    margin-left: 30px;
+}
+
+#img_add:hover {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+div.img_del {
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    padding: 5px;
+    font-size: 14px;
+    margin-left: 30px;
+}
+
+div.img_del:hover {
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+td.uploadImg label {
+    box-sizing: border-box;
+    border: 1px solid black;
+    font-size: 14px;
+    width: 80px;
+    height: 27px;
+    padding: 5px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td.uploadImg label:hover {
+    background-color: black;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+#selectedFilename {
+    font-size: 14px;
+    max-width: 200px;
+    overflow-x: scroll;
 }
