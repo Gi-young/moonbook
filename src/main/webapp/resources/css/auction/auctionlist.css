@@ -1,4 +1,14 @@
 @charset "UTF-8";
+#wrap{
+	text-align:center;
+}
+
+#container{
+	text-align: left;
+    width: 950px;
+    border: 1px solid black;
+	display: inline-block;
+}
 .auctionlist_level2{
     border: 1px solid black;
     height: 150px;
@@ -43,4 +53,7 @@
 
 .auctionlist_person{
     text-align: right;
+}
+#auction_serach_name{
+	text-align: right;
 }

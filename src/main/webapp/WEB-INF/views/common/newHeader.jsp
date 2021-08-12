@@ -139,7 +139,7 @@
 
 				<div class="header-menuBar1">
 					<ul class="flex">
-						<li id="books"><a href="${path}/sellbookController/sellbook.do">문곰도서▼</a>
+						<li id="books" class="headerF-li"><a href="${path}/sellbookController/sellbook.do">문곰도서▼</a>
 							<ul class="book">
 								<li><a href="${path }/sellbookController/bookadong99.do">아동도서(공통)</a></li>
 								<li><a href="${path }/sellbookController/bookchodongdonghwa99.do">초등도서(공통)</a></li>
@@ -147,7 +147,7 @@
 								<li><a href="${path }/sellbookController/bookgojunkorea.do">고전도서(한국)</a></li>
 							</ul>
 						</li>					
-						<li id="eBooks"><a href="${path}/ebook/ebookHome.do">문곰e북
+						<li id="eBooks" class="headerF-li"><a href="${path}/ebook/pageEbook.do">문곰e북
 									▼</a>
 							<ul class="eBook">
 								<li><a href="${path }/ebook/pageEbook.do">일반</a></li>
@@ -156,7 +156,7 @@
 								<li><a href="${path }/ebook/pageBookstallMiddle.do">중등</a></li>
 							</ul>
 						</li>
-						<li class="item"><a href="${path }/gift/giftView.do">문곰템
+						<li class="item headerF-li"><a href="${path }/gift/giftView.do">문곰템
 								▼</a>
 							<ul class="giftTab">
 								<li><a href='${path }/gift/moreThing.do?giftCate=e'>전자기기</a></li>
@@ -165,8 +165,8 @@
 								<li><a href="${path }/gift/moreThing.do?giftCate=g">잡화</a></li>
 							</ul>
 						</li>
-						<li><a href="${path}/usedboard/usedboardList.do">중고</a></li>
-						<li><a href="${path}/auction/auction">경매</a></li>
+						<li class="headerF-li"><a href="${path}/usedboard/usedboardList.do">중고</a></li>
+						<li class="headerF-li"><a href="${path}/auction/auction">경매</a></li>
 					</ul>
 				</div>
 				<div class="header-menuBar2">

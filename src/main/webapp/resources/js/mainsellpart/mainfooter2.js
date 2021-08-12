@@ -6,7 +6,7 @@
     const pagination = document.querySelector('.footerslide2-pagination');
     const slideLen = slideContents.length;  // 슬라이드 길이 지정 변수
     const slideWidth = 25; // 슬라이드 길이
-    const slideSpeed = 0; // 슬라이드가 넘어갈 때 속도
+    const slideSpeed = 150; // 슬라이드가 넘어갈 때 속도
     const startNum = 0; // 슬라이드 이니셜 인덱스 번호
     
     slideList.style.height = slideWidth * (slideLen + 2) + "px";
@@ -58,6 +58,24 @@
       curSlide.classList.add('slide_active');
       pageDots[curIndex].classList.add('dot_active');
     });
+    slideBtnNext.addEventListener('click', setInterval(function() {
+      if (curIndex <= slideLen - 1) {
+        slideList.style.transition = slideSpeed + "ms";
+        slideList.style.transform = "translate3d(0px, -" + (slideWidth * (curIndex + 2)) + "px, 0px)";
+      }
+      if (curIndex === slideLen - 1) {
+        setTimeout(function() {
+          slideList.style.transition = "0ms";
+          slideList.style.transform = "translate3d(0px, -" + slideWidth + "px, 0px)";
+        }, slideSpeed);
+        curIndex = -1;
+      }
+      curSlide.classList.remove('slide_active');
+      pageDots[(curIndex === -1) ? slideLen - 1 : curIndex].classList.remove('dot_active');
+      curSlide = slideContents[++curIndex];
+      curSlide.classList.add('slide_active');
+      pageDots[curIndex].classList.add('dot_active');
+    },3000));
 
     /** 이전 버튼 Event */
     slideBtnPrev.addEventListener('click', function() {

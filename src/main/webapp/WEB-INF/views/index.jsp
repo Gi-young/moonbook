@@ -418,10 +418,13 @@ a {
 }
 .mainsearchBox-slideBtn-next{
     height: 30px;
+	display:none;
     
 }
 .mainsearchBox-slideBtn-prev{
     height: 30px;
+	display:none;
+  
 }
 .wrap{
     min-width: 950px;
@@ -833,9 +836,13 @@ width: 1300px;
     align-items: center;
     text-align: center;
     background-color: #ffffff;
+    justify-content: space-evenly;
 }
 li[class^="best"]{
-    padding-left: 60px;
+    /* padding-left: 60px; */
+}
+li{
+display:block;
 }
 .bestseller12{
     width: 100px;
@@ -1227,6 +1234,9 @@ padding-bottom: 5px;
 .hidden {
     display: none;
   }
+  .flex5{
+ display:flex; 
+  }
 </style>
 <link rel="stylesheet" href="${path }/resources/css/index/stickymenu.css">
 <!-- ////////////////////////상위배너/////////////////////// -->
@@ -1240,7 +1250,7 @@ padding-bottom: 5px;
 <div class="flex bannerwrap">
 <div class="">
 <!-- <div class="mainbtn flex"> -->
-<!-- <button class="mainsearchBox-slideBtn-next">이전</button> -->
+<button class="mainsearchBox-slideBtn-next">이전</button>
 
 <div class="mainbanner_obj1">
     <div class="mainsearchBox-slideBox">
@@ -1273,10 +1283,10 @@ padding-bottom: 5px;
         </ul>
     </div>
 </div>
-<!-- <button class="mainsearchBox-slideBtn-prev">다음</button> -->
+<button class="mainsearchBox-slideBtn-prev">다음</button>
 </div>
 </div>
-<div class="flex">
+<!-- <div class="flex">
         <p class="maintrigger1 mouseoverbtn mouseoverbtnbg " style="background-color: #582810; color: white;"></p>
         <p class="maintrigger2 mouseoverbtn mouseoverbtnbg "></p>
         <p class="maintrigger3 mouseoverbtn mouseoverbtnbg "></p>
@@ -1284,7 +1294,7 @@ padding-bottom: 5px;
         <p class="maintrigger5 mouseoverbtn mouseoverbtnbg "></p>
         <p class="maintrigger6 mouseoverbtn mouseoverbtnbg "></p>
         <p class="maintrigger7 mouseoverbtn mouseoverbtnbg "></p>
-    </div>
+    </div> -->
 
 
     
@@ -1475,7 +1485,7 @@ padding-bottom: 5px;
         <div class="flex">
             <div class="bestSeller_main ">
                 <ul class="bestsellerlist" style="margin-top: 5px;">
-                    <li class="best1">
+                    <li class="best1" style="padding-left: 0px;">
                         <div class="icon iconred">
                             <strong class="rankwhite">01</strong>
                         </div>
@@ -1609,7 +1619,7 @@ padding-bottom: 5px;
                     </p>
                     <p class="trigger2 mouseoverbtn mouseoverbtnbg bottomline">인기eBook</p>
                 </div>
-                <div class="basicform booktubercontainer" style="background-image: url('${path}/resources/img/main/icon/gomchu.png'); margin-top: 72px;">
+                <div class="basicform booktubercontainer" style="background-image: url('${path}/resources/img/main/icon/gomchu.png'); margin-top: 99px;">
 
 
                     <div class="booktubercontainer textalign margintop50">
@@ -1661,7 +1671,7 @@ padding-bottom: 5px;
         <div class="khloverBg partition">
             <div class="flex alignitems">
                 <div class="footerheadline">
-                    <p style="font-weight: bold;">KHLover평점좋은책</p>
+                    <p style="font-weight: bold;">MG평점좋은책</p>
                     </div>
                     <a href="#"><img src="${path}/resources/img/main/icon/plusicon.png"></a>
             </div>
@@ -1679,7 +1689,7 @@ padding-bottom: 5px;
                                         </div>
                                         <div class="author bestratingauthor0">박원재</div>
                                         <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                        <p class="khloverscore">3.2</p>
+                                        <p class="khloverscore">10.0</p>
                                     </div>
                                 </li>
                             </ul>
@@ -1750,7 +1760,7 @@ padding-bottom: 5px;
         <hr class="boldline partition">
         <div class="upFooterBg" style="background-image: url('${path}/resources/img/main/icon/opebear.png');">
             <div class="footernoticebox flex">
-                <div class="flex" style="margin-right: 20px; margin-left: 20px;">
+                <div class="flex5" style="margin-right: 20px; margin-left: 20px;">
                         <p class="borderright footerp">공지사항</p>
                         <div class="footernoticebox-slideContent flex footerbox">
                         
@@ -1769,7 +1779,7 @@ padding-bottom: 5px;
                     <button class="footerslide-button-next footerbtn"></button>
                 </div>    
             </div>
-                <div class="flex">
+                <div class="flex5">
                     <p class="borderright footerp" style="text-align: center;">당첨</p>
                         <div class="footernoticebox-slideContent flex footerbox">
                         
@@ -1822,7 +1832,7 @@ padding-bottom: 5px;
                 <div class="upFooter_downSide verticalline" >
                     <h2><a href="#" class="middlefont">문곰책방 알리미</a></h2>
                     <ul class="footerul">
-                        <li><a href="#" class="ataggray">뭉곰페이스북</a></li>
+                        <li><a href="#" class="ataggray">문곰페이스북</a></li>
                         <li><a href="#" class="ataggray">문곰트위터</a></li>
                         <li><a href="#" class="ataggray">문곰인스타그램</a></li>
                         <li><a href="#" class="ataggray">문곰유튜브</a></li>
@@ -1838,7 +1848,7 @@ padding-bottom: 5px;
                     </ul>
                 </div>
             </div>
-            <div class="flex" style="margin-top: 15px;opacity: 0;">
+            <div class="flex5" style="margin-top: 15px;opacity: 0;">
                 <a href="#"><div class="btnFooter" ><p class="btnfootertext">모바일교보문고&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;＞</p></div></a>
                 <a href="#"><div class="btnFooter"><p class="btnfootertext">바로 찾는 바로드림&nbsp;&nbsp;&nbsp;&nbsp;＞</p></div></a>
                 <a href="#"><div class="btnFooter"><p class="btnfootertext">중고장터 스마트비교&nbsp;&nbsp;＞</p></div></a>

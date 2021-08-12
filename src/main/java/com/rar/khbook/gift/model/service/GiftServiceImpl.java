@@ -47,9 +47,9 @@ public class GiftServiceImpl implements GiftService {
 	}
 
 	@Override
-	public List<GiftBoard>  selectReview(int giftNo) {
+	public List<GiftBoard>  selectReview(Map param) {
 		// TODO Auto-generated method stub
-		List<GiftBoard>  gb = dao.selectReview(session, giftNo);
+		List<GiftBoard>  gb = dao.selectReview(session, param);
 		return gb;
 	}
 	
@@ -61,9 +61,9 @@ public class GiftServiceImpl implements GiftService {
 	}
 
 	@Override
-	public int selectReviewAll() {
+	public int selectReviewAll(int giftNo) {
 		// TODO Auto-generated method stub
-		int totalData = dao.selectReviewAll(session);
+		int totalData = dao.selectReviewAll(session, giftNo);
 		return totalData;
 	}
 	
