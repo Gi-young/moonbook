@@ -13,11 +13,25 @@
 #auction_mylist_table{
     width: 100%;
     text-align: center;
+    border: 1px solid black;
 }
 
 #auction_mylist_table>tbody>tr>td{
+	border: 1px solid black;
 	text-aglin:center;
 	vertical-align: middle;
+}#auction_mylist_table{
+    width: 100%;
+    text-align:center;
+    border: 1px solid black;
+}
+
+#auction_mylist_table tr td{
+	 border: 1px solid black;
+}
+
+#auction_mylist_table tr th{
+	 border: 1px solid black;
 }
 
 #wrap{
@@ -41,4 +55,8 @@ th{
 
 .buylisttr td{
 	vertical-align: middle;
+}
+#buylertable>tbody>tr{
+	border-bottom: 1px dotted black;
+	
 }

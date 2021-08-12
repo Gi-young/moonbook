@@ -132,5 +132,10 @@ public class AuctionDaoImpl implements AuctionDao {
 	public int auctionBuySell(SqlSession session, Map param) {
 		return session.update("auction.auctionBuySell",param);
 	}
-
+//포인트 회수
+	@Override
+	public int updatebidStateY(SqlSession session, Map param) {
+		return session.update("auction.updatebidStateY",param);
+	}
+	
 }

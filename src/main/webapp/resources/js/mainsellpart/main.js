@@ -63,6 +63,14 @@
       curSlide.classList.add('slide_active');
       pageDots[curIndex].classList.add('dot_active');
     });
+    
+    setTimeOut(function(){
+    slideBtnNext.click();
+    
+    }, 3000);
+
+
+
 
     /** Prev Button Event */
     slideBtnPrev.addEventListener('click', function() {

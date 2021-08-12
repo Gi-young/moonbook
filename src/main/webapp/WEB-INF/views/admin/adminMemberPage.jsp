@@ -96,11 +96,11 @@
 									<td><input type="text" value="${e.memberGradeNo }" name="memberGradeNo"></td>
 									<td><input type="text" value="${e.memberTotalSale }" name="memberTotalSale" readonly></td>
 									<td><input type="text" value="${e.memberVisit }" name="memberVisit" readonly></td>
-									<td>
+									<td class="Dodo1">
 										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">
 									</td>
 									
-									<td>
+									<td class="Dodo1">
 										
 											<input type="hidden" value="${e.memberId }" name="memberId" readonly>
 											
@@ -170,7 +170,7 @@ function searchMT(cPage,numPerpage){
 				let tr=document.createElement("tr");
 				for(let j=0;j<12;j++){
 					let td=document.createElement("td");
-					td.style.border="1px solid black";
+					/* td.style.border="1px solid black"; */
 					td.style.height="27px";
 					if(j == 0) {
 						let regiDate = new Date(data[i].memberRegiDate);
@@ -195,8 +195,14 @@ function searchMT(cPage,numPerpage){
 					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
 					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
 					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
-					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+					if(j == 10) {
+						td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
+						td.classList.add('Dodo1');
+					}
+					if(j == 11) {
+						td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+						td.classList.add('Dodo1');
+					}
 					
 					tr.appendChild(td);
 				}
@@ -254,7 +260,7 @@ function orderList(cPage,numPerpage){
 				let tr=document.createElement("tr");
 				for(let j=0;j<12;j++){
 					let td=document.createElement("td");
-					td.style.border="1px solid black";
+					/* td.style.border="1px solid black"; */
 					td.style.height="27px";
 					if(j == 0) {
 						let regiDate = new Date(data[i].memberRegiDate);
@@ -278,8 +284,14 @@ function orderList(cPage,numPerpage){
 					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
 					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
 					if(j == 9) td.innerHTML = "<input type='text' value='" + data[i].memberVisit + "'>";
-					if(j == 10) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
-					if(j == 11) td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+					if(j == 10){
+						td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
+						td.classList.add('Dodo1');
+					}
+					if(j == 11){
+						td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+						td.classList.add('Dodo1');
+					}
 					
 					tr.appendChild(td);
 				}

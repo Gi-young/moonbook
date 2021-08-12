@@ -10,11 +10,12 @@
 	<title>${param.title}</title>
 	<link rel="icon" href="${path}/resources/images/ebook/favicon.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHeader.css">
-</head>
+</head><link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <body>
+<div class="wrap">
 	<div class="wrapper">
 		<nav class="portal-navbar">
-			<button onclick="location.assign('${path}')">홈으로</button>
+			<%-- <button onclick="location.assign('${path}')">홈으로</button>
 			
 			<c:if test="${sessionScope.loginMember == null}">
 				<div id="loginBox">
@@ -27,7 +28,7 @@
 					<span><b><c:out value="${sessionScope.loginMember.memberId}"/></b>님, 환영합니다</span>
 					<button id="logoutBtn" onclick="logout();">로그아웃</button>
 				</div>
-			</c:if>
+			</c:if> --%>
 			
 			<c:if test="${sessionScope.loginMember != null}">
 				<c:if test="${sessionScope.loginMember.memberId.equals('admin')}">
@@ -39,7 +40,7 @@
 			</c:if>
 		</nav>
 		
-		<header>
+		<header class="flex">
 			<div class="header-logo">
 				<a href="${path}/ebook/pageEbook.do"><img src="${path}/resources/images/ebook/moonbook_ebook_logo.png"></a>
 			</div>

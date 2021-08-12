@@ -4,6 +4,7 @@ IMP.init("imp26745696");
 	
 $(".btnPay").click(e=> {
 
+	let bindNo = document.getElementsByClassName("bindNo");
 	let btnPay = document.getElementsByClassName("btnPay");
 	let refundBtn = document.getElementById("refundBtn");
 	let loginMember = document.getElementById("loginMember").value;
@@ -63,7 +64,7 @@ $(".btnPay").click(e=> {
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
                             name: "문곰도서",
-                            amount: Number(totalPrice)
+                            amount: 100
                         }, function(rsp) {
                             if (rsp.success) {
                                 $.ajax({
@@ -83,6 +84,21 @@ $(".btnPay").click(e=> {
                                     success: data => {
                                         console.log("결제 로그 추가 결과 : " + data);
                                         alert("결제에 성공했습니다. 감사합니다");
+                                        let sellStockInt = document.getElementById("sellStock").value;
+                                        
+                                         $.ajax({
+                                         	url: contextPath + "/SellbookController/salesVolumeAdd.do",
+                                    		type: "POST",
+                                    		data:{
+                                    			sellstockInt : Number(sellStockInt),
+                                    			bindNo : Number(bindNo)
+                                    		}, success: data => {
+                                    			console.log(result);
+                                    			alert("판매량 추가 완료");
+                                    		
+                                    		}
+                                    		
+                                         });
                                     }
                                 });
                             } else {

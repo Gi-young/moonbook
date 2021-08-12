@@ -12,9 +12,29 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMyBuyList.css">
 
 	<div id="wrap">
-        <div id="container">	
+        <div id="container">
+        	<div style="margin-bottom:30px;">
+				<table id="auction_mylist_table" style="width: 100%;">
+				    <tr>
+				        <th>총 건</th>
+				        <th>진행 중</th>
+				        <th>낙찰</th>
+				        <th>유찰</th>
+				        <th>마감</th>
+				    </tr>
+				    <tr>
+				        <td>${totaldata } 건</td>
+				        <td>${Y } </td>
+				        <td>${S }</td>
+				        <td>${N==null?"0":N} </td>
+				        <td>${B==null?"0":B} </td>
+				
+				    </tr>
+				
+				</table>
+        	</div>	
 			<div>
-				<table style="width: 100%;  text-align: center;">
+				<table style="width: 100%;  text-align: center;" id="buylertable">
 					<tr style="    font-weight: bold; font-size: 19px;    ">
 						<th>경매번호</th>
 						<th>경매이름</th>
@@ -45,8 +65,11 @@
 									<span style="color:red">유찰</span>
 									<c:forEach items="${a.auctionbid }" var="bid">
 							
-									<c:if test="${bid.bidId eq member.memberId}">
-										<span>${bid.bidPrice }<button>포인트 돌려받기</button></span>
+									<c:if test="${bid.bidId eq member.memberId && bid.bidCheck eq 'N'}">
+										<span>${bid.bidPrice }<button onclick="location.replace('${path}/auction/auctionbidCollect?memberId=${member.memberId }&bidNo=${bid.bidNo }&memberPoint=${bid.bidPrice }')">포인트 돌려받기</button></span>
+									</c:if>
+									<c:if test="${bid.bidId eq member.memberId && bid.bidCheck eq 'Y'}">
+										<p>${bid.bidPrice }<span style="color:blue;">회수완료</span></p>
 									</c:if>
 									</c:forEach>														
 							</c:if>
@@ -59,6 +82,7 @@
 					</c:forEach>	
 				</table>
 			</div>
+			<div class="pageBar">${pageBar }</div>
         </div>
     </div>
 

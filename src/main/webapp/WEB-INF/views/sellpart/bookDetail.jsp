@@ -911,7 +911,7 @@ transition: all 0.2s linear;
      
  
         </div> 
-	<form action="${path }/SellbookController/bookpayment.do">
+	<form id="sl" action="#" method="post">
 	<input type="hidden" name="bindNo" value="${book.bindNo }">
         <div id="content_middle" style="display: flex;">
             <div class="bookView_img line">
@@ -955,16 +955,30 @@ transition: all 0.2s linear;
                 	<span>주문가능수량</span>
                     <input type="number" id="stock" name="stock" value="${book.stock }" readonly><br><br>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;주문수량&nbsp;&nbsp;</span>
-                    <input type="number" id="sellStock" name="sellStock" value="1"><br><br><br><br>
+                    <input type="number" id="sellStock" name="shopingListCount" value="1"><br><br><br><br>
                 </div>
                 <div style="display:flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
-                    <a href="" >장바구니담기</a>
-                    <button type="submit">바로구매</button>
+                    <button id="slBtn"onclick="shoppingList()">장바구니담기</button>
+                    <button id="buyBtn" onclick="submit()">바로구매</button>
                 </div>
             </div>
         </div>
+        <input type="hidden" name="shopingList_cate" value="B">
+        <input type="hidden" name="memberId" value="${loginMember.memberId }">
+        <input type="hidden" name="bBindNo" value="${book.bindNo }">
+        
 	</form>
+<script>
+	$("#slBtn").click(function(){
+		$("#sl").attr("action","${path }/shopingList/shopingList.do");
+		$("#sl").submit();
+	})
+	$("#buyBtn").click(function(){
+		$("#sl").attr("action","${path }/SellbookController/bookpayment.do");
+		$("#sl").submit();
+	})
 
+</script>
         <div class="bookView_info" style="display: flex;">
             <div class="bookView_info_left line">
                 <!-- <div class="bookView_info_left_btn line">

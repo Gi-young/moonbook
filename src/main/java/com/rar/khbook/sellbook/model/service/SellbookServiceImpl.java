@@ -1,5 +1,7 @@
 package com.rar.khbook.sellbook.model.service;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,13 @@ public class SellbookServiceImpl implements SellbookService {
 	public SellbookDatabind selectBookPayment(int bindNo) {
 		// TODO Auto-generated method stub
 		return dao.selectBookPayment(session, bindNo);
+	}
+
+
+	@Override
+	public int updateSalesVolumeAdd(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateSalesVolumeAdd(session, param);
 	}
 	
 	

@@ -9,7 +9,7 @@
 	<jsp:param name="" value=""/>
 </jsp:include>
 
-	<link ref="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMySellList.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMySellList.css">
 
 	<div id="wrap">
 		<div id="container">
@@ -20,12 +20,14 @@
 				        <th>진행 중</th>
 				        <th>낙찰</th>
 				        <th>유찰</th>
+				        <th>마감</th>
 				    </tr>
 				    <tr>
 				        <td>${totaldata } 건</td>
 				        <td>${Y } </td>
 				        <td>${S }</td>
 				        <td>${N==null?"0":N} </td>
+				        <td>${B==null?"0":B} </td>
 				
 				    </tr>
 				
@@ -48,7 +50,12 @@
 							<td>${a.auctionName }</td>
 							<td>${a.startDate }</td>
 							<td>${a.endDate }</td>
-							<td>${a.auctionbid[0].bidPrice }</td>
+							<td>
+							<c:if test="${a.auctionbid.size()==0 }">
+							<span style="color:red;">입찰자가 없습니다.</span>
+							</c:if>
+							${a.auctionbid[0].bidPrice }
+							</td>
 							<td>					      
 							<c:choose>
 							<c:when test="${a.auctionState eq 'Y' }">
@@ -56,6 +63,9 @@
 							</c:when>
 							<c:when test="${a.auctionState eq 'N' }">
 								유찰
+							</c:when>
+							<c:when test="${a.auctionState eq 'B' }">
+								마감
 							</c:when>
 							<c:when test="${a.auctionState eq 'S' }">
 								<span>낙찰</span>
@@ -73,6 +83,7 @@
 					</c:forEach>	
 				</table>
 			</div>
+			<div class="pageBar">${pageBar}</div>
 		</div>
 	</div>
 

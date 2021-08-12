@@ -13,7 +13,7 @@ window.onload = function() {
 		importanceSales: "2",
 		importanceRating: "3",
 		importancePrice: "4",
-		dataVolume: 100
+		dataVolume: 5
 	});
 }
 
@@ -51,13 +51,15 @@ function searchEbook(searchData) {
 			document.querySelectorAll("main div.ebookItem").forEach((v, i) => {
 				v.remove();
 			});
-
 			data.forEach((v,i) => {
+			
 				let ebookItem = document.createElement("div");
 				ebookItem.style.backgroundColor = "white";
+				ebookItem.style.border = "1px solid #582810";
 				ebookItem.style.width = "180px";
 				ebookItem.style.height = "230px";
 				ebookItem.classList.add("ebookItem");
+			
 				ebookItem.addEventListener("click", () => {
 					let bindNo = v.bindNo;
 					location.assign(contextPath + "/ebook/pageEbookDetail.do?bindNo="+bindNo);
@@ -87,7 +89,7 @@ function searchEbook(searchData) {
 				ebookItem.appendChild(title);
 				ebookItem.appendChild(author);
 				ebookItem.appendChild(publisher);
-				main.appendChild(ebookItem);
+				main.append(ebookItem);
 			});
 			
 		}
