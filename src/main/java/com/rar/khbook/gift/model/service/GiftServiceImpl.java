@@ -16,6 +16,7 @@ import com.rar.khbook.member.model.vo.Member;
 @Service
 public class GiftServiceImpl implements GiftService {
 
+
 	@Autowired
 	private GiftDao dao;
 	
@@ -66,6 +67,23 @@ public class GiftServiceImpl implements GiftService {
 		int totalData = dao.selectReviewAll(session, giftNo);
 		return totalData;
 	}
+	
+	@Override
+	public int insertShopingList(Map param) {
+		// TODO Auto-generated method stub
+		int result = dao.insertShopingList(session, param);
+		return result;
+	}
+	
+	/*
+	 * @Override public int insertShopingGift(Map param) {
+	 * 
+	 * try {
+	 * 
+	 * }catch(Exception e) { e.printStackTrace; }
+	 * 
+	 * return result; }
+	 */
 	
 	
 }

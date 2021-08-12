@@ -15,6 +15,8 @@ import com.rar.khbook.member.model.vo.Member;
 @Repository
 public class GiftDaoImpl implements GiftDao {
 
+
+
 	@Override
 	public Member searchMember(String memberId, SqlSession session) {	
 		return session.selectOne("member.selectOneMember", memberId);
@@ -65,5 +67,10 @@ public class GiftDaoImpl implements GiftDao {
 		return session.selectOne("gift.selectReviewAll", giftNo);
 	}
 	
+	@Override
+	public int insertShopingList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("gift.insertShopingList",param);
+	}
 	
 }

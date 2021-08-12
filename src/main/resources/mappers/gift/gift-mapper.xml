@@ -44,7 +44,7 @@
 		SELECT * FROM NGIFT
 	</select> 
 	
-	 <insert id="insertGift">
+    <insert id="insertGift">
 		INSERT INTO NGIFT VALUES(SEQ_GIFT_NO.NEXTVAL, #{title}, #{img}, #{price}, #{brand}, #{maker}, 12, DEFAULT, #{productType}, DEFAULT, 'N', DEFAULT)	
 	</insert> 
 	
@@ -63,5 +63,32 @@
 	<select id="selectReviewAll" resultType="int">
 		SELECT COUNT(*) FROM NGIFT_REVIEW WHERE NGIFT_NO=#{giftNo}
 	</select>
+	
+	<select id="selectElecGiftAll" resultMap="giftMap">
+		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%전자%'
+	</select>
+	
+	<select id="selectStorageGiftAll" resultMap="giftMap">
+		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%수납%'
+	</select>
+	
+	<select id="selectReadingGiftAll" resultMap="giftMap">
+		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%독서%'
+	</select>
+	
+	<select id="selectEtcGiftAll" resultMap="giftMap">
+		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%문구%' OR '%학용품%'
+	</select>
+	
+	<insert id="insertShopingList">
+		INSERT INTO SHOPINGLIST_CATE VALUES(SEQ_SHOPINGLIST_NO.NEXTVAL, G, #{memberId})
+		<selectKey keyProperty="shopingListNo" resultType="_int" order="AFTER">
+			SELECT SEQ_SHOPINGLIST_NO.CURRVAL FROM DUAL
+		</selectKey>
+	</insert>
+	
+	<insert id="insertShopingGift">
+		INSERT INTO BOOK_SHOPING_LIST VALUES(#{shopingListNo},#{giftNo},#{shopingListCount})
+	</insert>
 	
 </mapper>

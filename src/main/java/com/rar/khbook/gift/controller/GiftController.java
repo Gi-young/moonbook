@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -158,7 +159,7 @@ public class GiftController {
 //		        String clientSecret = "MUlrXb9ksH";// 애플리케이션 클라이언트 시크릿값";\
 //		        int display = 100; // 검색결과갯수. 최대100개
 //		        try {
-//		            String text = URLEncoder.encode("문구", "utf-8");
+//		            String text = URLEncoder.encode("학용품", "utf-8");
 //		            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query=" + text + "&display=" + display + "&";
 //		 
 //		            URL url = new URL(apiURL);
@@ -230,10 +231,10 @@ public class GiftController {
 
 		int totalData = service.selectReviewAll(giftNo);
 		
-		System.out.println("totalData" + totalData);
+		//System.out.println("totalData" + totalData);
 
 		String getOwnPageBar = PageFactory.getWonJaePageBar(totalData, cPage, numPerpage);
-		System.out.println(getOwnPageBar);
+		//System.out.println(getOwnPageBar);
 		return getOwnPageBar;
 	}
 
@@ -328,5 +329,20 @@ public class GiftController {
 
 		return 1;
 	}
+	
+	
+	  @RequestMapping("/gift/shopingList.do") 
+	  public ModelAndView shopingList(@RequestParam Map param, ModelAndView mv) {
+	  
+	  System.out.println("url 타고 넘어온 파람값 : "+param);
+	  
+	  mv.addObject("giftNo",param.get("giftNo"));
+	  mv.addObject("shopingList",service.insertShopingList(param));
+	  
+	  return mv;
+	  
+	  }
+	 
+	
 
 }

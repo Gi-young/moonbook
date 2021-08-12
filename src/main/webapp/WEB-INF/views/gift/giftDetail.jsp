@@ -66,24 +66,26 @@
 	                           
 	                        </div>
 	                    </div>
-	                </div>
-                 <input type="hidden" value="${gift.gift_no }" name="giftNo" id="giftNo">
-                <div class="discount-price">
+	                </div>         
+                 <div class="discount-price">
                     <p class="discount">할인율</p>
                     <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/></p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
                     <button type="submit">구매하기</button>
-                    <input type="hidden" value="${loginMember.memberId }" id="loginMemberId">
-                    <button type="button">장바구니</button>
+                    <input type="hidden" value="${loginMember.memberId }" id="loginMemberId" name="loginMemberId">
+                    <button type="button" id="shopList">장바구니</button>
                     <!-- <button>찜하기</button> -->
                 </div>           
                 <div style="text-align: center; margin-top: 30px;">
                     <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
-            </form> 
+            <input type="hidden" value="${gift.gift_no }" name="giftNo" id="giftNo">
+            <input type="hidden" value='G' name="shopingList_cate" id="shopingList_cate">
+            
+          </form>       
         </div>
         <div class="crossLine3"></div>
         <div class="wrap">
@@ -389,6 +391,17 @@
 <script src="${path }/resources/js/gift/gift_detail.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
 <script>
+
+	  let sl = document.getElementById("shopList");
+	  let mId = document.getElementById("loginMemberId").value;
+	  let gNo = document.getElementById("giftNo").value; 
+	  let shopCate = document.getElementById("shopingList_cate").value;
+	  
+	  sl.addEventListener('click', function(){
+		 location.assign("<%=request.getContextPath()%>/gift/shopingList.do?giftNo="+gNo+"&memberId="+mId+"&cate="+shopCate);
+	  });
+	  
+	  
       $('#slider-div').slick({
           slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
           infinite : true, 	//무한 반복 옵션	 
