@@ -46,6 +46,7 @@
 		<typeAlias
 			type="com.rar.khbook.sellbook.model.vo.SellbookDatabind"
 			alias="sellbookDatabind" />
+		<typeAlias type="com.rar.khbook.sellbook.model.vo.BookBoard" alias="bookBoard"/>
 
 		<!-- 장바구니 -->
 		<typeAlias type="com.rar.khbook.shopingList.model.vo.ShopingList" alias="shopingList"/>
