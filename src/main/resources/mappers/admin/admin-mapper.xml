@@ -600,4 +600,8 @@
 			</when>
 		</choose>
   	</select>
+  	<!-- 매출관리 gift 총 매출액 -->
+  	<select id="selectgiftTotalCost" resultType="_int">
+  		SELECT SUM((NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME) AS TOTALCOST FROM NGIFT
+  	</select>
 </mapper>

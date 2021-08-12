@@ -472,6 +472,14 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.searchEbookTotalCost",param);
 	}
+
+	@Override
+	public int selectgiftTotalCost(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectgiftTotalCost");
+	}
+	
+	
 	
 	
 	

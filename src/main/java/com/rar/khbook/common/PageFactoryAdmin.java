@@ -553,7 +553,7 @@ public class PageFactoryAdmin {
 		
 		return pageBar;
 	}
-	//매출 책 검색 
+	//매출 ebook책 검색 
 	public static String getPageBar11(int totalData, 
 			int cPage, int numPerpage, String url) {
 		
