@@ -1237,7 +1237,7 @@ public class AdminController {
 		int totalCost=service.selectbookTotalCost2();
 		mv.addObject("totalCost", totalCost);
 		
-		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "bookAnalysisPage.do"));
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "ebookAnalysisPage.do"));
 		
 		mv.setViewName("admin/ebookAnalysis");
 		return mv;
@@ -1275,7 +1275,7 @@ public class AdminController {
 		//int totalCost=service.orderbookTotalCost();
 		String[] resultArr = new String[2];
 		
-		String pageBar = PageFactoryAdmin.getPageBar10(totalContents, cPage, numPerpage,null);
+		String pageBar = PageFactoryAdmin.getPageBar11(totalContents, cPage, numPerpage,null);
 		
 		resultArr[0] = pageBar;
 		resultArr[1] = Integer.toString(totalContents);
