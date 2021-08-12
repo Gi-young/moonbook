@@ -150,7 +150,7 @@
 						<li id="eBooks" class="headerF-li"><a href="${path}/ebook/ebookHome.do">문곰e북
 									▼</a>
 							<ul class="eBook">
-								<li><a href="${path }/ebook/pageEbook.do">일반</a></li>
+								<li><a href="${path }/ebook/ebookHome.do">일반</a></li>
 								<li><a href="${path }/ebook/pageBookstallJuvenile.do">아동</a></li>
 								<li><a href="${path }/ebook/pageBookstallElementary.do">초등</a></li>
 								<li><a href="${path }/ebook/pageBookstallMiddle.do">중등</a></li>
