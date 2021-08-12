@@ -23,7 +23,7 @@
 			                	<p><span>${member.memberName}</span>님 환영합니다.</p>
 			               	 	<p class="memberbidpoint">경매 선금 : <span><fmt:formatNumber value="${member.memberPoint }" type="currency"/></span></p>
 				                <div class="btn_coll">
-					                <button onclick="location.assign('${path}/auction/auctionpay.do')">선금 충전하기</button>
+					                <button onclick="deposit();">선금 충전하기</button>
 					                <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
 					                <button onclick="location.assign('${path}/auction/auctionmyselllist.do?memberId=${member.memberId} ')">내 판매 목록 확인</button>
 					   			    <button onclick="location.assign('${path}/auction/auctionmybuylist.do?bidId=${member.memberId} ')">내 구매 목록 확인</button>	
@@ -226,6 +226,18 @@
 			
 			window.open('${path}/auction/actionbuyNow.do?auctionNo=' + auctionNo,'auctionbuynow', status);
 		}
+		
+		function deposit() {
+			let windowHeight = window.screen.height;
+			let windowWidth = window.screen.width;
+			let width = 600;
+			let height = 700;
+			
+			status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+			
+			window.open("${path}/auction/auctionpay.do", "deposit", status);
+		}
+		
     </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

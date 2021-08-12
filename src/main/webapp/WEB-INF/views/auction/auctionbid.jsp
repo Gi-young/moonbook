@@ -21,26 +21,34 @@
 					<h2>경매정보</h2>
 					<input type="hidden" value="${auction.auctionNo }" name="auctionNo">
 					<input type="hidden" value="${ auction.auctionName }" name="auctionName">
-					<span>판매자 아이디</span>	<input type="text" value="${auction.memberId }" readonly="readonly" id="seller"> <br>
-				
-					<span>시작 금액</span>	<fmt:formatNumber value="${auction.startPrice }" type="currency"/> <br>
 					
-					<input type="hidden" value="${auction.startPrice }" readonly="readonly" id="startPrice">
-					<span>즉시 구매가</span><fmt:formatNumber value="${auction.buyNow }" type="currency"/> <br>
+					<div>
+						<span>판매자 아이디</span>
+						<input type="text" value="${auction.memberId }" readonly="readonly" id="seller">
+					</div>
+					
+					<div>
+						<span>시작 금액</span>
+						<fmt:formatNumber value="${auction.startPrice }" type="currency"/>
+					</div>
+					
+					<div>
+						<input type="hidden" value="${auction.startPrice }" readonly="readonly" id="startPrice">
+						<span>즉시 구매가</span><fmt:formatNumber value="${auction.buyNow }" type="currency"/>
+					</div>
 					
 					<input type="hidden" value="${auction.buyNow }" readonly="readonly" id="buynow">
 				</div>
 				
 				<div>
-					<h2>입찰 기록</h2>
-					<table>			
+					<h2>현재 최고 입찰기록</h2>
+					<table width="200">			
 						<c:forEach items="${auction.auctionbid }" var="bid" varStatus="vs">
 							<c:if test="${vs.first }">
 								<input type="hidden" value="${bid.bidId }" id="bidid2">
-								<tr style="font-size: 20px; font-weight: bold;">
-								<td>${bid.bidId }님</td>
-								<td>${bid.bidPrice }</td>
-									<td>최고입찰자</td>
+								<tr style="font-size: 15px;">
+									<td>${bid.bidId }님의</td>
+									<td>${bid.bidPrice}원</td>
 								</tr>
 								<!-- <tr>
 									<th colspan="2">입찰기록</th>
@@ -65,10 +73,23 @@
 				
 				<div id="bidshow">
 					<h2>입찰서</h2>
-					<span>구매자 아이디</span>	<input type="text" value="${member.memberId }" readonly="readonly" name="bidId" id="bidid"><br>
-					<span>내 경매 포인트</span>	<fmt:formatNumber value="${member.memberPoint }" type="currency"/>
-					<input type="hidden" value="${member.memberPoint }" readonly="readonly" id="point"> <br>
-					<span>입찰 금액</span>		<input type="number" value="${auction.startPrice }" step="${auction.priceUnit }" id="bid" name="bidPrice"><br>	
+					<div>
+						<span>구매자 아이디</span>
+						<input type="text" value="${member.memberId }" readonly="readonly" name="bidId" id="bidid">
+					</div>
+					
+					<div>
+						<span>내 경매 포인트</span>
+						<fmt:formatNumber value="${member.memberPoint }" type="currency"/>
+					</div>
+					
+					<input type="hidden" value="${member.memberPoint }" readonly="readonly" id="point">
+					
+					<div>
+						<span>입찰 금액</span>
+						<input type="number" value="${auction.startPrice }" step="${auction.priceUnit }" id="bid" name="bidPrice">
+					</div>
+					
 					<input type="submit" value="입찰하기">
 				</div>
 			
