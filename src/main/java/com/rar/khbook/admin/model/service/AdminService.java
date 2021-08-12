@@ -170,4 +170,14 @@ public interface AdminService {
 	//매출 gift 총 매출액 계산
 	int selectgiftTotalCost();
 	
+	//매출 gift 상세 정렬 
+	List<Ngift> orderGiftAList(Map param);
+	//매출 gift 상세 정렬 페이지바
+	int getPageBarorderGiftAList(Map param);
+	
+	//매출gift 상세 검색 
+	List<Ngift> searchTextGiftAList(Map param);
+	
+	int getPageBarsearchTextGiftAList(Map param);
+	int searchGiftTotalCost(Map param);
 }

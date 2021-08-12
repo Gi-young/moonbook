@@ -463,6 +463,38 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.selectgiftTotalCost(session);
 	}
+
+	@Override
+	public List<Ngift> orderGiftAList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.orderGiftAList(session,param);
+	}
+
+	@Override
+	public int getPageBarorderGiftAList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarorderGiftAList(session,param);
+	}
+
+	@Override
+	public List<Ngift> searchTextGiftAList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchTextGiftAList(session,param);
+	}
+
+	@Override
+	public int getPageBarsearchTextGiftAList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarsearchTextGiftAList(session,param);
+	}
+
+	@Override
+	public int searchGiftTotalCost(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchGiftTotalCost(session,param);
+	}
+	
+	
 	
 	
 	

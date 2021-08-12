@@ -1345,5 +1345,87 @@ public class AdminController {
 		mv.setViewName("admin/giftAnalysis");
 		return mv;
 	}
-	
+	//매출분석 gift 상세 정렬
+	@RequestMapping("/admin/orderGiftAList.do")
+	@ResponseBody
+	public List<Ngift> orderGiftAList(@RequestParam Map param) {
+		
+		String type23=(String)param.get("type23");
+		param.put("type23", type23);
+		String order=(String)param.get("order");
+		param.put("order", order);
+		
+		
+		List<Ngift> list = service.orderGiftAList(param);
+		
+		return list;
+	}
+	//매출분석 gift 상세 정렬
+	@RequestMapping("/admin/getPageBarorderGiftAList.do")
+	@ResponseBody
+	public String[] getPageBarorderGiftAList(@RequestParam Map param) {
+		
+		String type23=(String)param.get("type23");
+		param.put("type23", type23);
+		String order=(String)param.get("order");
+		param.put("order", order);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarorderGiftAList(param);
+		
+		//int totalCost=service.orderbookTotalCost();
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar12(totalContents, cPage, numPerpage,null);
+		
+		resultArr[0] = pageBar;
+		resultArr[1] = Integer.toString(totalContents);
+		
+		
+		return resultArr;
+	}
+	//매출분석 gift 상세 검색 
+	@RequestMapping("/admin/searchTextGiftAList.do")
+	@ResponseBody
+	public List<Ngift> searchTextGiftAList(@RequestParam Map param) {
+		
+		String type24=(String)param.get("type24");
+		param.put("type24", type24);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
+		
+		List<Ngift> list = service.searchTextGiftAList(param);
+		
+		return list;
+	}
+	//매출분석 EBOOK책 검색 페이지 바
+	@RequestMapping("/admin/getPageBarsearchTextGiftAList.do")
+	@ResponseBody
+	public String[] getPageBarsearchTextGiftAList(@RequestParam Map param) {
+		
+		String type24=(String)param.get("type24");
+		param.put("type24", type24);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarsearchTextGiftAList(param);
+		
+		int totalCost=service.searchGiftTotalCost(param);
+		String[] resultArr = new String[3];
+		
+		String pageBar = PageFactoryAdmin.getPageBar13(totalContents, cPage, numPerpage,null);
+		
+		resultArr[0] = pageBar;
+		resultArr[1] = Integer.toString(totalContents);
+		resultArr[2] = Integer.toString(totalCost);
+		
+		
+		return resultArr;
+	}
 }

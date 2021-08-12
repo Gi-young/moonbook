@@ -151,4 +151,14 @@ public interface AdminDao {
 	
 	int selectgiftTotalCost(SqlSession session);
 	
+	List<Ngift> orderGiftAList(SqlSession session,Map param);
+	int getPageBarorderGiftAList(SqlSession session,Map param);
+	
+	List<Ngift> searchTextGiftAList(SqlSession session,Map param);
+	
+	int getPageBarsearchTextGiftAList(SqlSession session,Map param);
+	
+	int searchGiftTotalCost(SqlSession session,Map param);
+	
+	
 }
