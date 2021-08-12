@@ -408,7 +408,7 @@ public class AuctionController {
 		return "common/openmsg";
 		
 	}
-	
+
 	
 	
 	

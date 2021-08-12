@@ -1,4 +1,25 @@
 @charset "UTF-8";
+.btn_coll button{
+	margin-top: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid silver;
+    width:200px;
+}
+
+.btn_coll button:hover {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.btn_coll{
+	    text-align: right;
+	    padding:10px;
+}
 table{
 	border-collapse: separate;
     text-indent: initial;
@@ -26,6 +47,12 @@ a{
     border: 1px solid silver;
 	display: inline-block;
 }
+#container h2{
+	font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+	
+}
 
 .memberbidpoint{
 	text-align:center;
@@ -39,32 +66,9 @@ a{
     font-weight: bold;
 }
 
-.btn_coll {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: center;
-    height: 150px;
-}
 
-.btn_coll button{
-	margin-top: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    border-radius: 10px;
-    padding: 5px;
-    background-color: white;
-    border: 1px solid silver;
-    width: 100%;
-}
 
-.btn_coll button:hover {
-    border: 1px solid black;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
+
 
 .auction_main{
     padding: 10px;
@@ -332,8 +336,12 @@ a{
 
 #auction_mylist_table tr td{
 	 border: 1px solid black;
+	 padding:10px;
+	 
 }
 
 #auction_mylist_table tr th{
 	 border: 1px solid black;
+	 font-weight: bold;
+    padding: 10px;
 }

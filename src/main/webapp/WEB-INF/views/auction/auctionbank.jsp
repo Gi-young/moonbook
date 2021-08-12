@@ -11,11 +11,14 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionbank.css">
  <div id="wrap">
 	    <div id="container">
-	    	<div>
-			<span>내 입출금 기록</span> <span style="float:right;"><button onclick="withdraw();">출금 신청하기</button></span>  
+	    	<div></div>
+		    	<div class="btn_coll">		    	
+					<button onclick="deposit();">선금 충전하기</button>
+					<button onclick="withdraw();">출금 신청하기</button>			
+				</div>
 			
-			</div>
-
+			<h2>내 입출금 기록</h2> 
+		
 	  	  	<table id="auction_mylist_table">
 	  	  		<tr>
 	  	  			<th>거래번호</th>
@@ -54,6 +57,16 @@
 		status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
 		
 		window.open("${path}/auction/auctionpayout.do", "deposit", status);
+	}
+	function deposit() {
+		let windowHeight = window.screen.height;
+		let windowWidth = window.screen.width;
+		let width = 600;
+		let height = 700;
+		
+		status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+		
+		window.open("${path}/auction/auctionpay.do", "deposit", status);
 	}
   </script>
 
