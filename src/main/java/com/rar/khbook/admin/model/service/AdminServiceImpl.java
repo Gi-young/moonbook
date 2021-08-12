@@ -457,6 +457,12 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.searchEbookTotalCost(session,param);
 	}
+
+	@Override
+	public int selectgiftTotalCost() {
+		// TODO Auto-generated method stub
+		return dao.selectgiftTotalCost(session);
+	}
 	
 	
 	
