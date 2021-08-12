@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
+import com.rar.khbook.auction.model.vo.Bankinfo;
+import com.rar.khbook.auction.model.vo.Transaction;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface AuctionService {
@@ -54,6 +56,18 @@ public interface AuctionService {
 	int auctionAdmintotal(Map param);
 
 	int auctionbidCollect(Map param);
+
+	int auctionDel(Map param);
+
+	List<Transaction> auctionBank(Map param, int cPage, int numPerpage);
+
+	int auctionBankCount(Map param);
+
+	List<Bankinfo> selectbank(Map param);
+
+	void insertBank(Map param);
+
+	int insertpayoutEnd(Map param);
 	
 
 

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="auction">
+	<!-- 물품 등록취소 -->
+	<delete id="auctionDel">
+	DELETE FROM AUCTION WHERE AUCTION_NO=#{auctionNo}
+	</delete>
 	<!-- 포인트 환급 처리 -->
 	<update id="updatebidStateY">
 	UPDATE AUCTIONBID SET BID_CHECK='Y' WHERE BID_NO=#{bidNo}
@@ -127,7 +131,7 @@
 	UPDATE MEMBER SET MEMBER_POINT = MEMBER_POINT - #{bidPrice} WHERE MEMBER_ID=#{bidId}
 	</update>
 	<insert id="insertauctionBid">
-	INSERT INTO AUCTIONBID VALUES(SEQ_AUCTIONBID_NO.NEXTVAL,#{auctionNo},#{bidId},#{bidPrice},#{auctionName})
+	INSERT INTO AUCTIONBID VALUES(SEQ_AUCTIONBID_NO.NEXTVAL,#{auctionNo},#{bidId},#{bidPrice},#{auctionName},default)
 	</insert>
 	<update id="updateAddbid">
 	UPDATE AUCTIONBID SET BID_PRICE = BID_PRICE + #{bidPrice} WHERE BID_NO=#{bidNo}

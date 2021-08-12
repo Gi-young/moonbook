@@ -23,6 +23,7 @@
 			                	<p><span>${member.memberName}</span>님 환영합니다.</p>
 			               	 	<p class="memberbidpoint">경매 선금 : <span><fmt:formatNumber value="${member.memberPoint }" type="currency"/></span></p>
 				                <div class="btn_coll">
+				                	<button onclick="location.assign('${path}/auction/auctionBank.do?memberId=${member.memberId }')">출금하기</button>
 					                <button onclick="deposit();">선금 충전하기</button>
 					                <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
 					                <button onclick="location.assign('${path}/auction/auctionmyselllist.do?memberId=${member.memberId} ')">내 판매 목록 확인</button>

@@ -47,7 +47,7 @@
 					<c:forEach items="${auction }" var="a">
 						<tr>
 							<td>${a.auctionNo }</td>
-							<td>${a.auctionName }</td>
+							<td><a href="${path }/auction/acutionview?auctionNo=${a.auctionNo}">${a.auctionName }</a></td>
 							<td>${a.startDate }</td>
 							<td>${a.endDate }</td>
 							<td>
@@ -58,8 +58,11 @@
 							</td>
 							<td>					      
 							<c:choose>
-							<c:when test="${a.auctionState eq 'Y' }">
-								진행중
+							<c:when test="${a.auctionState eq 'Y' && a.auctionbid.size()==0}">
+								<span>진행중</span>/<a href="${path }/auction/auctionDel?auctionNo=${a.auctionNo}">등록 취소하기</a>
+							</c:when>
+							<c:when test="${a.auctionState eq 'Y' && a.auctionbid.size()!=0}">
+								<span>진행중</span>/<span style="color:red;">등록 취소 불가</span>
 							</c:when>
 							<c:when test="${a.auctionState eq 'N' }">
 								유찰
