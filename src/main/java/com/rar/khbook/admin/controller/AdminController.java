@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.admin.model.service.AdminService;
+import com.rar.khbook.adminchart.model.vo.BookTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.common.PageFactoryAdmin;
 import com.rar.khbook.coupon.model.vo.Couponlist;
@@ -1428,4 +1429,29 @@ public class AdminController {
 		
 		return resultArr;
 	}
+	//차트 페이지 바로가기
+	@RequestMapping("/admin/chartAnalysisPage.do")
+	public ModelAndView chartAnalysisPage(ModelAndView mv){
+		
+		//차트 페이지 book데이터 가져오기
+		List<BookTopThree> list1=service.bookTopThree();
+		
+		//차트 페이지 ebook 데이터 가져오기
+		
+		//차트 페이지 기프트 데이터 가져오기
+		System.out.println(list1);
+		mv.addObject("list1",list1);
+		mv.setViewName("admin/chartAnalysis");
+		return mv;
+	}
+	//차트 페이지 book데이터 가져오기
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

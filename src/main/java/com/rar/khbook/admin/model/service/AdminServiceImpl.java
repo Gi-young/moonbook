@@ -10,8 +10,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import com.rar.khbook.admin.model.dao.AdminDao;
+import com.rar.khbook.adminchart.model.vo.BookTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
-import com.rar.khbook.coupon.model.vo.CouponAttachment;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
@@ -493,6 +493,14 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.searchGiftTotalCost(session,param);
 	}
+
+	@Override
+	public List<BookTopThree> bookTopThree() {
+		// TODO Auto-generated method stub
+		return dao.bookTopThree(session);
+	}
+	
+	
 	
 	
 	

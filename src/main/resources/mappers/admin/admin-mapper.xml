@@ -672,4 +672,35 @@
 			</when>
 		</choose>
   	</select>
+  	
+  	<resultMap type="booktopthree" id="booktopthreeMap">
+		<result column="B_TITLE" property="bTitle" />
+		<result column="B_TOTAL_COST" property="bTotalCost" />
+		<result column="B_PROFIT" property="bProfit"/>
+		<result column="SALES_VOLUME" property="bSalesVolume" />
+		
+	</resultMap>
+  	
+  	<!-- 차트 book top3 -->
+  	<select id="bookTopThree" resultMap="booktopthreeMap">
+  		SELECT ROWNUM,B.*
+  		FROM(
+  			SELECT TITLE AS B_TITLE ,(PRICE-PRIME_COST)*SALES_VOLUME AS B_TOTAL_COST ,PRICE-PRIME_COST AS B_PROFIT, SALES_VOLUME 
+			FROM BOOK_EBOOK_DATABIND ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME DESC NULLS LAST
+  		)B
+  		WHERE ROWNUM &lt; 4 
+  		
+  	</select>
+  	
+  	<!-- <select id="ebookTopThree" resultMap="ebookDatabindMap">
+  		SELECT ROWNUM,E.*
+  		FROM(
+  			SELECT TITLE ,(PRICE-PRIME_COST)*EBOOK_SALES_VOLUME AS 매출액 ,PRICE-PRIME_COST AS 이익, EBOOK_SALES_VOLUME
+			FROM BOOK_EBOOK_DATABIND ORDER BY (PRICE-PRIME_COST)*EBOOK_SALES_VOLUME DESC NULLS LAST
+  		)E
+  		WHERE ROWNUM <=3;
+  	</select> -->
+  	
+  	
+  	
 </mapper>
