@@ -10,32 +10,34 @@
 </jsp:include>
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auction.css">
+	
 	<div id="wrap">
 		<div id="container">
 	        <div class="auction_main line">
 	            <div class="auction_main_left line">배너</div>
 	            <div class="auction_main_right line">
-	            	<h2>정보란</h2>
+	            	<h2>&lt;정보란&gt;</h2>
 	            	<c:choose>
 		            	<c:when test="${sessionScope.loginMember!=null }">
-			                <p><span>${member.memberName}</span>님 환영합니다.</p>
 			                <c:if test="${member.memberId!='admin' }">
-			               	 <p class="memberbidpoint">경매포인트<span><fmt:formatNumber value="${member.memberPoint }" type="currency"/></span> </p>
+			                	<p><span>${member.memberName}</span>님 환영합니다.</p>
+			               	 	<p class="memberbidpoint">경매 선금 : <span><fmt:formatNumber value="${member.memberPoint }" type="currency"/></span></p>
 				                <div class="btn_coll">
-				                <button onclick="location.assign('${path}/auction/auctionpay.do')">포인트 충전하기</button>
-				                <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
-				                <button onclick="location.assign('${path}/auction/auctionmyselllist.do?memberId=${member.memberId} ')">내 판매 목록 확인</button>
-				   			    <button onclick="location.assign('${path}/auction/auctionmybuylist.do?bidId=${member.memberId} ')">내 구매 목록 확인</button>	
+					                <button onclick="location.assign('${path}/auction/auctionpay.do')">선금 충전하기</button>
+					                <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
+					                <button onclick="location.assign('${path}/auction/auctionmyselllist.do?memberId=${member.memberId} ')">내 판매 목록 확인</button>
+					   			    <button onclick="location.assign('${path}/auction/auctionmybuylist.do?bidId=${member.memberId} ')">내 구매 목록 확인</button>	
 				    		    </div> 
 			                </c:if>
 			                <c:if test="${member.memberId=='admin' }">
-				                 <div class="btn_coll">
-				             	  <button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
-				             	  </div>
-				             </c:if>
+								<div class="btn_coll admin_controller">
+									<p>Administrator Only</p>
+									<button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
+								</div>
+							</c:if>
 		    		    </c:when>
 		    		    <c:otherwise>
-			    		    <div class="btn_coll">
+			    		    <div class="btn_coll loginRequest">
 			    		    	<p style="font-size:12px">로그인후 이용가능합니다.</p>
 			    		    	<button onclick="location.assign('${path}/member/loginPage.do')">로그인</button>
 		    		    	</div>

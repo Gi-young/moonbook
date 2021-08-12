@@ -27,27 +27,43 @@ a{
 	display: inline-block;
 }
 
-.btn_coll{
-	text-align:center;
-}
-
 .memberbidpoint{
-	border:1px solid red;
 	text-align:center;
-	font-weight:bold;
+    flex-grow: 1;
 }
 
 .memberbidpoint>span{
-	color: red;
-    font-size: 20px;
+    display: block;
+    margin-top: 3px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.btn_coll {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
 }
 
 .btn_coll button{
-	margin:1px;
-    height: 40px;
-    font-size: 18px;
-    font-weight: bolder;
+	margin-top: 5px;
+    font-size: 15px;
+    font-weight: bold;
     border-radius: 10px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid silver;
+    width: 100%;
+}
+
+.btn_coll button:hover {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    cursor: pointer;
 }
 
 .auction_main{
@@ -67,16 +83,29 @@ a{
 }
 
 .auction_main_right{
-    font-weight: bold;
+    box-sizing: border-box;
     width: 200px;
     height: 300px;
     margin-left: 10px;
     border: 1px solid silver;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 10px;
 }
 
 .auction_main_right h2{
+    margin-top: 5px;
 	text-align:center;
-	font-size:22px;
+	font-size:17px;
+    font-weight: bold;
+}
+
+.auction_main_right>p {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 10px;
 }
 
 .acution_category{
@@ -252,4 +281,23 @@ a{
 
 .auction_main_de>div {
     margin-top: 10px;
+}
+
+.loginRequest {
+    flex-grow: 1;
+}
+
+.loginRequest>p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.admin_controller {
+    flex-grow: 1;
+}
+
+.admin_controller>p {
+    font-size: 15px;
+    margin-bottom: 10px;
 }
