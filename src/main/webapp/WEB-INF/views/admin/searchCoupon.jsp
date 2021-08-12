@@ -90,11 +90,11 @@
 									<td><input type="text" value="${e.couponlistInvalid }" name="couponlistInvalid" ></td>
 									<td><input type="text" value="${e.couponlistName }" name="couponlistName"></td>
 									<td><input type="text" value="${e.couponImg }" name="couponImg " readonly></td>
-									<td>
+									<td class="Dodo1">
 										<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeCouponV(event);" class="updateCheck updateImg">
 									</td>
 									
-									<td>
+									<td class="Dodo1">
 										
 											<input type="hidden" value="${e.couponlistNo}" name="couponlistNo" readonly>
 											
@@ -164,7 +164,7 @@ function searchCouponL(cPage,numPerpage){
 				let tr=document.createElement("tr");
 				for(let j=0;j<9;j++){
 					let td=document.createElement("td");
-					td.style.border="1px solid black";
+					/* td.style.border="1px solid black"; */
 					td.style.height="27px";
 					
 					if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].couponlistNo + "'>";
@@ -174,8 +174,14 @@ function searchCouponL(cPage,numPerpage){
 					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].couponlistInvalid + "'>";
 					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].couponlistName + "'>";
 					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].couponImg + "'>";
-					if(j == 7) td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
-					if(j == 8) td.innerHTML = '<input type="hidden" value="'+ data[i].couponlistNo+'" name="couponlistNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+					if(j == 7){
+						td.innerHTML = '<img alt="수정하기" src="${path }/resources/img/admin/checkgreen.png" onclick="changeMemberV(event);" class="updateCheck updateImg">'
+						td.classList.add('Dodo1');
+					}
+					if(j == 8){
+						td.innerHTML = '<input type="hidden" value="'+ data[i].couponlistNo+'" name="couponlistNo" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+						td.classList.add('Dodo1');
+					}
 					
 					tr.appendChild(td);
 				}

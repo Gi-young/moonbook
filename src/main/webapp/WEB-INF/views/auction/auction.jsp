@@ -10,32 +10,34 @@
 </jsp:include>
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auction.css">
+	
 	<div id="wrap">
 		<div id="container">
 	        <div class="auction_main line">
 	            <div class="auction_main_left line">배너</div>
 	            <div class="auction_main_right line">
-	            	<h2>정보란</h2>
+	            	<h2>&lt;정보란&gt;</h2>
 	            	<c:choose>
 		            	<c:when test="${sessionScope.loginMember!=null }">
-			                <p><span>${member.memberName}</span>님 환영합니다.</p>
 			                <c:if test="${member.memberId!='admin' }">
-			               	 <p class="memberbidpoint">경매포인트<span><fmt:formatNumber value="${member.memberPoint }" type="currency"/></span> </p>
+			                	<p><span>${member.memberName}</span>님 환영합니다.</p>
+			               	 	<p class="memberbidpoint">경매 선금 : <span><fmt:formatNumber value="${member.memberPoint }" type="currency"/></span></p>
 				                <div class="btn_coll">
-				                <button onclick="location.assign('${path}/auction/auctionpay.do')">포인트 충전하기</button>
-				                <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
-				                <button onclick="location.assign('${path}/auction/auctionmyselllist.do?memberId=${member.memberId} ')">내 판매 목록 확인</button>
-				   			    <button onclick="location.assign('${path}/auction/auctionmybuylist.do?bidId=${member.memberId} ')">내 구매 목록 확인</button>	
+					                <button onclick="deposit();">선금 충전하기</button>
+					                <button onclick="location.assign('${path}/auction/auctionwrite.do')">물픔 등록하기</button>
+					                <button onclick="location.assign('${path}/auction/auctionmyselllist.do?memberId=${member.memberId} ')">내 판매 목록 확인</button>
+					   			    <button onclick="location.assign('${path}/auction/auctionmybuylist.do?bidId=${member.memberId} ')">내 구매 목록 확인</button>	
 				    		    </div> 
 			                </c:if>
 			                <c:if test="${member.memberId=='admin' }">
-				                 <div class="btn_coll">
-				             	  <button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
-				             	  </div>
-				             </c:if>
+								<div class="btn_coll admin_controller">
+									<p>Administrator Only</p>
+									<button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
+								</div>
+							</c:if>
 		    		    </c:when>
 		    		    <c:otherwise>
-			    		    <div class="btn_coll">
+			    		    <div class="btn_coll loginRequest">
 			    		    	<p style="font-size:12px">로그인후 이용가능합니다.</p>
 			    		    	<button onclick="location.assign('${path}/member/loginPage.do')">로그인</button>
 		    		    	</div>
@@ -44,8 +46,8 @@
 	            </div>
 	        </div>
 	        
-	        <div class="acution_category">
-	            <div class="acution_category_left">
+	        <div class="auction_category">
+	            <div class="auction_category_left">
 	                <div>
 	                    <a>도서</a>
 	                    <div>
@@ -88,9 +90,9 @@
 	            <%int num=0; %>
 	            <c:forEach var="t" items="${timelist }">
 		            <div style="display: flex;" class="line">
-		                <div class="auction_main_po_img">
-		                    <a href="${path }/auction/acutionview?auctionNo=${t.auctionNo}">
-		                    <img src="${path }/resources/auction/images/${t.auctionImg[0]}" alt="#">
+		                <div class="auction_main_po_img" onclick="location.assign('${path }/auction/acutionview?auctionNo=${t.auctionNo}');">
+		                    <a>
+		                    	<img src="${path }/resources/auction/images/${t.auctionImg[0]}" alt="#">
 		                    </a>
 		                </div>
 		                <div class="auction_main_po_center">
@@ -99,7 +101,7 @@
 		                    </a>
 		                
 							<input type="hidden" value="${t.endDate }" name="timestemp">
-		                    <p class="countdown">마감까지 남은 시간 : <span id="countdown<%=num++ %>" style="font-size:20px"></span></p>
+		                    <p class="countdown">마감까지 남은 시간 : <span id="countdown<%=num++ %>"></span></p>
 		                    <p>경매시작 가격 : <span>${t.startPrice }</span></p>
 		                    <p>입찰 인원 수: <span>${t.auctionbid.size()}</span></p>
 		                    <p class="">바로 구매 : <span>${t.buyNow }</span></p>   
@@ -114,19 +116,19 @@
 	        </div>
 	
 	   		<!--입찰자가 많은 순-->
-	        <%-- <div class="auction_main_de">
+	        <div class="auction_main_de">
 				<h2 class="auction_main_title">인기 매물</h2>
 	           
 				<c:forEach var="t" items="${poplist }">
 					<div style="display: flex;" class="line">
-					    <div class="auction_main_po_img">
+					    <div class="auction_main_po_img" onclick="location.assign('${path}/auction/acutionview?auctionNo=${t.auctionNo}');">
 					        <img src="${path }/resources/auction/images/${t.auctionImg[0]}" alt="#">
 					    </div>
 					    <div class="auction_main_po_center">
 					        <strong>${t.auctionName} </strong>
 					  
 							<input type="hidden" value="${t.endDate }" name="timestemp">
-					        <p class="countdown">마감까지 남은 시간 : <span id="countdown<%=num++ %>" style="font-size:20px"></span></p>
+					        <p class="countdown">마감까지 남은 시간 : <span id="countdown<%=num++ %>"></span></p>
 					        <p>경매시작 가격 : <span>${t.startPrice }</span></p>
 					        <p>입찰 인원 수: <span>${t.count}</span></p>
 					        <p class="">바로 구매 : <span>${t.buyNow }</span></p>   
@@ -137,19 +139,33 @@
 					    </div>
 					</div>
 				</c:forEach>
-	        </div> --%>
+	        </div>
 		</div>
 	</div>
 
     <script>
+    	let pendingHide;
+    	
 		$(function(){
-		    $(".acution_category_left>div").hover((e)=>{
-		        $(e.target).next('div').show();
-		    },(e)=>{
-		        if($(".acution_category_left>div>div").not().hover()){
-		            $(".acution_category_left>div>div").hide();
-		        }
-		    })
+			$(".auction_category_left>div>div").mouseleave((e) => {
+				$(e.target).hide();
+			});
+			
+		    $(".auction_category_left>div>a").mouseenter((e) => {
+		    	if (pendingHide !== undefined) {
+		    		console.log("clear");
+		    		window.clearTimeout(pendingHide);
+		    	}
+		    	$(".auction_category_left>div>div").hide();
+		    	$(e.target).next("div").css("display", "flex");
+		    }).mouseleave((e) => {
+		    	pendingHide = window.setTimeout(function() {
+		    		if(!$(e.target).next("div").is(":hover")){
+		        		console.log("test");
+		    			$(e.target).next("div").hide();
+		        	}
+		    	}, 1000);
+		    });
 		})
    
 		function CountDownTimer(dt, id) {
@@ -210,6 +226,18 @@
 			
 			window.open('${path}/auction/actionbuyNow.do?auctionNo=' + auctionNo,'auctionbuynow', status);
 		}
+		
+		function deposit() {
+			let windowHeight = window.screen.height;
+			let windowWidth = window.screen.width;
+			let width = 600;
+			let height = 700;
+			
+			status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+			
+			window.open("${path}/auction/auctionpay.do", "deposit", status);
+		}
+		
     </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

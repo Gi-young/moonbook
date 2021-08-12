@@ -66,11 +66,26 @@ button{
     font-size: 15px;
     font-weight: 600;
 }
-.flex li{
-	/* height: 50px; */
+
+/* .flex li{
+	height: 50px;
 	display: flex;
 	align-items: center;
 	cursor: pointer;
+} */
+.headerF-li{
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+#books{
+	height: 50px;
+}
+#ebooks{
+	height: 50px;
+}
+.item{
+	height: 50px;
 }
 .header{
     display: flex;

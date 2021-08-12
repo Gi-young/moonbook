@@ -33,9 +33,9 @@
 								<td class="search-box">
 									<input type="text" name="deliveryType1" placeholder="가격을 입력하세요"> 
 								</td>
-								<td class="search-box">
+								<!-- <td class="search-box">
 									<input type="text" name="deliveryType2" placeholder="배송상태를 입력하세요"> 
-								</td>
+								</td> -->
 								<td class="search-box">
 									<input type="submit" value="추가"/>
 									<!-- <button onclick="addAuctionCate(event)">추가</button>  -->
@@ -49,9 +49,9 @@
 								<td class="search-box">
 									<input type="text" name="deliveryType4" placeholder="가격을 입력하세요"> 
 								</td>
-								<td class="search-box">
+								<!-- <td class="search-box">
 									<input type="text" name="deliveryType5" placeholder="배송상태를 입력하세요"> 
-								</td>
+								</td> -->
 								<td class="search-box">
 									<input type="button" value="갱신" onclick="updateDeliveryAdmin('updateDelivery.do')"/>
 									<!-- <button onclick="addAuctionCate(event)">추가</button>  -->
@@ -68,9 +68,6 @@
 								</td>
 								
 								<td class="search-box">
-									
-								</td>
-								<td class="search-box">
 									<input type="button" value="삭제" onclick="deleteDeliveryAdmin('deleteDelivery.do');"/>
 								</td>
 							</tr>
@@ -86,7 +83,7 @@
 							<tr>
 								<th>배송번호</th>
 								<th>배송비</th>
-								<th>배송상태</th>
+								<!-- <th>배송상태</th> -->
 								
 							</tr>
 							
@@ -95,7 +92,7 @@
 							<tr>
 									<td><input type="text" value="${e.deliveryNo }" name="deliveryNo" readonly></td>
 									<td><input type="text" value="${e.deliveryPrice }" name="deliveryPrice" readonly></td>
-									<td><input type="text" value="${e.deliveryStatus }" name="deliveryStatus" readonly></td>
+									<%-- <td><input type="text" value="${e.deliveryStatus }" name="deliveryStatus" readonly></td> --%>
 									
 								
 							</tr>

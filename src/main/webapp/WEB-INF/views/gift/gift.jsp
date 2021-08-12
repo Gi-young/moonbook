@@ -173,16 +173,20 @@
                                 <div>
                                     <div class="gf-left">
                                         <p class="gf-left-title">전자기기</p>
-                                        <p class="gf-left-subTitle">당신의 삶을 더욱 윤택하게 만들어 줄 여러 전자기기들이 이곳에!</p>
+                                        <p class="gf-left-subTitle">당신의 독서 라이프를 더욱 윤택하게 만들어 줄 전자기기들이 이곳에!</p>
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
-                                    <img src="${path }/resources/images/마린시티스티커.jpg" alt="">
+                                    <c:forEach var="i" items="${list }" begin="5" end="5">
+                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
-                            <ul id="gf-right">                         
-                            	<li><img src="" /></li>
-                            	<li><img src="" /></li>                         
+                            <ul id="gf-right">  
+                            <c:forEach var="i" items="${list }" begin="6" end="7">                      
+                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
+                            </c:forEach>	
+                            	                       
                             </ul>
                         </div>
                     </div>
@@ -198,13 +202,16 @@
                                         <p class="gf-left-subTitle">일이나 독서를 하다보면 필요한 수납장,<br>정리공간 여기에서 찾아보세요!</p>
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
-                                    <img src="${path }/resources/images/마린시티스티커.jpg" alt="">
+                                    <c:forEach var="i" items="${list }" begin="210" end="210">
+                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
-                            	<li><img src="" /></li>
-                            	<li><img src="" /></li>                         
+                            	<c:forEach var="i" items="${list }" begin="211" end="212">                      
+                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
+                            </c:forEach>                       
                             </ul>
                         </div>
                     </div>
@@ -220,13 +227,16 @@
                                         <p class="gf-left-subTitle">독서하기 전 반드시(아닐수도 있음) 준비해야 할 필수템들!</p>
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
-                                    <img src="${path }/resources/images/마린시티스티커.jpg" alt="">
+                                    <c:forEach var="i" items="${list }" begin="299" end="299">
+                                    <a href="${path }/gift/giftDetail?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
-                            	<li><img src="" /></li>
-                            	<li><img src="" /></li>                         
+                            	<c:forEach var="i" items="${list }" begin="281" end="282">                      
+                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
+                            </c:forEach>                        
                             </ul>
                         </div>
                     </div>
@@ -242,20 +252,21 @@
                                         <p class="gf-left-subTitle">당신에게 필요한 여러가지 상품들을 준비해봤어요!</p>
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
-                                    <img src="${path }/resources/images/마린시티스티커.jpg" alt="">
+                                    <c:forEach var="i" items="${list }" begin="371" end="371">
+                                    <a href="${path }/gift/giftDetail?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
-                            	<li><img src="" /></li>
-                            	<li><img src="" /></li>                         
+                            	<c:forEach var="i" items="${list }" begin="381" end="382">                      
+                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" ></a></li>
+                            </c:forEach>                        
                             </ul>
                         </div>
                     </div>
             	</div>          
-            <script>
-            	
-            </script>
+            
         <div class="container">
             <div class='left-cont'>
                     <p class="todayPop-title">오늘만 특가 〉</p>
@@ -273,37 +284,41 @@
                         </div>               
                     <div class="toSale-main">
                         <div style="width: 350px;">
-                            <a href='${path }/gift/giftDetail.do?giftNo=123'>
-                                <img src="${path }/components/image/넥밴드선풍기.jpg" alt="" class="toSale-mainImg">
+                        <c:forEach var="i" items="${list }" begin="123" end="123">
+                            <a href='${path }/gift/giftDetail.do?giftNo=${i.gift_no}'>
+                                <img src="${i.gift_img }" alt="${i.gift_title }" class="toSale-mainImg">
                                 <div class="freeship-wrap">
-                                    <span class="freeship">무료배송</span>
+                                   <!--  <span class="freeship">무료배송</span> -->
                                 </div>
-                                    <p class="toSale-mainEx">아이리버 STORM NF-1400 넥밴드 선풍기</p>
+                                    <p class="toSale-mainEx">${i.gift_title }</p>
                                 <div class="toSale-price">
-                                    <p class="price" style="font-size: 32px;">24,900</p>
+                                    <p class="price" style="font-size: 32px;"><fmt:formatNumber value="${i.gift_price }" type="number" /></p>
                                 </div>
                             </a>
+                        </c:forEach>    
                         </div>
                         <div class="toSale-sub">
                             <ul class="toSale-ul">
+                            <c:forEach var="i" items="${list }" begin="124" end="127">
                                 <li>
-                                	<a href="#">
-	                                    <img src="" alt="">
+                                	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+	                                    <img src="${i.gift_img }" alt="${i.gift_title}">
 	                                   <!--  <p class="toSale-dc">할인율</p> -->
                                     </a>
                                 </li>
-                                <li>
+                            </c:forEach>    
+                                <!-- <li>
                                     <img src="" alt="">
-                                    <!-- <p class="toSale-dc">할인율</p> -->
+                                    <p class="toSale-dc">할인율</p>
                                 </li>
                                 <li>
                                     <img src="" alt="">
-                                    <!-- <p class="toSale-dc">할인율</p> -->
+                                    <p class="toSale-dc">할인율</p>
                                 </li>
                                 <li>
                                     <img src="" alt="">
-                                    <!-- <p class="toSale-dc">할인율</p> -->
-                                </li>
+                                    <p class="toSale-dc">할인율</p>
+                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -896,18 +911,20 @@
             <!-- 기획 상품 슬라이드 부분 -->
                 <div class="att-slideList">
                     <div class="att-slideContent">
+                    <c:forEach var="i" items="${list }" begin="376" end="377">
                             <div class="att-img">
                                 <a href="#">
-                                    <img src="../components/image/카프3.jpg" alt="">
-                                    <p># 홍대에 있는 라이언 팜</p>
+                                    <img src="${i.gift_img }" alt="${i.gift_title }">
+                                    <p># ${i.gift_title }</p>
                                 </a>
                             </div>
-                            <div class="att-img" style="margin-left: 10px;">
+                    </c:forEach>        
+                            <%-- <div class="att-img" style="margin-left: 10px;">
                                 <a href="#">
                                     <img src="../components/image/카프2.jpg" alt="" >
                                     <p># 이름 모르는 애들</p>
                                 </a>
-                            </div>
+                            </div> --%>
                     </div>
                 </div>
             </div>
@@ -1018,6 +1035,45 @@
 </jsp:include>
 <div class="quickBar"></div>
 
+<script>
+
+	let elec = document.getElementById("electric");
+	let storage = document.getElementById("storage");
+	let reading = document.getElementById("readingItem");
+	let etc = document.getElementById("etc");
+	
+	let gfElec= document.getElementById("gf-elec");
+	let gfStorage= document.getElementById("gf-storage");
+	let gfReading= document.getElementById("gf-reading");
+	let gfEtc= document.getElementById("gf-etc");
+	let content = document.getElementsByClassName("gf-content");
+	
+	elec.addEventListener('click', function(){
+		gfElec.style.display='flex';
+		gfStorage.style.display='none';		
+		gfReading.style.display='none';		
+		gfEtc.style.display='none';		
+	});
+	storage.addEventListener('click', function(){
+		gfElec.style.display='none';
+		gfStorage.style.display='flex';
+		gfReading.style.display='none';
+		gfEtc.style.display='none';
+	});
+	reading.addEventListener('click', function(){
+		gfElec.style.display='none';
+		gfStorage.style.display='none';
+		gfReading.style.display='flex';
+		gfEtc.style.display='none';
+	});
+	etc.addEventListener('click', function(){
+		gfElec.style.display='none';
+		gfStorage.style.display='none';
+		gfReading.style.display='none';
+		gfEtc.style.display='flex';
+	});
+	
+</script>
 <script>
     // 가장 많이 보는 상품 이미지 hover 될 때 js
     let imgIn;

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -43,9 +44,14 @@ public class GiftDaoImpl implements GiftDao {
 	}
 
 	@Override
-	public List<GiftBoard> selectReview(SqlSession session, int giftNo) {
+	public List<GiftBoard> selectReview(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("gift.selectReview", giftNo);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerPage = Integer.parseInt((String)param.get("numPerPage"));
+		
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		
+		return session.selectList("gift.selectReview", param, rb);
 	}
 
 	@Override
@@ -54,9 +60,9 @@ public class GiftDaoImpl implements GiftDao {
 	}
 
 	@Override
-	public int selectReviewAll(SqlSession session) {
+	public int selectReviewAll(SqlSession session, int giftNo) {
 		// TODO Auto-generated method stub
-		return session.selectOne("gift.selectReviewAll");
+		return session.selectOne("gift.selectReviewAll", giftNo);
 	}
 	
 	

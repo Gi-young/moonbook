@@ -10,7 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.rar.khbook.member.model.vo.Member;
 
-public class LoginCheckInterceptor implements HandlerInterceptor{
+public class GiftLoginCheckInterceptor  implements HandlerInterceptor{
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws Exception{
@@ -19,9 +19,12 @@ public class LoginCheckInterceptor implements HandlerInterceptor{
 		if(loginMember!=null) {
 			return true;
 		}else {
+			response.setContentType("text/html; charset=euc-kr");
+			PrintWriter out = response.getWriter();
+			out.println("<script>window.close();</script>");
 			request.setAttribute("msg","로그인 후 이용해주세요");
 			request.setAttribute("loc","/");
-			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/gift/msg.jsp").forward(request, response);
 			return false;
 		}
 	}

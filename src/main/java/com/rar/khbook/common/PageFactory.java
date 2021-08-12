@@ -190,4 +190,56 @@ public class PageFactory {
 		
 		return pageBar;
 	}
+	
+	public static String getWonJaePageBar(int totalData, 
+			int cPage, int numPerpage) {
+		
+		String pageBar="<ul class='pagination justify-content-center pagination-sm'>";
+		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
+		int pageBarSize=5;
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		
+		if(pageNo==1) {
+			pageBar+="<li class='page-item disabled'>";
+			pageBar+="<a class='page-link' href='#'>이전</a>";
+			pageBar+="</li>";
+		}else {
+			pageBar+="<li class='page-item'>";
+			pageBar+="<a class='page-link' href='javascript:getTrs("
+			+(pageNo-1)+")'>이전</a>";
+			pageBar+="</li>";
+		}
+		
+		while(!(pageNo>pageEnd||pageNo>totalPage)) {
+			if(pageNo==cPage) {
+				pageBar+="<li class='page-item active'>";
+				pageBar+="<a class='page-link' href='#'>"+pageNo+"</a>";
+				pageBar+="</li>";
+			}else {
+				pageBar+="<li class='page-item'>";
+
+				pageBar+="<a class='page-link' href='javascript:getTrs("
+				+(pageNo)+")'>"+pageNo+"</a>";
+
+				pageBar+="</li>";
+			}
+			pageNo++;
+		}
+		
+		if(pageNo>totalPage) {
+			pageBar+="<li class='page-item disabled'>";
+			pageBar+="<a class='page-link' href='#'>다음</a>";
+			pageBar+="</li>";
+		}else {
+			pageBar+="<li class='page-item'>";
+			pageBar+="<a class='page-link' href='javascript:getTrs("
+			+(pageNo)+")'>다음</a>";
+			pageBar+="</li>";
+		}	
+		
+		
+		return pageBar;
+	}
+	
 }
