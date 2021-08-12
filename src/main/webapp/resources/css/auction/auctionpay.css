@@ -48,6 +48,10 @@ body::-webkit-scrollbar {
 	font-size: 20px;
 }
 
+.auctionPay>p.pay-alert {
+	
+}
+
 .auctionPay>div {
 	border: 1px solid silver;
 	border-radius: 10px;
