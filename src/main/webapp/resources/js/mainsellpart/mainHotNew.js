@@ -9,7 +9,7 @@ const pagination = document.querySelector('.hotNewslide_pagination');
 console.log(pagination);
 
 const slideWidth = 950; // slide width
-const slideSpeed = 0; // slide speed
+const slideSpeed = 500; // slide speed
 const startNum = 0; // initial slide index (0 ~ 4)
 slideList.style.width = slideWidth * (slideLen + 2) + "px";
 // Copy first and last slide
@@ -51,6 +51,27 @@ curSlide.classList.remove('slide_active');
 curSlide = slideContents[++curIndex];
 curSlide.classList.add('slide_active');
 });
+
+
+slideBtnNext.addEventListener('click', setInterval(function() {
+if (curIndex <= slideLen - 1) {
+slideList.style.transition = slideSpeed + "ms";
+slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";
+}
+if (curIndex === slideLen - 1) {
+setTimeout(function() {
+slideList.style.transition = "0ms";
+slideList.style.transform = "translate3d(-" + slideWidth + "px, 0px, 0px)";
+}, slideSpeed);
+curIndex = -1;
+}
+curSlide.classList.remove('slide_active');
+curSlide = slideContents[++curIndex];
+curSlide.classList.add('slide_active');
+},5000));
+
+
+
 /** Prev Button Event */
 slideBtnPrev.addEventListener('click', function() {
 if (curIndex >= 0) {

@@ -83,7 +83,24 @@
       curSlide.classList.add('slide_active');
       pageDots[curIndex].classList.add('dot_active');
     });
-
+ slideBtnPrev.addEventListener('click', setInterval(function() {
+      if (curIndex >= 0) {
+        slideList.style.transition = slideSpeed + "ms";
+        slideList.style.transform = "translate3d(-" + (slideWidth * curIndex) + "px, 0px, 0px)";
+      }
+      if (curIndex === 0) {
+        setTimeout(function() {
+          slideList.style.transition = "0ms";
+          slideList.style.transform = "translate3d(-" + (slideWidth * slideLen) + "px, 0px, 0px)";
+        }, slideSpeed);
+        curIndex = slideLen;
+      }
+      curSlide.classList.remove('slide_active');
+      pageDots[(curIndex === slideLen) ? 0 : curIndex].classList.remove('dot_active');
+      curSlide = slideContents[--curIndex];
+      curSlide.classList.add('slide_active');
+      pageDots[curIndex].classList.add('dot_active');
+    },5000));
     /** Pagination Button Event */
     let curDot;
     Array.prototype.forEach.call(pageDots, function (dot, i) {
