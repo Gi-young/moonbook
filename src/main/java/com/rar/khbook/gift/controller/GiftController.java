@@ -11,6 +11,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -157,7 +158,7 @@ public class GiftController {
 //		        String clientSecret = "MUlrXb9ksH";// 애플리케이션 클라이언트 시크릿값";\
 //		        int display = 100; // 검색결과갯수. 최대100개
 //		        try {
-//		            String text = URLEncoder.encode("", "utf-8");
+//		            String text = URLEncoder.encode("문구", "utf-8");
 //		            String apiURL = "https://openapi.naver.com/v1/search/shop.json?query=" + text + "&display=" + display + "&";
 //		 
 //		            URL url = new URL(apiURL);
@@ -209,12 +210,12 @@ public class GiftController {
 
 	@RequestMapping("/gift/productReview.do")
 	@ResponseBody
-	public List<GiftBoard> review(int giftNo, Model m) {
-		System.out.println("ajax 타고 넘어온 giftNo : " + giftNo);
+	public List<GiftBoard> review(@RequestParam Map param, Model m) {
+		//System.out.println("ajax 타고 넘어온 giftNo : " + giftNo);
 
-		List<GiftBoard> gb = service.selectReview(giftNo);
+		List<GiftBoard> gb = service.selectReview(param);
 
-		System.out.println("service까지 갔다 온 gb : " + gb);
+		//System.out.println("service까지 갔다 온 gb : " + gb);
 
 //		 m.addAttribute("pageBar", PageFactory.getOwnPageBar(totalData, cPage, numPerpage, url));
 
@@ -227,9 +228,11 @@ public class GiftController {
 			@RequestParam(value = "cPage", defaultValue = "1") int cPage,
 			@RequestParam(value = "nunPerpage", defaultValue = "10") int numPerpage) {
 
-		int totalData = service.selectReviewAll();
+		int totalData = service.selectReviewAll(giftNo);
+		
+		System.out.println("totalData" + totalData);
 
-		String getOwnPageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "productReview2.do");
+		String getOwnPageBar = PageFactory.getWonJaePageBar(totalData, cPage, numPerpage);
 		System.out.println(getOwnPageBar);
 		return getOwnPageBar;
 	}
@@ -265,6 +268,8 @@ public class GiftController {
 		/*
 		 * mv.addObject("msg", ); mv.addObject("loc", ); mv.setViewName("");
 		 */
+		
+		mv.setViewName("gift/giftDetail.do?giftNo="+giftNo);
 		return mv;
 	}
 

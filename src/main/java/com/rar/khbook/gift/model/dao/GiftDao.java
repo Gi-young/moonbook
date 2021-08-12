@@ -21,9 +21,9 @@ public interface GiftDao {
 	
 	Ngift giftOne(SqlSession session, int giftNo);
 	
-	List<GiftBoard>  selectReview(SqlSession session, int giftNo);
+	List<GiftBoard>  selectReview(SqlSession session, Map param);
 	
 	int reviewWrite(SqlSession session, HashMap map);
 
-	int selectReviewAll(SqlSession session);
+	int selectReviewAll(SqlSession session, int giftNo);
 }

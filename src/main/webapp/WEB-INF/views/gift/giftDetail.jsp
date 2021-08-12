@@ -147,18 +147,70 @@
             <a id="bar3" class="productQ">상품Q&A</a>
             <a id="bar4">알려드립니다</a>
         </div>
-        <input type="hidden" value="${gift.gift_no }" id="giftNo"/>
-        <script>
-        
+        <input type="hidden" value="${gift.gift_no }" id="giftNo"/>         
+
+      
+        <div class="product-exp">
+            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+        </div>
+        <div class="product-review">
+            <div class="writeBox">
+                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
+            </div>
+           <table class="review-exp review-board" id="targetTable">
+             
+               <!-- <tr>
+                   <th style="width:105px;">번호</th>
+                   <th style="width:145px;">만족도</th>
+                   <th style="width:370px;">상품평</th>
+                   <th style="width:165px;">작성자</th>
+                   <th style="width:165px;">작성일</th>
+               </tr> -->
+              
+               <!-- <tr class="review-text review-tr">
+                   <td class="review-num">0</td>
+                   <td class="gpa">
+                    <div class="gpa-circle">
+                        <p class="gpa-circle-a">3</p>
+                    </div>    
+                   </td>
+                    <td>
+                       <div class="review">
+                        제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
+                       </div>
+                    </td>
+                   <td class="review-writer">관리자</td>
+                   <td class="review-date">SYSDATE or 수정일</td>
+                </tr> -->
+               
+          
+            </table>
+            <!-- <div>&lt;pageBar&gt;</div> -->
+        <div id="pageBar"></div> 
+        </div>
+     
+          <script>
         /* 상품리뷰, 상품문의 */
     	    var btnR = document.getElementById("bar2");
     	    var btnQ = document.getElementById("bar3");
     	    var giftNo = document.getElementById("giftNo").value; 	     
  	    
-    	   	let pageBar = "";
+    	   	let pageBar = document.getElementById("pageBar");
     	   	let pager = "";
     	    let exp = document.getElementsByClassName('review-board');
-    	    let tb = document.getElementsByTagName("tbody");
+    	    
+    	   /*  console.log("exp");
+    	    console.log(exp);
+    	    console.log(exp[0]);
+    	    console.log(exp[0].lastChild); */
+    	    
+  
+    	   // let tb = document.getElementsByTagName("tbody");
+    	   let tb = document.createElement('tbody');
+    	   /* console.log("tb 입니다 ; ->>>>"+tb); */
   			let tr = ""; 
   			let tr2 = ""; 
        		let html2 = ""; /* thead */
@@ -172,7 +224,7 @@
   			tr2.innerHTML=html2;
   			
   			
-         $(btnR).on('click', getTrs); 
+         $(btnR).on('click', getTrs(1)); 
           
           function getTrs(cPage) {
         	 $.ajax({
@@ -180,14 +232,14 @@
             		url: '${path}/gift/productReview2.do',
             		data: {
             			giftNo: giftNo,
-            			cPage : ,
-            		    numPerPage ; 		
+            			cPage: cPage,
+            			numPerPage: 10
             		},
             		/* dataType: "json", */
             		success: data => {
             			
             			console.log("페이지바 넘겨온 데이터"+data);
-            			pageBar = data;
+            			pageBar.innerHTML = data;
             		} 
             	}); // pageBar ajax
          	 
@@ -210,13 +262,13 @@
               	url: '${path}/gift/productReview.do',
               	data: {
               		giftNo: giftNo,
-              		cPage:
-              		numPerpage:
+              		cPage: cPage,
+              		numPerPage: 10
               	},
               	dataType: "json",
               	success: data => {  
               		
-              		exp[0].appendChild(tb[0]).appendChild(tr2);
+              		exp[0].appendChild(tb).appendChild(tr2);
               		data.forEach((v, i) => {   
 
               			 let html = ""; /* 테이블 본문 내용 */
@@ -237,64 +289,27 @@
                  	    pager = document.createElement('div');
                  	    pager.innerHTML = pageBar;
                  	    
-                 	    exp[0].appendChild(tb[0]).appendChild(tr);
+                 	    console.log(tb);
                  	    
-                 	    exp[0].appendChild(pager);    
+                 	    exp[0].appendChild(tb).appendChild(tr);
+                 	    //exp[0].appendChild(tb[0]).appendChild(tr);
+                 	    //exp[0].appendChild(tr);
+                 	    // document.getElementById("targetTable").appendChild(tr);
+                 	    /*  console.log("tb 입니다 ; ->>>>"+tb);
+                 	    console.log(tb);
+                 	    console.log(tb[0]); */
+                 	    //exp[0].appendChild(pager);    
                  	  
                  	    
              		 });    
               		
-              	  }   
-               }); // 1번째 ajax 끝
-               
-               
-               $.ajax({
-             	  
-               });
+              	  } 
+              	
+              }); // 1번째 ajax 끝
+                       
          }
              		  			
         </script>
-      
-        <div class="product-exp">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-        </div>
-        <div class="product-review">
-            <div class="writeBox">
-                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
-            </div>
-           <table class="review-exp review-board">
-          
-               <tr>
-                   <th style="width:105px;">번호</th>
-                   <th style="width:145px;">만족도</th>
-                   <th style="width:370px;">상품평</th>
-                   <th style="width:165px;">작성자</th>
-                   <th style="width:165px;">작성일</th>
-               </tr>
-              
-               <!-- <tr class="review-text review-tr">
-                   <td class="review-num">0</td>
-                   <td class="gpa">
-                    <div class="gpa-circle">
-                        <p class="gpa-circle-a">3</p>
-                    </div>    
-                   </td>
-                    <td>
-                       <div class="review">
-                        제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                       </div>
-                    </td>
-                   <td class="review-writer">관리자</td>
-                   <td class="review-date">SYSDATE or 수정일</td>
-                </tr> -->
-               
-          
-            </table>
-            <!-- <div>&lt;pageBar&gt;</div> -->
-        </div>
         <!-- 상품Q&A -->
         <div class="product-q_a">
             <div class="writeBox">
@@ -308,13 +323,13 @@
                     <th style="width:165px;">작성자</th>
                     <th style="width:165px;">작성일</th>
                 </tr>
-                <tr class="review-text">
+                <!-- <tr class="review-text">
                     <td>0</td>
-                    <!-- <td class="gpa">
+                    <td class="gpa">
                      <div class="gpa-circle">
                          <p>3</p>
                      </div>    
-                 </td> -->
+                 </td>
                      <td>
                         <div class="review_qna">
                          제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
@@ -322,7 +337,7 @@
                      </td>
                     <td>관리자</td>
                     <td>SYSDATE or 수정일</td>
-                 </tr>                 
+                 </tr>     -->             
              </table>
              <!-- <div>&lt;pageBar&gt;</div> -->
         </div>
@@ -361,6 +376,7 @@
 	<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 		<jsp:param name="" value=""/>
 	</jsp:include>
+
 
    <%--   <jsp:include page="/WEB-INF/views/common/quickBar.jsp">
 			<jsp:param name="" value=""/> 
@@ -445,10 +461,13 @@
     
     console.log(reviewTitle);
     
-    reviewTitle.addEventListener("click", function(e){
+    /* reviewTitle.addEventListener("click", function(e){
     	alert("나와라");
-    });
+    }); */
     
 </script>
+
+     
+
 </body>
 </html>

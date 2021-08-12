@@ -19,9 +19,9 @@ public interface GiftService {
 	
 	Ngift giftOne(int giftNo);
 	
-	List<GiftBoard>  selectReview(int giftNo);
+	List<GiftBoard>  selectReview(Map param);
 	
 	int reviewWrite(HashMap map);
 
-	int selectReviewAll();
+	int selectReviewAll(int giftNo);
 }

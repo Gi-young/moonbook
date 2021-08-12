@@ -53,7 +53,7 @@
 	</select>
 	
 	<select id="selectReview" resultMap="giftReviewMap">
-		SELECT * FROM NGIFT_REVIEW WHERE NGIFT_NO=#{gift_no}
+		SELECT * FROM NGIFT_REVIEW WHERE NGIFT_NO=#{giftNo}
 	</select>
 	
 	<insert id="insertReview">
@@ -61,7 +61,7 @@
 	</insert>
 	
 	<select id="selectReviewAll" resultType="int">
-		SELECT COUNT(*) FROM NGIFT
+		SELECT COUNT(*) FROM NGIFT_REVIEW WHERE NGIFT_NO=#{giftNo}
 	</select>
 	
 </mapper>

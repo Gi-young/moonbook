@@ -250,6 +250,20 @@
     border: 1px solid silver;
     border-radius: 50%;
     margin-left: 40px;
+    transition: all .2s;
+    /* transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1); */
+    /*  overflow: hidden; */
+}
+.toSale-mainImg:hover{
+	transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
 }
 .toSale-sub img{
     width: 82px;
@@ -262,6 +276,10 @@
 }
 .toSale-ul > li{
     position: relative;
+}
+.toSale-ul > li:hover{
+	outline: 2px solid black;
+	outline-offset: -2px;
 }
 .toSale-dc{
     position: absolute;
@@ -812,10 +830,18 @@ div[class^="updownBtn"]{
     width: 320px;
     height: 49px;
 }
+.att-img img{
+	border: 1px solid silver;
+	border-radius: 3px;
+}
 .att-img p{
     padding: 25px 25px 25px 25px;
     font-weight: 900;
     box-shadow: 5px 5px 10px silver;
+    height: 32px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
 }
 
 /* 기획상품 css 끝 */
@@ -924,7 +950,7 @@ div[class^="updownBtn"]{
     padding: 25px 50px 25px 50px;
     cursor: pointer;
 }
-.gfBar li:active{
+.gfBar li:hover{
     background-color: #F9C4A4;
     color: white;
     /* border: 1px solid #696969; */
@@ -951,11 +977,22 @@ div[class^="updownBtn"]{
     font-weight: 800;
     color: silver;
 }
-.gf-content{
-    display: flex;
+#gf-elec{
+	display: flex;
+}
+#gf-storage{
+	display: none;
+}
+#gf-etc{
+	display: none;
+}
+#gf-reading{
+	display: none;
+}
+.gf-content{	
     width: 950px;
     margin-top: 50px;
-    /* justify-content: space-around; */
+    justify-content: space-around;
     position: relative;
 }
 .gf-content-discount{
@@ -967,9 +1004,9 @@ div[class^="updownBtn"]{
 }
 .gf-content-left{
     display: flex;
-    width: 650px;
+    width: 600px; 
 }
-.gf-content-left img{
+.gf-content-leftImg{
     width: 418px;
     height: 212px;
 }
@@ -992,11 +1029,8 @@ div[class^="updownBtn"]{
     border-radius: 50px;
     background-color: rgb(253, 112, 61);
     position: absolute;
-    left: -2%;
-    top: -2%;
-}
-#gf-elec, #gf-etc, #gf-storage{
-	display:none;
+    left: 1%;
+    /* top: -2%; */
 }
 
 /* 기프트 하단 css 끝 */

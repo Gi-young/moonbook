@@ -85,7 +85,7 @@
 		</interceptor>
 		<interceptor>
 			<mapping path="/gift/insertReview*"/>
-			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
+			<beans:bean class="com.rar.khbook.common.interceptor.GiftLoginCheckInterceptor"/>		
 		</interceptor>
 	</interceptors>
 	

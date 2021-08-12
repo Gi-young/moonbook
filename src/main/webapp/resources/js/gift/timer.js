@@ -3,13 +3,16 @@
     var hour = "";
     var min = "";
     var sec = "";
+    
     let today = new Date();
     let tHour = today.getHours();
     let tMin = today.getMinutes();
     let tSec = today.getSeconds();
+    
     var nHour = "";
     var nMin = "";
     var nSec = "";
+    
     var t = setInterval(function(){
         hour = parseInt(time / 3600);
         min = parseInt(parseInt(time / 60) / 24); 
@@ -21,7 +24,7 @@
         nHour = hour - tHour;
         nMin = min - tMin;
         nSec = sec - tSec;
-        $(".timer").html(`${nHour} : ${nMin} : ${nSec}`);
+        $(".timer").html(`${hour} : ${min} : ${sec}`);
         time--;
         // if(){
         //     clearInterval(t); // 초기화  
