@@ -46,8 +46,8 @@
 	            </div>
 	        </div>
 	        
-	        <div class="acution_category">
-	            <div class="acution_category_left">
+	        <div class="auction_category">
+	            <div class="auction_category_left">
 	                <div>
 	                    <a>도서</a>
 	                    <div>
@@ -144,14 +144,28 @@
 	</div>
 
     <script>
+    	let pendingHide;
+    	
 		$(function(){
-		    $(".acution_category_left>div").hover((e)=>{
-		        $(e.target).next('div').show();
-		    },(e)=>{
-		        if($(".acution_category_left>div>div").not().hover()){
-		            $(".acution_category_left>div>div").hide();
-		        }
-		    })
+			$(".auction_category_left>div>div").mouseleave((e) => {
+				$(e.target).hide();
+			});
+			
+		    $(".auction_category_left>div>a").mouseenter((e) => {
+		    	if (pendingHide !== undefined) {
+		    		console.log("clear");
+		    		window.clearTimeout(pendingHide);
+		    	}
+		    	$(".auction_category_left>div>div").hide();
+		    	$(e.target).next("div").css("display", "flex");
+		    }).mouseleave((e) => {
+		    	pendingHide = window.setTimeout(function() {
+		    		if(!$(e.target).next("div").is(":hover")){
+		        		console.log("test");
+		    			$(e.target).next("div").hide();
+		        	}
+		    	}, 1000);
+		    });
 		})
    
 		function CountDownTimer(dt, id) {
