@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="container">
-		<form action="${path }/auction/auctionbidEnd" onsubmit="return check();">
+		<form action="${path}/auction/auctionbidEnd" onsubmit="return check();">
 			<div>
 				<div>
 					<h2>경매정보</h2>
@@ -172,9 +172,9 @@
 		}
 		 
 		// gi-young
-		function sendMessage() {
+		/* function sendMessage() {
 		 sockAuction.send("bid," + "${loginMember.memberId}" + "," + "${auction.auctionNo}" + "," + $("#bid").val());
-		}
+		} */
 	</script>
 	
 </body>
