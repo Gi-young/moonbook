@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
-
+	<settings>
+		<setting value="VARCHAR" name="jdbcTypeForNull" />
+	</settings>
 	<typeAliases>
 		<typeAlias type="com.rar.khbook.member.model.vo.Member"
 			alias="member" />
@@ -23,13 +25,23 @@
 
 		<!-- 중고게시판 -->
 
-		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboard" alias="usedboard"/>
-		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedboardfile" alias="usedboardfile"/>
-		<typeAlias type="com.rar.khbook.usedboard.model.vo.Usedcomment" alias="usedcomment"/>
-		<typeAlias type="com.rar.khbook.common.StringArrayTypeHandler" alias="strArr"/>
-		<typeAlias type="com.rar.khbook.usedboard.model.vo.UsedboardPayment" alias="usedboardpayment"/>
-		<typeAlias type="com.rar.khbook.usedboard.model.vo.UsedboardSingo" alias="usedboardsingo"/>
-		
+		<typeAlias
+			type="com.rar.khbook.usedboard.model.vo.Usedboard" alias="usedboard" />
+		<typeAlias
+			type="com.rar.khbook.usedboard.model.vo.Usedboardfile"
+			alias="usedboardfile" />
+		<typeAlias
+			type="com.rar.khbook.usedboard.model.vo.Usedcomment"
+			alias="usedcomment" />
+		<typeAlias
+			type="com.rar.khbook.common.StringArrayTypeHandler" alias="strArr" />
+		<typeAlias
+			type="com.rar.khbook.usedboard.model.vo.UsedboardPayment"
+			alias="usedboardpayment" />
+		<typeAlias
+			type="com.rar.khbook.usedboard.model.vo.UsedboardSingo"
+			alias="usedboardsingo" />
+
 		<!-- ebook -->
 		<typeAlias
 			type="com.rar.khbook.ebook.model.vo.EbookDatabind"
@@ -48,17 +60,24 @@
 			alias="sellbookDatabind" />
 
 		<!-- 장바구니 -->
-		<typeAlias type="com.rar.khbook.shopingList.model.vo.ShopingList" alias="shopingList"/>
-		<typeAlias type="com.rar.khbook.shopingList.model.vo.BookShopingList" alias="bookShopingList"/>
+		<typeAlias
+			type="com.rar.khbook.shopingList.model.vo.ShopingList"
+			alias="shopingList" />
+		<typeAlias
+			type="com.rar.khbook.shopingList.model.vo.BookShopingList"
+			alias="bookShopingList" />
 
 		<!-- 기프트 -->
-		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift" alias="nGift"/>
-		<typeAlias type="com.rar.khbook.gift.model.vo.GiftCate" alias="giftCate"/>
-		<typeAlias type="com.rar.khbook.gift.model.vo.GiftBoard" alias="giftBoard"/>
-	
+		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift"
+			alias="nGift" />
+		<typeAlias type="com.rar.khbook.gift.model.vo.GiftCate"
+			alias="giftCate" />
+		<typeAlias type="com.rar.khbook.gift.model.vo.GiftBoard"
+			alias="giftBoard" />
+
 		<!-- 배송 -->
-		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery" alias="delivery"/>
+		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery"
+			alias="delivery" />
 
 	</typeAliases>
-
 </configuration>
