@@ -166,4 +166,8 @@ public interface AdminService {
 	
 	int getPageBarsearchTextEbookAList(Map param);
 	int searchEbookTotalCost(Map param);
+	
+	//매출 gift 총 매출액 계산
+	int selectgiftTotalCost();
+	
 }

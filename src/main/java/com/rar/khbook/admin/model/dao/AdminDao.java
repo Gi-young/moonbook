@@ -149,5 +149,6 @@ public interface AdminDao {
 	
 	int searchEbookTotalCost(SqlSession session,Map param);
 	
+	int selectgiftTotalCost(SqlSession session);
 	
 }
