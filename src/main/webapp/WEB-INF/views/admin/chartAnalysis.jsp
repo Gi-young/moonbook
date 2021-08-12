@@ -18,15 +18,16 @@
 			</jsp:include>
 		</div>
 		<div class="admin-box2">
-		<%-- <c:forEach var="e" items="${list1 }"> --%>
-			<%-- <input type="text" value="${e.bTitle}" name="bTitle"> --%>
-			<%-- <input type="text" value="${e.bTotalCost}" name="bTotalCost"> --%>
-			<%-- <input type="text" value="${e.bProfit}" name="bProfit">
-			<input type="text" value="${e.bSalesVolume}" name="bSalesVolume"> --%>
+			<c:forEach var="e" items="${list1 }"> 
+			<input type="text" value="${e.btitle}" name="bTitle">
+			<input type="text" value="${e.btotalcost}" name="bTotalCost">
+			<input type="text" value="${e.bprofit}" name="bProfit">
+			<input type="text" value="${e.bsalesVolume}" name="bSalesVolume">
 			
-		<%-- </c:forEach> --%>
+		</c:forEach> 
 		 
-		${ list1[0].bTitle}
+
+		
 			<div id="columnchart_material"></div>
 			
 			

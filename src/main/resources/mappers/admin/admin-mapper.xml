@@ -673,24 +673,22 @@
 		</choose>
   	</select>
   	
-  	<resultMap type="booktopthree" id="booktopthreeMap">
-		<result column="B_TITLE" property="bTitle" />
-		<result column="B_TOTAL_COST" property="bTotalCost" />
-		<result column="B_PROFIT" property="bProfit"/>
-		<result column="SALES_VOLUME" property="bSalesVolume" />
-		
-	</resultMap>
   	
   	<!-- 차트 book top3 -->
   	<select id="bookTopThree" resultMap="booktopthreeMap">
-  		SELECT ROWNUM,B.*
+ <!--  		SELECT ROWNUM,b_title,b_total_cost,b_profit,sales_volume
   		FROM(
   			SELECT TITLE AS B_TITLE ,(PRICE-PRIME_COST)*SALES_VOLUME AS B_TOTAL_COST ,PRICE-PRIME_COST AS B_PROFIT, SALES_VOLUME 
 			FROM BOOK_EBOOK_DATABIND ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME DESC NULLS LAST
   		)B
-  		WHERE ROWNUM &lt; 4 
+  		WHERE ROWNUM &lt; 4  -->
+  	        		SELECT TITLE AS bTitle ,(PRICE-PRIME_COST)*SALES_VOLUME AS btotalcost ,PRICE-PRIME_COST AS BPROFIT, SALES_VOLUME 
+			FROM BOOK_EBOOK_DATABIND where rownum &lt;4 ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME DESC NULLS LAST 
   		
   	</select>
+  	<resultMap type="com.rar.khbook.adminchart.model.vo.BookTopThree" id="booktopthreeMap">
+		<result column="SALES_VOLUME" property="bsalesVolume" />	
+	</resultMap>
   	
   	<!-- <select id="ebookTopThree" resultMap="ebookDatabindMap">
   		SELECT ROWNUM,E.*

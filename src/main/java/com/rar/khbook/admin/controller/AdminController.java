@@ -1435,7 +1435,7 @@ public class AdminController {
 		
 		//차트 페이지 book데이터 가져오기
 		List<BookTopThree> list1=service.bookTopThree();
-		
+				
 		//차트 페이지 ebook 데이터 가져오기
 		
 		//차트 페이지 기프트 데이터 가져오기

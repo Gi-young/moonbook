@@ -43,7 +43,6 @@ public class AuctionController {
 		param.put("bidId", ((Member) session.getAttribute("loginMember")).getMemberId());
 		m.addAttribute("member",service.selectbidMember(param));
 		}
-		
 		int totalData =	service.auctionCount();
 		m.addAttribute("auctioncate",service.selectAuctionCate());
 		m.addAttribute("timelist", service.selectTimeList(cPage,numPerpage));
