@@ -28,32 +28,32 @@
 							<tr>
 								<th>정렬방법</th>
 								<td>
-								<select name="type18">
+								<select name="type23">
 									<option value="cost" selected>매출</option>
 									<option value="profit" >이익</option>
 									<option value="salesVolume" >판매량</option>
 								</select>
 								</td>
 								<td>
-									<input class="howASCSearch" type="radio" name="searchBook9" id="asc" value="ASC" checked><label for="asc">오름차순</label>
-									<input class="howDESCSearch2" type="radio" name="searchBook9" id="desc" value="DESC"><label for="desc">내림차순</label>
+									<input class="howASCSearch" type="radio" name="searchGift9" id="asc" value="ASC" checked><label for="asc">오름차순</label>
+									<input class="howDESCSearch2" type="radio" name="searchGift9" id="desc" value="DESC"><label for="desc">내림차순</label>
 								</td>
-								<td><input type="button" value="조회하기" onclick="orderBookAList(1,10);"></td>
+								<td><input type="button" value="조회하기" onclick="orderGiftAList(1,10);"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
 								<td class="admin-search2">
-								<select name="type19">
-									<option value="BIND_NO" selected>책 번호</option>
-									<option value="TITLE" >책 제목</option>
+								<select name="type24">
+									<option value="NGIFT_NO" selected>상품 번호</option>
+									<option value="NGIFT_TITLE" >상품명</option>
 								</select>
 								</td>
 								<td class="search-box">
-									<input type="text" name="searchbookA1"> 
+									<input type="text" name="searchgiftA1"> 
 								</td>
 								<td class="search-box">
 									<img alt="검색하기"
-									src="${path }/resources/img/admin/search.png" onclick="searchbookA(1,10);">
+									src="${path }/resources/img/admin/search.png" onclick="searchGiftA(1,10);">
 								</td>
 							</tr>
 						</table>
@@ -62,7 +62,7 @@
 				</form>
 					</div>
 			</div>
-			<div class="bookAnalysisT-container">
+			<div class="giftAnalysisT-container">
 
 				<p class="memberTFont">
 					총 <span class="turnRed1">${totalContents }</span>개의 책이 있습니다.
@@ -70,7 +70,7 @@
 				<p class="memberTFont2">총 매출액은 <span class="turnRed2">${totalCost }</span>원 입니다.</p>
 				
 				<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
-				<table class="bookAnalysisT">
+				<table class="giftAnalysisT">
 
 					<tr>
 						<th>상품 번호</th>
@@ -118,23 +118,24 @@
 <script>
 
 
-function searchbookA(cPage,numPerpage){
-	let type19 =document.getElementsByName("type19")[0].value;
-	let search=document.getElementsByName("searchbookA1")[0].value;
+function searchGiftA(cPage,numPerpage){
+	let type24 =document.getElementsByName("type24")[0].value;
+	let search=document.getElementsByName("searchgiftA1")[0].value;
 	
 	$.ajax({
-		url: "${path}/admin/searchTextbookAList.do",
+		url: "${path}/admin/searchTextGiftAList.do",
 		data:{
-			type19 :type19,
+			type24 :type24,
 			search:search,
 			cPage: cPage,
 			numPerpage: numPerpage
 		},
 		success: data=>{
-			document.querySelectorAll(".bookAnalysisT td").forEach((v,i) => {
+			console.log(data);
+			document.querySelectorAll(".giftAnalysisT td").forEach((v,i) => {
 				v.remove();
 			});
-			let table=document.querySelector(".bookAnalysisT");
+			let table=document.querySelector(".giftAnalysisT");
 			for(let i=0;i<data.length;i++){
 				let tr=document.createElement("tr");
 				for(let j=0;j<7;j++){
@@ -142,37 +143,33 @@ function searchbookA(cPage,numPerpage){
 					/* td.style.border="1px solid black"; */
 					td.style.height="27px";
 					
-					if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].bindNo + "'>";
-					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].title + "'>";
-					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].price + "'>";
-					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].primeCost + "'>";
-					if(j == 4) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost) + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].salesVolume + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost)*data[i].salesVolume + "'>";
+					if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].gift_no + "'>";
+					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].gift_title + "'>";
+					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].gift_price + "'>";
+					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].gift_rowPrice + "'>";
+					if(j == 4) td.innerHTML = "<input type='text' value='" + (data[i].gift_price - data[i].gift_rowPrice) + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].gift_salesVolume + "'>";
+					if(j == 6) td.innerHTML = "<input type='text' value='" + (data[i].gift_price - data[i].gift_rowPrice)*data[i].gift_salesVolume + "'>";
 					
 					tr.appendChild(td);
 				}
 				table.appendChild(tr);
 				
 			}
-			document.querySelectorAll(".bookAnalysisT td>img.updateImg").forEach((v, i) => {
-				v.addEventListener("click", function() {changeMember(event)});
-			});
-			document.querySelectorAll(".bookAnalysisT td>img.deleteImg").forEach((v, i) => {
-				v.addEventListener("click", function() {adMemberDelete(event)});
-			});
+			
 		}
 		
 	});
 	$.ajax({
-		url: "${path}/admin/getPageBarsearchTextbookAList.do",
+		url: "${path}/admin/getPageBarsearchTextGiftAList.do",
 		data: {
-			type19 :type19,
+			type24 :type24,
 			search:search,
 			cPage: cPage,
 			numPerpage: numPerpage
 		},
 		success: data => {
+			
 			$("#pagebar-container13").html(data[0]);
 			$(".turnRed1").html(data[1]);
 			$(".turnRed2").html(data[2]);
@@ -181,28 +178,28 @@ function searchbookA(cPage,numPerpage){
 	});
 } 
 
-function orderBookAList(cPage,numPerpage){
-	let type18 = document.getElementsByName("type18")[0].value;
+function orderGiftAList(cPage,numPerpage){
+	let type23 = document.getElementsByName("type23")[0].value;
 	let order="";
-	document.getElementsByName("searchBook9").forEach((v,i) => {
+	document.getElementsByName("searchGift9").forEach((v,i) => {
 		if (v.checked) {
 			order = v.value;
 		}
 	});
 	
 	$.ajax({
-		url: "${path}/admin/orderBookAList.do",
+		url: "${path}/admin/orderGiftAList.do",
 		data: {
-			type18: type18,
+			type23: type23,
 			order: order==="" ? "asc":order,
 			cPage: cPage,
 			numPerpage: numPerpage
 		},
 		success: data => {
-			document.querySelectorAll(".bookAnalysisT td").forEach((v,i) => {
+			document.querySelectorAll(".giftAnalysisT td").forEach((v,i) => {
 				v.remove();
 			});
-			let table=document.querySelector(".bookAnalysisT");
+			let table=document.querySelector(".giftAnalysisT");
 			for(let i=0;i<data.length;i++){
 				let tr=document.createElement("tr");
 				for(let j=0;j<7;j++){
@@ -210,31 +207,26 @@ function orderBookAList(cPage,numPerpage){
 					/* td.style.border="1px solid black"; */
 					td.style.height="27px";
 					
-					if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].bindNo + "'>";
-					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].title + "'>";
-					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].price + "'>";
-					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].primeCost + "'>";
-					if(j == 4) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost) + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].salesVolume + "'>";
-					if(j == 6) td.innerHTML = "<input type='text' value='" + (data[i].price - data[i].primeCost)*data[i].salesVolume + "'>";
+					if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].gift_no + "'>";
+					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].gift_title + "'>";
+					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].gift_price + "'>";
+					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].gift_rowPrice + "'>";
+					if(j == 4) td.innerHTML = "<input type='text' value='" + (data[i].gift_price - data[i].gift_rowPrice) + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].gift_salesVolume + "'>";
+					if(j == 6) td.innerHTML = "<input type='text' value='" + (data[i].gift_price - data[i].gift_rowPrice)*data[i].gift_salesVolume + "'>";
 					
 					tr.appendChild(td);
 				}
 				table.appendChild(tr);
 				
 			}
-			document.querySelectorAll(".bookAnalysisT td>img.updateImg").forEach((v, i) => {
-				v.addEventListener("click", function() {changeMember(event)});
-			});
-			document.querySelectorAll(".bookAnalysisT td>img.deleteImg").forEach((v, i) => {
-				v.addEventListener("click", function() {adMemberDelete(event)});
-			});
+			
 		}
 	});
 	$.ajax({
-		url: "${path}/admin/getPageBarorderBookAList.do",
+		url: "${path}/admin/getPageBarorderGiftAList.do",
 		data: {
-			type18: type18,
+			type23: type23,
 			order: order==="" ? "asc":order,
 			cPage: cPage,
 			numPerpage: numPerpage

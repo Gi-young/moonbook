@@ -600,8 +600,76 @@
 			</when>
 		</choose>
   	</select>
-  	<!-- 매출관리 gift 총 매출액 -->
+  	<!-- 매출관리 gift 정렬 총 매출액 -->
   	<select id="selectgiftTotalCost" resultType="_int">
-  		SELECT SUM((NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME) AS TOTALCOST FROM NGIFT
+  		SELECT SUM((NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME) AS TOTALCOST FROM NGIFT 
+  		
+  	</select>
+  	
+  	<!-- 매출 gift정렬 -->
+  	<select id="orderGiftAList" resultMap="giftMap">
+  		SELECT * FROM NGIFT
+  		<if test="type23=='cost'">
+  			ORDER BY (NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME ${order} NULLS LAST
+  		</if>
+  		<if test="type23=='profit'">
+  			ORDER BY (NGIFT_PRICE-NGIFT_ROWPRICE) ${order}
+  		</if>
+  		<if test="type23=='salesVolume'">
+  			ORDER BY NGIFT_SALESVOLUME ${order}
+  		</if>
+  	</select>
+  	<!-- 매출관리 기프트 정렬 페이지바  -->
+  	<select id="getPageBarorderGiftAList" resultType="_int">
+  		SELECT COUNT(*) FROM NGIFT
+  		<if test="type23=='cost'">
+  			ORDER BY (NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME ${order} NULLS LAST
+  		</if>
+  		<if test="type23=='profit'">
+  			ORDER BY (NGIFT_PRICE-NGIFT_ROWPRICE) ${order}
+  		</if>
+  		<if test="type23=='salesVolume'">
+  			ORDER BY NGIFT_SALESVOLUME ${order}
+  		</if>
+  	</select>
+  	
+  	<!-- 매출관리 기프트 검색 -->
+  	<select id="searchTextGiftAList" resultMap="giftMap">
+  		SELECT * FROM NGIFT WHERE
+  		<choose>
+			<when test="type24 == 'NGIFT_NO'">
+				 NGIFT_NO=#{search}
+			</when>
+			<when test="type24 == 'NGIFT_TITLE'">
+				NGIFT_TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+  		
+  	</select>
+  	<!-- 매출관리 기프트 검색 페이지바 -->
+  	<select id="getPageBarsearchTextGiftAList" resultType="_int">
+  		SELECT COUNT(*) FROM NGIFT WHERE
+  		<choose>
+			<when test="type24 == 'NGIFT_NO'">
+				 NGIFT_NO=#{search}
+			</when>
+			<when test="type24 == 'NGIFT_TITLE'">
+				NGIFT_TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+  	</select>
+  	
+  
+  	<!-- 매출관리 gift 검색 총 매출액 -->
+  	<select id="searchGiftTotalCost" resultType="_int">
+  		SELECT SUM((NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME) AS TOTALCOST FROM NGIFT WHERE
+  		<choose>
+			<when test="type24 == 'NGIFT_NO'">
+				 NGIFT_NO=#{search}
+			</when>
+			<when test="type24 == 'NGIFT_TITLE'">
+				NGIFT_TITLE LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
   	</select>
 </mapper>
