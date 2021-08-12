@@ -151,9 +151,11 @@ public class SellbookController {
 	}
 	
 	@RequestMapping(value="/sellpart/bookDetail.do")
-	public ModelAndView selectSellbookDatabind(int bindNo, ModelAndView mv) {
+	public ModelAndView selectSellbookDatabind(int bindNo, ModelAndView mv, String shopinglistCate) {
 		
 		mv.addObject("book",service.selectSellbookDatabind(bindNo));
+//		장바구니에서 상품 구분을 위한 변수 넘깁니다.
+		mv.addObject("shopinglistCate", shopinglistCate);
 		mv.setViewName("sellpart/bookDetail");
 		return mv;
 	}

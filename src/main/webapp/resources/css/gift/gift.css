@@ -228,12 +228,13 @@
     background-color: #F5F5F5;
     margin-left: 7px;
     margin-top: 10px;
+    transform: rotate(180deg);
 }
 .innerBar{
     background-color: tomato;
     border-radius: 10px;
     width: 9px;
-    height: 546px;
+    height: 100%;
 }
 .toSale-main{
     margin-left: 30px;
