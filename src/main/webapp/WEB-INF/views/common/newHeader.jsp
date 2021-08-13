@@ -147,10 +147,10 @@
 								<li><a href="${path }/sellbookController/bookgojunkorea.do">고전도서(한국)</a></li>
 							</ul>
 						</li>					
-						<li id="eBooks" class="headerF-li"><a href="${path}/ebook/pageEbook.do">문곰e북
+						<li id="eBooks" class="headerF-li"><a href="${path}/ebook/ebookHome.do">문곰e북
 									▼</a>
 							<ul class="eBook">
-								<li><a href="${path }/ebook/pageEbook.do">일반</a></li>
+								<li><a href="${path }/ebook/ebookHome.do">일반</a></li>
 								<li><a href="${path }/ebook/pageBookstallJuvenile.do">아동</a></li>
 								<li><a href="${path }/ebook/pageBookstallElementary.do">초등</a></li>
 								<li><a href="${path }/ebook/pageBookstallMiddle.do">중등</a></li>
@@ -184,7 +184,10 @@
 
 						</c:if>
 						<li><a href="${path }/member/myroom/main.do">마이룸</a></li>
-						<li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
+						<c:if test="${loginMember.memberId.equals('admin') }">
+                    		<li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
+            			</c:if>
+						
 						<li><a href="${path }/service/servicePage.do">고객센터</a></li>
 					</ul>
 				</div>

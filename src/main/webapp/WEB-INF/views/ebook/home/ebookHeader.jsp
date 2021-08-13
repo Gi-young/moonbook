@@ -42,7 +42,7 @@
 		
 		<header class="flex">
 			<div class="header-logo">
-				<a href="${path}/ebook/pageEbook.do"><img src="${path}/resources/images/ebook/moonbook_ebook_logo.png"></a>
+				<a href="${path}/ebook/ebookHome.do"><img src="${path}/resources/images/ebook/moonbook_ebook_logo.png"></a>
 			</div>
 			
 			<ul class="header-icons">
@@ -58,7 +58,7 @@
 		<nav class="navbar">
 			<ul class="navbar-menu">
 				<li><i class="fas fa-bars"></i></li>
-				<li><a href="${path}/ebook/pageEbook.do">일반</a></li>
+				<li><a href="${path}/ebook/ebookHome.do">일반</a></li>
 				<li><a href="${path}/ebook/pageBookstallJuvenile.do">아동</a></li>
 				<li><a href="${path}/ebook/pageBookstallElementary.do">초등</a></li>
 				<li><a href="${path}/ebook/pageBookstallMiddle.do">중등</a></li>

@@ -1,0 +1,168 @@
+@charset "UTF-8";
+.admin-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+}
+.admin-box1{
+	width: fix-content;
+	display:flex;
+	height:700px;
+	min-height:500px; 
+	box-sizing: border-box;
+}
+.admin-box3{
+	height:100%;
+	border-left: 1px solid #deded8;
+}
+
+.admin-box2{
+	display: flex;
+	flex-direction: column;
+	border-left: 1px solid #deded8;
+	border-right: 1px solid #deded8; 
+	width:1000px;
+}
+
+.admin-box4{
+	/* border: 1px solid black; */
+	display: flex;
+	align-items: center;
+	justify-content:center;
+	display:flex; 
+	vertical-align:middle; 
+	width:770px;
+	/* height: 100px; */
+	padding-top:42px;
+	padding-bottom:42px;
+	/* overflow:scroll; */
+	
+}
+.admin-search3 th{
+	background-color: #582810;
+	color:white;
+}
+.admin-search3{
+	border: 1px solid #582810;
+	height: 100%;
+	width: 730px;
+   
+}
+.admin-search{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+.adminHowTable{
+	width:100%;
+	height: 100%;
+	text-align: center;
+	/* height: 100px;  */
+}
+.adminHowTable th,.adminHowTable td{
+	border: 1px solid #582810;
+	height: 50px;
+	vertical-align: middle;
+	
+}
+.search-box img{
+	background-color: #804040;
+	width:25px;
+	hight:25px;
+	filter: invert(100%);
+	
+}
+.search-box img:hover{
+	opacity: 0.5;
+}
+.search-box {
+/* 	display: flex; */
+	align-items: center;
+	justify-content:center;
+}
+.giftAnalysisT-container{
+	height: 100%;
+	overflow-x:scroll;
+}
+.giftAnalysisT{
+	/* width: 730px; */ 
+	/* width:auto; */
+	width: 1200px;
+	/* overflow-x: auto; */
+	margin-left: 20px;
+	/* margin-top:30px;  */
+	text-align: center;	
+	margin-bottom:20px;
+	table-layout:fixed;
+}
+.giftAnalysisT tbody{
+	border: black 1px solid;
+    border-collapse: collapse;
+}
+.giftAnalysisT input{
+	text-align:center;
+	width:100%;
+}
+
+.giftAnalysisT tr>td:nth-child(1), .giftAnalysisT tr>th:nth-child(1) {
+	width: 70px;
+	text-align: center;
+}
+
+.giftAnalysisT tr>td:nth-child(2), .giftAnalysisT tr>th:nth-child(2) {
+	width: 520px;
+	text-align: center;
+}
+.giftAnalysisT tr>td:nth-child(3), .giftAnalysisT tr>th:nth-child(3) {
+	width: 120px;
+	text-align: center;
+}
+.giftAnalysisT tr>td:nth-child(4), .giftAnalysisT tr>th:nth-child(4) {
+	width: 120px;
+	text-align: center;
+}
+.giftAnalysisT tr>td:nth-child(5), .giftAnalysisT tr>th:nth-child(5) {
+	width: 120px;
+	text-align: center;
+}
+.giftAnalysisT tr>td:nth-child(6), .giftAnalysisT tr>th:nth-child(6) {
+	width: 120px;
+	text-align: center;
+}
+.giftAnalysisT th{
+	/* width: 100px; */
+	height:30px;
+	background-color: #582810;
+	color:white;
+	vertical-align: middle;
+}
+
+.giftAnalysisT td{
+	/* width: 100px; */
+}
+.updateCheck{
+	width:20px;
+	hight:20px;
+	cursor: pointer;
+}
+.turnRed1{
+	color:red;
+	font-weight: bold;
+}
+.turnRed2{
+	color:red;
+	font-weight: bold;
+}
+.memberTFont{
+	font-weight: bold;
+	margin-left:20px;
+	margin-bottom:10px;
+}
+.memberTFont2{
+	font-weight: bold;
+	margin-left:20px;
+	margin-bottom:20px;
+}

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.rar.khbook.auction.model.dao.AuctionDao;
 import com.rar.khbook.auction.model.vo.Auction;
 import com.rar.khbook.auction.model.vo.AuctionCate;
+import com.rar.khbook.auction.model.vo.Bankinfo;
+import com.rar.khbook.auction.model.vo.Transaction;
 import com.rar.khbook.member.model.vo.Member;
 @Service
 public class AuctionServiceImpl implements AuctionService {
@@ -172,6 +174,43 @@ public class AuctionServiceImpl implements AuctionService {
 		int result=dao.updatebidStateY(session,param);
 		return result;
 	}
+	//물품등록 취소
+
+	@Override
+	public int auctionDel(Map param) {
+		return dao.auctionDel(session,param);
+	}
+	//////////////////////////////////////////////////////////
+
+	@Override
+	public List<Transaction> auctionBank(Map param, int cPage, int numPerpage) {
+		return dao.auctionBank(session,param,cPage,numPerpage);
+	}
+
+	@Override
+	public int auctionBankCount(Map param) {
+		return dao.auctionBankCount(session,param);
+	}
+
+	@Override
+	public List<Bankinfo> selectbank(Map param) {
+		return dao.selectbank(session,param);
+	}
+
+	@Override
+	public void insertBank(Map param) {
+		dao.insertBank(session,param);
+	}
+
+	@Override
+	public int insertpayoutEnd(Map param) {
+		dao.insertpayoutEnd(session,param);
+		return dao.memberpointchange(session, param);
+	}
+	
+	
+
+	
 	
 	
 

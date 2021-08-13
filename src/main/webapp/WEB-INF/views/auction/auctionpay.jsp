@@ -25,6 +25,8 @@
 					<input type="number" name="cp_item" placeholder="금액(원)">			
 				</div>
 				
+				<p class="pay-alert">※ 반드시 부모님의 허락을 받고 결제해주세요 !</p>
+				
 				<button type="button" class="btn btn-lg btn-block  btn-custom" id="charge_kakao">충 전 하 기</button>
 			</div>
 		</div>

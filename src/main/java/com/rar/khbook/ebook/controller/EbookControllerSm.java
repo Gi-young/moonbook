@@ -3,6 +3,8 @@ package com.rar.khbook.ebook.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,18 +46,19 @@ public class EbookControllerSm {
 //	이북 조건 검색
 	@RequestMapping(value = "/ebook/searchBook.do")
 	public String search(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, @RequestParam Map param, Model m) {
+			@RequestParam(value = "numPerpage", defaultValue = "48") int numPerpage, @RequestParam Map param, Model m, HttpServletRequest request) {
 
 		int totalData = service.searchBookCount(param);
 		String pageBar = "";
 		if (param.get("dataVolume") != null) {
 			if (!param.get("dataVolume").equals("")) {
 				int dataVolume = Integer.parseInt((String) param.get("dataVolume"));
-				numPerpage = dataVolume;
-				pageBar = new PageFactory().getOwnPageBar(totalData, cPage, dataVolume, "searchBook.do");
+				pageBar = new PageFactory().searchPageBar(totalData, cPage, dataVolume, request.getContextPath()+"/ebook/searchBook.do", param);
+			} else {
+				pageBar = new PageFactory().searchPageBar(totalData, cPage, numPerpage, request.getContextPath()+"/ebook/searchBook.do", param);
 			}
 		} else {
-			pageBar = new PageFactory().getOwnPageBar(totalData, cPage, numPerpage, "searchBook.do");
+			pageBar = new PageFactory().searchPageBar(totalData, cPage, numPerpage, request.getContextPath()+"/ebook/searchBook.do", param);
 		}
 		System.out.println("search.do : " + param);
 		List<EbookDatabind> list = service.searchBook(param, cPage, numPerpage);

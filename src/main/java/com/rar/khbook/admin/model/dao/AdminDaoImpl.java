@@ -9,13 +9,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
-import com.rar.khbook.coupon.model.vo.CouponAttachment;
+import com.rar.khbook.adminchart.model.vo.BookTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
-import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
-import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -458,7 +456,9 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<EbookDatabind> searchTextEbookAList(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.searchTextEbookAList",param);
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.searchTextEbookAList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
 
 	@Override
@@ -472,6 +472,56 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.searchEbookTotalCost",param);
 	}
+
+	@Override
+	public int selectgiftTotalCost(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.selectgiftTotalCost");
+	}
+
+	@Override
+	public List<Ngift> orderGiftAList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.orderGiftAList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int getPageBarorderGiftAList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarorderGiftAList",param);
+	}
+
+	@Override
+	public List<Ngift> searchTextGiftAList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.searchTextGiftAList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int getPageBarsearchTextGiftAList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarsearchTextGiftAList",param);
+	}
+
+	@Override
+	public int searchGiftTotalCost(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.searchGiftTotalCost",param);
+	}
+
+	@Override
+	public List<BookTopThree> bookTopThree(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.bookTopThree");
+	}
+	
+	
+	
+	
 	
 	
 	

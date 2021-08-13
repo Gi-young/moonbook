@@ -1004,7 +1004,7 @@
                 </ul>
             </div>
             <div class="footer-hotTracks">
-                <p class="htTitle">핫트랙스 서비스</p>
+                <p class="htTitle">문곰책방 서비스</p>
                 <ul class="ht-ul">
                     <li class="footer-hotTracksImg">
                         <a href="#">

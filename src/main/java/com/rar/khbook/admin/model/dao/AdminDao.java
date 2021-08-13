@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
+import com.rar.khbook.adminchart.model.vo.BookTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
@@ -149,5 +150,16 @@ public interface AdminDao {
 	
 	int searchEbookTotalCost(SqlSession session,Map param);
 	
+	int selectgiftTotalCost(SqlSession session);
 	
+	List<Ngift> orderGiftAList(SqlSession session,Map param);
+	int getPageBarorderGiftAList(SqlSession session,Map param);
+	
+	List<Ngift> searchTextGiftAList(SqlSession session,Map param);
+	
+	int getPageBarsearchTextGiftAList(SqlSession session,Map param);
+	
+	int searchGiftTotalCost(SqlSession session,Map param);
+	
+	List<BookTopThree> bookTopThree(SqlSession session);
 }

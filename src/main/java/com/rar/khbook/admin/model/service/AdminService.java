@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.core.annotation.Order;
 
+import com.rar.khbook.adminchart.model.vo.BookTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
@@ -166,4 +167,21 @@ public interface AdminService {
 	
 	int getPageBarsearchTextEbookAList(Map param);
 	int searchEbookTotalCost(Map param);
+	
+	//매출 gift 총 매출액 계산
+	int selectgiftTotalCost();
+	
+	//매출 gift 상세 정렬 
+	List<Ngift> orderGiftAList(Map param);
+	//매출 gift 상세 정렬 페이지바
+	int getPageBarorderGiftAList(Map param);
+	
+	//매출gift 상세 검색 
+	List<Ngift> searchTextGiftAList(Map param);
+	
+	int getPageBarsearchTextGiftAList(Map param);
+	int searchGiftTotalCost(Map param);
+	
+	//차트 top 3 book
+	List<BookTopThree> bookTopThree();
 }

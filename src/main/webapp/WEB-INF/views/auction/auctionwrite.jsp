@@ -23,20 +23,24 @@
 			            <tr>
 			                <th>판매자</th>
 			                <td>
-			       				<input type="text" value="${loginMember.memberId }" readonly="readonly" name="memberId">
+			       				<span style="font-weight: bold;"><c:out value="${loginMember.memberId}"/></span>님
 			                </td>
 			            </tr>
 			            <tr>
 			                <th>카태고리 선택</th>
 			                <td>
+			                	<label for="level1">제1분류 :&nbsp;</label>
 			                    <select name="level1" id="level1">
 			                    	<option value="none">===선택===</option>
 			                        <option value="도서">도서</option>
 			                        <option value="문구">문구</option>
 			                        <option value="음반">음반</option>
 			                    </select>
-			         
-			                     <select name="level2" id="level2" >
+			         			
+			         			&nbsp;/&nbsp;
+			         			
+			         			<label for="level2">제2분류 :&nbsp;</label>
+			                    <select name="level2" id="level2" >
 			                   		<option value="none">===선택===</option>
 			                    </select>
 			                    
@@ -50,62 +54,62 @@
 			                </td>
 			            </tr>
 			            <tr>
-			                      <th>물품크기</th>
-			                        <td>
-			                        <input type="text" name="auctionSize" required> <span>크기/쪽 첨부</span>
-			                    </td>
+							<th>물품크기</th>
+							<td>
+								<input type="text" name="auctionSize" required> <span>&nbsp;(크기/쪽 첨부)</span>
+							</td>
 			            </tr>
 			            <tr>
-			                      <th>보관상태</th>
-			                        <td>
-			                       <input type="radio" name="auctionQuality" value="상" required>상
-			                       <input type="radio" name="auctionQuality" value="중상">중상
-			                       <input type="radio" name="auctionQuality" value="중">중
-			                       <input type="radio" name="auctionQuality" value="중하">중하
-			                       <input type="radio" name="auctionQuality" value="하">하
-			                    </td>
+							<th>보관상태</th>
+							<td>
+								<label><input type="radio" name="auctionQuality" value="상" required>상&nbsp;</label>
+								<label><input type="radio" name="auctionQuality" value="중상">중상&nbsp;</label>
+								<label><input type="radio" name="auctionQuality" value="중">중&nbsp;</label>
+								<label><input type="radio" name="auctionQuality" value="중하">중하&nbsp;</label>
+								<label><input type="radio" name="auctionQuality" value="하">하&nbsp;</label>
+		                    </td>
 			            </tr>
 			            <tr>
-			                <tr>
-			                    <th>경매 기간</th>
-			                    <td> 
-			                    <input type="date" name="endDate" required> 까지
+		                    <th>경매 기간</th>
+		                    <td> 
+			                    <input type="date" name="endDate" required> &nbsp;(입력일의 자정까지)
 			                </td>
 			            </tr>
 			            <tr>
-			                <tr>
-			                    <th>시작가</th>
-			                    <td>
+		                    <th>시작가</th>
+		                    <td>
 			                    <input type="number" value="0" name="startPrice" required>
 			                </td>
 			            </tr>
 			            <tr>
-			                <tr>
-			                    <th>즉시 구매가</th>
-			                    <td>
+		                    <th>즉시 구매가</th>
+		                    <td>
 			                    <input type="number" value="0" name="buyNow" required>
 			                </td>
 			            </tr>
 			            <tr>
-			                <tr>
-			                    <th>응찰 단위</th>
-			                    <td>
-			                    <input type="number" value="0" step="1000" name="priceUnit" required> <span>1000원 단위로 입력해주세요</span>
+		                    <th>응찰 단위</th>
+		                    <td>
+			                    <input type="number" value="0" step="1000" name="priceUnit" required> <span>&nbsp;원 (1000원 단위로 입력해주세요)</span>
 			             
 			                </td>
 			            </tr>
 			            <tr>
-			                <tr>
-			                    <th>물품 설명</th>
-			                    <td>
-			                    <textarea style="width: 810px; height: 240px;" name="auctionEx" required></textarea>
+		                    <th>물품 설명</th>
+		                    <td class="auctionExTd">
+			                    <textarea class="auctionEx" name="auctionEx" required></textarea>
 			                </td>
 			            </tr>
 			            <tr>
-			                <tr>
-			                    <th>대표 이미지</th>
-			                    <td>
-			                    <input type="file" name="upfile" required> <span id="img_add">추가</span>
+		                    <th>대표 이미지</th>
+		                    <td class="uploadImg">
+			                    <label>파일 선택
+			                    	<input type="file" name="upfile" required>
+			                    </label>
+			                    
+			                    <input type="text" class="selectedFilename" value="선택된 파일 없음">
+			                    
+			                    <div id="img_add">추가</div>
 			                </td>
 			            </tr>
 					</table>
@@ -119,6 +123,12 @@
 	</div>
 
 	<script>
+		let uploadImgInputHidden = document.querySelector("input[type=file]");
+		
+		uploadImgInputHidden.addEventListener("change", e => {
+			e.target.parentElement.nextElementSibling.value = e.target.value;
+		});
+	
 		$("#level1").change((e)=>{
 			let catename=$(e.target).val();
 			$("#level2").html("").append($("<option>").text("===선택==="))	    
@@ -150,7 +160,7 @@
 		})
 	
 		//이미지 추가 삭제 기능
-		$(document).on("click","#img_del",e=>{
+		$(document).on("click","div.img_del",e=>{
 		    $(e.target).parent().parent().remove();
 		})
 		
@@ -160,16 +170,37 @@
 		        return;
 		    }
 		    let tr=$("<tr>")
+		    
 		    let th=$("<th>").text("추가된 이미지")
-		    let td=$("<td>");
-		    let span=$("<span>").text("삭제").attr({
-		        id:"img_del"
+		    
+		    let td=$("<td>").attr({
+		    	class: "uploadImg"
+		    });
+		    
+		    let label = $("<label>").text("파일 선택");
+		    
+		    let input = $("<input>").attr({
+		    	type: "text",
+		    	class: "selectedFilename",
+		    	value: "선택된 파일 없음"
+		    });
+		    
+		    let div=$("<div>").text("삭제").attr({
+		        class:"img_del"
 		    })
+		    
 		    let inputfile=$("<input>").attr({
 		        type:"file",
 		        name:"upfile"
 		    })
-		    tr.append(th).append(td.append(inputfile).append(span))           
+		    
+		    inputfile.change(e => {
+		    	e.target.parentElement.nextElementSibling.value = e.target.value;
+		    });
+		    
+		    td.append(label.append(inputfile)).append(input).append(div);
+		    tr.append(th).append(td);
+		    
 		    $(e.target).parent().parent().parent().append(tr);
 		})
                 
