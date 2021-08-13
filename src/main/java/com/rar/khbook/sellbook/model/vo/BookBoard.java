@@ -18,6 +18,7 @@ import lombok.ToString;
 public class BookBoard {
 	
 	private int bindNo; // 상품번호
+	private int rownum;
 	private int book_board_no; // 해당 상품의 게시글 번호
 	private String book_board_content; // 게시글 내용
 	private String writer; // 작성자

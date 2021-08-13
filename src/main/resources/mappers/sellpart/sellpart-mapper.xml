@@ -36,6 +36,7 @@
 	</resultMap>
 	<resultMap type="bookBoard" id="bookReviewMap">
 		<id column="BOOK_REVIEW_NO" property="book_board_no"/>
+		<result column="ROWNUM" property="rownum"/>
 		<result column="BIND_NO" property="bindNo"/>
 		<result column="BOOK_CONTENT" property="book_board_content"/>
 		<result column="MEMBER_ID" property="writer"/>
@@ -65,11 +66,11 @@
 		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
 	</select>
 	<select id="selectReview" resultMap="bookReviewMap">
-		SELECT * FROM BOOK_REVIEW WHERE BIND_NO=#{bindNo}
+		SELECT ROWNUM, A.* FROM BOOK_REVIEW A WHERE BIND_NO=#{bindNo}
 	</select>
 	
 	<insert id="insertReview">
-		INSERT INTO BOOK_REVIEW VALUES(#{bindNo}, SEQ_NGIFT_REVIEW.NEXTVAL, #{content}, #{memberId}, SYSDATE, #{score})
+		INSERT INTO BOOK_REVIEW VALUES(#{bindNo}, SEQ_BOOK_REVIEW.NEXTVAL, #{content}, #{memberId}, SYSDATE, null,null)
 	</insert>
 	
 	<select id="selectReviewAll" resultType="int">

@@ -1059,13 +1059,13 @@ ul {
               	},
               	dataType: "json",
               	success: data => {  
-              		
+              		console.log(data);
               		exp[0].appendChild(tb).appendChild(tr2);
               		data.forEach((v, i) => {   
 
               			 let html = ""; /* 테이블 본문 내용 */
               		     html += "<tr class='review-text review-tr'>";   
-                 	     html += "<td class='review-num'>"+v.bindNo+"</td>";
+                 	     html += "<td class='review-num'>"+v.rownum+"</td>";
                  	     html += "<td class='gpa'>";
                  	     html += "<div class='gpa-circle'>";
                  	     html += "<p class='gpa-circle-a'>"+v.book_score+"</p></div></td>";

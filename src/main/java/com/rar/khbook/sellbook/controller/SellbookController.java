@@ -228,10 +228,10 @@ public class SellbookController {
 	@RequestMapping("/SellbookController/productReview.do")
 	@ResponseBody
 	public List<BookBoard> review(@RequestParam Map param, Model m) {
-
-		List<BookBoard> gb = service.selectReview(param);
-
-		return gb;
+		System.out.println("param 이다 이게바로 : "+param);
+		List<BookBoard> bb = service.selectReview(param);
+		System.out.println("bb다 이게바로 : "+bb);
+		return bb;
 	}
 	
 	@RequestMapping("/SellbookController/productReview2.do")
