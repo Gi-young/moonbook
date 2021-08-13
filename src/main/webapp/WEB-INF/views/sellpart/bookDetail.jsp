@@ -852,9 +852,9 @@ ul {
 		<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
 			<jsp:param name="" value="" />
 		</jsp:include>
-		<div id="level_container" class="line">
+		<!-- <div id="level_container" class="line">
 			<div>
-				<!--<div id="level_cho">
+				<div id="level_cho">
                 //1 레벨
                 //    주소값 받아서 a안에 값 설정
                 
@@ -968,7 +968,7 @@ ul {
                             <li><a>문곰e북</a></li>
                         </ul>
                     </div>
-                </div>-->
+                </div>
 
 
 
@@ -979,9 +979,7 @@ ul {
 					</form>
 				</div>
 			</div>
-
-
-		</div>
+		</div> -->
 		<form id="sl" action="#" method="post">
 			<input type="hidden" name="bindNo" value="${book.bindNo }">
 			<div id="content_middle" style="display: flex;">
@@ -1000,100 +998,95 @@ ul {
 				<div class="bookView_order" style="margin-left: 50px;">
 					<div>
 						<h2>
-							<span style="font-size: 30px;">${book.title }</span>
+							<span style="font-size: 30px;">${book.title } <c:if
+									test="${shopinglistCate  == 'E'}">
+									&lt;e-Book&gt;
+								</c:if>
+							</span>
 						</h2>
-						<br>
-						<br>
+						<br> <br>
 						<p>
-							글쓴이 : <span>${book.author }</span><br>
-							<br>
+							글쓴이 : <span>${book.author }</span><br> <br>
 							<!-- <span>옮김이</span> -->
 						<p>
-							출판사 : <span>${book.publisher }</span><br>
-							<br>
+							출판사 : <span>${book.publisher }</span><br> <br>
 						<p>
-							출간일 : <span>${book.pubdate }</span><br>
-							<br>
+							출간일 : <span>${book.pubdate }</span><br> <br>
 						<p>
-							ISBN : <span>${book.isbn }</span><br>
-							<br>
+							ISBN : <span>${book.isbn }</span><br> <br>
 						<p>
 							리뷰점수: <span>${book.rating }</span>
 							<button>평점주기:</button>
 						</p>
-						<br>
-						<br>
-						<br>
+						<br> <br> <br>
 					</div>
 					<div>
-						<br>
-						<br>
+						<br> <br>
 						<p>
 							정가 : <span><fmt:formatNumber value="${book.price}"
-									type="currency" /></span>
+									type="currency" /></span> <input type="hidden" name="price"
+								value="${book.price }">
 						</p>
-						<br>
-						<br>
-						<p>
-							판매가 : <span style="font-size: 18px; color: red;"><fmt:formatNumber
-									value="${book.price*0.9 }" type="currency" /></span> <span>할인율:
-								[ <span>10%</span> ]
-							</span>
-						</p>
-						<br>
-						<br>
+						<br> <br>
+						<c:if test="${shopinglistCate == null }">
+							<p>
+								판매가 : <span style="font-size: 18px; color: red;"><fmt:formatNumber
+										value="${book.price*0.9 }" type="currency" /></span> <span>할인율:
+									[ <span>10%</span> ]
+								</span>
+							</p>
+						</c:if>
+						<br> <br>
 					</div>
 					<div>
-						<br>
-						<br>
+						<br> <br>
 						<p>
 							쿠폰사용 :
 							<button>쿠폰사용</button>
 						</p>
-						<br>
-						<br>
-						<p>
-							배송비 : <span><fmt:formatNumber value="3000" type="currency" /></span>
-						</p>
-						<br>
-						<br>
+						<br> <br>
+						<c:if test="${shopinglistCate  == null}">
+							<p>
+								배송비 : <span><fmt:formatNumber value="3000"
+										type="currency" /></span>
+							</p>
+						</c:if>
+						<c:if test="${shopinglistCate == 'E'}">
+							<p>
+								배송비 : <span><fmt:formatNumber value="0" type="currency" /></span>
+							</p>
+						</c:if>
+						<br> <br>
 
 					</div>
 					<div>
-						<br>
-						<br>
+						<br> <br>
 						<p>알림</p>
 						<p>
-							<br>
-							<br> 도서정보가 달라질 수 있습니다. 이 점 양해 부탁드립니다.<br>
-							<br>
-							<br>
-							<br>
+							<br> <br> 도서정보가 달라질 수 있습니다. 이 점 양해 부탁드립니다.<br> <br>
+							<br> <br>
 						</p>
 					</div>
 
 					<div>
-						<br>
-						<br> <span>주문가능수량</span> <input type="number" id="stock"
-							name="stock" value="${book.stock }" readonly><br>
+						<br> <br> <span>주문가능수량</span> <input type="number"
+							id="stock" name="stock" value="${book.stock }" readonly><br>
 						<br> <span>&nbsp;&nbsp;&nbsp;&nbsp;주문수량&nbsp;&nbsp;</span> <input
 							type="number" id="sellStock" name="shopingListCount" value="1"><br>
-						<br>
-						<br>
-						<br>
+						<br> <br> <br>
 					</div>
 					<div
 						style="display: flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
 						<button id="slBtn" onclick="shoppingList()">장바구니담기</button>
-						<button id="buyBtn" onclick="submit()">바로구매</button>
+						<button id="buyBtn" type="button">바로구매</button>
 					</div>
 				</div>
 			</div>
 			<c:if test="${shopinglistCate  == null}">
 				<input type="hidden" name="shopingList_cate" value="B">
 			</c:if>
-			<c:if test="${shopinglistCate  != null}">
-				<input type="hidden" name="shopingList_cate"
+			<c:if test="${shopinglistCate == 'E'}">
+				<input type="hidden" name="shopinglistCate"
 					value="${shopinglistCate }">
 			</c:if>
 			<input type="hidden" name="memberId" value="${loginMember.memberId }">
@@ -1103,13 +1096,58 @@ ul {
 		<script>
 	$("#slBtn").click(function(){
 		$("#sl").attr("action","${path }/shopingList/shopingList.do");
+		if(${shopinglistCate=='E'}){
+			$.ajax({
+				url:"${path}/shopingListController/insertEbook.do",
+				type:"POST",
+				dataType:"json",
+				data:{
+					shopinglistCount:Number($("#sellStock").val()),
+					bindNo:"${book.bindNo}"
+				},
+				success:data=>{
+					if(confirm("장바구니 등록완료. 장바구니로 이동하시겠습니까?")){
+						location.assign("${path}/shopingList/shopingList.do");
+					}
+				},
+				error:error=>{
+					alert("실패");
+				}
+			})
+	}
 		$("#sl").submit();
 	})
 	$("#buyBtn").click(function(){
 		$("#sl").attr("action","${path }/SellbookController/bookpayment.do");
-		$("#sl").submit();
+		if(${shopinglistCate=='E'}){
+			$("#sl").attr("action","${path }/EbookControllerSm/bookpayment.do");
+			$.ajax({
+				url:"${path}/EbookControllerSm/checkEbook.do",
+						type:"GET",
+						data:{bindNo:"${book.bindNo}"},
+						success:data=>{
+							if(data > 0){
+								alert("이미 구매하신 e-Book입니다.");
+							}else{
+								$("#sl").submit();
+							}
+						},
+						error:error=>{
+							console.log(error);
+						}
+			})
+		}else{
+			$("#sl").submit();
+		}
 	})
-
+	$("#sellStock").click(e =>{
+		console.log('${shopinglistCate}');
+		if(${shopinglistCate=='E'}){
+			console.log("dd");
+			alert("e-Book 도서는 1개만 구입 가능합니다.");
+			$("#sellStock").val(1);
+		}
+	})
 </script>
 		<div class="bookView_info" style="display: flex;">
 			<div class="bookView_info_left line">
@@ -1179,13 +1217,9 @@ ul {
 						</div>
 						<div class="bcontent">
 							<!--  <strong>책 내용</strong>  -->
-							<br> ${book.description }<br>
-							<br>
-							<br>
-							<br> <a href="${book.link }"><strong>[ 책 상세
-									페이지로 이동 ]</strong></a> <br>
-							<br>
-							<br>
+							<br> ${book.description }<br> <br> <br> <br>
+							<a href="${book.link }"><strong>[ 책 상세 페이지로 이동 ]</strong></a> <br>
+							<br> <br>
 						</div>
 						<!--                    <div>
                        <h2>저자소개</h2>

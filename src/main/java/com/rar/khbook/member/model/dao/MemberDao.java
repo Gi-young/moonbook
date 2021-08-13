@@ -59,4 +59,7 @@ public interface MemberDao {
 
 //	개인 회원 이북 결제 내역 조회
 	List<Order> ebookPurchaseList(SqlSession session, Map<String, String> param, int cPage, int numPerpage);
+	
+//	회원 포인트 적립
+	int updateMemberPoint(SqlSession session, Map param);
 }

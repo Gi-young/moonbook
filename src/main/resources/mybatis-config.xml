@@ -16,10 +16,6 @@
 		<!-- 회원등급 -->
 		<typeAlias type="com.rar.khbook.member.model.vo.Membergrade"
 			alias="membergrade" />
-		<!-- 이북구매내역 -->
-		<typeAlias
-			type="com.rar.khbook.order.model.vo.EbookPurchaseHistory"
-			alias="ebookPurchaseHistory" />
 		<typeAlias alias="strArr"
 			type="com.rar.khbook.common.StringArrayTypeHandler" />
 

@@ -29,21 +29,6 @@
 		</association>
 	</resultMap>
 
-	<resultMap type="EbookPurchaseHistory"
-		id="EbookPurchaseHistoryMap">
-		<result column="history_no" property="historyNo" />
-		<result column="imp_uid" property="impUid" />
-		<result column="merchant_uid" property="merchantUid" />
-		<result column="member_id" property="memberId" />
-		<result column="pay_method" property="payMethod" />
-		<result column="paid_amount" property="paidAmount" />
-		<result column="paid_at" property="paidAt" />
-		<result column="pg_provider" property="pgProvider" />
-		<result column="receipt_url" property="receiptUrl" />
-		<collection column="purchase_ebook_no_list" property="purchaseEbookNoList" typeHandler="strArr" ofType="ebookDatabind" 
-			select="selectEbookDatabind" />
-	</resultMap>
-
 	<resultMap id="ebookDatabindMap" type="ebookDatabind">
 		<id column="BIND_NO" property="bindNo" />
 		<result column="TITLE" property="title" />
@@ -85,14 +70,5 @@
 		SELECT COUNT(*) FROM
 		EBOOK_PURCHASE_HISTORY WHERE MEMBER_ID=#{memberId} AND PAID_AT BETWEEN
 		#{startDate} AND #{finishDate}
-	</select>
-
-	<!-- 개인 회원 이북 결제 내역 조회 -->
-	<select id="ebookPurchaseList"
-		resultMap="EbookPurchaseHistoryMap">
-		SELECT * FROM EBOOK_PURCHASE_HISTORY WHERE
-		MEMBER_ID=#{memberId} AND PAID_AT
-		BETWEEN #{startDate} AND
-		#{finishDate}
 	</select>
 </mapper>

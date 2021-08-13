@@ -31,7 +31,6 @@ import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
-import com.rar.khbook.order.model.vo.EbookPurchaseHistory;
 import com.rar.khbook.order.model.vo.Order;
 
 import lombok.extern.slf4j.Slf4j;
