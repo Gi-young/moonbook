@@ -70,7 +70,7 @@
 	</select>
 	
 	<insert id="insertReview">
-		INSERT INTO BOOK_REVIEW VALUES(#{bindNo}, SEQ_BOOK_REVIEW.NEXTVAL, #{content}, #{memberId}, SYSDATE, null,null)
+		INSERT INTO BOOK_REVIEW VALUES(#{bindNo}, SEQ_BOOK_REVIEW.NEXTVAL, #{content}, #{memberId}, SYSDATE, null,null,#{score})
 	</insert>
 	
 	<select id="selectReviewAll" resultType="int">

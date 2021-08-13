@@ -1053,7 +1053,7 @@ ul {
               	type: 'post',
               	url: '${path}/SellbookController/productReview.do',
               	data: {
-              		bookNo: bookNo,
+              		bindNo: bindNo,
               		cPage: cPage,
               		numPerPage: 10
               	},
