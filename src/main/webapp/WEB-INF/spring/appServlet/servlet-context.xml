@@ -73,6 +73,10 @@
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>
 		</interceptor>
 		<interceptor>
+			<mapping path="/EbookControllerSm/bookpayment.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
+		<interceptor>
 			<mapping path="/auction/*.do"/>
 			<beans:bean class="com.rar.khbook.auction.intercepter.LoginCheck"/>		
 		</interceptor>
