@@ -77,7 +77,7 @@
     border: 1px solid #AAB1C7;
     border-radius: 5px;
 }
-.help img{
+.helpImg{
     width: 41px;
     height: 41px;
 }
@@ -170,7 +170,7 @@
             </button>
             <!-- 상담문의, 관리자 연결 -->
                 <button class="help">
-                    <img src="${path }/resources/images/상담문의.png" alt="상담문의">
+                    <a href="${path }/service/servicePage.do"><img src="${path }/resources/images/상담문의.png" alt="상담문의" class="helpImg"></a>
                 </button>
                 <button class="chatting">
                     <img src="${path }/resources/images/chat.png" alt="채팅">
