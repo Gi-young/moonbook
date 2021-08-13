@@ -113,6 +113,7 @@
 	<script>
 		// gi-young
 		let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
+		//let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
 		
 		sockAuction.onopen = (e) => {
 			console.log(e);
