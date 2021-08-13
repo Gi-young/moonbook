@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.admin.model.service.AdminService;
 import com.rar.khbook.adminchart.model.vo.BookTopThree;
+import com.rar.khbook.adminchart.model.vo.EbookTopThree;
+import com.rar.khbook.adminchart.model.vo.GiftTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.common.PageFactoryAdmin;
 import com.rar.khbook.coupon.model.vo.Couponlist;
@@ -1341,7 +1343,7 @@ public class AdminController {
 		int totalCost=service.selectgiftTotalCost();
 		mv.addObject("totalCost", totalCost);
 		
-		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "ebookAnalysisPage.do"));
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "giftAnalysisPage.do"));
 		
 		mv.setViewName("admin/giftAnalysis");
 		return mv;
@@ -1437,10 +1439,14 @@ public class AdminController {
 		List<BookTopThree> list1=service.bookTopThree();
 				
 		//차트 페이지 ebook 데이터 가져오기
+		List<EbookTopThree> list2=service.ebookTopThree();
 		
 		//차트 페이지 기프트 데이터 가져오기
-		System.out.println(list1);
+		List<GiftTopThree> list3 =service.giftTopThree();
+		
 		mv.addObject("list1",list1);
+		mv.addObject("list2",list2);
+		mv.addObject("list3",list3);
 		mv.setViewName("admin/chartAnalysis");
 		return mv;
 	}

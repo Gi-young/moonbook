@@ -10,6 +10,8 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.adminchart.model.vo.BookTopThree;
+import com.rar.khbook.adminchart.model.vo.EbookTopThree;
+import com.rar.khbook.adminchart.model.vo.GiftTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
@@ -517,6 +519,18 @@ public class AdminDaoImpl implements AdminDao {
 	public List<BookTopThree> bookTopThree(SqlSession session) {
 		// TODO Auto-generated method stub
 		return session.selectList("admin.bookTopThree");
+	}
+
+	@Override
+	public List<EbookTopThree> ebookTopThree(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.ebookTopThree");
+	}
+
+	@Override
+	public List<GiftTopThree> giftTopThree(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.giftTopThree");
 	}
 	
 	
