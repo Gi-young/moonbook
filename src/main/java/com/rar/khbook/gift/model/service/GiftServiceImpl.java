@@ -71,19 +71,20 @@ public class GiftServiceImpl implements GiftService {
 	@Override
 	public int insertShopingList(Map param) {
 		// TODO Auto-generated method stub
-		int result = dao.insertShopingList(session, param);
-		return result;
+		try {
+			int result = dao.insertShopingList(session, param);
+			
+			if(result > 0) {
+				int rs = dao.insertShopingGift(session,param);
+			}else {			
+				return -1;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return 1;
 	}
-	
-	/*
-	 * @Override public int insertShopingGift(Map param) {
-	 * 
-	 * try {
-	 * 
-	 * }catch(Exception e) { e.printStackTrace; }
-	 * 
-	 * return result; }
-	 */
-	
 	
 }

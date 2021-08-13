@@ -73,4 +73,8 @@ public class GiftDaoImpl implements GiftDao {
 		return session.insert("gift.insertShopingList",param);
 	}
 	
+	@Override 
+	public int insertShopingGift(SqlSession session, Map param) {
+		return session.insert("gift.insertShopingGift",param);
+	}
 }

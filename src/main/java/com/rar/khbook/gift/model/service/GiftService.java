@@ -26,4 +26,5 @@ public interface GiftService {
 	int selectReviewAll(int giftNo);
 
 	int insertShopingList(Map param);
+	
 }

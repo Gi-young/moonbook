@@ -28,4 +28,5 @@ public interface GiftDao {
 	int selectReviewAll(SqlSession session, int giftNo);
 
 	int insertShopingList(SqlSession session, Map param);
+	int insertShopingGift(SqlSession session, Map param);	
 }

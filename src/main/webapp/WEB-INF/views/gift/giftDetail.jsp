@@ -258,7 +258,7 @@
          	 /*  exp[0].children[0].children.html();  */
          	 exp[0].lastChild.innerHTML = "";
          	 /* console.log(exp[0].lastChild.childNodes); */
-         	 console.log("================= ajax 실행 후 ==================");
+         	 /* console.log("================= ajax 실행 후 =================="); */
          	$.ajax({
               	type: 'post',
               	url: '${path}/gift/productReview.do',
@@ -272,10 +272,10 @@
               		
               		exp[0].appendChild(tb).appendChild(tr2);
               		data.forEach((v, i) => {   
-
+						 console.log("어떻게 나왔지 ?? "+v.rownum);
               			 let html = ""; /* 테이블 본문 내용 */
               		     html += "<tr class='review-text review-tr'>";   
-                 	     html += "<td class='review-num'>"+v.gift_board_no+"</td>";
+                 	     html += "<td class='review-num'>"+v.rownum+"</td>";
                  	     html += "<td class='gpa'>";
                  	     html += "<div class='gpa-circle'>";
                  	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>";

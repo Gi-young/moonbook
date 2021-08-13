@@ -18,6 +18,7 @@ import lombok.ToString;
 public class GiftBoard {
 	
 	private int gift_no; // 상품번호
+	private int rownum;
 	private int gift_board_no; // 해당 상품의 게시글 번호
 	private String gift_board_content; // 게시글 내용
 	private String writer; // 작성자

@@ -31,6 +31,7 @@
 	
 	<resultMap type="giftBoard" id="giftReviewMap">
 		<id column="NGIFT_REVIEW_NO" property="gift_board_no"/>
+		<result column="ROWNUM" property="rownum"/>
 		<result column="NGIFT_NO" property="gift_no"/>
 		<result column="NGIFT_CONTENT" property="gift_board_content"/>
 		<result column="MEMBER_ID" property="writer"/>
@@ -53,7 +54,7 @@
 	</select>
 	
 	<select id="selectReview" resultMap="giftReviewMap">
-		SELECT * FROM NGIFT_REVIEW WHERE NGIFT_NO=#{giftNo}
+		SELECT ROWNUM, A.* FROM NGIFT_REVIEW A WHERE NGIFT_NO=#{giftNo}
 	</select>
 	
 	<insert id="insertReview">
