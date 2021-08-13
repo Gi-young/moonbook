@@ -1,10 +1,14 @@
 package com.rar.khbook.sellbook.model.dao;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.sellbook.model.vo.BookBoard;
 import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
 
 public interface SellbookDao {
@@ -18,5 +22,12 @@ public interface SellbookDao {
 	SellbookDatabind selectBookPayment(SqlSession session, int bindNo);
 
 	int updateSalesVolumeAdd(SqlSession session, Map param);
+	
+	SellbookDatabind bookOne(SqlSession session, int bindNo);
+	
+	List<BookBoard>  selectReview(SqlSession session, Map param);
+	
+	int reviewWrite(SqlSession session, HashMap map);
 
+	int selectReviewAll(SqlSession session, int bindNo);
 }

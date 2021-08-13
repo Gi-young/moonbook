@@ -68,7 +68,9 @@
 		SELECT * FROM BOOK_EBOOK_DATABIND B, EBOOK E
 		WHERE B.BIND_NO=E.EBOOK_NO(+)
 		AND ${searchType} LIKE '%'||#{keyword}||'%'
-		AND CATEGORY_CODE=#{categoryCode}
+		<if test="categoryCode != '' and categoryCode != null">
+			AND CATEGORY_CODE=#{categoryCode}
+		</if>
 		ORDER BY 
 		<choose>
 			<when test="importancePubdate>importanceSales and importanceSales>importanceRating and importanceRating>importancePrice">

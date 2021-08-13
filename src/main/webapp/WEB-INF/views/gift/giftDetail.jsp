@@ -66,24 +66,26 @@
 	                           
 	                        </div>
 	                    </div>
-	                </div>
-                 <input type="hidden" value="${gift.gift_no }" name="giftNo" id="giftNo">
-                <div class="discount-price">
+	                </div>         
+                 <div class="discount-price">
                     <p class="discount">할인율</p>
                     <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/></p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
                     <button type="submit">구매하기</button>
-                    <input type="hidden" value="${loginMember.memberId }" id="loginMemberId">
-                    <button type="button">장바구니</button>
+                    <input type="hidden" value="${loginMember.memberId }" id="loginMemberId" name="loginMemberId">
+                    <button type="button" id="shopList">장바구니</button>
                     <!-- <button>찜하기</button> -->
                 </div>           
                 <div style="text-align: center; margin-top: 30px;">
                     <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
-            </form> 
+            <input type="hidden" value="${gift.gift_no }" name="giftNo" id="giftNo">
+            <input type="hidden" value='G' name="shopingList_cate" id="shopingList_cate">
+            
+          </form>       
         </div>
         <div class="crossLine3"></div>
         <div class="wrap">
@@ -256,7 +258,7 @@
          	 /*  exp[0].children[0].children.html();  */
          	 exp[0].lastChild.innerHTML = "";
          	 /* console.log(exp[0].lastChild.childNodes); */
-         	 console.log("================= ajax 실행 후 ==================");
+         	 /* console.log("================= ajax 실행 후 =================="); */
          	$.ajax({
               	type: 'post',
               	url: '${path}/gift/productReview.do',
@@ -270,10 +272,10 @@
               		
               		exp[0].appendChild(tb).appendChild(tr2);
               		data.forEach((v, i) => {   
-
+						 console.log("어떻게 나왔지 ?? "+v.rownum);
               			 let html = ""; /* 테이블 본문 내용 */
               		     html += "<tr class='review-text review-tr'>";   
-                 	     html += "<td class='review-num'>"+v.gift_board_no+"</td>";
+                 	     html += "<td class='review-num'>"+v.rownum+"</td>";
                  	     html += "<td class='gpa'>";
                  	     html += "<div class='gpa-circle'>";
                  	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>";
@@ -389,6 +391,17 @@
 <script src="${path }/resources/js/gift/gift_detail.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
 <script>
+
+	  let sl = document.getElementById("shopList");
+	  let mId = document.getElementById("loginMemberId").value;
+	  let gNo = document.getElementById("giftNo").value; 
+	  let shopCate = document.getElementById("shopingList_cate").value;
+	  
+	  sl.addEventListener('click', function(){
+		 location.assign("<%=request.getContextPath()%>/gift/shopingList.do?giftNo="+gNo+"&memberId="+mId+"&cate="+shopCate);
+	  });
+	  
+	  
       $('#slider-div').slick({
           slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
           infinite : true, 	//무한 반복 옵션	 

@@ -29,7 +29,8 @@
 
 	</select>
 	<select id="getPageBarOrderedMemberList" resultType="_int">
-		SELECT COUNT(*) FROM MEMBER
+		SELECT
+		COUNT(*) FROM MEMBER
 		ORDER BY
 		${type1} ${order}
 	</select>
@@ -45,7 +46,7 @@
 			</when>
 		</choose>
 	</select>
-	
+
 	<select id="getPageBarSearchTextMemberList" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE
 		<choose>
@@ -202,11 +203,19 @@
 	<!-- 최근 로그인 날짜 변경 -->
 	<update id="updateMemberToday">
 		UPDATE MEMBER SET
-		MEMBER_TODAY=SYSDATE WHERE MEMBER_ID=#{memberId}
+		MEMBER_TODAY=SYSDATE WHERE
+		MEMBER_ID=#{memberId}
 	</update>
 
 	<!-- 회원 삭제 -->
 	<delete id="deleteMember">
 		DELETE FROM MEMBER WHERE MEMBER_ID = #{memberId}
 	</delete>
+
+	<!-- 회원 포인트 적립 -->
+	<update id="updateMemberPoint">
+		UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE
+		MEMBER_ID=#{memberId}) + (SELECT ORDER_POINT FROM ORDERT WHERE
+		ORDER_NO=#{merchantUid})) WHERE MEMBER_ID=#{memberId}
+	</update>
 </mapper>

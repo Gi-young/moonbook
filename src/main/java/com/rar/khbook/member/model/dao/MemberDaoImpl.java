@@ -140,4 +140,11 @@ public class MemberDaoImpl implements MemberDao {
 //		return session.selectList("order.ebookPurchaseList", param, row);
 		return null;
 	}
+	
+//	회원 포인트 적립
+	@Override
+	public int updateMemberPoint(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("member.updateMemberPoint", param);
+	}
 }
