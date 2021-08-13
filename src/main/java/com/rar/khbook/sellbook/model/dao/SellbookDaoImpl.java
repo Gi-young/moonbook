@@ -64,6 +64,7 @@ public class SellbookDaoImpl implements SellbookDao {
 
 	@Override
 	public int reviewWrite(SqlSession session, HashMap map) {
+		System.out.println("dao에서 리뷰쓰는 map정보임 : "+map);
 		return session.insert("SellbookDatabind.insertReview", map);
 	}
 

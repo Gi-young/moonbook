@@ -80,6 +80,10 @@
 			<mapping path="/SellbookController/*.do"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
 		</interceptor>
+		<interceptor>
+		<mapping path="/SellbookController/insertReview.do*"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.GiftLoginCheckInterceptor"/>		
+		</interceptor>
 		<!-- 낄껴 좀 하겠습니다. -->
 		<interceptor>
 			<mapping path="/gift/giftPayment.do"/>
