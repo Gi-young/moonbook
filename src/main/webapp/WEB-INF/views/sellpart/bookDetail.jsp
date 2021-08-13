@@ -1,141 +1,143 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.rar.khbook.member.model.vo.Member"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="path" value="${pageContext.request.contextPath }" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+	import="com.rar.khbook.member.model.vo.Member" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+			<c:set var="path" value="${pageContext.request.contextPath }" />
 
-<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
-	<jsp:param name="title" value="" />
-</jsp:include>
-    <link rel="stylesheet" href="${path }/resources/css/bookdetail/bookdetail.css">
- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+			<jsp:include page="/WEB-INF/views/common/newHeader.jsp">
+				<jsp:param name="title" value="" />
+			</jsp:include>
+			<link rel="stylesheet" href="${path }/resources/css/bookdetail/bookdetail.css">
+			<link rel="stylesheet" type="text/css"
+				href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+			<script type="text/javascript"
+				src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-<style>
-a {
-	text-decoration: none;
-}
+			<style>
+				a {
+					text-decoration: none;
+				}
 
-ul {
-	list-style: none;
-}
+				ul {
+					list-style: none;
+				}
 
-.contenttitle {
-	font-weight: bold;
-}
+				.contenttitle {
+					font-weight: bold;
+				}
 
-.moreview {
-	float: right;
-	font-size: 12px;
-}
+				.moreview {
+					float: right;
+					font-size: 12px;
+				}
 
-.wrap {
-	min-width: 950px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
+				.wrap {
+					min-width: 950px;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+				}
 
-#container {
-	width: 950px;
-	display: flex;
-}
+				#container {
+					width: 950px;
+					display: flex;
+				}
 
-.leftlongbanner {
-	width: 168px;
-	height: 100%;
-}
+				.leftlongbanner {
+					width: 168px;
+					height: 100%;
+				}
 
-.lev1add div {
-	border: #582810 3px solid;
-}
+				.lev1add div {
+					border: #582810 3px solid;
+				}
 
-.lev1add div:not(:first-child) {
-	border-left: none;
-}
+				.lev1add div:not(:first-child) {
+					border-left: none;
+				}
 
-.line {
-	/* border: #582810 1px solid;  */
-	
-}
+				.line {
+					/* border: #582810 1px solid;  */
 
-.main_sub_title {
-	position: relative;
-}
+				}
 
-.main_sub_title:hover {
-	/* border: 1px #582810 solid; */
-	border-right: none;
-}
+				.main_sub_title {
+					position: relative;
+				}
 
-.main_sub_title {
-	list-style: none;
-	margin-top: 10px;
-}
+				.main_sub_title:hover {
+					/* border: 1px #582810 solid; */
+					border-right: none;
+				}
 
-.main_sub_title>a {
-	padding: 7px 20px 4px 15px;
-	position: relative;
-}
+				.main_sub_title {
+					list-style: none;
+					margin-top: 10px;
+				}
 
-.layer {
-	position: absolute;
-	top: -5px;
-	width: 100%;
-	left: 100%;
-	padding: 3px 0;
-	border-bottom: 1px solid silver;
-	background-color: #fff;
-}
+				.main_sub_title>a {
+					padding: 7px 20px 4px 15px;
+					position: relative;
+				}
 
-.layer>li {
-	list-style: none;
-	border-bottom: silver 1px solid;
-}
+				.layer {
+					position: absolute;
+					top: -5px;
+					width: 100%;
+					left: 100%;
+					padding: 3px 0;
+					border-bottom: 1px solid silver;
+					background-color: #fff;
+				}
 
-.layer>li:hover {
-	border: 1px solid #582810;
-}
+				.layer>li {
+					list-style: none;
+					border-bottom: silver 1px solid;
+				}
 
-#main_snb>ul {
-	padding: 10px 0;
-	z-index: 100;
-	border: #582810 1px solid;
-	border-top: 1px solid #e2e5ee;
-}
+				.layer>li:hover {
+					border: 1px solid #582810;
+				}
 
-#main_sub>ul>li {
-	list-style: none;
-	width: 100px;
-}
+				#main_snb>ul {
+					padding: 10px 0;
+					z-index: 100;
+					border: #582810 1px solid;
+					border-top: 1px solid #e2e5ee;
+				}
 
-.main_ul>li>ul>li {
-	font-family: '한컴 말랑말랑', '돋움';
-	font-size: 16px;
-	padding-top: 3px;
-	padding-bottom: 3px;
-}
+				#main_sub>ul>li {
+					list-style: none;
+					width: 100px;
+				}
 
-#main_snb {
-	width: 168px;
-	height: auto;
-	font-family: '한컴 말랑말랑', '돋움';
-	font-size: 20px;
-	font-weight: bold;
-	text-align: center;
-}
+				.main_ul>li>ul>li {
+					font-family: '한컴 말랑말랑', '돋움';
+					font-size: 16px;
+					padding-top: 3px;
+					padding-bottom: 3px;
+				}
 
-#main_snb>h2 {
-	margin: 0px;
-	padding: 20px;
-	background-color: rgb(255, 255, 255);
-	text-align: center;
-}
+				#main_snb {
+					width: 168px;
+					height: auto;
+					font-family: '한컴 말랑말랑', '돋움';
+					font-size: 20px;
+					font-weight: bold;
+					text-align: center;
+				}
 
-.content-todaybook {
-	/* width: 168px;
+				#main_snb>h2 {
+					margin: 0px;
+					padding: 20px;
+					background-color: rgb(255, 255, 255);
+					text-align: center;
+				}
+
+				.content-todaybook {
+					/* width: 168px;
     height: auto; */
 	font-family: '한컴 말랑말랑', '돋움';
 	font-size: 15px;
@@ -1128,19 +1130,19 @@ ul {
                      </td>
                     <td>관리자</td>
                     <td>SYSDATE or 수정일</td>
-                 </tr>     -->             
-             </table>
-        </div>
-        <div class="notify">
-            <img src="${path }/resources/images/gift/교환반품1.PNG" alt="">
-            <img src="${path }/resources/images/gift/교환반품2.PNG" alt="">
-            <img src="${path }/resources/images/gift/교환반품3.PNG" alt="">
-            <img src="${path }/resources/images/gift/교환반품4.PNG" alt="">
-            <img src="${path }/resources/images/gift/교환반품5.PNG" alt="">
-        </div>
-    </div>
-</div>
-<!-- <div class="slide-wrap">
+                 </tr>     -->
+							</table>
+						</div>
+						<div class="notify">
+							<img src="${path }/resources/images/gift/교환반품1.PNG" alt="">
+							<img src="${path }/resources/images/gift/교환반품2.PNG" alt="">
+							<img src="${path }/resources/images/gift/교환반품3.PNG" alt="">
+							<img src="${path }/resources/images/gift/교환반품4.PNG" alt="">
+							<img src="${path }/resources/images/gift/교환반품5.PNG" alt="">
+						</div>
+					</div>
+				</div>
+				<!-- <div class="slide-wrap">
         <div class="product-slide">
             <ul class="slickTest">
                 <li>slide1</li>
@@ -1162,160 +1164,207 @@ ul {
                 </li>
             </ul>
         </div> -->
-        <input type="hidden" value="${path }" id="contextPath">
+				<input type="hidden" value="${path }" id="contextPath">
 
 
- 
-  <!-- jQuery -->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-  <!-- iamport.payment.js -->
-  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="${path }/resources/js/sellpart/bookdetail/bookbuy.js"></script>
-<script src="${path }/resources/js/sellpart/bookdetail/bookdetail.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>	 
-<script>
-$('#slider-div').slick({
-    slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
-    infinite : true, 	//무한 반복 옵션	 
-    slidesToShow : 4,		// 한 화면에 보여질 컨텐츠 개수
-    slidesToScroll : 2,		//스크롤 한번에 움직일 컨텐츠 개수
-    speed : 500,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-    arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-    dots : false, 		// 스크롤바 아래 점으로 페이지네이션 여부
-    autoplay : true,			// 자동 스크롤 사용 여부
-    autoplaySpeed : 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
-    pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-    vertical : false,		// 세로 방향 슬라이드 옵션
-    prevArrow : "<button type='button' class='slick-prev'>⊲</button>",		// 이전 화살표 모양 설정
-    nextArrow : "<button type='button' class='slick-next'>⊳</button>",		// 다음 화살표 모양 설정
-     	//아래 나오는 페이지네이션(점) css class 지정
-    draggable : true, 	//드래그 가능 여부 
-  //   centerMode : true,
-  //   variableWidth : true,
-  //   focusOnSelect : true,
-    pauseOnHover : true
-    /* responsive: [ // 반응형 웹 구현 옵션
-        {  
-            breakpoint: 1350, //화면 사이즈 960px
-            settings: {
-                //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-                slidesToShow:3 
-            } 
-        },
-        { 
-            breakpoint: 950, //화면 사이즈 768px
-            settings: {	
-                //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
-                slidesToShow:2 
-            } 
-        }
-    ] */
 
-});
-let slickBtn = $('.slick-dots li>button');
-/* console.log(slickBtn); */
-$(slickBtn).click(function(){
-  $(this).css('transform',"rotate( 90deg )");
-  $(this).css('transition',"all ease 0.5s");
-})
-let hot = $('.hot');
-/* console.log(hot); */
-$(hot).mouseover(function(){
-  $(this).css("color","black");
-})
-$(hot).mouseout(function(){
-  $(this).css("color","#696969");
-})
+				<!-- jQuery -->
+				<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+				<!-- iamport.payment.js -->
+				<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+				<script src="${path }/resources/js/sellpart/bookdetail/bookbuy.js"></script>
+				<script src="${path }/resources/js/sellpart/bookdetail/bookdetail.js"></script>
+				<script type="text/javascript"
+					src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+				<script>
+					$('#slider-div').slick({
+						slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
+						infinite: true, 	//무한 반복 옵션	 
+						slidesToShow: 4,		// 한 화면에 보여질 컨텐츠 개수
+						slidesToScroll: 2,		//스크롤 한번에 움직일 컨텐츠 개수
+						speed: 500,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
+						arrows: true, 		// 옆으로 이동하는 화살표 표시 여부
+						dots: false, 		// 스크롤바 아래 점으로 페이지네이션 여부
+						autoplay: true,			// 자동 스크롤 사용 여부
+						autoplaySpeed: 10000, 		// 자동 스크롤 시 다음으로 넘어가는데 걸리는 시간 (ms)
+						pauseOnHover: true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
+						vertical: false,		// 세로 방향 슬라이드 옵션
+						prevArrow: "<button type='button' class='slick-prev'>⊲</button>",		// 이전 화살표 모양 설정
+						nextArrow: "<button type='button' class='slick-next'>⊳</button>",		// 다음 화살표 모양 설정
+						//아래 나오는 페이지네이션(점) css class 지정
+						draggable: true, 	//드래그 가능 여부 
+						//   centerMode : true,
+						//   variableWidth : true,
+						//   focusOnSelect : true,
+						pauseOnHover: true
+						/* responsive: [ // 반응형 웹 구현 옵션
+							{  
+								breakpoint: 1350, //화면 사이즈 960px
+								settings: {
+									//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+									slidesToShow:3 
+								} 
+							},
+							{ 
+								breakpoint: 950, //화면 사이즈 768px
+								settings: {	
+									//위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+									slidesToShow:2 
+								} 
+							}
+						] */
 
-/* 카카오 페이 */
-$("#kakaoPay").click(function(){
-	$.ajax({
-		url: '${path}/kakaopay.do',
-		dataType:'json',
-		success:function(data){   			
-			console.log("정상 실행 : "+data.tid);
-			window.open(data.next_redirect_pc_url);
-		},
-		error:function(error){
-			console.log("에러 : "+error);
-		}  		
+					});
+					let slickBtn = $('.slick-dots li>button');
+					/* console.log(slickBtn); */
+					$(slickBtn).click(function () {
+						$(this).css('transform', "rotate( 90deg )");
+						$(this).css('transition', "all ease 0.5s");
+					})
+					let hot = $('.hot');
+					/* console.log(hot); */
+					$(hot).mouseover(function () {
+						$(this).css("color", "black");
+					})
+					$(hot).mouseout(function () {
+						$(this).css("color", "#696969");
+					})
+
+					/* 카카오 페이 */
+					$("#kakaoPay").click(function () {
+						$.ajax({
+							url: '${path}/kakaopay.do',
+							dataType: 'json',
+							success: function (data) {
+								console.log("정상 실행 : " + data.tid);
+								window.open(data.next_redirect_pc_url);
+							},
+							error: function (error) {
+								console.log("에러 : " + error);
+							}
+						})
+					});
+
+
+					let reviewTitle = document.getElementsByClassName("review-title-a");
+
+					console.log(reviewTitle);
+					/* reviewTitle.addEventListener("click", function(e){
+					alert("나와라");
+				}); */
+
+
+					$("#slBtn").click(function () {
+						$("#sl").attr("action", "${path }/shopingList/shopingList.do");
+						if (${ shopinglistCate == 'E' }){
+						$.ajax({
+							url: "${path}/shopingListController/insertEbook.do",
+							type: "POST",
+							dataType: "json",
+							data: {
+								shopinglistCount: Number($("#sellStock").val()),
+								bindNo: "${book.bindNo}"
+							},
+							success: data => {
+								if (confirm("장바구니 등록완료. 장바구니로 이동하시겠습니까?")) {
+									location.assign("${path}/shopingList/shopingList.do");
+								}
+							},
+							error: error => {
+								alert("실패");
+							}
+						})
+					}
+					$("#sl").submit();
 	})
-});
-
-   
-    let reviewTitle = document.getElementsByClassName("review-title-a");
-    
-    console.log(reviewTitle);
-    /* reviewTitle.addEventListener("click", function(e){
-	alert("나와라");
-}); */
-
-	$("#slBtn").click(function(){
-		$("#sl").attr("action","${path }/shopingList/shopingList.do");
-		$("#sl").submit();
+					$("#buyBtn").click(function () {
+						$("#sl").attr("action", "${path }/SellbookController/bookpayment.do");
+						if (${ shopinglistCate == 'E' }){
+						$("#sl").attr("action", "${path }/EbookControllerSm/bookpayment.do");
+						$.ajax({
+							url: "${path}/EbookControllerSm/checkEbook.do",
+							type: "GET",
+							data: { bindNo: "${book.bindNo}" },
+							success: data => {
+								if (data > 0) {
+									alert("이미 구매하신 e-Book입니다.");
+								} else {
+									$("#sl").submit();
+								}
+							},
+							error: error => {
+								console.log(error);
+							}
+						})
+					}else {
+						$("#sl").submit();
+					}
 	})
-	$("#buyBtn").click(function(){
-		$("#sl").attr("action","${path }/SellbookController/bookpayment.do");
-		$("#sl").submit();
+					$("#sellStock").click(e => {
+						console.log('${shopinglistCate}');
+						if (${ shopinglistCate == 'E' }){
+						console.log("dd");
+						alert("e-Book 도서는 1개만 구입 가능합니다.");
+						$("#sellStock").val(1);
+					}
 	})
+					$(function () {
+						$(".level_catagory_cho").hover((e) => {
+							$(e.target).children('div').show();
+						}, (e) => {
+							$(e.target).children('div').hide();
+							if ($(".level_catagory_cho div").not().hover()) {
+								$(".level_catagory_cho div").hide();
+							}
+						})
+					})
 
-        $(function(){
-            $(".level_catagory_cho").hover((e)=>{
-                $(e.target).children('div').show();
-            },(e)=>{
-                $(e.target).children('div').hide();
-                if($(".level_catagory_cho div").not().hover()){
-                    $(".level_catagory_cho div").hide();
-                }
-            })
-        })
 
+					$(function () {
+						var length = $(".today_book_form").length;
+						var pageview = length / 3;
+						var pagecheck = 0;
 
-        $(function(){
-        var length=$(".today_book_form").length;
-        var pageview=length/3;
-        var pagecheck=0;
+						$(".today_book_form").each((i, v) => {
+							if (pageview <= i) {
+								$(v).addClass("on");
+							}
+						})
+						$("#next>button").click(e => {
+							pagecheck++;
+							switch (pagecheck) {
+								case 1: $(".today_book_form").addClass("on");
+									$(".today_book_form").slice(5, 10).removeClass("on"); break;
+								case 2: $(".today_book_form").addClass("on");
+									$(".today_book_form").slice(10, 15).removeClass("on"); break;
+							}   if (pagecheck > 2) {
+								pagecheck = 0;
+								$(".today_book_form").addClass("on");
+								$(".today_book_form").slice(0, 5).removeClass("on");
+							}
+						})
+						$("#prev>button").click(e => {
+							pagecheck--;
+							switch (pagecheck) {
+								case 0: $(".today_book_form").addClass("on");
+									$(".today_book_form").slice(0, 5).removeClass("on"); break;
+								case 1: $(".today_book_form").addClass("on");
+									$(".today_book_form").slice(5, 10).removeClass("on"); break;
+								case 2: $(".today_book_form").addClass("on");
+									$(".today_book_form").slice(10, 15).removeClass("on"); break;
+							} if (pagecheck < 0) {
+								pagecheck = 2;
+								$(".today_book_form").addClass("on");
+								$(".today_book_form").slice(10, 15).removeClass("on");
+							}
+						})
 
-        $(".today_book_form").each((i,v)=>{
-            if(pageview<=i){
-                $(v).addClass("on");
-            }
-        })
-        $("#next>button").click(e=>{
-            pagecheck++;
-            switch(pagecheck){
-                case 1 :  $(".today_book_form").addClass("on");
-                $(".today_book_form").slice(5,10).removeClass("on");break;              
-                case 2 : $(".today_book_form").addClass("on");
-                $(".today_book_form").slice(10,15).removeClass("on"); break;                                
-            }   if(pagecheck>2){
-                pagecheck=0;
-                $(".today_book_form").addClass("on");
-                $(".today_book_form").slice(0,5).removeClass("on");
-            }
-        })
-        $("#prev>button").click(e=>{
-            pagecheck--;
-            switch(pagecheck){
-                case 0 : $(".today_book_form").addClass("on");
-                $(".today_book_form").slice(0,5).removeClass("on");break;
-                case 1 :  $(".today_book_form").addClass("on");
-                $(".today_book_form").slice(5,10).removeClass("on");break;
-                case 2 : $(".today_book_form").addClass("on");
-                $(".today_book_form").slice(10,15).removeClass("on"); break;                     
-            } if(pagecheck<0){
-                pagecheck=2;
-                $(".today_book_form").addClass("on");
-                $(".today_book_form").slice(10,15).removeClass("on"); 
-            }
-        })
-       
-    })
-    </script>
+					})
+				</script>
 
-</section>
+			</section>
 
-	<script src="${path}/resources/js/sellpart/sameauthor/sameauthor.js"></script>
-	<script src="${path}/resources/js/sellpart/sameauthor/sameauthor2.js"></script>
+			<script src="${path}/resources/js/sellpart/sameauthor/sameauthor.js"></script>
+			<script src="${path}/resources/js/sellpart/sameauthor/sameauthor2.js"></script>
 
-<jsp:include page="/WEB-INF/views/common/newFooter.jsp" />
+			<jsp:include page="/WEB-INF/views/common/newFooter.jsp" />

@@ -147,7 +147,7 @@
 				<ul class="books marginBo2em">
 			</c:if>
 			<li class="width25"><a
-				href="${path }/sellpart/bookDetail.do?bindNo=${books.bindNo}&shopinglistCate='E'">
+				href="${path }/sellpart/bookDetail.do?bindNo=${books.bindNo}&shopinglistCate=E">
 					<div class="itemBox">
 						<div class="height60">
 							<img src="${books.image }"
