@@ -58,6 +58,7 @@
 		<typeAlias
 			type="com.rar.khbook.sellbook.model.vo.SellbookDatabind"
 			alias="sellbookDatabind" />
+		<typeAlias type="com.rar.khbook.sellbook.model.vo.BookBoard" alias="bookBoard"/>
 
 		<!-- 장바구니 -->
 		<typeAlias
@@ -78,6 +79,7 @@
 		<!-- 배송 -->
 		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery"
 			alias="delivery" />
-
+		<!-- top3 -->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.BookTopThree" alias="booktopthree"/>
 	</typeAliases>
 </configuration>

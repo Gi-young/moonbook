@@ -46,7 +46,7 @@
 					<c:forEach items="${auction }" var="a">
 						<tr class="buylisttr">
 							<td>${a.auctionNo }</td>
-							<td>${a.auctionName }</td>
+							<td><a href="${path }/auction/acutionview?auctionNo=${a.auctionNo}">${a.auctionName }</a></td>
 							<td>${a.startDate }</td>
 							<td>${a.endDate }</td>
 							<td>${a.auctionbid[0].bidPrice }</td>

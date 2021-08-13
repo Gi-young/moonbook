@@ -9,13 +9,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Repository;
 
-import com.rar.khbook.coupon.model.vo.CouponAttachment;
+import com.rar.khbook.adminchart.model.vo.BookTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
-import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
-import com.rar.khbook.gift.model.vo.Gift;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -514,6 +512,13 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("admin.searchGiftTotalCost",param);
 	}
+
+	@Override
+	public List<BookTopThree> bookTopThree(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.bookTopThree");
+	}
+	
 	
 	
 	

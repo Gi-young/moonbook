@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bank">
+<select id="auctionBank" resultMap="bankMap">
+SELECT * FROM bank_transaction JOIN BANKINFO USING(BANK_NAME) WHERE MEMBER_ID=#{memberId}
+</select>
+<select id="auctionBankCount" resultType="_int">
+SELECT count(*) FROM bank_transaction JOIN BANKINFO USING(BANK_NAME) WHERE MEMBER_ID=#{memberId}
+</select>
+
+<select id="selectbank" resultMap="bankinfoMap">
+SELECT * FROM BANKINFO
+</select>
+
+<insert id="insertBank">
+INSERT INTO BANK_TRANSACTION VALUES(BANK_TRANSACTION_NO.NEXTVAL,#{memberId},'카카오뱅크',null,#{memberPoint},default,'Y','입금')
+</insert>
+<insert id="insertBank2">
+INSERT INTO BANK_TRANSACTION VALUES(BANK_TRANSACTION_NO.NEXTVAL,#{bidId},#{bankName},#{transactionNumber},#{bidPrice},default,'N','출금')
+</insert>
+
+<resultMap type="com.rar.khbook.auction.model.vo.Transaction" id="bankMap">
+		<id column="transaction_no" property="transactionNo"/>
+		<result column="member_id" property="memberId"/>
+		<result column="transaction_number" property="transactionNumber"/>
+		<result column="transaction_price" property="transactionPrice"/>
+		<result column="transaction_state" property="transactionState"/>
+		<result column="transaction_name" property="transactionName"/>
+		<result column="transaction_time" property="transactionTime"/>
+	<association property="bankinfo" javaType="com.rar.khbook.auction.model.vo.Bankinfo">
+	 	<id column="bank_name" property="bankName"/>
+	 	<result column="bank_charge" property="bankCharge"/>
+	 </association>
+</resultMap>
+
+<resultMap type="com.rar.khbook.auction.model.vo.Bankinfo" id="bankinfoMap">
+	 	<id column="bank_name" property="bankName"/>
+	 	<result column="bank_charge" property="bankCharge"/>
+</resultMap>
+</mapper>
