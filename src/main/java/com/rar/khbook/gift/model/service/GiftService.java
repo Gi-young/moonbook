@@ -24,4 +24,7 @@ public interface GiftService {
 	int reviewWrite(HashMap map);
 
 	int selectReviewAll(int giftNo);
+
+	int insertShopingList(Map param);
+	
 }
