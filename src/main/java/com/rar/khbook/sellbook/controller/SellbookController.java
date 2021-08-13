@@ -176,12 +176,14 @@ public class SellbookController {
 		
 	}
 	@RequestMapping("/SellbookController/bookpayment.do") 
-	public ModelAndView bookpayment(int bindNo, int sellStock ,ModelAndView mv) {
+	public ModelAndView bookpayment(int bindNo, String sellStock, ModelAndView mv) {
 		System.out.println("결제할 책 데이터 넘기기 여긴가");
-		System.out.println(bindNo);
+		System.out.println(bindNo+100000);
 		System.out.println("판매수량"+sellStock);
 		SellbookDatabind sd = service.selectBookPayment(bindNo);
+		System.out.println("야야 이거 나오니???????????? : "+sd);
 		mv.addObject("book", sd);
+		mv.addObject("shopinglistCate","B");
 		mv.addObject("sellStock",sellStock);
 		mv.setViewName("sellpart/bookpayment/bookPayment");
 		System.out.println("mv임"+mv);
