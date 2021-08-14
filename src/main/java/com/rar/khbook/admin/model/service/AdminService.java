@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.adminchart.model.vo.BookTopThree;
+import com.rar.khbook.adminchart.model.vo.EbookTopThree;
+import com.rar.khbook.adminchart.model.vo.GiftTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
@@ -184,4 +186,11 @@ public interface AdminService {
 	
 	//차트 top 3 book
 	List<BookTopThree> bookTopThree();
+	
+	//차트 top 3 ebook
+	List<EbookTopThree> ebookTopThree();
+	
+	//차트 top 3 gift
+	List<GiftTopThree> giftTopThree();
+	
 }

@@ -248,156 +248,207 @@
 			</otherwise>
 		</choose>
 	</select>
-	
+
+	<!-- 검색 조건에 부합하는 도서 조회 -->
 	<select id="searchBook" resultMap="ebookDatabindMap">
 		SELECT * FROM BOOK_EBOOK_DATABIND B, EBOOK E
-		WHERE B.BIND_NO=E.EBOOK_NO(+)
+		WHERE
+		B.BIND_NO=E.EBOOK_NO(+)
 		AND ${searchType} LIKE '%'||#{keyword}||'%'
-		AND CATEGORY_CODE=#{categoryCode}
-		ORDER BY 
+		AND
+		CATEGORY_CODE=#{categoryCode}
+		ORDER BY
 		<choose>
-			<when test="importancePubdate>importanceSales and importanceSales>importanceRating and importanceRating>importancePrice">
+			<when
+				test="importancePubdate>importanceSales and importanceSales>importanceRating and importanceRating>importancePrice">
 				PRICE ${priceOrder},
 				RATING ${ratingOrder},
-				B.SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME
+				${salesOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
-			<when test="importancePubdate>importanceSales and importanceSales>importancePrice and importancePrice>importanceRating">
+			<when
+				test="importancePubdate>importanceSales and importanceSales>importancePrice and importancePrice>importanceRating">
 				RATING ${ratingOrder},
 				PRICE ${priceOrder},
-				B.SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME
+				${salesOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
-			<when test="importancePubdate>importancePrice and importancePrice>importanceSales and importanceSales>importanceRating">
+			<when
+				test="importancePubdate>importancePrice and importancePrice>importanceSales and importanceSales>importanceRating">
 				RATING ${ratingOrder},
 				B.SALES_VOLUME ${salesOrder},
-				PRICE ${priceOrder},
+				PRICE
+				${priceOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
-			<when test="importancePubdate>importancePrice and importancePrice>importanceRating and importanceRating>importanceSales">
+			<when
+				test="importancePubdate>importancePrice and importancePrice>importanceRating and importanceRating>importanceSales">
 				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
-				PRICE ${priceOrder},
+				PRICE
+				${priceOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
-			<when test="importancePubdate>importanceRating and importanceRating>importanceSales and importanceSales>importancePrice">
+			<when
+				test="importancePubdate>importanceRating and importanceRating>importanceSales and importanceSales>importancePrice">
 				PRICE ${priceOrder},
 				B.SALES_VOLUME ${salesOrder},
-				RATING ${ratingOrder},
+				RATING
+				${ratingOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
-			<when test="importancePubdate>importanceRating and importanceRating>importancePrice and importancePrice>importanceSales">
+			<when
+				test="importancePubdate>importanceRating and importanceRating>importancePrice and importancePrice>importanceSales">
 				B.SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder},
-				RATING ${ratingOrder},
+				RATING
+				${ratingOrder},
 				PUBDATE ${pubdateOrder}
 			</when>
-			<when test="importanceSales>importancePubdate and importancePubdate>importanceRating and importanceRating>importancePrice">
+			<when
+				test="importanceSales>importancePubdate and importancePubdate>importanceRating and importanceRating>importancePrice">
 				PRICE ${priceOrder},
 				RATING ${ratingOrder},
-				PUBDATE ${pubdateOrder},
+				PUBDATE
+				${pubdateOrder},
 				B.SALES_VOLUME ${salesOrder}
 			</when>
-			<when test="importanceSales>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceRating">
+			<when
+				test="importanceSales>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceRating">
 				RATING ${ratingOrder},
 				PRICE ${priceOrder},
-				PUBDATE ${pubdateOrder},
+				PUBDATE
+				${pubdateOrder},
 				B.SALES_VOLUME ${salesOrder}
 			</when>
-			<when test="importanceSales>importanceRating and importanceRating>importancePubdate and importancePubdate>importancePrice">
+			<when
+				test="importanceSales>importanceRating and importanceRating>importancePubdate and importancePubdate>importancePrice">
 				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder},
-				RATING ${ratingOrder},
+				RATING
+				${ratingOrder},
 				B.SALES_VOLUME ${salesOrder}
 			</when>
-			<when test="importanceSales>importanceRating and importanceRating>importancePrice and importancePrice>importancePubdate">
+			<when
+				test="importanceSales>importanceRating and importanceRating>importancePrice and importancePrice>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder},
-				RATING ${ratingOrder},
+				RATING
+				${ratingOrder},
 				B.SALES_VOLUME ${salesOrder}
 			</when>
-			<when test="importanceSales>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceRating">
+			<when
+				test="importanceSales>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceRating">
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder},
-				PRICE ${priceOrder},
+				PRICE
+				${priceOrder},
 				B.SALES_VOLUME ${salesOrder}
 			</when>
-			<when test="importanceSales>importancePrice and importancePrice>importanceRating and importanceRating>importancePubdate">
+			<when
+				test="importanceSales>importancePrice and importancePrice>importanceRating and importanceRating>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder},
-				PRICE ${priceOrder},
+				PRICE
+				${priceOrder},
 				B.SALES_VOLUME ${salesOrder}
 			</when>
-			<when test="importanceRating>importanceSales and importanceSales>importancePrice and importancePrice>importancePubdate">
+			<when
+				test="importanceRating>importanceSales and importanceSales>importancePrice and importancePrice>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				PRICE ${priceOrder},
-				B.SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME
+				${salesOrder},
 				RATING ${ratingOrder}
 			</when>
-			<when test="importanceRating>importanceSales and importanceSales>importancePubdate and importancePubdate>importancePrice">
+			<when
+				test="importanceRating>importanceSales and importanceSales>importancePubdate and importancePubdate>importancePrice">
 				PRICE ${priceOrder},
 				PUBDATE ${pubdateOrder},
-				B.SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME
+				${salesOrder},
 				RATING ${ratingOrder}
 			</when>
-			<when test="importanceRating>importancePubdate and importancePubdate>importanceSales and importanceSales>importancePrice">
+			<when
+				test="importanceRating>importancePubdate and importancePubdate>importanceSales and importanceSales>importancePrice">
 				PRICE ${priceOrder},
 				B.SALES_VOLUME ${salesOrder},
-				PUBDATE ${pubdateOrder},
+				PUBDATE
+				${pubdateOrder},
 				RATING ${ratingOrder}
 			</when>
-			<when test="importanceRating>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceSales">
+			<when
+				test="importanceRating>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceSales">
 				B.SALES_VOLUME ${salesOrder},
 				PRICE ${priceOrder},
-				PUBDATE ${pubdateOrder},
+				PUBDATE
+				${pubdateOrder},
 				RATING ${ratingOrder}
 			</when>
-			<when test="importanceRating>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceSales">
+			<when
+				test="importanceRating>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceSales">
 				B.SALES_VOLUME ${salesOrder},
 				PUBDATE ${pubdateOrder},
-				PRICE ${priceOrder},
+				PRICE
+				${priceOrder},
 				RATING ${ratingOrder}
 			</when>
-			<when test="importanceRating>importancePrice and importancePrice>importanceSales and importanceSales>importancePubdate">
+			<when
+				test="importanceRating>importancePrice and importancePrice>importanceSales and importanceSales>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				B.SALES_VOLUME ${salesOrder},
-				PRICE ${priceOrder},
+				PRICE
+				${priceOrder},
 				RATING ${ratingOrder}
 			</when>
-			<when test="importancePrice>importanceRating and importanceRating>importancePubdate and importancePubdate>importanceSales">
+			<when
+				test="importancePrice>importanceRating and importanceRating>importancePubdate and importancePubdate>importanceSales">
 				B.SALES_VOLUME ${salesOrder},
 				PUBDATE ${pubdateOrder},
-				RATING ${ratingOrder},
+				RATING
+				${ratingOrder},
 				PRICE ${priceOrder}
 			</when>
-			<when test="importancePrice>importanceRating and importanceRating>importanceSales and importanceSales>importancePubdate">
+			<when
+				test="importancePrice>importanceRating and importanceRating>importanceSales and importanceSales>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				B.SALES_VOLUME ${salesOrder},
-				RATING ${ratingOrder},
+				RATING
+				${ratingOrder},
 				PRICE ${priceOrder}
 			</when>
-			<when test="importancePrice>importanceSales and importanceSales>importanceRating and importanceRating>importancePubdate">
+			<when
+				test="importancePrice>importanceSales and importanceSales>importanceRating and importanceRating>importancePubdate">
 				PUBDATE ${pubdateOrder},
 				RATING ${ratingOrder},
-				B.SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME
+				${salesOrder},
 				PRICE ${priceOrder}
 			</when>
-			<when test="importancePrice>importanceSales and importanceSales>importancePubdate and importancePubdate>importanceRating">
+			<when
+				test="importancePrice>importanceSales and importanceSales>importancePubdate and importancePubdate>importanceRating">
 				RATING ${ratingOrder},
 				PUBDATE ${pubdateOrder},
-				B.SALES_VOLUME ${salesOrder},
+				B.SALES_VOLUME
+				${salesOrder},
 				PRICE ${priceOrder}
 			</when>
-			<when test="importancePrice>importancePubdate and importancePubdate>importanceRating and importanceRating>importanceSales">
+			<when
+				test="importancePrice>importancePubdate and importancePubdate>importanceRating and importanceRating>importanceSales">
 				B.SALES_VOLUME ${salesOrder},
 				RATING ${ratingOrder},
-				PUBDATE ${pubdateOrder},
+				PUBDATE
+				${pubdateOrder},
 				PRICE ${priceOrder}
 			</when>
-			<when test="importancePrice>importancePubdate and importancePubdate>importanceSales and importanceSales>importanceRating">
+			<when
+				test="importancePrice>importancePubdate and importancePubdate>importanceSales and importanceSales>importanceRating">
 				RATING ${ratingOrder},
 				B.SALES_VOLUME ${salesOrder},
-				PUBDATE ${pubdateOrder},
+				PUBDATE
+				${pubdateOrder},
 				PRICE ${priceOrder}
 			</when>
 			<otherwise>
@@ -408,4 +459,60 @@
 			</otherwise>
 		</choose>
 	</select>
+
+	<!-- 구매할 도서 조회 -->
+	<select id="selectBook" resultMap="ebookDatabindMap">
+		SELECT * FROM
+		BOOK_EBOOK_DATABIND WHERE BIND_NO = #{bindNo}
+	</select>
+
+	<!-- 구매한 이북인지 확인 -->
+	<select id="checkEbook" resultMap="ebookDatabindMap">
+		SELECT * FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID = #{memberId} AND EBOOK_NO =
+		#{bindNo}
+	</select>
+	
+	<!-- 주문 저장 -->
+	<insert id="insertOrder">
+		INSERT INTO ORDERT VALUES(#{merchantUid},
+		#{orderVolume}, 0,
+		#{memberId}, NULL,
+		#{orderStatus},
+		#{orderPoint}, #{paidAmount},
+		SYSDATE,
+		'널풀어줘요',
+		'널풀어줘요',
+		'널풀어줘요', '널풀어줘요')
+		<!-- #{memberName}, #{memberPhone}, #{memberEmail}, #{memberAdrress}) -->
+	</insert>
+
+	<!-- 주문 상세 저장 -->
+	<insert id="insertEbookOrderList">
+		INSERT INTO EBOOK_ORDER_LIST VALUES(#{merchantUid},
+		#{bindNo},
+		#{orderVolume})
+	</insert>
+
+	<!-- 회원에 이북 등록 -->
+	<insert id="insertMemberEbookList">
+		INSERT INTO MEMBER_EBOOK_LIST VALUES(#{memberId},
+		#{bindNo}, null, 1)
+	</insert>
+
+	<!-- 결제 저장 -->
+	<insert id="insertPayment">
+		INSERT INTO PAYMENT VALUES(#{paymentId},
+		#{merchantUid}, #{payMethod},
+		#{paidAmount}, #{paidAt}, #{pgProvide},
+		#{receiptUrl}, #{merchantUid})
+	</insert>
+
+	<!-- 이북 판매량 추가 -->
+	<update id="updateBookEbookDatabind">
+		UPDATE BOOK_EBOOK_DATABIND SET EBOOK_SALES_VOLUME =
+		((SELECT
+		EBOOK_SALES_VOLUME FROM BOOK_EBOOK_DATABIND WHERE BIND_NO =
+		#{bindNo}) + 1) WHERE BIND_NO =
+		#{bindNo}
+	</update>
 </mapper>

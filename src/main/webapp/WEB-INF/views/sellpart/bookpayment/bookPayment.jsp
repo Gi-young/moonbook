@@ -4,15 +4,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <c:set var="FmtTotalPrice" value="${(book.price*0.9)*sellStock+3000 }" />
-
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script>IMP.init("imp26745696");</script>
 <link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <link rel="stylesheet" href="${path }/resources/css/order/layout.css">
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value="" />
 </jsp:include>
 <jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
-<jsp:param name="" value=""/>
+	<jsp:param name="" value="" />
 </jsp:include>
 <div class="wrap">
 	<div class="orderHead">
@@ -20,78 +23,94 @@
 	</div>
 	<div class="container margin_bottom3em">
 		<form action="#">
-			<div class="orderInfoBox">
-				<div class="infoTitle">
-					<h3>배송 정보</h3>
+			<c:if test="${shopinglistCate != 'E'}">
+				<div class="orderInfoBox">
+					<div class="infoTitle">
+						<h3>배송 정보</h3>
+					</div>
+					<div class="tbl_box">
+						<table class="tbl_deli">
+							<tr class="tbl_first">
+								<th>주문하신 분</th>
+								<td><input type="text" name="memberName"
+									value="${loginMember.memberName }" readOnly></td>
+								<td><input type="hidden" name="memberId"
+									value="${loginMember.memberId }" readOnly></td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td><input type="email" name="memberEmail"
+									value="${loginMember.memberEmail }" readOnly></td>
+							</tr>
+							<tr>
+								<th>보내는 분</th>
+								<td><input type="radio" id="oldAddress"
+									name="memberAddress" checked><label for="oldAddress">기존주소</label>
+									<input type="radio" id="newAddress" name="memberAddress"><label
+									for="newAddress">새주소</label><br> <br> <input
+									type="text" name="" id="deliAddress"
+									value="${loginMember.memberAddress }"></td>
+								<!-- <td><input type="hidden" name="" id="deliAddressMy2" value="보내는 분의 주소를 입력해 주세요" ></td> -->
+							</tr>
+							<tr>
+								<th>보내는 분 연락처</th>
+								<td><input type="text" name="memberPhone"
+									value="${loginMember.memberPhone }" readOnly></td>
+							</tr>
+							<tr>
+								<th>받는 분</th>
+								<td><input type="radio" id="sender" name="senderSender"
+									checked><label for="sender">나에게 보내기</label> <input
+									type="radio" id="other" name="senderSender"><label
+									for="other">다른사람에게 보내기</label><br> <br> <input
+									type="text" name="" id="deliAddressSender"
+									value="${loginMember.memberAddress }"></td>
+							</tr>
+
+
+							<tr>
+								<th>받는 분 연락처</th>
+								<td><input type="checkbox" id="phone" name="samePhone"
+									checked><label for="phone">주문자와 동일</label><br> <br>
+									<input type="text" id="senderPhone"
+									value="${loginMember.memberPhone }"></td>
+							</tr>
+							<tr class="tbl_last">
+								<th>주문시 요청사항</th>
+								<td><textarea cols="46" rows="3" name=""
+										placeholder="주문시 요청사항을 입력하세요." style="resize: none;"></textarea></td>
+							</tr>
+						</table>
+					</div>
 				</div>
-				<div class="tbl_box">
-					<table class="tbl_deli">
-						<tr class="tbl_first">
-							<th>주문하신 분</th>
-							<td><input type="text" name="memberName" value="${loginMember.memberName }" readOnly></td>
-							<td><input type="hidden" name="memberId" value="${loginMember.memberId }" readOnly></td>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td><input type="email" name="memberEmail" value="${loginMember.memberEmail }" readOnly></td>
-						</tr>
-						<tr>
-							<th>보내는 분</th>
-							<td><input type="radio" id="oldAddress" name="memberAddress" checked><label
-								for="oldAddress">기존주소</label> 
-								<input type="radio"	id="newAddress" name="memberAddress"><label for="newAddress">새주소</label><br><br>							
-							<input type="text" name="" id="deliAddress" value="${loginMember.memberAddress }"></td>
-							<!-- <td><input type="hidden" name="" id="deliAddressMy2" value="보내는 분의 주소를 입력해 주세요" ></td> -->
-						</tr>
-						<tr>
-							<th>보내는 분 연락처</th>
-							<td><input type="text" name="memberPhone" value="${loginMember.memberPhone }" readOnly></td>
-						</tr>
-						<tr>
-							<th>받는 분</th>
-							<td><input type="radio" id="sender" name="senderSender" checked><label
-								for="sender">나에게 보내기</label> 
-								<input type="radio" id="other" name="senderSender"><label for="other">다른사람에게 보내기</label><br><br>
-								<input type="text" name="" id="deliAddressSender" value="${loginMember.memberAddress }"></td>
-						</tr>
-						
-						
-						<tr>
-							<th>받는 분 연락처</th>
-							<td><input type="checkbox" id="phone" name="samePhone" checked><label
-								for="phone">주문자와 동일</label><br><br>
-								<input type="text" id="senderPhone" value="${loginMember.memberPhone }"> </td>
-						</tr>
-						<tr class="tbl_last">
-							<th>주문시 요청사항</th>
-							<td><textarea cols="46" rows="3" name="" placeholder="주문시 요청사항을 입력하세요." style="resize:none;"></textarea></td>
-						</tr>
-					</table>
+				<div class="orderInfoBox">
+					<div class="infoTitle">
+						<h3>배송 방법 선택</h3>
+					</div>
+					<div class="tbl_box">
+						<table class="tbl_deli">
+							<tr class="tbl_first">
+								<th rowspan="2" class="tbl_row2">배송방법</th>
+								<td><input type="radio" id="pre" name="deliMethod" checked><label
+									for="pre">선불</label> <input type="radio" id="after"
+									name="deliMethod"> <label for="after">착불</label></td>
+							</tr>
+							<tr>
+								<td id="preMsg">배송비는 <fmt:formatNumber value="3000"
+										type="currency" />입니다.
+								</td>
+								<td id="afterMsg" style="display: none">착불. 배송비 <fmt:formatNumber
+										value="0" type="currency" /></td>
+							</tr>
+							<tr class="tbl_last">
+								<th>배송요청사항</th>
+								<td><textarea cols="46" rows="3" name=""
+										placeholder="배송시 요청사항을 입력하세요." style="resize: none;"></textarea></td>
+							</tr>
+						</table>
+					</div>
 				</div>
-			</div>
-			<div class="orderInfoBox">
-				<div class="infoTitle">
-					<h3>배송 방법 선택</h3>
-				</div>
-				<div class="tbl_box">
-					<table class="tbl_deli">
-						<tr class="tbl_first">
-							<th rowspan="2" class="tbl_row2">배송방법</th>
-							<td><input type="radio" id="pre" name="deliMethod" checked><label
-								for="pre">선불</label> <input type="radio" id="after" name="deliMethod">
-								<label for="after">착불</label></td>
-						</tr>
-						<tr>
-							<td id="preMsg">배송비는 <fmt:formatNumber value="3000" type="currency"/>입니다.</td>
-							<td id="afterMsg" style="display:none">착불. 배송비 <fmt:formatNumber value="0" type="currency"/></td>
-						</tr>
-						<tr class="tbl_last">
-							<th>배송요청사항</th>
-							<td><textarea cols="46" rows="3" name="" placeholder="배송시 요청사항을 입력하세요." style="resize:none;"></textarea></td>
-						</tr>
-					</table>
-				</div>
-			</div>
+			</c:if>
 			<div class="orderInfoBox">
 				<div class="infoTitle">
 					<h3>주문 상품 정보</h3>
@@ -108,10 +127,30 @@
 						<tr>
 							<td><img src="${book.image }"></td>
 							<td>${book.title }</td>
-							<td><fmt:formatNumber value="${book.price*0.9 }" type="currency"/></td>
-							<td>${book.stock } 개</td>
-							<td>${sellStock } 개</td>
-							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock }" type="currency"/></td>
+							<c:if test="${shopinglistCate == 'B'}">
+								<td><fmt:formatNumber value="${book.price*0.9 }"
+										type="currency" /></td>
+							</c:if>
+							<c:if test="${shopinglistCate == 'E'}">
+								<td><fmt:formatNumber value="${book.price }"
+										type="currency" /></td>
+							</c:if>
+							<c:if test="${shopinglistCate == 'B'}">
+
+								<td>${book.stock }개</td>
+							</c:if>
+							<c:if test="${shopinglistCate == 'E'}">
+								<td id="orderVolume">1개</td>
+							</c:if>
+							<td>${sellStock }개</td>
+							<c:if test="${shopinglistCate == 'B'}">
+								<td><fmt:formatNumber
+										value="${(book.price*0.9)*sellStock }" type="currency" /></td>
+							</c:if>
+							<c:if test="${shopinglistCate == 'E'}">
+								<td><fmt:formatNumber value="${book.price }"
+										type="currency" /></td>
+							</c:if>
 						</tr>
 
 					</table>
@@ -119,32 +158,53 @@
 			</div>
 			<div class="orderInfoBox margin_bottom3em">
 				<div class="infoTitle">
-				
+
 					<h3>결제 정보</h3>
 				</div>
 				<div class="tbl_box">
 					<table class="tbl_payment">
 						<tr class="tbl_first">
 							<td>도서 금액</td>
-							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock }" type="currency"/></td>
+							<c:if test="${shopinglistCate == 'B' }">
+								<td><fmt:formatNumber
+										value="${(book.price*0.9)*sellStock }" type="currency" /></td>
+							</c:if>
+							<c:if test="${shopinglistCate == 'E'}">
+								<td><fmt:formatNumber value="${book.price }"
+										type="currency" /></td>
+							</c:if>
 							<td>+</td>
 							<td>배송비</td>
-							<td id="delifee"><fmt:formatNumber value="3000" type="currency"/></td>
+							<c:if test="${shopinglistCate  == 'B'}">
+								<td id="delifee"><fmt:formatNumber value="3000"
+										type="currency" /></td>
+							</c:if>
+							<c:if test="${shopinglistCate == 'E' }">
+								<td id="delifee"><fmt:formatNumber value="0"
+										type="currency" /></td>
+							</c:if>
 							<td>=</td>
-							<td>총 </td>
-							<td id="totalfee"><fmt:formatNumber value="${(book.price*0.9)*sellStock+3000 }" type="currency"/></td>
+							<td>총</td>
+							<c:if test="${shopinglistCate == 'B' }">
+								<td id="totalfee"><fmt:formatNumber
+										value="${(book.price*0.9)*sellStock+3000 }" type="currency" /></td>
+
+							</c:if>
+							<c:if test="${shopinglistCate == 'E'}">
+								<td id="totalfee"><fmt:formatNumber value="${book.price}"
+										type="currency" /></td>
+							</c:if>
 						</tr>
 					</table>
 				</div>
 			</div>
 		</form>
-			<div class="btnCenter">
-				<button class="btnPay">결제하기</button>
-			</div>
+		<div class="btnCenter">
+			<button class="btnPay" id="pay">결제하기</button>
+		</div>
 	</div>
 </div>
-<div id=divhidden>
-</div>
+<div id=divhidden></div>
 <%-- <input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock+3000 }"> --%>
 <input type="hidden" id="loginMember" value="${loginMember.memberId}">
 <input type="hidden" id="sellStock" value="${sellStock}">
@@ -170,6 +230,119 @@ tp.setAttribute("type","hidden");
 tp.setAttribute("id","totalPrice");
 tp.value="${(book.price*0.9)*sellStock+3000 }";
 divHidden.appendChild(tp);
+
+if(${shopinglistCate=='E'}){
+	$("#pay").click(e=>{
+		$.ajax({
+             url: "${path}/ebook/getMerchantUid.do",
+             type: "POST",
+             success: data => {
+                merchant_uid = data;
+                console.log(data);
+                IMP.request_pay({
+                	pg:"html5_inicis",
+                	pay_method:"card",
+                	merchant_uid:merchant_uid,
+                	buyer_name:"${loginMember.memberName}",
+                	buyer_email:"${loginMember.memberEmail}",
+                	name:"${book.title}",
+                	/* amount:Number("${book.price}") */
+                	amount:100
+                	}, function(rsp){
+                		if(rsp.success){               				
+							$.ajax({
+								url:"${path}/EbookControllerSm/orderOne.do",
+								type:"POST",
+								dataType:"json",
+								data:{									
+									paymentId: rsp.imp_uid,
+                                    merchantUid: rsp.merchant_uid,
+                                    memberId: "${loginMember.memberId}",
+                                    payMethod: rsp.pay_method,
+                                    paidAmount: rsp.paid_amount,
+                                    paidAt: rsp.paid_at,
+                                    pgProvider: rsp.pg_provider,
+                                    receiptUrl: rsp.receipt_url,
+									orderVolume:1,
+									bindNo:"${book.bindNo}",
+									orderStatus:"결제완료"
+								},
+								success: data=>{
+									if(data=='1'){
+										location.assign('${path}/');
+									}else{
+										alert("실패");
+									}
+								},
+								error: error=>{
+										alert("실패");									
+								}
+                			})
+                		}else{
+                			console.log(rsp.error_msg);
+                		}
+                	}                		                	
+            	 );
+			}
+		});
+	});
+}
+if(${shopinglistCate=='B'}){
+	$("#pay").click(e=>{
+		$.ajax({
+             url: "${path}/ebook/getMerchantUid.do",
+             type: "POST",
+             success: data => {
+                merchant_uid = data;
+                console.log(data);
+                IMP.request_pay({
+                	pg:"html5_inicis",
+                	pay_method:"card",
+                	merchant_uid:merchant_uid,
+                	buyer_name:"${loginMember.memberName}",
+                	buyer_email:"${loginMember.memberEmail}",
+                	name:"${book.title}",
+                	/* amount:Number("${book.price}") */
+                	amount:100000
+                	}, function(rsp){
+                		if(rsp.success){               				
+							$.ajax({
+								url:"${path}/EbookControllerSm/orderOne.do",
+								type:"POST",
+								dataType:"json",
+								data:{									
+									paymentId: rsp.imp_uid,
+                                    merchantUid: rsp.merchant_uid,
+                                    memberId: "${loginMember.memberId}",
+                                    payMethod: rsp.pay_method,
+                                    paidAmount: rsp.paid_amount,
+                                    paidAt: rsp.paid_at,
+                                    pgProvider: rsp.pg_provider,
+                                    receiptUrl: rsp.receipt_url,
+									orderVolume:1,
+									bindNo:"${book.bindNo}",
+									orderStatus:"결제완료"
+								},
+								success: data=>{
+									if(data=='1'){
+										location.assign('${path}/');
+									}else{
+										alert("실패");
+									}
+								},
+								error: error=>{
+										alert("실패");									
+								}
+                			})
+                		}else{
+                			console.log(rsp.error_msg);
+                		}
+                	}                		                	
+            	 );
+			}
+		});
+	});
+}
 
 $("input[id=pre]").click(e=>{
 	document.getElementById("totalPrice").remove();
@@ -290,16 +463,16 @@ $("input[name=deliMethod]").change(e=>{
 
 
 
-<%System.out.println("test : " + session.getAttribute("loginMember")); %>
+<%
+System.out.println("test : " + session.getAttribute("loginMember"));
+%>
 
 
 
 <!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<!-- iamport.payment.js -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
-<script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script> 
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<%-- <script src="${path}/resources/js/sellpart/baguni/Baguni.js"></script> --%>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />

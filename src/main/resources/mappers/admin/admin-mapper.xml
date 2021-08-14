@@ -682,7 +682,7 @@
 			FROM BOOK_EBOOK_DATABIND ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME DESC NULLS LAST
   		)B
   		WHERE ROWNUM &lt; 4  -->
-  	        		SELECT TITLE AS bTitle ,(PRICE-PRIME_COST)*SALES_VOLUME AS btotalcost ,PRICE-PRIME_COST AS BPROFIT, SALES_VOLUME 
+  	        		SELECT TITLE AS bTitle ,(PRICE-PRIME_COST)*SALES_VOLUME AS btotalcost ,PRICE-PRIME_COST AS BPROFIT, PRICE*SALES_VOLUME AS bcost 
 			FROM BOOK_EBOOK_DATABIND where rownum &lt;4 ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME DESC NULLS LAST 
   		
   	</select>
@@ -690,14 +690,28 @@
 		<result column="SALES_VOLUME" property="bsalesVolume" />	
 	</resultMap>
   	
-  	<!-- <select id="ebookTopThree" resultMap="ebookDatabindMap">
-  		SELECT ROWNUM,E.*
-  		FROM(
-  			SELECT TITLE ,(PRICE-PRIME_COST)*EBOOK_SALES_VOLUME AS 매출액 ,PRICE-PRIME_COST AS 이익, EBOOK_SALES_VOLUME
-			FROM BOOK_EBOOK_DATABIND ORDER BY (PRICE-PRIME_COST)*EBOOK_SALES_VOLUME DESC NULLS LAST
-  		)E
-  		WHERE ROWNUM <=3;
-  	</select> -->
+  	<resultMap type="ebooktopthree" id="ebooktopthreeMap">
+  		<result column="EBTITLE" property="ebtitle"/>
+  		<result column="EBTOTALCOST" property="ebtotalcost"/>
+  		<result column="EBPROFIT" property="ebprofit"/>
+		<result column="EBCOST" property="ebcost" />	
+	</resultMap>
+  	
+  	<select id="ebookTopThree" resultMap="ebooktopthreeMap">
+  		SELECT TITLE AS ebTitle ,(PRICE-PRIME_COST)*EBOOK_SALES_VOLUME AS ebtotalcost ,PRICE-PRIME_COST AS eBPROFIT, PRICE*EBOOK_SALES_VOLUME AS EBCOST
+			FROM BOOK_EBOOK_DATABIND where rownum &lt;4 ORDER BY (PRICE-PRIME_COST)*EBOOK_SALES_VOLUME DESC NULLS LAST
+  	</select> 
+  	
+  	<resultMap type="gifttopthree" id="gifttopthreeMap">
+  		<result column="NGTITLE" property="ngtitle"/>
+  		<result column="NGIFTTOTALCOST" property="ngiftTotalcost"/>
+  		<result column="NGIFTPROFIT" property="ngiftProfit"/>
+		<result column="NGIFTCOST" property="ngiftCost" />	
+	</resultMap>
+  	<select id="giftTopThree" resultMap="gifttopthreeMap">
+  		SELECT NGIFT_TITLE AS ngtitle ,(NGIFT_PRICE-NGIFT_COUNT)*NGIFT_SALESVOLUME AS ngiftTotalcost ,NGIFT_PRICE-NGIFT_COUNT AS ngiftProfit, NGIFT_PRICE*NGIFT_SALESVOLUME AS NGIFTCOST
+			FROM NGIFT where rownum &lt;4 ORDER BY (NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME DESC NULLS LAST 
+  	</select>
   	
   	
   	
