@@ -75,6 +75,8 @@
 			alias="giftCate" />
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftBoard"
 			alias="giftBoard" />
+		<typeAlias type="com.rar.khbook.gift.model.vo.GiftOrder" 
+			alias="giftOrder" />	
 
 		<!-- 배송 -->
 		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery"

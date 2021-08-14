@@ -336,8 +336,9 @@ public class GiftController {
 	  
 	  System.out.println("url 타고 넘어온 파람값 : "+param);
 	  System.out.println(param.get("giftNo"));
+	  System.out.println(param.get("quan"));	  
 	  int result = service.insertShopingList(param);
-	  System.out.println("리절트 넌 뭐니?? "+result);
+	  System.out.println("장바구니 등록 했으면 1임 : "+result);
 	  mv.addObject("msg", result>0?"장바구니에 등록되었습니다.":"장바구니에 등록에 실패했습니다.");
 	  mv.addObject("loc", "/gift/giftDetail.do?giftNo="+param.get("giftNo"));
 	  mv.setViewName("common/msg");

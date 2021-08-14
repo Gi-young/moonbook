@@ -13,12 +13,9 @@
 		</association>
 	</resultMap>
 	
-		
-	<insert id="insertShopingList">
-		INSERT INTO SHOPING_LIST VALUES (SEQ_SHOPINGLIST_NO.NEXTVAL,#{shopingList_cate},#{memberId})
-		<selectKey keyProperty="shopingListNo" resultType="_int" order="AFTER">
-			SELECT SEQ_SHOPINGLIST_NO.CURRVAL FROM DUAL
-		</selectKey>
+			
+	<insert id="createShopingList">
+		INSERT INTO SHOPING_LIST VALUES('G', #{memberId}, SYSDATE)
 	</insert>
 	
 	<insert id="insertShopingListBook">

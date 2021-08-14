@@ -184,4 +184,5 @@ public interface AdminService {
 	
 	//차트 top 3 book
 	List<BookTopThree> bookTopThree();
+
 }

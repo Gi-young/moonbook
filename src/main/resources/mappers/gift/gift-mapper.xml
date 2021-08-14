@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="gift">
 
+	<resultMap type="giftOrder" id="giftOrderMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="NGIFT_NO" property="giftNo"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+	</resultMap>
+
 	<resultMap type="nGift" id="giftMap">
 		<id column="NGIFT_NO" property="gift_no"/>
 		<result column="NGIFT_TITLE" property="gift_title"/>
@@ -41,9 +47,9 @@
 		<result column="NGIFT_SCORE" property="gift_score"/>
 	</resultMap>
 
-	<select id="selectGiftAll" resultMap="giftMap">
+    <select id="selectGiftAll" resultMap="giftMap">
 		SELECT * FROM NGIFT
-	</select> 
+	</select>  
 	
     <insert id="insertGift">
 		INSERT INTO NGIFT VALUES(SEQ_GIFT_NO.NEXTVAL, #{title}, #{img}, #{price}, #{brand}, #{maker}, 12, DEFAULT, #{productType}, DEFAULT, 'N', DEFAULT)	
@@ -81,15 +87,12 @@
 		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%문구%' OR '%학용품%'
 	</select>
 	
-	<insert id="insertShopingList">
-		INSERT INTO SHOPINGLIST_CATE VALUES(SEQ_SHOPINGLIST_NO.NEXTVAL, G, #{memberId})
-		<selectKey keyProperty="shopingListNo" resultType="_int" order="AFTER">
-			SELECT SEQ_SHOPINGLIST_NO.CURRVAL FROM DUAL
-		</selectKey>
-	</insert>
+	<select id="selectShopingList" resultMap="giftOrderMap">
+		SELECT * FROM SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
 	
 	<insert id="insertShopingGift">
-		INSERT INTO BOOK_SHOPING_LIST VALUES(#{shopingListNo},#{giftNo},#{shopingListCount})
+		INSERT INTO BOOK_SHOPING_LIST VALUES(#{memberId}, #{giftNo}, #{shopingListCount})
 	</insert>
 	
 </mapper>

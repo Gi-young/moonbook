@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.rar.khbook.gift.model.dao.GiftDao;
 import com.rar.khbook.gift.model.vo.GiftBoard;
+import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -67,22 +68,33 @@ public class GiftServiceImpl implements GiftService {
 		int totalData = dao.selectReviewAll(session, giftNo);
 		return totalData;
 	}
+		
 	
 	@Override
 	public int insertShopingList(Map param) {
-		// TODO Auto-generated method stub
+		
+		System.out.println(param.get("memberId"));
+		System.out.println(param.get("giftNo"));
+		System.out.println(param.get("quan"));
+		Member m = dao.selectShopingMember(session, param);
+		System.out.println("디비에서 뽑아 온 멤버 : "+m);
 		try {
-			int result = dao.insertShopingList(session, param);
-			
-			if(result > 0) {
-				int rs = dao.insertShopingGift(session,param);
+				GiftOrder go = new GiftOrder(); // 기프트 장바구니
+				go.setMemberId(String.valueOf(param.get("memberId")));
+				go.setGiftNo(Integer.parseInt(param.get("giftNo").toString()));
+				go.setShopingListCount(Integer.parseInt(param.get("quan").toString()));
+				//go = dao.selectShopingList(session, param);
+				System.out.println("지오 멤버 아이디 : "+go.getMemberId());
+			    System.out.println("그냥 멤버 아이디 : "+m.getMemberId());
+			if(go.getMemberId().equals(m.getMemberId())) {
+				int result = dao.insertShopingGift(session,go);
+				System.out.println("서비스에서 넘어온 insertShopingGift result : "+result);
 			}else {			
 				return -1;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 		return 1;
 	}

@@ -37,9 +37,9 @@ public class MemberServiceImpl implements MemberService {
 				}
 			}
 //		이용가능 여부 체크 후 쿠폰 발급
-			if (canuse.equals("Y")) {
-				dao.insertCoupon(session, m);
-			}
+			/*
+			 * if (canuse.equals("Y")) { dao.insertCoupon(session, m); }
+			 */
 		}
 		return result;
 	}
@@ -148,5 +148,11 @@ public class MemberServiceImpl implements MemberService {
 	public List<Order> ebookPurchaseList(Map<String, String> param, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return dao.ebookPurchaseList(session, param, cPage, numPerpage);
+	}
+	
+	// 회원가입 후 장바구니
+	@Override 
+	public int createShopingList(Member m) {
+		return dao.createShopingList(session, m);
 	}
 }

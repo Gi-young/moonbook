@@ -500,9 +500,7 @@ public class AdminServiceImpl implements AdminService {
 		return dao.bookTopThree(session);
 	}
 	
-	
-	
-	
+
 	
 	
 	

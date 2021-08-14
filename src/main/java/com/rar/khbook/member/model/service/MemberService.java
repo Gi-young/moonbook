@@ -54,4 +54,7 @@ public interface MemberService {
 
 //	개인 회원 이북 결제 내역 조회
 	List<Order> ebookPurchaseList(Map<String, String> param, int cPage, int numPerpage);
+	
+//  회원가입 성공시 장바구니 만들기
+	int createShopingList(Member m);
 }

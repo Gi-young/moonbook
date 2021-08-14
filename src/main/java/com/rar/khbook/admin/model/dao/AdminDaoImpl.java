@@ -519,9 +519,7 @@ public class AdminDaoImpl implements AdminDao {
 		return session.selectList("admin.bookTopThree");
 	}
 	
-	
-	
-	
+
 	
 	
 	

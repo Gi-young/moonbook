@@ -162,4 +162,5 @@ public interface AdminDao {
 	int searchGiftTotalCost(SqlSession session,Map param);
 	
 	List<BookTopThree> bookTopThree(SqlSession session);
+
 }

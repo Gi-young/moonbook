@@ -140,4 +140,14 @@ public class MemberDaoImpl implements MemberDao {
 //		return session.selectList("order.ebookPurchaseList", param, row);
 		return null;
 	}
+
+	@Override
+	public int createShopingList(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		return session.insert("shopingList.createShopingList", m.getMemberId());
+	}
+	
+	
+	
+	
 }

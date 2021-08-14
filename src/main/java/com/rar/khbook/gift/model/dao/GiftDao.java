@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.gift.model.vo.GiftBoard;
+import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
@@ -27,6 +28,9 @@ public interface GiftDao {
 
 	int selectReviewAll(SqlSession session, int giftNo);
 
-	int insertShopingList(SqlSession session, Map param);
-	int insertShopingGift(SqlSession session, Map param);	
+	Member selectShopingMember(SqlSession session, Map param);
+	
+	GiftOrder selectShopingList(SqlSession session, Map param);
+	
+	int insertShopingGift(SqlSession session, GiftOrder go);	
 }
