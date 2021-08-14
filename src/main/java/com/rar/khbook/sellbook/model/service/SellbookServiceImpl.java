@@ -89,4 +89,43 @@ public class SellbookServiceImpl implements SellbookService {
 		int totalData = dao.selectReviewAll(session, bindNo);
 		return totalData;
 	}
+
+
+
+	@Override
+	public int orderOne(Map param) {
+		// TODO Auto-generated method stub
+		 System.out.println("서비스 들어왔습니다 파람이 뭔지 볼까? : "+param);
+//		 Object addPoint=param.get("paidAmount");
+//		 System.out.println("애드포인트다 욘석아 : "+addPoint);
+		int result = dao.insertOrder(session,param);
+		if(result>0) {
+			//결제성공
+			System.out.println("서비스 결제성공했습니다");
+			result = dao.insertBookOrderList(session,param);
+			System.out.println("insertBookOrderList는 1이어야한다 : "+result);
+			if(result>0) {
+				result = dao.insertPayment(session,param);
+				System.out.println("insertPayment는 1이어야한다 : "+result);
+				result = dao.updateMemberTotalSale(session,param);
+				System.out.println("updateMemberTotalSale는 1이어야한다 : "+result);
+				result = dao.updateSalesVolume(session,param);
+				System.out.println("updateSalesVolume는 1이어야한다 : "+result+" 이고 "+param.get("bindNo"));
+				result = dao.updateStock(session,param);
+				System.out.println("updateStock는 1이어야한다 : "+result+" 이고 "+param.get("bindNo"));
+				result = dao.updateMemberPoint(session,param);
+				System.out.println("updateMemberPoint는 1이어야한다 : "+result);
+			}
+		}else {
+			//결제 실패
+			System.out.println("서비스 결제실패했습니다");
+		}
+		
+		
+		
+		return result;
+	}
+	
+	
+	
 }

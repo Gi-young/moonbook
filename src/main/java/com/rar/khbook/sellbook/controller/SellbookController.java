@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -276,4 +277,18 @@ public class SellbookController {
 		mv.setViewName("sellpart/bookDetail.do?bindNo="+bindNo);
 		return mv;
 	}
+	
+//주문, 결제
+	@RequestMapping("/SellbookController/orderOne.do")
+	@ResponseBody()
+	private String orderOne(@RequestParam Map param, @SessionAttribute("loginMember")Member m) {
+		//포인트 보류, 세션어디다쓰는지 질문
+		System.out.println("들어갑니다~ :"+param);
+		param.put("addPoint", Math.round((Integer.parseInt((String)param.get("paidAmount"))*0.1)));
+		int result = service.orderOne(param);
+		System.out.println("정상작동됐으면 1나옴 0이면 호구ㅋㅋ :"+result);
+		return ""+result;
+	}
+	
+	
 }
