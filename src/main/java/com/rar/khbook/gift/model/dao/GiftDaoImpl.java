@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
@@ -83,4 +84,12 @@ public class GiftDaoImpl implements GiftDao {
 	public int insertShopingGift(SqlSession session, GiftOrder go) {
 		return session.insert("gift.insertShopingGift",go);
 	}
+	
+//	접속한 회원에게 쿠폰이 있는지 확인
+	@Override
+	public Coupon selectCoupon(SqlSession session, String memberId) {
+		return session.selectOne("gift.selectCoupon", memberId);
+	}
+	
+	
 }

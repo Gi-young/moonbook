@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.common.PageFactory;
+import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.gift.model.service.GiftService;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
@@ -71,8 +72,18 @@ public class GiftController {
 
 // 	내 쿠폰 페이지 
 	@RequestMapping("/gift/myCoupon.do")
-	public String myCoupons() {
-		return "gift/myCoupon";
+	public ModelAndView myCoupons(String memberId, ModelAndView mv) {
+		
+		Member m = service.searchMember(memberId);
+		Coupon c = service.selectCoupon(memberId);
+		System.out.println("너 뭘로 넘어오니?? 글루글루 : "+c);
+		
+		Couponlist cl = service.selectCouponList(c);
+		
+		mv.addObject("member", m);
+		mv.addObject("coupon", c);
+		mv.setViewName("gift/myCoupon");
+		return mv;
 	}
 
 	@RequestMapping("/kakaopay.do")
@@ -346,6 +357,7 @@ public class GiftController {
 	  
 	  }
 	 
+	  
 	  
 	
 

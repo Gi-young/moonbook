@@ -14,10 +14,18 @@
 	</resultMap>
 	
 			
-	<insert id="createShopingList">
+	<insert id="createShopingListG">
 		INSERT INTO SHOPING_LIST VALUES('G', #{memberId}, SYSDATE)
 	</insert>
 	
+<!-- 	<insert id="createShopingListE">
+		INSERT INTO SHOPING_LIST VALUES('E', #{memberId}, SYSDATE)
+	</insert>
+	
+	<insert id="createShopingListB">
+		INSERT INTO SHOPING_LIST VALUES('B', #{memberId}, SYSDATE)
+	</insert>
+	 -->
 	<insert id="insertShopingListBook">
 		INSERT INTO BOOK_SHOPING_LIST VALUES (#{shopingListNo},#{bBindNo},#{shopingListCount})
 	</insert>

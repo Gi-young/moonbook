@@ -144,9 +144,10 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int createShopingList(SqlSession session, Member m) {
 		// TODO Auto-generated method stub
+		
 		return session.insert("shopingList.createShopingList", m.getMemberId());
+		
 	}
-	
 	
 	
 	

@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.gift.model.dao.GiftDao;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
@@ -99,4 +101,18 @@ public class GiftServiceImpl implements GiftService {
 		return 1;
 	}
 	
+	@Override
+	public Coupon selectCoupon(String memberId) {
+		
+		Coupon c = dao.selectCoupon(session, memberId);
+		
+		return c;
+	}
+	
+//	접속한 회원의 쿠폰 종류
+	@Override
+	public Couponlist selectCouponlist(Coupon c) {
+		Couponlist cl = dao.selectCouponlist(c);	
+		return cl;
+	}
 }

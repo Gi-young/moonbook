@@ -49,7 +49,7 @@
 	                    </div>
 	                    <div class="exp-couponBox">
 	                        <p>쿠폰등록</p>
-	                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="window.open('${path}/gift/myCoupon.do','내 쿠폰','width=430, height=500, location=no, status=no, scrollbars=yes')">
+	                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="window.open('${path}/gift/myCoupon.do?memberId=${loginMember.memberId }','내 쿠폰','width=430, height=500, location=no, status=no, scrollbars=yes')">
 	                    </div>
 	                    <div class="exp-quanBox">
 	                        <p>구매수량</p>

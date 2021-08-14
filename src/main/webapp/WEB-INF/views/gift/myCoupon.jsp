@@ -15,33 +15,41 @@
 <body style="background-color: #E5E2DB;">
     <div class="couponBox">
         <div class="flex">
-     		<p class="userName">사용자</p>님이 보유하고 계신 쿠폰은 총<p class="cp-countAll">0</p>개 입니다.
+     		<p class="userName">${member.memberName }</p>님이 보유하고 계신 쿠폰 정보입니다.
         </div>
         <div class="couponList">
             <div class="couponView"> 
                 <img src="${path }/resources/images/gift/bronzebear.png" alt="">
-                <p>보유 브론즈 쿠폰</p><p class="cp-count">숫자</p>
-                <button class="useCoupon">쿠폰사용</button>
+                <p></p><p class="cp-count"></p>
+                <button class="useCoupon" value="">쿠폰사용</button>
             </div>
-            <div class="couponView">  
+            <%-- <div class="couponView">  
                 <img src="${path }/resources/images/gift/silverbear.png" alt="">
-                <p>보유 실버 쿠폰</p><p class="cp-count">숫자</p>
-                <button class="useCoupon">쿠폰사용</button>
+                <p>보유 실버 쿠폰</p><p class="cp-count"></p>
+                <button class="useCoupon" value="실버 쿠폰">쿠폰사용</button>
             </div>
             <div class="couponView">
                 <img src="${path }/resources/images/gift/goldbear.png" alt="">
-                <p>보유 골드 쿠폰</p><p class="cp-count">숫자</p>
-                <button class="useCoupon">쿠폰사용</button>
-            </div>
-            <div class="couponView">
-                <img src="${path }/resources/images/gift/platinumbear.png" alt="">
-                <p>보유 플래티넘 쿠폰</p><p class="cp-count">숫자</p>
-                <button class="useCoupon">쿠폰사용</button>
-            </div>
+                <p>보유 골드 쿠폰</p><p class="cp-count">${coupon. }</p>
+                <button class="useCoupon" value="골드 쿠폰">쿠폰사용</button>
+            </div> --%>
         </div>
         <p class="couponMsg">＊쿠폰사용은 구매 1회당 1회로 제한됩니다.</p>
         	<div class="eventBanner">
         </div>
     </div>
+    
+    <script>
+    	const useCoupon = document.getElementsByClassName("useCoupon");
+    	
+    	console.log("유즈쿠폰 줄여서 유쿠"+useCoupon[0]);
+    	
+    	useCoupon[0].addEventListener("click", function(e) {
+    		
+    		if(confirm(e.target.value+"을 사용하시겠습니까?"))
+    	})
+    	
+    </script>
+    
 </body>
 </html>
