@@ -660,4 +660,10 @@ public class EbookController {
 		return service.lastPage(param);
 	}
 	
+	@RequestMapping(value = "/ebook/getBookCategory.do")
+	@ResponseBody
+	public List<HashMap> getBookCategory() {
+		return service.getBookCategory();
+	}
+	
 }

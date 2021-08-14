@@ -203,6 +203,6 @@
 	</delete>
 	
 	<insert id="usedboardDeliveryt">
-		INSERT INTO DELIVERYT VALUES(SEQ_DELIVERY_NO.NEXTVAL, #{usedboardPayment_Price}, '주문접수')
+		INSERT INTO DELIVERYT VALUES(SEQ_DELIVERY_NO.NEXTVAL, #{usedboardPayment_Price})
 	</insert>
 </mapper>

@@ -274,4 +274,9 @@ public class EbookServiceImpl implements EbookService {
 		return dao.getLastPage(session, bindNo, loginMemberId);
 	}
 	
+	@Override
+	public List<HashMap> getBookCategory() {
+		return dao.getBookCategory(session);
+	}
+	
 }

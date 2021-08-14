@@ -416,5 +416,9 @@
 	<select id="getLastPage" resultType="_int">
 		SELECT LAST_PAGE FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
 	</select>
+	
+	<select id="getBookCategory" resultType="hashmap">
+		SELECT * FROM BOOK_EBOOK_CATEGORY
+	</select>
 
 </mapper>
