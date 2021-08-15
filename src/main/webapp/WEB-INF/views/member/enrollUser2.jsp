@@ -34,12 +34,16 @@
 							아이디는 사용 가능합니다.</span><span class="memberIdCheck2">이 아이디는 이미
 							사용중입니다.</span> <span class="memberIdCheck3">아이디는 4글자 이상이여야 합니다.</span>
 						<p class="enrollInfo-font">비밀번호</p>
-						<input type="password" name="memberPw" placeholder="비밀번호입력"
+						<input type="password" name="memberPw" placeholder="비밀번호입력" id="memberPw1"
 							required>
+							<span class="memberPwcheck3">8자리 ~ 20자리 이내로 입력해주세요.</span>
+							<span class="memberPwcheck4">비밀번호는 공백 없이 입력해주세요.</span>
+							<span class="memberPwcheck5">영문,숫자, 특수문자를 혼합하여 입력해주세요.</span>
+							<span class="memberPwcheck6">비밀번호가 정상적으로 확인되었습니다.</span>
 						<p class="enrollInfo-font">비밀번호 재확인</p>
 						<input type="password" id="memberPw2" placeholder="비밀번호재입력"
-							required> <span class="memberPwCheck">비밀번호 일치합니다.</span><span
-							class="memberPwcheck2">비밀번호 불일치합니다.</span>
+							required> <span class="memberPwCheck">비밀번호 일치합니다.</span>
+							<span class="memberPwcheck2">비밀번호 불일치합니다.</span>
 						<p class="enrollInfo-font">이름</p>
 						<input type="text" name="memberName" placeholder="10자리 내 입력"
 							required>
@@ -124,7 +128,7 @@ function findAddr(){
     }).open();
 }
 	const fn_frmsubmit=()=>{
-		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none" && $("#wC").val()=="yes"){
+		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none" && $('.memberPwcheck6').css("display")!="none" && $("#wC").val()=="yes"){
 			let memberEmail=$("#localPart").val()+"@"+$("#domain").val();
 			document.getElementById("memberEmail").value=memberEmail;
 			return true;
@@ -165,7 +169,9 @@ function findAddr(){
 		}
 	});
 	$("#memberPw2").keyup(e =>{
-		const password=$(e.target).prev().prev().val();
+		
+		
+		const password=$("#memberPw1").val();
 		const password2=$(e.target).val();
 		
 		if(password2==password){
@@ -175,6 +181,43 @@ function findAddr(){
 			$(".memberPwcheck").hide();
 			$(".memberPwcheck2").show();
 		}
+	})
+	$("#memberPw1").keyup(e=>{
+		//영문(대소문자) 포함
+		//숫자 포함
+		//특수 문자 포함
+		//공백 x
+		//비밀번호 자리 8~20자
+		const password=$("#memberPw1").val();
+		
+		var num = password.search(/[0-9]/g);
+		var eng = password.search(/[a-z]/ig);
+		var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		
+		if(password.length<8 ||password.length>20){
+			$(".memberPwcheck3").show(); //8~20 자리 이내
+			$(".memberPwcheck4").hide();
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").hide();
+		}else if(password.search(/\s/)!=-1){
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").show(); //비밀번호 공백 없이
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").hide();
+		}else if(num<0 || eng<0||spe<0){
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").hide(); 
+			$(".memberPwcheck5").show(); //영문,숫자 특수문자 혼합
+			$(".memberPwcheck6").hide();
+		}else{
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").hide();
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").show(); //통과
+		}
+		
+		
+		
 	})
 	
 	$("#sendEmail").click(e=>{
