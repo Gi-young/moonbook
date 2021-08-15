@@ -50,8 +50,8 @@ public class UsedboardController {
 		if(keyword!=null&&searchType!=null&&memberId!=null) {
 			map.put("keyword", "'"+keyword+"'");
 	        map.put("searchType", searchType);
-	        map.put("keyword2", "memberId");
-	        map.put("searchType2", "'"+memberId+"'");
+	        map.put("keyword2", "'"+memberId+"'");
+	        map.put("searchType2", "memberId");
 	        mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
 			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);
@@ -61,8 +61,8 @@ public class UsedboardController {
 		}else if(keyword!=null&&searchType!=null&&catagory!=null) {
 			map.put("keyword", "'"+keyword+"'");
 	        map.put("searchType", searchType);
-	        map.put("keyword2", "catagory");
-	        map.put("searchType2", catagory);
+	        map.put("keyword2", "'"+catagory+"'");
+	        map.put("searchType2", "catagory");
 	        mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
 			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);

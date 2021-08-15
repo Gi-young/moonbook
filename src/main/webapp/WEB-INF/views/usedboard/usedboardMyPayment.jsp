@@ -9,7 +9,7 @@
 	<jsp:param name="title" value=""/>
 </jsp:include>
 
-	<link ref="stylesheet" type="text/css" href="${path}/resources/css/usedboard/udsedboardMyPayment.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/usedboard/usedboardMyPayment.css">
 
 	<section id="content">
 		<center>
@@ -60,10 +60,10 @@
 							<td>
 								<c:set var="i" value="${i+1 }"/>
 								<c:if test="${b.usedboardPayment_State==1 }">
-									<c:if test="${b.usedboardPayment_Cancel==n }">
+									<c:if test="${b.usedboardPayment_Cancel=='n' }">
 										<button onclick="location.assign('${path}/usedboard/cancelPayment.do?impUid=${b.imp_uid }&memberId=${b.member_Id }&no=${b.usedboardPayment_BoardNo }');">환불하기</button>
 									</c:if>
-									<c:if test="${b.usedboardPayment_Cancel!=n }">
+									<c:if test="${b.usedboardPayment_Cancel!='n' }">
 										환불완료
 									</c:if>
 								</c:if>
@@ -88,7 +88,7 @@
 						</tr>
 			        </c:forEach>
 				</table><br>
-				<div id="pageBarb">${pageBar }</div>
+				<div class="pageBar">${pageBar }</div>
 			</div>
 		</center>
 	</section>
