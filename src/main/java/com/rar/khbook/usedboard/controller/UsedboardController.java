@@ -372,21 +372,21 @@ public class UsedboardController {
 	
 	@RequestMapping("/usedboard/cancelPayment.do")
 	public ModelAndView cancelPayment(ModelAndView mv,String impUid, String memberId,int no) {
-		/*
-		 * IamportClient client=new IamportClient("0768547382405749",
-		 * "e4c8f1e4c9e5df5739bd3606eb54377dd91cb7ece251b3252997588d1aff94070c0e0fa5edbb1324"
-		 * );
-		 * 
-		 * CancelData cancelData = new CancelData(impUid, true);
-		 * 
-		 * try { IamportResponse<Payment> paymentResponse =
-		 * client.cancelPaymentByImpUid(cancelData); } catch(IamportResponseException e)
-		 * { System.out.println(e.getMessage());
-		 * 
-		 * switch(e.getHttpStatusCode()) { case 401: break;
-		 * 
-		 * case 500: break; } } catch(IOException e) { e.printStackTrace(); }
-		 */
+		
+		IamportClient client=new IamportClient("0768547382405749",
+		"e4c8f1e4c9e5df5739bd3606eb54377dd91cb7ece251b3252997588d1aff94070c0e0fa5edbb1324"
+		);
+		  
+		CancelData cancelData = new CancelData(impUid, true);
+		  
+		try { IamportResponse<Payment> paymentResponse =
+		client.cancelPaymentByImpUid(cancelData); } catch(IamportResponseException e)
+		{ System.out.println(e.getMessage());
+		  
+		switch(e.getHttpStatusCode()) { case 401: break;
+		  
+		case 500: break; } } catch(IOException e) { e.printStackTrace(); }
+		
 		int result=service.cancelPayment(no);
 		String msg="";
 		if(result>0) {
