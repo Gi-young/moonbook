@@ -12,42 +12,51 @@
 	<link rel="stylesheet" href="${path }/resources/css/usedboard/usedboardView.css">
 	
 	<section id="content">
-	<br><br>
 	    <article id="ar">
 	        <div class="divdivv">
-	            <h3 class="tit_subject" style="font-size: 40px;">${usedboard.usedboard_Title }</h3>
-	            <br>
+	            <h3 class="tit_subject">${usedboard.usedboard_Title }</h3>
+	            
 	            <span class="spandd">
-	                <a><h3 style="font-size: 25px;"><img alt="" width="30" height="30" style="border-radius: 100px; vertical-align:middle"
-	                src="${path }/resources/images/usedboard/2.jpg">${usedboard.member_Id }</h3></a>
-	                <br>
-	                <span class="numnum" style="font-size: 20px;">${usedboard.usedboard_Date }</span>
+	                <a>
+		                <h3 class="memberIdBox">
+			                <img alt="" width="30" height="30" src="${path }/resources/images/usedboard/2.jpg">
+			                &nbsp;
+			                <c:out value="${usedboard.member_Id }"/>
+		                </h3>
+	                </a>
+	                
+	                <span class="numnum">${usedboard.usedboard_Date }</span>
 	            </span>
+	            
 	            <span class="desc_subjeck">
 	                <a href="${path}/usedboard/usedboardList.do" id="gomain" role="button" class="btnbtn_1" style="font-size: 15px; cursor: pointer;">목록</a>
+	                
 	                <c:if test="${loginMember.memberId==usedboard.member_Id }">
-	                <a href="${path}/usedboard/usedboardUpdate.do?no=${no}" role="button" class="btnbtn_2" style="font-size: 15px;">수정</a>
-	                <a href="${path}/usedboard/usedboardDelete.do?no=${no}" id="deletebtn" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">삭제</a>
+	                	<a href="${path}/usedboard/usedboardUpdate.do?no=${no}" role="button" class="btnbtn_2" style="font-size: 15px;">수정</a>
+	                	<a href="${path}/usedboard/usedboardDelete.do?no=${no}" id="deletebtn" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">삭제</a>
 	                </c:if>
-	                <c:if test="${loginMember!=null }"><c:if test="${usedboard.usedboard_State=='y' }">
-	                <a href="${path}/usedboard/usedboardSingo.do?no=${no}&id=${loginMember.memberId}" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">신고</a>
-	                </c:if></c:if>
+	                
+                	<c:if test="${loginMember!=null }">
+	                	<c:if test="${usedboard.usedboard_State=='y' }">
+		                	<a href="${path}/usedboard/usedboardSingo.do?no=${no}&id=${loginMember.memberId}" role="button" class="btnbtn_2" style="font-size: 15px; cursor: pointer;">신고</a>
+		                </c:if>
+	                </c:if>
 	            </span>
 	        </div>
-	        <br>
-	        <center>
-	        <div class="view_info">
-	        <div id="slider-wrap">
-	        <ul id="slider">
-	        	<c:forEach var="b" items="${usedboard.usedboardfiles}">
-	        	
-	        	<c:set var="i" value="${i+1 }"/>
-					        <li>
-					            <img src="${path }/resources/upload/usedboard/${usedboard.usedboardfiles[i-1].usedboardfile_Rename}">
-					        </li>
-	        	</c:forEach>
-	        	</ul>
-	        	<div class="slider-btns" id="next"><span>▶</span></div>
+	        
+	        <center class="item-img-box">
+		        <div class="view_info">
+			        <div id="slider-wrap">
+				        <ul id="slider">
+				        	<c:forEach var="b" items="${usedboard.usedboardfiles}">
+				        		<c:set var="i" value="${i+1 }"/>
+						        <li>
+						            <img src="${path }/resources/upload/usedboard/${usedboard.usedboardfiles[i-1].usedboardfile_Rename}">
+						        </li>
+				        	</c:forEach>
+			        	</ul>
+			        	
+			        	<div class="slider-btns" id="next"><span>▶</span></div>
 					    <div class="slider-btns" id="previous"><span>◀</span></div>
 					
 					    <div id="slider-pagination-wrap">
@@ -55,27 +64,38 @@
 					        </ul>
 					    </div>
 					</div>
-					</div>
-					</center>
-	            <br>
-	            <center><div id="article" style="font-size: 20px;">책제목 : ${usedboard.usedboard_BookTitle } / 가격 : ${usedboard.usedboard_Price }원 / 거래상태 : 
-	            <c:if test="${usedboard.usedboard_State == 'y' }">
-	            	<span style="font-size: 20px; color: red;">
-	                	거래중 
-	                </span></c:if>
-	            <c:if test="${usedboard.usedboard_State != 'y' }">
-					<span style="font-size: 20px; color: blue;">
-	                	거래완료
-	                </span></c:if>
-	            </div></center>
-	            <div id="article" style="font-size: 20px;">${usedboard.usedboard_Content }</div><br>
-	            <c:if test="${loginMember!=null }">
+				</div>
+			</center>
+					
+            <center class="item-info-box">
+	            <div id="article" style="font-size: 20px;">책제목 : ${usedboard.usedboard_BookTitle } / 가격 : ${usedboard.usedboard_Price }원 / 거래상태 : 
+		            <c:if test="${usedboard.usedboard_State == 'y' }">
+		            	<span style="font-size: 20px; color: red;">
+		                	거래중 
+		                </span>
+		            </c:if>
+		            <c:if test="${usedboard.usedboard_State != 'y' }">
+						<span style="font-size: 20px; color: blue;">
+		                	거래완료
+		                </span>
+		            </c:if>
+	            </div>
+	            
+	            <div class="item-content">${usedboard.usedboard_Content }</div>
+            </center>
+	            
+            
+            
+            <c:if test="${loginMember!=null }">
 	            <c:if test="${usedboard.usedboard_State=='y'}">
-	            <center><div class="wrap">
-				  <button class="button">결제하기</button>
-				</div></center>
-				</c:if></c:if>
-	        </div>
+		            <center>
+			            <div class="wrap">
+							<button class="button">결제하기</button>
+						</div>
+					</center>
+				</c:if>
+			</c:if>
+	        
 	        <div class="viewrecom">
 	            <div>
 	                <ul class="tab_tt">
@@ -84,48 +104,49 @@
 	                    </li>
 	                </ul>
 	                <c:forEach var="r" items="${reply }">
-	                <c:if test="${r.usedcomment_Level==1 }">
-	                <ul class="level1">
-	                    <li>
-	                        <div class="reply_div">
-	                            <span class="txt_info" style="font-size: 15px;">
-	                                ${r.usedcomment_UserId }
-	                                <span class="txt_bar" style="font-size: 15px;">|</span>
-	                                <span class="txt_num" style="font-size: 15px;">${r.usedcomment_Date }</span>
-	                            </span>
-	                            <strong class="reply_st">
-	                                <span class="txt_de" style="font-size: 20px;">${r.usedcomment_Content }</span>
-	                            </strong>
-	                            <button onclick="location.assign('${path}/usedboard/deleteUsedcomment.do?usedcomment_No=${r.usedcomment_No }&usedbaord_No=${no }');" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
-	                            <button class="btn-reply" style="font-size: 20px;" value="${r.usedcomment_No }">답글</button>
-	                        </div>
-	                    </li>
-	                </ul>
-	                </c:if>
-	                <c:forEach var="r2" items="${reply }">
-	                <c:if test="${r2.usedcomment_Level==2 }">
-	                <c:if test="${r2.usedcomment_CommentRef==r.usedcomment_No }">
-	                <ul class="level2">
-	                    <li>
-	                        <div style="margin-left: 10px" class="reply_div">
-	                            <span class="txt_info" style="font-size: 15px;">
-	                                ㄴ ${r2.usedcomment_UserId }
-	                                <span class="txt_bar" style="font-size: 15px;">|</span>
-	                                <span class="txt_num" style="font-size: 15px;">${r2.usedcomment_Date }</span>
-	                            </span>
-	                            <strong class="reply_st">
-	                                <span class="txt_de" style="font-size: 20px;">${r2.usedcomment_Content }</span>
-	                            </strong>
-	                            <button onclick="location.assign('${path}/usedboard/deleteUsedcomment.do?usedcomment_No=${r2.usedcomment_No }&usedbaord_No=${no }');" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
-	                        </div>
-	                    </li>
-	                </ul>
-	                </c:if>
-	                </c:if>
-	                </c:forEach>
+		                <c:if test="${r.usedcomment_Level==1 }">
+			                <ul class="level1">
+			                    <li>
+			                        <div class="reply_div">
+			                            <span class="txt_info" style="font-size: 15px;">
+			                                ${r.usedcomment_UserId }
+			                                <span class="txt_bar" style="font-size: 15px;">|</span>
+			                                <span class="txt_num" style="font-size: 15px;">${r.usedcomment_Date }</span>
+			                            </span>
+			                            <strong class="reply_st">
+			                                <span class="txt_de" style="font-size: 20px;">${r.usedcomment_Content }</span>
+			                            </strong>
+			                            <button onclick="location.assign('${path}/usedboard/deleteUsedcomment.do?usedcomment_No=${r.usedcomment_No }&usedbaord_No=${no }');" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
+			                            <button class="btn-reply" style="font-size: 20px;" value="${r.usedcomment_No }">답글</button>
+			                        </div>
+			                    </li>
+			                </ul>
+		                </c:if>
+		                
+		                <c:forEach var="r2" items="${reply }">
+			                <c:if test="${r2.usedcomment_Level==2 }">
+				                <c:if test="${r2.usedcomment_CommentRef==r.usedcomment_No }">
+					                <ul class="level2">
+					                    <li>
+					                        <div style="margin-left: 10px" class="reply_div">
+					                            <span class="txt_info" style="font-size: 15px;">
+					                                ㄴ ${r2.usedcomment_UserId }
+					                                <span class="txt_bar" style="font-size: 15px;">|</span>
+					                                <span class="txt_num" style="font-size: 15px;">${r2.usedcomment_Date }</span>
+					                            </span>
+					                            <strong class="reply_st">
+					                                <span class="txt_de" style="font-size: 20px;">${r2.usedcomment_Content }</span>
+					                            </strong>
+					                            <button onclick="location.assign('${path}/usedboard/deleteUsedcomment.do?usedcomment_No=${r2.usedcomment_No }&usedbaord_No=${no }');" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
+					                        </div>
+					                    </li>
+					                </ul>
+				                </c:if>
+			                </c:if>
+		                </c:forEach>
 	                </c:forEach>
 	            </div>
-	            <br><br>
+	            
 	            <c:if test="${loginMember!=null }">
 	                <div class="comment-editor">
 	                    <div class="inner-comment">
@@ -141,17 +162,10 @@
 	                        </form>
 	                    </div>
 	                </div>
-	                </c:if>
+				</c:if>
 	        </div>
-	        <br><br><br>
-	    
 	    </article>
 	</section>
-	
-<style>
-
-
-</style>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>

@@ -141,7 +141,7 @@
 			                    <a href="${path }/usedboard/usedboardView.do?no=${b.usedboard_No }">
 			                        <div class="artice">
 			                             
-				                    	<div id="imgdivback">
+				                    	<div class="imgdivback">
 				                            <img src="${path }/resources/upload/usedboard/${b.usedboardfiles[0].usedboardfile_Rename}" onerror="" >
 				                        </div>
 				                        
