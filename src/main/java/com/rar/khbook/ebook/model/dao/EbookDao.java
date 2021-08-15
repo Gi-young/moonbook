@@ -106,4 +106,6 @@ public interface EbookDao {
 	
 	int getLastPage(SqlSession session, String bindNo, String loginMemberId);
 	
+	List<HashMap> getBookCategory(SqlSession session);
+	
 }

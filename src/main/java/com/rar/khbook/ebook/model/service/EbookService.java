@@ -104,4 +104,6 @@ public interface EbookService {
 	
 	int getLastPage(String bindNo, String loginMemberId);
 	
+	List<HashMap> getBookCategory();
+	
 }

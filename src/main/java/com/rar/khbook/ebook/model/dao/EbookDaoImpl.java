@@ -278,4 +278,9 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectOne("ebook.getLastPage", param);
 	}
 	
+	@Override
+	public List<HashMap> getBookCategory(SqlSession session) {
+		return session.selectList("ebook.getBookCategory");
+	}
+	
 }

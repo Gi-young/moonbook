@@ -1,117 +1,188 @@
 @charset "UTF-8";
+section#content {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
 
-#ddssaa{
-            width: 800px;
-            height: 0px;
-            position: relative;
-            display: block;
-            left: 200px;
-            bottom: 70px;
-        }
-        #pageBarb{
-        text-align: center;
-        }
-        #pageBarb a{
-            display: inline-block;
-            font-weight: bold;
-            text-decoration: none;
-            width: 50PX;
-        }
-        #search-container{
-            position: relative;
-            left: 550px;
-        }
-        .txt_de{
-        position:relative;
-        left:150px;
-        bottom:100px;
-        color: #000;
-        font-size: 17px;
-        line-height: 22px;
-        vertical-align: top;
-        white-space: normal;
-        word-break: break-all;
-        }
-        /* .side {position: relative; border-bottom: 1px solid #f3f3f3;} */
-        .sida{width: 100%;overflow-x: hidden;}
-        .aaa{
-            display: inline-block;
-            min-height: 73px;
-            padding: 16px 15px;
-            line-height: 0;
-            box-sizing: border-box;
-            text-decoration: none;
-            color: #333;
-        }
-        .artice{
-            display: inline-block;
-            line-height: 100%;
-            vertical-align: top;
-        }
-        .tit{
-            display: block;
-            font-size: 0;
-            white-space: nowrap;
-            word-break: break-all;
-            line-height: 22px;
-            color: #000;
-        }
+div.used-board-container {
+    box-sizing: border-box;
+    padding: 10px;
+    border-right: 1px solid silver;
+    border-left: 1px solid silver;
+    width: 950px;
+    min-width: 950px;
+    height: fit-content;
+}
 
+div.side-menu {
+    position: absolute;
+    left: 0;
+    top: 300px;
+    border: 1px solid silver;
+    width: 200px;
+}
 
-            .txt_info{
-            display: list-item;
-            overflow: hidden;
-            padding-top: 6px;
-            font-size: 13px;
-            line-height: 16px;
-            color: #909090;
-            vertical-align: top;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+div.secondBoard {
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid silver;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
 
-        }
-        .sub_news,.sub_news th,.sub_news td{border:0}
-        .sub_news a{color:#383838; text-decoration: none}
-        .sub_news{width:100%;border-bottom: 1px solid #999; color: #666;font-size: 12px;
-            table-layout: auto; }
-        .sub_news caption{display:none}
-        .sub_news th{padding: 5px 0 6px;border-top: solid 1px #999;border-bottom: solid
-        1px #b2b2b2; background-color:#f1f1f4;color: #333;font-weight: bold; line-height: 20px; 
-        vertical-align: top;}
-        .sub_news td{padding: 8px 0 9px; border-bottom: solid 1px #d2d2d2;text-align: center; line-height: 18px;}
-        .sub_news .date,.sub_news .hit{padding: 0px; font-family: monospace; font-size: 11px; line-height: normal;}
-        .sub_news .title{text-align: left; padding-left: 15px; font-size: 13px}
-        .sub_news .title .new{margin: 0 0 2px;vertical-align: middle;}
+div.upper-board {
+    border: 1px solid silver;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 70px;
+    margin-bottom: 10px;
+}
 
-        #titi{
-            font-size: 20px;
-            position: relative;
-            left: 40px;
-            top: 0px;
-        }
-        #insertborad{
-            font-size: 20px;
-            position: relative;
-            left: 40px;
-            top: 30px;
-        }
-        .iscontainer{
-            width:1500px;
-            margin:0 auto;
-        }
-        /* div.weather>div{
-        display:inline-table;
-            float: left;
-        } */
-        #borad-container{
-                
-            width:1500px;
-            margin:0 auto;
-        }
-        #ul1{
-            list-style:none;
-            padding-left:20px;
-            margin-bottom: 17px;
-            margin-top: 17px;
-            width: 180px;
-        }
+div.upper-board>p {
+    font-weight: bolder;
+    font-size: 23px;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+div.upper-board a {
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px;
+}
+
+div.upper-board a:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+div.upper-menu {
+    margin-right: 10px;
+}
+
+div.searchBox {
+    box-sizing: border-box;
+    border: 1px solid silver;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 10px;
+}
+
+div.searchBox select {
+    height: 30px;
+}
+
+div.searchBox input {
+    height: 23px;
+    width: 100%;
+}
+
+div.keyword {
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+div.searchBtn {
+    height: 30px;
+    width: 100px;
+    margin-left: 20px;
+}
+
+div.searchBox button {
+    width: 100%;
+    height: 100%;
+}
+
+div.searchBox button:hover {
+    background-color: black;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+div.imgdivback {
+    border: 1px solid silver;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+div.imgdivback>img {
+    width: 100%;
+}
+
+div.artice {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+div.used-board-content {
+    border: 1px solid silver;
+    border-radius: 10px;
+    padding: 15px;
+    flex-grow: 1;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+div.used-board-content span {
+    display: block;
+    margin-bottom: 13px;
+}
+
+div.used-board-content span:last-of-type {
+    margin-bottom: 0;
+}
+
+span.used-item-title {
+    font-weight: bold;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+span.used-item-info>span {
+    display: inline;
+}
+
+div.pageBar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+div.pageBar>ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+div.pageBar>ul>li {
+    border: 1px solid silver;
+    padding: 5px 7px;
+    margin-right: 5px;
+}
+
+#searchCategory {
+    margin-left: 10px;
+}
