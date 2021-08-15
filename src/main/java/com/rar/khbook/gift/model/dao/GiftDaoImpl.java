@@ -95,8 +95,7 @@ public class GiftDaoImpl implements GiftDao {
 	
 //	접속한 회원의 쿠폰 종류
 	@Override
-	public List<Couponlist> selectCouponlist(SqlSession session, List<Coupon> c) {
-		
-		return session.selectList("gift.selectCouponlist", c);
+	public Couponlist selectCouponlist(SqlSession session, int couponCouponListNo) {	
+		return session.selectOne("gift.selectCouponlist", couponCouponListNo);
 	}
 }

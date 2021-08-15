@@ -49,7 +49,7 @@
 	                    </div>
 	                    <div class="exp-couponBox">
 	                        <p>쿠폰등록</p>
-	                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="window.open('${path}/gift/myCoupon.do?memberId=${loginMember.memberId }','내 쿠폰','width=430, height=500, location=no, status=no, scrollbars=yes')">
+	                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="openWindow()">
 	                    </div>
 	                    <div class="exp-quanBox">
 	                        <p>구매수량</p>
@@ -68,8 +68,8 @@
 	                    </div>
 	                </div>         
                  <div class="discount-price">
-                    <p class="discount">할인율</p>
-                    <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/></p>
+                    <p class="discount" id="ds"></p>                
+                    <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/>원</p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
@@ -478,6 +478,13 @@
     /* reviewTitle.addEventListener("click", function(e){
     	alert("나와라");
     }); */
+    
+    function openWindow(){
+    	let memberId=document.getElementById("loginMemberId").value;
+    	console.log(memberId);
+    	window.name="giftDetail";
+    	window.open("<c:url value='/gift/myCoupon.do?memberId="+memberId+"'/>",'myCoupon','width=800, height=700, location=no, status=no, scrollbars=yes');
+    }
     
 </script>
 

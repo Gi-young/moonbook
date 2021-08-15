@@ -1,5 +1,6 @@
 package com.rar.khbook.gift.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,11 +114,14 @@ public class GiftServiceImpl implements GiftService {
 	@Override
 	public List<Couponlist> selectCouponlist(List<Coupon> c) {
 		
+		List<Couponlist> cpList= new ArrayList();
 		for(Coupon cp : c) {
 			//System.out.println("여기서 다 뽑는 중 : "+cp);			
 			Couponlist cl = dao.selectCouponlist(session, cp.getCouponCouponlistNo());	
+			cpList.add(cl);
 		}
+		System.out.println("씨피 리스트 : "+cpList);
 		
-		return cl;
+		return cpList;
 	}
 }

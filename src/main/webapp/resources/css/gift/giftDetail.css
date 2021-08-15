@@ -126,7 +126,7 @@
 .discount-price{
     display: flex;
     justify-content: space-between;
-    width: 120px;
+    /* width: 120px; */
 }
 .exp-couponBox{
     display: flex;

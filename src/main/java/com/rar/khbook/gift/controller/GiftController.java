@@ -347,11 +347,11 @@ public class GiftController {
 	  @RequestMapping("/gift/shopingList.do") 
 	  public ModelAndView shopingList(@RequestParam Map param, ModelAndView mv) {
 	  
-	  System.out.println("url 타고 넘어온 파람값 : "+param);
-	  System.out.println(param.get("giftNo"));
-	  System.out.println(param.get("quan"));	  
+	  //System.out.println("url 타고 넘어온 파람값 : "+param);
+	  //System.out.println(param.get("giftNo"));
+	  //System.out.println(param.get("quan"));	  
 	  int result = service.insertShopingList(param);
-	  System.out.println("장바구니 등록 했으면 1임 : "+result);
+	  // System.out.println("장바구니 등록 했으면 1임 : "+result);
 	  mv.addObject("msg", result>0?"장바구니에 등록되었습니다.":"장바구니에 등록에 실패했습니다.");
 	  mv.addObject("loc", "/gift/giftDetail.do?giftNo="+param.get("giftNo"));
 	  mv.setViewName("common/msg");
@@ -360,6 +360,15 @@ public class GiftController {
 	  }
 	 
 	  
+	  @RequestMapping("/gift/choiceCoupon.do")
+	  public ModelAndView choiceCoupon(@RequestParam Map param, ModelAndView mv) {
+		  
+		  System.out.println("쿠폰 선택해서 이리로 와 : "+param);
+		  
+		  
+		 
+		  return mv;
+	  }
 	  
 	
 

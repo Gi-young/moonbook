@@ -40,5 +40,5 @@ public interface GiftDao {
 	List<Coupon> selectCoupon(SqlSession session, String memberId);
 	
 //	접속한 회원의 쿠폰 종류
-	List<Couponlist> selectCouponlist(SqlSession session, List<Coupon> c);
+	Couponlist selectCouponlist(SqlSession session, int couponCouponlistNo);
 }
