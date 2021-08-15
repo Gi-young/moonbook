@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
@@ -36,7 +37,8 @@ public interface GiftDao {
 	int insertShopingGift(SqlSession session, GiftOrder go);	
 	
 //	접속한 회원에게 쿠폰이 있는지 확인
-	Coupon selectCoupon(SqlSession session, String memberId);
+	List<Coupon> selectCoupon(SqlSession session, String memberId);
 	
 //	접속한 회원의 쿠폰 종류
+	List<Couponlist> selectCouponlist(SqlSession session, List<Coupon> c);
 }

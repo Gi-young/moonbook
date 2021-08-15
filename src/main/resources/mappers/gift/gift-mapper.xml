@@ -118,7 +118,8 @@
 		SELECT * FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId}
 	</select>	
 	
-	<!-- <select id="selectCoupon" resultMap="couponMap">
-		SELECT * FROM COUPON A, COUPONLIST B WHERE A.COUPON_NO=B.COUPONLIST_NO(+) AND COUPON_MEMBER_ID=#{memberId}
-	</select> -->
+	<!-- 접속한 회원의 쿠폰 종류 -->
+	 <select id="selectCouponlist" resultMap="couponlistMap">
+		SELECT * FROM COUPONLIST WHERE COUPONLIST_NO=#{c.couponCouponlistNo}
+	</select> 
 </mapper>

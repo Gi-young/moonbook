@@ -31,10 +31,10 @@ public interface GiftService {
 	int insertShopingList(Map param);
 	
 //	접속한 회원에게 쿠폰이 있는지 확인
-	Coupon selectCoupon(String memberId);
+	List<Coupon> selectCoupon(String memberId);
 
 //	접속한 회원의 쿠폰 종류
-	Couponlist selectCouponlist(Coupon c);
+	List<Couponlist> selectCouponlist(List<Coupon> c);
 	
 }
 

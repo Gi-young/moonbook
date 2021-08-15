@@ -75,11 +75,13 @@ public class GiftController {
 	public ModelAndView myCoupons(String memberId, ModelAndView mv) {
 		
 		Member m = service.searchMember(memberId);
-		Coupon c = service.selectCoupon(memberId);
-		System.out.println("너 뭘로 넘어오니?? 글루글루 : "+c);
 		
-		Couponlist cl = service.selectCouponList(c);
+		List<Coupon> c = service.selectCoupon(memberId);
+		/* System.out.println("너 뭘로 넘어오니?? 글루글루 : "+c); */
 		
+		List<Couponlist> cl = service.selectCouponlist(c);
+		//System.out.println("너는 뭘로 넘어오니 ?? ㄱㄺㄹ : "+cl);
+		mv.addObject("couponlist", cl);
 		mv.addObject("member", m);
 		mv.addObject("coupon", c);
 		mv.setViewName("gift/myCoupon");

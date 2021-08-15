@@ -18,11 +18,14 @@
      		<p class="userName">${member.memberName }</p>님이 보유하고 계신 쿠폰 정보입니다.
         </div>
         <div class="couponList">
-            <div class="couponView"> 
-                <img src="${path }/resources/images/gift/bronzebear.png" alt="">
-                <p></p><p class="cp-count"></p>
-                <button class="useCoupon" value="">쿠폰사용</button>
-            </div>
+        	<c:forEach val="i" items="${couponlist }">
+	            <div class="couponView"> 
+	                <img src="${path }/resources/upload/${i.couponImg}" alt="">
+	                <p>${i.couponlistName }</p><p class="cp-count"></p>
+	                <div><p>쿠폰 사용가능 여부 ${i.couponlist_foruse }</p></div>
+	                <button class="useCoupon" value="">쿠폰사용</button>
+	            </div>
+	        </c:forEach>    
             <%-- <div class="couponView">  
                 <img src="${path }/resources/images/gift/silverbear.png" alt="">
                 <p>보유 실버 쿠폰</p><p class="cp-count"></p>

@@ -102,17 +102,22 @@ public class GiftServiceImpl implements GiftService {
 	}
 	
 	@Override
-	public Coupon selectCoupon(String memberId) {
+	public List<Coupon> selectCoupon(String memberId) {
 		
-		Coupon c = dao.selectCoupon(session, memberId);
+		List<Coupon> c = dao.selectCoupon(session, memberId);
 		
 		return c;
 	}
 	
 //	접속한 회원의 쿠폰 종류
 	@Override
-	public Couponlist selectCouponlist(Coupon c) {
-		Couponlist cl = dao.selectCouponlist(c);	
+	public List<Couponlist> selectCouponlist(List<Coupon> c) {
+		
+		for(Coupon cp : c) {
+			//System.out.println("여기서 다 뽑는 중 : "+cp);			
+			Couponlist cl = dao.selectCouponlist(session, cp.getCouponCouponlistNo());	
+		}
+		
 		return cl;
 	}
 }
