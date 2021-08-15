@@ -179,14 +179,14 @@
 				                                    거래완료
 				                                	</span>
 												</c:if>	
-												<%-- <c:if test="${b.usedboard_State == '1' }"> --%>
+												<c:if test="${b.usedboard_State == '1' }"> --%>
 				                                	<c:if test="${b.member_Id == loginMember.memberId }">
 				                                		<span> || </span>
 				                                		<span> 배송확인중 </span>
 				                                		<span> || </span>
 				                                		<button onclick="confirmDelivery(event,'${b.usedboard_No }','${loginMember.memberId }');">배송확인</button>
 				                                	</c:if>
-												<%-- </c:if> --%>
+												</c:if>
 												<c:if test="${b.usedboard_State == '2' }">
 				                                	<c:if test="${b.member_Id == loginMember.memberId }">
 				                                		<span> || </span>

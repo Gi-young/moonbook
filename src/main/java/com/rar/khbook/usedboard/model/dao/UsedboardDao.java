@@ -72,4 +72,8 @@ public interface UsedboardDao {
 	int usedboardMySingoDelete(SqlSession session,int no);
 	
 	int usedboardDeliveryt(SqlSession session,UsedboardPayment p);
+	
+	int cancelPayment(SqlSession session,int no);
+	
+	int cancelPaymentUpdate(SqlSession session,int no);
 }

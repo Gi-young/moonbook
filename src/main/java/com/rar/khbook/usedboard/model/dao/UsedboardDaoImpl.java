@@ -194,4 +194,16 @@ public class UsedboardDaoImpl implements UsedboardDao {
 		// TODO Auto-generated method stub
 		return session.insert("usedboard.usedboardDeliveryt",p);
 	}
+	
+	@Override
+	public int cancelPayment(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.cancelPayment",no);
+	}
+	
+	@Override
+	public int cancelPaymentUpdate(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("usedboard.cancelPaymentUpdate",no);
+	}
 }
