@@ -188,7 +188,7 @@
                     		<li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
             			</c:if>
 						
-						<li><a href="${path }/service/servicePage.do">고객센터</a></li>
+						<li><a href="${path }/service/serviceMain.do">고객센터</a></li>
 					</ul>
 				</div>
 				<div></div>

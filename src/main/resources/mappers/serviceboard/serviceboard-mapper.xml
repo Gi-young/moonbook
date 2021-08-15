@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="serviceBoard">
+
+	<resultMap id="noticeBoard" type="noticeBoard">
+		<id column="NOTICEBOARD_NO" property="noticeboardNo"/>
+		<result column="NOTICEBOARD_TITLE" property="noticeboardTitle"/>
+		<result column="NOTICEBOARD_CONTENT" property="noticeboardContent"/>
+		<result column="NOTICEBOARD_DATE" property="noticeboardDate"/>
+		<result column="MEMBER_ID" property="memberId"/>
+	</resultMap>
+	
+	<insert id="noticeBoardWrite">
+		INSERT INTO NOTICEBOARD VALUES (SEQ_NOTICEBOARD_NO.NEXTVAL,#{noticeTitle},#{noticeContent},SYSDATE,#{memberId})
+	</insert>
+	<select id="searchNoticeBoardList" resultMap="noticeBoard">
+		SELECT * FROM NOTICEBOARD
+	</select>
+	<delete id="deleteNoticeBoard">
+		DELETE FROM NOTICEBOARD WHERE NOTICEBOARD_NO = #{noticeboardNo}
+	</delete>
+
+</mapper>

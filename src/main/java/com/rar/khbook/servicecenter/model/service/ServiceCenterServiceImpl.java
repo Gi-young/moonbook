@@ -1,8 +1,27 @@
 package com.rar.khbook.servicecenter.model.service;
 
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
+import com.rar.khbook.servicecenter.model.dao.ServiceCenterDao;
 
 @Service
 public class ServiceCenterServiceImpl implements ServiceCenterService {
+
+	@Autowired
+	private ServiceCenterDao dao;
+	
+	@Autowired
+	private SqlSession session;
+	
+	@Override
+	public List<NoticeBoard> searchNoticeBoardList() {
+		// TODO Auto-generated method stub
+		return dao.searchNoticeBoardList(session);
+	}
 
 }
