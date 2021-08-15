@@ -8,7 +8,7 @@
     align-items: center;
 }
 .admin-box1{
-	width: 950px;
+	width: fix-content;
 	display:flex;
 	height:700px;
 	min-height:500px; 
@@ -19,13 +19,13 @@
 	border-left: 1px solid #deded8;
 }
 .chart1{
-	
+	margin:20px 20px;
 }
 .chart2{
-
+	margin:20px 20px;
 }
 .chart3{
-	
+	margin:20px 20px;
 }
 
 
@@ -34,7 +34,11 @@
 	flex-direction: column;
 	border-left: 1px solid #deded8;
 	border-right: 1px solid #deded8; 
-	width:770px;
-	overflow: scroll;
+	width:1000px;
+	overflow: scroll; 
+	-ms-overflow-style: none; 
 }
-
+.admin-box2::-webkit-scrollbar { 
+    display: none;
+    
+}

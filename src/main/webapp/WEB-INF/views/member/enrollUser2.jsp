@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
 <link rel="stylesheet"
 	href="${path}/resources/css/login/enrollUser2.css">
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<div class="enrollInfo-container">
@@ -21,7 +21,7 @@
 			<p>문곰 회원가입</p>
 		</div>
 		<div class="enrollInfo-box">
-			<div class="enrollInfo5-box">
+			<div class="enrollInfo5-box" style="background-image: url('${path}/resources/img/login/bear60.png');">
 				<form id="frm" action="${path }/member/memberEnrollEnd.do"
 					method="post">
 
@@ -73,14 +73,19 @@
 						<input type="text" name="memberPhone" placeholder="전화번호입력(-없이)"
 							required>
 						<p class="enrollInfo-font">주소</p>
-						<input type="text" name="memberAddress" placeholder="주소입력"
+						<input type="hidden" name="memberAddress" placeholder="주소입력"
 							required>
+  						<input id="member_addr" type="text" placeholder="주소명" name="memberAddress" readonly onclick="findAddr()" style="margin-bottom:10px;"> <br>
+						<input id="member_post" type="text" placeholder="도로명/번호" name="memberAddressNum" readonly >
+  						<input type="text" placeholder="상세주소" name="memberDetailAddress" required>
+							
+							
 						<p class="enrollInfo-font">성별</p>
-						<div class="enrollInfo-box3">
-							<input type="radio" name="memberGender" id="genderM" value="M">
-							<label for="genderM">남</label> <input type="radio"
-								name="memberGender" id="genderF" value="F"> <label
-								for="genderF">여</label>
+						<div class="enrollInfo-box3" >
+							<input type="radio" name="memberGender" id="genderM" value="M" style="width:20px; margin-left:10px; margin-right:20px;">
+							<label for="genderM" style="font-size:20px;">남</label> <input type="radio"
+								name="memberGender" id="genderF" value="F" style="width:20px; margin-left:60px; margin-right:20px;"> <label
+								for="genderF" style="font-size:20px;">여</label>
 						</div>
 						<p class="enrollInfo-font">생년월일</p>
 						<input type="Date" name="memberBirth" required>
@@ -96,6 +101,28 @@
 </body>
 </html>
 <script>
+function findAddr(){
+	new daum.Postcode({
+        oncomplete: function(data) {
+        	
+        	console.log(data);
+        	
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var jibunAddr = data.jibunAddress; // 지번 주소 변수
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('member_post').value = data.zonecode;
+            if(roadAddr !== ''){
+                document.getElementById("member_addr").value = roadAddr;
+            } 
+            else if(jibunAddr !== ''){
+                document.getElementById("member_addr").value = jibunAddr;
+            }
+        }
+    }).open();
+}
 	const fn_frmsubmit=()=>{
 		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none" && $("#wC").val()=="yes"){
 			let memberEmail=$("#localPart").val()+"@"+$("#domain").val();
@@ -174,3 +201,4 @@
 	})
 
 </script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
