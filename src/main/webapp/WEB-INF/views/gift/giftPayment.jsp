@@ -147,8 +147,10 @@
 </div>
 <%-- <input type="hidden" id="totalPrice" value="${(book.price*0.9)*sellStock+3000 }"> --%>
 <input type="hidden" id="loginMember" value="${loginMember.memberId}">
-<input type="hidden" id="sellStock" value="${gift.gift_count}">
+<input type="hidden" id="sellStock" value="${gift.gift_count}"> 
+<!-- 주문가능수량 -->
 <input type="hidden" id="stock" value="${quan }">
+<!-- 주문수량 -->
 <input type="hidden" id="bookPrice09" value="${(gift.gift_price) }">
 <input type="hidden" id="contextPath" value="${path }">
 <input type="hidden" id="deliveryFee" value="3000">

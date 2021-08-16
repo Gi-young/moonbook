@@ -62,7 +62,7 @@
         </div> -->
 
 		<div class="header-mid">
-			<img src="${path }/resources/images/common/mgbanner.png" alt="">
+			<a href="${path }"><img src="${path }/resources/images/common/mgbanner.png" alt=""></a>
 			<!-- <h1 class="logo">
                 <a href="#">
                     <img src="../components/image/kh문고 로고 final.png" style="width: 250px;">

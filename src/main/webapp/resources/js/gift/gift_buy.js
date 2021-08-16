@@ -12,7 +12,9 @@ $(".btnPay").click(e=> {
 	let loginMember = document.getElementById("loginMember").value;
 	let contextPath = document.getElementById("contextPath").value;
 	let sellStock = document.getElementById("sellStock").value;
+	// 주문가능수량 (반장님거 가지고 오다가 stock이랑 바꿔버림.)
 	let stock = document.getElementById("stock").value;
+	// 주문수량 (혹시 헷갈릴까봐 써놓음.)
 	let totalPrice = document.getElementById("totalPrice").value;
 	console.log(totalPrice);
 	console.log(stock);
@@ -69,7 +71,7 @@ $(".btnPay").click(e=> {
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
                             name: "문곰템",
-                            amount: Number(totalPrice)
+                            amount: 100
                         }, function(rsp) {
                             if (rsp.success) {
                                 $.ajax({
@@ -93,7 +95,9 @@ $(".btnPay").click(e=> {
                                     		type: "POST",
                                     		data: {
                                     			stock: stock,
-                                    			giftNo: giftNo
+                                    			giftNo: giftNo,
+                                    			memberId: loginMember,
+                                    			totalPrice: totalPrice
                                     		},
                                     		success: data => {
 		                                        console.log("결제 로그 추가 결과 : " + data);
