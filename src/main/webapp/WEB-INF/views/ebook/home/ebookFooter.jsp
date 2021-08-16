@@ -5,8 +5,9 @@
 	<c:set var="path" value="${pageContext.request.contextPath}"/>
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookFooter.css">
-
-		<footer>footer</footer>
+	
+			<footer>footer</footer>
+		</div>
 	</div>
 	
 	<script src="${path}/resources/js/ebook/home/ebookFooter.js"></script>

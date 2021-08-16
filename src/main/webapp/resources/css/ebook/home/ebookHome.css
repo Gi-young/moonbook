@@ -1,10 +1,9 @@
 @charset "UTF-8";
-
 .wrapper {
 	display: grid;
 	grid-template-rows: 25px 100px 50px 1fr 100px;
 	grid-template-areas: 'portalnav' 'header' 'navbar' 'main' 'footer';
-	width: 950px;
+	width: 100%;
 }
 
 main {
