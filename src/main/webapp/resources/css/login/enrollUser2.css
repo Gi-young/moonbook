@@ -34,7 +34,9 @@
 .enrollInfo-select{
 	height:30px;
 }
-
+.enrollInfo5-box{
+	
+}
 .enrollInfo5-box input{
 	width:200px;
 	height:30px;
@@ -60,6 +62,8 @@
 .enrollInfo-box3{
 	display:flex;
 	align-items:center;
+	/* justify-content: center; */
+	
 }
 
 .enrollInfo-button:hover{
@@ -91,27 +95,47 @@
 }
 .memberIdCheck{
 	display:none;
-	color:#582810;
+	color:#008080;
 	font-weight: bold;
 }
 .memberIdCheck2{
 	display:none;
-	color:#582810;
+	color:#ff0000;
+	font-weight: bold;
+}
+.memberPwcheck3{
+	display:none;
+	color:#ff0000;
+	font-weight: bold;
+}
+.memberPwcheck4{
+	display:none;
+	color:#ff0000;
+	font-weight: bold;
+}
+.memberPwcheck5{
+	display:none;
+	color:#ff0000;
+	font-weight: bold;
+}
+.memberPwcheck6{
+	display:none;
+	color:#008080;
 	font-weight: bold;
 }
 .memberIdCheck3{
 	display:none;
-	color:#582810;
+	color:#ff0000;
 	font-weight: bold;
 }
 .memberPwcheck2{
 	display:none;
-	color:#582810;
+	color:#ff0000;
 	font-weight: bold;
 }
 .memberPwcheck{
 	display:none;
-	color:#582810;
+	color:#008080;
 	font-weight: bold;
 }
 .btn {

@@ -47,23 +47,23 @@
 		 
 
 		
-			<div id="columnchart_material1"></div>
 			
-			<div id="columnchart_material2"></div>
-			<div id="columnchart_material3"></div>
-			<!-- <div class="chart1">
-				<p>매출이 높은 책 TOP 3</p>
 			
+			
+			
+			<div class="chart1">
+				<!-- <p>매출이 높은 책 TOP 3</p> -->
+				<div id="columnchart_material1"></div>
 				
 			</div>
 			<div class="chart2">
-				<p>매출이 높은 e북 TOP 3</p>
-				
+				<!-- <p>매출이 높은 e북 TOP 3</p> -->
+				<div id="columnchart_material2"></div>
 			</div>
 			<div class="chart3">
-				<p>매출이 높은 기프트 TOP 3</p>
-				
-			</div> -->
+				<!-- <p>매출이 높은 기프트 TOP 3</p> -->
+				<div id="columnchart_material3"></div>
+			</div>
 			
 			
 			
@@ -192,9 +192,9 @@
 	  chart.draw(data, google.charts.Bar.convertOptions(options));
 	}
 	function drawChart3() {
-		let GIFT_TITLE1 = document.getElementsByName("ngtitle")[0].value.split('<');
-		let GIFT_TITLE2 = document.getElementsByName("ngtitle")[1].value.split('<');
-		let GIFT_TITLE3 = document.getElementsByName("ngtitle")[2].value.split('<');
+		let GIFT_TITLE1 = document.getElementsByName("ngtitle")[0].value.replace('<b>',"").replace('</b>','');
+		let GIFT_TITLE2 = document.getElementsByName("ngtitle")[1].value.replace('<b>',"").replace('</b>','');
+		let GIFT_TITLE3 = document.getElementsByName("ngtitle")[2].value.replace('<b>',"").replace('</b>','');
 		
 		let GIFT_TOTAL_COST1 = document.getElementsByName("ngiftTotalcost")[0].value;
 		let GIFT_TOTAL_COST2 = document.getElementsByName("ngiftTotalcost")[1].value;
@@ -208,13 +208,27 @@
 		let	GIFTCOST2 = document.getElementsByName("ngiftCost")[1].value;
 		let GIFTCOST3 = document.getElementsByName("ngiftCost")[2].value;
 		
-		
+		if(GIFT_TITLE1.length > 12){
+			GIFT_TITLE1 = document.getElementsByName("ngtitle")[0].value.replace('<b>',"").split('</b>');
+		} else {
+			GIFT_TITLE1 = ("haha</b>" + GIFT_TITLE1).split("</b>");
+		}
+		if(GIFT_TITLE2.length > 12){
+			GIFT_TITLE2 = document.getElementsByName("ngtitle")[1].value.replace('<b>',"").split('</b>');
+		} else {
+			GIFT_TITLE2 = ("haha</b>" + GIFT_TITLE2).split("</b>");
+		}
+		if(GIFT_TITLE3.length > 12){
+			GIFT_TITLE3 = document.getElementsByName("ngtitle")[2].value.replace('<b>',"").split('</b>');
+		} else {
+			GIFT_TITLE3 = ("haha</b>" + GIFT_TITLE3).split("</b>");
+		}
 		
 	  var data = google.visualization.arrayToDataTable([
 	    ['상품명', '매출액', '이익', '비용'],
-	    [GIFT_TITLE1[0], Number(GIFT_TOTAL_COST1), Number(GIFT_PROFIT1), Number(GIFTCOST1)],
-	    [GIFT_TITLE2[0], Number(GIFT_TOTAL_COST2), Number(GIFT_PROFIT2), Number(GIFTCOST2)],
-	    [GIFT_TITLE3[0], Number(GIFT_TOTAL_COST3), Number(GIFT_PROFIT3), Number(GIFTCOST3)]
+	    [GIFT_TITLE1[1], Number(GIFT_TOTAL_COST1), Number(GIFT_PROFIT1), Number(GIFTCOST1)],
+	    [GIFT_TITLE2[1], Number(GIFT_TOTAL_COST2), Number(GIFT_PROFIT2), Number(GIFTCOST2)],
+	    [GIFT_TITLE3[1], Number(GIFT_TOTAL_COST3), Number(GIFT_PROFIT3), Number(GIFTCOST3)]
 	    
 	  ]);
 	

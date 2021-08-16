@@ -32,9 +32,9 @@
 	display: flex;
 	align-items: center;
 	justify-content:center;
-	display:flex; 
+	
 	vertical-align:middle; 
-	width:770px;
+	width:1000px;
 	/* height: 100px; */
 	padding-top:42px;
 	padding-bottom:42px;
@@ -48,7 +48,7 @@
 .admin-search3{
 	border: 1px solid #582810;
 	height: 100%;
-	width: 730px;
+	width: 960px;
    
 }
 .admin-search{
