@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auction.css">
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<button onclick="location.assign('${path}/auction/auctionChat ')">실험하기</button>
-
+t
 	<div id="wrap">
 		<div id="container">
 	        <div class="auction_main line">
