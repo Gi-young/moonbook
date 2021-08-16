@@ -73,12 +73,20 @@
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>
 		</interceptor>
 		<interceptor>
+			<mapping path="/EbookControllerSm/bookpayment.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
+		<interceptor>
 			<mapping path="/auction/*.do"/>
 			<beans:bean class="com.rar.khbook.auction.intercepter.LoginCheck"/>		
 		</interceptor>
 		<interceptor>
 			<mapping path="/SellbookController/*.do"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+		<mapping path="/SellbookController/insertReview.do*"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.GiftLoginCheckInterceptor"/>		
 		</interceptor>
 		<!-- 낄껴 좀 하겠습니다. -->
 		<interceptor>
@@ -88,6 +96,10 @@
 		<interceptor>
 			<mapping path="/gift/insertReview*"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.GiftLoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+			<mapping path="/gift/shopingList.do*"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.GSLLoginCheckInterceptor"/>		
 		</interceptor>
 	</interceptors>
 	

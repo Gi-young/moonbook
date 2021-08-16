@@ -112,7 +112,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script>
 		// gi-young
+
 		let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");		
+
 		
 		sockAuction.onopen = (e) => {
 			console.log(e);

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.rar.khbook.admin.model.dao.AdminDao;
 import com.rar.khbook.adminchart.model.vo.BookTopThree;
+import com.rar.khbook.adminchart.model.vo.EbookTopThree;
+import com.rar.khbook.adminchart.model.vo.GiftTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
@@ -79,6 +81,13 @@ public class AdminServiceImpl implements AdminService {
 	public List<Order> selectOrderList(int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return dao.selectOrderList(session,cPage,numPerpage);
+	}
+	
+
+	@Override
+	public int selectOrderCount() {
+		// TODO Auto-generated method stub
+		return dao.selectOrderCount(session);
 	}
 
 	@Override
@@ -499,6 +508,19 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.bookTopThree(session);
 	}
+
+	@Override
+	public List<EbookTopThree> ebookTopThree() {
+		// TODO Auto-generated method stub
+		return dao.ebookTopThree(session);
+	}
+
+	@Override
+	public List<GiftTopThree> giftTopThree() {
+		// TODO Auto-generated method stub
+		return dao.giftTopThree(session);
+	}
+	
 	
 	
 	

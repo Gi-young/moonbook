@@ -7,7 +7,7 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/admin/inputProduct2.css">
+<link rel="stylesheet" href="${path}/resources/css/admin/addCoupon.css">
 
 <div class="addProduct-container">
 	<div class="addProduct-box1">

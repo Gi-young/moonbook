@@ -35,6 +35,7 @@ import com.rar.khbook.ebook.model.service.EbookService;
 import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.member.model.vo.Member;
+import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
 import com.siot.IamportRestClient.response.IamportResponse;
@@ -54,23 +55,10 @@ public class EbookController {
 	BCryptPasswordEncoder pwEncoder;
 	
 	@RequestMapping(value="/ebook/pageEbook.do")
-	public String pageEbook() {
+	public String pageEbook(String currentFocus, Model model) {
+		model.addAttribute("currentFocus", currentFocus);
+		
 		return "ebook/home/ebookHome";
-	}
-	
-	@RequestMapping(value="/ebook/pageBookstallJuvenile.do")
-	public String pageBookstallJuvenile() {
-		return "ebook/home/bookstallJuvenile";
-	}
-	
-	@RequestMapping(value="/ebook/pageBookstallElementary.do")
-	public String pageBookstallElementary() {
-		return "ebook/home/bookstallElementary";
-	}
-	
-	@RequestMapping(value="/ebook/pageBookstallMiddle.do")
-	public String pageBookstallMiddle() {
-		return "ebook/home/bookstallMiddle";
 	}
 	
 	@RequestMapping(value="/ebook/pageShoppingBasket.do")
@@ -658,6 +646,64 @@ public class EbookController {
 	@ResponseBody
 	public int lastPage(@RequestParam Map param) {
 		return service.lastPage(param);
+	}
+	
+	@RequestMapping(value = "/ebook/getBookCategory.do")
+	@ResponseBody
+	public List<HashMap> getBookCategory() {
+		return service.getBookCategory();
+	}
+	
+	@RequestMapping(value = "/ebook/newSearch.do")
+	@ResponseBody
+	public List<HashMap> newSearch(@RequestParam Map param) {
+		if (param.get("cPage") == null) {
+			param.put("cPage", "1");
+		}
+		
+		if (param.get("numPerPage") == null) {
+			param.put("numPerPage", "12");
+		}
+		
+		return service.newSearch(param);
+	}
+	
+	@RequestMapping(value = "/ebook/getPageBar.do")
+	@ResponseBody
+	public String getPageBar(@RequestParam Map param) {
+		if (param.get("cPage") == null) {
+			param.put("cPage", "1");
+		}
+		
+		if (param.get("numPerPage") == null) {
+			param.put("numPerPage", "12");
+		}
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerPage = Integer.parseInt((String)param.get("numPerPage"));
+		
+		int totalData = service.getTotalData(param);
+		
+		String pageBar = EbookPageBarFactory.getPageBar(totalData, cPage, numPerPage);
+		
+		return pageBar;
+	}
+	
+	@RequestMapping(value = "/ebook/getCategories.do")
+	@ResponseBody
+	public List<HashMap> getCategories(@RequestParam Map param) {
+		String[] metaCategory = ((String)param.get("metaCategory")).split(",");
+		
+		System.out.println(metaCategory.length);
+		System.out.println(metaCategory[0]);
+		
+		for (String s : metaCategory) {
+			System.out.println(s.equals(""));
+		}
+		
+		param.put("metaCategory", metaCategory);
+		
+		return service.getCategories(param);
 	}
 	
 }

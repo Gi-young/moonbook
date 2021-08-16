@@ -17,7 +17,7 @@
     
     <!-- 상단 핫트랙스 메뉴바 -->
     <%--  ${giftList }   --%>
-    <%-- <a href="${path }/gift/naverGift.do"><button>네이버 기프트 이동</button></a>
+     <%--  <a href="${path }/gift/naverGift.do"><button>네이버 기프트 이동</button></a>
      
      <script>
      $.ajax({
@@ -45,7 +45,7 @@
     	 }
      });
      
-     </script> --%>  
+     </script>  --%>
      
     <div class="slide-container">
         <!-- 리스트를 담고 있는 박스 -->
@@ -202,14 +202,14 @@
                                         <p class="gf-left-subTitle">일이나 독서를 하다보면 필요한 수납장,<br>정리공간 여기에서 찾아보세요!</p>
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
-                                    <c:forEach var="i" items="${list }" begin="210" end="210">
+                                    <c:forEach var="i" items="${list }" begin="282" end="282">
                                     <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
-                            	<c:forEach var="i" items="${list }" begin="211" end="212">                      
+                            	<c:forEach var="i" items="${list }" begin="284" end="285">                      
                             	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
                             </c:forEach>                       
                             </ul>
@@ -227,14 +227,14 @@
                                         <p class="gf-left-subTitle">독서하기 전 반드시(아닐수도 있음) 준비해야 할 필수템들!</p>
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
-                                    <c:forEach var="i" items="${list }" begin="299" end="299">
+                                    <c:forEach var="i" items="${list }" begin="310" end="310">
                                     <a href="${path }/gift/giftDetail?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
-                            	<c:forEach var="i" items="${list }" begin="281" end="282">                      
+                            	<c:forEach var="i" items="${list }" begin="311" end="312">                      
                             	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
                             </c:forEach>                        
                             </ul>

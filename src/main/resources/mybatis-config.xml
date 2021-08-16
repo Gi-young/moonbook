@@ -16,10 +16,6 @@
 		<!-- 회원등급 -->
 		<typeAlias type="com.rar.khbook.member.model.vo.Membergrade"
 			alias="membergrade" />
-		<!-- 이북구매내역 -->
-		<typeAlias
-			type="com.rar.khbook.order.model.vo.EbookPurchaseHistory"
-			alias="ebookPurchaseHistory" />
 		<typeAlias alias="strArr"
 			type="com.rar.khbook.common.StringArrayTypeHandler" />
 
@@ -58,6 +54,7 @@
 		<typeAlias
 			type="com.rar.khbook.sellbook.model.vo.SellbookDatabind"
 			alias="sellbookDatabind" />
+		<typeAlias type="com.rar.khbook.sellbook.model.vo.BookBoard" alias="bookBoard"/>
 
 		<!-- 장바구니 -->
 		<typeAlias
@@ -80,5 +77,14 @@
 			alias="delivery" />
 		<!-- top3 -->
 		<typeAlias type="com.rar.khbook.adminchart.model.vo.BookTopThree" alias="booktopthree"/>
+	
+		<!-- top3 ebook-->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.EbookTopThree" alias="ebooktopthree"/>
+	
+		<!-- top3 gift-->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.GiftTopThree" alias="gifttopthree"/>
+	
+	
+	
 	</typeAliases>
 </configuration>

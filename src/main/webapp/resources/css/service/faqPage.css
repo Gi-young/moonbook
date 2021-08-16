@@ -34,7 +34,7 @@
 .faqFont{
 	font-weight: bold;
 	margin-left:20px;
-	margin-bottom:10px;
+	margin-bottom:10px; 
 }
 .FAQlist-container{
 	height: 100%;
@@ -104,10 +104,151 @@
 	border:1px solid black;
 	text-align: center;
 	width:730px;
+	height:500px;
+	overflow-y: scroll;
 	
 }
 .faqList-box1 ul li{
+	
+}
+.sub-menu0{
 	border:1px solid black;
-	width:600px;
-	height:40px;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+	
+}
+.sub-menu1{
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+}
+.sub-menu2{
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+}
+.sub-menu3{
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+}
+.sub-menu4{
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+}
+.sub-menu5{
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+}
+.sub-menu6{
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+}
+.sub-menu7{
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+}
+.sub-menu8{
+	border:1px solid black;
+	width:710px;
+	height:20px;
+	vertical-align: middle;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color:#582810;
+}
+
+.sub-menu2 button{
+	background-color:  #F1CB63;
+	color: #582810;
+	
+}
+.sub-menu2 button:hover{
+	background-color: #582810;
+	color: white;
+}
+.sideMenu p{
+	color:#582810;
+	font-weight: bold;
+}
+.sub_content0{
+	display:none;
+}
+.sub_content1{
+	display:none;
+}
+.sub_content2{
+	display:none;
+}
+.sub_content3{
+	display:none;
+}
+.sub_content4{
+	display:none;
+}
+.sub_content5{
+	display:none;
+}
+.sub_content6{
+	display:none;
+}
+.sub_content7{
+	display:none;
+}
+.sub_content8{
+	display:none;
 }

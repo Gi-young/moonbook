@@ -184,4 +184,11 @@ public class UsedboardServiceImpl implements UsedboardService {
 		// TODO Auto-generated method stub
 		return dao.usedboardMySingoDelete(session,no);
 	}
+	
+	@Override
+	public int cancelPayment(int no) {
+		// TODO Auto-generated method stub
+		dao.cancelPaymentUpdate(session,no);
+		return dao.cancelPayment(session,no);
+	}
 }

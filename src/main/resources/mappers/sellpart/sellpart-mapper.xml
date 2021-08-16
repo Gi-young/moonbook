@@ -34,6 +34,17 @@
 		<result column="member_visit" property="memberVisit" />
 		<result column="member_today" property="memberToday" />
 	</resultMap>
+	<resultMap type="bookBoard" id="bookReviewMap">
+		<id column="BOOK_REVIEW_NO" property="book_board_no"/>
+		<result column="ROWNUM" property="rownum"/>
+		<result column="BIND_NO" property="bindNo"/>
+		<result column="BOOK_CONTENT" property="book_board_content"/>
+		<result column="MEMBER_ID" property="writer"/>
+		<result column="WRITE_DATE" property="write_date"/>
+		<result column="GROUP_ORD" property="groupOrd"/>
+		<result column="GROUP_LAYER" property="groupLayer"/>
+		<result column="BOOK_SCORE" property="book_score"/>
+	</resultMap>
 	
 	<select id="selectSellbookDatabind" resultMap="SellbookDatabind">
 		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
@@ -51,4 +62,19 @@
 	<update id="selectSalesVolumeAdd">
 		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME=SALES_VOLUME+#{sellStockInt} WHERE BIND_NO=#{bindNo}
 	</update>
+	<select id="selectBookOne" resultMap="SellbookDatabind">
+		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+	<select id="selectReview" resultMap="bookReviewMap">
+		SELECT ROWNUM, A.* FROM BOOK_REVIEW A WHERE BIND_NO=#{bindNo}
+	</select>
+	
+	<insert id="insertReview">
+		INSERT INTO BOOK_REVIEW VALUES(#{bindNo}, SEQ_BOOK_REVIEW.NEXTVAL, #{content}, #{memberId}, SYSDATE, null,null,#{score})
+	</insert>
+	
+	<select id="selectReviewAll" resultType="int">
+		SELECT COUNT(*) FROM BOOK_REVIEW WHERE BIND_NO=#{bindNo}
+	</select>
+	
 </mapper>

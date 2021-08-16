@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.rar.khbook.auction.model.vo.Auction;
+import com.rar.khbook.auction.model.vo.AuctionBid;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.auction.model.vo.Bankinfo;
 import com.rar.khbook.auction.model.vo.Transaction;
@@ -74,5 +75,9 @@ public interface AuctionDao {
 	void insertBank(SqlSession session, Map param);
 
 	int insertpayoutEnd(SqlSession session, Map param);
+
+	List<AuctionBid> selectbidlist(SqlSession session);
+
+	AuctionBid selectauctiobanner(SqlSession session);
 
 }

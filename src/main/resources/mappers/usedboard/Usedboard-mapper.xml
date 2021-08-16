@@ -203,6 +203,14 @@
 	</delete>
 	
 	<insert id="usedboardDeliveryt">
-		INSERT INTO DELIVERYT VALUES(SEQ_DELIVERY_NO.NEXTVAL, #{usedboardPayment_Price}, '주문접수')
+		INSERT INTO DELIVERYT VALUES(SEQ_DELIVERY_NO.NEXTVAL, #{usedboardPayment_Price})
 	</insert>
+	
+	<update id="cancelPayment">
+		UPDATE USEDBOARDPAYMENT SET USEDBOARDPAYMENT_CANCEL='y' WHERE USEDBOARDPAYMENT_BOARDNO='${value}'
+	</update>
+	
+	<update id="cancelPaymentUpdate">
+		UPDATE USEDBOARD SET USEDBOARD_STATE='y' WHERE USEDBOARD_NO='${value}'
+	</update>
 </mapper>

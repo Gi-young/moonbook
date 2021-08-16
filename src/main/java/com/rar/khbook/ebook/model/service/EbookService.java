@@ -104,4 +104,12 @@ public interface EbookService {
 	
 	int getLastPage(String bindNo, String loginMemberId);
 	
+	List<HashMap> getBookCategory();
+	
+	List<HashMap> newSearch(Map param);
+	
+	int getTotalData(Map param);
+	
+	List<HashMap> getCategories(Map param);
+	
 }
