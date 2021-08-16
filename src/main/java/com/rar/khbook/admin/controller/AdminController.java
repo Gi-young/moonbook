@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -202,6 +203,10 @@ public class AdminController {
 		
 		List<Order> list=service.selectOrderList(cPage,numPerpage);
 		
+		int totalData=service.selectOrderCount();
+		
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
 		
 		mv.setViewName("admin/adminSalePage"); 
 		return mv;
@@ -483,7 +488,16 @@ public class AdminController {
 		List<Ngift> listT2=service.selectGiftList(cPage,numPerpage);
 		
 		mv.addObject("list", listT);
+		
+//		List<Ngift> title= new ArrayList();
+		String title="";
+		for(Ngift n : listT2) { 
+			title=n.getGift_title().replace("<b>","").replace("</b>",""); 
+			
+			n.setGift_title(title);
+		}
 		mv.addObject("list2", listT2);
+		
 		
 		int totalData=service.selectEbookDataCount();
 		int totalData2=service.selectGiftCount();
@@ -556,9 +570,16 @@ public class AdminController {
 		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
 		param.put("stockNum2", stockNum2);
 		
-		
-		
 		List<Ngift> list2=service.orderStockList3(param);
+		String title="";
+		for(Ngift n : list2) { 
+			title=n.getGift_title().replace("<b>","").replace("</b>",""); 
+			
+			n.setGift_title(title);
+		}
+//		model.addObject("list2", list2);
+		
+		
 		
 		return list2;
 	}
@@ -638,6 +659,13 @@ public class AdminController {
 		param.put("search5", search5);
 		
 		List<Ngift> list2=service.searchTextStockList3(param);
+	
+		String title="";
+		for(Ngift n : list2) { 
+			title=n.getGift_title().replace("<b>","").replace("</b>",""); 
+			
+			n.setGift_title(title);
+		}
 		
 		return list2;
 	}
@@ -918,7 +946,7 @@ public class AdminController {
 		
 		mv.addObject("list", list);
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "searchCouponlist.do"));
 		mv.setViewName("admin/searchCoupon");
 		
 		return mv;
@@ -1334,6 +1362,14 @@ public class AdminController {
 			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,ModelAndView mv) {
 		
 		List<Ngift> list=service.selectGiftList(cPage,numPerpage);
+		
+		String title="";
+		for(Ngift n : list) { 
+			title=n.getGift_title().replace("<b>","").replace("</b>",""); 
+			
+			n.setGift_title(title);
+		}
+		
 		mv.addObject("list",list);
 		
 		int totalData=service.selectGiftCount();
@@ -1360,6 +1396,13 @@ public class AdminController {
 		
 		
 		List<Ngift> list = service.orderGiftAList(param);
+		
+		String title="";
+		for(Ngift n : list) { 
+			title=n.getGift_title().replace("<b>","").replace("</b>",""); 
+			
+			n.setGift_title(title);
+		}
 		
 		return list;
 	}
@@ -1401,6 +1444,13 @@ public class AdminController {
 		
 		
 		List<Ngift> list = service.searchTextGiftAList(param);
+		
+		String title="";
+		for(Ngift n : list) { 
+			title=n.getGift_title().replace("<b>","").replace("</b>",""); 
+			
+			n.setGift_title(title);
+		}
 		
 		return list;
 	}
@@ -1450,7 +1500,7 @@ public class AdminController {
 		mv.setViewName("admin/chartAnalysis");
 		return mv;
 	}
-	//차트 페이지 book데이터 가져오기
+
 	
 	
 	

@@ -279,4 +279,19 @@ public class EbookServiceImpl implements EbookService {
 		return dao.getBookCategory(session);
 	}
 	
+	@Override
+	public List<HashMap> newSearch(Map param) {
+		return dao.newSearch(session, param);
+	}
+	
+	@Override
+	public int getTotalData(Map param) {
+		return dao.getTotalData(session, param);
+	}
+	
+	@Override
+	public List<HashMap> getCategories(Map param) {
+		return dao.getCategories(session, param);
+	}
+	
 }

@@ -1,5 +1,8 @@
 let contextPath = document.getElementById("contextPath").value;
 let loginMemberId = document.getElementById("memberId").value;
+let currentFocus = document.getElementById("currentFocus").value;
+
+console.log("currentFocus : " + currentFocus);
 
 function moonbookDatabind() {
     let keywordStr = "";
@@ -184,3 +187,21 @@ function openEbookWizard() {
         location.replace(contextPath + "/ebook/pageEbook.do");
     }
 };
+
+highlightCurrentPage(currentFocus);
+
+function highlightCurrentPage(currentFocus) {
+    let lists = document.querySelectorAll("ul.navbar-menu>li");
+
+    for (let i = 0; i < lists.length; i ++) {
+        lists[i].style.backgroundColor = "none";
+    }
+
+    switch (currentFocus) {
+        case "": lists[1].classList.add("navbar-menu-highlight"); break;
+        case "child": lists[2].classList.add("navbar-menu-highlight"); break;
+        case "elementary": lists[3].classList.add("navbar-menu-highlight"); break;
+        case "middle": lists[4].classList.add("navbar-menu-highlight"); break;
+        case "ebook": lists[5].classList.add("navbar-menu-highlight"); break;
+    }
+}

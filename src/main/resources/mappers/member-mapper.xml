@@ -11,14 +11,15 @@
 
 	<insert id="insertMember">
 		INSERT INTO MEMBER
-		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1,0,0,SYSDATE)
+		VALUES(#{memberId},#{memberPw},#{memberName},#{memberEmail},#{memberPhone},#{memberAddress},#{memberGender},#{memberBirth},0,SYSDATE,1,0,0,SYSDATE,#{memberAddressNum},#{memberDetailAddress})
 	</insert>
 	<delete id="memberDelete">
 		DELETE FROM MEMBER WHERE MEMBER_ID=#{memberId}
 	</delete>
+	<!-- 관리자에서 수정할때 사용함 -->
 	<update id="memberUpdate">
 		UPDATE MEMBER SET
-		MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_POINT=#{memberPoint},MEMBER_MEMBERGRADE_NO=#{memberGradeNo}
+		MEMBER_PHONE=#{memberPhone},MEMBER_DETAIL_ADDRESS=#{memberDetailAddress},MEMBER_POINT=#{memberPoint},MEMBER_MEMBERGRADE_NO=#{memberGradeNo}
 		WHERE MEMBER_ID=#{memberId}
 	</update>
 
@@ -89,6 +90,8 @@
 		<result column="member_total_sale" property="memberTotalSale" />
 		<result column="member_visit" property="memberVisit" />
 		<result column="member_today" property="memberToday" />
+		<result column="member_address_num" property="memberAddressNum"/>
+		<result column="member_detail_address" property="memberDetailAddress"/>
 	</resultMap>
 
 	<!-- 쿠폰에 상속해줄 부모 VO -->
@@ -183,7 +186,7 @@
 	<insert id="insertCoupon">
 		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,
 		SYSDATE+30, #{memberId},
-		1, 'Y', '')
+		1, 'Y') 
 	</insert>
 
 	<!-- 회원 정보 수정 -->
