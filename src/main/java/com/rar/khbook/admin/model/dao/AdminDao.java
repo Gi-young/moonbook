@@ -34,6 +34,7 @@ public interface AdminDao {
 	int getPageBarSearchTextMemberList(SqlSession session,Map param);
 	
 	List<Order> selectOrderList(SqlSession session,int cPage,int numPerpage);
+	int selectOrderCount(SqlSession session);
 	
 	int insertProduct1(SqlSession session,Map param);
 	

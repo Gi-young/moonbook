@@ -203,6 +203,10 @@ public class AdminController {
 		
 		List<Order> list=service.selectOrderList(cPage,numPerpage);
 		
+		int totalData=service.selectOrderCount();
+		
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
 		
 		mv.setViewName("admin/adminSalePage"); 
 		return mv;
@@ -942,7 +946,7 @@ public class AdminController {
 		
 		mv.addObject("list", list);
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "searchCouponlist.do"));
 		mv.setViewName("admin/searchCoupon");
 		
 		return mv;
@@ -1496,7 +1500,7 @@ public class AdminController {
 		mv.setViewName("admin/chartAnalysis");
 		return mv;
 	}
-	//차트 페이지 book데이터 가져오기
+
 	
 	
 	

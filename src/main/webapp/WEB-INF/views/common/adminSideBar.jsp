@@ -25,7 +25,7 @@
 			</li>
 		<li class="sub-menu2">
 				<p onclick="" class="adminColor">제품 관리</p>
-			<ul class="sub_content2">
+		<ul class="sub_content2">
 			<li><p onclick="location.assign('${path}/admin/addProductPage.do')" class="adminColor2">등록</p></li>
 			<li><p onclick="location.assign('${path}/admin/inputProductPage2.do')" class="adminColor2">입고</p></li>
 			<li><p onclick="location.assign('${path}/admin/removeProductPage.do')" class="adminColor2">출고</p></li>
@@ -51,7 +51,6 @@
 			<ul class="sub_content4">
 			<li><p onclick="" class="adminColor2">공지사항</p></li>
 			<li><p onclick="" class="adminColor2">FAQ관리</p></li>
-			<li><p onclick="" class="adminColor2">이벤트</p></li>
 			<li><p onclick="" class="adminColor2">1대1채팅</p></li>
 		</ul>
 			</li>

@@ -32,6 +32,7 @@ public interface AdminService {
 	int getPageBarSearchTextMemberList(Map param);
 	
 	List<Order> selectOrderList(int cPage,int numPerpage);
+	int selectOrderCount();
 	
 	int insertProduct1(Map param); // 책등록
 	int insertProduct3(Map param); // 상품등록
