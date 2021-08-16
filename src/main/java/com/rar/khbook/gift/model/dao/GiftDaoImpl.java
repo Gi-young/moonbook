@@ -98,4 +98,41 @@ public class GiftDaoImpl implements GiftDao {
 	public Couponlist selectCouponlist(SqlSession session, int couponCouponListNo) {	
 		return session.selectOne("gift.selectCouponlist", couponCouponListNo);
 	}
+
+//	판매량에 구매수량만큼 추가
+	@Override
+	public int updateSalesVolume(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateSalesVolume", param);
+	}
+
+//	재고 - 구매수량
+	@Override
+	public int updateStock(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateStock", param);
+	}
+
+//	회원의 구매금액에 구매금액만큼 추가
+	@Override
+	public int updateMemberPP(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateMemberPP", param);
+	}
+
+//	회원의 포인트를 구매금액의 10%만큼 추가
+	@Override
+	public int updateMemberPoint(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateMemberPoint", param);
+	}
+
+//	회원의 구매내역에 추가
+	@Override
+	public int updatePurchaseList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updatePurchaseList", param);
+	}
+	
+	
 }

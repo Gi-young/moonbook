@@ -41,4 +41,14 @@ public interface GiftDao {
 	
 //	접속한 회원의 쿠폰 종류
 	Couponlist selectCouponlist(SqlSession session, int couponCouponlistNo);
+
+	int updateSalesVolume(SqlSession session, Map param);
+
+	int updateStock(SqlSession session, Map param);
+
+	int updateMemberPP(SqlSession session, Map param);
+
+	int updateMemberPoint(SqlSession session, Map param);
+
+	int updatePurchaseList(SqlSession session, Map param);
 }

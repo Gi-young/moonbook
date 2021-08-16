@@ -165,6 +165,7 @@ public class GiftController {
 
 	}
 
+//    네이버 검색 API로 물건 받아오기
 //	    @RequestMapping(value="/gift/naverGift.do" , produces = "text/plain;charset=utf-8")	
 //	    @ResponseBody
 //	    	public StringBuilder main(String[] args, ModelAndView mv) {
@@ -287,44 +288,7 @@ public class GiftController {
 		return mv;
 	}
 
-	/*
-	 * @RequestMapping("") public ModelAndView addCouponList(ModelAndView
-	 * mv,MultipartFile couponImg ,@RequestParam Map param,HttpServletRequest req) {
-	 * 
-	 * String couponImg=(String)param.get("couponImg"); param.put("couponImg",
-	 * couponImg);
-	 * 
-	 * String path=req.getServletContext().getRealPath("/resources/upload/admin/");
-	 * File dir=new File(path);
-	 * 
-	 * String price=(String)param.get("couponlistAmount");
-	 * 
-	 * if(!dir.exists()) dir.mkdirs();
-	 * 
-	 * if(!couponImg.isEmpty()) { String
-	 * oriFilename=couponImg.getOriginalFilename(); String
-	 * ext=oriFilename.substring(oriFilename.lastIndexOf(".")); //리넴 규칙 설정
-	 * SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS"); int
-	 * rndNum=(int)Math.random()*10000; String
-	 * reName=sdf.format(System.currentTimeMillis())+"_"+rndNum+"_"+price+ext;
-	 * 
-	 * try { couponImg.transferTo(new File(path+reName));
-	 * 
-	 * 
-	 * //여기서 선생님은 b 객체를 이용해서 b.getAttachments를 사용 param.put("couponImg",reName);
-	 * //c.getAttachments().add(CouponAttachment.builder().originalFilename(
-	 * oriFilename).renamedFilename(reName).build()); //c.setCouponImg(reName);
-	 * }catch(IOException e) { e.printStackTrace(); } }
-	 * 
-	 * System.out.println("couponImg"+couponImg);
-	 * 
-	 * int result=service.addCouponList(param); //service.addCouponList(); String
-	 * msg=""; String loc=""; if(result>0) { msg="쿠폰이 등록되었습니다";
-	 * 
-	 * }else { msg="쿠폰 등록 실패"; } loc="/admin/addCouponPage.do";
-	 * mv.addObject("msg",msg); mv.addObject("loc",loc);
-	 * mv.setViewName("common/msg"); return mv; }
-	 */
+	
 
 	@RequestMapping("/gift/giftPayment.do")
 	public ModelAndView giftPayment(int giftNo, ModelAndView mv, int quan) {
@@ -337,10 +301,17 @@ public class GiftController {
 
 	@RequestMapping("/gift/salesVolume.do")
 	@ResponseBody
-	public int salesVolume(Map param) {
+	public int salesVolume(@RequestParam Map param) {
 		System.out.println("파람이 잘 넘어오는지 : "+param);
 
-		return 1;
+		System.out.println(" 아이디 : "+param.get("memberId"));
+		System.out.println(" 상품번호 : "+param.get("giftNo"));
+		System.out.println(" 상품가격 : "+param.get("totalPrice"));
+		System.out.println(" 구매수량 :"+param.get("stock"));
+		
+		int result = service.updateSalesVolume(param);
+		
+		return result;
 	}
 	
 	

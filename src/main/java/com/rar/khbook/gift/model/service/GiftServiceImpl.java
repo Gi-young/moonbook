@@ -124,4 +124,30 @@ public class GiftServiceImpl implements GiftService {
 		
 		return cpList;
 	}
+
+	
+	@Override
+	public int updateSalesVolume(Map param) {
+	
+//		판매량에 구매수량만큼 추가
+		int result1 = dao.updateSalesVolume(session, param);
+		System.out.println(result1);
+		if(result1>0) {
+//			상품재고 - 구매수량
+			int result2 = dao.updateStock(session, param);
+//			멤버 테이블 구매금액 추가
+			int result3 = dao.updateMemberPP(session, param);
+//			멤버 적립포인트 추가
+			int result4 = dao.updateMemberPoint(session, param);
+//			구매내역에 추가
+			int result5 = dao.updatePurchaseList(session, param);
+//			쿠폰은 choiceCoupon 에서 처리
+			return 1;
+		}else {
+			return 0;
+		}
+
+	}
+	
+	
 }

@@ -13,7 +13,7 @@ import com.rar.khbook.member.model.vo.Member;
 
 public interface GiftService {
 	
-//	
+	
 	Member searchMember(String memberId);
 		
 	List<Ngift> giftAll();
@@ -35,7 +35,9 @@ public interface GiftService {
 
 //	접속한 회원의 쿠폰 종류
 	List<Couponlist> selectCouponlist(List<Coupon> c);
-	
+
+//  상품 구매 이후 처리해야 할 로직
+	int updateSalesVolume(Map param);	
 }
 
 
