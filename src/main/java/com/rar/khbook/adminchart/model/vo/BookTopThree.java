@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class BookTopThree {
 
-	private String btitle;
+	private String btitle; 
 	private int btotalcost;
 	private int bprofit;
-	private int bsalesVolume;
+	private int bcost;
 }

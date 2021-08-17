@@ -77,5 +77,14 @@
 			alias="delivery" />
 		<!-- top3 -->
 		<typeAlias type="com.rar.khbook.adminchart.model.vo.BookTopThree" alias="booktopthree"/>
+	
+		<!-- top3 ebook-->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.EbookTopThree" alias="ebooktopthree"/>
+	
+		<!-- top3 gift-->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.GiftTopThree" alias="gifttopthree"/>
+	
+	
+	
 	</typeAliases>
 </configuration>

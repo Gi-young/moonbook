@@ -78,6 +78,7 @@
 					</div>
 			</div>
 			<div class="memberT-container">
+			<div>
 				<table class="memberT">
 							
 							<tr>
@@ -100,6 +101,7 @@
 							
 
 						</table>
+						</div>
 						<!-- </form> -->
 						
 						<div id="pagebar-container5">

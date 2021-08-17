@@ -416,5 +416,190 @@
 	<select id="getLastPage" resultType="_int">
 		SELECT LAST_PAGE FROM MEMBER_EBOOK_LIST WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
 	</select>
+	
+	<select id="getBookCategory" resultType="hashmap">
+		SELECT * FROM BOOK_EBOOK_CATEGORY
+	</select>
+	
+	<select id="newSearch" resultType="hashmap">
+		SELECT * FROM BOOK_EBOOK_DATABIND B, EBOOK E
+		WHERE B.BIND_NO=E.EBOOK_NO(+)
+		AND ${searchType} LIKE '%'||#{keyword}||'%'
+		<if test="categoryCode != '' and categoryCode != null">
+			AND CATEGORY_CODE=#{categoryCode}
+		</if>
+		ORDER BY 
+		<choose>
+			<when test="importancePubdate>importanceSales and importanceSales>importanceRating and importanceRating>importancePrice">
+				PRICE ${priceOrder},
+				EBOOK_RATING ${ratingOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder}
+			</when>
+			<when test="importancePubdate>importanceSales and importanceSales>importancePrice and importancePrice>importanceRating">
+				EBOOK_RATING ${ratingOrder},
+				PRICE ${priceOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder}
+			</when>
+			<when test="importancePubdate>importancePrice and importancePrice>importanceSales and importanceSales>importanceRating">
+				EBOOK_RATING ${ratingOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder}
+			</when>
+			<when test="importancePubdate>importancePrice and importancePrice>importanceRating and importanceRating>importanceSales">
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				EBOOK_RATING ${ratingOrder},
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder}
+			</when>
+			<when test="importancePubdate>importanceRating and importanceRating>importanceSales and importanceSales>importancePrice">
+				PRICE ${priceOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				EBOOK_RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder}
+			</when>
+			<when test="importancePubdate>importanceRating and importanceRating>importancePrice and importancePrice>importanceSales">
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder},
+				EBOOK_RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder}
+			</when>
+			<when test="importanceSales>importancePubdate and importancePubdate>importanceRating and importanceRating>importancePrice">
+				PRICE ${priceOrder},
+				EBOOK_RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder}
+			</when>
+			<when test="importanceSales>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceRating">
+				EBOOK_RATING ${ratingOrder},
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder}
+			</when>
+			<when test="importanceSales>importanceRating and importanceRating>importancePubdate and importancePubdate>importancePrice">
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder},
+				EBOOK_RATING ${ratingOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder}
+			</when>
+			<when test="importanceSales>importanceRating and importanceRating>importancePrice and importancePrice>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder},
+				EBOOK_RATING ${ratingOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder}
+			</when>
+			<when test="importanceSales>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceRating">
+				EBOOK_RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder}
+			</when>
+			<when test="importanceSales>importancePrice and importancePrice>importanceRating and importanceRating>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				EBOOK_RATING ${ratingOrder},
+				PRICE ${priceOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder}
+			</when>
+			<when test="importanceRating>importanceSales and importanceSales>importancePrice and importancePrice>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				EBOOK_RATING ${ratingOrder}
+			</when>
+			<when test="importanceRating>importanceSales and importanceSales>importancePubdate and importancePubdate>importancePrice">
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				EBOOK_RATING ${ratingOrder}
+			</when>
+			<when test="importanceRating>importancePubdate and importancePubdate>importanceSales and importanceSales>importancePrice">
+				PRICE ${priceOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder},
+				EBOOK_RATING ${ratingOrder}
+			</when>
+			<when test="importanceRating>importancePubdate and importancePubdate>importancePrice and importancePrice>importanceSales">
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder},
+				PUBDATE ${pubdateOrder},
+				EBOOK_RATING ${ratingOrder}
+			</when>
+			<when test="importanceRating>importancePrice and importancePrice>importancePubdate and importancePubdate>importanceSales">
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder},
+				EBOOK_RATING ${ratingOrder}
+			</when>
+			<when test="importanceRating>importancePrice and importancePrice>importanceSales and importanceSales>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder},
+				EBOOK_RATING ${ratingOrder}
+			</when>
+			<when test="importancePrice>importanceRating and importanceRating>importancePubdate and importancePubdate>importanceSales">
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder},
+				EBOOK_RATING ${ratingOrder},
+				PRICE ${priceOrder}
+			</when>
+			<when test="importancePrice>importanceRating and importanceRating>importanceSales and importanceSales>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				EBOOK_RATING ${ratingOrder},
+				PRICE ${priceOrder}
+			</when>
+			<when test="importancePrice>importanceSales and importanceSales>importanceRating and importanceRating>importancePubdate">
+				PUBDATE ${pubdateOrder},
+				EBOOK_RATING ${ratingOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder}
+			</when>
+			<when test="importancePrice>importanceSales and importanceSales>importancePubdate and importancePubdate>importanceRating">
+				EBOOK_RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PRICE ${priceOrder}
+			</when>
+			<when test="importancePrice>importancePubdate and importancePubdate>importanceRating and importanceRating>importanceSales">
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				EBOOK_RATING ${ratingOrder},
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder}
+			</when>
+			<when test="importancePrice>importancePubdate and importancePubdate>importanceSales and importanceSales>importanceRating">
+				EBOOK_RATING ${ratingOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				PUBDATE ${pubdateOrder},
+				PRICE ${priceOrder}
+			</when>
+			<otherwise>
+				PUBDATE ${pubdateOrder},
+				B.EBOOK_SALES_VOLUME ${salesOrder},
+				EBOOK_RATING ${ratingOrder},
+				PRICE ${priceOrder}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getTotalData" resultType="_int">
+		SELECT COUNT(*) FROM BOOK_EBOOK_DATABIND B, EBOOK E WHERE B.BIND_NO=E.EBOOK_NO(+)
+		AND ${searchType} LIKE '%'||#{keyword}||'%'
+		<if test="categoryCode != '' and categoryCode != null">
+			AND CATEGORY_CODE=#{categoryCode}
+		</if>
+	</select>
+	
+	<select id="getCategories" resultType="hashmap">
+		SELECT * FROM BOOK_EBOOK_CATEGORY
+		<if test="metaCategory[0] != ''">
+			WHERE META_CATEGORY IN
+			<foreach collection="metaCategory" item="j" index="i" open="(" close=")" separator=",">
+				#{j}
+			</foreach>
+		</if>
+		ORDER BY META_CATEGORY
+	</select>
 
 </mapper>

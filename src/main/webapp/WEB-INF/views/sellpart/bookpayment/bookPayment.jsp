@@ -127,7 +127,7 @@
 						<tr>
 							<td><img src="${book.image }"></td>
 							<td>${book.title }</td>
-							<c:if test="${shopinglistCate == null}">
+							<c:if test="${shopinglistCate == 'B'}">
 								<td><fmt:formatNumber value="${book.price*0.9 }"
 										type="currency" /></td>
 							</c:if>
@@ -135,7 +135,7 @@
 								<td><fmt:formatNumber value="${book.price }"
 										type="currency" /></td>
 							</c:if>
-							<c:if test="${shopinglistCate == null}">
+							<c:if test="${shopinglistCate == 'B'}">
 
 								<td>${book.stock }개</td>
 							</c:if>
@@ -143,7 +143,7 @@
 								<td id="orderVolume">1개</td>
 							</c:if>
 							<td>${sellStock }개</td>
-							<c:if test="${shopinglistCate == null}">
+							<c:if test="${shopinglistCate == 'B'}">
 								<td><fmt:formatNumber
 										value="${(book.price*0.9)*sellStock }" type="currency" /></td>
 							</c:if>
@@ -165,7 +165,7 @@
 					<table class="tbl_payment">
 						<tr class="tbl_first">
 							<td>도서 금액</td>
-							<c:if test="${shopinglistCate == null }">
+							<c:if test="${shopinglistCate == 'B' }">
 								<td><fmt:formatNumber
 										value="${(book.price*0.9)*sellStock }" type="currency" /></td>
 							</c:if>
@@ -175,7 +175,7 @@
 							</c:if>
 							<td>+</td>
 							<td>배송비</td>
-							<c:if test="${shopinglistCate  == null}">
+							<c:if test="${shopinglistCate  == 'B'}">
 								<td id="delifee"><fmt:formatNumber value="3000"
 										type="currency" /></td>
 							</c:if>
@@ -185,7 +185,7 @@
 							</c:if>
 							<td>=</td>
 							<td>총</td>
-							<c:if test="${shopinglistCate == null }">
+							<c:if test="${shopinglistCate == 'B' }">
 								<td id="totalfee"><fmt:formatNumber
 										value="${(book.price*0.9)*sellStock+3000 }" type="currency" /></td>
 
@@ -248,6 +248,62 @@ if(${shopinglistCate=='E'}){
                 	name:"${book.title}",
                 	/* amount:Number("${book.price}") */
                 	amount:100
+                	}, function(rsp){
+                		if(rsp.success){               				
+							$.ajax({
+								url:"${path}/EbookControllerSm/orderOne.do",
+								type:"POST",
+								dataType:"json",
+								data:{									
+									paymentId: rsp.imp_uid,
+                                    merchantUid: rsp.merchant_uid,
+                                    memberId: "${loginMember.memberId}",
+                                    payMethod: rsp.pay_method,
+                                    paidAmount: rsp.paid_amount,
+                                    paidAt: rsp.paid_at,
+                                    pgProvider: rsp.pg_provider,
+                                    receiptUrl: rsp.receipt_url,
+									orderVolume:1,
+									bindNo:"${book.bindNo}",
+									orderStatus:"결제완료"
+								},
+								success: data=>{
+									if(data=='1'){
+										location.assign('${path}/');
+									}else{
+										alert("실패");
+									}
+								},
+								error: error=>{
+										alert("실패");									
+								}
+                			})
+                		}else{
+                			console.log(rsp.error_msg);
+                		}
+                	}                		                	
+            	 );
+			}
+		});
+	});
+}
+if(${shopinglistCate=='B'}){
+	$("#pay").click(e=>{
+		$.ajax({
+             url: "${path}/ebook/getMerchantUid.do",
+             type: "POST",
+             success: data => {
+                merchant_uid = data;
+                console.log(data);
+                IMP.request_pay({
+                	pg:"html5_inicis",
+                	pay_method:"card",
+                	merchant_uid:merchant_uid,
+                	buyer_name:"${loginMember.memberName}",
+                	buyer_email:"${loginMember.memberEmail}",
+                	name:"${book.title}",
+                	/* amount:Number("${book.price}") */
+                	amount:100000
                 	}, function(rsp){
                 		if(rsp.success){               				
 							$.ajax({

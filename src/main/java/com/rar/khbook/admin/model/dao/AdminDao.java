@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.core.annotation.Order;
 
 import com.rar.khbook.adminchart.model.vo.BookTopThree;
+import com.rar.khbook.adminchart.model.vo.EbookTopThree;
+import com.rar.khbook.adminchart.model.vo.GiftTopThree;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.delivery.model.vo.Delivery;
@@ -32,6 +34,7 @@ public interface AdminDao {
 	int getPageBarSearchTextMemberList(SqlSession session,Map param);
 	
 	List<Order> selectOrderList(SqlSession session,int cPage,int numPerpage);
+	int selectOrderCount(SqlSession session);
 	
 	int insertProduct1(SqlSession session,Map param);
 	
@@ -162,4 +165,8 @@ public interface AdminDao {
 	int searchGiftTotalCost(SqlSession session,Map param);
 	
 	List<BookTopThree> bookTopThree(SqlSession session);
+	
+	List<EbookTopThree> ebookTopThree(SqlSession session);
+	
+	List<GiftTopThree> giftTopThree(SqlSession session);
 }

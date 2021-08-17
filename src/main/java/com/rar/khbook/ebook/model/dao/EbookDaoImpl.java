@@ -278,4 +278,29 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectOne("ebook.getLastPage", param);
 	}
 	
+	@Override
+	public List<HashMap> getBookCategory(SqlSession session) {
+		return session.selectList("ebook.getBookCategory");
+	}
+	
+	@Override
+	public List<HashMap> newSearch(SqlSession session, Map param) {
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerPage = Integer.parseInt((String)param.get("numPerPage"));
+		
+		RowBounds rb = new RowBounds((cPage - 1) * numPerPage, numPerPage);
+		
+		return session.selectList("ebook.newSearch", param, rb);
+	}
+	
+	@Override
+	public int getTotalData(SqlSession session, Map param) {
+		return session.selectOne("ebook.getTotalData", param);
+	}
+	
+	@Override
+	public List<HashMap> getCategories(SqlSession session, Map param) {
+		return session.selectList("ebook.getCategories", param);
+	}
+	
 }
