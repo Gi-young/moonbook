@@ -7,16 +7,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< HEAD
+
 import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
-=======
+
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
 import com.rar.khbook.shopingList.model.vo.BookShopingList;
 import com.rar.khbook.shopingList.model.vo.EbookShopingList;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
->>>>>>> pwjPPAP
+
 
 
 @Repository
@@ -35,11 +35,7 @@ public class ShopingListDaoImpl implements ShopingListDao {
 		return session.update("shopingList.insertShopingListBook",param) ;
 	}
 
-<<<<<<< HEAD
 
-	//List<HashMap> list = session.selectList("", param)
-
-=======
 	@Override
 	public List<BookShopingList> selectMyShopingListB(SqlSession session, String memberId) {
 	
@@ -77,6 +73,6 @@ public class ShopingListDaoImpl implements ShopingListDao {
 	}
 	
 	
->>>>>>> pwjPPAP
+
 	
 }

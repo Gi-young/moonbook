@@ -82,7 +82,7 @@ public class GiftServiceImpl implements GiftService {
 		System.out.println("너도 좀 맞자"+String.valueOf(param.get("giftNo")));
 		for(int i=0; i<list.size(); i++ ) {
 			System.out.println("너 진짜 뒤질래? "+String.valueOf(((GiftOrder) param.get(i)).getGiftNo()));
-			if(list.get(i).getGiftNo()==param.get("giftNo")) {
+			if() {
 				int result = dao.updateGiftShopingList(session, param);
 				System.out.println(" 그냥 아무것도 하기 싫다. "+result);
 			}
