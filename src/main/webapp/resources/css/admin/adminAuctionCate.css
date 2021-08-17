@@ -7,7 +7,7 @@
     align-items: center;
 }
 .admin-box1{
-	width: 950px;
+	width: fix-content;
 	display:flex;
 	height:700px;
 	min-height:500px; 
@@ -23,7 +23,7 @@
 	flex-direction: column;
 	border-left: 1px solid #deded8;
 	border-right: 1px solid #deded8; 
-	width:770px;
+	width:1000px;
 	text-align: center;
 	/* vertical-align: middle; */
 }
@@ -55,7 +55,7 @@
 	justify-content:center;
 	display:flex; 
 	vertical-align:middle; 
-	width:770px;
+	width:1000px;
 	/* height: 100px; */
 	padding-top:42px;
 	padding-bottom:10px;
@@ -72,7 +72,7 @@
 .admin-search3{
 	border: 1px solid #582810;
 	height: 100%;
-	width: 730px;
+	width: 725px;
    
 }
 .admin-search{

@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
 <link rel="stylesheet"
 	href="${path}/resources/css/login/enrollUser2.css">
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<div class="enrollInfo-container">
@@ -21,7 +21,7 @@
 			<p>문곰 회원가입</p>
 		</div>
 		<div class="enrollInfo-box">
-			<div class="enrollInfo5-box">
+			<div class="enrollInfo5-box" style="background-image: url('${path}/resources/img/login/bear60.png');">
 				<form id="frm" action="${path }/member/memberEnrollEnd.do"
 					method="post">
 
@@ -34,12 +34,16 @@
 							아이디는 사용 가능합니다.</span><span class="memberIdCheck2">이 아이디는 이미
 							사용중입니다.</span> <span class="memberIdCheck3">아이디는 4글자 이상이여야 합니다.</span>
 						<p class="enrollInfo-font">비밀번호</p>
-						<input type="password" name="memberPw" placeholder="비밀번호입력"
+						<input type="password" name="memberPw" placeholder="비밀번호입력" id="memberPw1"
 							required>
+							<span class="memberPwcheck3">8자리 ~ 20자리 이내로 입력해주세요.</span>
+							<span class="memberPwcheck4">비밀번호는 공백 없이 입력해주세요.</span>
+							<span class="memberPwcheck5">영문,숫자, 특수문자를 혼합하여 입력해주세요.</span>
+							<span class="memberPwcheck6">비밀번호가 정상적으로 확인되었습니다.</span>
 						<p class="enrollInfo-font">비밀번호 재확인</p>
 						<input type="password" id="memberPw2" placeholder="비밀번호재입력"
-							required> <span class="memberPwCheck">비밀번호 일치합니다.</span><span
-							class="memberPwcheck2">비밀번호 불일치합니다.</span>
+							required> <span class="memberPwCheck">비밀번호 일치합니다.</span>
+							<span class="memberPwcheck2">비밀번호 불일치합니다.</span>
 						<p class="enrollInfo-font">이름</p>
 						<input type="text" name="memberName" placeholder="10자리 내 입력"
 							required>
@@ -73,14 +77,19 @@
 						<input type="text" name="memberPhone" placeholder="전화번호입력(-없이)"
 							required>
 						<p class="enrollInfo-font">주소</p>
-						<input type="text" name="memberAddress" placeholder="주소입력"
+						<input type="hidden" name="memberAddress" placeholder="주소입력"
 							required>
+  						<input id="member_addr" type="text" placeholder="주소명" name="memberAddress" readonly onclick="findAddr()" style="margin-bottom:10px;"> <br>
+						<input id="member_post" type="text" placeholder="도로명/번호" name="memberAddressNum" readonly >
+  						<input type="text" placeholder="상세주소" name="memberDetailAddress" required>
+							
+							
 						<p class="enrollInfo-font">성별</p>
-						<div class="enrollInfo-box3">
-							<input type="radio" name="memberGender" id="genderM" value="M">
-							<label for="genderM">남</label> <input type="radio"
-								name="memberGender" id="genderF" value="F"> <label
-								for="genderF">여</label>
+						<div class="enrollInfo-box3" >
+							<input type="radio" name="memberGender" id="genderM" value="M" style="width:20px; margin-left:10px; margin-right:20px;">
+							<label for="genderM" style="font-size:20px;">남</label> <input type="radio"
+								name="memberGender" id="genderF" value="F" style="width:20px; margin-left:60px; margin-right:20px;"> <label
+								for="genderF" style="font-size:20px;">여</label>
 						</div>
 						<p class="enrollInfo-font">생년월일</p>
 						<input type="Date" name="memberBirth" required>
@@ -96,8 +105,30 @@
 </body>
 </html>
 <script>
+function findAddr(){
+	new daum.Postcode({
+        oncomplete: function(data) {
+        	
+        	console.log(data);
+        	
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var roadAddr = data.roadAddress; // 도로명 주소 변수
+            var jibunAddr = data.jibunAddress; // 지번 주소 변수
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('member_post').value = data.zonecode;
+            if(roadAddr !== ''){
+                document.getElementById("member_addr").value = roadAddr;
+            } 
+            else if(jibunAddr !== ''){
+                document.getElementById("member_addr").value = jibunAddr;
+            }
+        }
+    }).open();
+}
 	const fn_frmsubmit=()=>{
-		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none" && $("#wC").val()=="yes"){
+		if($('.memberIdCheck').css("display")!="none" && $('.memberPwcheck').css("display")!="none" && $('.memberPwcheck6').css("display")!="none" && $("#wC").val()=="yes"){
 			let memberEmail=$("#localPart").val()+"@"+$("#domain").val();
 			document.getElementById("memberEmail").value=memberEmail;
 			return true;
@@ -138,7 +169,9 @@
 		}
 	});
 	$("#memberPw2").keyup(e =>{
-		const password=$(e.target).prev().prev().val();
+		
+		
+		const password=$("#memberPw1").val();
 		const password2=$(e.target).val();
 		
 		if(password2==password){
@@ -148,6 +181,43 @@
 			$(".memberPwcheck").hide();
 			$(".memberPwcheck2").show();
 		}
+	})
+	$("#memberPw1").keyup(e=>{
+		//영문(대소문자) 포함
+		//숫자 포함
+		//특수 문자 포함
+		//공백 x
+		//비밀번호 자리 8~20자
+		const password=$("#memberPw1").val();
+		
+		var num = password.search(/[0-9]/g);
+		var eng = password.search(/[a-z]/ig);
+		var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		
+		if(password.length<8 ||password.length>20){
+			$(".memberPwcheck3").show(); //8~20 자리 이내
+			$(".memberPwcheck4").hide();
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").hide();
+		}else if(password.search(/\s/)!=-1){
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").show(); //비밀번호 공백 없이
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").hide();
+		}else if(num<0 || eng<0||spe<0){
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").hide(); 
+			$(".memberPwcheck5").show(); //영문,숫자 특수문자 혼합
+			$(".memberPwcheck6").hide();
+		}else{
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").hide();
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").show(); //통과
+		}
+		
+		
+		
 	})
 	
 	$("#sendEmail").click(e=>{
@@ -174,3 +244,4 @@
 	})
 
 </script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

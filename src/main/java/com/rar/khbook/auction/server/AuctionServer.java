@@ -30,6 +30,8 @@ public class AuctionServer extends TextWebSocketHandler{
 		String userId = getId(session);
 		
 		clients.put(userId, session);
+		
+		System.out.println("테스트 해보기"+clients);
 	}
 	
 	@Override
@@ -37,12 +39,14 @@ public class AuctionServer extends TextWebSocketHandler{
 		System.out.println("handleTextMessage: " + session + " / " + message);
 		
 		String[] messageArr = message.getPayload().split(",");
+		for(String s:messageArr) {
+			System.out.println(s);
+		}
+	
 		
 		if (messageArr[0].equals("bid")) {
-			
-			Set keySet = clients.keySet();
-			Iterator<String> itr = keySet.iterator();
-			
+				Set keySet = clients.keySet();
+				Iterator<String> itr = keySet.iterator();
 			while (itr.hasNext()) {
 				String userId = itr.next();
 				
@@ -51,16 +55,22 @@ public class AuctionServer extends TextWebSocketHandler{
 			}
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		if(messageArr[0].equals("main")) {
+
+			Set keySet = clients.keySet();
+			Iterator<String> itr = keySet.iterator();
+			while (itr.hasNext()) {
+				String userId = itr.next();				
+				clients.get(userId).sendMessage(new TextMessage(message.getPayload()));
+			}
+		}
+	
+	}
+	@Override
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		System.out.println("afterConnectionClosed: " + session + " / " + status);
+		String userId = getId(session);
+		clients.remove(userId);
 	}
 	
 	private String getId(WebSocketSession session) {
@@ -75,9 +85,5 @@ public class AuctionServer extends TextWebSocketHandler{
 		}
 	}
 	
-	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println("afterConnectionClosed: " + session + " / " + status);
-	}
 	
 }

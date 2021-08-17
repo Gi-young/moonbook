@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>e북 업로드</title>
 	<link rel="icon" href="${path}/resources/images/ebook/favicon.png" sizes="16x16">
 </head>
 <body>

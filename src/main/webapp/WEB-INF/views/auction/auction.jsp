@@ -8,13 +8,30 @@
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
-
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auction.css">
-	<button onclick="location.assign('${path}/auction/auctionauto ')">실험하기</button>
+	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<button onclick="location.assign('${path}/auction/auctionChat ')">실험하기</button>
+ttttdsadasssss
 	<div id="wrap">
 		<div id="container">
 	        <div class="auction_main line">
-	            <div class="auction_main_left line">배너</div>
+	            <div class="auction_main_left line">
+
+					<div id="banner" style="text-align:center;">
+						<h2>실시간 현황판</h2>
+						<div id="banner_list" style="overflow:hidden; height:250px;">
+						
+							<c:forEach items="${bannerlist }" var="ba">
+								<div>
+									<p>${ba.time }::${ba.bidName }에 ${ba.bidId }님이 ${ba.bidPrice }원 으로 최고입찰 하셨습니다.</p>
+								</div>
+							</c:forEach>
+						</div>				
+					</div>
+	         
+	            </div>
 	            <div class="auction_main_right line">
 	            	<h2>&lt;정보란&gt;</h2>
 	            	<c:choose>
@@ -227,8 +244,30 @@
 			
 			window.open('${path}/auction/actionbuyNow.do?auctionNo=' + auctionNo,'auctionbuynow', status);
 		}
+		//웹소켓
 		
+		let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
+		
+		sockAuction.onopen = (e) => {
+			console.log(e);
+		}
+		
+		sockAuction.onmessage = (i) => {
+			banner(i);
+		}
+		
+		sockAuction.onclose = (e) => {
+			console.log(e);
+		}
 
+		const banner=(i)=>{
+			let maindata=i.data.split(",");
+			let date =new Date();
+			let now=moment(date).format('YYYY-MM-DD HH:mm');
+			let bannerData=now+"::"+maindata[1]+"에"+maindata[2]+"님이"+maindata[3]+"원 으로 최고입찰 하셨습니다.";
+			$("#banner_list").prepend($("<div>").append("<p>").text(bannerData));
+					
+		}
 		
     </script>
 

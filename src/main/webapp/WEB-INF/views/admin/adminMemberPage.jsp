@@ -64,7 +64,7 @@
 			</div>
 			<div class="memberT-container">
 						<p class="memberTFont">총 <span class="turnRed">${totalContents }</span>명의 회원이 있습니다.</p>
-						<p class="memberTFont2">※ 전화번호, 주소, 회원 포인트, 회원 등급만 수정 가능합니다.</p>
+						<p class="memberTFont2">※ 전화번호, 세부주소, 회원 포인트, 회원 등급만 수정 가능합니다.</p>
 						<%-- <form action="${path }/admin/memberUpdate.do" name="admemberT" id="admemberT" method="post"> --%>
 						<table class="memberT">
 							
@@ -74,7 +74,7 @@
 								<th>회원 이름</th>
 								<th>회원 전화번호</th>
 								<th>회원 성별</th>
-								<th>회원 주소</th>
+								<th>회원 세부주소</th>
 								<th>회원 포인트</th>
 								<th>회원 등급</th>
 								<th>총 매출</th>
@@ -91,7 +91,7 @@
 									<td><input type="text" value="${e.memberName }" name="memberName" readonly></td>
 									<td><input type="text" value="${e.memberPhone }" name="memberPhone"></td>
 									<td><input type="text" value="${e.memberGender }" name="memberGender" readonly></td>
-									<td><input type="text" value="${e.memberAddress }" name="memberAddress"></td>
+									<td><input type="text" value="${e.memberDetailAddress }" name="memberDetailAddress"></td>
 									<td><input type="text" value="${e.memberPoint }" name="memberPoint"></td>
 									<td><input type="text" value="${e.memberGradeNo }" name="memberGradeNo"></td>
 									<td><input type="text" value="${e.memberTotalSale }" name="memberTotalSale" readonly></td>
@@ -138,12 +138,12 @@ function adMemberDelete(event){
 function changeMemberV(event){
 	let memberId=event.target.parentElement.parentElement.children[1].children[0].value;
 	let memberPhone=event.target.parentElement.parentElement.children[3].children[0].value;
-	let memberAddress=event.target.parentElement.parentElement.children[5].children[0].value;
+	let memberDetailAddress=event.target.parentElement.parentElement.children[5].children[0].value;
 	let memberPoint=event.target.parentElement.parentElement.children[6].children[0].value;
 	let memberGradeNo=event.target.parentElement.parentElement.children[7].children[0].value;
 	console.dir(memberPhone);
-	console.log("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberAddress="+memberAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
-	location.assign("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberAddress="+memberAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
+	console.log("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberDetailAddress="+memberDetailAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
+	location.assign("${path}/admin/memberUpdate.do?memberPhone="+memberPhone+"&memberDetailAddress="+memberDetailAddress+"&memberPoint="+memberPoint+"&memberGradeNo="+memberGradeNo+"&memberId="+memberId);
 	
 } 
 

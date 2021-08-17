@@ -8,7 +8,7 @@
     align-items: center;
 }
 .addProduct-box1{
-	width: 950px;
+	width: fix-content;
 	display:flex;
 	height:700px;
 	min-height:500px; 
@@ -22,7 +22,7 @@
 	
 	height:46px;
 	font-weight: 800;
-	margin-left:50px;
+	margin-left:20px;
 	margin-top:13px;
 }
 .addProduct-box4{
@@ -38,7 +38,7 @@
 	flex-direction: column;
 	border-left: 1px solid #deded8;
 	border-right: 1px solid #deded8;
-	width:770px;
+	width:1000px;
 }
 
 .ChooseTable1{

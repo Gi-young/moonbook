@@ -9,24 +9,35 @@
 	<meta charset="UTF-8">
 	<title>로그인 - 문곰책방</title>
 	<link rel="icon" href="${path}/resources/images/ebook/favicon.png" sizes="16x16">
-	<style>
-	
-	</style>
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/login.css">
 </head>
 <body>
-	<form action="${path}/ebook/login.do" method="post">
+	<div class="color-band"></div>
+	<div class="inner-color-band"></div>
+	
+	<form action="${path}/ebook/login.do" method="post" class="login-form">
 		<div id="loginBox">
 		 	<!-- value="${cookie.saveId.value}" --> 
-			<input type="text" id="memberId" name="memberId" placeholder="아이디를 입력하세요" value="admin">
+			<div class="input-box">
+				<div>
+					<input type="text" id="memberId" name="memberId" placeholder="아이디를 입력하세요" value="admin">
+					<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" value="1234">
+				</div>
+				
+				<input type="submit" value="로그인">
+			</div>
 			
-			<label for="saveId">아이디 저장</label>
-			<input type="checkbox" id="saveId" name="saveId">
-			
-			<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" value="1234">
-		
-			<input type="submit" value="로그인">
+			<div class="save-id-box">
+				<label for="saveId">아이디 저장</label>
+				<input type="checkbox" id="saveId" name="saveId">
+			</div>
 		</div>
 	</form>
+	
+	<div class="inner-color-band"></div>
+	<div class="color-band"></div>
+	
+	<div id="loginNotice"></div>
 	
 	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
 	<script>
@@ -38,12 +49,8 @@
 				$("#memberId").val("");
 				$("#password").val("");
 				$("#memberId").focus();
-				let resultMsg = document.createElement("div");
-				resultMsg.innerText = "로그인 실패, 다시 시도해주세요"
-				resultMsg.style.color = "red";
-				resultMsg.style.fontWeight = "bolder";
-				
-				document.getElementById("loginBox").appendChild(resultMsg);
+				let loginNotice = document.getElementById("loginNotice");
+				loginNotice.innerText = "로그인 실패, 다시 시도해주세요";
 			}
 		</c:if>
 	</script>

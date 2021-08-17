@@ -119,6 +119,9 @@
 		<result column="member_email" property="memberEmail" />
 		<result column="member_phone" property="memberPhone" />
 		<result column="member_address" property="memberAddress" />
+		<result column="member_address_num" property="memberAddressNum" />
+		<result column="member_detail_address" property="memberDetailAddress" />
+		
 		<result column="member_gender" property="memberGender" />
 		<result column="member_birth" property="memberBirth" />
 		<result column="member_point" property="memberPoint" />

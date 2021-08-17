@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.auction.model.service.AuctionService;
 import com.rar.khbook.auction.model.vo.Auction;
+import com.rar.khbook.auction.model.vo.AuctionBid;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.common.PageFactoryAuction;
@@ -44,6 +45,7 @@ public class AuctionController {
 		m.addAttribute("member",service.selectbidMember(param));
 		}
 		int totalData =	service.auctionCount();
+		m.addAttribute("bannerlist",service.selectbidlist());
 		m.addAttribute("auctioncate",service.selectAuctionCate());
 		m.addAttribute("timelist", service.selectTimeList(cPage,numPerpage));
 		m.addAttribute("poplist",service.selectpoplist());
@@ -406,6 +408,16 @@ public class AuctionController {
 		}
 		return "common/openmsg";
 		
+	}
+	@RequestMapping("/auction/auctionChat")
+	public String auctionChat() {
+		return "auction/chat";
+	}
+	//배너 나오게하지
+	@RequestMapping("/auction/auctionbanner")
+	@ResponseBody
+	public AuctionBid auctionbanner() {		
+		return service.selectauctiobanner();
 	}
 
 	

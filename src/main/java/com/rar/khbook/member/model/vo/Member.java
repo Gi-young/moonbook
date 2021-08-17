@@ -19,6 +19,8 @@ public class Member extends Membergrade {
 	private String memberEmail;
 	private String memberPhone;
 	private String memberAddress;
+	private int  memberAddressNum;
+	private String memberDetailAddress;
 	private String memberGender;
 	private String memberBirth;
 	private int memberPoint;
