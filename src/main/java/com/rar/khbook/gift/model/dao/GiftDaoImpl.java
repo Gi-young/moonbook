@@ -99,6 +99,18 @@ public class GiftDaoImpl implements GiftDao {
 		return session.selectOne("gift.selectCouponlist", couponCouponListNo);
 	}
 
+//	결제테이블에 추가
+	@Override
+	public int writePurchaseLog(SqlSession session, Map param) {
+		return session.insert("gift.writePurchaseLog", param);
+	}
+	
+	@Override
+	public int writeOrderT(SqlSession session, Map param) {
+		return session.insert("gift.writeOrderT", param);
+	}
+	
+	
 //	판매량에 구매수량만큼 추가
 	@Override
 	public int updateSalesVolume(SqlSession session, Map param) {

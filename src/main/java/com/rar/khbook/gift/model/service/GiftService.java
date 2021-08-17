@@ -37,7 +37,13 @@ public interface GiftService {
 	List<Couponlist> selectCouponlist(List<Coupon> c);
 
 //  상품 구매 이후 처리해야 할 로직
-	int updateSalesVolume(Map param);	
+	int updateSalesVolume(Map param);
+
+//	결제 테이블에 추가
+	int writePurchaseLog(Map param);
+
+//	결제 테이블에 추가 하기 전,	 order_no 생성
+	int writeOrderT(Map param);	
 }
 
 

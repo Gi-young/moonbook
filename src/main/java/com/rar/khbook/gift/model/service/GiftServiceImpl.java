@@ -127,6 +127,21 @@ public class GiftServiceImpl implements GiftService {
 
 	
 	@Override
+	public int writePurchaseLog(Map param) {
+		
+		int result = dao.writePurchaseLog(session, param);
+		
+		return result;
+	}
+	
+	@Override 
+	public int writeOrderT(Map param) {
+		int result = dao.writeOrderT(session, param);
+		return result;
+	}
+	
+	
+	@Override
 	public int updateSalesVolume(Map param) {
 	
 //		판매량에 구매수량만큼 추가

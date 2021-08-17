@@ -51,4 +51,8 @@ public interface GiftDao {
 	int updateMemberPoint(SqlSession session, Map param);
 
 	int updatePurchaseList(SqlSession session, Map param);
+
+	int writePurchaseLog(SqlSession session, Map param);
+
+	int writeOrderT(SqlSession session, Map param);
 }

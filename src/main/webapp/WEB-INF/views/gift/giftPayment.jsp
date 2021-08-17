@@ -151,12 +151,12 @@
 <!-- 주문가능수량 -->
 <input type="hidden" id="stock" value="${quan }">
 <!-- 주문수량 -->
-<input type="hidden" id="bookPrice09" value="${(gift.gift_price) }">
+<input type="hidden" id="originPrice" value="${(gift.gift_price) }">
 <input type="hidden" id="contextPath" value="${path }">
 <input type="hidden" id="deliveryFee" value="3000">
 <input type="hidden" id="giftNo" value="${gift.gift_no }">
+<input type="hidden" id="deliveryFee" value="">
 <script>
-
 let html="";
 html = "<fmt:formatNumber value='3000' type='currency'/>";
 let html2 = "<fmt:formatNumber value='0' type='currency'/>";
@@ -166,7 +166,7 @@ let deliboolean = "";
 let divHidden = document.getElementById("divhidden");
 /* let stock = document.getElementById("stock");
 console.log("stock입니다 = ==== = == = = = = === = = "+stock); */
-
+let deliFee = document.getElementById("deliveryFee");
 var tp = document.createElement("input");
 tp.setAttribute("type","hidden");
 tp.setAttribute("id","totalPrice");
@@ -187,6 +187,7 @@ $("input[id=pre]").click(e=>{
 	//inputhidden+="<input type='hidden' id='totalPrice' value='${(book.price*0.9)*sellStock+3000 }'>";
 	//document.getElementById("divhidden").innerHTML=inputhidden;
 	/* console.log("총 금액 선불"+document.getElementById("totalPrice").value); */
+	deliFee.value=3000;
 });
 
 $("input[id=after]").click(e=>{
@@ -203,6 +204,7 @@ $("input[id=after]").click(e=>{
 	tp.value="${(gift.gift_price)*quan }";
 	divHidden.appendChild(tp);
 	console.log("착불 tp : "+ tp.value);
+	deliFee.value=0;
 });
 
 

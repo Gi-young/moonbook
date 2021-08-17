@@ -122,4 +122,41 @@
 	 <select id="selectCouponlist" resultMap="couponlistMap">
 		SELECT * FROM COUPONLIST WHERE COUPONLIST_NO=#{c.couponCouponlistNo}
 	</select> 
+	
+	<!-- OrderT 테이블에 컬럼 추가 -->
+	<insert id="writeOrderT">
+		INSERT INTO ORDERT VALUES(#{merchantUid}, #{stock}, #{deliveryFee}, #{memberId}, null, '결제완료', #{point}, #{totalPrice}, SYSDATE, null, null, null, null)
+	</insert>
+	
+	<!-- 결제테이블에 컬럼 추가 -->
+	<insert id="writePurchaseLog">
+		INSERT INTO PAYMENT VALUES(#{impUid}, #{merchantUid}, #{payMethod}, #{paidAmount}, #{paidAt}, #{pgProvider}, #{receiptUrl}, #{merchantUid})
+	</insert>
+	
+	<!-- 판매량에 구매수량만큼 추가 -->
+	<update id="updateSalesVolume">
+		UPDATE NGIFT SET NGIFT_SALESVOLUME=NGIFT_SALESVOLUME+#{stock} WHERE NGIFT_NO=#{giftNo}
+	</update>
+	
+	<!-- 재고 - 구매수량 -->  
+	<update id="updateStock">
+		UPDATE NGIFT SET NGIFT_COUNT=NGIFT_COUNT-#{stock} WHERE NGIFT_NO=#{giftNo}
+	</update>
+	
+	<!-- 회원의 구매금액에 구매금액만큼 추가 -->
+	<update id="updateMemberPP">
+		UPDATE MEMBER SET MEMBER_TOTAL_SALE=MEMBER_TOTAL_SALE+#{totalPrice} WHERE MEMBER_ID=#{memberId}
+	</update>
+	
+	
+	<!-- 회원의 포인트를 구매금액의 10%만큼 추가 -->
+	<update id="updateMemberPoint">
+		UPDATE MEMBER SET MEMBER_POINT=MEMBER_POINT+#{point} WHERE MEMBER_ID=#{memberId}
+	</update>
+	
+	<!-- 문곰템 구매내역에 추가 -->
+	<insert id="updatePurchaseList">
+		INSERT INTO NGIFT_ORDER_LIST VALUES(#{merchantUid}, #{giftNo}, #{stock})
+	</insert>
+	
 </mapper>

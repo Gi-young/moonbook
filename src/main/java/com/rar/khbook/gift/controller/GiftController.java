@@ -298,16 +298,45 @@ public class GiftController {
 		mv.addObject("quan", quan);
 		return mv;
 	}
-
-	@RequestMapping("/gift/salesVolume.do")
+	
+	@RequestMapping("/gift/writePurchaseLog.do")
+	@ResponseBody
+	public int writePurchaseLog(@RequestParam Map param) {
+		
+//		System.out.println(" 이엠피아이디 : "+param.get("impUid"));
+//		System.out.println(" 멀천트아이디 : "+param.get("merchantUid"));
+//		System.out.println(" 멤버아이디 : "+param.get("memberId"));
+//		System.out.println(" 결제방법 : "+param.get("payMethod"));
+//		System.out.println(" 결제금액 : "+param.get("paidAmount"));
+//		System.out.println(" 에이티? : "+param.get("paidAt"));
+//		System.out.println(" pg 제공 : "+param.get("pgProvider"));
+//		System.out.println(" 환불주소 : "+param.get("receiptUrl"));
+		
+		int resultF = service.writeOrderT(param);
+		
+		if(resultF>0) {
+			int result = service.writePurchaseLog(param);		
+			return result;
+		}else {
+			return 0;
+		}
+		
+	}
+	@RequestMapping("/gift/salesVolumeAdd.do")
 	@ResponseBody
 	public int salesVolume(@RequestParam Map param) {
-		System.out.println("파람이 잘 넘어오는지 : "+param);
 
 		System.out.println(" 아이디 : "+param.get("memberId"));
 		System.out.println(" 상품번호 : "+param.get("giftNo"));
 		System.out.println(" 상품가격 : "+param.get("totalPrice"));
 		System.out.println(" 구매수량 :"+param.get("stock"));
+		System.out.println(" 멀천트아이디 :"+param.get("merchantUid"));
+		
+		//int point = (int) Math.round((int) param.get("totalPrice")*0.1);
+		
+		System.out.println(" 적립할 포인트 : "+param.get("point"));
+		
+		//param.put("point", point);
 		
 		int result = service.updateSalesVolume(param);
 		
