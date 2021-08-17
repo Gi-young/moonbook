@@ -11,6 +11,7 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auction.css">
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<button onclick="location.assign('${path}/auction/auctionChat ')">실험하기</button>
 t
 	<div id="wrap">
