@@ -715,7 +715,36 @@
   		SELECT NGIFT_TITLE AS ngtitle ,(NGIFT_PRICE-NGIFT_COUNT)*NGIFT_SALESVOLUME AS ngiftTotalcost ,NGIFT_PRICE-NGIFT_COUNT AS ngiftProfit, NGIFT_PRICE*NGIFT_SALESVOLUME AS NGIFTCOST
 			FROM NGIFT where rownum &lt;4 ORDER BY (NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME DESC NULLS LAST 
   	</select>
+  	<resultMap type="faq" id="faqMap">
+  		<id column="FAQ_NO" property="faqNo"/>
+  		<result column="FAQ_ASKED" property="faqAsked"/>
+  		<result column="FAQ_ANSWER" property="faqAnswer"/>
+  		<result column="FAQ_STATUS" property="faqStatus"/>
+  		<association javaType="faqcg" property="faqcgNum">
+  			<id column="FAQ_CATE_NUM" property="faqcgNum"/>
+  			<!-- <result column="FAQCG_PAY" property="faqcgPay"/>
+  			<result column="FAQCG_DELIVERY" property="faqcgDelivery"/>
+  			<result column="FAQCG_RETURN" property="faqcgReturn"/>
+  			<result column="FAQCG_USEDMARKET" property="faqcgUsedmarket"/>
+  			<result column="FAQCG_EBOOK" property="faqcgEbook"/> -->
+  			<result column="FAQ_CATE_NAME" property="faqcgName"/>
+  		</association>
+  	</resultMap>
   	
+  	<select id="selectFaqList" resultMap="faqMap">
+  		SELECT * FROM FAQ F JOIN FAQCG G ON F.FAQ_CATE_NUM=G.FAQ_CATE_NUM ORDER BY FAQ_NO DESC
+  	</select>
   	
+  	<insert id="inputAskFaq">
+  		INSERT INTO FAQ VALUES(FAQ_NO.NEXTVAL,#{askFaq},NULL,0,
+  		#{type31}
+  		)
+  	</insert>
+  	
+  	<select id="searchFaq" resultMap="faqMap">
+  		SELECT * FROM FAQ F JOIN FAQCG G ON F.FAQ_CATE_NUM=G.FAQ_CATE_NUM 
+  		WHERE F.FAQ_CATE_NUM= #{type30} AND FAQ_ASKED LIKE '%' || #{searchFaq} || '%'
+		ORDER BY FAQ_NO DESC
+  	</select>
   	
 </mapper>

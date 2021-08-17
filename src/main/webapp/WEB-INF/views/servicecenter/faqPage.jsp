@@ -24,14 +24,42 @@
 							
 							<tr>
 								<th>FAQ 검색</th>
-								
 								<td class="search-box">
-									<input type="text" name="searchHow8"> 
+									<select name="type30">
+										<option value="주문결제">주문결제</option>
+										<option value="배송수령안내">배송수령안내</option>
+										<option value="반품교환환불">반품교환환불</option>
+										<option value="중고장터">중고장터</option>
+										<option value="ebook">ebook</option>
+										<option value="기타">기타</option>
+									</select>
+								</td>
+								<td class="search-box">
+									<input type="text" name="searchFaq"> 
 									
 								</td>
 								<td class="search-box">
 									<img alt="검색하기"
-									src="${path }/resources/img/admin/search.png" onclick="searchMT();">
+									src="${path }/resources/img/admin/search.png" onclick="searchFaqList();">
+								</td>
+							</tr>
+							<tr>
+								<th>FAQ 질문하기</th>
+								<td class="search-box">
+									<select name="type31">
+										<option value="주문결제">주문결제</option>
+										<option value="배송수령안내">배송수령일안내</option>
+										<option value="반품교환환불">반품교환환불</option>
+										<option value="중고장터">중고장터</option>
+										<option value="ebook">ebook</option>
+										<option value="기타">기타</option>
+									</select>
+								</td>
+								<td class="search-box">
+									<input type="text" name="askFaq"> 
+								</td>
+								<td class="search-box">
+									<input type="button" value="등록" onclick="inputFaq()">
 								</td>
 							</tr>
 						</table>
@@ -41,14 +69,16 @@
 					</div>
 			</div>
 			<div class="FAQlist-container">
-						<p class="faqFont">※ 가장 많이 하는 FAQ</p>
+						<p class="faqFont">※ FAQ 질문 / 답변</p>
 						
 						<div class="faqList-box1">
-						<ul class="sideMenu">
-							<li class="sub-menu0">[eBook] eBook 선물하기란 무엇인가요?</li>
-							<ul class="sub_content0">
-							<li>
-								장바구니에서 선물주문을 하실 경우 휴대폰, 이메일로 선물번호를 발송하실 수 있습니다.<br>
+						<ul class="faqsideMenu">
+						<c:forEach var="c" items="${list}" varStatus="vs">
+							<li class="sub-faqmenu${vs.index} faqclassName">[${c.faqcgNum.faqcgName}] ${c.faqAsked}<span class="faqOx1"><c:if test="${c.faqStatus==0}">(접수대기)</c:if></span><span class="faqOx2"><c:if test="${c.faqStatus==1}">(답변완료)</c:if></span></li>
+							<ul class="sub_faqcontent${vs.index} faqclassName2">
+							<li class="last_li">
+							${c.faqAnswer }
+								<!-- 장바구니에서 선물주문을 하실 경우 휴대폰, 이메일로 선물번호를 발송하실 수 있습니다.<br>
 								※ 대여, 구매 모두 가능하며 연재,시리즈 상품은 장바구니에서 최대 100권까지 선물하실 수 있습니다.<br><br>
 								
 								*eBook선물하기 주문방법<br>
@@ -65,7 +95,7 @@
 								  20권을 10명에게 200권 선물주문 불가합니다.<br>
 								  20권을 5명에게 100권 선물주문 가능합니다.<br>
 								- 마이룸> 선물조회/등록> 수신정보,선물번호 입력 후 선물받기<br>
-								
+								 -->
 								<!-- eBook선물하기는 문곰책방에서 판매하는 eBook(전자책)을 지인과 친구들에게 선물 하실 수 있는 서비스 입니다.
 								eBook선물하기 주문시 입력한 휴대번호로 선물알림 (알림톡)이 발송되며, 선물받은 사람이 선물등록시 컨텐츠를 다운로드 받을 수 있습니다.
 								
@@ -88,7 +118,8 @@
 								- 마이룸> 선물조회/등록> 수신정보,선물번호 입력 후 선물받기 -->
 							</li>
 							</ul>
-							<li class="sub-menu1">[결제] 문곰페이란 무엇인가요?</li>
+							</c:forEach> 
+							<!-- <li class="sub-menu1">[결제] 문곰페이란 무엇인가요?</li>
 							<ul class="sub_content1">
 								<li>
 								문곰페이는 온라인 문곰책방에서 사용 가능한 결제수단으로 스마일페이 기반의 결제 서비스를 제공합니다.<br>
@@ -246,7 +277,7 @@
 									※ 제휴사 포인트 등 복합결제 금권은 본 결제수단에 대해 승인취소 처리되며,<br>
 									당사사유로 인한 주문취소/반품 등이 발생한 경우 내역 확인 후 환불해 드립니다.<br><br>
 								</li>
-							</ul>
+							</ul> -->
 							
 						
 						
@@ -264,13 +295,111 @@
 	</div>
 </div>
 
+<!-- 다음에는 슬라이드 토글줄때 for문 말고 next.val로 가져오자.. -->
 
 <script>
-$('.sub-menu0').click(function() {
-	$('.sub_content0').slideToggle('slow');
+/* window.onload = function () {
+	for(let i=0; i<${list.size()}; i++) {
+		$('.sub_faqcontent' + i).css("display","none");
+	} 
+	for(let j=0; j<${list.size()}; j++){
+		$('.sub-faqmenu' + j).css("display","flex");
+		$('.sub-faqmenu' + j).css("border","1px solid black");
+		$('.sub-faqmenu' + j).css("width","710px");
+		$('.sub-faqmenu' + j).css("height","40px");
+		$('.sub-faqmenu' + j).css("justify-content","center");
+		$('.sub-faqmenu' + j).css("align-items","center");
+		$('.sub-faqmenu' + j).css("font-weight","bold");
+		$('.sub-faqmenu' + j).css("color","#582810");
+	}  
+} */
 
-});
-$('.sub-menu1').click(function() {
+for(let i=0; i<${list.size()}; i++) {
+	$('.sub-faqmenu' + i).click(function() {
+		
+		$('.sub_faqcontent' + i).slideToggle('slow');
+		$('.sub_faqcontent' + i).css("display","block");
+		
+	});
+}
+for
+
+function inputFaq(){
+	let type31=document.getElementsByName("type31")[0].value;
+	let askFaq=document.getElementsByName("askFaq")[0].value;
+	
+	location.assign("${path}/service/inputAskFaq.do?type31="+type31+"&askFaq="+askFaq);
+}
+
+function searchFaqList(){
+	let type30=document.getElementsByName("type30")[0].value;
+	let searchFaq=document.getElementsByName("searchFaq")[0].value;
+	
+	$.ajax({
+		url: "${path}/service/searchFaq.do",
+		data: {
+			type30:type30,
+			searchFaq:searchFaq
+			
+		},
+		success: data => {
+			console.log(data);
+			document.querySelectorAll(".faqsideMenu li").forEach((v,i) => {
+				v.remove();
+			});
+			document.querySelectorAll(".faqsideMenu li ul").forEach((v,i) => {
+				v.remove();
+			});
+			document.querySelectorAll(".faqsideMenu li ul li").forEach((v,i) => {
+				v.remove();
+			});
+			
+			let checkOx;
+			let checkOx2;
+			let totalUl=document.querySelector(".faqsideMenu");
+			for(let i=0;i<data.length;i++){
+				let li=document.createElement("li");
+				li.classList.add('sub-faqmenu'+i);
+				li.classList.add('faqclassName');
+				if(data[i].faqStatus==1){
+					checkOx="<span class='faqOx2'>" +'(답변완료)'+"</span>";
+				}else if(data[i].faqStatus==0){
+					checkOx="<span class='faqOx1'>" + '(접수대기)'+"</span>";
+				}
+				li.innerHTML ="[" + data[i].faqcgNum.faqcgName + "] " + data[i].faqAsked+checkOx;
+				
+				//for(let j=0;j<data.length;j++){
+					let innerUl=document.createElement("ul");
+					innerUl.classList.add('sub_faqcontent'+i);
+					innerUl.classList.add('faqclassName2');
+					if(data[i].faqAnswer!=null){
+						innerUl.innerHTML = "<li class='last_li'>"+data[i].faqAnswer +"</li>";
+					}
+					
+					//totalUl.appendChild(innerUl);
+				//}
+				totalUl.appendChild(li);
+				totalUl.appendChild(innerUl);
+				
+			}
+			for(let i=0; i<${list.size()}; i++) {
+				$('.sub-faqmenu' + i).click(function() {
+					
+					$('.sub_faqcontent' + i).slideToggle('slow');
+					$('.sub_faqcontent' + i).css("display","block");
+					
+				});
+			}
+			
+			
+			
+		}
+	});
+		
+} 
+
+
+/* $('.sub-menu1').click(function() {
 	$('.sub_content1').slideToggle('slow');
 
 });
@@ -301,7 +430,7 @@ $('.sub-menu7').click(function() {
 $('.sub-menu8').click(function() {
 	$('.sub_content8').slideToggle('slow');
 
-});
+}); */
 </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

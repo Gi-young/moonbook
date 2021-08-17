@@ -84,7 +84,8 @@
 		<!-- top3 gift-->
 		<typeAlias type="com.rar.khbook.adminchart.model.vo.GiftTopThree" alias="gifttopthree"/>
 	
-	
-	
+		<!-- faq -->
+		<typeAlias type="com.rar.khbook.servicecenter.model.vo.Faq" alias="faq"/>
+		<typeAlias type="com.rar.khbook.servicecenter.model.vo.FaqCg" alias="faqcg"/>
 	</typeAliases>
 </configuration>
