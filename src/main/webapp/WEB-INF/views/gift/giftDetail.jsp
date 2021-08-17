@@ -49,7 +49,7 @@
 	                    </div>
 	                    <div class="exp-couponBox">
 	                        <p>쿠폰등록</p>
-	                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="window.open('${path}/gift/myCoupon.do','내 쿠폰','width=430, height=500, location=no, status=no, scrollbars=yes')">
+	                        <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="openWindow()">
 	                    </div>
 	                    <div class="exp-quanBox">
 	                        <p>구매수량</p>
@@ -68,8 +68,8 @@
 	                    </div>
 	                </div>         
                  <div class="discount-price">
-                    <p class="discount">할인율</p>
-                    <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/></p>
+                    <p class="discount" id="ds"></p>                
+                    <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/>원</p>
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
@@ -197,7 +197,7 @@
           <script>
         /* 상품리뷰, 상품문의 */
     	    var btnR = document.getElementById("bar2");
-    	    var btnQ = document.getElementById("bar3");
+    	    
     	    var giftNo = document.getElementById("giftNo").value; 	     
  	    
     	   	let pageBar = document.getElementById("pageBar");
@@ -318,13 +318,13 @@
                 <button class="reviewWrite">질문 작성하기</button>
             </div>
             <table class="review-exp" id="qna-exp">
-                <tr>
+                <!-- <tr>
                     <th style="width:105px;">번호</th>
-                    <!-- <th style="width:145px;"></th> -->
+                    <th style="width:145px;"></th>
                     <th style="width:515px;">질문내용</th>
                     <th style="width:165px;">작성자</th>
                     <th style="width:165px;">작성일</th>
-                </tr>
+                </tr> -->
                 <!-- <tr class="review-text">
                     <td>0</td>
                     <td class="gpa">
@@ -343,6 +343,124 @@
              </table>
              <!-- <div>&lt;pageBar&gt;</div> -->
         </div>
+         <script>
+        /* 상품리뷰, 상품문의 */
+    	   
+    	    var btnQ = document.getElementById("bar3");
+    	    var giftNo = document.getElementById("giftNo").value; 	     
+ 	    
+    	   	let pageBar = document.getElementById("pageBar");
+    	   	let pager = "";
+    	    let exp = document.getElementsByClassName('review-exp');
+    	    
+    	   /*  console.log("exp");
+    	    console.log(exp);
+    	    console.log(exp[0]);
+    	    console.log(exp[0].lastChild); */
+    	    
+  
+    	    // let tb = document.getElementsByTagName("tbody");
+    	    let tb = document.createElement('tbody');
+    	    /* console.log("tb 입니다 ; ->>>>"+tb); */
+  			let tr = ""; 
+  			let tr2 = ""; 
+       		let html2 = ""; /* thead */
+       		html2 += "<tr><th style='width:105px;'>번호</th>";
+            /*  html2 += "<th style='width:145px;'>만족도</th>";  */   
+            html2 += "<th style='width:418px;'>문의내용</th>";    
+            html2 += "<th style='width:203px;'>작성자</th>";    
+            html2 += "<th style='width:203px;'>작성일</th></tr>";    
+            /* console.log(html2); */    
+  			tr2 = document.createElement("tr");
+  			tr2.innerHTML=html2;
+  			
+  			
+         $(btnQ).on('click', getTrs(1)); 
+          
+          function getTrs(cPage) {
+        	 $.ajax({
+            		type: 'post',
+            		url: '${path}/gift/productInquiry2.do',
+            		data: {
+            			giftNo: giftNo,
+            			cPage: cPage,
+            			numPerPage: 10
+            		},
+            		/* dataType: "json", */
+            		success: data => {
+            			
+            			console.log("페이지바 넘겨온 데이터"+data);
+            			pageBar.innerHTML = data;
+            		} 
+            	}); // pageBar ajax
+         	 
+         	 /* console.log(exp[0].children[0].children);
+         	 console.log(exp[0].firstChild); */
+         	 /*  console.log(exp[0].lastChild.childNodes);
+         	 console.log($(".review-board").children(".review-text")); */
+         	 /* console.log(tr); */
+         	 /*  console.log(exp[0].child[0]);
+         	 console.log(exp[0].child); */
+         	 /* exp[0].children[0].html(); */
+         	 /* exp[0].children.html(); */
+         	    
+         	 /*  exp[0].children[0].children.html();  */
+         	 exp[0].lastChild.innerHTML = "";
+         	 /* console.log(exp[0].lastChild.childNodes); */
+         	 /* console.log("================= ajax 실행 후 =================="); */
+         	$.ajax({
+              	type: 'post',
+              	url: '${path}/gift/productInquiry.do',
+              	data: {
+              		giftNo: giftNo,
+              		cPage: cPage,
+              		numPerPage: 10
+              	},
+              	dataType: "json",
+              	success: data => {  
+              		
+              		exp[0].appendChild(tb).appendChild(tr2);
+              		data.forEach((v, i) => {   
+						 //console.log("어떻게 나왔지 ?? "+v.rownum);
+              			 let html = ""; /* 테이블 본문 내용 */
+              		     html += "<tr class='review-text review-tr'>";   
+                 	     html += "<td class='review-num'>"+v.rownum+"</td>";
+                 	     /* html += "<td class='gpa'>";
+                 	     html += "<div class='gpa-circle'>";
+                 	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>"; */
+                 	     html += "<td><div class='review'><a class='review-title-a'>"+v.gift_board_content+"</a></div></td>";
+                 	     html += " <td class='review-writer'>"+v.writer+"</td>";
+                 	     html += "<td class='review-date'>"+v.write_date+"</td></tr>";
+     
+                 	    tr = document.createElement('tr'); 
+               			tr.classList.add('review-text');
+                 	    tr.classList.add('review-tr');
+                 	    tr.innerHTML=html;
+                 	       
+                 	    pager = document.createElement('div');
+                 	    pager.innerHTML = pageBar;
+                 	    
+                 	    console.log(tb);
+                 	    
+                 	    exp[0].appendChild(tb).appendChild(tr);
+                 	    //exp[0].appendChild(tb[0]).appendChild(tr);
+                 	    //exp[0].appendChild(tr);
+                 	    // document.getElementById("targetTable").appendChild(tr);
+                 	    /*  console.log("tb 입니다 ; ->>>>"+tb);
+                 	    console.log(tb);
+                 	    console.log(tb[0]); */
+                 	    //exp[0].appendChild(pager);    
+                 	  
+                 	    
+             		 });    
+              		
+              	  } 
+              	
+              }); // 1번째 ajax 끝
+                       
+         }
+             		  			
+        </script>
         <div class="notify">
             <img src="${path }/resources/images/gift/교환반품1.PNG" alt="">
             <img src="${path }/resources/images/gift/교환반품2.PNG" alt="">
@@ -398,7 +516,8 @@
 	  let shopCate = document.getElementById("shopingList_cate").value;
 	  
 	  sl.addEventListener('click', function(){
-		 location.assign("<%=request.getContextPath()%>/gift/shopingList.do?giftNo="+gNo+"&memberId="+mId+"&cate="+shopCate);
+	  let quan = document.getElementById("quan").value;
+		 location.assign("<%=request.getContextPath()%>/gift/shopingList.do?giftNo="+gNo+"&memberId="+mId+"&cate="+shopCate+"&quan="+quan);
 	  });
 	  
 	  
@@ -477,6 +596,13 @@
     /* reviewTitle.addEventListener("click", function(e){
     	alert("나와라");
     }); */
+    
+    function openWindow(){
+    	let memberId=document.getElementById("loginMemberId").value;
+    	console.log(memberId);
+    	window.name="giftDetail";
+    	window.open("<c:url value='/gift/myCoupon.do?memberId="+memberId+"'/>",'myCoupon','width=800, height=700, location=no, status=no, scrollbars=yes');
+    }
     
 </script>
 

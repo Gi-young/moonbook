@@ -87,6 +87,9 @@ button{
 .item{
 	height: 50px;
 }
+#user{
+	height: 50px;
+}
 .header{
     display: flex;
     flex-direction: column;

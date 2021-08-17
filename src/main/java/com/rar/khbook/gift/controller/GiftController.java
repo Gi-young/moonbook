@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.common.PageFactory;
+import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.gift.model.service.GiftService;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
@@ -71,8 +72,20 @@ public class GiftController {
 
 // 	내 쿠폰 페이지 
 	@RequestMapping("/gift/myCoupon.do")
-	public String myCoupons() {
-		return "gift/myCoupon";
+	public ModelAndView myCoupons(String memberId, ModelAndView mv) {
+		
+		Member m = service.searchMember(memberId);
+		
+		List<Coupon> c = service.selectCoupon(memberId);
+		/* System.out.println("너 뭘로 넘어오니?? 글루글루 : "+c); */
+		
+		List<Couponlist> cl = service.selectCouponlist(c);
+		//System.out.println("너는 뭘로 넘어오니 ?? ㄱㄺㄹ : "+cl);
+		mv.addObject("couponlist", cl);
+		mv.addObject("member", m);
+		mv.addObject("coupon", c);
+		mv.setViewName("gift/myCoupon");
+		return mv;
 	}
 
 	@RequestMapping("/kakaopay.do")
@@ -152,6 +165,7 @@ public class GiftController {
 
 	}
 
+//    네이버 검색 API로 물건 받아오기
 //	    @RequestMapping(value="/gift/naverGift.do" , produces = "text/plain;charset=utf-8")	
 //	    @ResponseBody
 //	    	public StringBuilder main(String[] args, ModelAndView mv) {
@@ -274,44 +288,7 @@ public class GiftController {
 		return mv;
 	}
 
-	/*
-	 * @RequestMapping("") public ModelAndView addCouponList(ModelAndView
-	 * mv,MultipartFile couponImg ,@RequestParam Map param,HttpServletRequest req) {
-	 * 
-	 * String couponImg=(String)param.get("couponImg"); param.put("couponImg",
-	 * couponImg);
-	 * 
-	 * String path=req.getServletContext().getRealPath("/resources/upload/admin/");
-	 * File dir=new File(path);
-	 * 
-	 * String price=(String)param.get("couponlistAmount");
-	 * 
-	 * if(!dir.exists()) dir.mkdirs();
-	 * 
-	 * if(!couponImg.isEmpty()) { String
-	 * oriFilename=couponImg.getOriginalFilename(); String
-	 * ext=oriFilename.substring(oriFilename.lastIndexOf(".")); //리넴 규칙 설정
-	 * SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS"); int
-	 * rndNum=(int)Math.random()*10000; String
-	 * reName=sdf.format(System.currentTimeMillis())+"_"+rndNum+"_"+price+ext;
-	 * 
-	 * try { couponImg.transferTo(new File(path+reName));
-	 * 
-	 * 
-	 * //여기서 선생님은 b 객체를 이용해서 b.getAttachments를 사용 param.put("couponImg",reName);
-	 * //c.getAttachments().add(CouponAttachment.builder().originalFilename(
-	 * oriFilename).renamedFilename(reName).build()); //c.setCouponImg(reName);
-	 * }catch(IOException e) { e.printStackTrace(); } }
-	 * 
-	 * System.out.println("couponImg"+couponImg);
-	 * 
-	 * int result=service.addCouponList(param); //service.addCouponList(); String
-	 * msg=""; String loc=""; if(result>0) { msg="쿠폰이 등록되었습니다";
-	 * 
-	 * }else { msg="쿠폰 등록 실패"; } loc="/admin/addCouponPage.do";
-	 * mv.addObject("msg",msg); mv.addObject("loc",loc);
-	 * mv.setViewName("common/msg"); return mv; }
-	 */
+	
 
 	@RequestMapping("/gift/giftPayment.do")
 	public ModelAndView giftPayment(int giftNo, ModelAndView mv, int quan) {
@@ -321,23 +298,60 @@ public class GiftController {
 		mv.addObject("quan", quan);
 		return mv;
 	}
+	
+	@RequestMapping("/gift/writePurchaseLog.do")
+	@ResponseBody
+	public int writePurchaseLog(@RequestParam Map param) {
+		
+//		System.out.println(" 이엠피아이디 : "+param.get("impUid"));
+//		System.out.println(" 멀천트아이디 : "+param.get("merchantUid"));
+//		System.out.println(" 멤버아이디 : "+param.get("memberId"));
+//		System.out.println(" 결제방법 : "+param.get("payMethod"));
+//		System.out.println(" 결제금액 : "+param.get("paidAmount"));
+//		System.out.println(" 에이티? : "+param.get("paidAt"));
+//		System.out.println(" pg 제공 : "+param.get("pgProvider"));
+//		System.out.println(" 환불주소 : "+param.get("receiptUrl"));
+		
+		int resultF = service.writeOrderT(param);
+		
+		if(resultF>0) {
+			int result = service.writePurchaseLog(param);		
+			return result;
+		}else {
+			return 0;
+		}
+		
+	}
+	@RequestMapping("/gift/salesVolumeAdd.do")
+	@ResponseBody
+	public int salesVolume(@RequestParam Map param) {
 
-	@RequestMapping("/gift/salesVolume.do")
-	public int salesVolume(int giftNo, int stock) {
-		System.out.println("판매량 늘리기 위해 넘어온 : " + giftNo);
-		System.out.println("판매량 늘리기 위해 넘어온 : " + stock);
-
-		return 1;
+		System.out.println(" 아이디 : "+param.get("memberId"));
+		System.out.println(" 상품번호 : "+param.get("giftNo"));
+		System.out.println(" 상품가격 : "+param.get("totalPrice"));
+		System.out.println(" 구매수량 :"+param.get("stock"));
+		System.out.println(" 멀천트아이디 :"+param.get("merchantUid"));
+		
+		//int point = (int) Math.round((int) param.get("totalPrice")*0.1);
+		
+		System.out.println(" 적립할 포인트 : "+param.get("point"));
+		
+		//param.put("point", point);
+		
+		int result = service.updateSalesVolume(param);
+		
+		return result;
 	}
 	
 	
 	  @RequestMapping("/gift/shopingList.do") 
 	  public ModelAndView shopingList(@RequestParam Map param, ModelAndView mv) {
 	  
-	  System.out.println("url 타고 넘어온 파람값 : "+param);
-	  System.out.println(param.get("giftNo"));
+	  //System.out.println("url 타고 넘어온 파람값 : "+param);
+	  //System.out.println(param.get("giftNo"));
+	  //System.out.println(param.get("quan"));	  
 	  int result = service.insertShopingList(param);
-	  System.out.println("리절트 넌 뭐니?? "+result);
+	  // System.out.println("장바구니 등록 했으면 1임 : "+result);
 	  mv.addObject("msg", result>0?"장바구니에 등록되었습니다.":"장바구니에 등록에 실패했습니다.");
 	  mv.addObject("loc", "/gift/giftDetail.do?giftNo="+param.get("giftNo"));
 	  mv.setViewName("common/msg");
@@ -345,6 +359,16 @@ public class GiftController {
 	  
 	  }
 	 
+	  
+	  @RequestMapping("/gift/choiceCoupon.do")
+	  public ModelAndView choiceCoupon(@RequestParam Map param, ModelAndView mv) {
+		  
+		  System.out.println("쿠폰 선택해서 이리로 와 : "+param);
+		  
+		  
+		 
+		  return mv;
+	  }
 	  
 	
 

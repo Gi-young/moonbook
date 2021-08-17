@@ -8,9 +8,13 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
+import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.gift.model.vo.GiftBoard;
+import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 @Repository
 public class GiftDaoImpl implements GiftDao {
@@ -68,13 +72,93 @@ public class GiftDaoImpl implements GiftDao {
 	}
 	
 	@Override
-	public int insertShopingList(SqlSession session, Map param) {
+	public Member selectShopingMember(SqlSession session, Map param) {
+		return session.selectOne("member.selectOneMember",param);
+	}	
+	
+	@Override
+	public GiftOrder selectShopingList(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.insert("gift.insertShopingList",param);
+		return session.selectOne("gift.selectShopingList",param);
 	}
 	
 	@Override 
-	public int insertShopingGift(SqlSession session, Map param) {
-		return session.insert("gift.insertShopingGift",param);
+	public int insertShopingGift(SqlSession session, GiftOrder go) {
+		return session.insert("gift.insertShopingGift",go);
 	}
+	
+//	접속한 회원에게 쿠폰이 있는지 확인
+	@Override
+	public List<Coupon> selectCoupon(SqlSession session, String memberId) {
+		return session.selectList("gift.selectCoupon", memberId);
+	}
+	
+	
+//	접속한 회원의 쿠폰 종류
+	@Override
+	public Couponlist selectCouponlist(SqlSession session, int couponCouponListNo) {	
+		return session.selectOne("gift.selectCouponlist", couponCouponListNo);
+	}
+
+//	결제테이블에 추가
+	@Override
+	public int writePurchaseLog(SqlSession session, Map param) {
+		return session.insert("gift.writePurchaseLog", param);
+	}
+	
+	@Override
+	public int writeOrderT(SqlSession session, Map param) {
+		return session.insert("gift.writeOrderT", param);
+	}
+	
+	
+//	판매량에 구매수량만큼 추가
+	@Override
+	public int updateSalesVolume(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateSalesVolume", param);
+	}
+
+//	재고 - 구매수량
+	@Override
+	public int updateStock(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateStock", param);
+	}
+
+//	회원의 구매금액에 구매금액만큼 추가
+	@Override
+	public int updateMemberPP(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateMemberPP", param);
+	}
+
+//	회원의 포인트를 구매금액의 10%만큼 추가
+	@Override
+	public int updateMemberPoint(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateMemberPoint", param);
+	}
+
+//	회원의 구매내역에 추가
+	@Override
+	public int updatePurchaseList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updatePurchaseList", param);
+	}
+
+	@Override
+	public int updateGiftShopingList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateShopingGift", param);
+	}
+
+	@Override
+	public List<GiftShopingList> selectGiftListAll(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectShopingListAll",param);
+	}
+	
+	
+	
 }

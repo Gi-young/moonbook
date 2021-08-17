@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="gift">
 
+	<resultMap type="couponlist" id="couponlistMap">
+		<result column="couponlist_no" property="couponlistNo" />
+		<result column="couponlist_membergrade_no" property="couponlistMembergradeNo" />
+		<result column="couponlist_amount" property="couponlistAmount" />
+		<result column="couponlist_foruse" property="couponlistForuse" />
+		<result column="couponlist_invalid" property="couponlistInvalid" />
+		<result column="couponlist_name" property="couponlistName" />
+		<result column="coupon_img" property="couponImg" />
+	</resultMap>
+
+	<resultMap type="coupon" id="couponMap">
+		<result column="coupon_no" property="couponNo" />
+		<result column="coupon_invalid" property="couponInvalid" />
+		<result column="coupon_couponlist_no" property="couponCouponlistNo" />
+		<result column="coupon_canuse" property="couponCanuse" />
+		<result column="coupon_member_id" property="couponMemberId" />
+	</resultMap>
+
+	<resultMap type="giftOrder" id="giftOrderMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="NGIFT_NO" property="giftNo"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+	</resultMap>
+
 	<resultMap type="nGift" id="giftMap">
 		<id column="NGIFT_NO" property="gift_no"/>
 		<result column="NGIFT_TITLE" property="gift_title"/>
@@ -40,10 +64,17 @@
 		<result column="GROUP_LAYER" property="groupLayer"/>
 		<result column="NGIFT_SCORE" property="gift_score"/>
 	</resultMap>
+	
+	<resultMap type="giftShopingList" id="giftShopingListMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+		<result column="G_SHOPINGLIST_DATE" property="shopingListDate"/> 
+		<result column="NGIFT_NO" property="giftNo"/>
+	</resultMap>
 
-	<select id="selectGiftAll" resultMap="giftMap">
+    <select id="selectGiftAll" resultMap="giftMap">
 		SELECT * FROM NGIFT
-	</select> 
+	</select>  
 	
     <insert id="insertGift">
 		INSERT INTO NGIFT VALUES(SEQ_GIFT_NO.NEXTVAL, #{title}, #{img}, #{price}, #{brand}, #{maker}, 12, DEFAULT, #{productType}, DEFAULT, 'N', DEFAULT)	
@@ -81,15 +112,66 @@
 		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%문구%' OR '%학용품%'
 	</select>
 	
-	<insert id="insertShopingList">
-		INSERT INTO SHOPINGLIST_CATE VALUES(SEQ_SHOPINGLIST_NO.NEXTVAL, G, #{memberId})
-		<selectKey keyProperty="shopingListNo" resultType="_int" order="AFTER">
-			SELECT SEQ_SHOPINGLIST_NO.CURRVAL FROM DUAL
-		</selectKey>
+	<select id="selectShopingList" resultMap="giftOrderMap">
+		SELECT * FROM SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="selectShopingListAll" resultMap="giftShopingListMap">
+		SELECT * FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<update id="updateShopingGift">
+		UPDATE NGIFT_SHOPING_LIST SET SHOPINGLIST_COUNT=SHOPINGLIST_COUNT+#{shopingListCount} WHERE MEMBER_ID=#{memberId}
+	</update>
+		
+	<insert id="insertShopingGift">
+		INSERT INTO NGIFT_SHOPING_LIST VALUES(#{memberId}, #{giftNo}, #{shopingListCount}, DEFAULT)
+	</insert>	
+	
+	<!-- 접속한 회원에게 쿠폰이 있는지 확인 -->
+	<select id="selectCoupon" resultMap="couponMap">
+		SELECT * FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId}
+	</select>	
+	
+	<!-- 접속한 회원의 쿠폰 종류 -->
+	 <select id="selectCouponlist" resultMap="couponlistMap">
+		SELECT * FROM COUPONLIST WHERE COUPONLIST_NO=#{c.couponCouponlistNo}
+	</select> 
+	
+	<!-- OrderT 테이블에 컬럼 추가 -->
+	<insert id="writeOrderT">
+		INSERT INTO ORDERT VALUES(#{merchantUid}, #{stock}, #{deliveryFee}, #{memberId}, null, '결제완료', #{point}, #{totalPrice}, SYSDATE, null, null, null, null)
 	</insert>
 	
-	<insert id="insertShopingGift">
-		INSERT INTO BOOK_SHOPING_LIST VALUES(#{shopingListNo},#{giftNo},#{shopingListCount})
+	<!-- 결제테이블에 컬럼 추가 -->
+	<insert id="writePurchaseLog">
+		INSERT INTO PAYMENT VALUES(#{impUid}, #{merchantUid}, #{payMethod}, #{paidAmount}, #{paidAt}, #{pgProvider}, #{receiptUrl}, #{merchantUid})
+	</insert>
+	
+	<!-- 판매량에 구매수량만큼 추가 -->
+	<update id="updateSalesVolume">
+		UPDATE NGIFT SET NGIFT_SALESVOLUME=NGIFT_SALESVOLUME+#{stock} WHERE NGIFT_NO=#{giftNo}
+	</update>
+	
+	<!-- 재고 - 구매수량 -->  
+	<update id="updateStock">
+		UPDATE NGIFT SET NGIFT_COUNT=NGIFT_COUNT-#{stock} WHERE NGIFT_NO=#{giftNo}
+	</update>
+	
+	<!-- 회원의 구매금액에 구매금액만큼 추가 -->
+	<update id="updateMemberPP">
+		UPDATE MEMBER SET MEMBER_TOTAL_SALE=MEMBER_TOTAL_SALE+#{totalPrice} WHERE MEMBER_ID=#{memberId}
+	</update>
+	
+	
+	<!-- 회원의 포인트를 구매금액의 10%만큼 추가 -->
+	<update id="updateMemberPoint">
+		UPDATE MEMBER SET MEMBER_POINT=MEMBER_POINT+#{point} WHERE MEMBER_ID=#{memberId}
+	</update>
+	
+	<!-- 문곰템 구매내역에 추가 -->
+	<insert id="updatePurchaseList">
+		INSERT INTO NGIFT_ORDER_LIST VALUES(#{merchantUid}, #{giftNo}, #{stock})
 	</insert>
 	
 </mapper>
