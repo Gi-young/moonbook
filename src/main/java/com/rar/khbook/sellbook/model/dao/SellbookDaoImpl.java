@@ -73,5 +73,50 @@ public class SellbookDaoImpl implements SellbookDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("SellbookDatabind.selectReviewAll", bindNo);
 	}
+
+	@Override
+	public int insertOrder(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		System.out.println("Dao 진행중---");
+		return session.insert("SellbookDatabind.insertOrder", param);
+	}
+
+	@Override
+	public int insertBookOrderList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("SellbookDatabind.insertBookOrderList",param);
+	}
+
+	@Override
+	public int insertPayment(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("SellbookDatabind.insertPayment",param);
+	}
+
+	@Override
+	public int updateMemberTotalSale(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("SellbookDatabind.updateMemberTotalSale",param);
+	}
+
+	@Override
+	public int updateSalesVolume(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("SellbookDatabind.updateSalesVolume",param);
+	}
+
+	@Override
+	public int updateStock(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("SellbookDatabind.updateStock",param);
+	}
+
+	@Override
+	public int updateMemberPoint(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("SellbookDatabind.updateMemberPoint",param);
+	}
+
+
 	
 }

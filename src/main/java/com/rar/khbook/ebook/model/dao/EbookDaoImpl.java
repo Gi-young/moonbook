@@ -303,4 +303,9 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectList("ebook.getCategories", param);
 	}
 	
+	@Override
+	public int countLoved(SqlSession session, Map param) {
+		return session.selectOne("ebook.countLoved", param);
+	}
+	
 }

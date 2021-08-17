@@ -108,13 +108,13 @@
 					<table class="tbl_payment">
 						<tr class="tbl_first">
 							<td>도서 금액</td>
-							<td>삼만원</td>
+							<td>₩7,200</td>
 							<td>+</td>
 							<td>배송비</td>
-							<td id="delifee">오만원</td>
+							<td id="delifee">₩3,000</td>
 							<td>=</td>
 							<td>총 </td>
-							<td id="totalfee">합산금액</td>
+							<td id="totalfee">₩10,200</td>
 <%-- 							<td>도서 금액</td>
 							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock }" type="currency"/></td>
 							<td>+</td>

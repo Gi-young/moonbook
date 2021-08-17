@@ -1,1 +1,132 @@
 @charset "UTF-8";
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 13px 7px 1fr 45px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+section {
+    box-sizing: border-box;
+    overflow-y: scroll;
+    padding: 5px 10px 5px 10px;
+}
+
+section::-webkit-scrollbar {
+    display: none;
+}
+
+div.under-controller-box {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+div.under-controller-box>div {
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid silver;
+    border-right: 1px solid silver;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+div.under-controller-box>div:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+div.under-controller-box i {
+    color: lightgrey;
+}
+
+div.cover-img-box {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    border: 1px solid silver;
+}
+
+div.cover-img-box>img {
+    height: 100%;
+}
+
+div.color-band {
+    background-color: #582810;
+}
+
+div.inner-color-band {
+    background-color: #E5E2DB;
+}
+
+div.color-band>img {
+    width: 50px;
+}
+
+div.main-info {
+    border: 1px solid silver;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+div.sub-info {
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+section>div>p {
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+section>div>p:last-of-type {
+    margin-bottom: 0;
+}
+
+span.price {
+    color: orange;
+    font-weight: bold;
+}
+
+p.title {
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+p.description {
+    margin-top: 30px;
+}
+
+p.plain {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}

@@ -55,10 +55,16 @@ public class EbookController {
 	BCryptPasswordEncoder pwEncoder;
 	
 	@RequestMapping(value="/ebook/pageEbook.do")
-	public String pageEbook(String currentFocus, Model model) {
+	public String pageEbook(@RequestParam(required=false) String currentFocus,
+			@RequestParam(value="ebookDetailLoginCheck", required=false) String ebookDetailLoginCheck,
+			Model model) {
+		
 		model.addAttribute("currentFocus", currentFocus);
 		
+		model.addAttribute("ebookDetailLoginCheck", ebookDetailLoginCheck);
+		
 		return "ebook/home/ebookHome";
+		
 	}
 	
 	@RequestMapping(value="/ebook/pageShoppingBasket.do")
@@ -85,8 +91,13 @@ public class EbookController {
 	}
 	
 	@RequestMapping(value="/ebook/pageLogin.do")
-	public String login() {
+	public String pageLogin() {
 		return "ebook/home/login";
+	}
+	
+	@RequestMapping(value = "/ebook/pageManageBanner.do")
+	public String pageManageBanner() {
+		return "ebook/home/manageBanner";
 	}
 	
 	@RequestMapping(value="/ebook/openEbookWizard.do")
@@ -325,6 +336,12 @@ public class EbookController {
 		int result = service.checkLoved(param);
 		
 		return result;
+	}
+	
+	@RequestMapping(value = "/ebook/countLoved.do")
+	@ResponseBody
+	public int countLoved(@RequestParam Map param) {
+		return service.countLoved(param);
 	}
 	
 	@RequestMapping(value = "/ebook/checkShopped.do")

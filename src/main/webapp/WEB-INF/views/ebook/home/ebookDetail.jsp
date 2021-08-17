@@ -4,35 +4,63 @@
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/ebook/home/ebookHeader.jsp">
-	<jsp:param name="title" value="책 상세 - 문곰e북"/>
-</jsp:include>
-
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>e북 상세</title>
+	<link rel="icon" href="${path}/resources/images/ebook/favicon.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookDetail.css">
+</head>
+<body>
 
-	<main>
-		<img src="${ebookDatabind.image}">
-		<p><c:out value="${ebookDatabind.title}"/></p>
-		<p><c:out value="${ebookDatabind.author}"/></p>
-		<p><c:out value="${ebookDatabind.price}"/>원</p>
-		<p><c:out value="${ebookDatabind.isbn}"/></p>
-		<p><c:out value="${ebookDatabind.pubdate}"/></p>
-		<p><c:out value="${ebookDatabind.publisher}"/></p>
-		<p><c:out value="${ebookDatabind.description}"/></p>
-		<a href="${ebookDatabind.link}">상세보기 페이지로 이동</a>
-		<p><c:out value="${ebookDatabind.categoryCode}"/></p>
+	<div class="color-band"></div>
+	<div class="inner-color-band"></div>
+	
+	<section>
+		<div class="cover-img-box">
+			<img src="${ebookDatabind.image}">
+		</div>
 		
-		<input type="button" value="좋아요" onclick="loveOrUnlove();">
-		<input type="checkbox" id="checkLoved" onclick="return false;">
+		<div class="main-info">
+			<p class="title"><c:out value="${ebookDatabind.title}"/></p>
+			
+			<p class="plain"><b>작가 :</b> <c:out value="${ebookDatabind.author}"/></p>
+			
+			<p class="plain"><b>가격 :</b> <span class="price"><c:out value="${ebookDatabind.price}"/></span>원</p>
+		</div>
 		
-		<input type="button" value="장바구니에 넣기" onclick="putInShoppingBasket();">
-		<input type="checkbox" id="checkShopped" onclick="return false;">
-
+		<div class="sub-info">
+			<p><b>ISBN :</b> <c:out value="${ebookDatabind.isbn}"/></p>
+			
+			<p><b>출판일 :</b> <c:out value="${ebookDatabind.pubdate}"/></p>
+			
+			<p><b>출판사 :</b> <c:out value="${ebookDatabind.publisher}"/></p>
+			
+			<p class="description">&emsp;<c:out value="${ebookDatabind.description}"/>&nbsp;&nbsp;<a href="${ebookDatabind.link}">더보기</a></p>
+		</div>
+		
 		<input type="hidden" id="bindNo" value="${ebookDatabind.bindNo}">
-	</main>
+	</section>
+		
+	<div class="under-controller-box">
+		<div onclick="loveOrUnlove();">
+			<i class="fas fa-heart" id="checkLoved"></i>&nbsp;
+			<span id="loveNumber"></span>
+		</div>
+		
+		<div onclick="putInShoppingBasket();">
+			장바구니&nbsp;
+			<i class="fas fa-shopping-basket" id="checkShopped"></i>
+		</div>
+		
+		<div onclick="buyNow();">바로구매</div>
+	</div>
+	
+	<input type="hidden" id="contextPath" value="${path}">
+	<input type="hidden" id="loginMemberId" value="${sessionScope.loginMember.memberId}">
 
 	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
-	<script src = "${path}/resources/js/ebook/xml2json.js"></script>
+	<script src="https://kit.fontawesome.com/5af64d5c05.js" crossorigin="anonymous"></script>
 	<script src="${path}/resources/js/ebook/home/ebookDetail.js"></script>
-
-<jsp:include page="/WEB-INF/views/ebook/home/ebookFooter.jsp"/>
+</body>

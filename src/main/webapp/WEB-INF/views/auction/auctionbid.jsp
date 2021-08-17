@@ -47,8 +47,8 @@
 							<c:if test="${vs.first }">
 								<input type="hidden" value="${bid.bidId }" id="bidid2">
 								<tr style="font-size: 15px;">
-									<td>${bid.bidId }님의</td>
-									<td>${bid.bidPrice}원</td>
+									<td id="bididtext">${bid.bidId }님의</td>
+									<td id="bidpricetext">${bid.bidPrice}원</td>
 								</tr>
 								<!-- <tr>
 									<th colspan="2">입찰기록</th>
@@ -112,19 +112,29 @@
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script>
 		// gi-young
-		let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
-		//let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
+
+		let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");		
+
 		
 		sockAuction.onopen = (e) => {
 			console.log(e);
+		
 		}
 		
 		sockAuction.onmessage = (i) => {
 			console.log(i);
+			log(i);
 		}
 		
 		sockAuction.onclose = (e) => {
 			console.log(e);
+		}
+		const log=(i)=>{
+			let maindata=i.data.split(",");
+			$("#bididtext").text(maindata[2]+"님의");
+			$("#bidpricetext").text(maindata[3]+"원");
+			$("#bidid2").val(maindata[2]);
+			
 		}
 	
 		console.log($("#point").val())
@@ -142,6 +152,7 @@
 		});
 	
 		const check=()=>{
+			sendMainMessage();
 			if($("#bidid").val()==$("#seller").val()){
 				alert("자신이 올린 물품입니다.")
 				return false; 
@@ -170,12 +181,25 @@
 				 }
 				return false;		 
 			}
+		
 		}
+		
+		
 		 
 		// gi-young
-		/* function sendMessage() {
+		 function sendMessage() {
 		 sockAuction.send("bid," + "${loginMember.memberId}" + "," + "${auction.auctionNo}" + "," + $("#bid").val());
-		} */
+		} 
+			
+		function sendMainMessage() {
+				 let auctionName="${ auction.auctionName },";
+				 let memberId="${member.memberId},";
+				 let bidPrice=$("input[name=bidPrice]").val();		
+				 let main="main,"+auctionName+memberId+bidPrice
+				 console.log(main)
+				 sockAuction.send(main);
+				 
+			 }
 	</script>
 	
 </body>

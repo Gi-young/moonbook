@@ -25,7 +25,7 @@
 							<a href="javascript:openEbookWizard();"><i class="fas fa-book-open"></i><b>e북 마법사</b></a>
 						</li>
 						<li>
-							<a href="${path}/ebook/pageShoppingBasket.do"><i class="fas fa-cart-plus"></i><b>장바구니</b></a>
+							<a href="${path}/shopingList/shopingList.do"><i class="fas fa-cart-plus"></i><b>장바구니</b></a>
 						</li>
 					</ul>
 				</div>
@@ -68,6 +68,7 @@
 						<c:if test="${sessionScope.loginMember.memberId.equals('admin')}">
 							<button onclick="moonbookDatabind();">API에서 데이터 받아오기</button>
 							<button onclick="uploadEbook();">e북 업로드</button>
+							<button onclick="manageBanner();">배너 관리자</button>
 						</c:if>
 					</div>
 				</div>
@@ -76,6 +77,7 @@
 			<input type="hidden" id="contextPath" value="${path}"/>
 			<input type="hidden" id="memberId" value="${sessionScope.loginMember.memberId}">
 			<input type="hidden" id="shoppingBasketLoginCheck" value="${param.shoppingBasketLoginCheck}">
+			<input type="hidden" id="ebookDetailLoginCheck" value="${param.ebookDetailLoginCheck}">
 			<input type="hidden" id="currentFocus" value="${currentFocus}">
 	
 	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>

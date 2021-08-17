@@ -18,8 +18,16 @@
 			alias="membergrade" />
 		<typeAlias alias="strArr"
 			type="com.rar.khbook.common.StringArrayTypeHandler" />
+
 		<!-- 결제내역 -->
 		<typeAlias alias="payment" type="com.rar.khbook.order.model.vo.Payment" />
+
+		
+		<!-- 고객센터 게시판 -->
+		<typeAlias alias="noticeBoard"
+			type="com.rar.khbook.serviceboard.model.vo.NoticeBoard" />
+		<typeAlias alias="eventBoard"
+			type="com.rar.khbook.serviceboard.model.vo.EventBoard" />
 		<!-- 중고게시판 -->
 
 		<typeAlias
