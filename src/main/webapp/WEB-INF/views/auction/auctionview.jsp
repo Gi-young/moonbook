@@ -8,7 +8,7 @@
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
    <jsp:param name="" value=""/>
 </jsp:include>
-
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionview.css"></link>
 
 	<c:set var="a" value="${auction}"/>
@@ -95,13 +95,13 @@
 		                <c:if test="${a.auctionbid.size()!=0 }">
 		                	<table id="bidLog">
 			                	<tr>
-			                		<th>입찰 번호</th>
+			                		<th>입찰 날짜</th>
 			                		<th>입찰자 아이디</th>
 			                		<th>입찰 가격</th>
 			                	</tr>
 								<c:forEach items="${a.auctionbid }" var="bid">
 									<tr>
-										<td>${bid.bidNo }</td>
+										<td>${bid.bidTime }</td>
 										<td>${bid.bidId }</td>
 										<td>${bid.bidPrice }</td>				
 									</tr>
@@ -128,26 +128,24 @@
 	   }
 	   
 	   sockAuction.onmessage = (i) => {
-		   console.log(i);
-		   
-		   let messageArr = i.data.split(",");
-		   
-		   if (messageArr[0] === "bid") {
-			   let bidLog = document.getElementById("bidLog");
-			   
-			   let tr = document.createElement("tr");
-			   let td = document.createElement("td");
-			   td.innerText = messageArr[1] + ", " + messageArr[3];
-			   
-			   tr.appendChild(td);
-			   bidLog.appendChild(tr);
-		   }
+		   banner(i);	   
 	   }
 	   
 	   sockAuction.onclose = (e) => {
 		   console.log(e);
 	   }
 	   
+		const banner=(i)=>{
+			let maindata=i.data.split(",");
+			let date =new Date();
+			let now=moment(date).format('YYYY-MM-DD');
+			let bannerData=now+"::"+maindata[1]+"에"+maindata[2]+"님이"+maindata[3]+"원 으로 최고입찰 하셨습니다.";
+			$("#bidLog>tbody>tr").eq(0).after($("<tr>").html("<td>"+now+"</td><td>"+maindata[2]+"</td><td>"+maindata[3]+"</td>"))
+					
+		}
+		
+		
+		
 	   function CountDownTimer(dt, id)
 	   {
 	   var end = new Date(dt);

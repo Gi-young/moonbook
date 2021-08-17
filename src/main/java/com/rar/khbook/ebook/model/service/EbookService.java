@@ -112,4 +112,6 @@ public interface EbookService {
 	
 	List<HashMap> getCategories(Map param);
 	
+	int countLoved(Map param);
+	
 }

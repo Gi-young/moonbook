@@ -90,8 +90,9 @@
 		<result column="member_total_sale" property="memberTotalSale" />
 		<result column="member_visit" property="memberVisit" />
 		<result column="member_today" property="memberToday" />
-		<result column="member_address_num" property="memberAddressNum"/>
-		<result column="member_detail_address" property="memberDetailAddress"/>
+		<result column="member_address_num" property="memberAddressNum" />
+		<result column="member_detail_address"
+			property="memberDetailAddress" />
 	</resultMap>
 
 	<!-- 쿠폰에 상속해줄 부모 VO -->
@@ -186,14 +187,14 @@
 	<insert id="insertCoupon">
 		INSERT INTO COUPON VALUES(SEQ_COUPON_NO.NEXTVAL,
 		SYSDATE+30, #{memberId},
-		1, 'Y') 
+		1, 'Y')
 	</insert>
 
 	<!-- 회원 정보 수정 -->
 	<update id="updateMemberEnd">
 		UPDATE MEMBER
 		SET MEMBER_NAME =
-		#{memberName},MEMBER_EMAIL=#{memberEmail},MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_GENDER=#{memberGender},MEMBER_BIRTH=#{memberBirth}
+		#{memberName},MEMBER_EMAIL=#{memberEmail},MEMBER_PHONE=#{memberPhone},MEMBER_ADDRESS=#{memberAddress},MEMBER_GENDER=#{memberGender},MEMBER_BIRTH=#{memberBirth},MEMBER_ADDRESS_NUM=#{memberAddressNum},MEMBER_DETAIL_ADDRESS=#{memberDetailAddress}
 		WHERE
 		MEMBER_ID = #{memberId}
 	</update>
@@ -217,8 +218,11 @@
 
 	<!-- 회원 포인트 적립 -->
 	<update id="updateMemberPoint">
-		UPDATE MEMBER SET MEMBER_POINT = ((SELECT MEMBER_POINT FROM MEMBER WHERE
-		MEMBER_ID=#{memberId}) + (SELECT ORDER_POINT FROM ORDERT WHERE
-		ORDER_NO=#{merchantUid})) WHERE MEMBER_ID=#{memberId}
+		UPDATE MEMBER SET MEMBER_POINT = ((SELECT
+		MEMBER_POINT FROM MEMBER WHERE
+		MEMBER_ID=#{memberId}) + (SELECT
+		ORDER_POINT FROM ORDERT WHERE
+		ORDER_NO=#{merchantUid})) WHERE
+		MEMBER_ID=#{memberId}
 	</update>
 </mapper>

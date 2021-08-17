@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="auction">
+	<!-- 배너 한개 검색 -->
+	<select id="selectauctiobanner" resultMap="AuctionBid">
+	select * from(
+	select bid_id,bid_price,bid_name,to_char(bid_time,'YYYY-MM-DD HH24:MI') as time from auctionbid  order by bid_time desc) where rownum=1
+	</select>
+	<!-- 배너리스트 검색 -->
+	<select id="selectbidlist" resultMap="AuctionBid">
+	select bid_id,bid_price,bid_name,to_char(bid_time,'YYYY-MM-DD HH24:MI') as time from auctionbid order by bid_time desc
+	</select>
 	<!-- 물품 등록취소 -->
 	<delete id="auctionDel">
 	DELETE FROM AUCTION WHERE AUCTION_NO=#{auctionNo}
@@ -131,7 +140,7 @@
 	UPDATE MEMBER SET MEMBER_POINT = MEMBER_POINT - #{bidPrice} WHERE MEMBER_ID=#{bidId}
 	</update>
 	<insert id="insertauctionBid">
-	INSERT INTO AUCTIONBID VALUES(SEQ_AUCTIONBID_NO.NEXTVAL,#{auctionNo},#{bidId},#{bidPrice},#{auctionName},default)
+	INSERT INTO AUCTIONBID VALUES(SEQ_AUCTIONBID_NO.NEXTVAL,#{auctionNo},#{bidId},#{bidPrice},#{auctionName},default,sysdate)
 	</insert>
 	<update id="updateAddbid">
 	UPDATE AUCTIONBID SET BID_PRICE = BID_PRICE + #{bidPrice} WHERE BID_NO=#{bidNo}
@@ -201,7 +210,14 @@
 	<select id="selectauctioncateCode" resultMap="AuctionCateMap">
 		SELECT * FROM AUCTIONCATE WHERE AUCTIONCATE_NAME=#{acutioncateName} AND AUCTIONCATE_FIRST=#{acutioncateFrist}
 	</select>
-	
+	<resultMap type="com.rar.khbook.auction.model.vo.AuctionBid" id="AuctionBid">
+		<result column="bid_no" property="bidNo"/>
+		<result column="bid_id" property="bidId"/>
+		<result column="bid_price" property="bidPrice"/>
+		<result column="bid_name" property="bidName"/>	
+		<result column="bid_check" property="bidCheck"/>	
+		<result column="bid_time" property="bidTime"/>	
+	</resultMap>
 	
 	<resultMap type="com.rar.khbook.auction.model.vo.AuctionCate" id="AuctionCateMap">
 		<result column="auctioncate_code" property="auctioncateCode"/>
@@ -235,6 +251,7 @@
 		<result column="bid_price" property="bidPrice"/>
 		<result column="bid_name" property="bidName"/>	
 		<result column="bid_check" property="bidCheck"/>	
+		<result column="bid_time" property="bidTime"/>	
 	</collection>
 	<collection property="auctioncate" ofType="com.rar.khbook.auction.model.vo.AuctionCate">
 		<result column="auctioncate_code" property="auctioncateCode"/>

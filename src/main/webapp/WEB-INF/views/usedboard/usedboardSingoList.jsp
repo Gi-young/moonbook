@@ -9,7 +9,7 @@
 	<jsp:param name="title" value=""/>
 </jsp:include>
 
-	<link ref="stylesheet" type="text/css" href="${path}/resources/css/usedboardSingoList.css">
+	<link rel="stylesheet" href="${path}/resources/css/usedboard/usedboardSingoList.css">
 
 	<section id="content">
 		<center>
@@ -49,7 +49,7 @@
 						</tr>
 			        </c:forEach>
 				</table><br>
-				<div id="pageBarb">${pageBar }</div>
+				<div class="pageBar">${pageBar }</div>
 			</div>
 		</center>
 	</section>

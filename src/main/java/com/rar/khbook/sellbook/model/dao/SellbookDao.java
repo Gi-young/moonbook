@@ -30,4 +30,19 @@ public interface SellbookDao {
 	int reviewWrite(SqlSession session, HashMap map);
 
 	int selectReviewAll(SqlSession session, int bindNo);
+	
+	int insertOrder(SqlSession session, Map param);
+	
+	int insertBookOrderList(SqlSession session, Map param);
+	
+	int insertPayment(SqlSession session, Map param);
+	
+	int updateMemberTotalSale(SqlSession session, Map param);
+	
+	int updateSalesVolume(SqlSession session, Map param);
+	
+	int updateStock(SqlSession session, Map param);
+	
+	int updateMemberPoint(SqlSession session, Map param);
+	
 }

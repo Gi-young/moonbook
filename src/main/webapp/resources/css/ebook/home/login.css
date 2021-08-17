@@ -1,0 +1,93 @@
+@charset "UTF-8";
+html {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 20px 15px 1fr 15px 20px;
+}
+
+div.color-band {
+    background-color: #582810;
+}
+
+div.inner-color-band {
+    background-color: #E5E2DB;
+}
+
+#loginBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 230px;
+    border: 1px solid silver;
+    padding: 10px 10px 5px 10px;
+    border-radius: 5px;
+}
+
+form.login-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginBox input[type=submit] {
+    width: 100%;
+    color: black;
+    background-color: white;
+    font-weight: bold;
+    flex-grow: 1;
+    margin-left: 3px;
+    height: 45px;
+}
+
+#loginBox input[type=submit]:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+#loginBox input {
+    margin-bottom: 2px;
+}
+
+#loginBox input[type=text] {
+    width: 150px;
+}
+
+#loginBox input[type=password] {
+    width: 150px;
+}
+
+div.input-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+#loginNotice {
+    position: absolute;
+    left: 47px;
+    bottom: 65px;
+    width: 300px;
+    text-align: center;
+    font-size: 13px;
+    color: orange;
+    font-weight: bold;
+}

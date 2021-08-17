@@ -116,8 +116,10 @@
 			                            <strong class="reply_st">
 			                                <span class="txt_de" style="font-size: 20px;">${r.usedcomment_Content }</span>
 			                            </strong>
+			                            <c:if test="${loginMember!=null }">
 			                            <button onclick="location.assign('${path}/usedboard/deleteUsedcomment.do?usedcomment_No=${r.usedcomment_No }&usedbaord_No=${no }');" class="btn-reply" style="font-size: 20px;" value="">삭제</button>
 			                            <button class="btn-reply" style="font-size: 20px;" value="${r.usedcomment_No }">답글</button>
+			                            </c:if>
 			                        </div>
 			                    </li>
 			                </ul>

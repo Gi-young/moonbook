@@ -1,4 +1,8 @@
 @charset "UTF-8";
+#banner_list{
+    height: 250px;
+    overflow: hidden;	
+}
 table{
 	border-collapse: separate;
     text-indent: initial;

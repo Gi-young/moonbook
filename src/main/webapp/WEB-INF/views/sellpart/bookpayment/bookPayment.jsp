@@ -213,8 +213,8 @@
 <input type="hidden" id="contextPath" value="${path }">
 <input type="hidden" id="deliveryFee" value="3000">
 <input type="hidden" id="bindNo" value="${book.bindNo }">
-<script>
 
+<script>
 let html="";
 html = "<fmt:formatNumber value='3000' type='currency'/>";
 let html2 = "<fmt:formatNumber value='0' type='currency'/>";
@@ -222,6 +222,7 @@ let totalfee = "<fmt:formatNumber value='${(book.price*0.9)*sellStock+3000 }' ty
 let totalfee2 = "<fmt:formatNumber value='${(book.price*0.9)*sellStock }' type='currency'/>"
 let deliboolean = "";
 let divHidden = document.getElementById("divhidden");
+let sellStock = document.getElementById("sellStock");
 /* let stock = document.getElementById("stock");
 console.log("stock입니다 = ==== = == = = = = === = = "+stock); */
 
@@ -263,9 +264,10 @@ if(${shopinglistCate=='E'}){
                                     paidAt: rsp.paid_at,
                                     pgProvider: rsp.pg_provider,
                                     receiptUrl: rsp.receipt_url,
-									orderVolume:1,
+									orderVolume:"${sellStock}",
 									bindNo:"${book.bindNo}",
 									orderStatus:"결제완료"
+								
 								},
 								success: data=>{
 									if(data=='1'){
@@ -303,11 +305,11 @@ if(${shopinglistCate=='B'}){
                 	buyer_email:"${loginMember.memberEmail}",
                 	name:"${book.title}",
                 	/* amount:Number("${book.price}") */
-                	amount:100000
+                	amount:100
                 	}, function(rsp){
                 		if(rsp.success){               				
 							$.ajax({
-								url:"${path}/EbookControllerSm/orderOne.do",
+								url:"${path}/SellbookController/orderOne.do",
 								type:"POST",
 								dataType:"json",
 								data:{									
@@ -319,7 +321,7 @@ if(${shopinglistCate=='B'}){
                                     paidAt: rsp.paid_at,
                                     pgProvider: rsp.pg_provider,
                                     receiptUrl: rsp.receipt_url,
-									orderVolume:1,
+									orderVolume:"${sellStock}",
 									bindNo:"${book.bindNo}",
 									orderStatus:"결제완료"
 								},
