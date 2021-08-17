@@ -185,23 +185,38 @@
 	
 	<select id="myShopingListB" resultMap="sellbookDatabindMap">
 		SELECT * FROM BOOK_EBOOK_DATABIND
-		<if test="arr != ''">
-			WHERE BIND_NO IN (${arr})
-		</if>				  
+		<choose>
+			<when test="arr != ''">
+				WHERE BIND_NO IN (${arr})
+			</when>
+			<otherwise>
+				WHERE 1=2
+			</otherwise>
+		</choose>			  
 	</select>
 	
 	<select id="myShopingListE" resultMap="ebookDatabindMap">
 		SELECT * FROM BOOK_EBOOK_DATABIND
-		<if test="arr != ''">
-			WHERE BIND_NO IN (${arr})
-		</if>
+		<choose>
+			<when test="arr != ''">
+				WHERE BIND_NO IN (${arr})
+			</when>
+			<otherwise>
+				WHERE 1=2
+			</otherwise>
+		</choose>
 	</select>
 	
 	<select id="myShopingListG" resultMap="giftMap">
 		SELECT * FROM NGIFT
-		<if test="arr != ''">
-			WHERE NGIFT_NO IN (${arr})
-		</if>
+		<choose>
+			<when test="arr != ''">
+				WHERE NGIFT_NO IN (${arr})
+			</when>
+			<otherwise>
+				WHERE 1=2
+			</otherwise>
+		</choose>
 	</select>
 	
 </mapper>

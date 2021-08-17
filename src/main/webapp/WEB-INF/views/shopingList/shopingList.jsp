@@ -15,7 +15,7 @@
 <form action="#">
 	<div class="orderInfoBox">
 		<div class="infoTitle">
-			<h3>문곰도서 주문 정보</h3>
+			<h3>문곰도서 주문 정보</h3><c:out value="${eBook}"/>
 		</div>
 		<div class="tbl_box">
 			<table class="tbl_order">
