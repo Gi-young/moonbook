@@ -76,5 +76,33 @@
 	<select id="selectReviewAll" resultType="int">
 		SELECT COUNT(*) FROM BOOK_REVIEW WHERE BIND_NO=#{bindNo}
 	</select>
+	<!-- 구매항목 추가  -->
+	<insert id="insertOrder">
+		INSERT INTO ORDERT VALUES (#{merchantUid},#{orderVolume},3000,#{memberId},NULL,#{orderStatus},NULL,#{paidAmount},SYSDATE,NULL,NULL,NULL,NULL)
+	</insert>
+	<!-- 도서구매 항목 추가  -->
+	<insert id="insertBookOrderList">
+		INSERT INTO BOOK_ORDER_LIST VALUES (#{merchantUid},${bindNo}, ${orderVolume})
+	</insert>
+	<!-- 결제내역 추가  -->
+	<insert id="insertPayment">
+		INSERT INTO PAYMENT VALUES (#{paymentId},#{merchantUid},#{payMethod}, #{paidAmount}, #{paidAt}, #{pgProvide}, #{receiptUrl}, #{merchantUid})
+	</insert>
+	
+	<!-- 회원 구매금액 증가  -->
+	<update id="updateMemberTotalSale">
+		UPDATE MEMBER SET MEMBER_TOTAL_SALE = MEMBER_TOTAL_SALE + #{paidAmount} WHERE MEMBER_ID=#{memberId}
+	</update>
+	<!-- 책 판매량 증가, 재고량 감소  -->
+	<update id="updateSalesVolume">
+		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME = SALES_VOLUME + #{orderVolume} WHERE BIND_NO = #{bindNo}
+	</update>
+	<update id="updateStock">
+		UPDATE BOOK_EBOOK_DATABIND SET STOCK = STOCK - #{orderVolume} WHERE BIND_NO = #{bindNo}
+	</update>
+	<!-- 멤버 구매포인트 증가 -->
+	<update id="updateMemberPoint">
+		UPDATE MEMBER SET MEMBER_POINT = MEMBER_POINT + #{addPoint} WHERE MEMBER_ID = #{memberId}
+	</update>
 	
 </mapper>

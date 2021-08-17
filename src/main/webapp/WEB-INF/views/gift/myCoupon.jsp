@@ -12,36 +12,52 @@
     <title>Document</title>
     <link rel="stylesheet" href="${path }/resources/css/gift/myCoupons.css">
 </head>
-<body style="background-color: #E5E2DB;">
+<body style="background-color: #E5E2DB; font-family:'한컴 말랑말랑', '돋움';">
     <div class="couponBox">
         <div class="flex">
-     		<p class="userName">사용자</p>님이 보유하고 계신 쿠폰은 총<p class="cp-countAll">0</p>개 입니다.
+     		<p class="userName">${member.memberName }</p>님이 보유하고 계신 쿠폰 정보입니다.
         </div>
         <div class="couponList">
-            <div class="couponView"> 
-                <img src="${path }/resources/images/gift/bronzebear.png" alt="">
-                <p>보유 브론즈 쿠폰</p><p class="cp-count">숫자</p>
-                <button class="useCoupon">쿠폰사용</button>
-            </div>
-            <div class="couponView">  
+        	<c:forEach var="i" items="${couponlist }" varStatus="status">
+        	<form action="${path }/gift/choiceCoupon.do" method="post" >
+	            <div class="couponView" style="width:500px;"> 
+	                <img src="${path }/resources/upload/${i.couponImg}" alt="">
+	                <p>${i.couponlistName }</p>
+	                <p style="font-weight:900;">${i.couponlistForuse eq 'Y'?"사용가능":"기간만료"}</p>
+	                <c:if test="${i.couponlistForuse eq 'Y'}">
+	                	<button class="useCoupon" onclick="getParentText(${status.index})">쿠폰사용</button>
+	                </c:if>
+	                <input type="hidden" value="${i.couponlistName }" name="couponName" class="couponName"/>
+	                <input type="hidden" value="${i.couponlistAmount }" name="couponAmount" class="couponAmount"/>                           
+	            </div>
+	        </form>    
+	        </c:forEach>    
+            <%-- <div class="couponView">  
                 <img src="${path }/resources/images/gift/silverbear.png" alt="">
-                <p>보유 실버 쿠폰</p><p class="cp-count">숫자</p>
-                <button class="useCoupon">쿠폰사용</button>
+                <p>보유 실버 쿠폰</p><p class="cp-count"></p>
+                <button class="useCoupon" value="실버 쿠폰">쿠폰사용</button>
             </div>
             <div class="couponView">
                 <img src="${path }/resources/images/gift/goldbear.png" alt="">
-                <p>보유 골드 쿠폰</p><p class="cp-count">숫자</p>
-                <button class="useCoupon">쿠폰사용</button>
-            </div>
-            <div class="couponView">
-                <img src="${path }/resources/images/gift/platinumbear.png" alt="">
-                <p>보유 플래티넘 쿠폰</p><p class="cp-count">숫자</p>
-                <button class="useCoupon">쿠폰사용</button>
-            </div>
+                <p>보유 골드 쿠폰</p><p class="cp-count">${coupon. }</p>
+                <button class="useCoupon" value="골드 쿠폰">쿠폰사용</button>
+            </div> --%>
         </div>
         <p class="couponMsg">＊쿠폰사용은 구매 1회당 1회로 제한됩니다.</p>
         	<div class="eventBanner">
-        </div>
+        	</div>
     </div>
+    
+    <script>
+    
+    function getParentText(i){
+        let cpAmount = document.getElementsByClassName("couponAmount")[i].value;
+        let ci = document.getElementById("couponAmount");
+        confirm(cpAmount);
+        opener.document.getElementById("ds").innerHTML=cpAmount+"원 <br>할인이 적용됩니다.";
+    }
+ 	
+    </script>
+    
 </body>
 </html>

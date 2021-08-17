@@ -18,4 +18,5 @@ public class GiftCate {
 	private int giftCateFirstRef;
 	private int giftCateSecondRef;
 	
+	
 }

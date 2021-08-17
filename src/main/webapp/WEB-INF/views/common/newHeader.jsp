@@ -62,7 +62,7 @@
         </div> -->
 
 		<div class="header-mid">
-			<img src="${path }/resources/images/common/mgbanner.png" alt="">
+			<a href="${path }"><img src="${path }/resources/images/common/mgbanner.png" alt=""></a>
 			<!-- <h1 class="logo">
                 <a href="#">
                     <img src="../components/image/kh문고 로고 final.png" style="width: 250px;">
@@ -177,8 +177,18 @@
 							<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
 						</c:if>
 						<c:if test="${loginMember!=null }">
-							<li class="user1"><a href="${path }/member/myroom/main.do">${loginMember.memberName }님
-									(${loginMember.memberGradeNo}) ▽</a></li>
+							<li class="headerF-li" id="user">
+								<a href="${path }/member/myroom/main.do">${loginMember.memberName }님
+										(${loginMember.memberGradeNo}) ▽</a>
+									<ul class="memberInfoTab">	
+										<li>
+											<a href="${path }/member/myroom/main.do">마이페이지</a>
+										</li>
+										<li>
+											<a href="${path }/shopingList/shopingListView.do?memberId=${loginMember.memberId }">장바구니</a>
+										</li>
+						    		</ul>
+						    </li>
 							<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
 							<li><a href="${path }/member/logout.do">로그아웃</a></li>
 
@@ -189,7 +199,7 @@
                     		<li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
             			</c:if>
 						
-						<li><a href="${path }/service/servicePage.do">고객센터</a></li>
+						<li><a href="${path }/service/serviceMain.do">고객센터</a></li>
 					</ul>
 				</div>
 				<div></div>
@@ -240,6 +250,25 @@
 		$(function() {
 			let item = $('#books');
 			let tab = $('.book');
+				$(item).mouseover(function() {
+					// tab.slideDown(500);
+					tab.css('display', "flex");
+					$(tab).mouseover(function() {
+						tab.css('display', "flex");
+					})
+				})
+				$(tab).mouseout(function() {
+					tab.css('display', "none");
+				})
+				$(item).mouseout(function() {
+					tab.css('display', "none");
+				})
+			});
+	  
+	  /* 마이페이지, 장바구니 */
+		$(function() {
+			let item = $('#user');
+			let tab = $('.memberInfoTab');
 				$(item).mouseover(function() {
 					// tab.slideDown(500);
 					tab.css('display', "flex");

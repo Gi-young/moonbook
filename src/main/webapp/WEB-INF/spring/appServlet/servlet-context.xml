@@ -8,8 +8,8 @@
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-
-
+	
+	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -17,7 +17,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -83,9 +83,26 @@
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
 		</interceptor>
 		<interceptor>
+			<mapping path="/ServiceboardController/insertEventBoard.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+			<mapping path="/ServiceboardController/insertNoticeBoard.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+			<mapping path="/ServiceboardController/deleteNoticeBoard.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor2"/>		
+		</interceptor>
+		<interceptor>
+			<mapping path="/ServiceboardController/deleteEventBoard.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor2"/>		
+		</interceptor>
+		<interceptor>
 		<mapping path="/SellbookController/insertReview.do*"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.GiftLoginCheckInterceptor"/>		
 		</interceptor>
+		
 		<!-- 낄껴 좀 하겠습니다. -->
 		<interceptor>
 			<mapping path="/gift/giftPayment.do"/>

@@ -1,21 +1,32 @@
 package com.rar.khbook.usedboard.controller;
 
+
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonObject;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.usedboard.model.service.UsedboardService;
 import com.rar.khbook.usedboard.model.vo.Usedboard;
@@ -183,16 +194,78 @@ public class UsedboardController {
 		return "/usedboard/usedboardInsert";
 	}
 	
+	@RequestMapping(value="/usedboard/fileUpload.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void imageUpload(HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest multiFile , @RequestParam MultipartFile upload) throws Exception{ 
+		// 랜덤 문자 생성 
+		UUID uid = UUID.randomUUID(); 
+		OutputStream out = null; 
+		PrintWriter printWriter = null; 
+		//인코딩 
+		response.setCharacterEncoding("utf-8"); 
+		response.setContentType("text/html;charset=utf-8"); 
+		try{ 
+			//파일 이름 가져오기 
+			String fileName = upload.getOriginalFilename(); 
+			byte[] bytes = upload.getBytes(); 
+			//이미지 경로 생성 
+			String path = request.getServletContext().getRealPath("/resources/upload/usedboard/");
+			String ckUploadPath = path + uid; File folder = new File(path); 
+			//해당 디렉토리 확인 
+			if(!folder.exists()){ 
+				try{ 
+					folder.mkdirs(); // 폴더 생성 
+				}catch(Exception e){ 
+					e.getStackTrace(); 
+					} 
+				} 
+			out = new FileOutputStream(new File(ckUploadPath)); 
+			out.write(bytes); 
+			out.flush(); // outputStram에 저장된 데이터를 전송하고 초기화 
+			String callback = request.getParameter("CKEditorFuncNum"); 
+			printWriter = response.getWriter(); 
+			String fileUrl = "/mine/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName; // 작성화면
+			String rename=uid.toString();
+			String memberid=request.getParameter("member_Id");
+			Usedboardfile f=new Usedboardfile(fileName,rename,0,0,memberid);
+			service.usedboardFileUpload(f);
+			// 업로드시 메시지 출력
+			JsonObject json = new JsonObject();
+			json.addProperty("uploaded", 1);
+            json.addProperty("fileName", fileName);
+            json.addProperty("url", fileUrl);
+             
+            printWriter.println(json);
+			}catch(IOException e){ 
+				e.printStackTrace(); 
+			} finally { 
+				try { 
+					if(out != null) { out.close(); } 
+					if(printWriter != null) { printWriter.close(); } 
+					} catch(IOException e) { e.printStackTrace(); } 
+				} 
+		return; 
+		}
+	@RequestMapping(value="/mine/ckImgSubmit.do") 
+	public void ckSubmit(@RequestParam(value="uid") String uid , @RequestParam(value="fileName") String fileName , HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{ 
+		//서버에 저장된 이미지 경로 
+		String path = request.getServletContext().getRealPath("/resources/upload/usedboard/");
+		String sDirPath = path + uid; 
+		File imgFile = new File(sDirPath); 
+	}
+
+
+
+	
 	@RequestMapping("/usedboard/usedboardInsertEnd.do")
-	public ModelAndView usedboardInsertEnd(Usedboard b,MultipartFile[] upFile,ModelAndView mv,HttpServletRequest req) {
+	public ModelAndView usedboardInsertEnd(Usedboard b,MultipartFile upFile,ModelAndView mv,HttpServletRequest req) {
 		log.debug("Usedboard : "+b);
 		String path=req.getServletContext().getRealPath("/resources/upload/usedboard/");
 		File dir=new File(path);//폴더
 		if(!dir.exists()) dir.mkdirs();
 		
-		for(MultipartFile f : upFile) {
-			if(!f.isEmpty()) {
-				String oriFilename=f.getOriginalFilename();
+			if(!upFile.isEmpty()) {
+				String oriFilename=upFile.getOriginalFilename();
 				String ext=oriFilename.substring(oriFilename.lastIndexOf("."));
 				
 				//리네임규칙설정하기
@@ -204,12 +277,11 @@ public class UsedboardController {
 				//MultipartFile객체를 이용해서 저장처리를 해야함.
 				//transfetTo()매소드를 이용 -> 하드에 파일을 저장
 				try {
-					f.transferTo(new File(path+reName));
+					upFile.transferTo(new File(path+reName));
 					b.getUsedboardfiles().add(Usedboardfile.builder().usedboardfile_Oriname(oriFilename).usedboardfile_Rename(reName).build());
 				}catch(IOException e) {
 					e.printStackTrace();
 				}
-			}
 		}
 		String msg="등록성공";
 		try {

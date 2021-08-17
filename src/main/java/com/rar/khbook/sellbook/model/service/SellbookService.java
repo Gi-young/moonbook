@@ -28,4 +28,7 @@ public interface SellbookService {
 	int reviewWrite(HashMap map);
 
 	int selectReviewAll(int bindNo);
+	
+//	주문, 결제
+	int orderOne(Map param);
 }
