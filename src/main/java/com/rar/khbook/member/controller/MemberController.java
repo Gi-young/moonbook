@@ -1,7 +1,9 @@
 package com.rar.khbook.member.controller;
 
 import java.io.Writer;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,6 +35,7 @@ import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 import com.rar.khbook.order.model.vo.Order;
+import com.rar.khbook.order.model.vo.Payment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -371,9 +375,30 @@ public class MemberController {
 
 //	마이룸 메인연결
 	@RequestMapping("/member/myroom/main.do")
-	public String myroomMain(HttpSession session) {
+	public ModelAndView myroomMain(ModelAndView mv, @SessionAttribute("loginMember")Member m) {
 
-		return "myroom/main";
+		Map param = new HashMap();
+		param.put("memberId", m.getMemberId());
+		Calendar c = Calendar.getInstance();
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH)+1;
+		for(int i = 1; i<5; i++) {
+			
+			c.set(year, month -i, 1);
+			int lastDay = c.getActualMaximum(Calendar.DATE);
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			System.out.println(dateFormat.format(c.getTime()));
+			param.put("start"+i, dateFormat.format(c.getTime()));
+			c.set(year, month-i, lastDay);
+			System.out.println(dateFormat.format(c.getTime()));
+			param.put("finish"+i, dateFormat.format(c.getTime()));
+		}
+		List<Integer> list = service.getPaidAmount(param);
+		System.out.println(list);
+		mv.addObject("list", list);
+		mv.setViewName("myroom/main");
+		
+		return mv;
 	}
 
 //	회원등급별 혜택 페이지
@@ -488,7 +513,7 @@ public class MemberController {
 		} else {
 			mv.addObject("msg", "잘못된 시도입니다. 여러번 같은 증상이 반복될 경우 관리자에게 문의해주세요.");
 		}
-		mv.addObject("loc", "/member/myroom.do");
+		mv.addObject("loc", "/member/myroom/main.do");
 		mv.setViewName("common/msg");
 
 		return mv;

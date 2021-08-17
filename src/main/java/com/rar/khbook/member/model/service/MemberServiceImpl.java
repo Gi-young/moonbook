@@ -13,6 +13,7 @@ import com.rar.khbook.member.model.dao.MemberDao;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 import com.rar.khbook.order.model.vo.Order;
+import com.rar.khbook.order.model.vo.Payment;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -134,6 +135,20 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMember(Member m) {
 		// TODO Auto-generated method stub
 		return dao.deleteMember(session, m);
+	}
+	
+//	회원의 결제 내역 조회
+	@Override
+	public List<Payment> getPayment(Member m) {
+		// TODO Auto-generated method stub
+		return dao.getPayment(session, m);
+	}
+	
+//	회원 월별 결제 요금 조회 
+	@Override
+	public List<Integer> getPaidAmount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPaidAmount(session, param);
 	}
 	
 //	개인 회원 이북 결제 내역 총합

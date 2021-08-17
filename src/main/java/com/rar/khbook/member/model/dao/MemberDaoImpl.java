@@ -1,5 +1,6 @@
 package com.rar.khbook.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 import com.rar.khbook.order.model.vo.Order;
+import com.rar.khbook.order.model.vo.Payment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -125,6 +127,26 @@ public class MemberDaoImpl implements MemberDao {
 		return session.delete("member.deleteMember", m);
 	}
 
+//	회원의 결제 내역 조회
+	@Override
+	public List<Payment> getPayment(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectList("order.getPayment", m);
+	}
+	
+//	회원 월별 결제 요금 조회
+	@Override
+	public List<Integer> getPaidAmount(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		List<Integer> list = new ArrayList<Integer>();
+		for(int i = 1; i < 5; i++) {
+			param.put("start", param.get("start"+i));
+			param.put("finish", param.get("finish"+i));
+			list.add(session.selectOne("order.getPaidAmount", param));
+		}
+		return list;
+	}
+	
 //	개인 회원 이북 결제 내역 총합
 	@Override
 	public int ebookPurchaseCount(SqlSession session, Map<String, String> param) {

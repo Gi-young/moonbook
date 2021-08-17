@@ -42,7 +42,7 @@
 									<c:if
 										test="${cl.couponlistMembergradeNo == mg.membergradeNo && cl.couponlistForuse=='Y' }">
 										<li><div class="coupon">
-												<img src="${path }/resources/images/img_coupon_3000.png">
+												<img src="${path }/resources/upload/admin/${cl.couponImg}">
 											</div>
 											<div class="coupon_info">${cl.couponlistName }</div></li>
 									</c:if>
