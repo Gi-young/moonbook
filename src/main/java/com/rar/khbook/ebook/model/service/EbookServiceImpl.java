@@ -294,4 +294,9 @@ public class EbookServiceImpl implements EbookService {
 		return dao.getCategories(session, param);
 	}
 	
+	@Override
+	public int countLoved(Map param) {
+		return dao.countLoved(session, param);
+	}
+	
 }

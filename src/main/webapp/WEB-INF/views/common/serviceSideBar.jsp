@@ -18,14 +18,14 @@
 	</h2>
 	<ul class="sideMenu" style="width:180px;">
 		<li>
-				<p onclick="location.assign('${path}/service/noticePage.do')" class="serviceColor">공지사항</p>
-			</li>
+				<p onclick="location.assign('${path}/service/serviceMain.do')" id="noticeBtn" class="serviceColor">공지사항</p>
+		</li>
 		<li>
-				<p onclick="" class="serviceColor">이벤트</p>
-			</li>
+				<p onclick="location.assign('${path}/service/eventBoard.do')" id="eventBtn" class="serviceColor">이벤트</p>
+		</li>
 		<li>
-				<p onclick="location.assign('${path}/service/faqPage.do')" class="serviceColor">FAQ</p>
-			</li>
+				<p onclick="location.assign('${path}/service/faqPage.do')" id="faqBtn" class="serviceColor">FAQ</p>
+		</li>
 		
 	</ul>
 </div>

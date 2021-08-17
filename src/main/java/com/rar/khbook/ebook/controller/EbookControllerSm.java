@@ -43,6 +43,7 @@ public class EbookControllerSm {
 		}
 		return result;
 	}
+	
 //	이북 바로 구매
 	@RequestMapping("/EbookControllerSm/bookpayment.do")
 	public String bookpayment(EbookDatabind b, Model m) {

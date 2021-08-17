@@ -10,6 +10,7 @@ import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 import com.rar.khbook.order.model.vo.Order;
+import com.rar.khbook.order.model.vo.Payment;
 
 public interface MemberDao {
 
@@ -54,6 +55,12 @@ public interface MemberDao {
 //	회원 탈퇴
 	int deleteMember(SqlSession session, Member m);
 
+//	회원의 결제 내역 조회
+	List<Payment> getPayment(SqlSession session, Member m);
+	
+//	회원의 월별 결제 내역 조회
+	List<Integer> getPaidAmount(SqlSession session, Map param);
+	
 //	개인 회원 이북 결제 내역 총합
 	int ebookPurchaseCount(SqlSession session, Map<String, String> param);
 

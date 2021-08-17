@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.rar.khbook.auction.model.vo.Auction;
+import com.rar.khbook.auction.model.vo.AuctionBid;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.auction.model.vo.Bankinfo;
 import com.rar.khbook.auction.model.vo.Transaction;
@@ -16,6 +17,10 @@ import com.rar.khbook.member.model.vo.Member;
 public class AuctionDaoImpl implements AuctionDao {
 	
 	
+	@Override
+	public List<AuctionBid> selectbidlist(SqlSession session) {
+		return session.selectList("auction.selectbidlist");
+	}
 	
 	//경매 관리 페이지
 	
@@ -167,6 +172,12 @@ public class AuctionDaoImpl implements AuctionDao {
 	public int insertpayoutEnd(SqlSession session, Map param) {
 		return session.insert("bank.insertBank2",param);
 	}
+
+	@Override
+	public AuctionBid selectauctiobanner(SqlSession session) {
+		return session.selectOne("auction.selectauctiobanner");
+	}
+	
 	
 	
 

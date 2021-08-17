@@ -2,8 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <c:set var="prevMonth" value="<%=new java.util.Date().getMonth()%>" />
+<c:set var="nextGrade"
+	value="${Integer.parseInt(membergrade.membergradeImg.charAt(membergrade.membergradeImg.lastIndexOf('_')-1))+1}" />
+<c:set var="lowGrade"
+	value="${Integer.parseInt(membergrade.membergradeImg.charAt(membergrade.membergradeImg.lastIndexOf('_')-1))-1}" />
+<%@page import="java.util.List, java.lang.Integer"%>
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="title" value="마이페이지 - 문곰책방" />
 </jsp:include>
@@ -55,13 +61,26 @@
 				</tr>
 				<tr>
 					<td class="td_first">순수구매액</td>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
+					<td><c:if test="${list.get(3) != null}">
+							<fmt:formatNumber type="currency" value="${list.get(3) }"></fmt:formatNumber>
+						</c:if> <c:if test="${list.get(3) == null}">
+							<fmt:formatNumber type="currency" value="0"></fmt:formatNumber>
+						</c:if></td>
+					<td><c:if test="${list.get(2) != null}">
+							<fmt:formatNumber type="currency" value="${list.get(2) }"></fmt:formatNumber>
+						</c:if> <c:if test="${list.get(2) == null}">
+							<fmt:formatNumber type="currency" value="0"></fmt:formatNumber>
+						</c:if></td>
+					<td><c:if test="${list.get(1) != null}">
+							<fmt:formatNumber type="currency" value="${list.get(1) }"></fmt:formatNumber>
+						</c:if> <c:if test="${list.get(1) == null}">
+							<fmt:formatNumber type="currency" value="0"></fmt:formatNumber>
+						</c:if></td>
 				</tr>
 				<tr>
 					<td rowspan="2" class="td_first">총합</td>
-					<td rowspan="2">0</td>
+					<td rowspan="2"><fmt:formatNumber type="currency"
+							value="${list.get(3)+list.get(2)+list.get(1) }"></fmt:formatNumber></td>
 					<td colspan="2" rowspan="2" class="td_first"><div
 							class="padding10">이번달 등급</div> <a href="${path }/member/grade.do"><img
 							src="${path }/resources/images/${membergrade.membergradeImg }"></a></td>
@@ -97,17 +116,56 @@
 				</tr>
 				<tr>
 					<td class="td_first">순수구매액</td>
-					<td>0</td>
-					<td>0</td>
-					<td>0</td>
+					<td><c:if test="${list.get(2) != null}">
+							<fmt:formatNumber type="currency" value="${list.get(2) }"></fmt:formatNumber>
+						</c:if> <c:if test="${list.get(2) == null}">
+							<fmt:formatNumber type="currency" value="0"></fmt:formatNumber>
+						</c:if></td>
+					<td><c:if test="${list.get(1) != null}">
+							<fmt:formatNumber type="currency" value="${list.get(1) }"></fmt:formatNumber>
+						</c:if> <c:if test="${list.get(1) == null}">
+							<fmt:formatNumber type="currency" value="0"></fmt:formatNumber>
+						</c:if></td>
+					<td><c:if test="${list.get(0) != null}">
+							<fmt:formatNumber type="currency" value="${list.get(0) }"></fmt:formatNumber>
+						</c:if> <c:if test="${list.get(0) == null}">
+							<fmt:formatNumber type="currency" value="0"></fmt:formatNumber>
+						</c:if></td>
 				</tr>
 				<tr>
 					<td rowspan="2" class="td_first">남은 금액</td>
-					<td rowspan="2"><fmt:formatNumber type="currency"
-							value="${membergrade.membergradeStandard +100000}"></fmt:formatNumber></td>
+					<td rowspan="2"><c:choose>
+							<c:when
+								test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) > 0}">
+								<fmt:formatNumber type="currency"
+									value="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0)}"></fmt:formatNumber>
+							</c:when>
+							<c:when
+								test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) <= 0}">
+								<fmt:formatNumber type="currency"
+									value="0"></fmt:formatNumber>
+							</c:when>
+						</c:choose></td>
 					<td colspan="2" rowspan="2" class="td_first"><div
-							class="padding10">다음달 등급</div> <a href="${path }/member/grade.do"><img
-							src="${path }/resources/images/${membergrade.membergradeImg }"></a></td>
+							class="padding10">다음달 등급</div> <a href="${path }/member/grade.do">
+							<c:choose>
+								<c:when
+									test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) > 0 && membergrade.membergradeNo==1}">
+									<img
+										src="${path }/resources/images/${membergrade.membergradeImg }">
+								</c:when>
+								<c:when
+									test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) > 0 && membergrade.membergradeNo > 1}">
+									<img
+										src="${path }/resources/images/${fn:replace(membergrade.membergradeImg, membergrade.membergradeImg.charAt(membergrade.membergradeImg.lastIndexOf('_')-1), lowGrade) }">
+								</c:when>
+								<c:when
+									test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) <= 0}">
+									<img
+										src="${path }/resources/images/${fn:replace(membergrade.membergradeImg, membergrade.membergradeImg.charAt(membergrade.membergradeImg.lastIndexOf('_')-1), nextGrade) }">
+								</c:when>
+							</c:choose>
+					</a></td>
 				</tr>
 			</table>
 			<div class="myroom_infoBox">

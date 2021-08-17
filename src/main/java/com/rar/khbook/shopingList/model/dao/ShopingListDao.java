@@ -1,8 +1,11 @@
 package com.rar.khbook.shopingList.model.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+
+import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 
 
 public interface ShopingListDao {
@@ -11,5 +14,6 @@ public interface ShopingListDao {
 
 	int insertShopingListBook(SqlSession session, Map param);
 
+	
 
 }

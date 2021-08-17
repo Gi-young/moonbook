@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="serviceBoard">
+
+	<resultMap id="noticeBoard" type="noticeBoard">
+		<id column="NOTICEBOARD_NO" property="noticeboardNo"/>
+		<result column="NOTICEBOARD_TITLE" property="noticeboardTitle"/>
+		<result column="NOTICEBOARD_CONTENT" property="noticeboardContent"/>
+		<result column="NOTICEBOARD_DATE" property="noticeboardDate"/>
+		<result column="MEMBER_ID" property="memberId"/>
+	</resultMap>
+	<resultMap id="eventBoard" type="eventBoard">
+		<id column="EVENTBOARD_NO" property="eventboardNo"/>
+		<result column="EVENTBOARD_TITLE" property="eventboardTitle"/>
+		<result column="EVENTBOARD_CONTENT" property="eventboardContent"/>
+		<result column="EVENTBOARD_DATE" property="eventboardDate"/>
+		<result column="MEMBER_ID" property="memberId"/>
+	</resultMap>
+	
+	<insert id="noticeBoardWrite">
+		INSERT INTO NOTICEBOARD VALUES (SEQ_NOTICEBOARD_NO.NEXTVAL,#{noticeTitle},#{noticeContent},SYSDATE,#{memberId})
+	</insert>
+	<select id="searchNoticeBoardList" resultMap="noticeBoard">
+		SELECT * FROM NOTICEBOARD
+	</select>
+	<delete id="deleteNoticeBoard">
+		DELETE FROM NOTICEBOARD WHERE NOTICEBOARD_NO = #{noticeboardNo}
+	</delete>
+	<insert id="eventBoardWrite">
+		INSERT INTO EVENTBOARD VALUES (SEQ_EVENTBOARD_NO.NEXTVAL,#{eventTitle},#{eventContent},SYSDATE,#{memberId})
+	</insert>
+	<select id="searchEventBoardList" resultMap="eventBoard">
+		SELECT * FROM EVENTBOARD
+	</select>
+	<delete id="deleteEventBoard">
+		DELETE FROM EVENTBOARD WHERE EVENTBOARD_NO = #{eventboardNo}
+	</delete>
+
+</mapper>
