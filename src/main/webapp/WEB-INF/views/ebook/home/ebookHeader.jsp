@@ -56,13 +56,35 @@
 			<nav class="navbar">
 				<div class="navbar-boundary-box">
 					<ul class="navbar-menu">
-						<li><i class="fas fa-bars"></i></li>
+						<li><i class="fas fa-bars" id="hamburger"></i></li>
 						<li><a href="${path}/ebook/pageEbook.do">일반</a></li>
 						<li><a href="${path}/ebook/pageEbook.do?currentFocus=child">아동</a></li>
 						<li><a href="${path}/ebook/pageEbook.do?currentFocus=elementary">초등</a></li>
 						<li><a href="${path}/ebook/pageEbook.do?currentFocus=middle">중등</a></li>
 						<li><a href="${path}/ebook/pageEbook.do?currentFocus=ebook">구현된 e북</a></li>
 					</ul>
+					
+					<div id="hiddenMenu">
+						<div class="child">
+							<h4>아동</h4>
+							<ul></ul>
+						</div>
+						
+						<div class="elementary">
+							<h4>초등</h4>
+							<ul></ul>
+						</div>
+						
+						<div class="middle">
+							<h4>중등</h4>
+							<ul></ul>
+						</div>
+						
+						<div class="ebook">
+							<h4>기타</h4>
+							<ul></ul>
+						</div>
+					</div>
 					
 					<div class="only-admin-box">
 						<c:if test="${sessionScope.loginMember.memberId.equals('admin')}">
