@@ -9,6 +9,8 @@
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
 <link rel="stylesheet" href="${path}/resources/css/admin/adminSalePage.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
 <div class="admin-container">
@@ -26,13 +28,13 @@
 							<tr>
 								<th>정렬방법</th>
 								<td>
-									<input class="howASCSearch" type="radio" name="searchHow4" id="day" value="" checked><label for="day">일별</label>
+									<input class="howASCSearch" type="radio" name="searchHow4" id="day" value="" checked><label for="day" style="margin-left:7px; margin-right:5px;">일별</label>
 									<input type="Date" name="">
 								</td>
 								<td>
 									
-									<input class="howDESCSearch2" type="radio" name="searchHow4" id="days" value=""><label for="days">기간별</label>
-									<input type="Date" name=""><p>~</p><input type="Date" name="">
+									<input class="howDESCSearch2" type="radio" name="searchHow4" id="days" value=""><label for="days" style="margin-left:7px; margin-right:5px;">기간별</label>
+									<input type="Date" name="" class="saleDate1"><p>~</p><input type="Date" name="" class="saleDate2">
 								</td>
 								<td><input type="button" value="조회하기" onclick="orderList();"></td>
 							</tr>

@@ -179,14 +179,14 @@
 				                                    거래완료
 				                                	</span>
 												</c:if>	
-												<%-- <c:if test="${b.usedboard_State == '1' }"> --%>
+												<c:if test="${b.usedboard_State == '1' }"> --%>
 				                                	<c:if test="${b.member_Id == loginMember.memberId }">
 				                                		<span> || </span>
 				                                		<span> 배송확인중 </span>
 				                                		<span> || </span>
 				                                		<button onclick="confirmDelivery(event,'${b.usedboard_No }','${loginMember.memberId }');">배송확인</button>
 				                                	</c:if>
-												<%-- </c:if> --%>
+												</c:if>
 												<c:if test="${b.usedboard_State == '2' }">
 				                                	<c:if test="${b.member_Id == loginMember.memberId }">
 				                                		<span> || </span>
@@ -231,7 +231,7 @@
 					
 					data.forEach((v, i) => {
 						let option = document.createElement("option");
-						option.value = v.CATEGORY_CODE;
+						option.value = v.CATEGORY_NAME;
 						option.innerText = v.CATEGORY_NAME;
 						
 						searchCategory.appendChild(option);
@@ -258,9 +258,11 @@
 			e.preventDefault();
 			var keyword=$('#keyword').val();
 			var searchType=$('#searchType').val();
+			var catagory=$('#searchCategory').val();
 			var url = "${path}/usedboard/usedboardList.do";
 			url = url + "?searchType=" + searchType;
 			url = url + "&keyword=" + keyword;
+			url = url + "&catagory=" + catagory;
 			if(keyword.replace(/(\s*)/g,"")==null||keyword.replace(/(\s*)/g,"")==""){
 				alert("값을 입력해주세요");
 			}else{

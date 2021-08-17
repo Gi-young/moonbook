@@ -30,18 +30,18 @@
 						<input type="checkbox" name="usedboard_Category" id="category0" value="한국고전소설"><label for="category0" class="">한국고전소설</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category1" value="세계문학"><label for="category1" class="">세계문학</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category2" value="세계고전"><label for="category2" class="">세계고전</label>&nbsp;
-						<input type="checkbox" name="usedboard_Category" id="category3" value="청소년문학"><label for="category3" class="">청소년문학</label>&nbsp;
+						<input type="checkbox" name="usedboard_Category" id="category3" value="청소년 문학"><label for="category3" class="">청소년 문학</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category4" value="한국그림책(0~3세)"><label for="category4" class="">한국그림책(0~3세)</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category5" value="외국그림책(0~3세)"><label for="category5" class="">외국그림책(0~3세)</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category6" value="한국그림책(4~7세)"><label for="category6" class="">한국그림책(4~7세)</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category7" value="외국그림책(4~7세)"><label for="category7" class="">외국그림책(4~7세)</label>&nbsp;
-						<input type="checkbox" name="usedboard_Category" id="category8" value="세계명작동화"><label for="category8" class="">세계명작동화</label>&nbsp;
-						<input type="checkbox" name="usedboard_Category" id="category9" value="한국전래동화"><label for="category9" class="">한국전래동화</label>&nbsp;
-						<input type="checkbox" name="usedboard_Category" id="category10" value="국내창작동화"><label for="category10" class="">국내창작동화</label>&nbsp;
-						<input type="checkbox" name="usedboard_Category" id="category11" value="다른나라그림책"><label for="category11" class="">다른나라그림책</label>&nbsp;
-						<input type="checkbox" name="usedboard_Category" id="category12" value="어린이동화(초1~2학년)"><label for="category12" class="">어린이동화(초1~2학년)</label>&nbsp;
-						<input type="checkbox" name="usedboard_Category" id="category13" value="어린이동화(초3~4학년)"><label for="category13" class="">어린이동화(초3~4학년)</label>&nbsp;
-						<input type="checkbox" name="usedboard_Category" id="category14" value="어린이동화(초5~6학년)"><label for="category14" class="">어린이동화(초5~6학년)</label>&nbsp;
+						<input type="checkbox" name="usedboard_Category" id="category8" value="세계 명작 동화(유아)"><label for="category8" class="">세계 명작 동화(유아)</label>&nbsp;
+						<input type="checkbox" name="usedboard_Category" id="category9" value="한국 전래 동화(유아)"><label for="category9" class="">한국 전래 동화(유아)</label>&nbsp;
+						<input type="checkbox" name="usedboard_Category" id="category10" value="국내 창작 동화(유아)"><label for="category10" class="">국내 창작 동화(유아)</label>&nbsp;
+						<input type="checkbox" name="usedboard_Category" id="category11" value="다른나라 그림책(유아)"><label for="category11" class="">다른나라 그림책(유아)</label>&nbsp;
+						<input type="checkbox" name="usedboard_Category" id="category12" value="어린이동화(초등1~2)"><label for="category12" class="">어린이동화(초등1~2)</label>&nbsp;
+						<input type="checkbox" name="usedboard_Category" id="category13" value="어린이동화(초등3~4)"><label for="category13" class="">어린이동화(초등3~4)</label>&nbsp;
+						<input type="checkbox" name="usedboard_Category" id="category14" value="어린이동화(초등5~6)"><label for="category14" class="">어린이동화(초등5~6)</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category15" value="어린이동화(공통)"><label for="category15" class="">어린이동화(공통)</label>&nbsp;
 					</li>
 					<li>
@@ -64,7 +64,7 @@
 		</div>	
 	</section>
 
-	<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+	<script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 	<script>
 		attachFile = {
 	        idx:0,

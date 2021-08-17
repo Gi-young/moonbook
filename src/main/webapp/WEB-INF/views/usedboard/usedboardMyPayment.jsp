@@ -9,7 +9,7 @@
 	<jsp:param name="title" value=""/>
 </jsp:include>
 
-	<link ref="stylesheet" type="text/css" href="${path}/resources/css/usedboard/udsedboardMyPayment.css">
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/usedboard/usedboardMyPayment.css">
 
 	<section id="content">
 		<center>
@@ -28,12 +28,12 @@
 			            <th width="150">결제일</th>
 						<th width="150">가격</th>	
 						<th width="150">배송상태</th>
-						<!-- <th width="150">결제취소</th> -->
+						<th width="150">결제취소</th>
 						<th width="150">배송완료</th>
 					</tr>
 			        <c:if test="${list.isEmpty()}">
 			        	<tr>
-			            	<td colspan="7">구매내역이 없습니다.</td>
+			            	<td style="text-align: center;" colspan="8">구매내역이 없습니다.</td>
 			            </tr>
 			        </c:if>
 			        <c:forEach var="b" items="${list }">
@@ -57,20 +57,20 @@
 									배송취소
 								</c:if>
 							</td>
-							<%-- <td>
+							<td>
 								<c:set var="i" value="${i+1 }"/>
 								<c:if test="${b.usedboardPayment_State==1 }">
-									<c:if test="${usedboardPayment_Cancel==n }">
-										<button onclick="cancelPay(this.value)" value="${i }">환불하기</button>
+									<c:if test="${b.usedboardPayment_Cancel=='n' }">
+										<button onclick="location.assign('${path}/usedboard/cancelPayment.do?impUid=${b.imp_uid }&memberId=${b.member_Id }&no=${b.usedboardPayment_BoardNo }');">환불하기</button>
 									</c:if>
-									<c:if test="${usedboardPayment_Cancel!=n }">
+									<c:if test="${b.usedboardPayment_Cancel!='n' }">
 										환불완료
 									</c:if>
 								</c:if>
 								<c:if test="${b.usedboardPayment_State!=1 }">
 									환불불가
 								</c:if>
-							</td> --%>
+							</td>
 							<td>
 								<c:if test="${b.usedboardPayment_State==2 }">
 									<button onclick="location.assign('${path}/usedboard/usedboardPay2.do?no=${b.usedboardPayment_BoardNo }&id=${b.member_Id }');">배송확인</button>
@@ -88,9 +88,8 @@
 						</tr>
 			        </c:forEach>
 				</table><br>
-				<div id="pageBarb">${pageBar }</div>
+				<div class="pageBar">${pageBar }</div>
 			</div>
 		</center>
 	</section>
-
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"></jsp:include>

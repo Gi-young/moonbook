@@ -23,6 +23,11 @@ import com.rar.khbook.usedboard.model.vo.UsedboardPayment;
 import com.rar.khbook.usedboard.model.vo.UsedboardSingo;
 import com.rar.khbook.usedboard.model.vo.Usedboardfile;
 import com.rar.khbook.usedboard.model.vo.Usedcomment;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.request.CancelData;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,8 +50,8 @@ public class UsedboardController {
 		if(keyword!=null&&searchType!=null&&memberId!=null) {
 			map.put("keyword", "'"+keyword+"'");
 	        map.put("searchType", searchType);
-	        map.put("keyword2", "memberId");
-	        map.put("searchType2", "'"+memberId+"'");
+	        map.put("keyword2", "'"+memberId+"'");
+	        map.put("searchType2", "memberId");
 	        mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
 			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);
@@ -56,8 +61,8 @@ public class UsedboardController {
 		}else if(keyword!=null&&searchType!=null&&catagory!=null) {
 			map.put("keyword", "'"+keyword+"'");
 	        map.put("searchType", searchType);
-	        map.put("keyword2", "catagory");
-	        map.put("searchType2", catagory);
+	        map.put("keyword2", "'"+catagory+"'");
+	        map.put("searchType2", "catagory");
 	        mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
 			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);
@@ -361,6 +366,36 @@ public class UsedboardController {
 		}
 		mv.addObject("msg",msg);
 		mv.addObject("loc","/usedboard/usedboardSingoList.do");
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/cancelPayment.do")
+	public ModelAndView cancelPayment(ModelAndView mv,String impUid, String memberId,int no) {
+		
+		IamportClient client=new IamportClient("0768547382405749",
+		"e4c8f1e4c9e5df5739bd3606eb54377dd91cb7ece251b3252997588d1aff94070c0e0fa5edbb1324"
+		);
+		  
+		CancelData cancelData = new CancelData(impUid, true);
+		  
+		try { IamportResponse<Payment> paymentResponse =
+		client.cancelPaymentByImpUid(cancelData); } catch(IamportResponseException e)
+		{ System.out.println(e.getMessage());
+		  
+		switch(e.getHttpStatusCode()) { case 401: break;
+		  
+		case 500: break; } } catch(IOException e) { e.printStackTrace(); }
+		
+		int result=service.cancelPayment(no);
+		String msg="";
+		if(result>0) {
+			msg="환불성공";
+		}else {
+			msg="환불실패";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("loc","/usedboard/usedboardMyPayment.do?memberId="+memberId);
 		mv.setViewName("common/msg");
 		return mv;
 	}
