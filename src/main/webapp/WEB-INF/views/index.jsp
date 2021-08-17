@@ -11,6 +11,7 @@
 <script>
 
 window.onload = function() {
+	
 	searchHotnew({
 		keyword: "",
 		searchType: "title",
@@ -1774,12 +1775,10 @@ padding-bottom: 5px;
                         <div class="footernoticebox-slideContent flex footerbox">
                         
                             <ul class="footerslide-List" style="margin-left: 20px;">
+                                   <c:forEach var="n" items="${notice }">
                                     <li class="footerslide-content">
-                                        <a href="#" id="notice1">문곰책방 오픈 기념 할인 행사 이벤트!</a></li>
-                                    <li class="footerslide-content">
-                                        <a href="#" id="notice2">매장에 숨어있는 문곰이를 찾으세요</a></li>  
-                                    <li class="footerslide-content">
-                                        <a href="#" id="notice3">푸짐한 상품이 기다리고 있습니다</a></li>
+                                        <a href="#">${n.noticeboardTitle }</a></li>
+                                    </c:forEach>
                             </ul>
                         </div>   
                 <div class="footerslide-pagination""></div>
