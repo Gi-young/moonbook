@@ -29,6 +29,7 @@ import com.rar.khbook.gift.model.service.GiftService;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -347,14 +348,26 @@ public class GiftController {
 	  @RequestMapping("/gift/shopingList.do") 
 	  public ModelAndView shopingList(@RequestParam Map param, ModelAndView mv) {
 	  
+//		 내 장바구니 확인
+        List<GiftShopingList> list = service.selectCheck(param);
+		System.out.println("쇼핑리스트에 선택한 상품이 있는지 없는지 단무지 : "+list);
 	  //System.out.println("url 타고 넘어온 파람값 : "+param);
 	  //System.out.println(param.get("giftNo"));
-	  //System.out.println(param.get("quan"));	  
-	  int result = service.insertShopingList(param);
+	  //System.out.println(param.get("quan"));	 
+      if(list.isEmpty()) {
+    	  int result = service.insertShopingList(param);
+    	  mv.addObject("msg", result>0?"장바구니에 등록되었습니다.":"장바구니에 등록에 실패했습니다.");
+    	  mv.addObject("loc", "/gift/giftDetail.do?giftNo="+param.get("giftNo"));
+    	  mv.setViewName("common/msg");
+      }else {
+    	  int result = service.updateGiftShopingList(param);
+    	  mv.addObject("msg", result>0?"장바구니 수량에 추가 되었습니다.":"장바구니에 등록에 실패했습니다.");
+    	  mv.addObject("loc", "/gift/giftDetail.do?giftNo="+param.get("giftNo"));
+    	  mv.setViewName("common/msg");
+      }
+      
 	  // System.out.println("장바구니 등록 했으면 1임 : "+result);
-	  mv.addObject("msg", result>0?"장바구니에 등록되었습니다.":"장바구니에 등록에 실패했습니다.");
-	  mv.addObject("loc", "/gift/giftDetail.do?giftNo="+param.get("giftNo"));
-	  mv.setViewName("common/msg");
+	  
 	  return mv;
 	  
 	  }

@@ -77,28 +77,18 @@ public class GiftServiceImpl implements GiftService {
 	@Override
 	public int insertShopingList(Map param) {
 		
-		List<GiftShopingList> list = dao.selectGiftListAll(session, param);
-		System.out.println("너ㅏ 들어옴? 아님말고"+list);
-		System.out.println("너도 좀 맞자"+String.valueOf(param.get("giftNo")));
-		for(int i=0; i<list.size(); i++ ) {
-			System.out.println("너 진짜 뒤질래? "+String.valueOf(((GiftOrder) param.get(i)).getGiftNo()));
-			if() {
-				int result = dao.updateGiftShopingList(session, param);
-				System.out.println(" 그냥 아무것도 하기 싫다. "+result);
-			}
-			
-		}
+		//int result2 = dao.updateGiftShopingList(session, param);
 		
 		System.out.println(param.get("memberId"));
 		System.out.println(param.get("giftNo"));
-		System.out.println(param.get("quan"));
+		System.out.println(param.get("shopingListCount"));
 		Member m = dao.selectShopingMember(session, param);
 		System.out.println("디비에서 뽑아 온 멤버 : "+m);
 		try {
 				GiftOrder go = new GiftOrder(); // 기프트 장바구니
 				go.setMemberId(String.valueOf(param.get("memberId")));
 				go.setGiftNo(Integer.parseInt(param.get("giftNo").toString()));
-				go.setShopingListCount(Integer.parseInt(param.get("quan").toString()));
+				go.setShopingListCount(Integer.parseInt(param.get("shopingListCount").toString()));
 				//go = dao.selectShopingList(session, param);
 				//System.out.println("지오 멤버 아이디 : "+go.getMemberId());
 			    //System.out.println("그냥 멤버 아이디 : "+m.getMemberId());
@@ -176,6 +166,19 @@ public class GiftServiceImpl implements GiftService {
 		}
 
 	}
+
+	@Override
+	public List<GiftShopingList> selectCheck(Map param) {
+		List<GiftShopingList> list = dao.selectCheck(session, param);
+		return list;
+	}
+
+	@Override
+	public int updateGiftShopingList(Map param) {
+		int result = dao.updateGiftShopingList(session, param);
+		return result;
+	}
+	
 	
 	
 }

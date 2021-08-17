@@ -158,6 +158,12 @@ public class GiftDaoImpl implements GiftDao {
 		// TODO Auto-generated method stub
 		return session.selectList("gift.selectShopingListAll",param);
 	}
+
+	@Override
+	public List<GiftShopingList> selectCheck(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectCheck",param);
+	}
 	
 	
 	

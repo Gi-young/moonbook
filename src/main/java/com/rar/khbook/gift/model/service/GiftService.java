@@ -9,6 +9,7 @@ import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 
 public interface GiftService {
@@ -43,7 +44,11 @@ public interface GiftService {
 	int writePurchaseLog(Map param);
 
 //	결제 테이블에 추가 하기 전,	 order_no 생성
-	int writeOrderT(Map param);	
+	int writeOrderT(Map param);
+
+	List<GiftShopingList> selectCheck(Map param);
+
+	int updateGiftShopingList(Map param);	
 }
 
 

@@ -27,12 +27,12 @@
 					<th>결제금액</th>
 				</tr>
 				<%-- <c:forEach var="s" items="shopingList"> --%>
-				<c:forEach var="b" items="${bList }">
+				<c:forEach var="b" items="${book }">
 				 <tr> 
 					<td>${b.image }</td>
 					<td>${b.title }</td>
-					<td>${b.price }</td>
-					<td>${b.stock }</td>
+					<td></td>
+					<td></td>
 					<td></td>
 					<td>삼백원</td>
 				 </tr> 

@@ -109,23 +109,23 @@ public class ShopingListServiceImpl implements ShopingListService {
 	}
 
 	@Override
-	public List<SellbookDatabind> myShopingListB(Map<String, Object> paramB) {
+	public List<SellbookDatabind> myShopingListB(Map param) {
 		// TODO Auto-generated method stub
-		List<SellbookDatabind> book = dao.myShopingListB(session, paramB);
+		List<SellbookDatabind> book = dao.myShopingListB(session, param);
 		return book;
 	}
 
 	@Override
-	public List<EbookDatabind> myShopingListE(Map<String, Object> paramE) {
+	public List<EbookDatabind> myShopingListE(Map param) {
 		// TODO Auto-generated method stub
-		List<EbookDatabind> eBook = dao.myShopingListE(session, paramE);
+		List<EbookDatabind> eBook = dao.myShopingListE(session, param);
 		return eBook;
 	}
 
 	@Override
-	public List<Ngift> myShopingListG(Map<String, Object> paramG) {
+	public List<Ngift> myShopingListG(Map param) {
 		// TODO Auto-generated method stub
-		List<Ngift> gift = dao.myShopingListG(session, paramG);
+		List<Ngift> gift = dao.myShopingListG(session, param);
 		return gift;
 	}
 	

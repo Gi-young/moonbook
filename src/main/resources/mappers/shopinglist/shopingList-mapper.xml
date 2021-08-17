@@ -172,7 +172,7 @@
 	</insert>
 
 	<select id="selectMyShopingListB" resultMap="bookShopingListMap">
-		SELECT  FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+		SELECT * FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
 	</select>
 	
 	<select id="selectMyShopingListE" resultMap="eBookShopingListMap">
@@ -184,15 +184,24 @@
 	</select>
 	
 	<select id="myShopingListB" resultMap="sellbookDatabindMap">
-		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bNum}
+		SELECT * FROM BOOK_EBOOK_DATABIND
+		<if test="arr != ''">
+			WHERE BIND_NO IN (${arr})
+		</if>				  
 	</select>
 	
 	<select id="myShopingListE" resultMap="ebookDatabindMap">
-		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{eNum}
+		SELECT * FROM BOOK_EBOOK_DATABIND
+		<if test="arr != ''">
+			WHERE BIND_NO IN (${arr})
+		</if>
 	</select>
 	
 	<select id="myShopingListG" resultMap="giftMap">
-		SELECT * FROM NGIFT WHERE NGIFT_NO=#{gNum}
+		SELECT * FROM NGIFT
+		<if test="arr != ''">
+			WHERE NGIFT_NO IN (${arr})
+		</if>
 	</select>
 	
 </mapper>

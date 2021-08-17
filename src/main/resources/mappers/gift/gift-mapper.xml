@@ -112,6 +112,10 @@
 		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%문구%' OR '%학용품%'
 	</select>
 	
+	<select id="selectCheck" resultMap="giftShopingListMap">
+		SELECT * FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId} AND NGIFT_NO=#{giftNo}
+	</select>
+	
 	<select id="selectShopingList" resultMap="giftOrderMap">
 		SELECT * FROM SHOPING_LIST WHERE MEMBER_ID=#{memberId}
 	</select>
