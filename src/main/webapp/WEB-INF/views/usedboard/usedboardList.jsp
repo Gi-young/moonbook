@@ -134,16 +134,23 @@
 	        
 	        <c:if test="${list != null }">
 		        <c:forEach var="b" items="${list }">
+		        <c:set var="i" value="${i=0 }"/>
 			        <div class="secondBoard">
 			            <div class="side">
 			            	<div class="aaa">
-			            	
 			                    <a href="${path }/usedboard/usedboardView.do?no=${b.usedboard_No }">
 			                        <div class="artice">
+			                        <div class="imgdivback">
+			                        <c:forEach var="d" items="${b.usedboardfiles }">
+			                             <c:set var="i" value="${i+1 }"/>
 			                             
-				                    	<div class="imgdivback">
-				                            <img src="${path }/resources/upload/usedboard/${b.usedboardfiles[0].usedboardfile_Rename}" onerror="" >
-				                        </div>
+			                             <c:if test="${b.usedboardfiles[i-1].memberId==null }">
+			                             
+				                            <img src="${path }/resources/upload/usedboard/${b.usedboardfiles[i-1].usedboardfile_Rename}" onerror="" >
+				                        
+			                             </c:if>
+			                             </c:forEach></div>
+				                    	
 				                        
 				                        <div class="used-board-content">
 				                            <span class="used-item-title">${b.usedboard_Title }</span>
@@ -170,16 +177,16 @@
 				                                    ||
 				                                </span> 
 				                                <c:if test="${b.usedboard_State == 'y' }">
-													<span>
+													<span style="color: red;">
 				                                    거래중 
 				                                	</span>
 												</c:if>
 				                                <c:if test="${b.usedboard_State != 'y' }">
-													<span>
+													<span style="color: blue;">
 				                                    거래완료
 				                                	</span>
 												</c:if>	
-												<c:if test="${b.usedboard_State == '1' }"> --%>
+												<c:if test="${b.usedboard_State == '1' }">
 				                                	<c:if test="${b.member_Id == loginMember.memberId }">
 				                                		<span> || </span>
 				                                		<span> 배송확인중 </span>

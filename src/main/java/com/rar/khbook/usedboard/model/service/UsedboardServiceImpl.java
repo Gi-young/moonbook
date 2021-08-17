@@ -1,5 +1,6 @@
 package com.rar.khbook.usedboard.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +86,10 @@ public class UsedboardServiceImpl implements UsedboardService {
 		try {
 			int result=dao.usedboardInsertEnd(session,b);
 			int usedboardNo=b.getUsedboard_No();
+			Map<String,Object> map = new HashMap<>();
+			map.put("id", b.getMember_Id());
+			map.put("no", usedboardNo);
+			dao.usedboardFileUpdate(session,map);
 			if(result>0) {
 				List<Usedboardfile> usedboardfiles=b.getUsedboardfiles();
 				if(usedboardfiles.size()>0) {
@@ -190,5 +195,11 @@ public class UsedboardServiceImpl implements UsedboardService {
 		// TODO Auto-generated method stub
 		dao.cancelPaymentUpdate(session,no);
 		return dao.cancelPayment(session,no);
+	}
+	
+	@Override
+	public int usedboardFileUpload(Usedboardfile f) {
+		// TODO Auto-generated method stub
+		return dao.usedboardFileUpload(session,f);
 	}
 }
