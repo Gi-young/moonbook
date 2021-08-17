@@ -143,7 +143,17 @@ function searchEbook(cPage, numPerPage) {
 				
 					ebookItem.addEventListener("click", () => {
 						let bindNo = v.BIND_NO;
-						location.assign(contextPath + "/ebook/pageEbookDetail.do?bindNo="+bindNo);
+
+						let url = contextPath + "/ebook/pageEbookDetail.do?bindNo=" + bindNo;
+
+						let windowWidth = window.screen.width;
+						let windowHeight = window.screen.height;
+						let width = 375;
+						let height = 607;
+
+						let status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+
+						window.open(url, "", status);
 					});
 					
 					let coverImgBox = document.createElement("div");

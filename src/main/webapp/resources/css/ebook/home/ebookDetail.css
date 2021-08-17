@@ -1,1 +1,59 @@
 @charset "UTF-8";
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 45px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+section {
+    overflow-y: scroll;
+}
+
+section::-webkit-scrollbar {
+    display: none;
+}
+
+div.under-controller-box {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+div.under-controller-box>div {
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid silver;
+    border-right: 1px solid silver;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+div.under-controller-box>div:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+div.under-controller-box i {
+    color: lightgrey;
+}
+

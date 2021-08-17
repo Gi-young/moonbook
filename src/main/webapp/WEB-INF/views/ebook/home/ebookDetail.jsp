@@ -4,35 +4,62 @@
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
-<jsp:include page="/WEB-INF/views/ebook/home/ebookHeader.jsp">
-	<jsp:param name="title" value="책 상세 - 문곰e북"/>
-</jsp:include>
-
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>e북 상세</title>
+	<link rel="icon" href="${path}/resources/images/ebook/favicon.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookDetail.css">
-
-	<main>
-		<img src="${ebookDatabind.image}">
-		<p><c:out value="${ebookDatabind.title}"/></p>
-		<p><c:out value="${ebookDatabind.author}"/></p>
-		<p><c:out value="${ebookDatabind.price}"/>원</p>
-		<p><c:out value="${ebookDatabind.isbn}"/></p>
-		<p><c:out value="${ebookDatabind.pubdate}"/></p>
-		<p><c:out value="${ebookDatabind.publisher}"/></p>
-		<p><c:out value="${ebookDatabind.description}"/></p>
-		<a href="${ebookDatabind.link}">상세보기 페이지로 이동</a>
-		<p><c:out value="${ebookDatabind.categoryCode}"/></p>
+</head>
+<body>
+	<section>
+		<div class="cover-img-box">
+			<img src="${ebookDatabind.image}">
+		</div>
 		
-		<input type="button" value="좋아요" onclick="loveOrUnlove();">
-		<input type="checkbox" id="checkLoved" onclick="return false;">
+		<div>
+			<h4><c:out value="${ebookDatabind.title}"/></h4>
+			
+			<p><c:out value="${ebookDatabind.author}"/></p>
+			
+			<p><c:out value="${ebookDatabind.price}"/>원</p>
+		</div>
 		
-		<input type="button" value="장바구니에 넣기" onclick="putInShoppingBasket();">
-		<input type="checkbox" id="checkShopped" onclick="return false;">
-
+		<div>
+			<p><c:out value="${ebookDatabind.isbn}"/></p>
+			
+			<p><c:out value="${ebookDatabind.pubdate}"/></p>
+			
+			<p><c:out value="${ebookDatabind.publisher}"/></p>
+			
+			<p><c:out value="${ebookDatabind.description}"/></p>
+			
+			<a href="${ebookDatabind.link}">상세보기 페이지로 이동</a>
+		</div>
+		
+		
 		<input type="hidden" id="bindNo" value="${ebookDatabind.bindNo}">
-	</main>
+	</section>
+		
+	<div class="under-controller-box">
+		<div onclick="loveOrUnlove();">
+			<i class="fas fa-heart" id="checkLoved"></i>&nbsp;
+			<span id="loveNumber"></span>
+		</div>
+		
+		<div>
+			장바구니&nbsp;
+			<i class="fas fa-shopping-basket"></i>
+		</div>
+		
+		<div onclick="buyNow();">바로구매</div>
+	</div>
+	
+	<input type="hidden" id="contextPath" value="${path}">
+	<input type="hidden" id="loginMemberId" value="${sessionScope.loginMember.memberId}">
 
 	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
-	<script src = "${path}/resources/js/ebook/xml2json.js"></script>
+	<script src="https://kit.fontawesome.com/5af64d5c05.js" crossorigin="anonymous"></script>
 	<script src="${path}/resources/js/ebook/home/ebookDetail.js"></script>
-
-<jsp:include page="/WEB-INF/views/ebook/home/ebookFooter.jsp"/>
+</body>

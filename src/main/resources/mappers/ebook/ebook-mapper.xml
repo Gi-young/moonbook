@@ -60,7 +60,13 @@
 			#{description},
 			#{link},
 			#{groupId},
-			DEFAULT
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			DEFAULT,
+			'N'
 		)
 	</insert>
 	
@@ -600,6 +606,10 @@
 			</foreach>
 		</if>
 		ORDER BY META_CATEGORY
+	</select>
+	
+	<select id="countLoved" resultType="_int">
+		SELECT COUNT(MEMBER_ID) FROM EBOOK_LIKE WHERE EBOOK_NO=#{bindNo}
 	</select>
 
 </mapper>
