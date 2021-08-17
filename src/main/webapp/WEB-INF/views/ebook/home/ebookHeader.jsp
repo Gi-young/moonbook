@@ -25,7 +25,7 @@
 							<a href="javascript:openEbookWizard();"><i class="fas fa-book-open"></i><b>e북 마법사</b></a>
 						</li>
 						<li>
-							<a href="${path}/ebook/pageShoppingBasket.do"><i class="fas fa-cart-plus"></i><b>장바구니</b></a>
+							<a href="${path}/shopingList/shopingList.do"><i class="fas fa-cart-plus"></i><b>장바구니</b></a>
 						</li>
 					</ul>
 				</div>

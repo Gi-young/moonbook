@@ -249,7 +249,7 @@
 	</select>
 	
 	<select id="checkShopped" resultType="_int">
-		SELECT COUNT(*) FROM EBOOK_SHOPPINGBASKET WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+		SELECT COUNT(*) FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMemberId} AND E_BIND_NO=#{bindNo}
 	</select>
 	
 	<insert id="loveBook">
@@ -261,11 +261,11 @@
 	</delete>
 	
 	<insert id="putInShoppingBasket">
-		INSERT INTO EBOOK_SHOPPINGBASKET VALUES(#{loginMemberId},#{bindNo})
+		INSERT INTO EBOOK_SHOPING_LIST VALUES(#{loginMemberId},#{bindNo},1,DEFAULT)
 	</insert>
 	
 	<delete id="putOutShoppingBasket">
-		DELETE FROM EBOOK_SHOPPINGBASKET WHERE MEMBER_ID=#{loginMemberId} AND EBOOK_NO=#{bindNo}
+		DELETE FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMemberId} AND E_BIND_NO=#{bindNo}
 	</delete>
 	
 	<select id="getMyBooksFromBasket" resultType="HashMap">

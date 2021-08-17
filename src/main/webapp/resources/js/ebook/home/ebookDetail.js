@@ -8,7 +8,7 @@ window.onload = function() {
     
     checkLoved();
     
-    //checkShopped();
+    checkShopped();
 }
 
 function checkLogedIn() {
@@ -55,25 +55,27 @@ function checkLoved() {
     });
 }
 
-// function checkShopped() {
-//     let checkShopped = document.getElementById("checkShopped");
-//     $.ajax({
-//         url: contextPath + "/ebook/checkShopped.do",
-//         type: "GET",
-//         data: {
-//             loginMemberId: loginMemberId,
-//             bindNo: bindNo
-//         },
-//         success: data => {
-//             console.log("shopped: " + data);
-//             if(data > 0) {
-//                 checkShopped.checked = true;
-//             } else {
-//                 checkShopped.checked = false;
-//             }
-//         }
-//     });
-// }
+function checkShopped() {
+    let basket = document.getElementById("checkShopped");
+
+    $.ajax({
+        url: contextPath + "/ebook/checkShopped.do",
+        type: "GET",
+        data: {
+            loginMemberId: loginMemberId,
+            bindNo: bindNo
+        },
+        success: data => {
+            console.log("shopped: " + data);
+
+            if(data > 0) {
+                basket.style.color = "orange";
+            } else {
+                basket.style.color = "lightgrey";
+            }
+        }
+    });
+}
 
 function loveOrUnlove() {
     let heart = document.getElementById("checkLoved");
@@ -108,35 +110,47 @@ function loveOrUnlove() {
     }
 }
 
-// function putInShoppingBasket() {
-//     let checkShopped = document.getElementById("checkShopped");
-//     if (checkShopped.checked) {
-//         $.ajax({
-//             url: contextPath + "/ebook/putOutShoppingBasket.do",
-//             type: "GET",
-//             data: {
-//                 loginMemberId: loginMemberId,
-//                 bindNo: bindNo
-//             },
-//             success: data => {
-//                 console.log("From basket: " + data);
-//             }
-//         });
-//     } else {
-//         $.ajax({
-//             url: contextPath + "/ebook/putInShoppingBasket.do",
-//             type: "GET",
-//             data: {
-//                 loginMemberId: loginMemberId,
-//                 bindNo: bindNo
-//             },
-//             success: data => {
-//                 console.log("To basket: " + data);
-//             }
-//         });
-//     }
-//     checkShopped.checked = !checkShopped.checked;
-// }
+function putInShoppingBasket() {
+    let basket = document.getElementById("checkShopped");
+
+    if (basket.style.color === "orange") {
+        $.ajax({
+            url: contextPath + "/ebook/putOutShoppingBasket.do",
+            type: "GET",
+            data: {
+                loginMemberId: loginMemberId,
+                bindNo: bindNo
+            },
+            success: data => {
+                console.log("From basket: " + data);
+
+                if (data > 0) {
+                    checkShopped();
+                } else {
+                    alert("다시 시도해주세요");
+                }
+            }
+        });
+    } else {
+        $.ajax({
+            url: contextPath + "/ebook/putInShoppingBasket.do",
+            type: "GET",
+            data: {
+                loginMemberId: loginMemberId,
+                bindNo: bindNo
+            },
+            success: data => {
+                console.log("To basket: " + data);
+
+                if (data > 0) {
+                    checkShopped();
+                } else {
+                    alert("다시 시도해주세요");
+                }
+            }
+        });
+    }
+}
 
 function buyNow() {
     opener.location.replace(contextPath + "/EbookControllerSm/bookpayment.do?bindNo=" + bindNo);
