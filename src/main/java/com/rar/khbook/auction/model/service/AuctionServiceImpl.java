@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.rar.khbook.auction.model.dao.AuctionDao;
 import com.rar.khbook.auction.model.vo.Auction;
+import com.rar.khbook.auction.model.vo.AuctionBid;
 import com.rar.khbook.auction.model.vo.AuctionCate;
 import com.rar.khbook.auction.model.vo.Bankinfo;
 import com.rar.khbook.auction.model.vo.Transaction;
@@ -22,7 +23,13 @@ public class AuctionServiceImpl implements AuctionService {
 	private SqlSession session;
 	
 	
+	
+	
 
+	@Override
+	public List<AuctionBid> selectbidlist() {
+		return dao.selectbidlist(session);
+	}
 
 	@Override
 	public int auctionAdmintotal(Map param) {
@@ -206,6 +213,11 @@ public class AuctionServiceImpl implements AuctionService {
 	public int insertpayoutEnd(Map param) {
 		dao.insertpayoutEnd(session,param);
 		return dao.memberpointchange(session, param);
+	}
+
+	@Override
+	public AuctionBid selectauctiobanner() {
+		return dao.selectauctiobanner(session);
 	}
 	
 	
