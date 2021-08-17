@@ -76,4 +76,8 @@ public interface UsedboardDao {
 	int cancelPayment(SqlSession session,int no);
 	
 	int cancelPaymentUpdate(SqlSession session,int no);
+	
+	int usedboardFileUpload(SqlSession session,Usedboardfile f);
+	
+	int usedboardFileUpdate(SqlSession session,Map<String,Object> map);
 }
