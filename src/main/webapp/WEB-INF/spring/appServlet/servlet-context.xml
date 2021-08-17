@@ -85,9 +85,26 @@
 			<beans:bean class="com.rar.khbook.common.interceptor.LoginCheckInterceptor"/>		
 		</interceptor>
 		<interceptor>
+			<mapping path="/ServiceboardController/insertEventBoard.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+			<mapping path="/ServiceboardController/insertNoticeBoard.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+			<mapping path="/ServiceboardController/deleteNoticeBoard.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor2"/>		
+		</interceptor>
+		<interceptor>
+			<mapping path="/ServiceboardController/deleteEventBoard.do"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor2"/>		
+		</interceptor>
+		<interceptor>
 		<mapping path="/SellbookController/insertReview.do*"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.GiftLoginCheckInterceptor"/>		
 		</interceptor>
+		
 		<!-- 낄껴 좀 하겠습니다. -->
 		<interceptor>
 			<mapping path="/gift/giftPayment.do"/>

@@ -17,12 +17,12 @@
 				<jsp:param name="" value="" />
 			</jsp:include>
 		</div>
-          <form action="${path }/ServiceboardController/deleteNoticeBoard.do" method="POST">
-		<div class="service-box2" style="board:none;">
-		<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><p style="font-size:30px;">공지사항</p></div>
-          <div class="service-box2" style="board:none;">
-                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/ServiceboardController/insertNoticeBoard.do', '공지사항 작성!', 'width=500, height=600')">공지 작성하기</button>
-                <button class="reviewWrite">공지 삭제하기</button>
+		<div class="service-box2">
+			<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><p style="font-size:30px;">공지사항</p></div>
+			<div style="display:flex; justify-content:flex-end; margin-right:5px; margin-bottom:5px;">
+        	<button class="reviewBtn" style="width:110px; height:40px; border:1px solid black; background-color:#E5E2DB;" onclick="window.open('<%=request.getContextPath()%>/ServiceboardController/insertNoticeBoard.do', '공지사항 작성!', 'width=500, height=600')">공지 작성하기</button>
+        </div>
+          <div class="service-box2" style="board:none; ">
            <table class="review-exp review-board" id="targetTable" style="width:770px;">
             
             <tr>
@@ -50,7 +50,6 @@
         <div id="pageBar"></div> 
 		</div>
 		</div>
-		</form>
 		</div>
 		
 	</div>

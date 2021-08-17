@@ -22,6 +22,8 @@
 		<!-- 고객센터 게시판 -->
 		<typeAlias alias="noticeBoard"
 			type="com.rar.khbook.serviceboard.model.vo.NoticeBoard" />
+		<typeAlias alias="eventBoard"
+			type="com.rar.khbook.serviceboard.model.vo.EventBoard" />
 
 
 		<!-- 중고게시판 -->

@@ -53,7 +53,16 @@ window.onload = function() {
 		importancePrice: "4",
 		dataVolume: 5
 	});
+	
+/* 	searchNoticeBoard({
+		noticeboardNo: 1
+	}); */
+	
 }
+<%-- function searchNoticeBoard(){
+	location.assign(<%=request.getContextPath()%>/);
+	$("#notice1").text()
+} --%>
 
 function searchHotnew(searchData) {
 	/* 따끈따끈신작 이미지 */
@@ -1766,11 +1775,11 @@ padding-bottom: 5px;
                         
                             <ul class="footerslide-List" style="margin-left: 20px;">
                                     <li class="footerslide-content">
-                                        <a href="#">문곰책방 오픈 기념 할인 행사 이벤트!</a></li>
+                                        <a href="#" id="notice1">문곰책방 오픈 기념 할인 행사 이벤트!</a></li>
                                     <li class="footerslide-content">
-                                        <a href="#">매장에 숨어있는 문곰이를 찾으세요</a></li>  
+                                        <a href="#" id="notice2">매장에 숨어있는 문곰이를 찾으세요</a></li>  
                                     <li class="footerslide-content">
-                                        <a href="#">푸짐한 상품이 기다리고 있습니다</a></li>
+                                        <a href="#" id="notice3">푸짐한 상품이 기다리고 있습니다</a></li>
                             </ul>
                         </div>   
                 <div class="footerslide-pagination""></div>
@@ -1800,6 +1809,7 @@ padding-bottom: 5px;
             </div>
 
         </div>
+         
         <hr class="line">
         <div>
             <div class="flex footerul" style="margin-top: 20px;">

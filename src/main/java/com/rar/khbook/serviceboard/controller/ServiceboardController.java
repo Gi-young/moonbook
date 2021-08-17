@@ -38,7 +38,7 @@ public class ServiceboardController {
 			System.out.println("deleteNoticeBoard 실패ㅐㅐㅐㅐ : "+result);
 		}
 		
-		return "service/serviceMain.do";
+		return "servicecenter/msg2";
 	}
 	@RequestMapping("/ServiceboardController/noticeBoardWrite.do")
 	@ResponseBody
@@ -49,7 +49,7 @@ public class ServiceboardController {
 		map.put("noticeContent", noticeContent);
 		map.put("noticeTitle", noticeTitle);
 		
-		System.out.println("넘어오는 자료다 맨이야 : "+map);
+		System.out.println("넘어오는 자료 : "+map);
 		
 		int result = service.noticeBoardWrite(map);
 		
@@ -60,61 +60,54 @@ public class ServiceboardController {
 			System.out.println("공지사항 작성 실패입니다.");
 		}
 		
-		mv.setViewName("service/serviceMain.do");
+		mv.setViewName("servicecenter/msg");
+		
+		return mv;
+	}
+	
+//	이벤트게시판
+	
+	@RequestMapping("/ServiceboardController/insertEventBoard.do")
+	private String insertEvent() {
+
+		return "servicecenter/insertEventBoard";
+	}
+	@RequestMapping("/ServiceboardController/deleteEventBoard.do")
+	private String deleteEventBoard(int eventboardNo) {
+		System.out.println("공지 삭제전 게시물 넘버 번호 : "+eventboardNo);
+		int result = service.deleteEventBoard(eventboardNo);
+		if(result>0) {
+			System.out.println("deleteNoticeBoard는 1이어야해 : "+result);
+		}else {
+			System.out.println("deleteNoticeBoard 실패ㅐㅐㅐㅐ : "+result);
+		}
+		
+		return "servicecenter/msg2";
+	}
+	@RequestMapping("/ServiceboardController/eventBoardWrite.do")
+	@ResponseBody
+	public ModelAndView eventBoardWrite(String eventTitle, String eventContent, String memberId, ModelAndView mv) {
+		HashMap<String, Object> map = new HashMap<>();
+		
+		map.put("memberId", memberId);
+		map.put("eventContent", eventContent);
+		map.put("eventTitle", eventTitle);
+		
+		System.out.println("넘어오는 자료 : "+map);
+		
+		int result = service.eventBoardWrite(map);
+		
+		if(result>0) {
+			System.out.println("이벤트 작성 성공입니다.");
+			
+		}else {
+			System.out.println("이벤트 작성 실패입니다.");
+		}
+		
+		mv.setViewName("servicecenter/msg");
 		
 		return mv;
 	}
 	
 	
-	
-	/*
-	 * @RequestMapping("/SellbookController/insertNoticeBoard.do") public
-	 * ModelAndView insertNotice(ModelAndView mv) { SellbookDatabind b =
-	 * service.bookOne(bindNo); mv.addObject("b", b); mv.addObject("bindNo",
-	 * bindNo); mv.setViewName("sellpart/insertReviewBook"); return mv; }
-	 * 
-	 * @RequestMapping("/SellbookController/productReview.do")
-	 * 
-	 * @ResponseBody public List<BookBoard> review(@RequestParam Map param, Model m)
-	 * { System.out.println("param 이다 이게바로 : "+param); List<BookBoard> bb =
-	 * service.selectReview(param); System.out.println("bb다 이게바로 : "+bb); return bb;
-	 * }
-	 * 
-	 * @RequestMapping("/SellbookController/productReview2.do")
-	 * 
-	 * @ResponseBody public String reviewPageBar(int bindNo, ModelAndView mv,
-	 * 
-	 * @RequestParam(value = "cPage", defaultValue = "1") int cPage,
-	 * 
-	 * @RequestParam(value = "nunPerpage", defaultValue = "10") int numPerpage) {
-	 * 
-	 * int totalData = service.selectReviewAll(bindNo);
-	 * 
-	 * System.out.println("totalData" + totalData);
-	 * 
-	 * String getOwnPageBar = PageFactory.getWonJaePageBar(totalData, cPage,
-	 * numPerpage); System.out.println(getOwnPageBar); return getOwnPageBar; } //
-	 * insertReview.jsp 에서 넘어오는 폼 값을 받는 컨트롤러
-	 * 
-	 * @RequestMapping("/SellbookController/reviewWrite.do") public ModelAndView
-	 * reviewWrite(int bindNo, ModelAndView mv, String content, MultipartFile file,
-	 * int score, String loginMember) { System.out.println("리뷰 작성하기 위해 넘어가는 : " +
-	 * bindNo); System.out.println("리뷰 작성하기 위해 넘어가는 : " + content);
-	 * System.out.println("리뷰 작성하기 위해 넘어가는 : " + file);
-	 * System.out.println("리뷰 작성하기 위해 넘어가는 : " + score);
-	 * System.out.println("리뷰 작성하기 위해 넘어가는 : " + loginMember);
-	 * 
-	 * HashMap<String, Object> map = new HashMap<>();
-	 * 
-	 * map.put("bindNo", bindNo); map.put("content", content); map.put("img", file);
-	 * map.put("score", score); map.put("memberId", loginMember);
-	 * 
-	 * int result = service.reviewWrite(map);
-	 * 
-	 * 
-	 * mv.addObject("msg", ); mv.addObject("loc", ); mv.setViewName("");
-	 * 
-	 * 
-	 * mv.setViewName("sellpart/bookDetail.do?bindNo="+bindNo); return mv; }
-	 */
 }

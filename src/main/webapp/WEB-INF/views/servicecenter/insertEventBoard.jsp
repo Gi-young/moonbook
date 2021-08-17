@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 작성</title>
+<title>이벤트 작성</title>
 <style>
 .review-form{
 	display: flex;
@@ -32,10 +32,10 @@
 </head>
 <body>
 
-	<p class="title-font">공지사항 작성 </p>
-	<form class="review-form" action="${path }/ServiceboardController/noticeBoardWrite.do" method="post">
-	    제목 : <input type="text" id="noticeTitle" name="noticeTitle">
-		내용 : <textarea cols="5" rows="20" id="noticeContent" name="noticeContent"></textarea>	
+	<p class="title-font">이벤트 작성 </p>
+	<form class="review-form" action="${path }/ServiceboardController/eventBoardWrite.do" method="post">
+	    제목 : <input type="text" id="eventTitle" name="eventTitle">
+		내용 : <textarea cols="5" rows="20" id="eventContent" name="eventContent"></textarea>	
 		<input type="hidden" value="${loginMember.memberId }" id="memberId" name="memberId">
 		<button class="subBtn">등록하기</button>
 	</form>

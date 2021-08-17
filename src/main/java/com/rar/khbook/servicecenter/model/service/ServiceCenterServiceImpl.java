@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rar.khbook.serviceboard.model.vo.EventBoard;
 import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.servicecenter.model.dao.ServiceCenterDao;
 
@@ -24,4 +25,11 @@ public class ServiceCenterServiceImpl implements ServiceCenterService {
 		return dao.searchNoticeBoardList(session);
 	}
 
+	@Override
+	public List<EventBoard> searchEventBoardList() {
+		// TODO Auto-generated method stub
+		return dao.searchEventBoardList(session);
+	}
+
+	
 }

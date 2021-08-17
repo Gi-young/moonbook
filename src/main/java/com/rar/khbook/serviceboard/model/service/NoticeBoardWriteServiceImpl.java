@@ -28,6 +28,18 @@ public class NoticeBoardWriteServiceImpl implements NoticeBoardWriteService {
 		// TODO Auto-generated method stub
 		return dao.deleteNoticeBoard(session,noticeboardNo);
 	}
+	@Override
+	public int eventBoardWrite(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		System.out.println("service단계의 맵-이벤트 : "+ map);
+		return dao.eventBoardWrite(session, map);
+	}
+	
+	@Override
+	public int deleteEventBoard(int noticeboardNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteEventBoard(session,noticeboardNo);
+	}
 
 	
 }
