@@ -21,10 +21,10 @@ public interface ShopingListService {
 
 	List<GiftShopingList> selectMyShopingListG(String memberId);
 
-	List<SellbookDatabind> myShopingListB(Map<String, Object> paramB);
+	List<SellbookDatabind> myShopingListB(Map param);
 
-	List<EbookDatabind> myShopingListE(Map<String, Object> paramE);
+	List<EbookDatabind> myShopingListE(Map param);
 
-	List<Ngift> myShopingListG(Map<String, Object> paramG);
+	List<Ngift> myShopingListG(Map param);
 	
 }

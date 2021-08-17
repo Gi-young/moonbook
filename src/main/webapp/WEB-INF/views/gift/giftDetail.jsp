@@ -517,7 +517,7 @@
 	  
 	  sl.addEventListener('click', function(){
 	  let quan = document.getElementById("quan").value;
-		 location.assign("<%=request.getContextPath()%>/gift/shopingList.do?giftNo="+gNo+"&memberId="+mId+"&cate="+shopCate+"&quan="+quan);
+		 location.assign("<%=request.getContextPath()%>/gift/shopingList.do?giftNo="+gNo+"&memberId="+mId+"&cate="+shopCate+"&shopingListCount="+quan);
 	  });
 	  
 	  

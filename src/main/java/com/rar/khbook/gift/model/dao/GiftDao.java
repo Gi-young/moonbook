@@ -60,4 +60,6 @@ public interface GiftDao {
 	int updateGiftShopingList(SqlSession session, Map param);
 
 	List<GiftShopingList> selectGiftListAll(SqlSession session, Map param);
+
+	List<GiftShopingList> selectCheck(SqlSession session, Map param);
 }
