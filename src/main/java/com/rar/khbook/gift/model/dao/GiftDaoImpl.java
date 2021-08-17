@@ -14,6 +14,7 @@ import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 @Repository
 public class GiftDaoImpl implements GiftDao {
@@ -145,6 +146,19 @@ public class GiftDaoImpl implements GiftDao {
 		// TODO Auto-generated method stub
 		return session.update("gift.updatePurchaseList", param);
 	}
+
+	@Override
+	public int updateGiftShopingList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateShopingGift", param);
+	}
+
+	@Override
+	public List<GiftShopingList> selectGiftListAll(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectShopingListAll",param);
+	}
+	
 	
 	
 }

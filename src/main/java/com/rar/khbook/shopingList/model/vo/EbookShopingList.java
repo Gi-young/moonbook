@@ -2,19 +2,19 @@ package com.rar.khbook.shopingList.model.vo;
 
 import java.util.Date;
 
-import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
+import com.rar.khbook.ebook.model.vo.EbookDatabind;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class BookShopingList{
-
+@NoArgsConstructor
+public class EbookShopingList {
+	
 	private String memberId;
-	private int bindNoB;
+	private int bindNoE;
 	private int shopingListCount;
-	private Date shopingListDate;
+	private Date ShopingListDate;
 }

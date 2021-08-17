@@ -64,6 +64,13 @@
 		<result column="GROUP_LAYER" property="groupLayer"/>
 		<result column="NGIFT_SCORE" property="gift_score"/>
 	</resultMap>
+	
+	<resultMap type="giftShopingList" id="giftShopingListMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+		<result column="G_SHOPINGLIST_DATE" property="shopingListDate"/> 
+		<result column="NGIFT_NO" property="giftNo"/>
+	</resultMap>
 
     <select id="selectGiftAll" resultMap="giftMap">
 		SELECT * FROM NGIFT
@@ -109,9 +116,17 @@
 		SELECT * FROM SHOPING_LIST WHERE MEMBER_ID=#{memberId}
 	</select>
 	
+	<select id="selectShopingListAll" resultMap="giftShopingListMap">
+		SELECT * FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<update id="updateShopingGift">
+		UPDATE NGIFT_SHOPING_LIST SET SHOPINGLIST_COUNT=SHOPINGLIST_COUNT+#{shopingListCount} WHERE MEMBER_ID=#{memberId}
+	</update>
+		
 	<insert id="insertShopingGift">
 		INSERT INTO NGIFT_SHOPING_LIST VALUES(#{memberId}, #{giftNo}, #{shopingListCount}, DEFAULT)
-	</insert>
+	</insert>	
 	
 	<!-- 접속한 회원에게 쿠폰이 있는지 확인 -->
 	<select id="selectCoupon" resultMap="couponMap">

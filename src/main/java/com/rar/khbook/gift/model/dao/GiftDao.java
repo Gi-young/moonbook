@@ -12,6 +12,7 @@ import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 
 public interface GiftDao {
@@ -55,4 +56,8 @@ public interface GiftDao {
 	int writePurchaseLog(SqlSession session, Map param);
 
 	int writeOrderT(SqlSession session, Map param);
+
+	int updateGiftShopingList(SqlSession session, Map param);
+
+	List<GiftShopingList> selectGiftListAll(SqlSession session, Map param);
 }

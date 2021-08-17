@@ -16,6 +16,7 @@ import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 @Service
 public class GiftServiceImpl implements GiftService {
@@ -76,6 +77,18 @@ public class GiftServiceImpl implements GiftService {
 	@Override
 	public int insertShopingList(Map param) {
 		
+		List<GiftShopingList> list = dao.selectGiftListAll(session, param);
+		System.out.println("너ㅏ 들어옴? 아님말고"+list);
+		System.out.println("너도 좀 맞자"+String.valueOf(param.get("giftNo")));
+		for(int i=0; i<list.size(); i++ ) {
+			System.out.println("너 진짜 뒤질래? "+String.valueOf(((GiftOrder) param.get(i)).getGiftNo()));
+			if(list.get(i).getGiftNo()==param.get("giftNo")) {
+				int result = dao.updateGiftShopingList(session, param);
+				System.out.println(" 그냥 아무것도 하기 싫다. "+result);
+			}
+			
+		}
+		
 		System.out.println(param.get("memberId"));
 		System.out.println(param.get("giftNo"));
 		System.out.println(param.get("quan"));
@@ -87,11 +100,11 @@ public class GiftServiceImpl implements GiftService {
 				go.setGiftNo(Integer.parseInt(param.get("giftNo").toString()));
 				go.setShopingListCount(Integer.parseInt(param.get("quan").toString()));
 				//go = dao.selectShopingList(session, param);
-				System.out.println("지오 멤버 아이디 : "+go.getMemberId());
-			    System.out.println("그냥 멤버 아이디 : "+m.getMemberId());
+				//System.out.println("지오 멤버 아이디 : "+go.getMemberId());
+			    //System.out.println("그냥 멤버 아이디 : "+m.getMemberId());
 			if(go.getMemberId().equals(m.getMemberId())) {
 				int result = dao.insertShopingGift(session,go);
-				System.out.println("서비스에서 넘어온 insertShopingGift result : "+result);
+				//System.out.println("서비스에서 넘어온 insertShopingGift result : "+result);
 			}else {			
 				return -1;
 			}

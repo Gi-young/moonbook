@@ -67,6 +67,12 @@
 		<typeAlias
 			type="com.rar.khbook.shopingList.model.vo.BookShopingList"
 			alias="bookShopingList" />
+		<typeAlias
+			type="com.rar.khbook.shopingList.model.vo.EbookShopingList"
+			alias="eBookShopingList" />
+		<typeAlias
+			type="com.rar.khbook.shopingList.model.vo.GiftShopingList"
+			alias="giftShopingList" />		
 
 		<!-- 기프트 -->
 		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift"
