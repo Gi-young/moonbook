@@ -178,7 +178,7 @@
 						</c:if>
 						<c:if test="${loginMember!=null }">
 							<li class="user1"><a href="${path }/member/myroom/main.do">${loginMember.memberName }님
-									(${loginMember.memberGradeNo}) ▽</a></li>
+									(${membergrade.membergradeName}) ▽</a></li>
 							<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
 							<li><a href="${path }/member/logout.do">로그아웃</a></li>
 

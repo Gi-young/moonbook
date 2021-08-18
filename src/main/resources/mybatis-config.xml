@@ -20,9 +20,18 @@
 			type="com.rar.khbook.common.StringArrayTypeHandler" />
 
 		<!-- 결제내역 -->
-		<typeAlias alias="payment" type="com.rar.khbook.order.model.vo.Payment" />
+		<typeAlias alias="payment"
+			type="com.rar.khbook.order.model.vo.Payment" />
+		<!-- 도서결제내역 -->
+		<typeAlias alias="bookOrderList"
+			type="com.rar.khbook.order.model.vo.BookOrderList" />
+		<!-- 이북결제내역 -->
+		<typeAlias alias="ebookOrderList"
+			type="com.rar.khbook.order.model.vo.EbookOrderList" />
+		<!-- 기프트 결제내역 -->
+		<typeAlias alias="giftOrderList"
+			type="com.rar.khbook.order.model.vo.GiftOrderList" />
 
-		
 		<!-- 고객센터 게시판 -->
 		<typeAlias alias="noticeBoard"
 			type="com.rar.khbook.serviceboard.model.vo.NoticeBoard" />
