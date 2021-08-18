@@ -69,6 +69,16 @@
 
 	<script src="//cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 	<script>
+		function checkOnlyOne(element) {
+		  
+		  const checkboxes = document.getElementsByName("usedboard_Category");
+		  
+		  checkboxes.forEach((cb) => {
+		    cb.checked = false;
+		  })
+		  
+		  element.checked = true;
+		}
 		$(function(){
 			CKEDITOR.replace("content");
 		});

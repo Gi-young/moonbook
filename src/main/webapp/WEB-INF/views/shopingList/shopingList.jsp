@@ -15,7 +15,7 @@
 <form action="#">
 	<div class="orderInfoBox">
 		<div class="infoTitle">
-			<h3>문곰도서 주문 정보</h3>
+			<h3>문곰도서 주문 정보</h3><c:out value="${eBook}"/>
 		</div>
 		<div class="tbl_box">
 			<table class="tbl_order">
@@ -27,20 +27,22 @@
 					<th>결제금액</th>
 				</tr>
 				<%-- <c:forEach var="s" items="shopingList"> --%>
-				<tr>
-					<td>이미지</td>
-					<td>제목</td>
-					<td>천만원</td>
-					<td>오천개</td>
-					<td>두개</td>
+				<c:forEach var="b" items="${book }">
+				 <tr> 
+					<td>${b.image }</td>
+					<td>${b.title }</td>
+					<td></td>
+					<td></td>
+					<td></td>
 					<td>삼백원</td>
+				 </tr> 
+				</c:forEach> 
 <%-- 					<td><img src="${s.image }"></td>
 					<td>${s.title }</td>
 					<td><fmt:formatNumber value="${s.price*0.9 }" type="currency"/></td>
 					<td>${s.stock } 개</td>
 					<td>${sellStock } 개</td>
 					<td><fmt:formatNumber value="${(s.price*0.9)*sellStock }" type="currency"/></td> --%>
-				</tr>
 				<%-- </c:forEach> --%>
 			</table>
 		</div>

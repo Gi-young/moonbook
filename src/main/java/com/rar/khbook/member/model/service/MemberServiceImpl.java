@@ -13,6 +13,7 @@ import com.rar.khbook.member.model.dao.MemberDao;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 import com.rar.khbook.order.model.vo.Order;
+import com.rar.khbook.order.model.vo.Payment;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -37,9 +38,9 @@ public class MemberServiceImpl implements MemberService {
 				}
 			}
 //		이용가능 여부 체크 후 쿠폰 발급
-			if (canuse.equals("Y")) {
-				dao.insertCoupon(session, m);
-			}
+			/*
+			 * if (canuse.equals("Y")) { dao.insertCoupon(session, m); }
+			 */
 		}
 		return result;
 	}
@@ -136,6 +137,20 @@ public class MemberServiceImpl implements MemberService {
 		return dao.deleteMember(session, m);
 	}
 	
+//	회원의 결제 내역 조회
+	@Override
+	public List<Payment> getPayment(Member m) {
+		// TODO Auto-generated method stub
+		return dao.getPayment(session, m);
+	}
+	
+//	회원 월별 결제 요금 조회 
+	@Override
+	public List<Integer> getPaidAmount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPaidAmount(session, param);
+	}
+	
 //	개인 회원 이북 결제 내역 총합
 	@Override
 	public int ebookPurchaseCount(Map<String, String> param) {
@@ -148,5 +163,11 @@ public class MemberServiceImpl implements MemberService {
 	public List<Order> ebookPurchaseList(Map<String, String> param, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return dao.ebookPurchaseList(session, param, cPage, numPerpage);
+	}
+	
+	// 회원가입 후 장바구니
+	@Override 
+	public int createShopingList(Member m) {
+		return dao.createShopingList(session, m);
 	}
 }

@@ -36,9 +36,9 @@
 									<c:forEach var="c" items="${coupon }">
 										<c:if
 											test="${c.couponlistMembergradeNo == mg.membergradeNo && c.couponCanuse == 'Y'}">
-											<li><img
-												src="${path }/resources/images/img_coupon_1000.png">
-												<div>${c.couponlistName }</div></li>
+											<li class="padding10"><img
+												src="${path }/resources/upload/admin/${c.couponImg}">
+												<div class="padding10">${c.couponlistName }</div></li>
 										</c:if>
 									</c:forEach>
 								</ul>

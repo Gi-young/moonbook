@@ -230,3 +230,18 @@ function manageBanner() {
 
     window.open(url, "manageBanner", status);
 }
+
+let hamburger = document.getElementById("hamburger");
+let hiddenMenu = document.getElementById("hiddenMenu");
+
+if (hamburger !== null && hiddenMenu !== null) {
+    hamburger.addEventListener("mouseenter", (e) => {
+        
+    });
+    
+    hamburger.addEventListener("mouseleave", (e) => {
+    
+    });
+}
+
+

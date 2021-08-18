@@ -18,14 +18,16 @@
 			alias="membergrade" />
 		<typeAlias alias="strArr"
 			type="com.rar.khbook.common.StringArrayTypeHandler" />
+
+		<!-- 결제내역 -->
+		<typeAlias alias="payment" type="com.rar.khbook.order.model.vo.Payment" />
+
 		
 		<!-- 고객센터 게시판 -->
 		<typeAlias alias="noticeBoard"
 			type="com.rar.khbook.serviceboard.model.vo.NoticeBoard" />
 		<typeAlias alias="eventBoard"
 			type="com.rar.khbook.serviceboard.model.vo.EventBoard" />
-
-
 		<!-- 중고게시판 -->
 
 		<typeAlias
@@ -61,7 +63,8 @@
 		<typeAlias
 			type="com.rar.khbook.sellbook.model.vo.SellbookDatabind"
 			alias="sellbookDatabind" />
-		<typeAlias type="com.rar.khbook.sellbook.model.vo.BookBoard" alias="bookBoard"/>
+		<typeAlias type="com.rar.khbook.sellbook.model.vo.BookBoard"
+			alias="bookBoard" />
 
 		<!-- 장바구니 -->
 		<typeAlias
@@ -70,6 +73,12 @@
 		<typeAlias
 			type="com.rar.khbook.shopingList.model.vo.BookShopingList"
 			alias="bookShopingList" />
+		<typeAlias
+			type="com.rar.khbook.shopingList.model.vo.EbookShopingList"
+			alias="eBookShopingList" />
+		<typeAlias
+			type="com.rar.khbook.shopingList.model.vo.GiftShopingList"
+			alias="giftShopingList" />		
 
 		<!-- 기프트 -->
 		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift"
@@ -78,20 +87,28 @@
 			alias="giftCate" />
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftBoard"
 			alias="giftBoard" />
+		<typeAlias type="com.rar.khbook.gift.model.vo.GiftOrder" 
+			alias="giftOrder" />	
 
 		<!-- 배송 -->
 		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery"
 			alias="delivery" />
 		<!-- top3 -->
-		<typeAlias type="com.rar.khbook.adminchart.model.vo.BookTopThree" alias="booktopthree"/>
-	
-		<!-- top3 ebook-->
-		<typeAlias type="com.rar.khbook.adminchart.model.vo.EbookTopThree" alias="ebooktopthree"/>
-	
-		<!-- top3 gift-->
-		<typeAlias type="com.rar.khbook.adminchart.model.vo.GiftTopThree" alias="gifttopthree"/>
-	
-	
-	
+		<typeAlias
+			type="com.rar.khbook.adminchart.model.vo.BookTopThree"
+			alias="booktopthree" />
+
+		<!-- top3 ebook -->
+		<typeAlias
+			type="com.rar.khbook.adminchart.model.vo.EbookTopThree"
+			alias="ebooktopthree" />
+
+		<!-- top3 gift -->
+		<typeAlias
+			type="com.rar.khbook.adminchart.model.vo.GiftTopThree"
+			alias="gifttopthree" />
+
+
+
 	</typeAliases>
 </configuration>

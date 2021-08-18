@@ -58,7 +58,7 @@
     });
     
     /** 다음 버튼 Event */
-    slideBtnNext.addEventListener('click', setInterval(function() {
+    slideBtnNext.addEventListener('click', ()=> setInterval(function() {
       if (curIndex <= slideLen - 1) {
         slideList.style.transition = slideSpeed + "ms";
         slideList.style.transform = "translate3d(-" + (slideWidth * (curIndex + 2)) + "px, 0px, 0px)";

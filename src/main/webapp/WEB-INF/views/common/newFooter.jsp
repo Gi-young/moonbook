@@ -14,8 +14,8 @@
                     <ul>
                         <li>㈜ 문곰책방</li>
                         <li>서울시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F</li>
-                        <li>대표이사 : 유지훈 반장</li>
-                        <h3 class="copyright">COPYRIGHT(C) KH BOOKS CENTRE ALL RIGHTS RESERVED.</h3>
+                        <li>대표이사 : 유 반 지 장 훈</li>
+                        <h3 class="copyright">COPYRIGHT(C) MOONGOM LIBRARY CENTRE ALL RIGHTS RESERVED.</h3>
                     </ul>
                 </div>
                 <div class="right">     
@@ -23,7 +23,7 @@
                     <ul>
                         <li>정의상민</li>
                         <li>김기0</li>
-                        <li>작업중..</li>
+                        <li>우직태운</li>
                     </ul>
                     <ul>
                         <li>오류혜신</li>
