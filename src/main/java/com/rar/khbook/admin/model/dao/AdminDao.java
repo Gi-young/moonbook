@@ -178,4 +178,10 @@ public interface AdminDao {
 	int updateFaqAnswer(SqlSession session,Map param);
 	
 	int deleteFaq(SqlSession session,Map param);
+	
+	List<Order> searchTextSaleList(SqlSession session,Map param);
+	int getPageBarTextSaleList(SqlSession session,Map param);
+	
+	List<Order> orderSaleList(SqlSession session,Map param);
+	int getPageBarorderSaleList(SqlSession session,Map param);
 }

@@ -545,6 +545,34 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.deleteFaq(session,param);
 	}
+
+	@Override
+	public List<Order> searchTextSaleList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchTextSaleList(session,param);
+	}
+
+	@Override
+	public int getPageBarTextSaleList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarTextSaleList(session,param);
+	}
+
+	@Override
+	public List<Order> orderSaleList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.orderSaleList(session,param);
+	}
+
+	@Override
+	public int getPageBarorderSaleList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarorderSaleList(session,param);
+	}
+	
+	
+	
+	
 	
 	
 	

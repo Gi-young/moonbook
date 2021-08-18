@@ -760,4 +760,89 @@
   		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
   	</delete>
   	
+  	<resultMap type="order" id="orderMap">
+		<result column="order_no" property="orderNo" />
+		<result column="order_count" property="orderCount" />
+		<result column="order_deliveryfee" property="orderDeliveryfee" />
+		<result column="order_member_id" property="orderMemberId"/>
+		<result column="order_coupon_no" property="orderCouponNo"/>
+		<result column="order_status" property="orderStatus"/>
+		<result column="order_point" property="orderPoint"/>
+		<result column="order_totalprice" property="orderTotalprice"/>
+		<result column="order_date" property="orderDate"/>
+		<result column="order_name" property="orderName"/>
+		<result column="order_phone" property="orderPhone"/>
+		<result column="order_email" property="orderEmail"/>
+		<result column="order_address" property="orderAddress"/>
+	</resultMap>
+  	
+  	<select id="selectOrderList" resultMap="orderMap">
+		SELECT * FROM ORDERT ORDER BY ORDER_DATE DESC
+	</select>
+	<select id="selectOrderCount" resultType="_int">
+		SELECT COUNT(*) FROM
+		ORDERT ORDER BY ORDER_DATE DESC
+	</select>
+	<!-- 판매내역 검색리스트 -->
+	<select id="searchTextSaleList" resultMap="orderMap">
+		SELECT * FROM ORDERT WHERE
+		<choose>
+			<when test="type51 == 'orderMemberId'">
+				ORDER_MEMBER_ID LIKE '%'||#{search}||'%' ORDER BY ORDER_DATE DESC
+			</when>
+			<when test="type51 == 'orderNo'">
+				ORDER_NO=#{search} ORDER BY ORDER_DATE DESC
+			</when>
+			<when test="type51 == 'orderStatus'">
+				ORDER_STATUS LIKE '%'||#{search}||'%' ORDER BY ORDER_DATE DESC
+			</when>
+		</choose>
+		
+	</select>
+	
+	<!-- 판매내역 검색리스트 페이지바 -->
+	<select id="getPageBarTextSaleList" resultType="_int">
+		SELECT COUNT(*) FROM ORDERT WHERE
+		<choose>
+			<when test="type51 == 'orderMemberId'">
+				ORDER_MEMBER_ID LIKE '%'||#{search}||'%'
+			</when>
+			<when test="type51 == 'orderNo'">
+				ORDER_NO=#{search}
+			</when>
+			<when test="type51 == 'orderStatus'">
+				ORDER_STATUS LIKE '%'||#{search}||'%'
+			</when>
+		</choose>
+	</select>
+	<!-- 판매내역 정렬 리스트 -->
+	
+	<!--재고 book 정렬 -->
+  	<select id="orderSaleList" resultMap="orderMap">
+  		SELECT * FROM ORDERT
+  		WHERE 1=1
+  		<if test="type =='day'">
+  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') = #{searchSaleDate1}
+  		</if>
+  		<if test="type =='days'">
+  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[>=]]> #{searchSaleDate2} AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[<=]]> #{searchSaleDate3}
+  		</if>
+  	</select>
+  	
+  	<!-- 재고 book 페이지바 정렬 -->
+  	<select id="getPageBarorderSaleList" resultType="_int">
+  		SELECT COUNT(*) FROM ORDERT
+  		WHERE 1=1
+  		<if test="type =='day'">
+  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') = #{searchSaleDate1}
+  		</if>
+  		<if test="type =='days'">
+  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[>=]]> #{searchSaleDate2} AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[<=]]> #{searchSaleDate3}
+  		</if>
+  	</select>
+	
+	
+  	
+  	
+  	
 </mapper>

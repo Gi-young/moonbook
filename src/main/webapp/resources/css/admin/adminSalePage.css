@@ -94,12 +94,17 @@
 .saleT{
 	/* width: 730px; */ 
 	/* width:auto; */
-	width: 1900px;
+	width: 1000px;
 	/* overflow-x: auto; */
 	margin-left: 20px;
 	/* margin-top:30px;  */
 	text-align: center;	
 	margin-bottom:20px;
+	table-layout:fixed;
+}
+.saleT input{
+	text-align:center;
+	width:100%;
 }
 .saleT tbody{
 	border: black 1px solid;
@@ -116,6 +121,44 @@
 .saleT td{
 	/* width: 100px; */
 }
+
+.saleT tr>td:nth-child(1), .saleT tr>th:nth-child(1){
+	width: 400px;
+	text-align:center;
+}
+.saleT tr>td:nth-child(2), .saleT tr>th:nth-child(2){
+	width: 70px;
+	text-align:center;
+}
+.saleT tr>td:nth-child(3), .saleT tr>th:nth-child(3){
+	width: 120px;
+	text-align:center;
+}
+.saleT tr>td:nth-child(4), .saleT tr>th:nth-child(4){
+	width: 150px;
+	text-align:center;
+}
+.saleT tr>td:nth-child(5), .saleT tr>th:nth-child(5){
+	width: 120px;
+	text-align:center;
+}
+.saleT tr>td:nth-child(6), .saleT tr>th:nth-child(6){
+	width: 120px;
+	text-align:center;
+}
+.saleT tr>td:nth-child(7), .saleT tr>th:nth-child(7){
+	width: 150px;
+	text-align:center;
+}
+.saleT tr>td:nth-child(8), .saleT tr>th:nth-child(8){
+	width: 150px;
+	text-align:center;
+}
+.saleT tr>td:nth-child(9), .saleT tr>th:nth-child(9){
+	width: 150px;
+	text-align:center;
+}
+
 .updateCheck{
 	width:20px;
 	hight:20px;
@@ -133,5 +176,5 @@
 .saleTFont2{
 	font-weight: bold;
 	margin-left:20px;
-	margin-bottom:20px;
+	margin-bottom:10px;
 }
