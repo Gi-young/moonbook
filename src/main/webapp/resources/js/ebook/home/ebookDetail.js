@@ -157,3 +157,11 @@ function buyNow() {
 
     window.close();
 }
+
+function openNaverDetailPage(event, href) {
+    event.preventDefault();
+
+    opener.open(href, "_blank");
+
+    window.close();
+}

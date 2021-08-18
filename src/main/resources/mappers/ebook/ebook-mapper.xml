@@ -233,7 +233,7 @@
 	</select>
 	
 	<insert id="uploadEbook">
-		INSERT INTO EBOOK VALUES(#{ebookNo}, #{filepath}, DEFAULT)
+		INSERT INTO EBOOK VALUES(#{ebookNo}, #{filepath})
 	</insert>
 	
 	<select id="login" resultMap="memberMap">

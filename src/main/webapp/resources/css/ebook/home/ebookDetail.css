@@ -130,3 +130,9 @@ p.plain {
     flex-wrap: nowrap;
     justify-content: flex-end;
 }
+
+p.description a {
+    cursor: pointer;
+    color: royalblue;
+    text-decoration: underline;
+}

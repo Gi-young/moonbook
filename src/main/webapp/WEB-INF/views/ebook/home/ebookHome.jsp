@@ -13,9 +13,9 @@
 	
 	<main class="container">
 		<div class="main-boundary-box">
-			<div class="banner-box">
+			<!-- <div class="banner-box">
 				<div class="slide-banner">slide-banner</div>
-			</div>
+			</div> -->
 		
 			<div class="search-box">
 				<form id="searchFrm" action="${path}/ebook/search.do">
