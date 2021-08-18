@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="shopingList">
 
-	<resultMap id="shopinglist" type="shopinglist">
+	<!-- <resultMap id="shopinglist" type="shopinglist">
 		<id column="SHOPINGLIST_NO" property="shopingListNo"/>
 		<result column="SHOPINGLIST_CATE" property="shopingListCate" />
 		<result column="MEMBER_ID" property="memberId" />
@@ -11,18 +11,212 @@
 			<result column="B_BIND_NO" property="bBindNo"/>
 			<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
 		</association>
+	</resultMap> -->
+	
+	<resultMap id="sellbookDatabindMap" type="sellbookDatabind">
+		<id column="BIND_NO" property="bindNo"/>
+		<result column="TITLE" property="title"/>
+		<result column="AUTHOR" property="author"/>
+		<result column="IMAGE" property="image"/>
+		<result column="PRICE" property="price"/>
+		<result column="ISBN" property="isbn"/>
+		<result column="PUBDATE" property="pubdate"/>
+		<result column="PUBLISHER" property="publisher"/>
+		<result column="DESCRIPTION" property="description"/>
+		<result column="LINK" property="link"/>
+		<result column="CATEGORY_CODE" property="categoryCode"/>
+		<result column="SALES_VOLUME" property="salesVolume"/>
+		<result column="RATING" property="rating"/>
+		<result column="STOCK" property="stock"/>
 	</resultMap>
 	
+	<resultMap id="ebookDatabindMap" type="ebookDatabind">
+		<id column="BIND_NO" property="bindNo"/>
+		<result column="TITLE" property="title"/>
+		<result column="AUTHOR" property="author"/>
+		<result column="IMAGE" property="image"/>
+		<result column="PRICE" property="price"/>
+		<result column="ISBN" property="isbn"/>
+		<result column="PUBDATE" property="pubdate"/>
+		<result column="PUBLISHER" property="publisher"/>
+		<result column="DESCRIPTION" property="description"/>
+		<result column="LINK" property="link"/>
+		<result column="CATEGORY_CODE" property="categoryCode"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALES_VOLUME" property="salesVolume"/>
+		<result column="RATING" property="rating"/>
+		<result column="EBOOK_RATING" property="ebookRating"/>
+		<result column="EBOOK_SALES_VOLUME" property="ebookSalesVolume"/>
+		<result column="PRIME_COST" property="primeCost"/>
+		<association property="ebook" javaType="ebook">
+			<id column="EBOOK_NO" property="ebookNo"/>
+			<result column="FILEPATH" property="filepath"/>
+		</association>
+	</resultMap>
+	
+	<resultMap type="nGift" id="giftMap">
+		<id column="NGIFT_NO" property="gift_no"/>
+		<result column="NGIFT_TITLE" property="gift_title"/>
+		<result column="NGIFT_IMG" property="gift_img"/>
+		<result column="NGIFT_PRICE" property="gift_price"/>
+		<result column="NGIFT_BRAND" property="gift_brand"/>
+		<result column="NGIFT_MAKER" property="gift_maker"/>
+		<result column="NGIFT_COUNT" property="gift_count"/>
+		<result column="NGIFT_PRODUCT_TYPE" property="gift_productType"/>		
+		<result column="NGIFT_ROWPRICE" property="gift_rowPrice"/>
+		<result column="NGIFT_DISCOUNT" property="gift_discount"/>
+		<result column="NGIFT_SALESVOLUME" property="gift_salesVolume"/>	
+		<association javaType="giftCate" property="gift_category">
+			<id column="NGIFT_CATE_CODE" property="giftCateCode"/>
+			<result column="GIFTCATE_NAME" property="giftCateName"/>
+			<result column="GIFTCATE_FIRSTREF" property="giftCateFirstRef"/>
+			<result column="GIFTCATE_SECONDREF" property="giftCateSecondRef"/>
+		</association>
+	</resultMap>
+	
+	<resultMap id="shopinglist" type="shopinglist">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="SHOPINGLIST_CATE" property="shopingListCate"/>
+	</resultMap>
+	
+	<resultMap type="bookShopingList" id="bookShopingListMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+		<result column="B_SHOPINGLIST_DATE" property="shopingListDate"/>
+		<result column="B_BIND_NO" property="bindNoB"/>
+	</resultMap>
+	
+	<resultMap type="eBookShopingList" id="eBookShopingListMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+		<result column="B_SHOPINGLIST_DATE" property="shopingListDate"/>
+		<result column="E_BIND_NO" property="bindNoE"/>
+	</resultMap>
+	
+	<resultMap type="giftShopingList" id="giftShopingListMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+		<result column="G_SHOPINGLIST_DATE" property="shopingListDate"/> 
+		<result column="NGIFT_NO" property="giftNo"/>
+	</resultMap>
 		
-	<insert id="insertShopingList">
-		INSERT INTO SHOPING_LIST VALUES (SEQ_SHOPINGLIST_NO.NEXTVAL,#{shopingList_cate},#{memberId})
-		<selectKey keyProperty="shopingListNo" resultType="_int" order="AFTER">
-			SELECT SEQ_SHOPINGLIST_NO.CURRVAL FROM DUAL
-		</selectKey>
+	<!-- <resultMap type="eBookShopingList" id="eBookShopingListMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+		<result column="B_SHOPINGLIST_DATE" property="shopingListDate"/>
+		<association javaType="ebookDatabind" property="bindNoE">
+			<id column="BIND_NO" property="bindNo"/>
+			<result column="TITLE" property="title"/>
+			<result column="AUTHOR" property="author"/>
+			<result column="IMAGE" property="image"/>
+			<result column="PRICE" property="price"/>
+			<result column="ISBN" property="isbn"/>
+			<result column="PUBDATE" property="pubdate"/>
+			<result column="PUBLISHER" property="publisher"/>
+			<result column="DESCRIPTION" property="description"/>
+			<result column="LINK" property="link"/>
+			<result column="CATEGORY_CODE" property="categoryCode"/>
+			<result column="STOCK" property="stock"/>
+			<result column="SALES_VOLUME" property="salesVolume"/>
+			<result column="RATING" property="rating"/>
+			<result column="EBOOK_RATING" property="ebookRating"/>
+			<result column="EBOOK_SALES_VOLUME" property="ebookSalesVolume"/>
+			<result column="PRIME_COST" property="primeCost"/>
+			<association property="ebook" javaType="ebook">
+				<id column="EBOOK_NO" property="ebookNo"/>
+				<result column="FILEPATH" property="filepath"/>
+			</association>	
+		</association>
+	</resultMap> -->	
+		
+	<!-- <resultMap type="giftShopingList" id="giftShopingListMap">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="SHOPINGLIST_COUNT" property="shopingListCount"/>
+		<result column="G_SHOPINGLIST_DATE" property="shopingListDate"/> 
+		<association javaType="nGift" property="giftNo">
+			<id column="NGIFT_NO" property="gift_no"/>
+			<result column="NGIFT_TITLE" property="gift_title"/>
+			<result column="NGIFT_IMG" property="gift_img"/>
+			<result column="NGIFT_PRICE" property="gift_price"/>
+			<result column="NGIFT_BRAND" property="gift_brand"/>
+			<result column="NGIFT_MAKER" property="gift_maker"/>
+			<result column="NGIFT_COUNT" property="gift_count"/>
+			<result column="NGIFT_PRODUCT_TYPE" property="gift_productType"/>		
+			<result column="NGIFT_ROWPRICE" property="gift_rowPrice"/>
+			<result column="NGIFT_DISCOUNT" property="gift_discount"/>
+			<result column="NGIFT_SALESVOLUME" property="gift_salesVolume"/>	
+			<association javaType="giftCate" property="gift_category">
+				<id column="NGIFT_CATE_CODE" property="giftCateCode"/>
+				<result column="GIFTCATE_NAME" property="giftCateName"/>
+				<result column="GIFTCATE_FIRSTREF" property="giftCateFirstRef"/>
+				<result column="GIFTCATE_SECONDREF" property="giftCateSecondRef"/>
+			</association>
+		</association>
+	</resultMap> -->
+	
+			
+	<insert id="createShopingListG">
+		INSERT INTO SHOPING_LIST VALUES('G', #{memberId})
 	</insert>
 	
+<!-- 	<insert id="createShopingListE">
+		INSERT INTO SHOPING_LIST VALUES('E', #{memberId}, SYSDATE)
+	</insert>
+	
+	<insert id="createShopingListB">
+		INSERT INTO SHOPING_LIST VALUES('B', #{memberId}, SYSDATE)
+	</insert>
+	 -->
 	<insert id="insertShopingListBook">
 		INSERT INTO BOOK_SHOPING_LIST VALUES (#{shopingListNo},#{bBindNo},#{shopingListCount})
 	</insert>
 
+	<select id="selectMyShopingListB" resultMap="bookShopingListMap">
+		SELECT * FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="selectMyShopingListE" resultMap="eBookShopingListMap">
+		SELECT * FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="selectMyShopingListG" resultMap="giftShopingListMap">
+		SELECT * FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
+	
+	<select id="myShopingListB" resultMap="sellbookDatabindMap">
+		SELECT * FROM BOOK_EBOOK_DATABIND
+		<choose>
+			<when test="arr != ''">
+				WHERE BIND_NO IN (${arr})
+			</when>
+			<otherwise>
+				WHERE 1=2
+			</otherwise>
+		</choose>			  
+	</select>
+	
+	<select id="myShopingListE" resultMap="ebookDatabindMap">
+		SELECT * FROM BOOK_EBOOK_DATABIND
+		<choose>
+			<when test="arr != ''">
+				WHERE BIND_NO IN (${arr})
+			</when>
+			<otherwise>
+				WHERE 1=2
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="myShopingListG" resultMap="giftMap">
+		SELECT * FROM NGIFT
+		<choose>
+			<when test="arr != ''">
+				WHERE NGIFT_NO IN (${arr})
+			</when>
+			<otherwise>
+				WHERE 1=2
+			</otherwise>
+		</choose>
+	</select>
+	
 </mapper>

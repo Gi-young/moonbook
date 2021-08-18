@@ -5,7 +5,16 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+
 import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
+
+import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.gift.model.vo.Ngift;
+import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
+import com.rar.khbook.shopingList.model.vo.BookShopingList;
+import com.rar.khbook.shopingList.model.vo.EbookShopingList;
+import com.rar.khbook.shopingList.model.vo.GiftShopingList;
+
 
 
 public interface ShopingListDao {
@@ -14,6 +23,21 @@ public interface ShopingListDao {
 
 	int insertShopingListBook(SqlSession session, Map param);
 
+
 	
+
+	List<BookShopingList> selectMyShopingListB(SqlSession session, String memberId);
+
+	List<EbookShopingList> selectMyShopingListE(SqlSession session, String memberId);
+
+	List<GiftShopingList> selectMyShopingListG(SqlSession session, String memberId);
+
+	List<SellbookDatabind> myShopingListB(SqlSession session, Map param);
+
+	List<EbookDatabind> myShopingListE(SqlSession session, Map param);
+
+	List<Ngift> myShopingListG(SqlSession session, Map param);
+
+
 
 }

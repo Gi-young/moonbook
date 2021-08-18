@@ -253,6 +253,7 @@ aside button:hover {
     flex-wrap: nowrap;
     padding: 0 5px 0 5px;
     margin-bottom: 0;
+    background-color: white;
 }
 
 #readingInfo>div:first-child {

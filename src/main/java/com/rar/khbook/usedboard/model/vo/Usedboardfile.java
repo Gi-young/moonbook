@@ -14,4 +14,5 @@ public class Usedboardfile {
 	private String usedboardfile_Rename;
 	private int usedboard_No;
 	private int usedboardfile_No;
+	private String memberId;
 }

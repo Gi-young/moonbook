@@ -49,6 +49,7 @@
 		<result column="usedboardfile_Oriname" property="usedboardfile_Oriname"/>
 		<result column="usedboardfile_Rename" property="usedboardfile_Rename"/>
 		<result column="usedboard_No" property="usedboard_No"/>
+		<result column="memberId" property="memberId"/>
 	</resultMap>
 	
 	<select id="selectUsedboardCount" resultType="_int">
@@ -120,7 +121,7 @@
 	</insert>
 	
 	<insert id="usedboardfileInsertEnd">	
-		INSERT INTO USEDBOARDFILE VALUES(#{usedboardfile_Oriname},#{usedboardfile_Rename},#{usedboard_No},SEQ_USEDBOARDFILE.NEXTVAL)
+		INSERT INTO USEDBOARDFILE VALUES(#{usedboardfile_Oriname},#{usedboardfile_Rename},#{usedboard_No},SEQ_USEDBOARDFILE.NEXTVAL,NULL)
 	</insert>
 	
 	<delete id="usedboardDelete">
@@ -212,5 +213,13 @@
 	
 	<update id="cancelPaymentUpdate">
 		UPDATE USEDBOARD SET USEDBOARD_STATE='y' WHERE USEDBOARD_NO='${value}'
+	</update>
+	
+	<insert id="usedboardFileUpload">
+		INSERT INTO USEDBOARDFILE VALUES(#{usedboardfile_Oriname},#{usedboardfile_Rename},NULL,SEQ_USEDBOARDFILE.NEXTVAL,#{memberId})
+	</insert>
+	
+	<update id="usedboardFileUpdate">
+		UPDATE USEDBOARDFILE SET USEDBOARD_NO=${no} WHERE USEDBOARD_NO IS NULL AND MEMBERID='${id}'
 	</update>
 </mapper>

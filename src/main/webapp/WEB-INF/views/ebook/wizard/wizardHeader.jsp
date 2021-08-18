@@ -16,9 +16,7 @@
 		<header>
 			<ul>
 				<li><a href="${path}/ebook/openEbookWizard.do">e북 마법사 홈</a></li>
-				<li><a href="${path}/ebook/pageEbookReport.do">e독서록</a></li>
-				<li><a href="${path}/ebook/pageEbookPlanner.do">e북 플래너</a></li>
-				<li><a href="${path}/ebook/pageEbookClubManager.do">e독서토론[<span id="noticeAlert">0</span>]</a></li>
+				<li><a href="${path}/ebook/pageEbookClubManager.do">e독서토론 <span id="noticeAlert">0</span></a></li>
 			</ul>
 			
 			<c:if test="${param.currentPageIndex.equals('7')}">

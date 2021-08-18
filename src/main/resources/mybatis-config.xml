@@ -82,6 +82,12 @@
 		<typeAlias
 			type="com.rar.khbook.shopingList.model.vo.BookShopingList"
 			alias="bookShopingList" />
+		<typeAlias
+			type="com.rar.khbook.shopingList.model.vo.EbookShopingList"
+			alias="eBookShopingList" />
+		<typeAlias
+			type="com.rar.khbook.shopingList.model.vo.GiftShopingList"
+			alias="giftShopingList" />		
 
 		<!-- 기프트 -->
 		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift"
@@ -90,26 +96,25 @@
 			alias="giftCate" />
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftBoard"
 			alias="giftBoard" />
+		<typeAlias type="com.rar.khbook.gift.model.vo.GiftOrder" 
+			alias="giftOrder" />	
 
 		<!-- 배송 -->
 		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery"
 			alias="delivery" />
 		<!-- top3 -->
-		<typeAlias
-			type="com.rar.khbook.adminchart.model.vo.BookTopThree"
-			alias="booktopthree" />
 
-		<!-- top3 ebook -->
-		<typeAlias
-			type="com.rar.khbook.adminchart.model.vo.EbookTopThree"
-			alias="ebooktopthree" />
-
-		<!-- top3 gift -->
-		<typeAlias
-			type="com.rar.khbook.adminchart.model.vo.GiftTopThree"
-			alias="gifttopthree" />
-
-
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.BookTopThree" alias="booktopthree"/>
+	
+		<!-- top3 ebook-->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.EbookTopThree" alias="ebooktopthree"/>
+	
+		<!-- top3 gift-->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.GiftTopThree" alias="gifttopthree"/>
+	
+		<!-- faq -->
+		<typeAlias type="com.rar.khbook.servicecenter.model.vo.Faq" alias="faq"/>
+		<typeAlias type="com.rar.khbook.servicecenter.model.vo.FaqCg" alias="faqcg"/>
 
 	</typeAliases>
 </configuration>

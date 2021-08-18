@@ -1,0 +1,129 @@
+@charset "UTF-8";
+html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 15px 7px 1fr 7px 15px;
+}
+
+div.color-band {
+    background-color: #582810;
+}
+
+div.inner-color-band {
+    background-color: #E5E2DB;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+div.inner-container {
+    border: 1px solid silver;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+div.inner-container p {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+div.inner-container label[for=upFile] {
+    background-color: white;
+    border: 1px solid black;
+    padding: 0 7px;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+div.inner-container label[for=upFile]:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+div.inner-container input[type=file] {
+    display: none;
+}
+
+div.input-box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 270px;
+    margin-bottom: 10px;
+}
+
+input[type=submit] {
+    background-color: white;
+    border: 1px solid black;
+    padding: 3px 7px;
+    margin-top: 7px;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexgrow-1 {
+    flex-grow: 1;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.height-100 {
+    height: 100%;
+}
+
+label.bind-no {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+label.bind-no input {
+    margin-left: 5px;
+    width: 55px;
+}
+
+#resultMessage {
+    position: absolute;
+    font-size: 13px;
+    font-weight: bold;
+    width: 300px;
+    text-align: center;
+    left: 45px;
+    top: 242px;
+}

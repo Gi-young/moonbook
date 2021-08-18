@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ShopingList {
 
-	private int shopingListNo;
-	private BookShopingList bsList;
+	//private int shopingListNo;
 	private String shopingListCate;
 	private String memberId;
-	
-	
+		
 }

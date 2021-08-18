@@ -73,4 +73,7 @@ public interface MemberService {
 	
 //	개인 회원 기프트 결제 내역 조회
 	List<Order> giftPurchaseList(Map param, int cPage, int numPerpage);
+	
+//  회원가입 성공시 장바구니 만들기
+	int createShopingList(Member m);
 }

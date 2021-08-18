@@ -144,8 +144,8 @@ function uploadEbook() {
     let url = contextPath + "/ebook/pageUploadEbook.do";
     let windowWidth = window.screen.width;
     let windowHeight = window.screen.height;
-    let width = 800;
-    let height = 600;
+    let width = 400;
+    let height = 300;
     let status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ",width = " + width + ", height = " + height;
 
     window.open(url, "uploadEbook", status);
@@ -210,11 +210,11 @@ function highlightCurrentPage(currentFocus) {
     }
 
     switch (currentFocus) {
-        case "": lists[1].classList.add("navbar-menu-highlight"); break;
-        case "child": lists[2].classList.add("navbar-menu-highlight"); break;
-        case "elementary": lists[3].classList.add("navbar-menu-highlight"); break;
-        case "middle": lists[4].classList.add("navbar-menu-highlight"); break;
-        case "ebook": lists[5].classList.add("navbar-menu-highlight"); break;
+        case "": lists[0].classList.add("navbar-menu-highlight"); break;
+        case "child": lists[1].classList.add("navbar-menu-highlight"); break;
+        case "elementary": lists[2].classList.add("navbar-menu-highlight"); break;
+        case "middle": lists[3].classList.add("navbar-menu-highlight"); break;
+        case "ebook": lists[4].classList.add("navbar-menu-highlight"); break;
     }
 }
 

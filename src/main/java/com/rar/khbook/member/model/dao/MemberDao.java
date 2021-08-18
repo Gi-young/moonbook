@@ -81,4 +81,9 @@ public interface MemberDao {
 
 // 회원 포인트 적립
 	int updateMemberPoint(SqlSession session, Map param);
+
+
+	// 회원가입 후 장바구니 
+	int createShopingList(SqlSession session, Member m);
+
 }

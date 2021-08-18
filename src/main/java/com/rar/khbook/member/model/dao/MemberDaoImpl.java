@@ -195,6 +195,7 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return session.selectList("order.giftPurchaseList", param, row);
 	}
+
 	
 //	회원 포인트 적립
 	@Override
@@ -202,4 +203,17 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return session.update("member.updateMemberPoint", param);
 	}
+
+
+	@Override
+	public int createShopingList(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		
+		return session.insert("shopingList.createShopingList", m.getMemberId());
+		
+	}
+	
+	
+	
+
 }

@@ -320,9 +320,9 @@ public class EbookController {
 		int result = service.uploadEbook(ebook);
 		String message = "";
 		if(result > 0) {
-			message = "업로드 성공";
+			message = "success";
 		} else {
-			message = "업로드 실패";
+			message = "fail";
 		}
 		model.addAttribute("result", result);
 		model.addAttribute("message", message);

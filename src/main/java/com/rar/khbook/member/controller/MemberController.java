@@ -160,9 +160,11 @@ public class MemberController {
 		int result = service.insertMember(m);
 		String msg = "";
 		String loc = "";
-
+		
 		if (result > 0) {
 			msg = "회원가입성공";
+			int result3 = service.createShopingList(m);
+			log.debug("회원가입 후 장바구니 만들기 성공 실패 {}",result3);
 			loc = "/";
 			session.setAttribute("flag", true);
 		} else {
