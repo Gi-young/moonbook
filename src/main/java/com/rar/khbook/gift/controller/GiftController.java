@@ -29,6 +29,7 @@ import com.rar.khbook.gift.model.service.GiftService;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +55,9 @@ public class GiftController {
 		 */
 		List<Ngift> list = service.giftAll();
 
+		List<NoticeBoard> nb = service.searchNoticeBoardList();
+		
+		mv.addObject("notice", nb);
 		mv.addObject("list", list);
 		mv.setViewName("gift/gift");
 		return mv;
@@ -292,11 +296,25 @@ public class GiftController {
 	
 
 	@RequestMapping("/gift/giftPayment.do")
-	public ModelAndView giftPayment(int giftNo, ModelAndView mv, int quan) {
+	public ModelAndView giftPayment(ModelAndView mv, int giftNo,String loginMemberId, int couponNo, int couponAmount, int quan) {
+		//System.out.println("기프트페이먼트 : "+param.get("giftNo"));
+		System.out.println("기프트페이먼트입니다."+couponNo);
 		Ngift g = service.giftOne(giftNo);
-		mv.setViewName("gift/giftPayment");
-		mv.addObject("gift", g);
+		//param.put("couponNo", couponNo);
+		//param.put("memberId", loginMemberId);
+//		int result = service.useCoupon(param);
+//		System.out.println("쿠폰 사용 "+result);
+		mv.addObject("memberId", loginMemberId);
+		if(couponNo>0) {
+			mv.addObject("couponNo", couponNo);		
+			mv.addObject("couponAmount", couponAmount);			
+		}else {
+			mv.addObject("couponNo", 0);		
+			mv.addObject("couponAmount", 0);	
+		}
+		mv.addObject("gift",g);
 		mv.addObject("quan", quan);
+		mv.setViewName("gift/giftPayment");
 		return mv;
 	}
 	
@@ -327,6 +345,7 @@ public class GiftController {
 	@ResponseBody
 	public int salesVolume(@RequestParam Map param) {
 
+		System.out.println(" 쿠폰번호 : "+param.get("couponNo"));
 		System.out.println(" 아이디 : "+param.get("memberId"));
 		System.out.println(" 상품번호 : "+param.get("giftNo"));
 		System.out.println(" 상품가격 : "+param.get("totalPrice"));

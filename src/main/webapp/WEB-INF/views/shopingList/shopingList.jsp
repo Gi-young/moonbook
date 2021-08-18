@@ -15,8 +15,9 @@
 <form action="#">
 	<div class="orderInfoBox">
 		<div class="infoTitle">
-			<h3>문곰도서 주문 정보</h3><c:out value="${eBook}"/>
+			<h3>문곰도서 주문 정보</h3>
 		</div>
+		<c:set var="totalP" value="0"/>
 		<div class="tbl_box">
 			<table class="tbl_order">
 				<tr class="tbl_first">
@@ -26,15 +27,24 @@
 					<th>주문 수량</th>
 					<th>결제금액</th>
 				</tr>
-				<%-- <c:forEach var="s" items="shopingList"> --%>
+			
+				<c:set var="bCount" value="0"/>
+				<c:set var="bPrice" value="0"/>	
+				<c:set var="bookNo" value=""/>	
+			  	<c:forEach var="bs" items="${bList }">
+			  		<c:set var="bCount" value="${bs.shopingListCount }"/>
+			  		<c:set var="bookNo" value="${bs.bindNoB }"/>
+			  	</c:forEach>
+			  	<c:out value="${bCount }"/>
+			  	<c:out value="${bookNo }"/>
 				<c:forEach var="b" items="${book }">
 				 <tr> 
-					<td>${b.image }</td>
+					<td><img src="${b.image }" alt="${b.title }"/></td>
 					<td>${b.title }</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>삼백원</td>
+					<td>${b.price*b.stock }</td>
+					<td>${b.stock }</td>
+					<td>${paramB } 주문수량</td>
+					<td class="bookPrice"></td>
 				 </tr> 
 				</c:forEach> 
 <%-- 					<td><img src="${s.image }"></td>
@@ -52,7 +62,7 @@
 			<h3>문곰e북 주문 정보</h3>
 		</div>
 		<div class="tbl_box">
-			<table class="tbl_order">
+			<table class="tbl_order">		
 				<tr class="tbl_first">
 					<th colspan="2">e북정보</th>
 					<th>e북금액</th>
@@ -60,17 +70,20 @@
 					<th>주문 수량</th>
 					<th>결제금액</th>
 				</tr>
-				<%-- <c:forEach var="e" items="shopingList"> --%>
+			  <c:set var="ePrice" value="0"/>		
+			  <c:forEach var="es" items="${eList }">
+			  	
+			  </c:forEach>	
+			  <c:forEach var="e" items="${eBook }">						
 				<tr>
-						<tr>
-					<td>이미지</td>
-					<td>제목</td>
-					<td>천만원</td>
-					<td>오천개</td>
-					<td>두개</td>
-					<td>삼백원</td>
+					<td><img src="${e.img }" alt="${e.title }"/></td>
+					<td>${e.title }</td>
+					<td>${e.price }</td>
+					<td>${e.stock }</td>
+					<td></td>
+					<td class="eBookPrice">${e.price }</td>
 				</tr>
-				<%-- </c:forEach> --%>
+			  </c:forEach>
 			</table>
 		</div>
 	</div>
@@ -87,36 +100,45 @@
 					<th>주문 수량</th>
 					<th>결제금액</th>
 				</tr>
-				<%-- <c:forEach var="g" items="shopingList"> --%>
+			<c:set var="gPrice" value="0"/>		
+			<c:forEach var="gs" items="${gList }">
+			  	
+			</c:forEach>	
+			<c:forEach var="g" items="${gift }">
 				<tr>
-						<tr>
-					<td>이미지</td>
-					<td>제목</td>
-					<td>천만원</td>
-					<td>오천개</td>
-					<td>두개</td>
-					<td>삼백원</td>
+					<td><img src="${g.gift_img }"/></td>
+					<td>${g.gift_title }</td>
+					<td><fmt:formatNumber value="${g.gift_price }"  type="number"/></td>
+					<td>${g.gift_count }</td>
+					<td></td>
+					<td class="giftPrice">${g.gift_price }</td>
 				</tr>
-				<%-- </c:forEach> --%>
+			</c:forEach> 
 			</table>
 		</div>
 	</div>
+	
 	<div class="orderInfoBox margin_bottom3em">
-				<div class="infoTitle">
-				
+				<div class="infoTitle" style="display: flex; align-items: flex-end; margin-top: 1.3em; justify-content: space-between;">								  								   
 					<h3>결제 정보</h3>
+					<div class="deliFeeChoice">
+						<input type="radio" value="advance" name="delifee" id="advance"/>
+						<label for="advance">선불</label>
+						<input type="radio" value="later" name="delifee" id="later"/>
+						<label for="later">착불</label>
+					</div>
 				</div>
 				<div class="tbl_box">
 					<table class="tbl_payment">
 						<tr class="tbl_first">
-							<td>도서 금액</td>
-							<td>₩7,200</td>
+							<td>합산 금액</td>
+							<td>${totalP }</td>
 							<td>+</td>
 							<td>배송비</td>
-							<td id="delifee">₩3,000</td>
+							<td id="delifee"></td>
 							<td>=</td>
 							<td>총 </td>
-							<td id="totalfee">₩10,200</td>
+							<td id="totalfee"><fmt:formatNumber value="" type="number"/></td>
 <%-- 							<td>도서 금액</td>
 							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock }" type="currency"/></td>
 							<td>+</td>
@@ -130,10 +152,11 @@
 				</div>
 			</div>
 		</form>
-			<div class="btnCenter">
-				<button class="btnPay">결제하기</button>
-			</div>
-			</div>
+				<div class="btnCenter">
+					<button class="btnPay">결제하기</button>
+				</div>
+		</div>
 </section>
 
+<script src="${path}/resources/js/shopingList/shopingListBuy.js"></script> 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

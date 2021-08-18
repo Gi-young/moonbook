@@ -44,8 +44,8 @@
                 <p class="expTitle">${gift.gift_title } </p>
                 <div class="crossLine2"></div>
 	                <div class="expChoice">
-	                    <div>
-	                        <p>포인트 적립</p>
+	                    <div style="display:flex;">
+	                        <p>포인트 적립  배송비를 제외한 구매금액의 10%가 적립됩니다.</p>
 	                    </div>
 	                    <div class="exp-couponBox">
 	                        <p>쿠폰등록</p>
@@ -73,8 +73,7 @@
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
-                    <button type="submit">구매하기</button>
-                    <input type="hidden" value="${loginMember.memberId }" id="loginMemberId" name="loginMemberId">
+                    <button type="submit">구매하기</button>                
                     <button type="button" id="shopList">장바구니</button>
                     <!-- <button>찜하기</button> -->
                 </div>           
@@ -82,9 +81,11 @@
                     <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
                 </div>
             </div>
+            <input type="hidden" value="${loginMember.memberId }" id="loginMemberId" name="loginMemberId">
             <input type="hidden" value="${gift.gift_no }" name="giftNo" id="giftNo">
             <input type="hidden" value='G' name="shopingList_cate" id="shopingList_cate">
-            
+            <input type="hidden" value='0' name="couponNo" id="couponNo">
+            <input type="hidden" value='0' name="couponAmount" id="couponAmount">
           </form>       
         </div>
         <div class="crossLine3"></div>

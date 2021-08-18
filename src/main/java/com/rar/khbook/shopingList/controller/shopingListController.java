@@ -51,9 +51,9 @@ public class shopingListController {
 	public ModelAndView shopingListView(String memberId, ModelAndView mv) {
 		System.out.println("장바구니 param : "+memberId);
 		
-		List paramB = new ArrayList();// 상품번호 담는 리스트
-		List paramE = new ArrayList();// 얘도 황도
-		List paramG = new ArrayList();// ? 얘도?
+		List<Integer> paramB = new ArrayList();// 상품번호 담는 리스트
+		List<Integer> paramE = new ArrayList();// 얘도 황도
+		List<Integer> paramG = new ArrayList();// ? 얘도?
 		
 		List<BookShopingList> bList = service.selectMyShopingListB(memberId);
 		//System.out.println("bList 뽑아옴 "+bList.get(0).getBindNoB());
@@ -68,16 +68,19 @@ public class shopingListController {
 		
 		for(int i=0; i<bList.size(); i++) {
 			arr1[i] = String.valueOf(bList.get(i).getBindNoB());
+			paramB.add(bList.get(i).getShopingListCount());
 			//paramB.add(bList.get(i).getBindNoB());
 		}
 		System.out.println(paramB);
 		for(int i=0; i<eList.size(); i++) {	
 			arr2[i] = String.valueOf(eList.get(i).getBindNoE());
+			paramE.add(eList.get(i).getShopingListCount());
 			//paramE.add(eList.get(i).getBindNoE());
 		}
 		System.out.println(paramB);
 		for(int i=0; i<gList.size(); i++) {
 			arr3[i] = String.valueOf(gList.get(i).getGiftNo());
+			paramG.add(gList.get(i).getShopingListCount());
 			//paramG.add(gList.get(i).getGiftNo());
 		}
 		System.out.println(paramB);
@@ -102,6 +105,9 @@ public class shopingListController {
 		List<EbookDatabind> eBook = service.myShopingListE(param2);
 		List<Ngift> gift = service.myShopingListG(param3);
 		
+		mv.addObject(paramB);
+		mv.addObject(paramE);
+		mv.addObject(paramG);
 		mv.addObject("book", book);
 		System.out.println("book ::::::"+book );
 		mv.addObject("eBook", eBook);

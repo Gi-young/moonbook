@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="gift">
 
+	<resultMap id="noticeBoard" type="noticeBoard">
+		<id column="NOTICEBOARD_NO" property="noticeboardNo"/>
+		<result column="NOTICEBOARD_TITLE" property="noticeboardTitle"/>
+		<result column="NOTICEBOARD_CONTENT" property="noticeboardContent"/>
+		<result column="NOTICEBOARD_DATE" property="noticeboardDate"/>
+		<result column="MEMBER_ID" property="memberId"/>
+	</resultMap>
+
 	<resultMap type="couponlist" id="couponlistMap">
 		<result column="couponlist_no" property="couponlistNo" />
 		<result column="couponlist_membergrade_no" property="couponlistMembergradeNo" />
@@ -177,5 +185,13 @@
 	<insert id="updatePurchaseList">
 		INSERT INTO NGIFT_ORDER_LIST VALUES(#{merchantUid}, #{giftNo}, #{stock})
 	</insert>
+	
+	<select id="selectNoticeBoardList" resultMap="noticeBoard">
+		SELECT * FROM NOTICEBOARD 
+	</select>
+	
+	<delete id="useCoupon">
+		DELETE FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId} AND COUPON_COUPONLIST_NO=#{couponNo}
+	</delete>
 	
 </mapper>

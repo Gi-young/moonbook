@@ -16,6 +16,7 @@ import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 @Service
@@ -176,6 +177,19 @@ public class GiftServiceImpl implements GiftService {
 	@Override
 	public int updateGiftShopingList(Map param) {
 		int result = dao.updateGiftShopingList(session, param);
+		return result;
+	}
+
+	@Override
+	public List<NoticeBoard> searchNoticeBoardList() {
+		// TODO Auto-generated method stub
+		List<NoticeBoard> list = dao.searchNoticeBoardList(session);
+		return list;
+	}
+
+	@Override
+	public int useCoupon(Map param) {
+		int result = dao.useCoupon(session, param);
 		return result;
 	}
 	

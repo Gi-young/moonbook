@@ -6,8 +6,6 @@ IMP.init("imp26745696");
 
 	
 $(".btnPay").click(e=> {
-	let couponNo = document.getElementById("couponNo").value;
-	let couponAmount = document.getElementById("couponAmount").value;
 	let originPrice = document.getElementById("originPrice").value;
 	let deliveryFee = document.getElementById("deliveryFee").value;
 	let giftNo = document.getElementById("giftNo").value;
@@ -22,15 +20,14 @@ $(".btnPay").click(e=> {
 	let totalPrice = document.getElementById("totalPrice").value;
 	let point = originPrice*0.1;
 	
-	//console.log(originPrice);
-	//console.log(giftNo);
-	//console.log(point);
-	//console.log(deliveryFee);
-	//console.log(contextPath);
-	console.log("totalPrice int 어케 들어옴? "+Number(totalPrice));
-	console.log("totalPrice string 어케 들어옴? "+totalPrice);
-	//console.log(stock);
-	//console.log(sellStock);
+	console.log(originPrice);
+	console.log(giftNo);
+	console.log(point);
+	console.log(deliveryFee);
+	console.log(contextPath);
+	console.log(totalPrice);
+	console.log(stock);
+	console.log(sellStock);
 	//console.log(Number(stock)<=Number(sellStock));
 	
 	if(!(Number(stock)<=Number(sellStock))){
@@ -81,7 +78,7 @@ $(".btnPay").click(e=> {
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
                             name: "문곰템",
-                            amount: totalPrice
+                            amount: 100
                         }, function(rsp) {                       	                 	
                             if (rsp.success) {
                                 $.ajax({                                                     
@@ -112,7 +109,6 @@ $(".btnPay").click(e=> {
                                     			totalPrice: totalPrice,
                                     			merchantUid: rsp.merchant_uid,
                                     			point: point
-                                    			//couponNo: couponNo
                                     		},
                                     		success: data => {
 		                                        console.log("결제 로그 추가 결과 : " + data);

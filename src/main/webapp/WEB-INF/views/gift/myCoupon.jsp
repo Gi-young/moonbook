@@ -18,19 +18,21 @@
      		<p class="userName">${member.memberName }</p>님이 보유하고 계신 쿠폰 정보입니다.
         </div>
         <div class="couponList">
+        	 <form action="${path }/gift/choiceCoupon.do" method="post" > 
         	<c:forEach var="i" items="${couponlist }" varStatus="status">
-        	<form action="${path }/gift/choiceCoupon.do" method="post" >
 	            <div class="couponView" style="width:500px;"> 
-	                <img src="${path }/resources/upload/${i.couponImg}" alt="">
+	                <img src="${i.couponImg}" alt="">
 	                <p>${i.couponlistName }</p>
+	                <p>${i.couponlistAmount }원</p>
 	                <p style="font-weight:900;">${i.couponlistForuse eq 'Y'?"사용가능":"기간만료"}</p>
 	                <c:if test="${i.couponlistForuse eq 'Y'}">
-	                	<button class="useCoupon" onclick="getParentText(${status.index})">쿠폰사용</button>
+	                	<button type="button" class="useCoupon" onclick="getUseCoupon(${status.index})">쿠폰 사용</button>
 	                </c:if>
+					<input type="hidden" value="${i.couponlistNo }" name="couponNo" class="couponNo"/>
 	                <input type="hidden" value="${i.couponlistName }" name="couponName" class="couponName"/>
 	                <input type="hidden" value="${i.couponlistAmount }" name="couponAmount" class="couponAmount"/>                           
 	            </div>
-	        </form>    
+	         </form>   
 	        </c:forEach>    
             <%-- <div class="couponView">  
                 <img src="${path }/resources/images/gift/silverbear.png" alt="">
@@ -50,11 +52,22 @@
     
     <script>
     
-    function getParentText(i){
+    function getUseCoupon(i){
         let cpAmount = document.getElementsByClassName("couponAmount")[i].value;
-        let ci = document.getElementById("couponAmount");
-        confirm(cpAmount);
-        opener.document.getElementById("ds").innerHTML=cpAmount+"원 <br>할인이 적용됩니다.";
+        let cpNo = document.getElementsByClassName("couponNo")[i].value;   
+        let cpName = document.getElementsByClassName("couponName")[i].value; 
+        let ci = document.getElementsByClassName("couponAmount")[i].value;
+        
+        if(confirm(cpName+"을 사용하시겠습니까?")){
+        	opener.document.getElementById("couponNo").value=cpNo;
+        	opener.document.getElementById("couponAmount").value=ci;
+        	opener.document.getElementById("ds").innerHTML=cpAmount+"원 <br>할인이 적용됩니다.";
+        	window.close();
+        	return true;
+        }else{
+        	return false;
+        }
+        
     }
  	
     </script>

@@ -8,6 +8,13 @@
 </jsp:include>
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="${path }/resources/css/gift/gift.css">
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+
+<link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="slick/slick.min.js"></script>
 <div class="wrap">
     <!-- 전체를 감싸고 있는 div -->
     
@@ -51,7 +58,7 @@
         <!-- 리스트를 담고 있는 박스 -->
        <div class="firstSlide-list">
            <!-- 길게 늘어뜨린 리스트 -->
-           <c:forEach var="i" begin="167" end="175" items="${list }">
+           <c:forEach var="i" begin="168" end="176" items="${list }">
 	           <div class="firstSlide-content">
             <p class="first-title">
             	${i.gift_title }	
@@ -224,17 +231,17 @@
                                 <div>
                                     <div class="gf-left">
                                         <p class="gf-left-title">독서 필수템</p>
-                                        <p class="gf-left-subTitle">독서하기 전 반드시(아닐수도 있음) 준비해야 할 필수템들!</p>
+                                        <p class="gf-left-subTitle">독서하기 전 반드시 준비해야 할 필수템들!</p>
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
-                                    <c:forEach var="i" items="${list }" begin="310" end="310">
+                                    <c:forEach var="i" items="${list }" begin="645" end="645">
                                     <a href="${path }/gift/giftDetail?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
-                            	<c:forEach var="i" items="${list }" begin="311" end="312">                      
+                            	<c:forEach var="i" items="${list }" begin="646" end="647">                      
                             	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
                             </c:forEach>                        
                             </ul>
@@ -252,14 +259,14 @@
                                         <p class="gf-left-subTitle">당신에게 필요한 여러가지 상품들을 준비해봤어요!</p>
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
-                                    <c:forEach var="i" items="${list }" begin="371" end="371">
+                                    <c:forEach var="i" items="${list }" begin="780" end="780">
                                     <a href="${path }/gift/giftDetail?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
-                            	<c:forEach var="i" items="${list }" begin="381" end="382">                      
+                            	<c:forEach var="i" items="${list }" begin="781" end="782">                      
                             	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" ></a></li>
                             </c:forEach>                        
                             </ul>
@@ -271,7 +278,7 @@
             <div class='left-cont'>
                     <p class="todayPop-title">오늘만 특가 〉</p>
                     <div class="timer-img">
-                        <img src="" alt="" style="width: 25px; height: 25px;">
+                        <img src="${path}/resources/images/gift/24시간.png" alt="타이머" style="width: 25px; height: 25px;" />
                         <p class="timer"></p>
                     </div>
                     <div class="remain-timeBox">
@@ -326,7 +333,7 @@
             </div>
             <div class="right-cont">
                     <p class="todayPop-title">인기베스트 〉</p>
-                    <p class="todayPop-cg">독서 필수템</p>
+                    <p class="todayPop-cg">좋아요!</p>
                     <hr class="cg-line"></hr>
                     <!-- 아마도 카테고리는 특정 시간마다 바뀌는듯, 아니면 문구/기프트 
                         고정-->
@@ -473,86 +480,59 @@
         </div> -->
         <div class="container3">
             <h2 style="font-size: 45px; font-weight: lighter;">
-                <strong style="font-size: 45px; font-weight: 800;">지금,</strong>
+                <strong style="font-size: 45px; font-weight: 800;">저기요,</strong>
                 <br>
                 <div class="space"></div>
-                이 상품을
+                혹시
                 <span class="cont3-font">
-                가장 많이
+                이런 상품
                 </span>
-                보고 있어요
+                은 어떠신가요?
              
             </h2>
             <div class="cont3-slide-wrap">
                 <div class="cont3-slide-box">
                     <div class="cont3-slide-list">
                         <div class="cont3-slide-content">
-                            <ul>
-                                <div class="img-container">
-                                    <li>
-                                        <a href="#">
+                            <ul style="display:flex; flex-direction: column;">
+                                <div class="img-container" style="justify-content:space-around;">
+                                <li>
+                                <c:forEach var="i" items="${list }" begin="189" end="190">
+                                        <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                                             <div class="cont3-img-info">
-                                                <img src="../components/image/노란우산.jpg" alt="" class="cont3-img">
+                                                <img src="${i.gift_img}" alt="" class="cont3-img"> 
                                                 <div class="img-info dis-none">
-                                                    <p>태풍을 이기는 우산 블런트 메트로2</p>
+                                                    <p class="fontSplit">${i.gift_title }</p>
                                                     <p>
                                                        <!--  <span class="img-info-per">36%</span> -->
-                                                        54,800
+                                                        <fmt:formatNumber value="${i.gift_price }" type="number"/>
                                                     </p>
                                                 </div>
                                             </div>
                                         </a>
-                                    </li>
+                                  </c:forEach>                                   
+                                    </li> 
                                     <li>
-                                        <a href="#">
-                                            <div class="cont3-img-info margin-left24">
-                                                <img src="../components/image/핑크우산.jpg" alt="" class="cont3-img">
-                                                <div class="img-info dis-none">
-                                                    <p>태풍을 이기는 우산 블런트 메트로2</p>
-                                                    <p>
-                                                        <!-- <span class="img-info-per">36%</span> -->
-                                                        54,800
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </div>
-                                <div class="img-container">
-                                    <li>
-                                        <a href="#">
+                                <c:forEach var="i" items="${list }" begin="257" end="258">
+                                        <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                                             <div class="cont3-img-info">
-                                                <img src="../components/image/블랙우산.jpg" alt="" class="cont3-img">
+                                                <img src="${i.gift_img}" alt="" class="cont3-img"> 
                                                 <div class="img-info dis-none">
-                                                    <p>태풍을 이기는 우산 블런트 메트로2</p>
+                                                    <p class="fontSplit">${i.gift_title }</p>
                                                     <p>
                                                        <!--  <span class="img-info-per">36%</span> -->
-                                                        54,800
+                                                        <fmt:formatNumber value="${i.gift_price }" type="number"/>
                                                     </p>
                                                 </div>
                                             </div>
                                         </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="cont3-img-info margin-left24">
-                                                <img src="../components/image/체크우산.jpg" alt="" class="cont3-img">
-                                                <div class="img-info dis-none">
-                                                    <p>태풍을 이기는 우산 블런트 메트로2</p>
-                                                    <p>
-                                                        <!-- <span class="img-info-per">36%</span> -->
-                                                        54,800
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </div>
-                            </ul>
+                                  </c:forEach>                                   
+                                    </li>     
+                            </ul>                       
                         </div>
                     </div>
                 </div>
-                <div class="cont3-btn">
+               <!--  <div class="cont3-btn">
                     <div></div>
                     <span style="margin-right: 10px; color:black; font-weight: 700; font-size: 24px;">1</span>5
                     <div class="flex" style="align-items: center;">
@@ -560,7 +540,7 @@
                         <div style="font-size: 22px; padding-bottom: 2px;">│</div>
                         <input class="cont3-right-btn" type="button" value="〉">
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="container4">
@@ -568,7 +548,7 @@
             <div class="reco-product">
                 <!-- 나에게 맞는 추천 상품 -->
                 <ul class="reco-product-ul">
-	                <c:forEach var="i" begin="0" end="3" items="${list }">
+	                <c:forEach var="i" begin="579" end="582" items="${list }">
 	                    <li>
 	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
 	                            <div>
@@ -624,7 +604,7 @@
                     </li> -->
                 </ul>
                 <ul class="reco-product-ul">    
-                    <c:forEach var="i" begin="4" end="7" items="${list }">
+                    <c:forEach var="i" begin="434" end="437" items="${list }">
                     <li>
                         <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                             <div>
@@ -680,7 +660,7 @@
                     </li> -->
                 </ul>
                 <ul class='reco-product-ul'>                    
-                    <c:forEach var="i" begin="8" end="11" items="${list }">
+                    <c:forEach var="i" begin="12" end="15" items="${list }">
 	                    <li>
 	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
 	                            <div>
@@ -869,37 +849,75 @@
         <div class="edit-season">
         <!-- 계절별 추천 -->
             <div class="season-barBox">
-                <p class="seasonbox-num">01</p>
+                <p class="seasonbox-num" id="seasonbox-num">01</p>
                 <div class="seasonbox">
                     <ul class="seasonbox-ul">
                         <!-- ajax -->
                         <li>
-                            <a href="#" class="seasonbox-a">전자기기</a>
+                            <a class="seasonbox-a" id="seasonbox-elec">전자기기</a>
                         </li>
                         <li>
-                            <a href="#" class="seasonbox-a">수납/정리</a>
+                            <a class="seasonbox-a" id="seasonbox-storage">수납/정리</a>
                         </li>
                         <li>
-                            <a href="#" class="seasonbox-a">독서 필수템</a>
+                            <a class="seasonbox-a" id="seasonbox-reading">독서 필수템</a>
                         </li>
                         <li>
-                            <a href="#" class="seasonbox-a">잡화</a>
+                            <a class="seasonbox-a" id="seasonbox-etc">잡화</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="season-img">
-                <img src="../components/image/미니세탁기.jpg" alt="" >
+            <div class="season-img" id="seasonElecImg">
+            <c:forEach var="i" items="${list }" begin="18" end="18">
+                <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
                         <!-- <p class="discount">~20%</p> -->
-                        <p class="price">36000원</p>
+                        <p class="price"><fmt:formatNumber type="number" value="${i.gift_price }"/>원</p>
                     </div>    
-                    <p class="season-imgEx">미니미니한 미니세탁기</p>
+                    <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap;">${i.gift_title }</p>
                 </div>
+            </c:forEach>
+            </div>
+            <div class="season-img" id="seasonStorageImg" style="display:none;">
+            <c:forEach var="i" items="${list }" begin="287" end="287">
+                <img src="${i.gift_img }" alt="" >
+                <div class="season-imgExplan">
+                    <div class="flex" style="justify-content: flex-end;">
+                        <!-- <p class="discount">~20%</p> -->
+                        <p class="price"><fmt:formatNumber type="number" value="${i.gift_price }"/>원</p>
+                    </div>    
+                    <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap;">${i.gift_title }</p>
+                </div>
+               </c:forEach> 
+            </div>
+            <div class="season-img" id="seasonReadingImg" style="display:none;">
+                <c:forEach var="i" items="${list }" begin="599" end="599">
+                <img src="${i.gift_img }" alt="" >
+                <div class="season-imgExplan">
+                    <div class="flex" style="justify-content: flex-end;">
+                        <!-- <p class="discount">~20%</p> -->
+                        <p class="price"><fmt:formatNumber type="number" value="${i.gift_price }"/>원</p>
+                    </div>    
+                    <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap;">${i.gift_title }</p>
+                </div>
+               </c:forEach> 
+            </div>
+            <div class="season-img" id="seasonEtcImg" style="display:none;">
+                <c:forEach var="i" items="${list }" begin="785" end="785">
+                <img src="${i.gift_img }" alt="" >
+                <div class="season-imgExplan">
+                    <div class="flex" style="justify-content: flex-end;">
+                        <!-- <p class="discount">~20%</p> -->
+                        <p class="price"><fmt:formatNumber type="number" value="${i.gift_price }"/>원</p>
+                    </div>    
+                    <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap;">${i.gift_title }</p>
+                </div>
+               </c:forEach> 
             </div>
         </div>
-        <div class="attSlide">
+       <%--  <div class="attSlide">
         <!-- 기획상품 -->
             <p style="font-style: italic; color: orangered; font-size: 26px; padding-left: 50px;">Attention</p>
             <div class="att-font">
@@ -909,29 +927,30 @@
             </div>
             <div class="att-slideBox">
             <!-- 기획 상품 슬라이드 부분 -->
-                <div class="att-slideList">
-                    <div class="att-slideContent">
-                    <c:forEach var="i" items="${list }" begin="376" end="377">
-                            <div class="att-img">
-                                <a href="#">
-                                    <img src="${i.gift_img }" alt="${i.gift_title }">
-                                    <p># ${i.gift_title }</p>
-                                </a>
-                            </div>
-                    </c:forEach>        
-                            <%-- <div class="att-img" style="margin-left: 10px;">
+                <div class="att-slideList" style="overflow:hidden;">
+	                    <div class="att-slideContent">
+                    <c:forEach var="i" items="${list }" begin="376" end="381">
+	                            <div class="att-img">
+	                                <a href="#">
+	                                    <img src="${i.gift_img }" alt="${i.gift_title }">
+	                                    <p># ${i.gift_title }</p>
+	                                </a>
+	                            </div>
+                    </c:forEach> 
+	                    </div>       
+                            <div class="att-img" style="margin-left: 10px;">
                                 <a href="#">
                                     <img src="../components/image/카프2.jpg" alt="" >
                                     <p># 이름 모르는 애들</p>
                                 </a>
-                            </div> --%>
-                    </div>
+                            </div>
+                    
                 </div>
             </div>
             <div>
                 <hr style="width: 1000px;">
                 <div class="att-btnBox">
-                    <div class="att-pagination"></div>
+                    <div class="att-pagination" style='display:none;'></div>
                     <p class="edit-count">1</p>
                     <p class="edit-subcount">6</p>
                     <input type="button" class="edit-btn edit-prevBtn" value="〈" style="padding-left: 20px;">
@@ -939,7 +958,7 @@
                     <input type="button" class="edit-btn edit-nextBtn" value="〉">  
                 </div>
             </div>
-        </div>
+        </div> --%>
         <!-- <div class="spEdit">
         스페셜에디션; 
             <p class="spEdit-title">스페셜에디션;</p>
@@ -994,13 +1013,15 @@
             <div class="notice flex">
                 <p class="noticeTitle">공지사항 〉</p>
                 <ul class="notice-ul">
-                    <li class="notice-li">공지사항1</li>
+                <c:forEach var="n" items="${notice }">
+                    <li class="notice-li"><a href="${path }/service/serviceMain.do">${n.noticeboardTitle}</a></li>
                     <div class="notice-line"></div>
-                    <li class="notice-li">공지사항2</li>
+                </c:forEach>    
+                    <!-- <li class="notice-li">공지사항2</li>
                     <div class="notice-line"></div>
                     <li class="notice-li">공지사항3</li>
                     <div class="notice-line"></div>
-                    <li class="notice-li">공지사항4</li>
+                    <li class="notice-li">공지사항4</li> -->
                 </ul>
             </div>
             <div class="footer-hotTracks">
@@ -1127,7 +1148,104 @@
         $(".hotTracks").removeClass("fixed");
         }
 }) 
+	
 </script>
+<script>
+
+	let seasonElec = document.getElementById("seasonbox-elec");
+	let seasonStorage = document.getElementById("seasonbox-storage");
+	let seasonReading = document.getElementById("seasonbox-reading");
+	let seasonEtc = document.getElementById("seasonbox-etc");
+	
+	let elecImg = document.getElementById("seasonElecImg");
+	let storImg = document.getElementById("seasonStorageImg");
+	let readImg = document.getElementById("seasonReadingImg");
+	let etcImg = document.getElementById("seasonEtcImg");
+	
+	let num = document.getElementById("seasonbox-num");
+	
+	console.log(seasonElec);
+	console.log(seasonStorage);
+	console.log(seasonReading);
+	console.log(seasonEtc);
+	console.log(elecImg);
+	console.log(storImg);
+	console.log(readImg);
+	console.log(etcImg);
+	console.log(num);
+	
+	seasonElec.addEventListener('click', function(){
+		num.innerText='';
+		num.innerText='01';
+		elecImg.style.display='flex';
+		storImg.style.display='none';
+		readImg.style.display='none';
+		etcImg.style.display='none';
+	})
+	
+	seasonStorage.addEventListener('click', function(){
+		num.innerText='';
+		num.innerText='02';
+		elecImg.style.display='none';
+		storImg.style.display='flex';
+		readImg.style.display='none';
+		etcImg.style.display='none';
+	})
+	
+	seasonReading.addEventListener('click', function(){
+		num.innerText='';
+		num.innerText='03';
+		elecImg.style.display='none';
+		storImg.style.display='none';
+		readImg.style.display='flex';
+		etcImg.style.display='none';
+	})
+	
+	seasonEtc.addEventListener('click', function(){
+		num.innerText='';
+		num.innerText='04';
+		elecImg.style.display='none';
+		storImg.style.display='none';
+		readImg.style.display='none';
+		etcImg.style.display='flex';
+	})
+
+</script>
+
+<script>
+$(document).ready(function(){
+	  $('.your-class').slick({
+	    
+		  $('.center').slick({
+			  centerMode: true,
+			  centerPadding: '60px',
+			  slidesToShow: 3,
+			  responsive: [
+			    {
+			      breakpoint: 768,
+			      settings: {
+			        arrows: false,
+			        centerMode: true,
+			        centerPadding: '40px',
+			        slidesToShow: 3
+			      }
+			    },
+			    {
+			      breakpoint: 480,
+			      settings: {
+			        arrows: false,
+			        centerMode: true,
+			        centerPadding: '40px',
+			        slidesToShow: 1
+			      }
+			    }
+			  ]
+			});
+	  });
+	});
+</script>
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="${path }/resources/js/gift/gift_headBanner.js"></script>
 <script src="${path }/resources/js/gift/gift_moreView.js"></script>
 <script src="${path }/resources/js/gift/timer.js"></script>
