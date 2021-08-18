@@ -27,6 +27,11 @@ public class AuctionServiceImpl implements AuctionService {
 	
 
 	@Override
+	public int updateTransactionY(Map param) {
+		return dao.updateTransactionY(session,param);
+	}
+
+	@Override
 	public List<AuctionBid> selectbidlist() {
 		return dao.selectbidlist(session);
 	}

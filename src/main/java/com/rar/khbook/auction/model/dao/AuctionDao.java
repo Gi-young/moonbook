@@ -80,4 +80,6 @@ public interface AuctionDao {
 
 	AuctionBid selectauctiobanner(SqlSession session);
 
+	int updateTransactionY(SqlSession session, Map param);
+
 }

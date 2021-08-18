@@ -193,6 +193,20 @@ public class AuctionController {
 		}
 		return "common/openmsg";
 	}
+	@RequestMapping("/auction/auctionbuynowNeedEnd")
+	public String auctionbuynowNeedEnd(@RequestParam Map param,Model m) {
+		int result = service.updateAddbid(param);
+		if (result>0) {			
+			m.addAttribute("msg","등록성공");
+			param.put("S", "S");
+			service.updatestateS(param);
+		}else {
+			m.addAttribute("msg","등록실패");
+		}
+		return "common/openmsg";
+		
+	}
+	
 	//물품 클릭
 	@RequestMapping("/auction/acutionview")
 	public String auctionview(@RequestParam Map param,Model m) {
@@ -297,6 +311,7 @@ public class AuctionController {
 	//경매 구매 확인
 	@RequestMapping("/auction/auctionBpage")
 	public String auctionBpage(@RequestParam Map param,Model m) {
+		System.out.println(param);
 		m.addAttribute("member",service.selectbidMember(param));
 		m.addAttribute("auction",service.selectauctionNo(param));
 		return "auction/auctionBpage";
@@ -419,6 +434,31 @@ public class AuctionController {
 	public AuctionBid auctionbanner() {		
 		return service.selectauctiobanner();
 	}
+	
+	//회원 입출금 관리
+	@RequestMapping("/auction/auctionAdminBank")
+	public String auctionAdminBank(Model m,@RequestParam  Map param,
+			@RequestParam(value="cPage",defaultValue ="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue ="15") int numPerpage) {
+		int totaldata=service.auctionBankCount(param);
+		m.addAttribute("auctionbank",service.auctionBank(param,cPage,numPerpage));
+		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totaldata, cPage, numPerpage, "auctionBank.do",""));
+		return "auction/auctionAdminBank";
+		
+	}
+	
+	@RequestMapping("/auction/acutionAdminBankEnd")
+	public String auctionAdminBank(Model m,@RequestParam Map param) {
+		int result=service.updateTransactionY(param);
+		if (result>0) {			
+			m.addAttribute("msg","정산 성공");		
+		}else {
+			m.addAttribute("msg","정산 실패");
+		}
+		m.addAttribute("loc","/auction/auctionAdminBank");
+		return "common/msg";
+	}
+	
 
 	
 	

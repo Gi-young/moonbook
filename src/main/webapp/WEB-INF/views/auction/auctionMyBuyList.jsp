@@ -54,7 +54,7 @@
 							<c:if test="${a.auctionState eq 'S' && a.state eq '낙찰'}">				
 									<span style="color:blue">낙찰</span>
 									<c:if test="${a.buylerState eq 'N'}">
-									<button onclick="open('${path}/auction/auctionBpage?auctionNo=${a.auctionNo }&bidId=${a.memberId }','auctionbid','width=500,height=600')">배송 확인하기</button>	
+									<button onclick="openAuctionBPage(${a.auctionNo},'${a.memberId }');">배송 확인하기</button>	
 									</c:if>
 									<c:if test="${a.buylerState eq 'Y'}">
 									<span style="color:blue;">배송 확인</span>	
@@ -76,6 +76,9 @@
 							<c:if test="${a.auctionState eq 'Y'}">				
 									<span style="color:blue">진행중</span>																
 							</c:if>
+							<c:if test="${a.auctionState eq 'B'}">				
+									<span style="color:sliver">마감</span>																
+							</c:if>
 						
 							</td>
 						</tr>		
@@ -85,6 +88,19 @@
 			<div class="pageBar">${pageBar }</div>
         </div>
     </div>
+    <script>
+	function openAuctionBPage(auctionNo,bidId) {
+		console.log(bidId)
+		let windowHeight = window.screen.height;
+		let windowWidth = window.screen.width;
+		let width = 500;
+		let height = 600;
+		
+		status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+		
+		window.open('${path}/auction/auctionBpage?auctionNo=' + auctionNo+'&bidId='+bidId,'auctionBpage', status);
+	}
+    </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value=""/>

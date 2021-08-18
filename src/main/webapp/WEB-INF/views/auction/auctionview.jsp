@@ -54,8 +54,8 @@
 	                </div>
 	
 	                <div class="auctionview_btn">
-	                    <a href="">입찰하기</a>
-	                    <a href="">즉시 구매</a>
+	                    <a onclick="openAuctionBid(${a.auctionNo});">입찰하기</a>
+	                    <a onclick="openAuctionBuyNow(${a.auctionNo});">즉시 구매</a>
 	                </div>
 	            </div>
 	        </div>
@@ -180,6 +180,28 @@
 	   timer = setInterval(showRemaining, 1000);
 	   }
 	   CountDownTimer('${auction.endDate}','countdown')
+	   
+	   	function openAuctionBid(auctionNo) {
+			let windowHeight = window.screen.height;
+			let windowWidth = window.screen.width;
+			let width = 500;
+			let height = 600;
+			
+			status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+			
+			window.open('${path}/auction/actionbid.do?auctionNo=' + auctionNo,'auctionbid', status);
+		}
+		
+		function openAuctionBuyNow(auctionNo) {
+			let windowHeight = window.screen.height;
+			let windowWidth = window.screen.width;
+			let width = 500;
+			let height = 600;
+			
+			status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+			
+			window.open('${path}/auction/actionbuyNow.do?auctionNo=' + auctionNo,'auctionbuynow', status);
+		}
 	</script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
