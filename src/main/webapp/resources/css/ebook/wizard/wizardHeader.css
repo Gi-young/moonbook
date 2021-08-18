@@ -15,7 +15,7 @@ div#container {
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 225px 1fr;
+    grid-template-columns: 260px 1fr;
     grid-template-rows: 50px 1fr;
 }
 
@@ -40,10 +40,19 @@ header ul {
 }
 
 header li {
+    box-sizing: border-box;
     margin-right: 30px;
-    background-color: whitesmoke;
+    background-color: white;
     border-radius: 5px;
     padding: 5px;
+}
+
+header li:first-of-type {
+    padding-top: 7px;
+}
+
+header li:last-of-type {
+    padding-top: 4px;
 }
 
 header li:hover {
@@ -53,14 +62,28 @@ header li:hover {
 header a {
     text-decoration: none;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bolder;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
-header span#noticeAlert {
-    font-size: 20px;
-    font-weight: bolder;
-    color: red;
+#noticeAlert {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    background-color: orange;
+    color: white;
+    border-radius: 50%;
+    font-size: 17px;
+    margin-left: 5px;
+    padding-bottom: 2px;
 }
 
 aside {
@@ -113,4 +136,8 @@ section {
 
 .music-title {
     color: pink;
+}
+
+#hiToMember {
+    font-weight: bold;
 }
