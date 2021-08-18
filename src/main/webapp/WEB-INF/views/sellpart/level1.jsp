@@ -212,6 +212,9 @@ a{
 ul{
     list-style:none;
     }
+    
+
+
 .contenttitle{
     font-weight: bold;
 }
@@ -1232,14 +1235,14 @@ transition: all 0.2s linear;
                     <a href="#" class="contenttitle">이벤트</a><span class="moreview">더보기 +</span> 
                 </div>
                 <div class="content-body" style="margin-top: 20px;">
-                   <div style="width: 500px; height: 150px;" id="content_body_event" class="line content-todaybook">
+                   <div style="width: 530px; height: 150px;" id="content_body_event" class="line content-todaybook">
                         <ul>
-                            <li><a href=""><strong>21-08-23</strong> 곰문책방 오픈기념 이벤트!!</a></li>
-                            <li><a href=""><strong style="color: red;">[상시]</strong> <strong>BlackFriday</strong> 도서할인!</a></li>
-                            <li><a href=""><strong>[9월30일까지]</strong>&nbsp;무료 등급 업그레이드 이벤트!</a></li>
+                        <c:forEach var="e" items="${event}">
+                            <li><a href="${path }/service/eventBoard.do">${e.eventboardTitle }</a></li>
+                        </c:forEach>
                         </ul>
                     </div>
-                    <div style="width: 200px; height: 150px;"
+                    <div style="width: 100px; height: 150px;"
                     class="line">
                         AD
                     <img src="${path}/resources/img/sellLev1/lev1add2.png" alt="">    

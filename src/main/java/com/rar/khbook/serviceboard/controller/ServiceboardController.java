@@ -41,7 +41,6 @@ public class ServiceboardController {
 		return "servicecenter/msg2";
 	}
 	@RequestMapping("/ServiceboardController/noticeBoardWrite.do")
-	@ResponseBody
 	public ModelAndView noticeBoardWrite(String noticeTitle, String noticeContent, String memberId, ModelAndView mv) {
 		HashMap<String, Object> map = new HashMap<>();
 		

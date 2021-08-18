@@ -11,11 +11,10 @@
 <jsp:param name="" value=""/>
 </jsp:include>
 
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHome.css">
-	<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
-<jsp:param name="" value=""/>
-</jsp:include>
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/book/bookHome.css">
+	<div class="div950">
 	<main>
+	
 		<form id="searchFrm">
 			<div>
 				
@@ -73,6 +72,7 @@
 			</div>
 		</form>
 	</main>
+	</div>
 				<!-- 내용출력? -->
 	<input type="hidden" id="contextPath" value="${path}"/>
 	

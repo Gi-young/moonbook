@@ -81,4 +81,16 @@ function searchBook(searchData) {
 			
 		}
 	});
+	
+	$.ajax({
+		url: contextPath + "/ebook/getPageBar.do",
+		type: "GET",
+		data: searchData,
+		success: data => {
+			console.log(data);
+
+			let pageBar = document.querySelector("div.page-bar");
+			pageBar.innerHTML = data;
+		}
+	});
 }

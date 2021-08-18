@@ -76,6 +76,18 @@ function searchHotnew(searchData) {
 	let hotnewimg6=$(".hotnewimg6");
 	let hotnewimg7=$(".hotnewimg7");
 	
+	/* 따끈따끈 Link */
+	let hotnewLink0=$(".hotnewLink0");
+	let hotnewLink1=$(".hotnewLink1");
+	let hotnewLink2=$(".hotnewLink2");
+	let hotnewLink3=$(".hotnewLink3");
+	let hotnewLink4=$(".hotnewLink4");
+	let hotnewLink5=$(".hotnewLink5");
+	let hotnewLink6=$(".hotnewLink6");
+	let hotnewLink7=$(".hotnewLink7");
+
+	
+	
 	
 	/* 따끈따끈신작 타이틀 */
 	let hotnewtitle0=$(".hotnewtitle0");
@@ -97,6 +109,8 @@ function searchHotnew(searchData) {
 	let hotnewauthor6=$(".hotnewauthor6");
 	let hotnewauthor7=$(".hotnewauthor7");
 	
+	let src = "${path}/sellpart/bookDetail.do?bindNo=";
+	
 	$.ajax({
 		url: "${path}/ebook/search.do",
 		type: "post",
@@ -105,8 +119,18 @@ function searchHotnew(searchData) {
 		success: data => {
 			console.log("여기부터 보면 됩니다.");
 			console.log(data);
+			/* 따끈따끈 Link */
+			$(hotnewLink0).attr('href',src+data[0].bindNo);
+			$(hotnewLink1).attr('href',src+data[1].bindNo);
+			$(hotnewLink2).attr('href',src+data[2].bindNo);
+			$(hotnewLink3).attr('href',src+data[3].bindNo);
+			$(hotnewLink4).attr('href',src+data[4].bindNo);
+			$(hotnewLink5).attr('href',src+data[5].bindNo);
+			$(hotnewLink6).attr('href',src+data[6].bindNo);
+			$(hotnewLink7).attr('href',src+data[7].bindNo);
 			
 			
+	
 			/* 따끈따끈신작 이미지 */
 			$(hotnewimg0).attr('src',data[0].image );
 			$(hotnewimg1).attr('src',data[1].image );
@@ -154,13 +178,21 @@ function searchHotnew(searchData) {
 }
 
   function searchBestseller(searchData) {
-	 
+		let src = "${path}/sellpart/bookDetail.do?bindNo=";
 	 /* 가장 인기있는 아이템 도서 이미지 1-5 */
 	let bestsellerimg0=$(".bestsellerimg0");
 	let bestsellerimg1=$(".bestsellerimg1");
 	let bestsellerimg2=$(".bestsellerimg2");
 	let bestsellerimg3=$(".bestsellerimg3");
 	let bestsellerimg4=$(".bestsellerimg4");
+	
+	/* 인기가 많은 Link */
+	let bsLink0=$(".bsLink0");
+	let bsLink1=$(".bsLink1");
+	let bsLink2=$(".bsLink2");
+	let bsLink3=$(".bsLink3");
+	let bsLink4=$(".bsLink4");
+	let bsLink5=$(".bsLink5");
 	
 	
 	 /* 가장 인기있는 아이템 도서 타이틀 1-5 */
@@ -194,6 +226,14 @@ function searchHotnew(searchData) {
 			$(bestsellerimg3).attr('src',data[3].image );
 			$(bestsellerimg4).attr('src',data[4].image );
 			
+			/* 인기있는 Link */
+			$(bsLink0).attr('href',src+data[0].bindNo);
+			 $(bsLink1).attr('href',src+data[1].bindNo);
+			 $(bsLink2).attr('href',src+data[2].bindNo);
+			 $(bsLink3).attr('href',src+data[3].bindNo);
+			 $(bsLink4).attr('href',src+data[4].bindNo);
+			/*  $(bsLink5).attr('href',src+data[5].bindNo); */
+			
 			/* 베스트셀러 타이틀 ( 괄호 앞 잘라내기 */
 			console.log(data[0].title);
 			
@@ -222,13 +262,20 @@ function searchHotnew(searchData) {
 	})
 }   
   function searchRating(searchData) {
-	 
+	let src = "${path}/sellpart/bookDetail.do?bindNo=";
 	 /* 가장 평점 높은 도서 이미지 1-5 */
 	let bestratingimg0=$(".bestratingimg0");
 	let bestratingimg1=$(".bestratingimg1");
 	let bestratingimg2=$(".bestratingimg2");
 	let bestratingimg3=$(".bestratingimg3");
 	let bestratingimg4=$(".bestratingimg4");
+	
+	/* 평점 좋은 Link */
+	let ratingLink0=$(".ratingLink0");
+	let ratingLink1=$(".ratingLink1");
+	let ratingLink2=$(".ratingLink2");
+	let ratingLink3=$(".ratingLink3");
+	let ratingLink4=$(".ratingLink4"); 
 	
 	
 	 /* 가장 평점 높은 도서 타이틀 1-5 */
@@ -254,15 +301,22 @@ function searchHotnew(searchData) {
 		success: data=>{
 			console.log("나와라뿅뿅");
 			console.log(data[0].title+"구분할수있는문자열");
-			/* 베스트셀러 이미지 */
+			/* 평점 좋은 이미지 */
 			$(bestratingimg0).attr('src',data[0].image );
 			$(bestratingimg1).attr('src',data[1].image );
 			$(bestratingimg2).attr('src',data[2].image );
 			$(bestratingimg3).attr('src',data[3].image );
 			$(bestratingimg4).attr('src',data[4].image );
 			
+			/* 평점 좋은 Link */
+			$(ratingLink0).attr('href',src+data[0].bindNo);
+			$(ratingLink1).attr('href',src+data[1].bindNo);
+			$(ratingLink2).attr('href',src+data[2].bindNo);
+			$(ratingLink3).attr('href',src+data[3].bindNo);
+			$(ratingLink4).attr('href',src+data[4].bindNo);
 			
-			/* 베스트셀러 타이틀 ( 괄호 앞 잘라내기 */
+			
+			/* 평점 좋은 타이틀 ( 괄호 앞 잘라내기 */
 			console.log(data[0].title);
 			
 			var brtitle0=(data[0].title).split('(');
@@ -278,7 +332,7 @@ function searchHotnew(searchData) {
 			$(bestratingtitle3).html(brtitle3[0] );
 			$(bestratingtitle4).html(brtitle4[0] );
 
-			/* 베스트셀러 작가 */
+			/* 평점 좋은 작가 */
 			$(bestratingauthor0).html(data[0].author );
 			$(bestratingauthor1).html(data[1].author );
 			$(bestratingauthor2).html(data[2].author );
@@ -1330,13 +1384,13 @@ padding-bottom: 5px;
                     
                     <div class="hotnewinner hotnewjccenter">
                     <div>
-                    
-                        <a href=""><img class="hotnewimg0 hotnewimgsize" src="#" alt=""></a>
+                   
+                        <a href="#" class="hotnewLink0"><img class="hotnewimg0 hotnewimgsize" src="#" alt=""></a>
                         <input type="hidden" name="" value="">
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle0"></p></a></div>
+                        <a href="#" class="hotnewLink0"><p class="hotnewtitle hotnewtitle0"></p></a></div>
                     <div class="author hotnewauthor0">박원재</div>
                     </div>
                   
@@ -1345,32 +1399,32 @@ padding-bottom: 5px;
                     
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href=""><img class="hotnewimg1 hotnewimgsize" src="#" alt=""></a>
+                            <a href="#" class="hotnewLink1"><img class="hotnewimg1 hotnewimgsize" src="#" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle1"></p></a></div>
+                            <a href="#" class="hotnewLink1"><p class="hotnewtitle hotnewtitle1"></p></a></div>
                             <div class="author hotnewauthor1">박원재</div>
                         </div>
                         <div class="hotnewinner hotnewjccenter">
                             <div>
-                                <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg2" src="#" alt=""></a>
+                                <a href="#" class="hotnewLink2"><img class="hotnewimgsize hotnewimg2" src="#" alt=""></a>
                                 <input type="hidden" name="" value="">
                             </div>
                             <div class="hotnewcg">[음식/생활]</div>
                             <div>
-                                <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle2"></p></a></div>
+                                <a href="#" class="hotnewLink2"><p class="hotnewtitle hotnewtitle2"></p></a></div>
                                 <div class="author hotnewauthor2">박원재</div>
                             </div>
                             <div class="hotnewinner hotnewjccenter">
                                 <div>
-                                    <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg3" src="#" alt=""></a>
+                                    <a href="#" class="hotnewLink3"><img class="hotnewimgsize hotnewimg3" src="#" alt=""></a>
                                     <input type="hidden" name="" value="">
                                 </div>
                                 <div class="hotnewcg">[음식/생활]</div>
                                 <div>
-                                    <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle3"></p></a></div>
+                                    <a href="#" class="hotnewLink3"><p class="hotnewtitle hotnewtitle3"></p></a></div>
                                     <div class="author hotnewauthor3">박원재</div>
                                 </div>
                 </li>
@@ -1379,24 +1433,24 @@ padding-bottom: 5px;
                 <li class="hotNewslide_content hotnewbox">
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg4" src="#" alt=""></a>
+                            <a href="#" class="hotnewLink4"><img class="hotnewimgsize hotnewimg4" src="#" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="#"><p class="hotnewtitle hotnewtitle4"></p></a></div>
+                            <a href="#" class="hotnewLink4"><p class="hotnewtitle hotnewtitle4"></p></a></div>
                             <div class="author hotnewauthor4">박원재</div>
                         </div>   
                         
 
            <div class="hotnewinner hotnewjccenter">
                 <div>
-                    <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg5" src="#" alt=""></a>
+                    <a href="#" class="hotnewLink5"><img class="hotnewimgsize hotnewimg5" src="#" alt=""></a>
                     <input type="hidden" name="" value="">
                 </div>
                 <div class="hotnewcg">[음식/생활]</div>
                 <div>
-                    <a href="#"><p class="hotnewtitle hotnewtitle5"></p></a></div>
+                    <a href="#" class="hotnewLink5"><p class="hotnewtitle hotnewtitle5"></p></a></div>
                     <div class="author hotnewauthor5">박원재</div>
                 </div>   
 
@@ -1405,22 +1459,22 @@ padding-bottom: 5px;
 
                 <div class="hotnewinner hotnewjccenter">
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg6" src="#" alt=""></a>
+                        <a href="#" class="hotnewLink6"><img class="hotnewimgsize hotnewimg6" src="#" alt=""></a>
                         <input type="hidden" name="" value="">
                     </div>
                     <div class="hotnewcg">[음식/생활]</div>
                     <div>
-                        <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle6"></p></a></div>
+                        <a href="#" class="hotnewLink6"><p class="hotnewtitle hotnewtitle6"></p></a></div>
                         <div class="author hotnewauthor6">박원재</div>
                     </div>
                     <div class="hotnewinner hotnewjccenter">
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img class="hotnewimgsize hotnewimg7" src="#" alt=""></a>
+                            <a href="#" class="hotnewLink7"><img class="hotnewimgsize hotnewimg7" src="#" alt=""></a>
                             <input type="hidden" name="" value="">
                         </div>
                         <div class="hotnewcg">[음식/생활]</div>
                         <div>
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle hotnewtitle7"></p></a></div>
+                            <a href="#" class="hotnewLink7"><p class="hotnewtitle hotnewtitle7"></p></a></div>
                             <div class="author hotnewauthor7">박원재</div>
                  </div>
               
@@ -1500,10 +1554,10 @@ padding-bottom: 5px;
                             <strong class="rankwhite">01</strong>
                         </div>
                         <div class="cover ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12 bestsellerimg0"></a>
+                            <a href="#" class="bsLink0"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12 bestsellerimg0"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle0"></p></a>
+                            <a href="#" class="bsLink0"><p class="hotnewtitle bestsellertitle0"></p></a>
                         </div>
                         <div class="author bestsellerauthor0">박원재</div>
                     </li>
@@ -1513,10 +1567,10 @@ padding-bottom: 5px;
                         </div>
                         <div class="cover">
                             <div class="cover">
-                                <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg1"></a>
+                                <a href="#" class="bsLink1"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg1"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle1"></p></a>
+                            <a href="#" class="bsLink1"><p class="hotnewtitle bestsellertitle1"></p></a>
                         </div>
                         <div class="author bestsellerauthor1">박원재</div>
                     </li>
@@ -1525,10 +1579,10 @@ padding-bottom: 5px;
                             <strong class="rank">03</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg2"></a>
+                            <a href="#" class="bsLink2"><img alt="bestseller3" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg2"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle2"></p></a>
+                            <a href="#" class="bsLink2"><p class="hotnewtitle bestsellertitle2"></p></a>
                         </div>
                         <div class="author bestsellerauthor2">박원재</div>
                     </li>
@@ -1537,10 +1591,10 @@ padding-bottom: 5px;
                             <strong class="rank">04</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg3"></a>
+                            <a href="#" class="bsLink3"><img alt="bestseller4" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310 bestsellerimg3"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle3"></p></a>
+                            <a href="#" class="bsLink3"><p class="hotnewtitle bestsellertitle3"></p></a>
                         </div>
                         <div class="author bestsellerauthor3">박원재</div>
                     </li>
@@ -1549,16 +1603,16 @@ padding-bottom: 5px;
                             <strong class="rank">05</strong>
                         </div>
                         <div class="cover">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg4"></a>
+                            <a href="#" class="bsLink4"><img alt="bestseller5" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310 bestsellerimg4"></a>
                         </div>
                         <div class="title ">
-                            <a href="${path}/sellbookController/sellbookDetail.do"><p class="hotnewtitle bestsellertitle4"></p></a>
+                            <a href="#" class="bsLink4"><p class="hotnewtitle bestsellertitle4"></p></a>
                         </div>
                         <div class="author bestsellerauthor4">박원재</div>
                     </li>
                 </ul>
                
-
+			<!-- 기프트 1~5위 -->
                 <ul class="bestsellerlist">
                     <li class="best1">
                         <div class="icon icongray">
@@ -1633,20 +1687,20 @@ padding-bottom: 5px;
 
 
                     <div class="booktubercontainer textalign margintop50">
-                        <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller12"></a>
+                        <a href="#" class="bsLink5"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller12"></a>
                     </div>
                     <div class="title "><p class="margintop20 ">[북튜버의 책방]</p></div>
                     <div class="comment">
-                        <a href="#"><p class="margintop10">[로그노트] 어지러운 집 정리하는 꿀팁</p></a>
+                        <a href="#" class="bsLink5"><p class="margintop10">[로그노트] 어지러운 집 정리하는 꿀팁</p></a>
                     </div>
                     <ul>
                         <li>
                             <div class="booktubercontainer textalign margintop50 ">
                                 <img alt="booktuber" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310" style="opacity: 0;"></a>
                             </div>
-                            <div class="title">
+                            <!-- <div class="title">
                                 <a href="#"><p class="margintop20" style="opacity: 0;">책의 제목자리</p></a>
-                            </div>
+                            </div> -->
                         </li>
                     </ul>
                 </div>
@@ -1693,9 +1747,9 @@ padding-bottom: 5px;
                             <ul>
                                 <li>
                                     <div class="cover weekbookcontent khloverbg1">
-                                        <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg0"></a>
+                                        <a href="#" class="ratingLink0"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg0"></a>
                                         <div class=" " > 
-                                            <a href="#"><p class="hotnewtitle bestratingtitle0">먹어야 산다</p></a>
+                                            <a href="#" class="ratingLink0"><p class="hotnewtitle bestratingtitle0">먹어야 산다</p></a>
                                         </div>
                                         <div class="author bestratingauthor0">박원재</div>
                                         <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
@@ -1708,10 +1762,10 @@ padding-bottom: 5px;
                             <ul class="flex khloverul">
                                 <li>
                                     <div class="cover khloverright ">
-                                        <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg1"></a>
+                                        <a href="#" class="ratingLink1"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg1"></a>
                                         
                                         <div class="title " > 
-                                            <a href="#"><p class="hotnewtitle bestratingtitle1">먹어야 산다</p></a>
+                                            <a href="#" class="ratingLink1"><p class="hotnewtitle bestratingtitle1">먹어야 산다</p></a>
                                             <div class="author bestratingauthor1">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
                                                 <p class="khloverscore">9.2</p>
@@ -1720,10 +1774,10 @@ padding-bottom: 5px;
                                 </li>
                                 <li>
                                     <div class="cover khloverright ">
-                                        <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg2"></a>
+                                        <a href="#" class="ratingLink2"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg2"></a>
                                         
                                         <div class="title " > 
-                                            <a href="#"><p class="hotnewtitle bestratingtitle2">먹어야 산다</p></a>
+                                            <a href="#" class="ratingLink2"><p class="hotnewtitle bestratingtitle2">먹어야 산다</p></a>
                                             <div class="author bestratingauthor2">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
                                                 <p class="khloverscore">9.5</p>
@@ -1732,10 +1786,10 @@ padding-bottom: 5px;
                                 </li>
                                 <li>
                                     <div class="cover khloverright ">
-                                        <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg3"></a>
+                                        <a href="#" class="ratingLink3"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg3"></a>
                                         
                                         <div class="title " > 
-                                            <a href="#"><p class="hotnewtitle bestratingtitle3">먹어야 산다</p></a>
+                                            <a href="#" class="ratingLink3"><p class="hotnewtitle bestratingtitle3">먹어야 산다</p></a>
                                             <div class="author bestratingauthor3">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
                                                 <p class="khloverscore">8.9</p>
@@ -1744,9 +1798,9 @@ padding-bottom: 5px;
                                 </li>
                                 <li>
                                     <div class="cover khloverright">
-                                        <a href="${path}/sellbookController/sellbookDetail.do"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg4"></a>
+                                        <a href="#" class="ratingLink4"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="khloveritem1 bestratingimg4"></a>
                                         <div class="title " > 
-                                            <a href="#"><p class="hotnewtitle bestratingtitle4">먹어야 산다</p></a>
+                                            <a href="#" class="ratingLink4"><p class="hotnewtitle bestratingtitle4">먹어야 산다</p></a>
                                             <div class="author bestratingauthor4">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
                                             <p class="khloverscore">9.9</p>
