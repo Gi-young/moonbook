@@ -135,7 +135,8 @@ public class ServiceCenterDaoImpl implements ServiceCenterDao {
 	@Override
 	public List<EventBoard> searchEventBoardList(SqlSession session) {
 		// TODO Auto-generated method stub
-		return session.selectList("serviceBoard.searchEventBoardList");
+		RowBounds rb = new RowBounds(0, 3);
+		return session.selectList("serviceBoard.searchEventBoardList",null,rb);
 	}
 
 
