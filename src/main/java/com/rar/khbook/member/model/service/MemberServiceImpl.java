@@ -191,7 +191,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<Order> giftPurchaseList(Map param, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return dao.giftPurchaseList(session, param, cPage, numPerpage);
-
+	}
 	// 회원가입 후 장바구니
 	@Override 
 	public int createShopingList(Member m) {
