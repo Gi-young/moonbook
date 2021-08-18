@@ -140,6 +140,7 @@ ul.header-icons i {
 }
 
 div.navbar-boundary-box {
+	position: relative;
 	width: 950px;
 	display: flex;
 	flex-direction: row;
@@ -198,4 +199,14 @@ div.only-admin-box>button:hover {
 	background-color: black;
 	color: white;
 	cursor: pointer;
+}
+
+#hiddenMenu {
+    position: absolute;
+	display: none;
+	left: 0px;
+	top: 55px;
+	width: 500px;
+	height: 300px;
+	background-color: black;
 }

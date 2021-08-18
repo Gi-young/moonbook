@@ -21,7 +21,7 @@
 		INSERT INTO NOTICEBOARD VALUES (SEQ_NOTICEBOARD_NO.NEXTVAL,#{noticeTitle},#{noticeContent},SYSDATE,#{memberId})
 	</insert>
 	<select id="searchNoticeBoardList" resultMap="noticeBoard">
-		SELECT * FROM NOTICEBOARD
+		SELECT * FROM NOTICEBOARD ORDER BY NOTICEBOARD_DATE DESC
 	</select>
 	<delete id="deleteNoticeBoard">
 		DELETE FROM NOTICEBOARD WHERE NOTICEBOARD_NO = #{noticeboardNo}

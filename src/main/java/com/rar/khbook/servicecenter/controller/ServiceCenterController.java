@@ -35,7 +35,7 @@ public class ServiceCenterController {
 		mv.setViewName("servicecenter/serviceMain");
 		return mv;
 	}
-	
+
 	@RequestMapping("/service/eventBoard.do")
 	public ModelAndView eventPage(ModelAndView mv) {
 			System.out.println("이벤트리스트 가져오는 컨트롤러 실행");

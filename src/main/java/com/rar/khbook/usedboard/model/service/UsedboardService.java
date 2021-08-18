@@ -57,4 +57,6 @@ public interface UsedboardService {
 	int usedboardMySingoDelete(int no);
 	
 	int cancelPayment(int no);
+	
+	int usedboardFileUpload(Usedboardfile f);
 }

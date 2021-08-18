@@ -17,6 +17,26 @@ public interface ServiceCenterDao {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	List<Faq> selectFaqList(SqlSession session);
 	
 	int inputAskFaq(SqlSession session,Map param);
@@ -25,6 +45,27 @@ public interface ServiceCenterDao {
 
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	List<NoticeBoard> searchNoticeBoardList(SqlSession session);
 
 	List<EventBoard> searchEventBoardList(SqlSession session);
