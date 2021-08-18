@@ -26,106 +26,6 @@ public class ServiceCenterServiceImpl implements ServiceCenterService {
 	
 	@Autowired
 	private SqlSession session;
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@Override
-	public List<Faq> selectFaqList() {
-		// TODO Auto-generated method stub
-		return dao.selectFaqList(session);
-	}
-	@Override
-	public int inputAskFaq(Map param) {
-		// TODO Auto-generated method stub
-		return dao.inputAskFaq(session,param);
-	}
-	@Override
-	public List<Faq> searchFaq(Map param) {
-		// TODO Auto-generated method stub
-		return dao.searchFaq(session,param);
-	}
-	
-	
-	
-
 	
 	@Override
 	public List<NoticeBoard> searchNoticeBoardList() {
@@ -137,6 +37,24 @@ public class ServiceCenterServiceImpl implements ServiceCenterService {
 	public List<EventBoard> searchEventBoardList() {
 		// TODO Auto-generated method stub
 		return dao.searchEventBoardList(session);
+	}
+	
+	//faq 시작
+	@Override
+	public List<Faq> selectFaqList() {
+		// TODO Auto-generated method stub
+		return dao.selectFaqList(session);
+	}
+	
+	@Override
+	public int inputAskFaq(Map param) {
+		// TODO Auto-generated method stub
+		return dao.inputAskFaq(session,param);
+	}
+	@Override
+	public List<Faq> searchFaq(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchFaq(session,param);
 	}
 
 

@@ -15,94 +15,21 @@ import com.rar.khbook.servicecenter.model.vo.Faq;
 @Repository
 public class ServiceCenterDaoImpl implements ServiceCenterDao {
 
+	@Override
+	public List<NoticeBoard> searchNoticeBoardList(SqlSession session) {
+		// TODO Auto-generated method stub
+		RowBounds rb = new RowBounds(0, 3);
+		
+		return session.selectList("serviceBoard.searchNoticeBoardList",null,rb);
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public List<EventBoard> searchEventBoardList(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("serviceBoard.searchEventBoardList");
+	}
+
+	//faq 시작
 	@Override
 	public List<Faq> selectFaqList(SqlSession session) {
 		// TODO Auto-generated method stub
@@ -118,27 +45,9 @@ public class ServiceCenterDaoImpl implements ServiceCenterDao {
 	@Override
 	public List<Faq> searchFaq(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectList("admin.searchFaq",param);
-	}
-	
-	
-	
-
-	@Override
-	public List<NoticeBoard> searchNoticeBoardList(SqlSession session) {
-		// TODO Auto-generated method stub
-		RowBounds rb = new RowBounds(0, 3);
-		
-		return session.selectList("serviceBoard.searchNoticeBoardList",null,rb);
-	}
-
-	@Override
-	public List<EventBoard> searchEventBoardList(SqlSession session) {
-		// TODO Auto-generated method stub
 		RowBounds rb = new RowBounds(0, 3);
 		return session.selectList("serviceBoard.searchEventBoardList",null,rb);
 	}
-
 
 	
 }

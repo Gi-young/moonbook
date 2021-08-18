@@ -10,18 +10,14 @@ import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 
 public interface ServiceCenterService {
 
+	List<NoticeBoard> searchNoticeBoardList();
+
+	List<EventBoard> searchEventBoardList();
+	
+	//faq 시작
 	List<Faq> selectFaqList();
 	int inputAskFaq(Map param);
 	
 	List<Faq> searchFaq(Map param);
-
-
-
-
-
-
-	List<NoticeBoard> searchNoticeBoardList();
-
-	List<EventBoard> searchEventBoardList();
 
 }
