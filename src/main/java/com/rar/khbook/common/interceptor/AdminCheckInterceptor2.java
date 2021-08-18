@@ -16,7 +16,7 @@ public class AdminCheckInterceptor2  implements HandlerInterceptor{
 	public boolean preHandle(HttpServletRequest request,HttpServletResponse response,Object handler) throws Exception{
 		HttpSession session=request.getSession();
 		Member loginMember=(Member)session.getAttribute("loginMember");
-		if(loginMember!=null) {
+		if(loginMember != null && (loginMember.getMemberId()).equals("admin")) {
 			return true;
 		}else {
 			request.setAttribute("msg","관리자만 사용 가능합니다.");

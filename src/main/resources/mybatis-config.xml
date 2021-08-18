@@ -94,21 +94,18 @@
 		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery"
 			alias="delivery" />
 		<!-- top3 -->
-		<typeAlias
-			type="com.rar.khbook.adminchart.model.vo.BookTopThree"
-			alias="booktopthree" />
 
-		<!-- top3 ebook -->
-		<typeAlias
-			type="com.rar.khbook.adminchart.model.vo.EbookTopThree"
-			alias="ebooktopthree" />
-
-		<!-- top3 gift -->
-		<typeAlias
-			type="com.rar.khbook.adminchart.model.vo.GiftTopThree"
-			alias="gifttopthree" />
-
-
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.BookTopThree" alias="booktopthree"/>
+	
+		<!-- top3 ebook-->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.EbookTopThree" alias="ebooktopthree"/>
+	
+		<!-- top3 gift-->
+		<typeAlias type="com.rar.khbook.adminchart.model.vo.GiftTopThree" alias="gifttopthree"/>
+	
+		<!-- faq -->
+		<typeAlias type="com.rar.khbook.servicecenter.model.vo.Faq" alias="faq"/>
+		<typeAlias type="com.rar.khbook.servicecenter.model.vo.FaqCg" alias="faqcg"/>
 
 	</typeAliases>
 </configuration>

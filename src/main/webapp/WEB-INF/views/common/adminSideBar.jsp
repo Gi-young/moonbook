@@ -50,8 +50,8 @@
 			
 			<ul class="sub_content4">
 			<li><p onclick="" class="adminColor2">공지사항</p></li>
-			<li><p onclick="" class="adminColor2">FAQ관리</p></li>
-			<li><p onclick="" class="adminColor2">1대1채팅</p></li>
+			<li><p onclick="" class="adminColor2">이벤트</p></li>
+			<li><p onclick="location.assign('${path}/admin/managementFaq.do')" class="adminColor2">FAQ관리</p></li>
 		</ul>
 			</li>
 		<li class="sub-menu5">
