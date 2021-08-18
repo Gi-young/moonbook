@@ -747,4 +747,17 @@
 		ORDER BY FAQ_NO DESC
   	</select>
   	
+  	<select id="selectFaqReplyNo" resultMap="faqMap">
+  		SELECT * FROM FAQ F JOIN FAQCG G ON F.FAQ_CATE_NUM=G.FAQ_CATE_NUM 
+  		WHERE F.FAQ_NO=#{faqNo}
+  	</select>
+  	
+  	<update id="updateFaqAnswer">
+  		UPDATE FAQ SET FAQ_ANSWER=#{faqAnswer},FAQ_STATUS=1 WHERE FAQ_NO=#{faqNo}
+  	</update>
+  	
+  	<delete id="deleteFaq">
+  		DELETE FROM FAQ WHERE FAQ_NO=#{faqNo}
+  	</delete>
+  	
 </mapper>

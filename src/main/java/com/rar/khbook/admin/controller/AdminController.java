@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +30,7 @@ import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.servicecenter.model.vo.Faq;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -1500,8 +1500,81 @@ public class AdminController {
 		mv.setViewName("admin/chartAnalysis");
 		return mv;
 	}
-
+	//faq관리 시작
+	@RequestMapping("/admin/managementFaq.do")
+	public ModelAndView managementFaqPage(ModelAndView mv) {
+		List<Faq> list=service.selectFaqList();
+		mv.addObject("list", list);
+		
+		mv.setViewName("admin/managementFaq");
+		return mv;
+	}
+	//faq 답변 페이지
+	@RequestMapping("/admin/replyPage.do")
+	public ModelAndView replyPage(ModelAndView mv,@RequestParam Map param) {
+		
+		String faqNo=(String)param.get("faqNo");
+		param.put("faqNo", faqNo);
+		
+		List<Faq> list=service.selectFaqReplyNo(param);
+		mv.addObject("faq", list.get(0));
+		
+		mv.addObject("list", list);
+		mv.setViewName("admin/replyPage");
+		return mv;
+	}
+	//faq 등록 update
+	@RequestMapping("/admin/updateFaqAnswer.do")
+	public ModelAndView updateFaqAnswer(ModelAndView mv,@RequestParam Map param) {
+		
+		int result2=service.updateFaqAnswer(param);
+		
+		String msg="";
+		String loc="";
+		if(result2>0) {
+			msg="등록되었습니다.";
+			
+		}else {
+			msg="등록이 실패 되었습니다.";
+		}
+		
+		System.out.println(param);
+		
+		String faqNo=(String)param.get("faqNo");
+		
+		loc="/admin/replyPage.do?faqNo="+faqNo;
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
+	}
+	@RequestMapping("/admin/deleteFaq.do")
+	public ModelAndView deleteFaq(ModelAndView mv,@RequestParam Map param) {
+		
+		String faqNo=(String)param.get("faqNo");
+		param.put("faqNo",faqNo);
+		System.out.println(faqNo);
+		int result=service.deleteFaq(param);
 	
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="삭제되었습니다.";
+			
+		}else {
+			msg="삭제 실패 되었습니다.";
+		}
+	
+		loc="/admin/managementFaq.do";
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
 	
 	
 	

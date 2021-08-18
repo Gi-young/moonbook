@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+.FaqAnswer-container{
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+    flex-wrap: nowrap;
+}
+.FaqAnswer-title{
+	border: 1px solid black;
+	margin-top:30px;
+	width:800px;
+	height:40px;
+	text-align: center;
+	
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle; 
+}
+.FaqAnswer-box{
+	border: 1px solid #deded8;
+	margin-top:30px;
+	width:800px;
+	height:400px;
+}
+.faqTextArea{
+	width:800px;
+	height:400px;
+}
+.faqcolor{
+	font-weight: bold;
+	color:#582810;
+}
+.faqOx1{
+	margin-left:5px; 
+	color:red;
+	font-weight: bold;
+}
+.faqOx2{
+	margin-left:5px;
+	color:#008080;
+	font-weight:bold;
+}
+.replyFaq{
+	margin-left:10px;
+	background-color: #008080;
+	color:white;
+}
