@@ -249,5 +249,7 @@
 	color:#008080;
 }
 .last_li{
-	text-align: center;
+	text-align: left;
+	padding:10px;
+	line-height: 25px;
 }

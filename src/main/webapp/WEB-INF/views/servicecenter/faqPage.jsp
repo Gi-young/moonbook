@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <c:set var="path" value="${pageContext.request.contextPath }" />
 
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
@@ -77,7 +78,15 @@
 							<li class="sub-faqmenu${vs.index} faqclassName">[${c.faqcgNum.faqcgName}] ${c.faqAsked}<span class="faqOx1"><c:if test="${c.faqStatus==0}">(접수대기)</c:if></span><span class="faqOx2"><c:if test="${c.faqStatus==1}">(답변완료)</c:if></span></li>
 							<ul class="sub_faqcontent${vs.index} faqclassName2">
 							<li class="last_li">
-							${c.faqAnswer }
+								<c:forEach var="a" items="${c.faqAnswer.split('.-')}" varStatus="vs">
+									<c:if test="${!vs.last}">
+										${a}<br>
+									</c:if>
+									<c:if test="${vs.last}">
+										${a}
+									</c:if>
+								</c:forEach>
+							
 								<!-- 장바구니에서 선물주문을 하실 경우 휴대폰, 이메일로 선물번호를 발송하실 수 있습니다.<br>
 								※ 대여, 구매 모두 가능하며 연재,시리즈 상품은 장바구니에서 최대 100권까지 선물하실 수 있습니다.<br><br>
 								
@@ -322,7 +331,7 @@ for(let i=0; i<${list.size()}; i++) {
 		
 	});
 }
-for
+
 
 function inputFaq(){
 	let type31=document.getElementsByName("type31")[0].value;
@@ -361,6 +370,7 @@ function searchFaqList(){
 				let li=document.createElement("li");
 				li.classList.add('sub-faqmenu'+i);
 				li.classList.add('faqclassName');
+				
 				if(data[i].faqStatus==1){
 					checkOx="<span class='faqOx2'>" +'(답변완료)'+"</span>";
 				}else if(data[i].faqStatus==0){
@@ -368,12 +378,22 @@ function searchFaqList(){
 				}
 				li.innerHTML ="[" + data[i].faqcgNum.faqcgName + "] " + data[i].faqAsked+checkOx;
 				
+				let faqsplit;
+				
+				faqsplit=data[i].faqAnswer.split(/.-/).join('<br>');
+				
+				console.log(faqsplit);
 				//for(let j=0;j<data.length;j++){
 					let innerUl=document.createElement("ul");
 					innerUl.classList.add('sub_faqcontent'+i);
 					innerUl.classList.add('faqclassName2');
 					if(data[i].faqAnswer!=null){
-						innerUl.innerHTML = "<li class='last_li'>"+data[i].faqAnswer +"</li>";
+						innerUl.innerHTML = "<li class='last_li'>"+faqsplit+"</li>";
+						//console.log("test");
+						//console.log(data[i].faqAnswer.split("."));
+						//console.log(splitMulti(data[i].faqAnswer,[".","-"]));
+						//console.log(data[i].faqAnswer.split(".-"));
+						
 					}
 					
 					//totalUl.appendChild(innerUl);
