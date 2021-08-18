@@ -136,6 +136,9 @@ h1 a, h3 a {
 .fs8 {
 	font-size: 8px;
 }
+.fs11 {
+	font-size:11px;
+}
 
 .fs15 {
 	font-size: 15px;
@@ -170,7 +173,9 @@ h1 a, h3 a {
 .margin_top20 {
 	margin-top: 20px;
 }
-
+.margin_top15p{
+	margin-top:15%;
+}
 .padding10 {
 	padding: 10px;
 }

@@ -1792,12 +1792,10 @@ padding-bottom: 5px;
                         <div class="footernoticebox-slideContent flex footerbox">
                         
                             <ul class="footerslide2-List" style="margin-left: 20px;">
+                                    <c:forEach var="e" items="${event }">
                                     <li class="footerslide2-content">
-                                        <a href="#">[인문영역 문곰이] 유지훈 고객님 당첨!</a></li>
-                                    <li class="footerslide2-content">
-                                        <a href="#">[요리영역 문곰이] 박원재 고객님 당첨!</a></li>  
-                                    <li class="footerslide2-content">
-                                        <a href="#">[경매영역 문곰이] 윤양협 고객님 당첨!</a></li>
+                                        <a href="#">${e.eventboardTitle }</a></li>
+                                    </c:forEach>
                             </ul>
                         </div>   
                 <div class="footerslide2-pagination"></div>

@@ -3,6 +3,7 @@ package com.rar.khbook.member.controller;
 import java.io.Writer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,17 +60,17 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/login.do")
-	public String login(@RequestParam Map param,Model model,HttpSession session,HttpServletResponse res) {
-		
-		boolean visitFlag=false;
-		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-		String today=sdf.format(new Date());
-		
-		String saveId=(String)param.get("saveId");
-		String memberId=(String)param.get("memberId");
-		if(saveId !=null) {
-			Cookie c= new Cookie("saveId",memberId);
-			c.setMaxAge(7*24*60*60);
+	public String login(@RequestParam Map param, Model model, HttpSession session, HttpServletResponse res) {
+
+		boolean visitFlag = false;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String today = sdf.format(new Date());
+
+		String saveId = (String) param.get("saveId");
+		String memberId = (String) param.get("memberId");
+		if (saveId != null) {
+			Cookie c = new Cookie("saveId", memberId);
+			c.setMaxAge(7 * 24 * 60 * 60);
 
 			res.addCookie(c);
 		} else {
@@ -92,14 +94,14 @@ public class MemberController {
 				Membergrade mg = service.getMembergrade(m);
 				session.setAttribute("membergrade", mg);
 
-				//최근 로그인한 날짜 구하기
-				//컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
-				//컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
+				// 최근 로그인한 날짜 구하기
+				// 컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
+				// 컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
 				System.out.print(m.getMemberToday().toString());
-				System.out.println("today :" +today);
-				if(!m.getMemberToday().toString().equals(today)) {
-					int memberVisit =service.updateMemberVisit(param);
-					int memberToday =service.updateMemberToday(param);
+				System.out.println("today :" + today);
+				if (!m.getMemberToday().toString().equals(today)) {
+					int memberVisit = service.updateMemberVisit(param);
+					int memberToday = service.updateMemberToday(param);
 				}
 				msg = "로그인 성공";
 
@@ -377,29 +379,29 @@ public class MemberController {
 
 //	마이룸 메인연결
 	@RequestMapping("/member/myroom/main.do")
-	public ModelAndView myroomMain(ModelAndView mv, @SessionAttribute("loginMember")Member m) {
+	public ModelAndView myroomMain(ModelAndView mv, @SessionAttribute("loginMember") Member m) {
 
 		Map param = new HashMap();
 		param.put("memberId", m.getMemberId());
 		Calendar c = Calendar.getInstance();
 		int year = c.get(Calendar.YEAR);
-		int month = c.get(Calendar.MONTH)+1;
-		for(int i = 1; i<5; i++) {
-			
-			c.set(year, month -i, 1);
+		int month = c.get(Calendar.MONTH) + 1;
+		for (int i = 1; i < 5; i++) {
+
+			c.set(year, month - i, 1);
 			int lastDay = c.getActualMaximum(Calendar.DATE);
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			System.out.println(dateFormat.format(c.getTime()));
-			param.put("start"+i, dateFormat.format(c.getTime()));
-			c.set(year, month-i, lastDay);
-			System.out.println(dateFormat.format(c.getTime()));
-			param.put("finish"+i, dateFormat.format(c.getTime()));
+//			System.out.println(dateFormat.format(c.getTime()));
+			param.put("start" + i, dateFormat.format(c.getTime()));
+			c.set(year, month - i, lastDay);
+//			System.out.println(dateFormat.format(c.getTime()));
+			param.put("finish" + i, dateFormat.format(c.getTime()));
 		}
 		List<Integer> list = service.getPaidAmount(param);
-		System.out.println(list);
+//		System.out.println(list);
 		mv.addObject("list", list);
 		mv.setViewName("myroom/main");
-		
+
 		return mv;
 	}
 
@@ -573,12 +575,22 @@ public class MemberController {
 			param.put("startDate", "" + startYear);
 		}
 		param.put("memberId", (String) m.getMemberId());
-		int totalData = service.ebookPurchaseCount(param);
-		List<Order> list = service.ebookPurchaseList(param, cPage, numPerpage);
+		int totalData = service.bookPurchaseCount(param);
+		List<Order> list = service.bookPurchaseList(param, cPage, numPerpage);
 		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/payList.do");
-//		System.out.println(((EbookPurchaseHistory)list.get(0)).getPurchaseEbookNoList());
-		System.out.println(list);
 		mv.addObject("list", list);
+		List date = new ArrayList();
+		for (int i = 0; i < list.size(); i++) {
+			String tm = ((Payment) list.get(i)).getPayAt() + "000";
+			long millis = Long.parseLong(tm);
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(millis);
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm:ss");
+			date.add("" + dateFormat.format(cal.getTime()));
+
+		}
+
+		mv.addObject("date", date);
 		mv.addObject("pageBar", pageBar);
 		mv.setViewName("myroom/payList");
 
@@ -587,25 +599,71 @@ public class MemberController {
 
 //	이북 결제 내역 리스트
 	@RequestMapping("/member/myroom/ebookPayList.do")
-	public ModelAndView ebookPayList(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
-			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, HttpSession session,
-			ModelAndView mv) {
+	@ResponseBody
+	public Map ebookPayList(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, String searchType, Date startDate,
+			Date finishDate, HttpSession session, ModelAndView mv) {
 
 		Member m = (Member) session.getAttribute("loginMember");
+		Map<String, Object> param = new HashMap();
 		Date date = new Date();
 		long uni = (long) date.getTime() / 1000;
-		Map<String, String> param = new HashMap();
 		param.put("finishDate", "" + uni);
 		long startYear = uni - (60 * 60 * 24 * 365);
 		param.put("startDate", "" + startYear);
 		param.put("memberId", (String) m.getMemberId());
 		int totalData = service.ebookPurchaseCount(param);
 		List<Order> list = service.ebookPurchaseList(param, cPage, numPerpage);
-		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/payList.do");
-		mv.addObject("list", list);
-		mv.addObject("pageBar", pageBar);
-		mv.setViewName("myroom/payList");
+		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/ebookPayList.do");
+		List dateList = new ArrayList();
+		for (int i = 0; i < list.size(); i++) {
+			String tm = ((Payment) list.get(i)).getPayAt() + "000";
+			long millis = Long.parseLong(tm);
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(millis);
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm:ss");
+			dateList.add("" + dateFormat.format(cal.getTime()));
 
-		return mv;
+		}
+		param.put("date", dateList);
+		param.put("list", list);
+		param.put("pageBar", pageBar);
+
+		return param;
+	}
+
+//	기프트 결제 내역 리스트
+	@RequestMapping("/member/myroom/giftPayList.do")
+	@ResponseBody
+	public Map giftPayList(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, String searchType, Date startDate,
+			Date finishDate, HttpSession session, ModelAndView mv) {
+		
+		Member m = (Member) session.getAttribute("loginMember");
+		Map<String, Object> param = new HashMap();
+		Date date = new Date();
+		long uni = (long) date.getTime() / 1000;
+		param.put("finishDate", "" + uni);
+		long startYear = uni - (60 * 60 * 24 * 365);
+		param.put("startDate", "" + startYear);
+		param.put("memberId", (String) m.getMemberId());
+		int totalData = service.giftPurchaseCount(param);
+		List<Order> list = service.giftPurchaseList(param, cPage, numPerpage);
+		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/giftPayList.do");
+		List dateList = new ArrayList();
+		for (int i = 0; i < list.size(); i++) {
+			String tm = ((Payment) list.get(i)).getPayAt() + "000";
+			long millis = Long.parseLong(tm);
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(millis);
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd a hh:mm:ss");
+			dateList.add("" + dateFormat.format(cal.getTime()));
+
+		}
+		param.put("date", dateList);
+		param.put("list", list);
+		param.put("pageBar", pageBar);
+
+		return param;
 	}
 }

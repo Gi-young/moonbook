@@ -57,18 +57,29 @@ public interface MemberDao {
 
 //	회원의 결제 내역 조회
 	List<Payment> getPayment(SqlSession session, Member m);
-	
+
 //	회원의 월별 결제 내역 조회
 	List<Integer> getPaidAmount(SqlSession session, Map param);
-	
+
 //	개인 회원 이북 결제 내역 총합
 	int ebookPurchaseCount(SqlSession session, Map<String, String> param);
+
+//	개인 회원 도서 결제 내역 총합
+	int bookPurchaseCount(SqlSession session, Map<String, String> param);
+	
+//	개인 회원 기프트 결제 내역 총합
+	int giftPurchaseCount(SqlSession session, Map<String, String> param);
 
 //	개인 회원 이북 결제 내역 조회
 	List<Order> ebookPurchaseList(SqlSession session, Map<String, String> param, int cPage, int numPerpage);
 
+//	개인 회원 도서 결제 내역 조회
+	List<Order> bookPurchaseList(SqlSession session, Map<String, String> param, int cPage, int numPerpage);
 	
-//	회원 포인트 적립
+//	개인 회원 기프트 결제 내역 조회
+	List<Order> giftPurchaseList(SqlSession session, Map<String, String> param, int cPage, int numPerpage);
+
+// 회원 포인트 적립
 	int updateMemberPoint(SqlSession session, Map param);
 
 

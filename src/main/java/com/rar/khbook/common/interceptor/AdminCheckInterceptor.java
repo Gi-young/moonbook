@@ -18,7 +18,7 @@ public class AdminCheckInterceptor  implements HandlerInterceptor{
 		Member loginMember=(Member)session.getAttribute("loginMember");
 		System.out.println("멤버어떻게 들어옴?:"+loginMember);
 		
-		if(loginMember != null && (loginMember.getMemberId()).equals("adminpark")) {
+		if(loginMember != null && (loginMember.getMemberId()).equals("admin")) {
 			return true;
 		}else {
 			request.setAttribute("msg","관리자만 사용 가능합니다.");

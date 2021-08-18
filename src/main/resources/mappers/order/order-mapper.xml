@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="order">
+
+	<!-- 주문 테이블 VO -->
 	<resultMap type="order" id="orderMap">
 		<result column="order_no" property="orderNo" />
 		<result column="order_count" property="orderCount" />
@@ -11,15 +13,64 @@
 		<result column="order_paidmethod" property="orderPaidMethod" />
 		<result column="order_status" property="orderStatus" />
 		<result column="order_point" property="orderPoint" />
-		<!-- <association property="orderMemberId"> <id column="member_id" property="memberId" 
-			/> <result column="member_id" property="memberId" /> </association> <association 
-			property="ebookOrderList"> <id column="order_no" property="orderNo" /> <result 
-			column="bind_no" property="bindNo" /> <result column="order_volume" property="orderVolume" 
-			/> </association> -->
-		<!-- <association property="gift"> <id column="gift_no" property="giftNo" 
-			/> <result column="gift_no" property="giftNo" /> </association> <association 
-			property="coupon"> <id column="coupon_no" property="couponNo" /> <result 
-			column="coupon_no" property="coupon_No" /> </association> -->
+		<collection property="bookOrderList" ofType="bookOrderList">
+			<id column="order_no" property="orderNo" />
+			<result column="bind_no" property="bindNo" />
+			<result column="order_volume" property="orderVolume" />
+			<result column="TITLE" property="title" />
+			<result column="AUTHOR" property="author" />
+			<result column="IMAGE" property="image" />
+			<result column="PRICE" property="price" />
+			<result column="ISBN" property="isbn" />
+			<result column="PUBDATE" property="pubdate" />
+			<result column="PUBLISHER" property="publisher" />
+			<result column="DESCRIPTION" property="description" />
+			<result column="LINK" property="link" />
+			<result column="CATEGORY_CODE" property="categoryCode" />
+			<result column="STOCK" property="stock" />
+			<result column="SALES_VOLUME" property="salesVolume" />
+			<result column="RATING" property="rating" />
+			<result column="EBOOK_RATING" property="ebookRating" />
+			<result column="EBOOK_SALES_VOLUME"
+				property="ebookSalesVolume" />
+			<result column="PRIME_COST" property="primeCost" />
+			<association property="ebook" javaType="ebook">
+				<id column="EBOOK_NO" property="ebookNo" />
+				<result column="FILEPATH" property="filepath" />
+			</association>
+		</collection>
+		<collection property="giftOrderList" ofType="giftOrderList">
+			<id column="order_no" property="orderNo" />
+			<result column="NGIFT_NO" property="gift_no" />
+			<result column="order_volume" property="orderVolume" />
+			<result column="NGIFT_TITLE" property="gift_title" />
+			<result column="NGIFT_IMG" property="gift_img" />
+			<result column="NGIFT_PRICE" property="gift_price" />
+			<result column="NGIFT_BRAND" property="gift_brand" />
+			<result column="NGIFT_MAKER" property="gift_maker" />
+			<result column="NGIFT_COUNT" property="gift_count" />
+			<result column="NGIFT_PRODUCT_TYPE"
+				property="gift_productType" />
+			<result column="NGIFT_ROWPRICE" property="gift_rowPrice" />
+			<result column="NGIFT_DISCOUNT" property="gift_discount" />
+			<result column="NGIFT_SALESVOLUME" property="gift_salesVolume" />
+			<association javaType="giftCate" property="gift_category">
+				<id column="NGIFT_CATE_CODE" property="giftCateCode" />
+				<result column="GIFTCATE_NAME" property="giftCateName" />
+				<result column="GIFTCATE_FIRSTREF"
+					property="giftCateFirstRef" />
+				<result column="GIFTCATE_SECONDREF"
+					property="giftCateSecondRef" />
+			</association>
+		</collection>
+	</resultMap>
+
+	<!-- 도서결제 정보 VO -->
+	<resultMap type="bookOrderList" id="bookOrderListMap"
+		extends="ebookDatabindMap">
+		<id column="order_no" property="orderNo" />
+		<result column="bind_no" property="bindNo" />
+		<result column="order_volume" property="orderVolume" />
 	</resultMap>
 
 	<!-- 결제 정보 VO -->
@@ -84,13 +135,81 @@
 		PAYMENT P ON O.ORDER_NO =
 		P.ORDER_NO WHERE
 		ORDER_MEMBER_ID=#{memberId} AND
-		ORDER_DATE BETWEEN #{start} AND #{finish}
+		ORDER_DATE BETWEEN #{start} AND
+		#{finish}
 	</select>
 
 	<!-- 개인 회원 이북 결제 내역 총합 -->
 	<select id="ebookPurchaseCount" resultType="int">
 		SELECT COUNT(*) FROM
-		EBOOK_PURCHASE_HISTORY WHERE MEMBER_ID=#{memberId} AND PAID_AT BETWEEN
-		#{startDate} AND #{finishDate}
+		ORDERT O LEFT JOIN EBOOK_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO
+		LEFT
+		JOIN PAYMENT P ON O.ORDER_NO = P.ORDER_NO
+		WHERE
+		ORDER_MEMBER_ID=#{memberId} AND PAY_AT BETWEEN
+		#{startDate} AND
+		#{finishDate}
+	</select>
+
+	<!-- 개인 회원 도서 결제 내역 총합 -->
+	<select id="bookPurchaseCount" resultType="int">
+		SELECT COUNT(*) FROM
+		ORDERT O LEFT JOIN BOOK_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO LEFT
+		JOIN PAYMENT P ON O.ORDER_NO = P.ORDER_NO
+		WHERE
+		ORDER_MEMBER_ID=#{memberId} AND PAY_AT BETWEEN
+		#{startDate} AND
+		#{finishDate}
+	</select>
+
+	<!-- 개인 회원 도서 결제 내역 총합 -->
+	<select id="giftPurchaseCount" resultType="int">
+		SELECT COUNT(*) FROM
+		ORDERT O LEFT JOIN NGIFT_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO
+		LEFT
+		JOIN PAYMENT P ON O.ORDER_NO = P.ORDER_NO
+		WHERE
+		ORDER_MEMBER_ID=#{memberId} AND PAY_AT BETWEEN
+		#{startDate} AND
+		#{finishDate}
+	</select>
+
+	<!-- 개인 회원 도서 결제 내역 조회 -->
+	<select id="bookPurchaseList" resultMap="paymentMap">
+		SELECT * FROM
+		ORDERT O
+		LEFT JOIN BOOK_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO LEFT JOIN
+		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN BOOK_EBOOK_DATABIND BED ON
+		BO.BIND_NO = BED.BIND_NO
+		WHERE ORDER_MEMBER_ID=#{memberId} AND PAY_AT
+		BETWEEN
+		#{startDate} AND
+		#{finishDate}
+	</select>
+
+	<!-- 개인 회원 이북 결제 내역 조회 -->
+	<select id="ebookPurchaseList" resultMap="paymentMap">
+		SELECT * FROM
+		ORDERT O
+		LEFT JOIN EBOOK_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO LEFT JOIN
+		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN BOOK_EBOOK_DATABIND BED ON
+		BO.BIND_NO = BED.BIND_NO
+		WHERE ORDER_MEMBER_ID=#{memberId} AND PAY_AT
+		BETWEEN
+		#{startDate} AND
+		#{finishDate}
+	</select>
+
+	<!-- 개인 회원 기프트 결제 내역 조회 -->
+	<select id="giftPurchaseList" resultMap="paymentMap">
+		SELECT * FROM
+		ORDERT O
+		LEFT JOIN NGIFT_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO LEFT JOIN
+		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN BOOK_EBOOK_DATABIND BED ON
+		BO.BIND_NO = BED.BIND_NO
+		WHERE ORDER_MEMBER_ID=#{memberId} AND PAY_AT
+		BETWEEN
+		#{startDate} AND
+		#{finishDate}
 	</select>
 </mapper>

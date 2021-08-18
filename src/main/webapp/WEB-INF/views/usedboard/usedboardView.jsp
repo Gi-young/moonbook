@@ -49,8 +49,7 @@
 				</c:if>
 			</span>
 		</div>
-		<center>
-			<div id="wrapper">
+			<div id="wrapper" style="text-align: center;">
 				<div id="slider-wrap">
 					<ul id="slider">
 						<c:forEach var="b" items="${usedboard.usedboardfiles}">
@@ -79,10 +78,8 @@
 				</div>
 
 			</div>
-		</center>
 
-		<center class="item-info-box">
-			<div id="article" style="font-size: 20px;">
+			<div id="article" style="font-size: 20px;text-align: center;">
 				책제목 : ${usedboard.usedboard_BookTitle } / 가격 :
 				${usedboard.usedboard_Price }원 / 거래상태 :
 				<c:if test="${usedboard.usedboard_State == 'y' }">
@@ -92,9 +89,8 @@
 					<span style="font-size: 20px; color: blue;"> 거래완료 </span>
 				</c:if>
 			</div>
-
-			<div class="item-content">${usedboard.usedboard_Content }</div>
-		</center>
+			<br><br><br>
+			<div class="item-content" style="text-align: center;">${usedboard.usedboard_Content }</div><br><br><br>
 
 
 
