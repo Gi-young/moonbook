@@ -15,5 +15,7 @@ public class UsedboardPayment {
 	private String usedboardPayment_Cancel;
 	private String member_Id;
 	private String imp_uid;
-	private String merchant_uid; //
+	private String merchant_uid; 
+	private String address;
+	private String sale_Id;
 }

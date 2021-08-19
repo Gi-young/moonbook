@@ -145,7 +145,7 @@
 	</update>
 	
 	<insert id="usedboardPaymentInsert">
-		INSERT INTO USEDBOARDPAYMENT VALUES(SEQ_USEDBOARDPAYMENT_NO.NEXTVAL,#{usedboardPayment_Title},SYSDATE,'1',#{usedboardPayment_Price},#{usedboardPayment_BoardNo},'n',#{member_Id},#{imp_uid},#{merchant_uid})
+		INSERT INTO USEDBOARDPAYMENT VALUES(SEQ_USEDBOARDPAYMENT_NO.NEXTVAL,#{usedboardPayment_Title},SYSDATE,'1',#{usedboardPayment_Price},#{usedboardPayment_BoardNo},'n',#{member_Id},#{imp_uid},#{merchant_uid},#{address},#{sale_Id})
 	</insert>
 	
 	<select id="usedboardMyPaymentList" resultType="usedboardpayment">
@@ -222,4 +222,12 @@
 	<update id="usedboardFileUpdate">
 		UPDATE USEDBOARDFILE SET USEDBOARD_NO=${no} WHERE USEDBOARD_NO IS NULL AND MEMBERID='${id}'
 	</update>
+	
+	<select id="usedboardPayList" resultType="usedboardpayment">
+		SELECT * FROM USEDBOARDPAYMENT WHERE SALE_ID='${value}'
+	</select>
+	
+	<select id="usedboardPayCount" resultType="_int">
+		SELECT COUNT(*) FROM USEDBOARDPAYMENT WHERE SALE_ID='${value}'
+	</select>
 </mapper>

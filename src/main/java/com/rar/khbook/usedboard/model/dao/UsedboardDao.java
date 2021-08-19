@@ -80,4 +80,8 @@ public interface UsedboardDao {
 	int usedboardFileUpload(SqlSession session,Usedboardfile f);
 	
 	int usedboardFileUpdate(SqlSession session,Map<String,Object> map);
+	
+	List<UsedboardPayment> usedboardPayList(SqlSession session, int cPage, int numPerpage,String memberid);
+	
+	int usedboardPayCount(SqlSession session,String memberid);
 }

@@ -218,4 +218,15 @@ public class UsedboardDaoImpl implements UsedboardDao {
 		// TODO Auto-generated method stub
 		return session.update("usedboard.usedboardFileUpdate",map);
 	}
+	
+	@Override
+	public List<UsedboardPayment> usedboardPayList(SqlSession session, int cPage, int numPerpage, String memberid) {
+		// TODO Auto-generated method stub
+		return session.selectList("usedboard.usedboardPayList",memberid,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+	@Override
+	public int usedboardPayCount(SqlSession session, String memberid) {
+		// TODO Auto-generated method stub
+		return session.selectOne("usedboard.usedboardPayCount",memberid);
+	}
 }

@@ -202,4 +202,15 @@ public class UsedboardServiceImpl implements UsedboardService {
 		// TODO Auto-generated method stub
 		return dao.usedboardFileUpload(session,f);
 	}
+	
+	@Override
+	public List<UsedboardPayment> usedboardPayList(int cPage, int numPerpage, String memberid) {
+		// TODO Auto-generated method stub
+		return dao.usedboardPayList(session,cPage,numPerpage,memberid);
+	}
+	@Override
+	public int usedboardPayCount(String memberid) {
+		// TODO Auto-generated method stub
+		return dao.usedboardPayCount(session, memberid);
+	}
 }
