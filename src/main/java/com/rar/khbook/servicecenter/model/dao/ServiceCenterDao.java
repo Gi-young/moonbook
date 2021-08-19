@@ -24,4 +24,8 @@ public interface ServiceCenterDao {
 	
 	List<Faq> searchFaq(SqlSession session,Map param);
 
+	NoticeBoard searchNoticeBoardDetail(SqlSession session, int noticeboardNo);
+
+	EventBoard searchEventBoardDetail(SqlSession session, int eventboardNo);
+
 }

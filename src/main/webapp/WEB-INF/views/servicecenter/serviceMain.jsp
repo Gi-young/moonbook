@@ -17,8 +17,8 @@
 				<jsp:param name="" value="" />
 			</jsp:include>
 		</div>
-		<div class="service-box2">
-			<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><p style="font-size:30px;">공지사항</p></div>
+		<div class="service-box2" style="display:flex;">
+			<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><img src="${path }/resources/img/sellLev1/notice.png" alt="공지사항"></div>
 			<div style="display:flex; justify-content:flex-end; margin-right:5px; margin-bottom:5px;">
         	<button class="reviewBtn" style="width:110px; height:40px; border:1px solid black; background-color:#E5E2DB;" onclick="window.open('<%=request.getContextPath()%>/ServiceboardController/insertNoticeBoard.do', '공지사항 작성!', 'width=500, height=600')">공지 작성하기</button>
         </div>
@@ -37,7 +37,7 @@
 	            <td class='review-num' id="noticeboardNo">${n.noticeboardNo}</td>
 		   	    <td>
 			   	    <div class='review'>
-			   	    	<a class='review-title-a' href="#">${n.noticeboardTitle}</a>
+			   	    	<a class='review-title-a' href="${path }/service/noticeBoardDetail.do?noticeboardNo=${n.noticeboardNo}">${n.noticeboardTitle}</a>
 			   	    </div>
 		   	    </td>
 		   	    <td class='review-writer'>${n.memberId}</td>
@@ -46,7 +46,9 @@
 	   	    </tr>
 	   	   </c:forEach>
            </table>		
-
+        <div style="display:flex; justify-content:center; align-items:center; opacity:0.2;">	
+			<img src="${path }/resources/img/sellLev1/sellpartsmall.png" alt="문곰도서">
+		</div>
         <div id="pageBar"></div> 
 		</div>
 		</div>

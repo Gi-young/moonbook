@@ -57,6 +57,18 @@ public class ServiceCenterServiceImpl implements ServiceCenterService {
 		return dao.searchFaq(session,param);
 	}
 
+	@Override
+	public NoticeBoard searchNoticeBoardDetail(int noticeboardNo) {
+		// TODO Auto-generated method stub
+		return dao.searchNoticeBoardDetail(session, noticeboardNo);
+	}
 
+	@Override
+	public EventBoard searchEventBoardDetail(int eventboardNo) {
+		// TODO Auto-generated method stub
+		return dao.searchEventBoardDetail(session,eventboardNo);
+	}
+
+	
 	
 }

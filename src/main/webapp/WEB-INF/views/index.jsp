@@ -1368,6 +1368,10 @@ padding-bottom: 5px;
 
 <!-- ////////////////////////따끈따끈 신작/////////////////////// -->
 
+<audio autoplay  id="octo"> 
+<source src="${path }/resources/audio/main/OctopusDream.mp3" type="audio/mp3"> 
+</audio>
+
     <div class="hotnew todaybooks partition">
         <div class="flex alignitems">
             <div class="footerheadline">
@@ -1831,7 +1835,7 @@ padding-bottom: 5px;
                             <ul class="footerslide-List" style="margin-left: 20px;">
                                    <c:forEach var="n" items="${notice }">
                                     <li class="footerslide-content">
-                                        <a href="#">${n.noticeboardTitle }</a></li>
+                                        <a href="${path }/service/serviceMain.do">${n.noticeboardTitle }</a></li>
                                     </c:forEach>
                             </ul>
                         </div>   
@@ -1848,7 +1852,7 @@ padding-bottom: 5px;
                             <ul class="footerslide2-List" style="margin-left: 20px;">
                                     <c:forEach var="e" items="${event }">
                                     <li class="footerslide2-content">
-                                        <a href="#">${e.eventboardTitle }</a></li>
+                                        <a href="${path }/service/eventBoard.do">${e.eventboardTitle }</a></li>
                                     </c:forEach>
                             </ul>
                         </div>   
@@ -1928,6 +1932,8 @@ padding-bottom: 5px;
 
 
 <script>
+	var octo = document.getElementById("octo");
+	octo.volume = 0.3;
     let maintrigger1=document.querySelector('.maintrigger1');
     let mainbanner1=document.querySelector('.mainbanner1');
 
