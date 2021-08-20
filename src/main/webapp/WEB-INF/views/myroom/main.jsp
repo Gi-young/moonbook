@@ -142,27 +142,30 @@
 							</c:when>
 							<c:when
 								test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) <= 0}">
-								<fmt:formatNumber type="currency"
-									value="0"></fmt:formatNumber>
+								<fmt:formatNumber type="currency" value="0"></fmt:formatNumber>
 							</c:when>
 						</c:choose></td>
 					<td colspan="2" rowspan="2" class="td_first"><div
 							class="padding10">다음달 등급</div> <a href="${path }/member/grade.do">
 							<c:choose>
 								<c:when
-									test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) > 0 && membergrade.membergradeNo==1}">
+									test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0)
+									 > 0 && membergrade.membergradeNo==1}">
 									<img
 										src="${path }/resources/images/${membergrade.membergradeImg }">
 								</c:when>
 								<c:when
-									test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) > 0 && membergrade.membergradeNo > 1}">
+									test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0)
+									 > 0 && membergrade.membergradeNo > 1}">
 									<img
-										src="${path }/resources/images/${fn:replace(membergrade.membergradeImg, membergrade.membergradeImg.charAt(membergrade.membergradeImg.lastIndexOf('_')-1), lowGrade) }">
+										src="${path }/resources/images/${fn:replace(membergrade.membergradeImg,
+										 membergrade.membergradeImg.charAt(membergrade.membergradeImg.lastIndexOf('_')-1), lowGrade) }">
 								</c:when>
 								<c:when
 									test="${membergrade.membergradeStandard +100000-list.get(2)-list.get(1)-list.get(0) <= 0}">
 									<img
-										src="${path }/resources/images/${fn:replace(membergrade.membergradeImg, membergrade.membergradeImg.charAt(membergrade.membergradeImg.lastIndexOf('_')-1), nextGrade) }">
+										src="${path }/resources/images/${fn:replace(membergrade.membergradeImg,
+										 membergrade.membergradeImg.charAt(membergrade.membergradeImg.lastIndexOf('_')-1), nextGrade) }">
 								</c:when>
 							</c:choose>
 					</a></td>
