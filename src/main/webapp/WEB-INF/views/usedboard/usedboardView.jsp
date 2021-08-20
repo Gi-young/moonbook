@@ -49,8 +49,7 @@
 				</c:if>
 			</span>
 		</div>
-		<center>
-			<div id="wrapper">
+			<div id="wrapper" style="text-align: center;">
 				<div id="slider-wrap">
 					<ul id="slider">
 						<c:forEach var="b" items="${usedboard.usedboardfiles}">
@@ -79,10 +78,8 @@
 				</div>
 
 			</div>
-		</center>
 
-		<center class="item-info-box">
-			<div id="article" style="font-size: 20px;">
+			<div id="article" style="font-size: 20px;text-align: center;">
 				책제목 : ${usedboard.usedboard_BookTitle } / 가격 :
 				${usedboard.usedboard_Price }원 / 거래상태 :
 				<c:if test="${usedboard.usedboard_State == 'y' }">
@@ -92,9 +89,8 @@
 					<span style="font-size: 20px; color: blue;"> 거래완료 </span>
 				</c:if>
 			</div>
-
-			<div class="item-content">${usedboard.usedboard_Content }</div>
-		</center>
+			<br><br><br>
+			<div class="item-content" style="text-align: center;">${usedboard.usedboard_Content }</div><br><br><br>
 
 
 
@@ -113,7 +109,7 @@
 				<ul class="tab_tt">
 					<li class="on"><a class="ahref" style="font-size: 20px;">댓글<span
 							class="num_total">/${replycount }</span></a></li>
-				</ul>
+				</ul><br>
 				<c:forEach var="r" items="${reply }">
 					<c:if test="${r.usedcomment_Level==1 }">
 						<ul class="level1">
@@ -169,7 +165,7 @@
 						<form action="${path }/usedboard/insertUsedcomment.do"
 							method="post">
 							<textarea name="usedcomment_Content" rows="3" cols="195"
-								style="resize: none; width: 95%; height: 50px"></textarea>
+								style="resize: none; width: 88%; height: 50px"></textarea>
 							<input type="hidden" name="usedcomment_Level" value="1">
 							<input type="hidden" name="usedbaord_No" value="${no }">
 							<input type="hidden" name="usedcomment_CommentRef" value="0">
@@ -186,6 +182,25 @@
 	</article>
 </section>
 <style>
+#btn-insert {
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	background: #ff5656;
+	font-size: 13px;
+	top: -57px;
+	margin-left: 790px;
+}
+.btn-insert2 {
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	background: #ff5656;
+	font-size: 13px;
+	top: -52px;
+	position: relative;
+	margin-left: 850px;
+}
 /*GLOBALS*/
 * {
 	margin: 0;
@@ -427,7 +442,7 @@ h2 {
 			}, function (rsp) {
 			console.log(rsp);
 			if (rsp.success) {
-				location.href="${path}/usedboard/usedboardPayment.do?no=${no}&title=${usedboard.usedboard_Title}&price=${usedboard.usedboard_Price}&id=${usedboard.member_Id}&impuid="+rsp.imp_uid+"&muid="+rsp.merchant_uid;
+				location.href="${path}/usedboard/usedboardPayment.do?no=${no}&title=${usedboard.usedboard_Title}&price=${usedboard.usedboard_Price}&id=${loginMember.member_Id}&impuid="+rsp.imp_uid+"&muid="+rsp.merchant_uid+"&add=${loginMember.memberAddress } ${loginMember.memberDetailAddress}&saleId=${usedboard.member_Id}";
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
@@ -438,8 +453,8 @@ h2 {
 		$(".btn-reply").click(e=>{
 			const ul=$("<ul>");
 			const form=$(".inner-comment>form").clone();
-			form.find("textarea").attr("rows","1");
-			form.find("textarea").attr("cols","95");
+			form.find("textarea").attr("rows","3");
+			form.find("textarea").attr("cols","195");
 			form.find("textarea").attr("name","usedcomment_Content");
 			form.find("[name=usedcomment_Level]").val("2");
 			form.find("[name=usedcomment_CommentRef]").val($(e.target).val());
@@ -447,7 +462,7 @@ h2 {
 			console.log(${no});
 			form.find("button").removeAttr("id").addClass("btn-insert2");
 			console.log($(e.target).val());
-			const li=$("<li>").attr("colspan","2");
+			const li=$("<li>");
 			ul.append(li.append(form));
 			ul.find("li").css("display","none");
 			

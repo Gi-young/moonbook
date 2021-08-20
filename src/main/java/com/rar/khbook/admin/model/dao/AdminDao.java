@@ -16,6 +16,7 @@ import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.servicecenter.model.vo.Faq;
 
 public interface AdminDao {
 
@@ -169,4 +170,18 @@ public interface AdminDao {
 	List<EbookTopThree> ebookTopThree(SqlSession session);
 	
 	List<GiftTopThree> giftTopThree(SqlSession session);
+	//faq
+	List<Faq> selectFaqList(SqlSession session);
+	
+	List<Faq> selectFaqReplyNo(SqlSession session,Map param);
+	
+	int updateFaqAnswer(SqlSession session,Map param);
+	
+	int deleteFaq(SqlSession session,Map param);
+	
+	List<Order> searchTextSaleList(SqlSession session,Map param);
+	int getPageBarTextSaleList(SqlSession session,Map param);
+	
+	List<Order> orderSaleList(SqlSession session,Map param);
+	int getPageBarorderSaleList(SqlSession session,Map param);
 }

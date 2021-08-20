@@ -1,4 +1,16 @@
 @charset "UTF-8";
+#banner h2{
+	font-size: 20px;
+    font-weight: bolder;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    color: blue;
+}
+#banner_list div{
+	padding:10px;
+	border-bottom: 1px dotted black;
+
+}
 #banner_list{
     height: 250px;
     overflow: hidden;	

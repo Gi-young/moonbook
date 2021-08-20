@@ -15,6 +15,7 @@ import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.servicecenter.model.vo.Faq;
 
 public interface AdminService {
 	
@@ -193,5 +194,23 @@ public interface AdminService {
 	
 	//차트 top 3 gift
 	List<GiftTopThree> giftTopThree();
+	
+	//faqList
+	List<Faq> selectFaqList();
+	List<Faq> selectFaqReplyNo(Map param);
+	
+	int updateFaqAnswer(Map param);
+	
+	int deleteFaq(Map param);
+	
+	//판매내역 검색
+	List<Order> searchTextSaleList(Map param);
+	int getPageBarTextSaleList(Map param);
+	
+	//판매내역 정렬
+	List<Order> orderSaleList(Map param);
+	int getPageBarorderSaleList(Map param);
+	
+	
 	
 }

@@ -18,6 +18,11 @@ public class AuctionDaoImpl implements AuctionDao {
 	
 	
 	@Override
+	public int updateTransactionY(SqlSession session, Map param) {
+		return session.update("bank.updateTransactionY",param);
+	}
+
+	@Override
 	public List<AuctionBid> selectbidlist(SqlSession session) {
 		return session.selectList("auction.selectbidlist");
 	}

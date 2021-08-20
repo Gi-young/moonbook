@@ -88,6 +88,7 @@
 	        	
 	        	<c:if test="${loginMember!=null }">
 		        	<div class="upper-menu">
+		        		<a href="${path }/usedboard/usedboardPayList.do?memberId=${loginMember.memberId}">판매완료 목록</a>
 		        		<a href="${path }/usedboard/usedboardList.do?memberId=${loginMember.memberId}">내 중고게시판</a>
 				        <a href="${path }/usedboard/usedboardMyPayment.do?memberId=${loginMember.memberId}">내 중고구매목록</a> 
 				        <a href="${path }/usedboard/usedboardInsert.do" id="insertborad">거래 등록</a>
@@ -190,9 +191,7 @@
 				                                	<c:if test="${b.member_Id == loginMember.memberId }">
 				                                		<span> || </span>
 				                                		<span> 배송확인중 </span>
-				                                		<span> || </span>
-				                                		<button onclick="confirmDelivery(event,'${b.usedboard_No }','${loginMember.memberId }');">배송확인</button>
-				                                	</c:if>
+				                                		</c:if>
 												</c:if>
 												<c:if test="${b.usedboard_State == '2' }">
 				                                	<c:if test="${b.member_Id == loginMember.memberId }">
@@ -247,10 +246,6 @@
 			});
 		}
 	
-		function confirmDelivery(event, usedboardNo, memberId) {
-			event.preventDefault();
-			location.assign('${path}/usedboard/usedboardPay1.do?no=' + usedboardNo + '&memberId=' + memberId);
-		}
 	
 		function typeChange() {
 			var searchType=$('#searchType').val();

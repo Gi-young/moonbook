@@ -19,6 +19,7 @@ import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.servicecenter.model.vo.Faq;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -520,6 +521,63 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return dao.giftTopThree(session);
 	}
+
+	@Override
+	public List<Faq> selectFaqList() {
+		// TODO Auto-generated method stub
+		return dao.selectFaqList(session);
+	}
+
+	@Override
+	public List<Faq> selectFaqReplyNo(Map param) {
+		// TODO Auto-generated method stub
+		return dao.selectFaqReplyNo(session,param);
+	}
+
+	@Override
+	public int updateFaqAnswer(Map param) {
+		// TODO Auto-generated method stub
+		return dao.updateFaqAnswer(session,param);
+	}
+
+	@Override
+	public int deleteFaq(Map param) {
+		// TODO Auto-generated method stub
+		return dao.deleteFaq(session,param);
+	}
+
+	@Override
+	public List<Order> searchTextSaleList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchTextSaleList(session,param);
+	}
+
+	@Override
+	public int getPageBarTextSaleList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarTextSaleList(session,param);
+	}
+
+	@Override
+	public List<Order> orderSaleList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.orderSaleList(session,param);
+	}
+
+	@Override
+	public int getPageBarorderSaleList(Map param) {
+		// TODO Auto-generated method stub
+		return dao.getPageBarorderSaleList(session,param);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

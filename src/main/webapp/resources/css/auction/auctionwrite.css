@@ -170,3 +170,8 @@ td.uploadImg label:hover {
     max-width: 200px;
     overflow-x: scroll;
 }
+#warring{
+	color:red;
+	font-weight:bold;
+	font-size:12px;
+}

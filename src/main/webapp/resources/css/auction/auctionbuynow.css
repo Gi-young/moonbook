@@ -64,3 +64,40 @@ body::-webkit-scrollbar {
 #buyNowFrm>div>div:nth-of-type(2) {
     margin-top: 10px;
 }
+
+#buyNowFrm2 {
+    border: 1px solid silver;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#buyNowFrm2 h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#buyNowFrm2 span {
+    font-size: 15px;
+}
+
+#buyNowFrm2 input[type=submit] {
+    width: 100%;
+    height: 35px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+#buyNowFrm2 input[type=submit]:hover {
+    background-color: black;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+#buyNowFrm2>div>div:nth-of-type(2) {
+    margin-top: 10px;
+}

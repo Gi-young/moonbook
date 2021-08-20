@@ -17,16 +17,16 @@
 				<ul>
 					<li class="title_input" style="border: 1px solid hotpink;"><textarea name="usedboard_Title" id="subject" rows="1" placeholder="제목을 입력해주세요." maxlength="76" style="height: 26px;"></textarea></li>
 					<br>
-					<li>
+					<li style="text-align: center;">
 						책 제목 : <input type="text" name="usedboard_BookTitle" style="width: 500px; height: 20px">
 					</li>
 					<br>
-					<li>
+					<li style="text-align: center;">
 						가격 : <input type="number" name="usedboard_Price" style="width: 500px; height: 20px"> 원 
 					</li>
 					<br>
-					<li>
-						<a style="margin-left: 500px;font-size: 20px;font-weight: bold; color: brown">카테고리</a><br><br> 
+					<li style="text-align: center;">
+						<a style="font-size: 20px;font-weight: bold; color: brown">카테고리</a><br><br> 
 						<input style="margin-left: 60px" type="checkbox" name="usedboard_Category" id="category0" value="한국고전소설" onclick='checkOnlyOne(this)'><label for="category0" class="">한국고전소설</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category1" value="세계문학" onclick='checkOnlyOne(this)'><label for="category1" class="">세계문학</label>&nbsp;
 						<input type="checkbox" name="usedboard_Category" id="category2" value="세계고전" onclick='checkOnlyOne(this)'><label for="category2" class="">세계고전</label>&nbsp;
@@ -45,8 +45,8 @@
 						<input type="checkbox" name="usedboard_Category" id="category15" value="어린이동화(공통)" onclick='checkOnlyOne(this)'><label for="category15" class="">어린이동화(공통)</label>&nbsp;
 					</li>
 					<br>
-					<div class="image-container">
-					    <img style="width: 500px; height: 400px;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
+					<div class="image-container" style=" text-align: center;">
+					    <img style="width: 500px; height: 400px; border: 1px solid black;" id="preview-image" src="https://dummyimage.com/500x500/ffffff/000000.png&text=preview+image">
 					    <input style="display: block;" name="upFile" type="file" id="input-image" accept="image/gif,image/jpeg,image/png" onchange="fileCheck(this)">
 					</div>
 					<br>

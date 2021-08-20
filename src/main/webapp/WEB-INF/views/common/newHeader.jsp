@@ -5,30 +5,27 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>문곰책방</title>
+<title>${param.title }</title>
 <link rel="stylesheet" href="${path }/resources/css/newHeader.css">
-<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
-<link rel="icon" href="${path }/resources/img/favicon/bazy.png">
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --> 
+<link rel="stylesheet" href="${path }/resources/css/pageBar.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-<!-- Popper JS -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>  
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+				Popper JS
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
 <!-- Latest compiled JavaScript -->
-<!-- <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
- -->
-
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 	<div class="header">
 		<div class="header-top">
@@ -62,7 +59,7 @@
         </div> -->
 
 		<div class="header-mid">
-			<a href="${path }"><img src="${path }/resources/images/common/mgbanner.png" alt=""></a>
+			<img src="${path }/resources/images/common/mgbanner.png" alt="">
 			<!-- <h1 class="logo">
                 <a href="#">
                     <img src="../components/image/kh문고 로고 final.png" style="width: 250px;">
@@ -136,70 +133,56 @@
                 padding-right: 10px;
                 "></a>
             </div> -->
-
 				<div class="header-menuBar1">
 					<ul class="flex">
-						<li id="books" class="headerF-li"><a href="${path}/sellbookController/sellbook.do">문곰도서▼</a>
-							<ul class="book">
-								<li><a href="${path }/sellbookController/bookadong99.do">아동도서(공통)</a></li>
-								<li><a href="${path }/sellbookController/bookchodongdonghwa99.do">초등도서(공통)</a></li>
-								<li><a href="${path }/sellbookController/bookjoongdongworld.do">중등도서(세계문학)</a></li>
-								<li><a href="${path }/sellbookController/bookgojunkorea.do">고전도서(한국)</a></li>
-							</ul>
-						</li>					
-						<li id="eBooks" class="headerF-li"><a href="${path}/ebook/pageEbook.do">문곰e북
-									▼</a>
+						<li><a href="${path}/sellbookController/sellbook.do">
+								<div>문곰도서▼</div>
+						</a>
 							<ul class="eBook">
-								<li><a href="${path}/ebook/pageEbook.do">일반</a></li>
-								<li><a href="${path}/ebook/pageEbook.do?currentFocus=child">아동</a></li>
-								<li><a href="${path}/ebook/pageEbook.do?currentFocus=elementary">초등</a></li>
-								<li><a href="${path}/ebook/pageEbook.do?currentFocus=middle">중등</a></li>
-								<li><a href="${path}/ebook/pageEbook.do?currentFocus=ebook">구현된 e북</a></li>
-							</ul>
-						</li>
-						<li class="item headerF-li"><a href="${path }/gift/giftView.do">문곰템
+								<li><a href="#">아동 도서</a></li>
+								<li><a href="#">초등 도서</a></li>
+								<li><a href="#">중등 도서</a></li>
+							</ul></li>
+						<!--  <li><a href="#">외국도서</a></li> -->
+						<li><a href="${path}/ebook/pageEbook.do">
+								<div>문곰e북 ▼</div>
+						</a>
+							<ul class="eBook">
+								<li><a href="#">일반도서</a></li>
+								<li><a href="#">판타지/무협</a></li>
+								<li><a href="#">로맨스</a></li>
+								<li><a href="#">코믹스</a></li>
+								<li><a href="#">오디오북</a></li>
+							</ul></li>
+						<li class="item"><a href="${path }/gift/giftView.do">문곰템
 								▼</a>
 							<ul class="giftTab">
-								<li><a href='${path }/gift/moreThing.do?giftCate=e'>전자기기</a></li>
-								<li><a href='${path }/gift/moreThing.do?giftCate=s'>수납/정리</a></li>
-								<li><a href='${path }/gift/moreThing.do?giftCate=r'>독서 필수템</a></li>
-								<li><a href="${path }/gift/moreThing.do?giftCate=g">잡화</a></li>
-							</ul>
-						</li>
-						<li class="headerF-li"><a href="${path}/usedboard/usedboardList.do">중고</a></li>
-						<li class="headerF-li"><a href="${path}/auction/auction">경매</a></li>
+								<li><a href='#'>전자기기</a></li>
+								<li><a href='#'>수납/정리</a></li>
+								<li><a href='#'>독서 필수템</a></li>
+								<li><a href="#">잡화</a></li>
+							</ul></li>
+						<li><a href="${path}/usedboard/usedboardList.do">중고</a></li>
+						<li><a href="${path}/auction/auction">경매</a></li>
 					</ul>
 				</div>
 				<div class="header-menuBar2">
-					<ul class="flex" style="align-items:center;">
+					<ul class="flex">
 						<c:if test="${loginMember==null }">
 							<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
 							<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
 						</c:if>
 						<c:if test="${loginMember!=null }">
-							<li class="headerF-li" id="user">
-								<a href="${path }/member/myroom/main.do">${loginMember.memberName }님
-										(${loginMember.memberGradeNo}) ▽</a>
-									<ul class="memberInfoTab">	
-										<li>
-											<a href="${path }/member/myroom/main.do">마이페이지</a>
-										</li>
-										<li>
-											<a href="${path }/shopingList/shopingListView.do?memberId=${loginMember.memberId }">장바구니</a>
-										</li>
-						    		</ul>
-						    </li>
-							<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
+							<li class="user1"><a href="${path }/member/myroom/main.do">${loginMember.memberName }님
+									(${loginMember.memberGradeNo}) ▽</a></li>
+							<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade})
+												▽</a></li> --%>
 							<li><a href="${path }/member/logout.do">로그아웃</a></li>
-
 
 						</c:if>
 						<li><a href="${path }/member/myroom/main.do">마이룸</a></li>
-						<c:if test="${loginMember.memberId.equals('admin') }">
-                    		<li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
-            			</c:if>
-						
-						<li><a href="${path }/service/serviceMain.do">고객센터</a></li>
+						<li><a href="${path }/admin/adminPage.do">관리자전용페이지</a></li>
+						<li><a href="${path }/service/servicePage.do">고객센터</a></li>
 					</ul>
 				</div>
 				<div></div>
@@ -207,11 +190,9 @@
 		</div>
 	</div>
 	<script>
-	
-	  /* 문곰템 */
-		$(function() {
 		let item = $('.item');
 		let tab = $('.giftTab');
+		$(function() {
 			$(item).mouseover(function() {
 				// tab.slideDown(500);
 				tab.css('display', "flex");
@@ -226,63 +207,8 @@
 				tab.css('display', "none");
 			})
 		});
-		
-	  /* 문곰e북 */
-		$(function() {
-		let item = $('#eBooks');
-		let tab = $('.eBook');
-			$(item).mouseover(function() {
-				// tab.slideDown(500);
-				tab.css('display', "flex");
-				$(tab).mouseover(function() {
-					tab.css('display', "flex");
-				})
-			})
-			$(tab).mouseout(function() {
-				tab.css('display', "none");
-			})
-			$(item).mouseout(function() {
-				tab.css('display', "none");
-			})
-		});
-			
-	  /* 문곰도서 */	
-		$(function() {
-			let item = $('#books');
-			let tab = $('.book');
-				$(item).mouseover(function() {
-					// tab.slideDown(500);
-					tab.css('display', "flex");
-					$(tab).mouseover(function() {
-						tab.css('display', "flex");
-					})
-				})
-				$(tab).mouseout(function() {
-					tab.css('display', "none");
-				})
-				$(item).mouseout(function() {
-					tab.css('display', "none");
-				})
-			});
-	  
-	  /* 마이페이지, 장바구니 */
-		$(function() {
-			let item = $('#user');
-			let tab = $('.memberInfoTab');
-				$(item).mouseover(function() {
-					// tab.slideDown(500);
-					tab.css('display', "flex");
-					$(tab).mouseover(function() {
-						tab.css('display', "flex");
-					})
-				})
-				$(tab).mouseout(function() {
-					tab.css('display', "none");
-				})
-				$(item).mouseout(function() {
-					tab.css('display', "none");
-				})
-			});
 	</script>
+
 </body>
+
 </html>

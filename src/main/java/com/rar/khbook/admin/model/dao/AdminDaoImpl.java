@@ -18,6 +18,7 @@ import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.servicecenter.model.vo.Faq;
 
 @Repository
 public class AdminDaoImpl implements AdminDao {
@@ -81,14 +82,14 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public List<Order> selectOrderList(SqlSession session, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
-		return session.selectList("order.selectOrderList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
+		return session.selectList("admin.selectOrderList",null,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
 	
 
 	@Override
 	public int selectOrderCount(SqlSession session) {
 		// TODO Auto-generated method stub
-		return session.selectOne("order.selectOrderCount");
+		return session.selectOne("admin.selectOrderCount");
 	}
 
 	@Override
@@ -539,6 +540,61 @@ public class AdminDaoImpl implements AdminDao {
 		// TODO Auto-generated method stub
 		return session.selectList("admin.giftTopThree");
 	}
+
+	@Override
+	public List<Faq> selectFaqList(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.selectFaqList");
+	}
+
+	@Override
+	public List<Faq> selectFaqReplyNo(SqlSession session,Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("admin.selectFaqReplyNo",param);
+	}
+
+	@Override
+	public int updateFaqAnswer(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("admin.updateFaqAnswer",param);
+	}
+
+	@Override
+	public int deleteFaq(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("admin.deleteFaq",param);
+	}
+
+	@Override
+	public List<Order> searchTextSaleList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.searchTextSaleList",param,new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int getPageBarTextSaleList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarTextSaleList",param);
+	}
+
+	@Override
+	public List<Order> orderSaleList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		return session.selectList("admin.orderSaleList", param, new RowBounds((cPage-1)*numPerpage,numPerpage));
+	}
+
+	@Override
+	public int getPageBarorderSaleList(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("admin.getPageBarorderSaleList");
+	}
+	
+	
+	
 	
 
 	

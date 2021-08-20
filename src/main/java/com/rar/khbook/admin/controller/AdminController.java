@@ -2,6 +2,7 @@ package com.rar.khbook.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +31,7 @@ import com.rar.khbook.delivery.model.vo.Delivery;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.servicecenter.model.vo.Faq;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -85,7 +86,6 @@ public class AdminController {
 		String loc="";
 		if(result>0) {
 			msg="삭제되었습니다";
-			
 		}else {
 			msg="삭제실패";
 		}
@@ -206,8 +206,10 @@ public class AdminController {
 		int totalData=service.selectOrderCount();
 		
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "adMemberPage.do"));
+		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "adSalePage.do"));
 		
+		System.out.println(list);
+		mv.addObject("list",list);
 		mv.setViewName("admin/adminSalePage"); 
 		return mv;
 	}
@@ -1500,13 +1502,171 @@ public class AdminController {
 		mv.setViewName("admin/chartAnalysis");
 		return mv;
 	}
+	//faq관리 시작
+	@RequestMapping("/admin/managementFaq.do")
+	public ModelAndView managementFaqPage(ModelAndView mv) {
+		List<Faq> list=service.selectFaqList();
+		mv.addObject("list", list);
+		
+		mv.setViewName("admin/managementFaq");
+		return mv;
+	}
+	//faq 답변 페이지
+	@RequestMapping("/admin/replyPage.do")
+	public ModelAndView replyPage(ModelAndView mv,@RequestParam Map param) {
+		
+		String faqNo=(String)param.get("faqNo");
+		param.put("faqNo", faqNo);
+		
+		List<Faq> list=service.selectFaqReplyNo(param);
+		mv.addObject("faq", list.get(0));
+		
+		mv.addObject("list", list);
+		mv.setViewName("admin/replyPage");
+		return mv;
+	}
+	//faq 등록 update
+	@RequestMapping("/admin/updateFaqAnswer.do")
+	public ModelAndView updateFaqAnswer(ModelAndView mv,@RequestParam Map param) {
+		
+		int result2=service.updateFaqAnswer(param);
+		
+		String msg="";
+		String loc="";
+		if(result2>0) {
+			msg="등록되었습니다.";
+			
+		}else {
+			msg="등록이 실패 되었습니다.";
+		}
+		
+		System.out.println(param);
+		
+		String faqNo=(String)param.get("faqNo");
+		
+		loc="/admin/replyPage.do?faqNo="+faqNo;
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		
+		
+		return mv;
+	}
+	@RequestMapping("/admin/deleteFaq.do")
+	public ModelAndView deleteFaq(ModelAndView mv,@RequestParam Map param) {
+		
+		String faqNo=(String)param.get("faqNo");
+		param.put("faqNo",faqNo);
+		System.out.println(faqNo);
+		int result=service.deleteFaq(param);
+	
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="삭제되었습니다.";
+			
+		}else {
+			msg="삭제 실패 되었습니다.";
+		}
+	
+		loc="/admin/managementFaq.do";
+		
+		mv.addObject("msg",msg);
+		mv.addObject("loc",loc);
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	//판매내역 검색
+	@RequestMapping("/admin/searchTextSaleList.do")
+	@ResponseBody
+	public List<Order> searchTextSaleList(@RequestParam Map param) {
+		
+		String type51=(String)param.get("type51");
+		param.put("type51", type51);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
+		List<Order> list=service.searchTextSaleList(param);
+		
+		return list;
+	}
+	//판매 검색 페이지바 
+	@RequestMapping("/admin/getPageBarSearchTextSaleList.do")
+	@ResponseBody
+	public String[] getPageBarTextSaleList(@RequestParam Map param) {
+		
+		String type51=(String)param.get("type51");
+		param.put("type51", type51);
+		String search=(String)param.get("search");
+		param.put("search", search);
+		
 
+		System.out.println("검색바에서"+param.get("cPage"));
+		System.out.println("검색바에서"+param.get("numPerpage"));
+		
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+//		param.put("cPage", cPage);
+//		param.put("numPerpage", numPerpage);
+
+		int totalContents=service.getPageBarTextSaleList(param);
+		
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar14(totalContents, cPage, numPerpage,null);
+		resultArr[0]=pageBar;
+		resultArr[1]= Integer.toString(totalContents);
+		
+		
+		return resultArr;
+	}
 	
 	
-	
-	
-	
-	
+	//판매 정렬 
+	@RequestMapping("/admin/orderSaleList.do")
+	@ResponseBody
+	public List<Order> orderSaleList(@RequestParam Map param) {
+		
+		String type = (String)param.get("type");
+		param.put("type", type);
+		String searchSaleDate1 = (String)param.get("searchSaleDate1");
+		String searchSaleDate2 = (String)param.get("searchSaleDate2");
+		String searchSaleDate3 = (String)param.get("searchSaleDate3");
+		param.put("searchSaleDate1", searchSaleDate1);
+		param.put("searchSaleDate2", searchSaleDate2);
+		param.put("searchSaleDate3", searchSaleDate3);
+		System.out.println(searchSaleDate1);
+		System.out.println(searchSaleDate2);
+		System.out.println(searchSaleDate3);
+		
+		
+		List<Order> list=service.orderSaleList(param);
+		return list;
+	}
+	//판매 정렬 페이지바
+	@RequestMapping("/admin/getPageBarorderSaleList.do")
+	@ResponseBody
+	public String[] getPageBarorderSaleList(@RequestParam Map param) {
+		
+		int cPage = Integer.parseInt((String)param.get("cPage"));
+		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
+		
+		int totalContents=service.getPageBarorderSaleList(param);
+		
+		//mv.addObject("totalContents", totalData);
+		String[] resultArr = new String[2];
+		
+		String pageBar = PageFactoryAdmin.getPageBar15(totalContents, cPage, numPerpage,null);
+		resultArr[0]=pageBar;
+		resultArr[1]= Integer.toString(totalContents);
+		
+		
+		return resultArr;
+	}
 	
 	
 	

@@ -154,13 +154,46 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("order.ebookPurchaseCount", param);
 	}
 	
+//	개인 회원 도서 결제 내역 총합
+	@Override
+	public int bookPurchaseCount(SqlSession session, Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("order.bookPurchaseCount", param);
+	}
+	
+//	개인 회원 기프트 결제 내역 총합
+	@Override
+	public int giftPurchaseCount(SqlSession session, Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("order.giftPurchaseCount", param);
+	}
+	
+//	개인 회원 이북 결제 내역 조회
 	@Override
 	public List<Order> ebookPurchaseList(SqlSession session, Map<String, String> param, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		
 		RowBounds row = new RowBounds((cPage-1)*numPerpage, numPerpage);
-//		return session.selectList("order.ebookPurchaseList", param, row);
-		return null;
+		
+		return session.selectList("order.ebookPurchaseList", param, row);
+	}
+	
+//	개인 회원 도서 결제 내역 조회
+	@Override
+	public List<Order> bookPurchaseList(SqlSession session, Map<String, String> param, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		RowBounds row = new RowBounds((cPage-1)*numPerpage, numPerpage);
+		
+		return session.selectList("order.bookPurchaseList", param, row);
+	}
+	
+//	개인 회원 기프트 결제 내역 조회
+	@Override
+	public List<Order> giftPurchaseList(SqlSession session, Map<String, String> param, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		RowBounds row = new RowBounds((cPage-1)*numPerpage, numPerpage);
+		
+		return session.selectList("order.giftPurchaseList", param, row);
 	}
 
 	
