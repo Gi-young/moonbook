@@ -38,7 +38,7 @@
 									<input class="howASCSearch" type="radio" name="searchHow2" id="asc" value="ASC" checked><label for="asc">오름차순</label>
 									<input class="howDESCSearch2" type="radio" name="searchHow2" id="desc" value="DESC"><label for="desc">내림차순</label>
 								</td>
-								<td><input type="button" value="조회하기" onclick="orderList(1,10);"></td>
+								<td><input type="button" value="조회하기" onclick="orderList(1,10);" class="adminBtn"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
@@ -163,15 +163,22 @@ function searchMT(cPage,numPerpage){
 		document.querySelectorAll(".memberT td").forEach((v,i) => {
 				v.remove();
 			});
-			console.dir( data);
 			
-			let table=document.querySelector(".memberT");
+		let table=document.querySelector(".memberT");
 			for(let i=0;i<data.length;i++){
 				let tr=document.createElement("tr");
 				for(let j=0;j<12;j++){
 					let td=document.createElement("td");
-					/* td.style.border="1px solid black"; */
+					
 					td.style.height="27px";
+					
+					let removeAddressNull;
+					if(data[i].memberDetailAddress==null){
+						removeAddressNull="";
+						console.log(removeAddressNull);
+					}else if(data[i].memberDetailAddress!=null){
+						removeAddressNull=data[i].memberDetailAddress;
+					}
 					if(j == 0) {
 						let regiDate = new Date(data[i].memberRegiDate);
 						
@@ -186,11 +193,12 @@ function searchMT(cPage,numPerpage){
 						regiMonth
 						+ "-" + regiDate.getDate()+ "'>";
 					}
+					
 					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].memberId + "'>";
 					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
 					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
 					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + removeAddressNull + "'>";
 					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
 					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
 					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";
@@ -200,7 +208,8 @@ function searchMT(cPage,numPerpage){
 						td.classList.add('Dodo1');
 					}
 					if(j == 11) {
-						td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
+						td.innerHTML = '<input type="hidden" value="'+ data[i].memberId +'" name="memberId" readonly>'+
+						'<img src="${path }/resources/img/admin/delete2.png" alt="" class="updateCheck deleteImg">';
 						td.classList.add('Dodo1');
 					}
 					
@@ -218,6 +227,7 @@ function searchMT(cPage,numPerpage){
 		}
 		
 	});
+	
 	$.ajax({
 		url: "${path}/admin/getPageBarSearchTextMemberList.do",
 		data: {
@@ -262,6 +272,15 @@ function orderList(cPage,numPerpage){
 					let td=document.createElement("td");
 					/* td.style.border="1px solid black"; */
 					td.style.height="27px";
+					
+					let removeAddressNull;
+					if(data[i].memberDetailAddress==null){
+						removeAddressNull="";
+						console.log(removeAddressNull);
+					}else if(data[i].memberDetailAddress!=null){
+						removeAddressNull=data[i].memberDetailAddress;
+					}
+					
 					if(j == 0) {
 						let regiDate = new Date(data[i].memberRegiDate);
 						let regiMonth;
@@ -279,7 +298,7 @@ function orderList(cPage,numPerpage){
 					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].memberName + "'>";
 					if(j == 3) td.innerHTML = "<input type='text' value='" + data[i].memberPhone + "'>";
 					if(j == 4) td.innerHTML = "<input type='text' value='" + data[i].memberGender + "'>";
-					if(j == 5) td.innerHTML = "<input type='text' value='" + data[i].memberAddress + "'>";
+					if(j == 5) td.innerHTML = "<input type='text' value='" + removeAddressNull + "'>";
 					if(j == 6) td.innerHTML = "<input type='text' value='" + data[i].memberPoint + "'>";
 					if(j == 7) td.innerHTML = "<input type='text' value='" + data[i].memberGradeNo + "'>";
 					if(j == 8) td.innerHTML = "<input type='text' value='" + data[i].memberTotalSale + "'>";

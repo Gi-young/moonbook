@@ -105,8 +105,13 @@
 	text-align: center;
 	width:730px;
 	height:450px;
-	overflow-y: scroll;
-	
+	/* overflow-y: scroll; */
+	overflow: scroll; 
+	-ms-overflow-style: none; 
+}
+.faqList-box1::-webkit-scrollbar { 
+    display: none;
+    
 }
 .faqList-box1 ul li{
 	
@@ -232,7 +237,7 @@
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
-	width:710px;
+	width:730px;
 	height:40px;
 	color:#582810;
 	font-weight: bold;
@@ -252,4 +257,12 @@
 	text-align: left;
 	padding:10px;
 	line-height: 25px;
+}
+.adminBtn{
+	background-color: #582810;
+	color:white;
+}
+.adminBtn:hover{
+	background-color: #800000;
+	color:white;
 }

@@ -38,7 +38,7 @@
 									<input class="howASCSearch" type="radio" name="searchGift9" id="asc" value="ASC" checked><label for="asc">오름차순</label>
 									<input class="howDESCSearch2" type="radio" name="searchGift9" id="desc" value="DESC"><label for="desc">내림차순</label>
 								</td>
-								<td><input type="button" value="조회하기" onclick="orderGiftAList(1,10);"></td>
+								<td><input type="button" value="조회하기" onclick="orderGiftAList(1,10);" class="adminBtn"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>

@@ -129,6 +129,7 @@
 			
 			window.open(searchIdPwPage,name,option);
 		}
+		
 	</script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

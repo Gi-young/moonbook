@@ -159,3 +159,17 @@
 	color:white;
 }
 
+.adminBtn{
+	/* background-color: #804040; */
+	background-color: #667194;
+	color:white;
+	cursor: pointer;
+	width:80px;
+}
+.adminBtn:hover{
+	/* background-color: #800000; */
+	background-color: #000080;
+	color:white;
+	cursor: pointer;
+	width:80px;
+}

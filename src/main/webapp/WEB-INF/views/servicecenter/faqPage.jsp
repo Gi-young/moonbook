@@ -60,7 +60,7 @@
 									<input type="text" name="askFaq"> 
 								</td>
 								<td class="search-box">
-									<input type="button" value="등록" onclick="inputFaq()">
+									<input type="button" value="등록" onclick="inputFaq()" class="adminBtn">
 								</td>
 							</tr>
 						</table>
@@ -188,21 +188,14 @@ function searchFaqList(){
 				faqsplit=data[i].faqAnswer.split(/.-/).join('<br>');
 				
 				console.log(faqsplit);
-				//for(let j=0;j<data.length;j++){
+				
 					let innerUl=document.createElement("ul");
 					innerUl.classList.add('sub_faqcontent'+i);
 					innerUl.classList.add('faqclassName2');
 					if(data[i].faqAnswer!=null){
 						innerUl.innerHTML = "<li class='last_li'>"+faqsplit+"</li>";
-						//console.log("test");
-						//console.log(data[i].faqAnswer.split("."));
-						//console.log(splitMulti(data[i].faqAnswer,[".","-"]));
-						//console.log(data[i].faqAnswer.split(".-"));
-						
 					}
 					
-					//totalUl.appendChild(innerUl);
-				//}
 				totalUl.appendChild(li);
 				totalUl.appendChild(innerUl);
 				

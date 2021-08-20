@@ -1652,6 +1652,15 @@ public class AdminController {
 	@ResponseBody
 	public String[] getPageBarorderSaleList(@RequestParam Map param) {
 		
+		String type = (String)param.get("type");
+		param.put("type", type);
+		String searchSaleDate1 = (String)param.get("searchSaleDate1");
+		String searchSaleDate2 = (String)param.get("searchSaleDate2");
+		String searchSaleDate3 = (String)param.get("searchSaleDate3");
+		param.put("searchSaleDate1", searchSaleDate1);
+		param.put("searchSaleDate2", searchSaleDate2);
+		param.put("searchSaleDate3", searchSaleDate3);
+		
 		int cPage = Integer.parseInt((String)param.get("cPage"));
 		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
 		
@@ -1664,6 +1673,8 @@ public class AdminController {
 		resultArr[0]=pageBar;
 		resultArr[1]= Integer.toString(totalContents);
 		
+		System.out.println(pageBar);
+		System.out.println(Integer.toString(totalContents));
 		
 		return resultArr;
 	}

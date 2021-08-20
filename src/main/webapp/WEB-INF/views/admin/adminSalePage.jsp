@@ -36,15 +36,15 @@
 									<input class="howDESCSearch2" type="radio" name="searchHow12" id="days" value="Day2"><label for="days" style="margin-left:7px; margin-right:5px;">기간별</label>
 									<input type="Date" name="searchSaleDate2" class="saleDate1"><p>~</p><input type="Date" name="searchSaleDate3" class="saleDate2">
 								</td>
-								<td><input type="button" value="조회하기" onclick="orderSaleList(1,10);"></td>
+								<td><input type="button" value="조회하기" onclick="orderSaleList(1,10);" class="adminBtn"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
 								<td class="admin-search2">
 								<select name="type51">
 									<option value="orderMemberId" selected>주문한 ID</option>
-									<option value="orderNo" >주문번호</option>
-									<option value="orderStatus" >주문접수중</option>
+									<option value="orderNo" >상품 판매번호</option>
+									<option value="orderStatus" >결제상태</option>
 								</select>
 								</td>
 								<td class="search-box">
@@ -189,16 +189,16 @@ function searchSale(cPage,numPerpage){
 } 
 
 function orderSaleList(cPage,numPerpage){
-	/* let type1 = document.getElementsByName("type1")[0].value; */
+	
 	let searchSaleDate1=document.getElementsByName("searchSaleDate1")[0].value;
 	let searchSaleDate2=document.getElementsByName("searchSaleDate2")[0].value;
 	let searchSaleDate3=document.getElementsByName("searchSaleDate3")[0].value;
 	
 	let type="";
-	let order2="";
+	
 	document.getElementsByName("searchHow12").forEach((v,i) => {
 		if (v.checked) {
-			/* order = v.previousSibling.value; */
+			
 			type =v.value;
 		}
 	}); 
@@ -217,16 +217,12 @@ function orderSaleList(cPage,numPerpage){
 			document.querySelectorAll(".saleT td").forEach((v,i) => {
 				v.remove();
 			});
-			console.dir( data);
 			
 			let table=document.querySelector(".saleT");
 			for(let i=0;i<data.length;i++){
 				let tr=document.createElement("tr");
 				for(let j=0;j<9;j++){
 					let td=document.createElement("td");
-					/* td.style.border="1px solid black";
-					td.style.height="27px"; */
-					
 					if(j == 0) td.innerHTML = "<input type='text' value='" + data[i].orderNo + "'>";
 					if(j == 1) td.innerHTML = "<input type='text' value='" + data[i].orderCount + "'>";
 					if(j == 2) td.innerHTML = "<input type='text' value='" + data[i].orderDeliveryfee + "'>";

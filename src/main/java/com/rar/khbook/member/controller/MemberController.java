@@ -58,7 +58,8 @@ public class MemberController {
 
 		return "member/login";
 	}
-
+	
+	
 	@RequestMapping("/member/login.do")
 	public String login(@RequestParam Map param, Model model, HttpSession session, HttpServletResponse res) {
 

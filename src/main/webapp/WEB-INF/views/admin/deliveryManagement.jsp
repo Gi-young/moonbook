@@ -37,7 +37,7 @@
 									<input type="text" name="deliveryType2" placeholder="배송상태를 입력하세요"> 
 								</td> -->
 								<td class="search-box">
-									<input type="submit" value="추가"/>
+									<input type="submit" value="추가" class="adminBtn"/>
 									<!-- <button onclick="addAuctionCate(event)">추가</button>  -->
 								</td>
 							</tr>
@@ -53,7 +53,7 @@
 									<input type="text" name="deliveryType5" placeholder="배송상태를 입력하세요"> 
 								</td> -->
 								<td class="search-box">
-									<input type="button" value="갱신" onclick="updateDeliveryAdmin('updateDelivery.do')"/>
+									<input type="button" value="갱신" onclick="updateDeliveryAdmin('updateDelivery.do')" class="adminBtn"/>
 									<!-- <button onclick="addAuctionCate(event)">추가</button>  -->
 								</td>
 							</tr>
@@ -68,7 +68,7 @@
 								</td>
 								
 								<td class="search-box">
-									<input type="button" value="삭제" onclick="deleteDeliveryAdmin('deleteDelivery.do');"/>
+									<input type="button" value="삭제" onclick="deleteDeliveryAdmin('deleteDelivery.do');" class="adminBtn"/>
 								</td>
 							</tr>
 						</table>
