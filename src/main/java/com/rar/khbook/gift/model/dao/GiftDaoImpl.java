@@ -178,6 +178,36 @@ public class GiftDaoImpl implements GiftDao {
 		// TODO Auto-generated method stub
 		return session.delete("gift.useCoupon", param);
 	}
+
+	@Override
+	public int updateCoupon(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateCoupon",param);
+	}
+
+	@Override
+	public List<Ngift> giftElec(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectElecGiftAll");
+	}
+
+	@Override
+	public List<Ngift> giftSupplies(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectEtcGiftAll");
+	}
+
+	@Override
+	public List<Ngift> giftStorage(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectStorageGiftAll");
+	}
+
+	@Override
+	public List<Ngift> giftReading(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectReadingGiftAll");
+	}
 	
 	
 }

@@ -67,4 +67,15 @@ public interface GiftDao {
 	List<NoticeBoard> searchNoticeBoardList(SqlSession session);
 
 	int useCoupon(SqlSession session, Map param);
+
+//	쿠폰결제 후 쿠폰 사용 추가
+	int updateCoupon(SqlSession session, Map param);
+
+	List<Ngift> giftElec(SqlSession session);
+
+	List<Ngift> giftSupplies(SqlSession session);
+
+	List<Ngift> giftStorage(SqlSession session);
+
+	List<Ngift> giftReading(SqlSession session);
 }

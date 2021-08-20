@@ -53,7 +53,15 @@ public interface GiftService {
 
 	List<NoticeBoard> searchNoticeBoardList();
 
-	int useCoupon(Map param);	
+	int useCoupon(Map param);
+
+	List<Ngift> giftElec();
+
+	List<Ngift> giftSupplies();
+
+	List<Ngift> giftStorage();
+
+	List<Ngift> giftReading();	
 }
 
 

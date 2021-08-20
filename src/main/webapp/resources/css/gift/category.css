@@ -139,3 +139,36 @@
 
 /* 9개의 상품 박스 css 끝 */
 /* 가변슬라이드 css 시작 */
+
+
+/* 검색창 css 시작 */
+.searchBox{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+	height: 120px;
+}
+.searchText{
+	border: none;
+	border-bottom: 1px solid black;
+	width: 100px;
+}
+.searchBtn{
+	cursor:pointer;
+	padding: 5px 0px 5px 0px;
+	width: 120px;
+	transition: 200ms;
+	border: 2px solid black;
+}
+.searchBtn:hover{
+	background-color: black;
+	border-radius: 3px;
+	color: white;
+	border: 1px solid black;
+	padding: 2px 0px 2px 0px;
+}
+.searchInput{
+	font-size:14px;
+}

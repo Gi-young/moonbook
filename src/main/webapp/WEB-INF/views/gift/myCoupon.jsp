@@ -19,21 +19,21 @@
         </div>
         <div class="couponList">
         	 <form action="${path }/gift/choiceCoupon.do" method="post" > 
-        	<c:forEach var="i" items="${couponlist }" varStatus="status">
-	            <div class="couponView" style="width:500px;"> 
-	                <img src="${i.couponImg}" alt="">
-	                <p>${i.couponlistName }</p>
-	                <p>${i.couponlistAmount }원</p>
-	                <p style="font-weight:900;">${i.couponlistForuse eq 'Y'?"사용가능":"기간만료"}</p>
-	                <c:if test="${i.couponlistForuse eq 'Y'}">
-	                	<button type="button" class="useCoupon" onclick="getUseCoupon(${status.index})">쿠폰 사용</button>
-	                </c:if>
-					<input type="hidden" value="${i.couponlistNo }" name="couponNo" class="couponNo"/>
-	                <input type="hidden" value="${i.couponlistName }" name="couponName" class="couponName"/>
-	                <input type="hidden" value="${i.couponlistAmount }" name="couponAmount" class="couponAmount"/>                           
-	            </div>
-	         </form>   
-	        </c:forEach>    
+	        	<c:forEach var="i" items="${couponlist }" varStatus="status">  
+		        	<c:if test="${i.couponlistForuse eq 'Y'}">
+			            <div class="couponView" style="width:500px;"> 
+			                <img src="${path }/resources/images/gift/${i.couponImg}" alt="">
+			                <p>${i.couponlistName }</p>
+			                <p>${i.couponlistAmount }원</p>
+			                <%-- <p style="font-weight:900;">${i.couponlistForuse eq 'Y'?"사용가능":"기간만료"}</p> --%>
+			                <button type="button" class="useCoupon" onclick="getUseCoupon(${status.index})">쿠폰 사용</button>
+							<input type="hidden" value="${i.couponlistNo }" name="couponNo" class="couponNo"/>
+			                <input type="hidden" value="${i.couponlistName }" name="couponName" class="couponName"/>
+			                <input type="hidden" value="${i.couponlistAmount }" name="couponAmount" class="couponAmount"/>                           
+			            </div>
+			        </c:if>
+		        </c:forEach>    
+        	</form>   
             <%-- <div class="couponView">  
                 <img src="${path }/resources/images/gift/silverbear.png" alt="">
                 <p>보유 실버 쿠폰</p><p class="cp-count"></p>

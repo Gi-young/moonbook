@@ -155,7 +155,7 @@
 	</resultMap> -->
 	
 			
-	<insert id="createShopingListG">
+	<insert id="createShopingList">
 		INSERT INTO SHOPING_LIST VALUES('G', #{memberId})
 	</insert>
 	
@@ -199,7 +199,7 @@
 		SELECT * FROM BOOK_EBOOK_DATABIND
 		<choose>
 			<when test="arr != ''">
-				WHERE BIND_NO IN (${arr})
+				WHERE BIND_NO IN (${arr}) ORDER BY
 			</when>
 			<otherwise>
 				WHERE 1=2

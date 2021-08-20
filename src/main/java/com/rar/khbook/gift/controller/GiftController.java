@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,11 +70,35 @@ public class GiftController {
 		/* System.out.println(giftNo); */
 		/* System.out.println(Integer.parseInt(giftNo)); */
 		Ngift g = service.giftOne(giftNo);
+		List<Ngift> list= new ArrayList();
+		System.out.println("카테고리 코드"+g.getGift_category().getGiftCateCode());
+		//System.out.println("기프트 타이틀 "+g.getGift_title());
+		
+		
+		  if(g.getGift_category().getGiftCateCode() == 9) {
+			  list = service.giftElec();
+		  }else if(g.getGift_category().getGiftCateCode() == 12){ 
+			  list = service.giftSupplies();
+		  }else if(g.getGift_category().getGiftCateCode() == 10){
+			  list = service.giftStorage();
+		  }else if(g.getGift_category().getGiftCateCode() == 11){
+			  list = service.giftReading();
+		  }
+		 
+		
+		double begin = (Math.random()*90); // 0~90
 
+		int num = (int)begin;
+		//(int)Math.floor(Math.random()*101);
+		//System.out.println("랜덤 맞음??"+num);
+		//System.out.println(list);
+		mv.addObject("begin",num);
+		mv.addObject("list", list);
 		mv.addObject("gift", g);
 		mv.setViewName("gift/giftDetail");
 		return mv;
 	}
+
 
 // 	내 쿠폰 페이지 
 	@RequestMapping("/gift/myCoupon.do")
@@ -135,29 +160,39 @@ public class GiftController {
 	}
 
 	@RequestMapping("/gift/moreThing.do")
-	public String moreThing(String giftCate) {
-		System.out.println(giftCate);
+	public ModelAndView moreThing(String giftCate, ModelAndView mv) {
+		//System.out.println(giftCate);
 		String loc = "";
+		List<Ngift> list=new ArrayList();
 		switch (giftCate) {
 		case "e":
+			list = service.giftElec();
 			loc = "gift/categoryPage1";
 			break;
 		case "s":
+			list = service.giftStorage();
 			loc = "gift/categoryPage2";
 			break;
 		case "r":
+			list = service.giftReading();
 			loc = "gift/categoryPage3";
 			break;
 		case "g":
+			list = service.giftSupplies();
 			loc = "gift/categoryPage4";
 			break;
 		default:
 			break;
-
 		}
-		/* System.out.println(loc); */
+		
+		double begin = (Math.random()*85); // 0~90
 
-		return loc;
+		int num = (int)begin;
+		
+		mv.addObject("begin",num);
+		mv.addObject("list", list);
+		mv.setViewName(loc);
+		return mv;
 
 	}
 
@@ -345,16 +380,16 @@ public class GiftController {
 	@ResponseBody
 	public int salesVolume(@RequestParam Map param) {
 
-		System.out.println(" 쿠폰번호 : "+param.get("couponNo"));
-		System.out.println(" 아이디 : "+param.get("memberId"));
-		System.out.println(" 상품번호 : "+param.get("giftNo"));
-		System.out.println(" 상품가격 : "+param.get("totalPrice"));
-		System.out.println(" 구매수량 :"+param.get("stock"));
-		System.out.println(" 멀천트아이디 :"+param.get("merchantUid"));
+//		System.out.println(" 쿠폰번호 : "+param.get("couponNo"));
+//		System.out.println(" 아이디 : "+param.get("memberId"));
+//		System.out.println(" 상품번호 : "+param.get("giftNo"));
+//		System.out.println(" 상품가격 : "+param.get("totalPrice"));
+//		System.out.println(" 구매수량 :"+param.get("stock"));
+//		System.out.println(" 멀천트아이디 :"+param.get("merchantUid"));
 		
 		//int point = (int) Math.round((int) param.get("totalPrice")*0.1);
 		
-		System.out.println(" 적립할 포인트 : "+param.get("point"));
+		//System.out.println(" 적립할 포인트 : "+param.get("point"));
 		
 		//param.put("point", point);
 		
@@ -369,7 +404,7 @@ public class GiftController {
 	  
 //		 내 장바구니 확인
         List<GiftShopingList> list = service.selectCheck(param);
-		System.out.println("쇼핑리스트에 선택한 상품이 있는지 없는지 단무지 : "+list);
+	  //System.out.println("쇼핑리스트에 선택한 상품이 있는지 없는지 단무지 : "+list);
 	  //System.out.println("url 타고 넘어온 파람값 : "+param);
 	  //System.out.println(param.get("giftNo"));
 	  //System.out.println(param.get("quan"));	 

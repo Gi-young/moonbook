@@ -434,6 +434,41 @@ input:focus{
     color: #582810;
     font-weight: 900;
 }
+.memberInfoTab{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 3px solid silver;
+    border-top: none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 150px;
+    height: 240px;
+    margin-top: 25px;
+    z-index: 5;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    display: none;
+}
+.memberInfoTab li{
+    background-color: #E5E2DB;
+    height: 60px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+}
+.memberInfoTab li:not(:last-child){
+    border-bottom: 0.5px solid silver;
+}
+.memberInfoTab a{
+    color: #582810;
+    font-weight: 900;
+}
 
 /* 헤더에서 기프트메뉴 호버시 */
 

@@ -129,13 +129,7 @@
 
 		<div class="header-bottom">
 			<div class="header-bottom-div">
-				<!-- <div style="background-color: #353f67;">
-                <a href="#"><img src="../components/image/작은삼선2.png" alt="" style="
-                padding-top: 10px; 
-                padding-left: 10px; 
-                padding-right: 10px;
-                "></a>
-            </div> -->
+				
 
 				<div class="header-menuBar1">
 					<ul class="flex">
@@ -171,35 +165,32 @@
 					</ul>
 				</div>
 				<div class="header-menuBar2">
-					<ul class="flex" style="align-items:center;">
+					<ul class="flex" style="align-items: center;">
 						<c:if test="${loginMember==null }">
 							<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
-							<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
+							<li class="headerF-li"><a href="${path }/member/enrollPage.do">회원가입</a></li>
 						</c:if>
 						<c:if test="${loginMember!=null }">
 							<li class="headerF-li" id="user">
-								<a href="${path }/member/myroom/main.do">${loginMember.memberName }님
-										(${loginMember.memberGradeNo}) ▽</a>
-									<ul class="memberInfoTab">	
-										<li>
-											<a href="${path }/member/myroom/main.do">마이페이지</a>
-										</li>
-										<li>
-											<a href="${path }/shopingList/shopingListView.do?memberId=${loginMember.memberId }">장바구니</a>
-										</li>
-						    		</ul>
+								<a href="${path }/member/myroom/main.do">
+									${loginMember.memberName }님
+									(${loginMember.memberGradeNo})
+							    </a>
+									<%-- <ul class="memberInfoTab" style="display:none;">	
+										<li><a href="${path }/member/myroom/main.do">마이페이지</a></li>
+										<li><a href="${path }/shopingList/shopingListView.do?memberId=${loginMember.memberId }">장바구니</a></li>
+						    		</ul> --%>
 						    </li>
 							<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
-							<li><a href="${path }/member/logout.do">로그아웃</a></li>
-
-
+							<li class="headerF-li"><a href="${path }/member/logout.do">로그아웃</a></li>
+							<li class="headerF-li"><a href="${path }/shopingList/shopingListView.do?memberId=${loginMember.memberId }">장바구니</a></li>
 						</c:if>
-						<li><a href="${path }/member/myroom/main.do">마이룸</a></li>
+						<li class="headerF-li"><a href="${path }/member/myroom/main.do">마이룸</a></li>
 						<c:if test="${loginMember.memberId.equals('admin') }">
-                    		<li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
+                    		<li class="headerF-li"><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
             			</c:if>
 						
-						<li><a href="${path }/service/serviceMain.do">고객센터</a></li>
+						<li class="headerF-li"><a href="${path }/service/serviceMain.do">고객센터</a></li>
 					</ul>
 				</div>
 				<div></div>

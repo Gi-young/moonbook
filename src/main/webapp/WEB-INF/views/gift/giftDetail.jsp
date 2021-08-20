@@ -36,7 +36,7 @@
                 <img src="${gift.gift_img }" alt="">
                 <!-- 400x400 -->
                 <div class="detailImg-box">
-                    <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+                    <img src="${gift.gift_img }" alt="">
                 </div>
             </div>
         <form action="${path }/gift/giftPayment.do" method="post"> 
@@ -77,9 +77,9 @@
                     <button type="button" id="shopList">장바구니</button>
                     <!-- <button>찜하기</button> -->
                 </div>           
-                <div style="text-align: center; margin-top: 30px;">
+                <!-- <div style="text-align: center; margin-top: 30px;">
                     <button class="kakaoPay" id="kakaoPay">[간편결제] 카카오페이</button>
-                </div>
+                </div> -->
             </div>
             <input type="hidden" value="${loginMember.memberId }" id="loginMemberId" name="loginMemberId">
             <input type="hidden" value="${gift.gift_no }" name="giftNo" id="giftNo">
@@ -94,13 +94,17 @@
                 <p class="reco-product-font">함께 볼 만한 문곰템</p>
             </div>
             <div id="slider-div">
+            <c:forEach var="i" items="${list }" begin="${begin }" end="${begin+7 }">
                 <div class="reco-content">
-                    <img src="${path }/resources/images/gift/만년필1.jpg" alt="">
-                    <p class="productName">독일산 만년필</p>
-                    <p class="discount margin-bottom24">할인율</p>
-                    <p class="price margin-bottom24">가격</p>
+                <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+                    <img src="${i.gift_img }" alt="">
+                    <p class="productName" style="text-overflow:ellipsis; overflow: hidden;">${i.gift_title }</p>
+                    <!-- <p class="discount margin-bottom24">할인율</p> -->
+                    <p class="price margin-bottom24"><fmt:formatNumber value="${i.gift_price }" type="number"/>원</p>
+                </a>
                 </div>
-                <div class="reco-content">
+            </c:forEach>   
+                <%-- <div class="reco-content">
                     <img src="${path }/resources/images/gift/만년필2.jpg" alt="">
                     <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
@@ -141,13 +145,13 @@
                     <p class="productName">독일산 만년필</p>
                     <p class="discount margin-bottom24">할인율</p>
                     <p class="price margin-bottom24">가격</p>
-                </div>
+                </div> --%>
     </div>
         <div class="crossLine3"></div>
         <div class="proDetail-bar">
             <a id="bar1">상품설명</a>
             <a id="bar2" class="productR">상품리뷰</a>
-            <a id="bar3" class="productQ">상품Q&A</a>
+            <!-- <a id="bar3" class="productQ">상품Q&A</a> -->
             <a id="bar4">알려드립니다</a>
         </div>
         <input type="hidden" value="${gift.gift_no }" id="giftNo"/>         
@@ -164,32 +168,7 @@
                 <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/gift/insertReview?giftNo=${gift.gift_no }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
             </div>
            <table class="review-exp review-board" id="targetTable">
-             
-               <!-- <tr>
-                   <th style="width:105px;">번호</th>
-                   <th style="width:145px;">만족도</th>
-                   <th style="width:370px;">상품평</th>
-                   <th style="width:165px;">작성자</th>
-                   <th style="width:165px;">작성일</th>
-               </tr> -->
-              
-               <!-- <tr class="review-text review-tr">
-                   <td class="review-num">0</td>
-                   <td class="gpa">
-                    <div class="gpa-circle">
-                        <p class="gpa-circle-a">3</p>
-                    </div>    
-                   </td>
-                    <td>
-                       <div class="review">
-                        제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                       </div>
-                    </td>
-                   <td class="review-writer">관리자</td>
-                   <td class="review-date">SYSDATE or 수정일</td>
-                </tr> -->
-               
-          
+                      
             </table>
             <!-- <div>&lt;pageBar&gt;</div> -->
         <div id="pageBar"></div> 
@@ -245,21 +224,9 @@
             			pageBar.innerHTML = data;
             		} 
             	}); // pageBar ajax
-         	 
-         	 /* console.log(exp[0].children[0].children);
-         	 console.log(exp[0].firstChild); */
-         	 /*  console.log(exp[0].lastChild.childNodes);
-         	 console.log($(".review-board").children(".review-text")); */
-         	 /* console.log(tr); */
-         	 /*  console.log(exp[0].child[0]);
-         	 console.log(exp[0].child); */
-         	 /* exp[0].children[0].html(); */
-         	 /* exp[0].children.html(); */
-         	    
-         	 /*  exp[0].children[0].children.html();  */
+         
          	 exp[0].lastChild.innerHTML = "";
-         	 /* console.log(exp[0].lastChild.childNodes); */
-         	 /* console.log("================= ajax 실행 후 =================="); */
+         	
          	$.ajax({
               	type: 'post',
               	url: '${path}/gift/productReview.do',
@@ -295,15 +262,7 @@
                  	    console.log(tb);
                  	    
                  	    exp[0].appendChild(tb).appendChild(tr);
-                 	    //exp[0].appendChild(tb[0]).appendChild(tr);
-                 	    //exp[0].appendChild(tr);
-                 	    // document.getElementById("targetTable").appendChild(tr);
-                 	    /*  console.log("tb 입니다 ; ->>>>"+tb);
-                 	    console.log(tb);
-                 	    console.log(tb[0]); */
-                 	    //exp[0].appendChild(pager);    
-                 	  
-                 	    
+                 	                	    
              		 });    
               		
               	  } 
@@ -313,155 +272,7 @@
          }
              		  			
         </script>
-        <!-- 상품Q&A -->
-        <div class="product-q_a">
-            <div class="writeBox">
-                <button class="reviewWrite">질문 작성하기</button>
-            </div>
-            <table class="review-exp" id="qna-exp">
-                <!-- <tr>
-                    <th style="width:105px;">번호</th>
-                    <th style="width:145px;"></th>
-                    <th style="width:515px;">질문내용</th>
-                    <th style="width:165px;">작성자</th>
-                    <th style="width:165px;">작성일</th>
-                </tr> -->
-                <!-- <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                     <div class="gpa-circle">
-                         <p>3</p>
-                     </div>    
-                 </td>
-                     <td>
-                        <div class="review_qna">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                 </tr>     -->             
-             </table>
-             <!-- <div>&lt;pageBar&gt;</div> -->
-        </div>
-         <script>
-        /* 상품리뷰, 상품문의 */
-    	   
-    	    var btnQ = document.getElementById("bar3");
-    	    var giftNo = document.getElementById("giftNo").value; 	     
- 	    
-    	   	let pageBar = document.getElementById("pageBar");
-    	   	let pager = "";
-    	    let exp = document.getElementsByClassName('review-exp');
-    	    
-    	   /*  console.log("exp");
-    	    console.log(exp);
-    	    console.log(exp[0]);
-    	    console.log(exp[0].lastChild); */
-    	    
-  
-    	    // let tb = document.getElementsByTagName("tbody");
-    	    let tb = document.createElement('tbody');
-    	    /* console.log("tb 입니다 ; ->>>>"+tb); */
-  			let tr = ""; 
-  			let tr2 = ""; 
-       		let html2 = ""; /* thead */
-       		html2 += "<tr><th style='width:105px;'>번호</th>";
-            /*  html2 += "<th style='width:145px;'>만족도</th>";  */   
-            html2 += "<th style='width:418px;'>문의내용</th>";    
-            html2 += "<th style='width:203px;'>작성자</th>";    
-            html2 += "<th style='width:203px;'>작성일</th></tr>";    
-            /* console.log(html2); */    
-  			tr2 = document.createElement("tr");
-  			tr2.innerHTML=html2;
-  			
-  			
-         $(btnQ).on('click', getTrs(1)); 
-          
-          function getTrs(cPage) {
-        	 $.ajax({
-            		type: 'post',
-            		url: '${path}/gift/productInquiry2.do',
-            		data: {
-            			giftNo: giftNo,
-            			cPage: cPage,
-            			numPerPage: 10
-            		},
-            		/* dataType: "json", */
-            		success: data => {
-            			
-            			console.log("페이지바 넘겨온 데이터"+data);
-            			pageBar.innerHTML = data;
-            		} 
-            	}); // pageBar ajax
-         	 
-         	 /* console.log(exp[0].children[0].children);
-         	 console.log(exp[0].firstChild); */
-         	 /*  console.log(exp[0].lastChild.childNodes);
-         	 console.log($(".review-board").children(".review-text")); */
-         	 /* console.log(tr); */
-         	 /*  console.log(exp[0].child[0]);
-         	 console.log(exp[0].child); */
-         	 /* exp[0].children[0].html(); */
-         	 /* exp[0].children.html(); */
-         	    
-         	 /*  exp[0].children[0].children.html();  */
-         	 exp[0].lastChild.innerHTML = "";
-         	 /* console.log(exp[0].lastChild.childNodes); */
-         	 /* console.log("================= ajax 실행 후 =================="); */
-         	$.ajax({
-              	type: 'post',
-              	url: '${path}/gift/productInquiry.do',
-              	data: {
-              		giftNo: giftNo,
-              		cPage: cPage,
-              		numPerPage: 10
-              	},
-              	dataType: "json",
-              	success: data => {  
-              		
-              		exp[0].appendChild(tb).appendChild(tr2);
-              		data.forEach((v, i) => {   
-						 //console.log("어떻게 나왔지 ?? "+v.rownum);
-              			 let html = ""; /* 테이블 본문 내용 */
-              		     html += "<tr class='review-text review-tr'>";   
-                 	     html += "<td class='review-num'>"+v.rownum+"</td>";
-                 	     /* html += "<td class='gpa'>";
-                 	     html += "<div class='gpa-circle'>";
-                 	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>"; */
-                 	     html += "<td><div class='review'><a class='review-title-a'>"+v.gift_board_content+"</a></div></td>";
-                 	     html += " <td class='review-writer'>"+v.writer+"</td>";
-                 	     html += "<td class='review-date'>"+v.write_date+"</td></tr>";
      
-                 	    tr = document.createElement('tr'); 
-               			tr.classList.add('review-text');
-                 	    tr.classList.add('review-tr');
-                 	    tr.innerHTML=html;
-                 	       
-                 	    pager = document.createElement('div');
-                 	    pager.innerHTML = pageBar;
-                 	    
-                 	    console.log(tb);
-                 	    
-                 	    exp[0].appendChild(tb).appendChild(tr);
-                 	    //exp[0].appendChild(tb[0]).appendChild(tr);
-                 	    //exp[0].appendChild(tr);
-                 	    // document.getElementById("targetTable").appendChild(tr);
-                 	    /*  console.log("tb 입니다 ; ->>>>"+tb);
-                 	    console.log(tb);
-                 	    console.log(tb[0]); */
-                 	    //exp[0].appendChild(pager);    
-                 	  
-                 	    
-             		 });    
-              		
-              	  } 
-              	
-              }); // 1번째 ajax 끝
-                       
-         }
-             		  			
-        </script>
         <div class="notify">
             <img src="${path }/resources/images/gift/교환반품1.PNG" alt="">
             <img src="${path }/resources/images/gift/교환반품2.PNG" alt="">
@@ -538,9 +349,6 @@
           nextArrow : "<button type='button' class='slick-next'>⊳</button>",		// 다음 화살표 모양 설정
            	//아래 나오는 페이지네이션(점) css class 지정
           draggable : true, 	//드래그 가능 여부 
-        //   centerMode : true,
-        //   variableWidth : true,
-        //   focusOnSelect : true,
           pauseOnHover : true
           /* responsive: [ // 반응형 웹 구현 옵션
               {  

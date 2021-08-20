@@ -235,7 +235,7 @@
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
                                     <c:forEach var="i" items="${list }" begin="645" end="645">
-                                    <a href="${path }/gift/giftDetail?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
@@ -260,7 +260,7 @@
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
                                     <c:forEach var="i" items="${list }" begin="780" end="780">
-                                    <a href="${path }/gift/giftDetail?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
@@ -870,6 +870,7 @@
             </div>
             <div class="season-img" id="seasonElecImg">
             <c:forEach var="i" items="${list }" begin="18" end="18">
+              <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                 <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
@@ -878,22 +879,26 @@
                     </div>    
                     <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap;">${i.gift_title }</p>
                 </div>
+              </a>  
             </c:forEach>
             </div>
             <div class="season-img" id="seasonStorageImg" style="display:none;">
-            <c:forEach var="i" items="${list }" begin="287" end="287">
+            <c:forEach var="i" items="${list }" begin="305" end="305">
+           	  <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                 <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
                         <!-- <p class="discount">~20%</p> -->
                         <p class="price"><fmt:formatNumber type="number" value="${i.gift_price }"/>원</p>
                     </div>    
-                    <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap;">${i.gift_title }</p>
+                    <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap; width:400px;">${i.gift_title }</p>
                 </div>
+                </a>
                </c:forEach> 
             </div>
             <div class="season-img" id="seasonReadingImg" style="display:none;">
                 <c:forEach var="i" items="${list }" begin="599" end="599">
+                <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                 <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
@@ -902,10 +907,13 @@
                     </div>    
                     <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap;">${i.gift_title }</p>
                 </div>
+                </a>
                </c:forEach> 
             </div>
+          
             <div class="season-img" id="seasonEtcImg" style="display:none;">
                 <c:forEach var="i" items="${list }" begin="785" end="785">
+                <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
                 <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
@@ -914,8 +922,10 @@
                     </div>    
                     <p class="season-imgEx" style="text-overflow: ellipsis; overflow:hidden; white-space:nowrap;">${i.gift_title }</p>
                 </div>
+                </a>
                </c:forEach> 
             </div>
+            
         </div>
        <%--  <div class="attSlide">
         <!-- 기획상품 -->
@@ -1051,9 +1061,9 @@
     </div> 
 </div> 
 <input type="hidden" value="${path }" id="contextPath">
-<jsp:include page="/WEB-INF/views/common/newFooter.jsp">
+<%-- <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value=""/>
-</jsp:include>
+</jsp:include> --%>
 <div class="quickBar"></div>
 
 <script>

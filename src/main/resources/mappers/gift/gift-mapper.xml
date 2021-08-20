@@ -117,7 +117,7 @@
 	</select>
 	
 	<select id="selectEtcGiftAll" resultMap="giftMap">
-		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%문구%' OR '%학용품%'
+		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%문구%' OR NGIFT_TITLE LIKE '%학용품%'
 	</select>
 	
 	<select id="selectCheck" resultMap="giftShopingListMap">
@@ -142,7 +142,7 @@
 	
 	<!-- 접속한 회원에게 쿠폰이 있는지 확인 -->
 	<select id="selectCoupon" resultMap="couponMap">
-		SELECT * FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId}
+		SELECT * FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId} AND COUPON_CANUSE='Y'
 	</select>	
 	
 	<!-- 접속한 회원의 쿠폰 종류 -->
@@ -193,5 +193,10 @@
 	<delete id="useCoupon">
 		DELETE FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId} AND COUPON_COUPONLIST_NO=#{couponNo}
 	</delete>
+	
+	<!-- 쿠폰 사용시 회원 쿠폰 업데잍트 -->
+	<update id="updateCoupon">
+		UPDATE COUPON SET COUPON_CANUSE='N' WHERE COUPON_COUPONLIST_NO=#{couponNo} AND COUPON_MEMBER_ID=#{memberId}
+	</update>
 	
 </mapper>
