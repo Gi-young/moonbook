@@ -185,10 +185,10 @@ public class GiftController {
 			break;
 		}
 		
-		double begin = (Math.random()*85); // 0~90
+		double begin = (Math.random()*50); // 0~90
 
 		int num = (int)begin;
-		
+		System.out.println(num);
 		mv.addObject("begin",num);
 		mv.addObject("list", list);
 		mv.setViewName(loc);
@@ -304,11 +304,11 @@ public class GiftController {
 //	insertReview.jsp 에서 넘어오는 폼 값을 받는 컨트롤러
 	@RequestMapping("/gift/reviewWrite.do")
 	public ModelAndView reviewWrite(int giftNo, ModelAndView mv, String content, MultipartFile file, int score, String loginMember) {
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + giftNo);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + content);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + file);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + score);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + loginMember);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + giftNo);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + content);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + file);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + score);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + loginMember);
 
 		HashMap<String, Object> map = new HashMap<>();
 		
@@ -323,8 +323,9 @@ public class GiftController {
 		/*
 		 * mv.addObject("msg", ); mv.addObject("loc", ); mv.setViewName("");
 		 */
-		
-		mv.setViewName("gift/giftDetail.do?giftNo="+giftNo);
+		mv.addObject("giftNo", giftNo);
+		mv.addObject("msg","리뷰가 등록되었습니다.");
+		mv.setViewName("gift/msg2");
 		return mv;
 	}
 
@@ -333,7 +334,7 @@ public class GiftController {
 	@RequestMapping("/gift/giftPayment.do")
 	public ModelAndView giftPayment(ModelAndView mv, int giftNo,String loginMemberId, int couponNo, int couponAmount, int quan) {
 		//System.out.println("기프트페이먼트 : "+param.get("giftNo"));
-		System.out.println("기프트페이먼트입니다."+couponNo);
+		//System.out.println("기프트페이먼트입니다."+couponNo);
 		Ngift g = service.giftOne(giftNo);
 		//param.put("couponNo", couponNo);
 		//param.put("memberId", loginMemberId);
@@ -430,13 +431,22 @@ public class GiftController {
 	  @RequestMapping("/gift/choiceCoupon.do")
 	  public ModelAndView choiceCoupon(@RequestParam Map param, ModelAndView mv) {
 		  
-		  System.out.println("쿠폰 선택해서 이리로 와 : "+param);
-		  
-		  
-		 
+		  //System.out.println("쿠폰 선택해서 이리로 와 : "+param);
+	 
 		  return mv;
 	  }
 	  
-	
+	@RequestMapping("/gift/searchGift.do")
+	public ModelAndView searchGift(@RequestParam Map param, ModelAndView mv) {
+		
+		System.out.println("검색 키워드 : "+param.get("keyword"));
+		
+		List<Ngift> list = service.searchGift(param);
+		
+		System.out.println("오우 이건 뭐야??"+list);
+		mv.addObject("list",list);
+		mv.setViewName("gift/searchGift");
+		return mv;
+	}
 
 }

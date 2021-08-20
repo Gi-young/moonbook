@@ -224,6 +224,13 @@ public class GiftServiceImpl implements GiftService {
 		List<Ngift> list = dao.giftReading(session);
 		return list;
 	}
+
+	@Override
+	public List<Ngift> searchGift(Map param) {
+		// TODO Auto-generated method stub
+		List<Ngift> list = dao.searchGift(session, param);
+		return list;
+	}
 	
 	
 	

@@ -78,4 +78,6 @@ public interface GiftDao {
 	List<Ngift> giftStorage(SqlSession session);
 
 	List<Ngift> giftReading(SqlSession session);
+
+	List<Ngift> searchGift(SqlSession session, Map param);
 }

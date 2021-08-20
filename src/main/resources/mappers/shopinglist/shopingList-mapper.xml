@@ -199,7 +199,7 @@
 		SELECT * FROM BOOK_EBOOK_DATABIND
 		<choose>
 			<when test="arr != ''">
-				WHERE BIND_NO IN (${arr}) ORDER BY
+				WHERE BIND_NO IN (${arr})
 			</when>
 			<otherwise>
 				WHERE 1=2

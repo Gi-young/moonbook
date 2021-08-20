@@ -208,6 +208,13 @@ public class GiftDaoImpl implements GiftDao {
 		// TODO Auto-generated method stub
 		return session.selectList("gift.selectReadingGiftAll");
 	}
+
+	@Override
+	public List<Ngift> searchGift(SqlSession session ,Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.searchGift",param);
+	}
+	
 	
 	
 }

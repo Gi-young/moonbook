@@ -61,7 +61,9 @@ public interface GiftService {
 
 	List<Ngift> giftStorage();
 
-	List<Ngift> giftReading();	
+	List<Ngift> giftReading();
+
+	List<Ngift> searchGift(Map param);	
 }
 
 

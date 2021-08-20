@@ -174,7 +174,7 @@ input:focus{
     justify-content: center;
     width:100%;
     margin-top: 20px;
-    min-width: 950px;
+    min-width: 1200px;
 }
 .searchBox-slideBox{
     display: flex;
@@ -333,7 +333,8 @@ input:focus{
     transition: 500ms;
 }
 .header-bottom-div{
-    width: 1200px;
+    min-width: 1200px;
+    /* width:100%; */
     display: flex;
     justify-content: space-around;  
 }

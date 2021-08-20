@@ -199,4 +199,8 @@
 		UPDATE COUPON SET COUPON_CANUSE='N' WHERE COUPON_COUPONLIST_NO=#{couponNo} AND COUPON_MEMBER_ID=#{memberId}
 	</update>
 	
+	
+	<select id="searchGift" resultMap="giftMap">
+		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%${keyword}%'
+	</select>
 </mapper>

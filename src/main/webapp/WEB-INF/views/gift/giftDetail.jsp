@@ -45,7 +45,7 @@
                 <div class="crossLine2"></div>
 	                <div class="expChoice">
 	                    <div style="display:flex;">
-	                        <p>포인트 적립  배송비를 제외한 구매금액의 10%가 적립됩니다.</p>
+	                        포인트 적립  <p style="font-weight:bold; margin-left:5px;">배송비를 제외한 구매금액의 10%가 적립됩니다.</p>
 	                    </div>
 	                    <div class="exp-couponBox">
 	                        <p>쿠폰등록</p>
