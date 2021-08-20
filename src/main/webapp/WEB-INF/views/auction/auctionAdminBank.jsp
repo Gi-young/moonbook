@@ -12,12 +12,9 @@
  <div id="wrap">
 	    <div id="container">
 	    	<div></div>
-		    	<div class="btn_coll">		    	
-					<button onclick="deposit();">선금 충전하기</button>
-					<button onclick="withdraw();">출금 신청하기</button>			
-				</div>
+		
 			
-			<h2>내 입출금 기록</h2> 
+			<h2>회원 입출금 기록</h2> 
 		
 	  	  	<table id="auction_mylist_table">
 	  	  		<tr>

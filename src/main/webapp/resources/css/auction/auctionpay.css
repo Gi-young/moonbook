@@ -75,3 +75,16 @@ body::-webkit-scrollbar {
 	color: white;
 	cursor: pointer;
 }
+.auctionPay input[type=submit] {
+	margin-top: 10px;
+	height: 35px;
+	background-color: white;
+	color: black;
+}
+
+.auctionPay input[type=submit]:hover {
+	cursor: pointer;
+	background-color: black;
+	font-weight: bold;
+	color: white;
+}
