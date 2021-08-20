@@ -9,11 +9,11 @@ $(function(){
         if(recoPro.css("height")=="400px"){
             recoPro.height(1200);
             moreBtn.html("접기  -");
-            window.scrollTo({top:3000, left:0, behavior:'smooth'});
+            window.scrollTo({top:3500, left:0, behavior:'smooth'});
         }else if(recoPro.css("height")!="400px"){
             recoPro.height(400);
             moreBtn.html("더보기 <span style='font-size:28px; font-weight:500;'>+</span>");
-            window.scrollTo({top:3200, left:0, behavior:'smooth'});
+            window.scrollTo({top:3000, left:0, behavior:'smooth'});
         }
     })
 })

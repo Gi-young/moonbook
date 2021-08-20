@@ -1,0 +1,56 @@
+ websocket -> 웹프로그래밍에서 사용하는 기술 -> 웹통신 -> http프로토콜로 통신함.
+ web stateless -> 한번 응답한 내용에 대해서는 상태유지 하지 않음! 변경되지 않음.
+ 페이지에 대한 실시간 데이터 전송이 필요하게 됨.!
+
+ http프로토콜을 이용하면서 실시간으로 페이지의 상태를 유지하는 것 -> 실시간채팅, 실시간알람
+
+ 1. 웹소켓이 반영되는 페이지를 작성 -> javascript
+
+ 2. 그 페이지의 상태를 유지하는 서버클래스를 생성 -> java
+
+ 1. 웹소켓 반영 페이지 구성하기(공유)
+      자바스크립트로 구성을 함
+      기본적으로 웹소켓 서버에 접속하고 서버와 실시간으로 통신하는 객체를 생성
+    1) WebSocket : 실시간통신을 위해 서버에 접속함 -> 객체생성시 서버에 접속 new WebSocket(서버주소);
+    2) WebSocket객체의 통신을 위한 속성(이벤트) 기능(함수)을 설정합니다.
+        - onopen=(e)=>{ 로직 } : 서버에 접속 후 실행하는 함수
+        - onmessage=(e)=>{로직} : 서버에서 sendText()/sendObject()매소드를 실행하면 자동으로 실행되는 함수(핵심)
+			      수신된 데이터를 페이지에 반영하는 로직, 필요에 따라 응답메세지를 전송
+        - onclose=(e)=>{ 로직 } : 서버에 접속이 끊어졌을때 실행되는 함수
+
+    3) 서버에 데이터는 전송함수 : send(문자 또는 JSON);
+
+
+ 2. 웹소켓서버구성하기
+    java로 구성을 함.
+    한개의 서버역할을 클래스를 생성하는 것 -> tomcat에 어노테이션 표시로 알려 줌
+   @ServerEndPoint("주소") ->선언위치는 클래스 선언부 위에
+        @ServerEndoPoint("/chatting")
+   예) public class ChattingServer{      }
+
+   - 서버에 접속했을때 실행되는 매소드
+      @OnOpen
+      public void 메소드명(Session session(접속한 클라이언트세션),EndPointConfig config){ 로직 }
+ 
+   - 클라이언트가 보낸 메세지처리하는 메소드
+     @OnMessaage
+      public void 메소드명(Session session(데이터를 전송한 클라이언트 세션), String msg||Object msg) { 로직 }
+
+   - 클라이언트가 접속을 끊었을때 실행되는 매소드 
+     @OnClose
+     public void 메소드명(Session session, CloseReason reason){ 로직 };
+
+ * 데이터를 접속한 session에 각각 전송을 하기 때문에 Session관리가 중요하고 Set,List,HashMap 
+    현재접속한 세션을 가져오는 메소드가 있음 session.getOpenSession(); ->현재접속한 모든 세션을 가져옴
+    Session에 대한 클라이언트 id구분이 주요함 -> session이 페이지를 새로고침을 하면 변경이 됨.
+    Session에 값을 저장할 수 있는 객체가 있음. session.getUserProperties().put(문자열,Object);
+    
+  - 서버에서 클라이언트에게 메세지 전송
+   session.getBasicRemote().sendText("문자열")||session.getBasicRemote().sendObject(JSON)
+
+
+
+
+
+
+

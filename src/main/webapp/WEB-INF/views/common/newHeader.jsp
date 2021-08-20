@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb8d7b82081baec870f7eaefeed84ddb80cc03e4
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -59,7 +63,12 @@
             </ul>
         </div> -->
 		<div class="header-mid">
+<<<<<<< HEAD
 			<a href="${path }"><img src="${path }/resources/images/common/mgbanner.png" alt=""></a>
+=======
+			<a href="${path }"><img
+				src="${path }/resources/images/common/mgbanner.png" alt=""></a>
+>>>>>>> cb8d7b82081baec870f7eaefeed84ddb80cc03e4
 			<!-- <h1 class="logo">
                 <a href="#">
                     <img src="../components/image/kh문고 로고 final.png" style="width: 250px;">
@@ -134,6 +143,7 @@
             </div> -->
 				<div class="header-menuBar1">
 					<ul class="flex">
+<<<<<<< HEAD
 						<li id="books" class="headerF-li"><a href="${path}/sellbookController/sellbook.do">문곰도서▼</a>
 							<ul class="book">
 								<li><a href="${path }/sellbookController/bookadong99.do">아동도서(공통)</a></li>
@@ -195,16 +205,93 @@
 						<li><a href="${path }/service/serviceMain.do">고객센터</a></li>
 					</ul>
 				</div>
+=======
+						<li id="books" class="headerF-li"><a
+							href="${path}/sellbookController/sellbook.do">문곰도서▼</a>
+							<ul class="book">
+								<li><a href="${path }/sellbookController/bookadong99.do">아동도서(공통)</a></li>
+								<li><a
+									href="${path }/sellbookController/bookchodongdonghwa99.do">초등도서(공통)</a></li>
+								<li><a
+									href="${path }/sellbookController/bookjoongdongworld.do">중등도서(세계문학)</a></li>
+								<li><a href="${path }/sellbookController/bookgojunkorea.do">고전도서(한국)</a></li>
+							</ul></li>
+						<li id="eBooks" class="headerF-li"><a
+							href="${path}/ebook/pageEbook.do">문곰e북 ▼</a>
+							<ul class="eBook">
+								<li><a href="${path}/ebook/pageEbook.do">일반</a></li>
+								<li><a href="${path}/ebook/pageEbook.do?currentFocus=child">아동</a></li>
+								<li><a
+									href="${path}/ebook/pageEbook.do?currentFocus=elementary">초등</a></li>
+								<li><a
+									href="${path}/ebook/pageEbook.do?currentFocus=middle">중등</a></li>
+								<li><a href="${path}/ebook/pageEbook.do?currentFocus=ebook">구현된
+										e북</a></li>
+							</ul></li>
+						<li class="item headerF-li"><a
+							href="${path }/gift/giftView.do">문곰템 ▼</a>
+							<ul class="giftTab">
+								<li><a href='${path }/gift/moreThing.do?giftCate=e'>전자기기</a></li>
+								<li><a href='${path }/gift/moreThing.do?giftCate=s'>수납/정리</a></li>
+								<li><a href='${path }/gift/moreThing.do?giftCate=r'>독서
+										필수템</a></li>
+								<li><a href="${path }/gift/moreThing.do?giftCate=g">잡화</a></li>
+							</ul></li>
+						<li class="headerF-li"><a
+							href="${path}/usedboard/usedboardList.do">중고</a></li>
+						<li class="headerF-li"><a href="${path}/auction/auction">경매</a></li>
+					</ul>
+				</div>
+				<div class="header-menuBar2">
+					<ul class="flex" style="align-items: center;">
+						<c:if test="${loginMember==null }">
+							<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
+							<li class="headerF-li"><a href="${path }/member/enrollPage.do">회원가입</a></li>
+						</c:if>
+						<c:if test="${loginMember!=null }">
+							<li class="headerF-li" id="user"><a
+								href="${path }/member/myroom/main.do">${loginMember.memberName }님
+									(${membergrade.membergradeName}) ▽</a> <%-- <ul class="memberInfoTab">	
+										<li>
+											<a href="${path }/member/myroom/main.do">마이페이지</a>
+										</li>
+										<li>
+											<a href="${path }/shopingList/shopingListView.do?memberId=${loginMember.memberId }">장바구니</a>
+										</li>
+						    		</ul> --%></li>
+							<li><a href="${path }/member/myroom/main.do">마이페이지</a></li>
+							<li><a
+								href="${path }/shopingList/shopingListView.do?memberId=${loginMember.memberId }">장바구니</a>
+							</li>
+							<%-- <li><a href="${path }/myroom/memberGradeGo.do">(${loginMember.memberGrade}) ▽</a></li> --%>
+							<li><a href="${path }/member/logout.do">로그아웃</a></li>
+						</c:if>
+						<%-- <li><a href="${path }/member/myroom/main.do">마이룸</a></li> --%>
+						<c:if test="${loginMember.memberId.equals('admin') }">
+							<li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
+						</c:if>
+
+						<li><a href="${path }/service/serviceMain.do">고객센터</a></li>
+					</ul>
+				</div>
+>>>>>>> cb8d7b82081baec870f7eaefeed84ddb80cc03e4
 				<div></div>
 			</div>
 		</div>
 	</div>
 	<script>
+<<<<<<< HEAD
 	
 	  /* 문곰템 */
 		$(function() {
 		let item = $('.item');
 		let tab = $('.giftTab');
+=======
+		/* 문곰템 */
+		$(function() {
+			let item = $('.item');
+			let tab = $('.giftTab');
+>>>>>>> cb8d7b82081baec870f7eaefeed84ddb80cc03e4
 			$(item).mouseover(function() {
 				// tab.slideDown(500);
 				tab.css('display', "flex");
@@ -219,11 +306,19 @@
 				tab.css('display', "none");
 			})
 		});
+<<<<<<< HEAD
 		
 	  /* 문곰e북 */
 		$(function() {
 		let item = $('#eBooks');
 		let tab = $('.eBook');
+=======
+
+		/* 문곰e북 */
+		$(function() {
+			let item = $('#eBooks');
+			let tab = $('.eBook');
+>>>>>>> cb8d7b82081baec870f7eaefeed84ddb80cc03e4
 			$(item).mouseover(function() {
 				// tab.slideDown(500);
 				tab.css('display', "flex");
@@ -238,6 +333,7 @@
 				tab.css('display', "none");
 			})
 		});
+<<<<<<< HEAD
 			
 	  /* 문곰도서 */	
 		$(function() {
@@ -276,6 +372,46 @@
 					tab.css('display', "none");
 				})
 			});
+=======
+
+		/* 문곰도서 */
+		$(function() {
+			let item = $('#books');
+			let tab = $('.book');
+			$(item).mouseover(function() {
+				// tab.slideDown(500);
+				tab.css('display', "flex");
+				$(tab).mouseover(function() {
+					tab.css('display', "flex");
+				})
+			})
+			$(tab).mouseout(function() {
+				tab.css('display', "none");
+			})
+			$(item).mouseout(function() {
+				tab.css('display', "none");
+			})
+		});
+
+		/* 마이페이지, 장바구니 */
+		$(function() {
+			let item = $('#user');
+			let tab = $('.memberInfoTab');
+			$(item).mouseover(function() {
+				// tab.slideDown(500);
+				tab.css('display', "flex");
+				$(tab).mouseover(function() {
+					tab.css('display', "flex");
+				})
+			})
+			$(tab).mouseout(function() {
+				tab.css('display', "none");
+			})
+			$(item).mouseout(function() {
+				tab.css('display', "none");
+			})
+		});
+>>>>>>> cb8d7b82081baec870f7eaefeed84ddb80cc03e4
 	</script>
 </body>
 </html>

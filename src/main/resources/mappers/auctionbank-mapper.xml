@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="bank">
+
+<update id="updateTransactionY">
+
+UPDATE BANK_TRANSACTION SET TRANSACTION_STATE='Y' WHERE TRANSACTION_NO=#{transactionNo}
+</update>
 <select id="auctionBank" resultMap="bankMap">
-SELECT * FROM bank_transaction JOIN BANKINFO USING(BANK_NAME) WHERE MEMBER_ID=#{memberId}
+SELECT * FROM bank_transaction JOIN BANKINFO USING(BANK_NAME) WHERE 1=1
+<if test="memberId !=null and memberId!=''">
+and MEMBER_ID=#{memberId}
+</if>
+order by transaction_time desc
 </select>
 <select id="auctionBankCount" resultType="_int">
-SELECT count(*) FROM bank_transaction JOIN BANKINFO USING(BANK_NAME) WHERE MEMBER_ID=#{memberId}
+SELECT count(*) FROM bank_transaction JOIN BANKINFO USING(BANK_NAME) WHERE 1=1
+<if test="memberId !=null and memberId!=''">
+and MEMBER_ID=#{memberId}
+</if>
+order by transaction_time desc
 </select>
 
 <select id="selectbank" resultMap="bankinfoMap">

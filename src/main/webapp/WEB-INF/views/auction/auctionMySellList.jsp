@@ -73,7 +73,7 @@
 							<c:when test="${a.auctionState eq 'S' }">
 								<span>낙찰</span>
 								<c:if test="${a.sellerState eq 'N' }">
-								<button onclick="open('${path}/auction/auctionSpage?auctionNo=${a.auctionNo }&bidId=${a.auctionbid[0].bidId }','auctionbid','width=500,height=600')">배송 확인하기</button>
+								<button onclick="openAuctionSpage(${a.auctionNo},'${a.auctionbid[0].bidId }');">배송 확인하기</button>
 								</c:if>
 								<c:if test="${a.sellerState eq 'Y' }">
 								<span style="color:blue;"> 배송 완료</span>
@@ -89,6 +89,19 @@
 			<div class="pageBar">${pageBar}</div>
 		</div>
 	</div>
+	   <script>
+	function openAuctionSpage(auctionNo,bidId) {
+		console.log(bidId)
+		let windowHeight = window.screen.height;
+		let windowWidth = window.screen.width;
+		let width = 500;
+		let height = 600;
+		
+		status = "left = " + (windowWidth - width) / 2 + ", top = " + (windowHeight - height) / 2 + ", width = " + width + ", height = " + height;
+		
+		window.open('${path}/auction/auctionSpage?auctionNo=' + auctionNo+'&bidId='+bidId,'auctionBpage', status);
+	}
+    </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value=""/>

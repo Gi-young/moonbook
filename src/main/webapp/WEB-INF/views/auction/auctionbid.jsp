@@ -15,8 +15,8 @@
 </head>
 <body>
 	<div class="container">
+	<div>
 		<form action="${path}/auction/auctionbidEnd" onsubmit="return check();">
-			<div>
 				<div>
 					<h2>경매정보</h2>
 					<input type="hidden" value="${auction.auctionNo }" name="auctionNo">
@@ -42,13 +42,14 @@
 				
 				<div>
 					<h2>현재 최고 입찰기록</h2>
-					<table width="200">			
+					<table>			
 						<c:forEach items="${auction.auctionbid }" var="bid" varStatus="vs">
 							<c:if test="${vs.first }">
 								<input type="hidden" value="${bid.bidId }" id="bidid2">
 								<tr style="font-size: 15px;">
 									<td id="bididtext">${bid.bidId }님의</td>
 									<td id="bidpricetext">${bid.bidPrice}원</td>
+									<input type="hidden" value="${bid.bidPrice }" id="bidhighPrice">
 								</tr>
 								<!-- <tr>
 									<th colspan="2">입찰기록</th>
@@ -92,20 +93,37 @@
 					
 					<input type="submit" value="입찰하기">
 				</div>
-			
-				<br>
-			
-			</div>
-		</form>
 		
-		<form id="addbid" action="${path }/auction/auctionAddbidEnd">
-			<h2>추가 입찰서</h2>
-			<span>구매자 아이디</span>	<input type="text" value="${member.memberId }" readonly="readonly" name="bidId" id="bidid"><br>
-			<span>내 경매 포인트</span>	<fmt:formatNumber value="${member.memberPoint }" type="currency"/> <br>
-			<input type="number" value="0" name="bidPrice"> <br>
-			<input type="hidden" value="" name="bidNo">
-			<input type="submit" value="추가입찰하기">
-		</form>
+			</form>
+			<form id="addbid" action="${path }/auction/auctionAddbidEnd" onsubmit="return check3();">
+				<div>
+				
+				<h2>추가 입찰서</h2>
+				<div>
+				<span>구매자 아이디:</span>	<input type="text" value="${member.memberId }" readonly="readonly" name="bidId" id="bidid">
+				</div>
+				<span>내 경매 포인트:<fmt:formatNumber value="${member.memberPoint }" type="currency"/></span>	
+				<c:forEach items="${auction.auctionbid }" var="bid" varStatus="vs">
+								<c:if test="${member.memberId eq bid.bidId}">
+								<span>내 입찰 기록: ${bid.bidId }님${bid.bidPrice}원 입찰 중</span>							
+										<input type="hidden" value="${bid.bidPrice }" id="myPrice">
+								</c:if>
+					
+							</c:forEach>
+				<br>
+				<div>
+				<span>추가 입찰 금액:</span>
+				<input type="number" value="0" name="bidPrice" step="${auction.priceUnit }" id="bidPrice3"> 
+				</div>
+				<input type="hidden" value="" name="bidNo">
+				<input type="submit" value="추가입찰하기">
+				</div>
+			</form>
+			
+		</div>
+		
+		
+	
 	</div>
 	
 	<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
@@ -150,9 +168,11 @@
 				return false;
 			}		
 		});
-	
+		console.log(parseInt($("#bidhighPrice").val())>parseInt($("#bid").val()))
+		console.log(parseInt($("#bid").val()))
 		const check=()=>{
-			sendMainMessage();
+			
+			
 			if($("#bidid").val()==$("#seller").val()){
 				alert("자신이 올린 물품입니다.")
 				return false; 
@@ -172,6 +192,9 @@
 			}else if(parseInt($("#point").val())<parseInt($("#startPrice").val())){
 				alert("시작금액보단 높게 설정해야합니다.")
 				return false;
+			}else if(parseInt($("#bidhighPrice").val())>=parseInt($("#bid").val())){
+				alert("최고입찰기록보단 높아야합니다.")
+				return false;
 			}else if(check2==false){
 				alert("입찰기록이있습니다.")
 				let flag=confirm("추가 입찰 하시겠습니까?")	
@@ -181,15 +204,8 @@
 				 }
 				return false;		 
 			}
-		
+			sendMainMessage();
 		}
-		
-		
-		 
-		// gi-young
-		 function sendMessage() {
-		 sockAuction.send("bid," + "${loginMember.memberId}" + "," + "${auction.auctionNo}" + "," + $("#bid").val());
-		} 
 			
 		function sendMainMessage() {
 				 let auctionName="${ auction.auctionName },";
@@ -200,6 +216,35 @@
 				 sockAuction.send(main);
 				 
 			 }
+		const check3=()=>{
+			let myprice=parseInt($("#myPrice").val())+parseInt($("#bidPrice3").val())
+			if(parseInt($("input[name=bidPrice]").val())<0){
+				alert("음수 불가")
+				return false;
+			}else if(parseInt(myprice)>parseInt($("#buynow").val()))
+				{
+				alert("즉시 구매가 보다 높습니다")
+				return false;
+			}
+			sendMainMessage2();
+			return false;
+		}
+		
+		
+		 
+
+		 function sendMessage() {
+		 sockAuction.send("bid," + "${loginMember.memberId}" + "," + "${auction.auctionNo}" + "," + $("#bid").val());
+		} 
+		function sendMainMessage2() {
+			 let auctionName="${ auction.auctionName },";
+			 let memberId="${member.memberId},";
+			 let bidPrice=parseInt($("#myPrice").val())+parseInt($("#bidPrice3").val());
+			 let main="main,"+auctionName+memberId+bidPrice
+			 console.log(main)
+			 sockAuction.send(main);
+			 
+		 }
 	</script>
 	
 </body>

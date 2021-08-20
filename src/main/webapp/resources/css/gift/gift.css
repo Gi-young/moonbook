@@ -1,5 +1,11 @@
 @charset "UTF-8";
-@import url(../css/style.css);
+@import url(../style.css);
+
+.fontSplit{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
 
 /* margin-left */
 .margin-left24{
@@ -767,6 +773,7 @@ div[class^="updownBtn"]{
 }
 .seasonbox-a{
     color: silver;
+    cursor: pointer;
 }
 .seasonbox-a:hover{
     color: black;

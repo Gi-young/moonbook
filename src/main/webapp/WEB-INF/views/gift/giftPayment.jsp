@@ -111,7 +111,9 @@
 							<td><fmt:formatNumber value="${gift.gift_price }" type="currency"/></td>
 							<td>${gift.gift_count } 개</td>
 							<td>${quan } 개</td>
+							
 							<td><fmt:formatNumber value="${(gift.gift_price)*quan }" type="currency"/></td>
+							
 						</tr>
 
 					</table>
@@ -125,14 +127,30 @@
 				<div class="tbl_box">
 					<table class="tbl_payment">
 						<tr class="tbl_first">
-							<td>상품 금액</td>
-							<td><fmt:formatNumber value="${(gift.gift_price)*quan }" type="currency"/></td>
+						<c:choose>
+							<c:when test="${couponNo == 0}">
+								<td>상품 금액</td>
+								<td><fmt:formatNumber value="${(gift.gift_price)*quan }" type="currency"/></td>
+							</c:when>	
+							<c:otherwise>
+								<td>쿠폰 적용 금액</td>
+								<td><fmt:formatNumber value="${(gift.gift_price)*quan-couponAmount }" type="currency"/></td>
+							</c:otherwise>
+						</c:choose>	
 							<td>+</td>
 							<td>배송비</td>
 							<td id="delifee"><fmt:formatNumber value="3000" type="currency"/></td>
 							<td>=</td>
-							<td>총 </td>
-							<td id="totalfee"><fmt:formatNumber value="${(gift.gift_price)*quan+3000 }" type="currency"/></td>
+						<c:choose>
+							<c:when test="${couponNo == 0}">
+								<td>총 </td>
+								<td id="totalfee"><fmt:formatNumber value="${(gift.gift_price)*quan+3000 }" type="currency"/></td>
+							</c:when> 
+							<c:otherwise>
+								<td>총 </td>
+								<td id="totalfee"><fmt:formatNumber value="${(gift.gift_price)*quan+(3000-couponAmount) }" type="currency"/></td>
+							</c:otherwise>
+						</c:choose>
 						</tr>
 					</table>
 				</div>
@@ -151,72 +169,87 @@
 <!-- 주문가능수량 -->
 <input type="hidden" id="stock" value="${quan }">
 <!-- 주문수량 -->
-<input type="hidden" id="originPrice" value="${(gift.gift_price) }">
+<c:choose>
+	<c:when test="${couponNo == 0 }">
+		<input type="hidden" id="originPrice" value="${(gift.gift_price) }">
+	</c:when>
+	<c:otherwise>
+		<input type="hidden" id="originPrice" value="${(gift.gift_price)-couponAmount }">
+	</c:otherwise>
+</c:choose>
 <input type="hidden" id="contextPath" value="${path }">
 <input type="hidden" id="deliveryFee" value="3000">
 <input type="hidden" id="giftNo" value="${gift.gift_no }">
 <input type="hidden" id="deliveryFee" value="">
+<input type="hidden" id="couponNo" value="${couponNo }">
+<input type="hidden" id="couponAmount" value="${couponAmount }">
 <script>
-let html="";
-html = "<fmt:formatNumber value='3000' type='currency'/>";
+let couponAm = document.getElementById("couponAmount").value;
+
+let html = "<fmt:formatNumber value='3000' type='currency'/>";
 let html2 = "<fmt:formatNumber value='0' type='currency'/>";
-let totalfee = "<fmt:formatNumber value='${(gift.gift_price)*quan+3000 }' type='currency'/>"
-let totalfee2 = "<fmt:formatNumber value='${(gift.gift_price)*quan }' type='currency'/>"
-let deliboolean = "";
+
 let divHidden = document.getElementById("divhidden");
-/* let stock = document.getElementById("stock");
-console.log("stock입니다 = ==== = == = = = = === = = "+stock); */
+
 let deliFee = document.getElementById("deliveryFee");
 var tp = document.createElement("input");
 tp.setAttribute("type","hidden");
-tp.setAttribute("id","totalPrice");
-tp.value="${(gift.gift_price)*quan+3000 }";
+tp.setAttribute("id","totalPrice2");
+if(couponAm != 0){
+	tp.value="<fmt:formatNumber value='${(gift.gift_price)*quan+(3000-couponAmount) }' type='currency'/>";
+
+}else{
+	tp.value="<fmt:formatNumber value='${(gift.gift_price)*quan+3000 }' type='currency'/>";	
+	console.log(tp.value);
+}
+
 divHidden.appendChild(tp);
 
 $("input[id=pre]").click(e=>{
-	document.getElementById("delifee").innerHTML=html;
-	document.getElementById("totalfee").innerHTML=totalfee;
-	/* var tp = document.createElement("input");
+	//tp.value="";
+	var tp = document.createElement("input");
 	tp.setAttribute("type","hidden");
-	tp.setAttribute("id","totalPrice");
-	tp.value="${(book.price*0.9)*sellStock+3000 }";
-	divHidden.appendChild(tp); */
-	console.log("선불 tp : "+ tp.value);
-	//deliboolean=true;
-	//document.getElementById("totalPrice").value=${(book.price*0.9)*sellStock+3000 };
-	//inputhidden+="<input type='hidden' id='totalPrice' value='${(book.price*0.9)*sellStock+3000 }'>";
-	//document.getElementById("divhidden").innerHTML=inputhidden;
-	/* console.log("총 금액 선불"+document.getElementById("totalPrice").value); */
+	tp.setAttribute("id","totalPrice2");
+	
+	if(couponAm != 0){
+		tp.value="<fmt:formatNumber value='${(gift.gift_price)*quan+(3000-couponAmount)}' type='currency'/>";
+		
+	}else{		
+		tp.value="<fmt:formatNumber value='${(gift.gift_price)*quan+3000 }' type='currency'/>";
+	}	
+	
+	divHidden.appendChild(tp);
+	
+	document.getElementById("totalPrice2").remove();
+	document.getElementById("delifee").innerHTML=html;
+	document.getElementById("totalfee").innerHTML=tp.value;	
+	
+
+
 	deliFee.value=3000;
 });
 
 $("input[id=after]").click(e=>{
-	document.getElementById("totalPrice").remove();
-	document.getElementById("delifee").innerHTML=html2;
-	document.getElementById("totalfee").innerHTML=totalfee2;
-	//deliboolean=false;
-	//document.getElementById("totalPrice").value=${(book.price*0.9)*sellStock };
-	//inputhidden+="<input type='hidden' id='totalPrice' value='${(book.price*0.9)*sellStock }'>";
-	//document.getElementById("divhidden").innerHTML=inputhidden;
+	console.log();
+	
 	var tp = document.createElement("input");
 	tp.setAttribute("type","hidden");
-	tp.setAttribute("id","totalPrice");
-	tp.value="${(gift.gift_price)*quan }";
+	tp.setAttribute("id","totalPrice2");
+	if(couponAm != 0){
+		tp.value="<fmt:formatNumber value='${(gift.gift_price)*quan-couponAmount}' type='currency'/>";
+	}else{		
+		tp.value="<fmt:formatNumber value='${(gift.gift_price)*quan }' type='currency'/>";
+	}	
+	document.getElementById("delifee").innerHTML=html2;
+	document.getElementById("totalfee").innerHTML=tp.value;
+
 	divHidden.appendChild(tp);
-	console.log("착불 tp : "+ tp.value);
+	
+
 	deliFee.value=0;
 });
 
 
-
-	
-
-/* 	let samePhone = $("input:checkbox[name=samePhone]");
-	if(!$(samePhone) == true) {
-		$("#senderPhone").attr("value","${loginMember.memberPhone}");
-	}else{
-		$("#senderPhone").attr("value","연락처를 입력하세요");
-	} */
 	$("input[id=phone]").change(e=>{	
 	console.log(e.target);
 	if ($("input:checkbox[id='phone']").is(":checked")){
@@ -247,17 +280,7 @@ $("input[name=senderSender]").change(e=>{
 $("input[name=memberAddress]").change(e=>{
 	console.log(e.target);
 	let targetId = e.target.id;
-	/*if(targetId == "newAddress"){
-		$("#deliName").val("");
-		$("#deliAddress").val("");*/
-		
-	/* if(targetId == "deliAddressMy"){
-		$("#deliAddressMy").attr("type","text");
-		$("#deliAddressMy2").attr("type","hidden");
-	}	else{
-		$("#deliAddressMy").attr("type","hidden");
-		$("#deliAddressMy2").attr("type","text");
-	} */
+
 	if(targetId == "oldAddress"){
 		$("#deliAddress").attr("value","${loginMember.memberAddress}");
 		/* $("#oldAddress").attr("readonly",""); */
@@ -271,9 +294,9 @@ $("input[name=memberAddress]").change(e=>{
 })
 
 $("input[name=deliMethod]").change(e=>{
-	/* console.log(e.target.id); */
+
 	let targetId = e.target.id;
-	/* console.log(typeof(targetId)); */
+
 	if(targetId == "pre"){
 		$("#preMsg").css("display", "block");
 		$("#afterMsg").css("display", "none");
@@ -284,7 +307,57 @@ $("input[name=deliMethod]").change(e=>{
 })
 </script>
 
+<script>
+let couponAm2 = document.getElementById("couponAmount").value;
 
+let divHidden2 = document.getElementById("divhidden");
+
+
+var tp2 = document.createElement("input");
+tp2.setAttribute("type","hidden");
+tp2.setAttribute("id","totalPrice");
+if(couponAm2 != 0){
+	tp2.value="${(gift.gift_price)*quan+(3000-couponAmount) }";
+
+}else{
+	tp2.value="${(gift.gift_price)*quan+3000 }";	
+	console.log(tp2.value);
+}
+divHidden2.appendChild(tp2);
+
+$("input[id=pre]").click(e=>{
+	
+	document.getElementById("totalPrice").remove();
+	var tp2 = document.createElement("input");
+	tp2.setAttribute("type","hidden");
+	tp2.setAttribute("id","totalPrice");
+	if(couponAm2 != 0){
+		tp2.value="${(gift.gift_price)*quan+(3000-couponAmount)}";
+		
+	}else{		
+		tp2.value="${(gift.gift_price)*quan+3000 }";
+	}
+	divHidden2.appendChild(tp2);
+})
+	
+
+$("input[id=after]").click(e=>{
+		
+	document.getElementById("totalPrice").remove();
+	var tp2 = document.createElement("input");
+	tp2.setAttribute("type","hidden");
+	tp2.setAttribute("id","totalPrice");
+	if(couponAm2 != 0){
+		tp2.value="${(gift.gift_price)*quan-couponAmount}";
+	
+	}else{		
+		tp2.value="${(gift.gift_price)*quan }";
+	}
+	divHidden2.appendChild(tp2);
+	
+})
+		
+</script>
 
 
 

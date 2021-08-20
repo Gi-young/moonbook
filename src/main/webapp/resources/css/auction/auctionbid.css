@@ -31,20 +31,20 @@ body::-webkit-scrollbar {
 	border-radius: 10px;
 }
 
-.container>form>div {
+.container>div {
 	border: 1px solid silver;
 	border-radius: 10px;
 	padding: 10px 20px 10px 20px;
 }
 
-.container>form>div>div {
+.container>div>form>div {
 	display:flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: center;
 }
 
-.container>form>div>div>div {
+.container>div>from>div>div {
 	margin-bottom: 7px;
 }
 

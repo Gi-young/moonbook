@@ -23,6 +23,7 @@
 			            <tr>
 			                <th>판매자</th>
 			                <td>
+			                	<input type="hidden" value="${loginMember.memberId}" name="memberId">
 			       				<span style="font-weight: bold;"><c:out value="${loginMember.memberId}"/></span>님
 			                </td>
 			            </tr>
@@ -118,6 +119,11 @@
 				<div class="auctionwrite_submit">
 				    <input type="submit" value="등록하기">
 				</div>
+					<div>
+						<span id="warring">*거래등록후 입찰자가 생기면 물품을 취소할수 없습니다.</span> <br>
+						<span id="warring">*이미지 없을시 거래 신뢰도가 떨어집니다. 이미지를 꼭 등록해주세요.</span> <br>
+						<span id="warring">*관련없는 내용,사진일 경우 경고없이 삭제가 이루어질수 있습니다..</span> <br>
+					</div>
 			</form>
 		</div>
 	</div>

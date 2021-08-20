@@ -17,6 +17,7 @@
 					<p id="titi" style="font-size: 35px; color: black;">신고관리</p><br>
 			        
 			        <c:if test="${loginMember!=null }">
+			        	
 				        <a href="${path }/usedboard/usedboardList.do?memberId=${loginMember.memberId}" style="font-size: 20px; color: #964b00">내 중고게시판</a> <a style="font-size: 20px; color: #964b00;">/</a> 
 				        <a href="${path }/usedboard/usedboardMyPayment.do?memberId=${loginMember.memberId}" style="font-size: 20px; color: #964b00;">내 중고구매목록</a> <a style="font-size: 20px; color: #964b00;">/</a>
 				        <a href="${path }/usedboard/usedboardList.do" style="font-size: 20px; color: #964b00;">중고게시판</a> <a style="font-size: 20px; color: #964b00;">/</a>
