@@ -10,16 +10,6 @@
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/wizard/ebookClub.css">
 
-	<aside>
-		<ul>
-			<li><a href="${path}/ebook/pageEbookClubManager.do">나의 클럽 관리하기</a></li>
-			<li><a href="${path}/ebook/pageEbookClubBoard.do">클럽 게시판</a></li>
-			<li><a href="${path}/ebook/pageEbookClubDebate.do">토론방</a></li>
-			<li><a href="${path}/ebook/pageEbookClubDebateManager.do">토론 관리하기</a></li>
-			<li><a href="${path}/ebook/pageEbookClubGather.do">클럽 홍보마당</a></li>
-		</ul>
-	</aside>
-	
 	<section>
 		<div class="create-club">
 			<p>새로운 독서클럽 만들기</p>
@@ -75,7 +65,7 @@
 				</tfoot>
 			</table>
 			
-			<div class="deleteClub">
+			<div class="delete-club">
 				<input type="button" onclick="deleteClub();" value="독서클럽 해체하기"/>
 			</div>
 		</div>
@@ -84,12 +74,11 @@
 			<p>독서클럽 알림</p>
 			<div id="noticeBoard"></div>
 		</div>
-		
 	</section>
 	
 	<input type="hidden" id="contextPath" value="${path}">
 
-	<script src="${path}/resources/js/ebook/wizard/ebookClubManager.js"></script>
+	<script src="${path}/resources/js/ebook/wizard/ebookClub.js"></script>
 	
 </body>
 </html>

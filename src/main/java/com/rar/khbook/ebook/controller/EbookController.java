@@ -130,39 +130,9 @@ public class EbookController {
 		return "ebook/wizard/ebookReader";
 	}
 	
-	@RequestMapping(value="/ebook/pageEbookReport.do")
-	public String pageEbookReport() {
-		return "ebook/wizard/ebookReport";
-	}
-	
-	@RequestMapping(value="/ebook/pageEbookPlanner.do")
-	public String pageEbookPlanner() {
-		return "ebook/wizard/ebookPlanner";
-	}
-	
-	@RequestMapping(value="/ebook/pageEbookClubManager.do")
+	@RequestMapping(value="/ebook/pageEbookClub.do")
 	public String pageEbookClubManager() {
-		return "ebook/wizard/club/ebookClubManager";
-	}
-	
-	@RequestMapping(value = "/ebook/pageEbookClubBoard.do")
-	public String pageEbookClubBoard() {
-		return "ebook/wizard/club/ebookClubBoard";
-	}
-	
-	@RequestMapping(value = "/ebook/pageEbookClubDebate.do")
-	public String pageEbookClubDebate() {
-		return "ebook/wizard/club/ebookClubDebate";
-	}
-	
-	@RequestMapping(value = "/ebook/pageEbookClubDebateManager.do")
-	public String pageEbookClubDebateManager() {
-		return "ebook/wizard/club/ebookClubDebateManager";
-	}
-	
-	@RequestMapping(value = "/ebook/pageEbookClubGather.do")
-	public String pageEbookClubGatherManager() {
-		return "ebook/wizard/club/ebookClubGather";
+		return "ebook/wizard/ebookClub";
 	}
 	
 	@RequestMapping(value = "/ebook/getBookDataFromAPI.do", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")

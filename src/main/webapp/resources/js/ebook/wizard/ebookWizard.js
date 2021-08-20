@@ -109,13 +109,6 @@ section.addEventListener("scroll", () => {
     let scrollHeight = section.scrollHeight;
     let scrollTop = section.scrollTop;
 
-    console.log("clientHeight")
-    console.log(clientHeight);
-    console.log("scrollHeight")
-    console.log(scrollHeight);
-    console.log("scrollTop")
-    console.log(scrollTop);
-
     if (pendingLoading === false && !isFinalLoad) {
         if (pendingLoading === false && scrollTop >= scrollHeight - clientHeight) {
             if (currentSort === "ALL") {
