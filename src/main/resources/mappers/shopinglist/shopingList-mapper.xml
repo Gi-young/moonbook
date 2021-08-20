@@ -155,7 +155,7 @@
 	</resultMap> -->
 	
 			
-	<insert id="createShopingListG">
+	<insert id="createShopingList">
 		INSERT INTO SHOPING_LIST VALUES('G', #{memberId})
 	</insert>
 	

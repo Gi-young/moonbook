@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ import com.rar.khbook.gift.model.service.GiftService;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 import lombok.extern.slf4j.Slf4j;
@@ -54,6 +56,9 @@ public class GiftController {
 		 */
 		List<Ngift> list = service.giftAll();
 
+		List<NoticeBoard> nb = service.searchNoticeBoardList();
+		
+		mv.addObject("notice", nb);
 		mv.addObject("list", list);
 		mv.setViewName("gift/gift");
 		return mv;
@@ -65,11 +70,35 @@ public class GiftController {
 		/* System.out.println(giftNo); */
 		/* System.out.println(Integer.parseInt(giftNo)); */
 		Ngift g = service.giftOne(giftNo);
+		List<Ngift> list= new ArrayList();
+		System.out.println("카테고리 코드"+g.getGift_category().getGiftCateCode());
+		//System.out.println("기프트 타이틀 "+g.getGift_title());
+		
+		
+		  if(g.getGift_category().getGiftCateCode() == 9) {
+			  list = service.giftElec();
+		  }else if(g.getGift_category().getGiftCateCode() == 12){ 
+			  list = service.giftSupplies();
+		  }else if(g.getGift_category().getGiftCateCode() == 10){
+			  list = service.giftStorage();
+		  }else if(g.getGift_category().getGiftCateCode() == 11){
+			  list = service.giftReading();
+		  }
+		 
+		
+		double begin = (Math.random()*90); // 0~90
 
+		int num = (int)begin;
+		//(int)Math.floor(Math.random()*101);
+		//System.out.println("랜덤 맞음??"+num);
+		//System.out.println(list);
+		mv.addObject("begin",num);
+		mv.addObject("list", list);
 		mv.addObject("gift", g);
 		mv.setViewName("gift/giftDetail");
 		return mv;
 	}
+
 
 // 	내 쿠폰 페이지 
 	@RequestMapping("/gift/myCoupon.do")
@@ -131,29 +160,39 @@ public class GiftController {
 	}
 
 	@RequestMapping("/gift/moreThing.do")
-	public String moreThing(String giftCate) {
-		System.out.println(giftCate);
+	public ModelAndView moreThing(String giftCate, ModelAndView mv) {
+		//System.out.println(giftCate);
 		String loc = "";
+		List<Ngift> list=new ArrayList();
 		switch (giftCate) {
 		case "e":
+			list = service.giftElec();
 			loc = "gift/categoryPage1";
 			break;
 		case "s":
+			list = service.giftStorage();
 			loc = "gift/categoryPage2";
 			break;
 		case "r":
+			list = service.giftReading();
 			loc = "gift/categoryPage3";
 			break;
 		case "g":
+			list = service.giftSupplies();
 			loc = "gift/categoryPage4";
 			break;
 		default:
 			break;
-
 		}
-		/* System.out.println(loc); */
+		
+		double begin = (Math.random()*50); // 0~90
 
-		return loc;
+		int num = (int)begin;
+		System.out.println(num);
+		mv.addObject("begin",num);
+		mv.addObject("list", list);
+		mv.setViewName(loc);
+		return mv;
 
 	}
 
@@ -265,11 +304,11 @@ public class GiftController {
 //	insertReview.jsp 에서 넘어오는 폼 값을 받는 컨트롤러
 	@RequestMapping("/gift/reviewWrite.do")
 	public ModelAndView reviewWrite(int giftNo, ModelAndView mv, String content, MultipartFile file, int score, String loginMember) {
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + giftNo);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + content);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + file);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + score);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + loginMember);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + giftNo);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + content);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + file);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + score);
+//		System.out.println("리뷰 작성하기 위해 넘어가는 : " + loginMember);
 
 		HashMap<String, Object> map = new HashMap<>();
 		
@@ -284,19 +323,34 @@ public class GiftController {
 		/*
 		 * mv.addObject("msg", ); mv.addObject("loc", ); mv.setViewName("");
 		 */
-		
-		mv.setViewName("gift/giftDetail.do?giftNo="+giftNo);
+		mv.addObject("giftNo", giftNo);
+		mv.addObject("msg","리뷰가 등록되었습니다.");
+		mv.setViewName("gift/msg2");
 		return mv;
 	}
 
 	
 
 	@RequestMapping("/gift/giftPayment.do")
-	public ModelAndView giftPayment(int giftNo, ModelAndView mv, int quan) {
+	public ModelAndView giftPayment(ModelAndView mv, int giftNo,String loginMemberId, int couponNo, int couponAmount, int quan) {
+		//System.out.println("기프트페이먼트 : "+param.get("giftNo"));
+		//System.out.println("기프트페이먼트입니다."+couponNo);
 		Ngift g = service.giftOne(giftNo);
-		mv.setViewName("gift/giftPayment");
-		mv.addObject("gift", g);
+		//param.put("couponNo", couponNo);
+		//param.put("memberId", loginMemberId);
+//		int result = service.useCoupon(param);
+//		System.out.println("쿠폰 사용 "+result);
+		mv.addObject("memberId", loginMemberId);
+		if(couponNo>0) {
+			mv.addObject("couponNo", couponNo);		
+			mv.addObject("couponAmount", couponAmount);			
+		}else {
+			mv.addObject("couponNo", 0);		
+			mv.addObject("couponAmount", 0);	
+		}
+		mv.addObject("gift",g);
 		mv.addObject("quan", quan);
+		mv.setViewName("gift/giftPayment");
 		return mv;
 	}
 	
@@ -327,15 +381,16 @@ public class GiftController {
 	@ResponseBody
 	public int salesVolume(@RequestParam Map param) {
 
-		System.out.println(" 아이디 : "+param.get("memberId"));
-		System.out.println(" 상품번호 : "+param.get("giftNo"));
-		System.out.println(" 상품가격 : "+param.get("totalPrice"));
-		System.out.println(" 구매수량 :"+param.get("stock"));
-		System.out.println(" 멀천트아이디 :"+param.get("merchantUid"));
+//		System.out.println(" 쿠폰번호 : "+param.get("couponNo"));
+//		System.out.println(" 아이디 : "+param.get("memberId"));
+//		System.out.println(" 상품번호 : "+param.get("giftNo"));
+//		System.out.println(" 상품가격 : "+param.get("totalPrice"));
+//		System.out.println(" 구매수량 :"+param.get("stock"));
+//		System.out.println(" 멀천트아이디 :"+param.get("merchantUid"));
 		
 		//int point = (int) Math.round((int) param.get("totalPrice")*0.1);
 		
-		System.out.println(" 적립할 포인트 : "+param.get("point"));
+		//System.out.println(" 적립할 포인트 : "+param.get("point"));
 		
 		//param.put("point", point);
 		
@@ -350,7 +405,7 @@ public class GiftController {
 	  
 //		 내 장바구니 확인
         List<GiftShopingList> list = service.selectCheck(param);
-		System.out.println("쇼핑리스트에 선택한 상품이 있는지 없는지 단무지 : "+list);
+	  //System.out.println("쇼핑리스트에 선택한 상품이 있는지 없는지 단무지 : "+list);
 	  //System.out.println("url 타고 넘어온 파람값 : "+param);
 	  //System.out.println(param.get("giftNo"));
 	  //System.out.println(param.get("quan"));	 
@@ -376,13 +431,22 @@ public class GiftController {
 	  @RequestMapping("/gift/choiceCoupon.do")
 	  public ModelAndView choiceCoupon(@RequestParam Map param, ModelAndView mv) {
 		  
-		  System.out.println("쿠폰 선택해서 이리로 와 : "+param);
-		  
-		  
-		 
+		  //System.out.println("쿠폰 선택해서 이리로 와 : "+param);
+	 
 		  return mv;
 	  }
 	  
-	
+	@RequestMapping("/gift/searchGift.do")
+	public ModelAndView searchGift(@RequestParam Map param, ModelAndView mv) {
+		
+		System.out.println("검색 키워드 : "+param.get("keyword"));
+		
+		List<Ngift> list = service.searchGift(param);
+		
+		System.out.println("오우 이건 뭐야??"+list);
+		mv.addObject("list",list);
+		mv.setViewName("gift/searchGift");
+		return mv;
+	}
 
 }

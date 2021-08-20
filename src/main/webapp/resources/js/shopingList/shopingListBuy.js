@@ -6,8 +6,6 @@ IMP.init("imp26745696");
 
 	
 $(".btnPay").click(e=> {
-	let couponNo = document.getElementById("couponNo").value;
-	let couponAmount = document.getElementById("couponAmount").value;
 	let originPrice = document.getElementById("originPrice").value;
 	let deliveryFee = document.getElementById("deliveryFee").value;
 	let giftNo = document.getElementById("giftNo").value;
@@ -16,13 +14,21 @@ $(".btnPay").click(e=> {
 	let loginMember = document.getElementById("loginMember").value;
 	let contextPath = document.getElementById("contextPath").value;
 	let sellStock = document.getElementById("sellStock").value;
-	
+	// 주문가능수량 (반장님거 가지고 오다가 stock이랑 바꿔버림.)
 	let stock = document.getElementById("stock").value;
-
+	// 주문수량 (혹시 헷갈릴까봐 써놓음.)
 	let totalPrice = document.getElementById("totalPrice").value;
-	
 	let point = originPrice*0.1;
 	
+	console.log(originPrice);
+	console.log(giftNo);
+	console.log(point);
+	console.log(deliveryFee);
+	console.log(contextPath);
+	console.log(totalPrice);
+	console.log(stock);
+	console.log(sellStock);
+	//console.log(Number(stock)<=Number(sellStock));
 	
 	if(!(Number(stock)<=Number(sellStock))){
 		console.log("stock==="+Number(stock));
@@ -49,7 +55,9 @@ $(".btnPay").click(e=> {
         },
         success: data => {
         
-   
+        //console.log("수량"+sellStock);
+		//console.log("할인가"+bookPrice09);
+		//console.log("총금액"+totalPrice);
             let buyerName;
             let buyerEmail;
             let merchant_uid;
@@ -70,7 +78,7 @@ $(".btnPay").click(e=> {
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
                             name: "문곰템",
-                            amount: totalPrice
+                            amount: 100
                         }, function(rsp) {                       	                 	
                             if (rsp.success) {
                                 $.ajax({                                                     
@@ -100,8 +108,7 @@ $(".btnPay").click(e=> {
                                     			memberId: loginMember,
                                     			totalPrice: totalPrice,
                                     			merchantUid: rsp.merchant_uid,
-                                    			point: point,
-                                    			couponNo: couponNo
+                                    			point: point
                                     		},
                                     		success: data => {
 		                                        console.log("결제 로그 추가 결과 : " + data);

@@ -176,7 +176,7 @@
 					<ul class="flex" style="align-items: center;">
 						<c:if test="${loginMember==null }">
 							<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
-							<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
+							<li class="headerF-li"><a href="${path }/member/enrollPage.do">회원가입</a></li>
 						</c:if>
 						<c:if test="${loginMember!=null }">
 							<li class="headerF-li" id="user"><a

@@ -9,27 +9,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문곰템 | 수납/정리</title>
+    <title>문곰템 | 전자기기</title>
     <link rel="stylesheet" href="${path }/resources/css/gift/category.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-
-  <style>
-    .post-slider{
-      border:1px solid red;
-    }
-    .post-slider .post-wrapper{
-      width:84%;
-      height:350px;
-      margin:0px auto;
-      border:1px dashed red;
-    }
-    .post-slider .post-wrapper .post{
-      width:300px;
-      height:350px;
-      display:inline-block;
-      background:gray;
-    }
-</style>   
+ 
 </head>
 <body>
     <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
@@ -41,10 +24,10 @@
     </jsp:include> 
         <div class="category-box">
             <div class="main-title">
-                <p class="main">수납/정리</p>
+                <p class="main">검색결과</p>
             </div>
             <div class="sub-title">
-                <p class="sub">정리를 하려면 제대로 해야지!</p>
+                <p class="sub">찾으시는 물건이 있나요?</p>
             </div>
         </div> 
         <div class="space"></div>
@@ -114,42 +97,12 @@
             </div> 
         </div>
         <div class="space"></div>
-    </div>
-    <div class="slide-wrapper">
-        <div class="slider" style="padding-left:200px;">
-        <c:forEach var="e" items="${list }" begin="0" end="1000">
-            <div>
-            <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}">
-               <img src="${e.gift_img}" style="width:350px; height:350px; border-radius:25px; border:3px solid sliver;">
-            </a>
-            </div>
-        </c:forEach>
-        </div>
-    </div> 
-    <!-- <div class="post-slider">
-        <h1 class="sider-title">Treding Posts</h1>
-        <div class="post-wrapper">
-          <div class="post">1</div>
-          <div class="post">2</div>
-          <div class="post">3</div>
-          <div class="post">4</div>
-          <div class="post">5</div>
-        </div>
-</div> -->
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 <jsp:param name="" value=""/>
 </jsp:include>
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
-    /* $(document).ready(function(){
-    // 헤더
-    $(".header").load("../html/header.html");
-    });
-    $(document).ready(function(){
-    // 푸터
-    $(".footer").load("../html/footer.html");
-    }); */
 
     // img hover시 설명클래스 출력
     let thing9 = $(".thing9-a");
@@ -160,16 +113,8 @@
     $(thing9).on("mouseout", function(e){
         $(this).children().first().addClass("none");
     })
-
-    // slick slide
-    $('.slider').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000
-    });
    
 </script>
 
 </body>
-</html>
+</html>        

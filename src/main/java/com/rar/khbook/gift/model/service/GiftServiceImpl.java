@@ -16,6 +16,7 @@ import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 @Service
@@ -159,7 +160,11 @@ public class GiftServiceImpl implements GiftService {
 			int result4 = dao.updateMemberPoint(session, param);
 //			구매내역에 추가
 			int result5 = dao.updatePurchaseList(session, param);
-//			쿠폰은 choiceCoupon 에서 처리
+//			쿠폰 사용시 쿠폰도 추가
+			//int cpNum = param.get("couponNo");
+			if(Integer.valueOf((String)param.get("couponNo"))>0) {
+				int result6 = dao.updateCoupon(session, param);
+			}
 			return 1;
 		}else {
 			return 0;
@@ -177,6 +182,54 @@ public class GiftServiceImpl implements GiftService {
 	public int updateGiftShopingList(Map param) {
 		int result = dao.updateGiftShopingList(session, param);
 		return result;
+	}
+
+	@Override
+	public List<NoticeBoard> searchNoticeBoardList() {
+		// TODO Auto-generated method stub
+		List<NoticeBoard> list = dao.searchNoticeBoardList(session);
+		return list;
+	}
+
+	@Override
+	public int useCoupon(Map param) {
+		int result = dao.useCoupon(session, param);
+		return result;
+	}
+
+	@Override
+	public List<Ngift> giftElec() {
+		// TODO Auto-generated method stub
+		List<Ngift> list = dao.giftElec(session);
+		return list;
+	}
+
+	@Override
+	public List<Ngift> giftSupplies() {
+		// TODO Auto-generated method stub
+		List<Ngift> list = dao.giftSupplies(session);
+		return list;
+	}
+
+	@Override
+	public List<Ngift> giftStorage() {
+		// TODO Auto-generated method stub
+		List<Ngift> list = dao.giftStorage(session);
+		return list;
+	}
+
+	@Override
+	public List<Ngift> giftReading() {
+		// TODO Auto-generated method stub
+		List<Ngift> list = dao.giftReading(session);
+		return list;
+	}
+
+	@Override
+	public List<Ngift> searchGift(Map param) {
+		// TODO Auto-generated method stub
+		List<Ngift> list = dao.searchGift(session, param);
+		return list;
 	}
 	
 	

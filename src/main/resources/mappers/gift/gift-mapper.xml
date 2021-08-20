@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="gift">
 
+	<resultMap id="noticeBoard" type="noticeBoard">
+		<id column="NOTICEBOARD_NO" property="noticeboardNo"/>
+		<result column="NOTICEBOARD_TITLE" property="noticeboardTitle"/>
+		<result column="NOTICEBOARD_CONTENT" property="noticeboardContent"/>
+		<result column="NOTICEBOARD_DATE" property="noticeboardDate"/>
+		<result column="MEMBER_ID" property="memberId"/>
+	</resultMap>
+
 	<resultMap type="couponlist" id="couponlistMap">
 		<result column="couponlist_no" property="couponlistNo" />
 		<result column="couponlist_membergrade_no" property="couponlistMembergradeNo" />
@@ -109,7 +117,7 @@
 	</select>
 	
 	<select id="selectEtcGiftAll" resultMap="giftMap">
-		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%문구%' OR '%학용품%'
+		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%문구%' OR NGIFT_TITLE LIKE '%학용품%'
 	</select>
 	
 	<select id="selectCheck" resultMap="giftShopingListMap">
@@ -134,7 +142,7 @@
 	
 	<!-- 접속한 회원에게 쿠폰이 있는지 확인 -->
 	<select id="selectCoupon" resultMap="couponMap">
-		SELECT * FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId}
+		SELECT * FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId} AND COUPON_CANUSE='Y'
 	</select>	
 	
 	<!-- 접속한 회원의 쿠폰 종류 -->
@@ -178,4 +186,21 @@
 		INSERT INTO NGIFT_ORDER_LIST VALUES(#{merchantUid}, #{giftNo}, #{stock})
 	</insert>
 	
+	<select id="selectNoticeBoardList" resultMap="noticeBoard">
+		SELECT * FROM NOTICEBOARD 
+	</select>
+	
+	<delete id="useCoupon">
+		DELETE FROM COUPON WHERE COUPON_MEMBER_ID=#{memberId} AND COUPON_COUPONLIST_NO=#{couponNo}
+	</delete>
+	
+	<!-- 쿠폰 사용시 회원 쿠폰 업데잍트 -->
+	<update id="updateCoupon">
+		UPDATE COUPON SET COUPON_CANUSE='N' WHERE COUPON_COUPONLIST_NO=#{couponNo} AND COUPON_MEMBER_ID=#{memberId}
+	</update>
+	
+	
+	<select id="searchGift" resultMap="giftMap">
+		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%${keyword}%'
+	</select>
 </mapper>
