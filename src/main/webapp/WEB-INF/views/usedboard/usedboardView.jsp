@@ -442,7 +442,7 @@ h2 {
 			}, function (rsp) {
 			console.log(rsp);
 			if (rsp.success) {
-				location.href="${path}/usedboard/usedboardPayment.do?no=${no}&title=${usedboard.usedboard_Title}&price=${usedboard.usedboard_Price}&id=${loginMember.member_Id}&impuid="+rsp.imp_uid+"&muid="+rsp.merchant_uid+"&add=${loginMember.memberAddress } ${loginMember.memberDetailAddress}&saleId=${usedboard.member_Id}";
+				location.href="${path}/usedboard/usedboardPayment.do?no=${no}&title=${usedboard.usedboard_Title}&price=${usedboard.usedboard_Price}&id=${loginMember.memberId}&impuid="+rsp.imp_uid+"&muid="+rsp.merchant_uid+"&add=${loginMember.memberAddress } ${loginMember.memberDetailAddress}&saleId=${usedboard.member_Id}";
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
