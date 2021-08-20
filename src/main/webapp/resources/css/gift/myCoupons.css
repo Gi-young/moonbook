@@ -38,6 +38,7 @@
     height: 400px;
 }
 .couponView{
+	margin-bottom:20px;
     display: flex;
     justify-content: space-between;
     align-items: center;

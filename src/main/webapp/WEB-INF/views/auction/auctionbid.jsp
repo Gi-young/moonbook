@@ -172,7 +172,7 @@
 		console.log(parseInt($("#bid").val()))
 		const check=()=>{
 			
-			sendMainMessage();
+			
 			if($("#bidid").val()==$("#seller").val()){
 				alert("자신이 올린 물품입니다.")
 				return false; 
@@ -204,8 +204,18 @@
 				 }
 				return false;		 
 			}
-		
+			sendMainMessage();
 		}
+			
+		function sendMainMessage() {
+				 let auctionName="${ auction.auctionName },";
+				 let memberId="${member.memberId},";
+				 let bidPrice=$("input[name=bidPrice]").val();		
+				 let main="main,"+auctionName+memberId+bidPrice
+				 console.log(main)
+				 sockAuction.send(main);
+				 
+			 }
 		const check3=()=>{
 			let myprice=parseInt($("#myPrice").val())+parseInt($("#bidPrice3").val())
 			if(parseInt($("input[name=bidPrice]").val())<0){
@@ -222,20 +232,10 @@
 		
 		
 		 
-		// gi-young
+
 		 function sendMessage() {
 		 sockAuction.send("bid," + "${loginMember.memberId}" + "," + "${auction.auctionNo}" + "," + $("#bid").val());
 		} 
-			
-		function sendMainMessage() {
-				 let auctionName="${ auction.auctionName },";
-				 let memberId="${member.memberId},";
-				 let bidPrice=$("input[name=bidPrice]").val();		
-				 let main="main,"+auctionName+memberId+bidPrice
-				 console.log(main)
-				 sockAuction.send(main);
-				 
-			 }
 		function sendMainMessage2() {
 			 let auctionName="${ auction.auctionName },";
 			 let memberId="${member.memberId},";

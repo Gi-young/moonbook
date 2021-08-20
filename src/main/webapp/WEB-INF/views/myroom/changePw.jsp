@@ -36,7 +36,8 @@
 								<div class="padding10">이메일</div>
 								<div>
 									<input type="text" name="memberEmail"
-										value="${loginMember.memberEmail}" id="memberEmail" class= "input" readonly>
+										value="${loginMember.memberEmail}" id="memberEmail"
+										class="input" readonly>
 									<button type="button" class="btn" id="sendEmail">코드전송</button>
 								</div>
 							</div>
@@ -44,21 +45,26 @@
 								<div class="word4">코드입력</div>
 								<div class="div4">
 									<input type="text" id="codeVal"
-										placeholder="이메일로 인증코드를 전송했습니다." class= "input">
+										placeholder="이메일로 인증코드를 전송했습니다." class="input">
 									<button type="button" class="btn" id="checkCode">인증하기</button>
 								</div>
 							</div>
 							<div class="fm_valDiv2" style="display: none" id="changePw">
 								<div class="word4">비밀번호</div>
 								<div class="div4">
-									<form action="/member/myroom/memberUpdatePw.do" method="post">
+									<form action="${path }/member/memberUpdatePw.do" method="post">
 										<input type="hidden" name="memberId"
 											value="${loginMember.memberId }"> <input
 											type="hidden" name="memberPw" id="memberPw">
-										<button class="btn">변경하기</button>
+										<button class="btn" type="botton"
+											onclick="return fn_frmsubmit();">변경하기</button>
 									</form>
 								</div>
 							</div>
+							<span class="memberPwcheck3">8자리 ~ 20자리 이내로 입력해주세요.</span> <span
+								class="memberPwcheck4">비밀번호는 공백 없이 입력해주세요.</span> <span
+								class="memberPwcheck5">영문,숫자, 특수문자를 혼합하여 입력해주세요.</span> <span
+								class="memberPwcheck6">비밀번호가 정상적으로 확인되었습니다.</span>
 							<div id="infoF" class="infoF">잘못된 코드입니다.</div>
 							<input type="hidden" id="wC" value="no">
 						</div>
@@ -86,7 +92,8 @@
 								<div class="padding10">이메일</div>
 								<div>
 									<input type="text" name="memberEmail"
-										value="${loginMember.memberEmail}" id="memberEmail" class= "input" readonly>
+										value="${loginMember.memberEmail}" id="memberEmail"
+										class="input" readonly>
 									<button type="button" class="btn" id="sendEmail">코드전송</button>
 								</div>
 							</div>
@@ -94,16 +101,17 @@
 								<div class="word4">코드입력</div>
 								<div class="div4">
 									<input type="text" id="codeVal"
-										placeholder="이메일로 인증코드를 전송했습니다." class= "input">
+										placeholder="이메일로 인증코드를 전송했습니다." class="input">
 									<button type="button" class="btn" id="checkCode">인증하기</button>
 								</div>
 							</div>
 							<div class="fm_valDiv2" style="display: none" id="changePw">
 								<div class="word4">정말 탈퇴 하시겠습니까?</div>
 								<div class="div4">
-									<form action="${path }/member/myroom/deleteMember.do" method="post">
+									<form action="${path }/member/myroom/deleteMember.do"
+										method="post">
 										<input type="hidden" name="memberId"
-											value="${loginMember.memberId }"> 
+											value="${loginMember.memberId }">
 										<button class="btn">탈퇴하기</button>
 									</form>
 								</div>
@@ -139,6 +147,50 @@ $("#sendEmail").click(e=>{
 		})
 	})
 })
+$("#memberPw").keyup(e=>{
+		//영문(대소문자) 포함
+		//숫자 포함
+		//특수 문자 포함
+		//공백 x
+		//비밀번호 자리 8~20자
+		const password=$("#memberPw").val();
+		
+		var num = password.search(/[0-9]/g);
+		var eng = password.search(/[a-z]/ig);
+		var spe = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		
+		if(password.length<8 ||password.length>20){
+			$(".memberPwcheck3").show(); //8~20 자리 이내
+			$(".memberPwcheck4").hide();
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").hide();
+		}else if(password.search(/\s/)!=-1){
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").show(); //비밀번호 공백 없이
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").hide();
+		}else if(num<0 || eng<0||spe<0){
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").hide(); 
+			$(".memberPwcheck5").show(); //영문,숫자 특수문자 혼합
+			$(".memberPwcheck6").hide();
+		}else{
+			$(".memberPwcheck3").hide();
+			$(".memberPwcheck4").hide();
+			$(".memberPwcheck5").hide();
+			$(".memberPwcheck6").show(); //통과
+		}
+	})
+	
+	const fn_frmsubmit=()=>{
+		if($('.memberPwcheck6').css("display")!="none"){
+			
+			return true;
+		}else{
+			alert("확인 필요");
+			return false;
+		}
+	}
 </script>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />

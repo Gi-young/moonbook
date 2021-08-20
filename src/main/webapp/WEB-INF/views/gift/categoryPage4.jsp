@@ -38,160 +38,92 @@
     <div class="wrap">
     <jsp:include page="/WEB-INF/views/gift/hotTracksMenu.jsp">
     <jsp:param name="" value=""/>
-    </jsp:include>
+    </jsp:include> 
         <div class="category-box">
             <div class="main-title">
                 <p class="main">잡화</p>
             </div>
             <div class="sub-title">
-                <p class="sub">당신에게 필요한 여러가지 상품들을 준비해봤어요!</p>
+                <p class="sub">뭘 좋아할지 몰라서 보이는대로 담아왔어요.</p>
             </div>
         </div> 
         <div class="space"></div>
+		<div class="searchBox">
+			<p style="font-weight:800; font-size:18px;">도움이 필요하신가요?</p>
+			<form action="${path }/gift/searchGift.do?" method="post">
+				<p class="searchInput">
+					<input type="text" class="searchText" id="keyword" name="keyword">	 
+					좀 찾아주세요.	
+				</p>
+				<div style="width:240px; height:32px; margin-top:10px; display:flex; justify-content: center; align-items:center; align-content:center;">
+					<button class="searchBtn">네, 알겠습니다.</button>		
+				</div>
+			</form>		
+		</div>        
+        <div class="space"></div>
         <div class="thing9">
-            <div>
-                <a href="#" class="thing9-a">
+            <div style="word-break:break-all;">
+            	<c:forEach var="e" items="${list }" begin="${num }" end="${num+2 }"> 
+            	
+                <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}" class="thing9-a">
                     <div class="inner-a none">
                         <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
+                            <p class="explan">${e.gift_title }</p>
                             <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
+                                <!-- <p class="discount">할인율</p> -->
+                                <p class="price"><fmt:formatNumber value="${e.gift_price }" type="number"/></p>
                             </div>
                         </div>
                     </div>
-                    <img src="${path }/resources/images/gift/led스탠드레드.jpg" alt="">
-                </a>
+                    <img src="${e.gift_img }" alt="" style="width:300px; height:300px;">
+                </a>            
+                </c:forEach>
+            </div>
+             <div>
+                <c:forEach var="e" items="${list }" begin="${num+3 }" end="${(num+3)+2 }"> 
+                
                 <a href="#" class="thing9-a">
                     <div class="inner-a none">
                         <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
+                            <p class="explan">${e.gift_title }</p>
                             <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
+                                <!-- <p class="discount">할인율</p> -->
+                                <p class="price"><fmt:formatNumber value="${e.gift_price }" type="number"/></p>
                             </div>
                         </div>
                     </div>
-                    <img src="${path }/resources/images/gift/전신거울스탠드.jpg" alt="">
-                </a>
-                <a href="#" class="thing9-a">
-                    <div class="inner-a none">
-                        <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
-                            <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
-                </a>
+                    <img src="${e.gift_img }" alt="" style="width:300px; height:300px;">
+                </a>            
+                </c:forEach>
             </div>
             <div>
+                <c:forEach var="e" items="${list }" begin="${num+5 }" end="${(num+5)+2}"> 
                 <a href="#" class="thing9-a">
                     <div class="inner-a none">
                         <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
+                            <p class="explan">${e.gift_title }</p>
                             <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
+                                <!-- <p class="discount">할인율</p> -->
+                                <p class="price"><fmt:formatNumber value="${e.gift_price }" type="number"/></p>
                             </div>
                         </div>
                     </div>
-                    <img src="${path }/resources/images/gift/led스탠드레드.jpg" alt="">
-                </a>
-                <a href="#" class="thing9-a">
-                    <div class="inner-a none">
-                        <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
-                            <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="${path }/resources/images/gift/전신거울스탠드.jpg" alt="">
-                </a>
-                <a href="#" class="thing9-a">
-                    <div class="inner-a none">
-                        <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
-                            <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
-                </a>
-            </div>
-            <div>
-                <a href="#" class="thing9-a">
-                    <div class="inner-a none">
-                        <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
-                            <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="${path }/resources/images/gift/led스탠드레드.jpg" alt="">
-                </a>
-                <a href="#" class="thing9-a">
-                    <div class="inner-a none">
-                        <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
-                            <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="${path }/resources/images/gift/전신거울스탠드.jpg" alt="">
-                </a>
-                <a href="#" class="thing9-a">
-                    <div class="inner-a none">
-                        <div class="inner-div">
-                            <p class="explan">과자집 씰 스티커</p>
-                            <div class="flex">
-                                <p class="discount">할인율</p>
-                                <p class="price">가격</p>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
-                </a>
-            </div>
+                    <img src="${e.gift_img }" alt="" style="width:300px; height:300px;">
+                </a>            
+                </c:forEach>
+            </div> 
         </div>
         <div class="space"></div>
     </div>
     <div class="slide-wrapper">
-        <div class="slider">
+        <div class="slider" style="padding-left:200px;">
+        <c:forEach var="e" items="${list }" begin="0" end="1000">
             <div>
-                1
-                <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
+            <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}">
+               <img src="${e.gift_img}" style="width:350px; height:350px; border-radius:25px; border:3px solid sliver;">
+            </a>
             </div>
-            <div>
-                2
-                <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
-            </div>
-            <div>
-                3
-                <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
-            </div>
-            <div>
-                4
-                <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
-            </div>
-            <div>
-                5
-                <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
-            </div>
-            <div>
-                6
-                <img src="${path }/resources/images/gift/과자집씰스티커.jpg" alt="">
-            </div>
+        </c:forEach>
         </div>
     </div> 
     <!-- <div class="post-slider">

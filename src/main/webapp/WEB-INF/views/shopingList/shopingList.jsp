@@ -15,7 +15,7 @@
 <form action="#">
 	<div class="orderInfoBox">
 		<div class="infoTitle">
-			<h3>문곰도서 주문 정보</h3><c:out value="${eBook}"/>
+			<h3>문곰도서 주문 정보</h3>			
 		</div>
 		<div class="tbl_box">
 			<table class="tbl_order">
@@ -25,18 +25,23 @@
 					<th>주문 가능 수량</th>
 					<th>주문 수량</th>
 					<th>결제금액</th>
-				</tr>
-				<%-- <c:forEach var="s" items="shopingList"> --%>
-				<c:forEach var="b" items="${book }">
+				</tr>	
+				  	
+				<c:forEach var="b" items="${book }" varStatus="status">			
+				 <c:set var="bc" value="${book[status.end] }"/>
+				 <c:out value="${bc }"/>
 				 <tr> 
-					<td>${b.image }</td>
+					<td><img src="${b.image }" alt="${b.title }"/></td>
 					<td>${b.title }</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td>삼백원</td>
+					<td><fmt:formatNumber value="${b.price }"  type="number"/></td>
+					<td>${b.stock}</td>
+					<td>${bList[status.index].getShopingListCount() }</td>
+					<td class="bookPrice"><fmt:formatNumber value="${b.price*bList[status.index].getShopingListCount() }"  type="number"/></td>
+				 	<input type="hidden" value="${b.price*bList[status.index].getShopingListCount() }" class="bookP">			
 				 </tr> 
 				</c:forEach> 
+					<p>${bTotal }</p>			
+					<p>${bookP }</p>			 
 <%-- 					<td><img src="${s.image }"></td>
 					<td>${s.title }</td>
 					<td><fmt:formatNumber value="${s.price*0.9 }" type="currency"/></td>
@@ -52,25 +57,26 @@
 			<h3>문곰e북 주문 정보</h3>
 		</div>
 		<div class="tbl_box">
-			<table class="tbl_order">
+			<table class="tbl_order">		
 				<tr class="tbl_first">
 					<th colspan="2">e북정보</th>
 					<th>e북금액</th>
 					<th>주문 가능 수량</th>
 					<th>주문 수량</th>
 					<th>결제금액</th>
-				</tr>
-				<%-- <c:forEach var="e" items="shopingList"> --%>
+				</tr>			  		
+			  <c:forEach var="e" items="${eBook }" varStatus="status">						
 				<tr>
-						<tr>
-					<td>이미지</td>
-					<td>제목</td>
-					<td>천만원</td>
-					<td>오천개</td>
-					<td>두개</td>
-					<td>삼백원</td>
+					<td><img src="${e.image }" alt="${e.title }"/></td>
+					<td>${e.title }</td>
+					<td><fmt:formatNumber value="${e.price }"  type="number"/></td>
+					<td>${e.stock }</td>
+					<td>1</td>
+					<td class="eBookPrice"><fmt:formatNumber value="${e.price }"  type="number"/></td>				
+				 	<input type="hidden" value="${e.price }" class="eBookP">
 				</tr>
-				<%-- </c:forEach> --%>
+			  </c:forEach>
+				 <p>${eBookP }</p>				
 			</table>
 		</div>
 	</div>
@@ -86,38 +92,44 @@
 					<th>주문 가능 수량</th>
 					<th>주문 수량</th>
 					<th>결제금액</th>
-				</tr>
-				<%-- <c:forEach var="g" items="shopingList"> --%>
+				</tr>	
+			<c:forEach var="g" items="${gift }" varStatus="status">
 				<tr>
-						<tr>
-					<td>이미지</td>
-					<td>제목</td>
-					<td>천만원</td>
-					<td>오천개</td>
-					<td>두개</td>
-					<td>삼백원</td>
+					<td><img src="${g.gift_img }"/></td>
+					<td>${g.gift_title }</td>
+					<td><fmt:formatNumber value="${g.gift_price }"  type="number"/></td>
+					<td>${g.gift_count }</td>
+					<td>${gList[status.index].getShopingListCount() }</td>
+					<td class="giftPrice"><fmt:formatNumber value="${g.gift_price*gList[status.index].getShopingListCount()  }"  type="number"/></td>
+					<input type="hidden" value="${g.gift_price*gList[status.index].getShopingListCount()  }" class="giftP">
 				</tr>
-				<%-- </c:forEach> --%>
+			</c:forEach> 
 			</table>
 		</div>
 	</div>
+	
 	<div class="orderInfoBox margin_bottom3em">
-				<div class="infoTitle">
-				
+				<div class="infoTitle" style="display: flex; align-items: flex-end; margin-top: 1.3em; justify-content: space-between;">								  								   
 					<h3>결제 정보</h3>
+					<div class="deliFeeChoice">
+						<input type="radio" value="advance" name="delifee" id="advance" checked/>
+						<label for="advance">선불</label>
+						<input type="radio" value="later" name="delifee" id="later"/>
+						<label for="later">착불</label>
+					</div>
 				</div>
 				<div class="tbl_box">
 					<table class="tbl_payment">
 						<tr class="tbl_first">
-							<td>도서 금액</td>
-							<td>₩7,200</td>
+							<td>합산 금액</td>
+							<td id="originPrice"></td>
 							<td>+</td>
 							<td>배송비</td>
-							<td id="delifee">₩3,000</td>
+							<td id="delifee"></td>
 							<td>=</td>
 							<td>총 </td>
-							<td id="totalfee">₩10,200</td>
-<%-- 							<td>도서 금액</td>
+							<td id="totalfee"></td>
+						<%-- <td>도서 금액</td>
 							<td><fmt:formatNumber value="${(book.price*0.9)*sellStock }" type="currency"/></td>
 							<td>+</td>
 							<td>배송비</td>
@@ -130,10 +142,83 @@
 				</div>
 			</div>
 		</form>
-			<div class="btnCenter">
-				<button class="btnPay">결제하기</button>
-			</div>
-			</div>
+				<div class="btnCenter">
+					<button class="btnPay">결제하기</button>
+				</div>
+		</div>
 </section>
+<div id="set">
+</div>
+<input type="hidden" value="0" id="op">
+<script>
+	let bookPriceLength = document.getElementsByClassName("bookP").length;
+	let bookPrice = document.getElementsByClassName("bookP");
+	let bTotal = 0;
+	
+	let eBookPriceLength = document.getElementsByClassName("eBookP").length;
+	let eBookPrice = document.getElementsByClassName("eBookP");
+	let eTotal = 0;	
+	
+	let giftPriceLength = document.getElementsByClassName("giftP").length;
+	let giftPrice = document.getElementsByClassName("giftP");
+	let gTotal = 0;
 
+	let op = document.getElementById("op");
+	let originPrice = document.getElementById("originPrice");
+	let totalFee = document.getElementById("totalfee");
+	
+	let set = document.getElementById("set");
+	
+	let deliFee = document.getElementById("delifee");
+	let html = "<fmt:formatNumber value='3000' type='currency'/>";
+	let html2 = "<fmt:formatNumber value='0' type='currency'/>";
+	let advance = document.getElementById("advance");
+	let later = document.getElementById("later");
+	
+	for(b=0;b<bookPriceLength;b++){
+		//console.log(bookPrice[b].value);
+		//console.log(bTotal+=Number(bookPrice[b].value));
+		bTotal+=Number(bookPrice[b].value);
+	}
+	 //console.log(bTotal);
+	
+	for(e=0;e<eBookPriceLength;e++){
+		//console.log(eBookPrice[e].value);
+		//console.log(eTotal+=Number(eBookPrice[e].value));
+		eTotal+=Number(eBookPrice[e].value);
+	}
+	 //console.log(eTotal);
+	 
+	for(g=0;g<giftPriceLength;g++){
+		//console.log(giftPrice[g].value);
+		//console.log(gTotal+=Number(giftPrice[g].value));
+		gTotal+=Number(giftPrice[g].value);
+	}
+	 //console.log(gTotal);
+	 let total = bTotal+eTotal+gTotal;
+	 //console.log(total);
+	 op.value=total;
+	 //console.log(op.value);
+	 //console.log(typeof(`${'${total}'}`));
+	 originPrice.value=total;
+	 originPrice.innerText="₩"+total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	 
+	 let total3000 = total+3000;
+	 
+	 deliFee.innerText = html;
+	 totalFee.innerText = "₩"+total3000.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	 advance.addEventListener('click', ()=>{
+		 deliFee.innerText = html;
+		 totalFee.innerText = "₩"+total3000.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	 })
+	 later.addEventListener('click', ()=>{
+		 deliFee.innerText = html2;
+		 totalFee.innerText = "₩"+total.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+	 }) 
+	 console.log(deliFee);
+	 
+	
+	 
+</script>
+<%-- <script src="${path}/resources/js/shopingList/shopingListBuy.js"></script>  --%>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

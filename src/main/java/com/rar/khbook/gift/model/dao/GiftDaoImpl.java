@@ -14,6 +14,7 @@ import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
 @Repository
@@ -163,6 +164,55 @@ public class GiftDaoImpl implements GiftDao {
 	public List<GiftShopingList> selectCheck(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		return session.selectList("gift.selectCheck",param);
+	}
+
+	@Override
+	public List<NoticeBoard> searchNoticeBoardList(SqlSession session) {
+		// TODO Auto-generated method stub
+		RowBounds rb = new RowBounds(0,4); 
+		return session.selectList("gift.selectNoticeBoardList",null,rb);
+	}
+
+	@Override
+	public int useCoupon(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("gift.useCoupon", param);
+	}
+
+	@Override
+	public int updateCoupon(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("gift.updateCoupon",param);
+	}
+
+	@Override
+	public List<Ngift> giftElec(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectElecGiftAll");
+	}
+
+	@Override
+	public List<Ngift> giftSupplies(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectEtcGiftAll");
+	}
+
+	@Override
+	public List<Ngift> giftStorage(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectStorageGiftAll");
+	}
+
+	@Override
+	public List<Ngift> giftReading(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.selectReadingGiftAll");
+	}
+
+	@Override
+	public List<Ngift> searchGift(SqlSession session ,Map param) {
+		// TODO Auto-generated method stub
+		return session.selectList("gift.searchGift",param);
 	}
 	
 	

@@ -15,6 +15,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -68,6 +69,7 @@ public class MemberController {
 
 		String saveId = (String) param.get("saveId");
 		String memberId = (String) param.get("memberId");
+		System.out.println(param.get("memberPw"));
 		if (saveId != null) {
 			Cookie c = new Cookie("saveId", memberId);
 			c.setMaxAge(7 * 24 * 60 * 60);
@@ -86,7 +88,7 @@ public class MemberController {
 
 			if (pwEncoder.matches((String) param.get("memberPw"), m.getMemberPw())) {
 				session.setAttribute("loginMember", m);
-
+				System.out.println("아니 여기" + param.get("memberPw") + "ddd" + m.getMemberPw());
 //				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
 				List<Coupon> c = service.getCoupon(m);
 				session.setAttribute("coupon", c);
@@ -105,6 +107,10 @@ public class MemberController {
 				}
 				msg = "로그인 성공";
 
+//		재로그인 flag를 확인 후, 로그인에 성공하면 마이룸 회원정보수정으로 연결
+				if (param.get("reLogin") != null && ((String) param.get("reLogin")).equals("y")) {
+					return "myroom/updateMember";
+				}
 				model.addAttribute("loc", "/");
 			} else {
 				msg = "로그인 실패";
@@ -113,9 +119,10 @@ public class MemberController {
 		} else {
 			msg = "로그인 실패";
 		}
-//		재로그인 flag를 확인후 마이룸 회원정보수정으로 연결
+//		재로그인 flag를 확인 후, 로그인에 실패하면 마이룸 메인으로 연결
 		if (param.get("reLogin") != null && ((String) param.get("reLogin")).equals("y")) {
-			return "myroom/updateMember";
+
+			model.addAttribute("loc","/member/myroom/reLogin.do");
 		}
 		model.addAttribute("msg", msg);
 
@@ -160,11 +167,11 @@ public class MemberController {
 		int result = service.insertMember(m);
 		String msg = "";
 		String loc = "";
-		
+
 		if (result > 0) {
 			msg = "회원가입성공";
 			int result3 = service.createShopingList(m);
-			log.debug("회원가입 후 장바구니 만들기 성공 실패 {}",result3);
+			log.debug("회원가입 후 장바구니 만들기 성공 실패 {}", result3);
 			loc = "/";
 			session.setAttribute("flag", true);
 		} else {
@@ -304,8 +311,9 @@ public class MemberController {
 		m.getMemberEmail();
 
 		// 일단 아이디, 이름과 이메일로 회원이 맞는지 확인
+		System.out.println(m);
 		Member m3 = service.searchId4(m);
-
+		System.out.println(m3);
 		String msg = "";
 		String loc = "";
 
@@ -374,6 +382,7 @@ public class MemberController {
 	public String resultPwPage(String resultPw, Model model) {
 
 		model.addAttribute("resultPw", resultPw);
+		model.addAttribute("myroom", "y");
 		return "member/resultIdPage";
 	}
 
@@ -638,7 +647,7 @@ public class MemberController {
 	public Map giftPayList(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
 			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, String searchType, Date startDate,
 			Date finishDate, HttpSession session, ModelAndView mv) {
-		
+
 		Member m = (Member) session.getAttribute("loginMember");
 		Map<String, Object> param = new HashMap();
 		Date date = new Date();

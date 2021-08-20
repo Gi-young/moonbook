@@ -9,14 +9,14 @@ UPDATE BANK_TRANSACTION SET TRANSACTION_STATE='Y' WHERE TRANSACTION_NO=#{transac
 <select id="auctionBank" resultMap="bankMap">
 SELECT * FROM bank_transaction JOIN BANKINFO USING(BANK_NAME) WHERE 1=1
 <if test="memberId !=null and memberId!=''">
-MEMBER_ID=#{memberId}
+and MEMBER_ID=#{memberId}
 </if>
 order by transaction_time desc
 </select>
 <select id="auctionBankCount" resultType="_int">
 SELECT count(*) FROM bank_transaction JOIN BANKINFO USING(BANK_NAME) WHERE 1=1
 <if test="memberId !=null and memberId!=''">
-MEMBER_ID=#{memberId}
+and MEMBER_ID=#{memberId}
 </if>
 order by transaction_time desc
 </select>
