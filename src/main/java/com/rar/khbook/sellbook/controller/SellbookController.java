@@ -187,7 +187,7 @@ public class SellbookController {
 	public ModelAndView bigview(int bindNo, ModelAndView mv) {
 		System.out.println("페이지이동");
 		mv.addObject("bigview",service.selectBigView(bindNo));
-		mv.setViewName("bigview");
+		mv.setViewName("sellpart/bigView");
 		return mv;
 		
 	}

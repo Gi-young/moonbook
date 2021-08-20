@@ -1161,7 +1161,7 @@ transition: all 0.2s linear;
                          <span id="leftclick">&lt;</span>
                         <div class="content_body2_right_content">
                              <div>
-                                 <img src="${path}/resources/img/sellLev1/addgrade/addplatinum.png" alt="">
+                                 <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addplatinum.png" alt=""></a>
                              </div>
                              <strong class="btitle">곰문이 플래티넘!!</strong>
                              <div class="bprice">13000</div>
@@ -1170,7 +1170,7 @@ transition: all 0.2s linear;
                         </div>
                         <div class="content_body2_right_content">
                          <div>
-                             <img src="${path}/resources/img/sellLev1/addgrade/addgold.png" alt="">
+                             <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addgold.png" alt=""></a>
                          </div>
                          <strong class="btitle">곰문이 골드!</strong>
                          <div class="bprice">13000</div>
@@ -1179,7 +1179,7 @@ transition: all 0.2s linear;
                          </div>
                          <div class="content_body2_right_content">
                              <div>
-                                 <img src="${path}/resources/img/sellLev1/addgrade/addsilver.png" alt="">
+                                 <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addsilver.png" alt=""></a>
                              </div>
                              <strong class="btitle">곰문이 실버</strong>
                              <div class="bprice">13000</div>
@@ -1188,7 +1188,7 @@ transition: all 0.2s linear;
                          </div>
                          <div class="content_body2_right_content">
                              <div>
-                                 <img src="${path}/resources/img/sellLev1/addgrade/addbronze.png" alt="">
+                                 <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addbronze.png" alt=""></a>
                              </div>
                              <strong class="btitle">브론즈</strong>
                              <div class="bprice">13000</div>
@@ -1197,7 +1197,7 @@ transition: all 0.2s linear;
                          </div>
                          <div class="content_body2_right_content">
                              <div>
-                                 <img src="${path}/resources/img/sellLev1/addgrade/addddong.png" alt="">
+                                 <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addddong.png" alt=""></a>
                              </div>
                              <strong class="btitle">ㅇㅇ;</strong>
                              <div class="bprice">13000</div>
@@ -1246,10 +1246,6 @@ transition: all 0.2s linear;
     let atag1=$(".main_ul")[0].children[0];
     let atag2=$(".main_ul")[0].children[1];
     let atag3=$(".main_ul")[0].children[2];
-    console.log("바람이 분다");
-    console.log(atag1.children[0]);
-    console.log(atag2);
-    console.log(atag3);
 
     $(atag1.children[0]).hover((e)=>{
         $(e.target).css({"background-color":"#582810","color":"white"});
@@ -1276,7 +1272,6 @@ transition: all 0.2s linear;
 
 
     //좌측 내비바 show / hide 
-
     $(".main_sub_title").hover((e)=>{
         $(e.target).next('ul').show();
     },(e)=>{
@@ -1286,14 +1281,9 @@ transition: all 0.2s linear;
         }
     });
 
-
     //배너바 선택 show / hide
-
     let chobox=$(".banner_cho_box")[0].children[0];
     let choboxinner=$(".banner_cho_box")[0].children[0].children;
-    console.log("초박스를보자");
-    console.log(choboxinner);
-
     $(chobox).hover((e)=>{
         $(e.target).next('ul').show();
     },(e)=>{
@@ -1302,7 +1292,6 @@ transition: all 0.2s linear;
             $(".banner_cho_box2").hide();
         } 
     })
-
 
      //배너 슬라이드 
     $(function(){

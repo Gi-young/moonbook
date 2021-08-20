@@ -1757,7 +1757,7 @@ padding-bottom: 5px;
                                         </div>
                                         <div class="author bestratingauthor0">박원재</div>
                                         <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                        <p class="khloverscore">10.0</p>
+                                        <p class="khloverscore">9.9</p>
                                     </div>
                                 </li>
                             </ul>
@@ -1772,7 +1772,7 @@ padding-bottom: 5px;
                                             <a href="#" class="ratingLink1"><p class="hotnewtitle bestratingtitle1">먹어야 산다</p></a>
                                             <div class="author bestratingauthor1">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                                <p class="khloverscore">9.2</p>
+                                                <p class="khloverscore">9.7</p>
                                         </div>
                                     </div>
                                 </li>
@@ -1796,7 +1796,7 @@ padding-bottom: 5px;
                                             <a href="#" class="ratingLink3"><p class="hotnewtitle bestratingtitle3">먹어야 산다</p></a>
                                             <div class="author bestratingauthor3">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                                <p class="khloverscore">8.9</p>
+                                                <p class="khloverscore">9.3</p>
                                         </div>
                                     </div>
                                 </li>
@@ -1807,7 +1807,7 @@ padding-bottom: 5px;
                                             <a href="#" class="ratingLink4"><p class="hotnewtitle bestratingtitle4">먹어야 산다</p></a>
                                             <div class="author bestratingauthor4">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                            <p class="khloverscore">9.9</p>
+                                            <p class="khloverscore">9.3</p>
                                         </div>
                                     </div>
                                 </li>
