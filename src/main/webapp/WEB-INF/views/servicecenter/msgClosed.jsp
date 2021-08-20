@@ -12,6 +12,9 @@
 <body>
 	<script>
 		alert("${msg}");
+		
+		opener.location.replace("${path}/service/serviceMain.do");
+		
 		window.close();
 	</script>
 </body>

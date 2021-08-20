@@ -12,6 +12,7 @@
 <body>
 	<script>
 		alert("공지사항이 등록되었습니다.");
+		opener.location.replace("${path}/service/serviceMain.do");
 		window.close();
 	</script>
 </body>

@@ -20,6 +20,9 @@ ul {
    list-style: none;
 }
 
+#slider-div{
+	height:auto;
+}
 .contenttitle {
    font-weight: bold;
 }
@@ -1016,14 +1019,14 @@ ul {
 
       
         <div class="product-exp">
+            <%-- <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
             <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt=""> --%>
         </div>
         <div class="product-review">
             <div class="writeBox">
-                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/SellbookController/insertReview.do?bindNo=${book.bindNo }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
+                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/SellbookControll/insertReview.do?bindNo=${book.bindNo }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
             </div>
            <table class="review-exp review-board" id="targetTable">
             <!-- 아약스로 테이블 생성 -->

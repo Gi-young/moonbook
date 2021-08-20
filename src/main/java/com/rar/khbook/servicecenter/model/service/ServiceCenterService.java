@@ -20,4 +20,8 @@ public interface ServiceCenterService {
 	
 	List<Faq> searchFaq(Map param);
 
+	NoticeBoard searchNoticeBoardDetail(int noticeboardNo);
+
+	EventBoard searchEventBoardDetail(int eventboardNo);
+
 }

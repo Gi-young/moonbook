@@ -35,5 +35,10 @@
 	<delete id="deleteEventBoard">
 		DELETE FROM EVENTBOARD WHERE EVENTBOARD_NO = #{eventboardNo}
 	</delete>
-
+	<select id="searchNoticeBoardDetail" resultMap="noticeBoard">
+		SELECT * FROM NOTICEBOARD WHERE NOTICEBOARD_NO = #{noticeboardNo}
+	</select>
+	<select id="searchEventBoardDetail" resultMap="eventBoard">
+		SELECT * FROM EVENTBOARD WHERE EVENTBOARD_NO = #{eventboardNo}
+	</select>
 </mapper>

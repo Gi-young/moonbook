@@ -18,7 +18,7 @@
 			</jsp:include>
 		</div>
 		<div class="service-box2">
-		<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><p style="font-size:30px;">이벤트</p></div>
+		<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><img src="${path }/resources/img/sellLev1/event.png" alt="이벤트"></div>
 			<div style="display:flex; justify-content:flex-end; margin-right:5px; margin-bottom:8px;">
         	<button class="reviewBtn" style="width:120px; height:40px; border:1px solid black; background-color:#E5E2DB;" onclick="window.open('<%=request.getContextPath()%>/ServiceboardController/insertEventBoard.do', '이벤트 작성!', 'width=500, height=600')">이벤트 작성하기</button>
         </div>
@@ -36,7 +36,7 @@
 	            <td class='review-num' id="noticeboardNo">${e.eventboardNo}</td>
 		   	    <td>
 			   	    <div class='review'>
-			   	    	<a class='review-title-a' href="#">${e.eventboardTitle}</a>
+			   	    	<a class='review-title-a' href="${path }/service/eventBoardDetail.do?eventboardNo=${e.eventboardNo}">${e.eventboardTitle}</a>
 			   	    </div>
 		   	    </td>
 		   	    <td class='review-writer'>${e.memberId}</td>
@@ -45,7 +45,9 @@
 	   	    </tr>
 	   	   </c:forEach>
            </table>		
-
+        <div style="display:flex; justify-content:center; align-items:center; opacity:0.2;">	
+			<img src="${path }/resources/img/sellLev1/sellpartsmall.png" alt>
+		</div>
         <div id="pageBar"></div> 
 		</div>
 		</div>

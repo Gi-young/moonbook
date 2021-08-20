@@ -212,6 +212,9 @@ a{
 ul{
     list-style:none;
     }
+    
+
+
 .contenttitle{
     font-weight: bold;
 }
@@ -1092,285 +1095,27 @@ transition: all 0.2s linear;
                 <div class="line"><img src="${path}/resources/img/sellLev1/lev1add.png" alt=""></div>
                 <div class="line"><img src="${path}/resources/img/sellLev1/lev1add.png" alt=""></div>
             </div>
-            <div class="content">
-                <div class="content-title"> 
-                    <a href="#" class="contenttitle">NEW! 외국 그림책</a><span class="moreview">더보기 +</span> 
-                </div>
-                <div class="line" id="today_book">
-                    <div id="prev"> <button>&lt;</button></div>
-                    <div id="bookpagebar">
-                        <div class="today_book_form">
-                           <img class="hotnewimg0" src="" alt="">
-                           <div>
-                               <p class="hotnewtitle0">제목</p>
-                               <!-- <p>1</p> -->
-                               <p style="color: red;">18000원</p>
-                           </div>
-                        </div>
-                        <div class="today_book_form">
-                            <img class="hotnewimg1" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle1">제목</p>
-                                <!-- <p>2</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg2" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle2">제목</p>
-                                <!-- <p>3</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg3" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle3">제목</p>
-                                <!-- <p>4</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg4" src="x.png" alt="">
-                            <div>
-                                <p class="hotnewtitle4">제목</p>
-                                <!-- <p>5</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg5" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle5">제목</p>
-                               <!--  <p>6</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg6" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle6">제목</p>
-                                <!-- <p>7</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg7" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle7">제목</p>
-                                <!-- <p>8</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg8" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle8">제목</p>
-                                <!-- <p>9</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg9" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle9">제목</p>
-                               <!--  <p>10</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg10" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle"10>제목</p>
-                              <!--   <p>11</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg11" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle11">제목</p>
-                               <!--  <p>12</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg12" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle12">제목</p>
-                               <!--  <p>13</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg13" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle13">제목</p>
-                                <!-- <p>14</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         <div class="today_book_form">
-                            <img class="hotnewimg14" src="" alt="">
-                            <div>
-                                <p class="hotnewtitle14">제목</p>
-                                <!-- <p>15</p> -->
-                                <p style="color: red;">18000원</p>
-                            </div>
-                         </div>
-                         
-         
-                    </div> 
-                    <div id="next"> <button>></button></div>
-                </div>
-               
-
-            </div>
+  
             <div class="content line" style="margin-top: 70px; height: 230px;">
                 <div class="content-title"> 
                     <a href="#" class="contenttitle">이벤트</a><span class="moreview">더보기 +</span> 
                 </div>
-                <div class="content-body" style="margin-top: 20px;">
-                   <div style="width: 500px; height: 150px;" id="content_body_event" class="line content-todaybook">
+                <div class="content-body">
+                   <div style="width: 530px; height: 150px;" id="content_body_event" class="line content-todaybook">
                         <ul>
-                            <li><a href=""><strong>21-08-23</strong> 곰문책방 오픈기념 이벤트!!</a></li>
-                            <li><a href=""><strong style="color: red;">[상시]</strong> <strong>BlackFriday</strong> 도서할인!</a></li>
-                            <li><a href=""><strong>[9월30일까지]</strong>&nbsp;무료 등급 업그레이드 이벤트!</a></li>
+                        <c:forEach var="e" items="${event}">
+                            <li><a href="${path }/service/eventBoard.do">${e.eventboardTitle }</a></li>
+                        </c:forEach>
                         </ul>
                     </div>
-                    <div style="width: 200px; height: 150px;"
+                    <div style="width: 100px; height: 150px;"
                     class="line">
-                        AD
-                    <img src="${path}/resources/img/sellLev1/lev1add2.png" alt="">    
+                      
+                    <img src="${path}/resources/img/sellLev1/unclesam.png" style="height:155px; width:180px;" alt="">   
                     </div>
                 </div>
             </div>
-            <!--hover시 ajax 사용해서 데이터 보내기 4개씩-->
-            <div class="content line"> 
-                <div class="content_body2">
-                   <div class="content_body2_left line">
-                     <a href="#" class="contenttitle">새로나온 책</a>
-                     <a class="tt">아동 도서</a>
-                     <a>초등 도서</a>
-                     <a>중등 도서</a>
-                     <span class="moreview">더보기 +</span>
-                     <div class="content_body2_book line">
-                         <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory1">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
-                        </div>
-                        <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
-                        </div>
-                        <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
-                        </div>
-                        <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
-                        </div>                 
-             
-                     </div>
-                     </div>
-                   <div class="content_body2_right">
-                       <img src="${path}/resources/img/sellLev1/uncleadd.png" alt="">
-                   </div>
-                </div>
-            </div>
-
-            <!--hover시 ajax 사용해서 데이터 보내기 4개씩-->
-            <div class="content line"> 
-                <div class="content_body2">
-                  <!--  <div class="content_body2_left line">
-                    <a href="#" class="contenttitle">예약판매</a><span class="moreview">더보기 +</span> 
-                     <div class="content_body2_book line">
-                         <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
-                        </div>
-                        <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
-                        </div>
-                        <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
-                        </div>
-                        <div>
-                            <img src="http://image.kyobobook.co.kr/images/book/large/470/l9788937444470.jpg" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
-                        </div>                 
-             
-                     </div>
-                     </div> 
-                     <div class="content_body2_right2">        
-                        <a href="#" class="contenttitle">할인 도서</a>
-                         <span id="rightclick2">></span>
-                         <span class="max_book2">1</span>
-                         <span>/</span>
-                         <span class="number_book2">1</span>
-                         <span id="leftclick2">&lt;</span>
-                        <div class="content_body2_right_content2">
-                             <div>
-                                 <img src="p.png" alt="">
-                             </div>
-                             <strong class="btitle">책1번 제목 넣기</strong>
-                             <div class="bprice">13000</div>
-                             <div class="bpricesale">11000</div>
-
-                        </div>
-                        <div class="content_body2_right_content2">
-                         <div>
-                             <img src="p.png" alt="">
-                         </div>
-                         <strong class="btitle">책2번 제목 넣기</strong>
-                         <div class="bprice">13000</div>
-                         <div class="bpricesale">11000</div>
-
-                         </div>
-                         <div class="content_body2_right_content2">
-                             <div>
-                                 <img src="p.png" alt="">
-                             </div>
-                             <strong class="btitle">책3번 제목 넣기</strong>
-                             <div class="bprice">13000</div>
-                             <div class="bpricesale">11000</div>
- 
-                             </div>
-                   
-                </div>
-
-
-                </div>
-            </div>-->
-
+  
             <div class="content line"> 
                 <div class="content_body2">
                    <div class="content_body2_left line">
@@ -1416,7 +1161,7 @@ transition: all 0.2s linear;
                          <span id="leftclick">&lt;</span>
                         <div class="content_body2_right_content">
                              <div>
-                                 <img src="${path}/resources/img/sellLev1/addgrade/addplatinum.png" alt="">
+                                 <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addplatinum.png" alt=""></a>
                              </div>
                              <strong class="btitle">곰문이 플래티넘!!</strong>
                              <div class="bprice">13000</div>
@@ -1425,7 +1170,7 @@ transition: all 0.2s linear;
                         </div>
                         <div class="content_body2_right_content">
                          <div>
-                             <img src="${path}/resources/img/sellLev1/addgrade/addgold.png" alt="">
+                             <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addgold.png" alt=""></a>
                          </div>
                          <strong class="btitle">곰문이 골드!</strong>
                          <div class="bprice">13000</div>
@@ -1434,7 +1179,7 @@ transition: all 0.2s linear;
                          </div>
                          <div class="content_body2_right_content">
                              <div>
-                                 <img src="${path}/resources/img/sellLev1/addgrade/addsilver.png" alt="">
+                                 <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addsilver.png" alt=""></a>
                              </div>
                              <strong class="btitle">곰문이 실버</strong>
                              <div class="bprice">13000</div>
@@ -1443,7 +1188,7 @@ transition: all 0.2s linear;
                          </div>
                          <div class="content_body2_right_content">
                              <div>
-                                 <img src="${path}/resources/img/sellLev1/addgrade/addbronze.png" alt="">
+                                 <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addbronze.png" alt=""></a>
                              </div>
                              <strong class="btitle">브론즈</strong>
                              <div class="bprice">13000</div>
@@ -1452,7 +1197,7 @@ transition: all 0.2s linear;
                          </div>
                          <div class="content_body2_right_content">
                              <div>
-                                 <img src="${path}/resources/img/sellLev1/addgrade/addddong.png" alt="">
+                                 <a href="${path }/member/myroom/main.do"><img src="${path}/resources/img/sellLev1/addgrade/addddong.png" alt=""></a>
                              </div>
                              <strong class="btitle">ㅇㅇ;</strong>
                              <div class="bprice">13000</div>
@@ -1501,10 +1246,6 @@ transition: all 0.2s linear;
     let atag1=$(".main_ul")[0].children[0];
     let atag2=$(".main_ul")[0].children[1];
     let atag3=$(".main_ul")[0].children[2];
-    console.log("바람이 분다");
-    console.log(atag1.children[0]);
-    console.log(atag2);
-    console.log(atag3);
 
     $(atag1.children[0]).hover((e)=>{
         $(e.target).css({"background-color":"#582810","color":"white"});
@@ -1531,7 +1272,6 @@ transition: all 0.2s linear;
 
 
     //좌측 내비바 show / hide 
-
     $(".main_sub_title").hover((e)=>{
         $(e.target).next('ul').show();
     },(e)=>{
@@ -1541,14 +1281,9 @@ transition: all 0.2s linear;
         }
     });
 
-
     //배너바 선택 show / hide
-
     let chobox=$(".banner_cho_box")[0].children[0];
     let choboxinner=$(".banner_cho_box")[0].children[0].children;
-    console.log("초박스를보자");
-    console.log(choboxinner);
-
     $(chobox).hover((e)=>{
         $(e.target).next('ul').show();
     },(e)=>{
@@ -1557,7 +1292,6 @@ transition: all 0.2s linear;
             $(".banner_cho_box2").hide();
         } 
     })
-
 
      //배너 슬라이드 
     $(function(){
