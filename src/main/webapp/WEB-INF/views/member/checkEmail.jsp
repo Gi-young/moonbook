@@ -52,7 +52,6 @@
 <script>
 	const fn_resultIdPwdBtn = ()=> {
 		var code = "${code}";
-		console.log(code);
 		if($("#codeVal").val() == code){
 			return true;
 		}else{
@@ -61,4 +60,5 @@
 			return false;
 		}
 	}
+	console.log("${code}");
 </script>

@@ -39,10 +39,12 @@
 <script type="text/javascript">
 
 function fn_resultIdPwdBtn(){
+	if('${myroom}' == 'y'){
+		location.replace("${path}/member/myroom/main.do");
+	}
 	
 	opener.document.getElementById('memberId_').value='${m2}';
 	opener.document.getElementById('password').focus();
-	
 	window.close();
 }
 

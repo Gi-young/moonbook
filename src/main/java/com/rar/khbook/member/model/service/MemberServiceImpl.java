@@ -136,37 +136,65 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.deleteMember(session, m);
 	}
-	
+
 //	회원의 결제 내역 조회
 	@Override
 	public List<Payment> getPayment(Member m) {
 		// TODO Auto-generated method stub
 		return dao.getPayment(session, m);
 	}
-	
+
 //	회원 월별 결제 요금 조회 
 	@Override
 	public List<Integer> getPaidAmount(Map param) {
 		// TODO Auto-generated method stub
 		return dao.getPaidAmount(session, param);
 	}
-	
+
 //	개인 회원 이북 결제 내역 총합
 	@Override
-	public int ebookPurchaseCount(Map<String, String> param) {
+	public int ebookPurchaseCount(Map param) {
 		// TODO Auto-generated method stub
 		return dao.ebookPurchaseCount(session, param);
 	}
-	
+
+//	개인 회원 도서 결제 내역 총합
+	@Override
+	public int bookPurchaseCount(Map<String, String> param) {
+		// TODO Auto-generated method stub
+		return dao.bookPurchaseCount(session, param);
+	}
+
+//	개인 회원 기프트 결제 내역 총합
+	@Override
+	public int giftPurchaseCount(Map param) {
+		// TODO Auto-generated method stub
+		return dao.giftPurchaseCount(session, param);
+	}
+
 //	개인 회원 이북 결제 내역 조회
 	@Override
-	public List<Order> ebookPurchaseList(Map<String, String> param, int cPage, int numPerpage) {
+	public List<Order> ebookPurchaseList(Map param, int cPage, int numPerpage) {
 		// TODO Auto-generated method stub
 		return dao.ebookPurchaseList(session, param, cPage, numPerpage);
 	}
-	
+
+//	개인 회원 도서 결제 내역 조회
+	@Override
+	public List<Order> bookPurchaseList(Map<String, String> param, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.bookPurchaseList(session, param, cPage, numPerpage);
+	}
+
+//	개인 회원 기프트 결제 내역 조회
+	@Override
+	public List<Order> giftPurchaseList(Map param, int cPage, int numPerpage) {
+		// TODO Auto-generated method stub
+		return dao.giftPurchaseList(session, param, cPage, numPerpage);
+	}
+
 	// 회원가입 후 장바구니
-	@Override 
+	@Override
 	public int createShopingList(Member m) {
 		return dao.createShopingList(session, m);
 	}

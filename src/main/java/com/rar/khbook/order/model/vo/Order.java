@@ -8,18 +8,20 @@ import lombok.Data;
 @Data
 public class Order {
 
-	String oderNo;
-	int orderCount;
-	int orderDeliveryfee;
-	String orderMemberId;
-	int orderCouponNo;
-	String orderStatus;
-	int orderPoint;
-	int orderTotalprice;
-	Date orderDate;
-	String orderName;
-	String orderPhone;
-	String orderEmail;
-	String orderAddress;
-	List<EbookOrderList> ebookOrderList;
+	private String orderNo;
+	private int orderCount;
+	private int orderDeliveryfee;
+	private String orderMemberId;
+	private int orderCouponNo;
+	private String orderStatus;
+	private int orderPoint;
+	private int orderTotalprice;
+	private Date orderDate;
+	private String orderName;
+	private String orderPhone;
+	private String orderEmail;
+	private String orderAddress;
+	private List<EbookOrderList> ebookOrderList;
+	private List<BookOrderList> bookOrderList;
+	private List<GiftOrderList> giftOrderList;
 }

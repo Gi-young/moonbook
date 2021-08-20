@@ -59,4 +59,8 @@ public interface UsedboardService {
 	int cancelPayment(int no);
 	
 	int usedboardFileUpload(Usedboardfile f);
+	
+	List<UsedboardPayment> usedboardPayList(int cPage, int numPerpage,String memberid);
+	
+	int usedboardPayCount(String memberid);
 }

@@ -3,17 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="path" value="${pageContext.request.contextPath }" />
-
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
-<link rel="stylesheet" href="${path}/resources/css/service/faqPage.css">
+<link rel="stylesheet" href="${path}/resources/css/admin/managementFaq.css">
 
 <div class="service-container">
 	<div class="service-box1">
 		<div class="service-box3">
-			<jsp:include page="/WEB-INF/views/common/serviceSideBar.jsp">
+			<jsp:include page="/WEB-INF/views/common/adminSideBar.jsp">
 				<jsp:param name="" value="" />
 			</jsp:include>
 		</div>
@@ -44,25 +44,7 @@
 									src="${path }/resources/img/admin/search.png" onclick="searchFaqList();">
 								</td>
 							</tr>
-							<tr>
-								<th>FAQ 질문하기</th>
-								<td class="search-box">
-									<select name="type31">
-										<option value="주문결제">주문결제</option>
-										<option value="배송수령안내">배송수령일안내</option>
-										<option value="반품교환환불">반품교환환불</option>
-										<option value="중고장터">중고장터</option>
-										<option value="ebook">ebook</option>
-										<option value="기타">기타</option>
-									</select>
-								</td>
-								<td class="search-box">
-									<input type="text" name="askFaq"> 
-								</td>
-								<td class="search-box">
-									<input type="button" value="등록" onclick="inputFaq()">
-								</td>
-							</tr>
+							
 						</table>
 					
 	
@@ -70,12 +52,18 @@
 					</div>
 			</div>
 			<div class="FAQlist-container">
+					<div class="faqFont-box">
 						<p class="faqFont">※ FAQ 질문 / 답변</p>
-						
+					</div> 
 						<div class="faqList-box1">
 						<ul class="faqsideMenu">
 						<c:forEach var="c" items="${list}" varStatus="vs">
-							<li class="sub-faqmenu${vs.index} faqclassName">[${c.faqcgNum.faqcgName}] ${c.faqAsked}<span class="faqOx1"><c:if test="${c.faqStatus==0}">(접수대기)</c:if></span><span class="faqOx2"><c:if test="${c.faqStatus==1}">(답변완료)</c:if></span></li>
+							<li class="sub-faqmenu${vs.index} faqclassName">[${c.faqcgNum.faqcgName}] ${c.faqAsked}<span class="faqOx1"><c:if test="${c.faqStatus==0}">(접수대기)</c:if></span><span class="faqOx2"><c:if test="${c.faqStatus==1}">(답변완료)&nbsp;</c:if></span>
+								<input type="hidden" value="${c.faqNo }" name="faqNo">
+								<input type="button" value="답변" class="replyFaq" onclick="replyFaqBtn(event)">
+								<input type="button" value="삭제" class="deleteFaq" onclick="deleteFaqBtn(event)">
+							</li>
+							
 							<ul class="sub_faqcontent${vs.index} faqclassName2">
 							<li class="last_li">
 								<c:forEach var="a" items="${c.faqAnswer.split('.-')}" varStatus="vs">
@@ -87,7 +75,6 @@
 									</c:if>
 								</c:forEach>
 							
-								
 							</li>
 							</ul>
 							</c:forEach> 
@@ -109,9 +96,13 @@
 	</div>
 </div>
 
-<!-- 다음에는 슬라이드 토글줄때 for문 말고 next.val로 가져오자.. -->
 
 <script>
+function deleteFaqBtn(event){
+	let faqNo=$(event.target).prev().prev().val();
+	
+	location.assign("${path}/admin/deleteFaq.do?faqNo="+faqNo);
+}
 /* window.onload = function () {
 	for(let i=0; i<${list.size()}; i++) {
 		$('.sub_faqcontent' + i).css("display","none");
@@ -136,7 +127,22 @@ for(let i=0; i<${list.size()}; i++) {
 		
 	});
 }
-
+const fn_searchIdPw=()=>{
+	
+	let searchIdPwPage="${path}/member/searchIdPwPage.do";
+	let name="로그인/비밀번호 찾기";
+	let option ="width=600,height=300";
+	
+	window.open(searchIdPwPage,name,option);
+}
+function replyFaqBtn(event){
+	let faqNo=$(event.target).prev().val();
+	let replyloc="${path}/admin/replyPage.do?faqNo="+faqNo;
+	//let name="FAQ 답변하기";
+	let option ="width=1000,height=600";
+	
+	window.open(replyloc,'_blank',option);
+}
 
 function inputFaq(){
 	let type31=document.getElementsByName("type31")[0].value;
@@ -224,38 +230,7 @@ function searchFaqList(){
 } 
 
 
-/* $('.sub-menu1').click(function() {
-	$('.sub_content1').slideToggle('slow');
 
-});
-$('.sub-menu2').click(function() {
-	$('.sub_content2').slideToggle('slow');
-
-});
-$('.sub-menu3').click(function() {
-	$('.sub_content3').slideToggle('slow');
-
-});
-$('.sub-menu4').click(function() {
-	$('.sub_content4').slideToggle('slow');
-
-});
-$('.sub-menu5').click(function() {
-	$('.sub_content5').slideToggle('slow');
-
-});
-$('.sub-menu6').click(function() {
-	$('.sub_content6').slideToggle('slow');
-
-});
-$('.sub-menu7').click(function() {
-	$('.sub_content7').slideToggle('slow');
-
-});
-$('.sub-menu8').click(function() {
-	$('.sub_content8').slideToggle('slow');
-
-}); */
 </script>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">

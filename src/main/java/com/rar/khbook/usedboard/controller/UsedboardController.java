@@ -336,6 +336,8 @@ public class UsedboardController {
 		p.setImp_uid(req.getParameter("impuid"));
 		p.setMerchant_uid(req.getParameter("muid"));
 		p.setMember_Id(req.getParameter("id"));
+		p.setAddress(req.getParameter("add"));
+		p.setSale_Id(req.getParameter("saleId"));
 		System.out.println(p);
 		int result=service.usedboardPayment(no,p);
 		String msg="";
@@ -373,7 +375,7 @@ public class UsedboardController {
 			msg="주문확인실패";
 		}
 		mv.addObject("msg",msg);
-		mv.addObject("loc","/usedboard/usedboardList.do?memberId="+memberId);
+		mv.addObject("loc","/usedboard/usedboardPayList.do?memberId="+memberId);
 		mv.setViewName("common/msg");
 		return mv;
 	}
@@ -443,7 +445,7 @@ public class UsedboardController {
 	}
 	
 	@RequestMapping("/usedboard/cancelPayment.do")
-	public ModelAndView cancelPayment(ModelAndView mv,String impUid, String memberId,int no) {
+	public ModelAndView cancelPayment(ModelAndView mv,String impUid, String memberId,int no,int state) {
 		
 		IamportClient client=new IamportClient("0768547382405749",
 		"e4c8f1e4c9e5df5739bd3606eb54377dd91cb7ece251b3252997588d1aff94070c0e0fa5edbb1324"
@@ -467,8 +469,25 @@ public class UsedboardController {
 			msg="환불실패";
 		}
 		mv.addObject("msg",msg);
-		mv.addObject("loc","/usedboard/usedboardMyPayment.do?memberId="+memberId);
+		if(state==1) {
+			mv.addObject("loc","/usedboard/usedboardMyPayment.do?memberId="+memberId);
+		}else if(state==2) {
+			mv.addObject("loc","/usedboard/usedboardPayList.do?memberId="+memberId);
+		}
 		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	@RequestMapping("/usedboard/usedboardPayList.do")
+	public ModelAndView usedboardPayList(@RequestParam(value="cPage", defaultValue="1") int cPage,
+			@RequestParam(value="numPerpage",defaultValue="5") int numPerpage,
+			ModelAndView mv,HttpServletRequest request,String memberId) {
+		mv.addObject("list",service.usedboardPayList(cPage,numPerpage,memberId));
+		int totalData=service.usedboardPayCount(memberId);
+		mv.addObject("totalContents",totalData);
+		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardPayList.do"));
+		
+		mv.setViewName("usedboard/usedboardPayList");
 		return mv;
 	}
 	

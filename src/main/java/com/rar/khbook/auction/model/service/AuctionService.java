@@ -73,6 +73,8 @@ public interface AuctionService {
 	List<AuctionBid> selectbidlist();
 
 	AuctionBid selectauctiobanner();
+
+	int updateTransactionY(Map param);
 	
 
 

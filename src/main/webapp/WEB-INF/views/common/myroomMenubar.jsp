@@ -20,9 +20,9 @@
 		<li><h3>
 				<a href="${path }/member/myroom/coupon.do">쿠폰함</a>
 			</h3></li>
-		<li><h3>
+		<!-- <li><h3>
 				<a href="#">문의내역</a>
-			</h3></li>
+			</h3></li> -->
 		<li><h3>
 				<a href="${path }/member/myroom/reLogin.do?">회원정보수정</a>
 			</h3></li>

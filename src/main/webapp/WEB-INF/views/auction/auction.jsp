@@ -12,8 +12,6 @@
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auction.css">
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-	<button onclick="location.assign('${path}/auction/auctionChat ')">실험하기</button>
-ttttdsadasssss
 	<div id="wrap">
 		<div id="container">
 	        <div class="auction_main line">
@@ -51,6 +49,7 @@ ttttdsadasssss
 								<div class="btn_coll admin_controller">
 									<p>Administrator Only</p>
 									<button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
+									<button onclick="location.assign('${path}/auction/auctionAdminBank')">회원 입출금 하기</button>
 								</div>
 							</c:if>
 		    		    </c:when>
@@ -265,7 +264,11 @@ ttttdsadasssss
 			let date =new Date();
 			let now=moment(date).format('YYYY-MM-DD HH:mm');
 			let bannerData=now+"::"+maindata[1]+"에"+maindata[2]+"님이"+maindata[3]+"원 으로 최고입찰 하셨습니다.";
-			$("#banner_list").prepend($("<div>").append("<p>").text(bannerData));
+			$("#banner_list").prepend($("<div>").css("height","36.67px").append("<p>").css({
+				"display":"none",
+				"padding":"10px",
+				
+			}).slideDown(1000).text(bannerData));
 					
 		}
 		

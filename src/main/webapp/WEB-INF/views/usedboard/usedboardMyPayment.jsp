@@ -10,9 +10,8 @@
 </jsp:include>
 
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/usedboard/usedboardMyPayment.css">
-
-	<section id="content">
-		<center>
+	<center>
+	<section id="content" >
 			<div id="main_in"><br>
 					<p id="titi" style="font-size: 35px; color: black;">구매내역</p><br>
 			        <c:if test="${loginMember!=null }">
@@ -22,18 +21,18 @@
 			        </c:if>
 				<table class="list-table">
 					<tr>
-						<th width="150">구매내역번호</th>
-						<th width="200">주문번호</th>
-						<th width="300">제목</th>	
-			            <th width="150">결제일</th>
-						<th width="150">가격</th>	
-						<th width="150">배송상태</th>
-						<th width="150">결제취소</th>
-						<th width="150">배송완료</th>
+						<th width="150">구매번호</th>
+						<th width="200">구매코드</th>
+						<th width="200">제목</th>
+						<th width="200">결제일</th>	
+			            <th width="150">가격</th>
+						<th width="150">배송상태</th>	
+						<th width="150">주문취소</th>
+						<th width="150">배송확인</th>
 					</tr>
 			        <c:if test="${list.isEmpty()}">
 			        	<tr>
-			            	<td style="text-align: center;" colspan="8">구매내역이 없습니다.</td>
+			            	<td style="text-align: center;" colspan="8">판매내역이 없습니다.</td>
 			            </tr>
 			        </c:if>
 			        <c:forEach var="b" items="${list }">
@@ -44,6 +43,7 @@
 							<td>${b.usedboardPayment_Date }</td>
 							<td>￦${b.usedboardPayment_Price }</td>
 							<td>
+								<c:if test="${b.usedboardPayment_Cancel=='n' }">
 								<c:if test="${b.usedboardPayment_State==1 }">
 									배송확인중
 								</c:if>
@@ -56,12 +56,16 @@
 								<c:if test="${b.usedboardPayment_State==4 }">
 									배송취소
 								</c:if>
+								</c:if>
+								<c:if test="${b.usedboardPayment_Cancel!='n' }">
+									환불완료
+								</c:if>
 							</td>
 							<td>
 								<c:set var="i" value="${i+1 }"/>
 								<c:if test="${b.usedboardPayment_State==1 }">
 									<c:if test="${b.usedboardPayment_Cancel=='n' }">
-										<button onclick="location.assign('${path}/usedboard/cancelPayment.do?impUid=${b.imp_uid }&memberId=${b.member_Id }&no=${b.usedboardPayment_BoardNo }');">환불하기</button>
+										<button onclick="location.assign('${path}/usedboard/cancelPayment.do?impUid=${b.imp_uid }&memberId=${b.member_Id }&no=${b.usedboardPayment_BoardNo }&state=2');">환불하기</button>
 									</c:if>
 									<c:if test="${b.usedboardPayment_Cancel!='n' }">
 										환불완료
@@ -72,8 +76,9 @@
 								</c:if>
 							</td>
 							<td>
+								<c:if test="${b.usedboardPayment_Cancel=='n' }">
 								<c:if test="${b.usedboardPayment_State==2 }">
-									<button onclick="location.assign('${path}/usedboard/usedboardPay2.do?no=${b.usedboardPayment_BoardNo }&id=${b.member_Id }');">배송확인</button>
+									<button onclick="location.assign('${path}/usedboard/usedboardPay2.do?no=${b.usedboardPayment_BoardNo }&id=${b.member_Id }');">배송완료</button>
 								</c:if>
 								<c:if test="${b.usedboardPayment_State==1 }">
 									배송확인중
@@ -84,12 +89,16 @@
 								<c:if test="${b.usedboardPayment_State==4 }">
 									배송취소
 								</c:if>
+								</c:if>
+								<c:if test="${b.usedboardPayment_Cancel!='n' }">
+									환불완료
+								</c:if>
 							</td>
 						</tr>
 			        </c:forEach>
 				</table><br>
 				<div class="pageBar">${pageBar }</div>
 			</div>
-		</center>
 	</section>
+	</center>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"></jsp:include>
