@@ -90,7 +90,7 @@
 	height: 100%;
 	overflow-x:scroll;
 	vertical-align: middle;
-	justify-content: center;
+	justify-content: flex-start;
 	display: flex;
 	flex-direction: column;
 	align-items:center;

@@ -41,7 +41,7 @@
 						<tr>
 							<th>할인금액</th>
 							<td>
-								<input type="number" min="1000" name="couponlistAmount">
+								<input type="number" min="1000" name="couponlistAmount" step="1000" max="3000">
 							</td>
 						</tr> 
 						<tr>

@@ -334,6 +334,10 @@ function changeStockV(event){
 			categoryCode:categoryCode
 		},
 		success: data=>{
+			console.log("data : " + data);
+			console.log(typeof data);
+			console.log(!data);
+			
 			if(data){
 				alert("book 수정이 정상적으로 성공 하였습니다");
 				
@@ -362,6 +366,10 @@ function changeStockV2(event){
 			gift_category : gift_category
 		},
 		success: data=>{
+			console.log("data : " + data);
+			console.log(typeof data);
+			console.log(!data);
+			
 			if(data){
 				alert("gift 수정이 정상적으로 성공 하였습니다");
 				
@@ -431,12 +439,12 @@ function searchStockT(cPage, numPerpage){
 					table.appendChild(tr);
 					
 				}
-				document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
+				/* document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
 					v.addEventListener("click", function() {changeStockV(event)});
 				});
 				document.querySelectorAll(".stockT td>img.deleteImg").forEach((v, i) => {
 					v.addEventListener("click", function() {adStockDelete(event)});
-				});
+				}); */
 			}
 			
 		});
@@ -499,12 +507,12 @@ function searchStockT(cPage, numPerpage){
 					table.appendChild(tr);
 					
 				}
-				document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
+				/* document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
 					v.addEventListener("click", function() {changeStockV2(event)});
 				});
 				document.querySelectorAll(".stockT2 td>img.deleteImg").forEach((v, i) => {
 					v.addEventListener("click", function() {adStockDelete2(event)});
-				});
+				}); */
 			}
 			
 		});
@@ -586,12 +594,12 @@ function orderList3(cPage, numPerpage) {
 						table.appendChild(tr);
 						
 					}
-					document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
+					/* document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
 						v.addEventListener("click", function() {changeStockV(event)});
 					});
 					document.querySelectorAll(".stockT td>img.deleteImg").forEach((v, i) => {
 						v.addEventListener("click", function() {adStockDelete(event)});
-					});
+					}); */
 				}
 			});
 			
@@ -659,12 +667,12 @@ function orderList3(cPage, numPerpage) {
 						table.appendChild(tr);
 						
 					}
-					document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
+					/* document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
 						v.addEventListener("click", function() {changeStockV2(event)});
 					});
 					document.querySelectorAll(".stockT2 td>img.deleteImg").forEach((v, i) => {
 						v.addEventListener("click", function() {adStockDelete2(event)});
-					});
+					}); */
 				}
 			});
 			$.ajax({
