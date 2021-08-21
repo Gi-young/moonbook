@@ -55,6 +55,15 @@ public class SellbookController {
 		return mv;
 		
 	}
+	
+	@RequestMapping("/sellbookController/pageBookSearch.do")
+	public String pageBookSearch(@RequestParam String categoryCode, Model model) {
+		System.out.println("categoryCode : " + categoryCode);
+		
+		model.addAttribute("categoryCode", categoryCode);
+		
+		return "sellpart/bookSearch/searchBook";
+	}
 
 	@RequestMapping("/sellbookController/bookadong03.do")
 	public String bookadong03() {
@@ -303,7 +312,6 @@ public class SellbookController {
 		int result = service.orderOne(param);
 		System.out.println("정상작동됐으면 1나옴 0이면 호구ㅋㅋ :"+result);
 		return ""+result;
-	}
-	
+	}	
 	
 }

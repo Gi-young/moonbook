@@ -693,4 +693,24 @@ public class EbookController {
 		return service.getCategories(param);
 	}
 	
+	@RequestMapping(value = "/ebook/getCategoriesForPaperBook.do")
+	@ResponseBody
+	public List<HashMap> getCategoriesForPaperBook(@RequestParam Map param) {
+		return service.getCategoriesForPaperBook(param);
+	}
+	
+	@RequestMapping(value = "/ebook/newSearchForPaperBook.do")
+	@ResponseBody
+	public List<HashMap> newSearchForPaperBook(@RequestParam Map param) {
+		if (param.get("cPage") == null) {
+			param.put("cPage", "1");
+		}
+		
+		if (param.get("numPerPage") == null) {
+			param.put("numPerPage", "12");
+		}
+		
+		return service.newSearchForPaperBook(param);
+	}
+	
 }

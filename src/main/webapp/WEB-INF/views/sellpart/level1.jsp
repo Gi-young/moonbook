@@ -997,39 +997,43 @@ transition: all 0.2s linear;
             
             <ul class="main_ul">     
                 <li class="main_sub_title" >
-                     <a href="${path}/sellbookController/bookadong03.do" class="atag" >아동 도서</a>
+                     <a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310040010" class="atag" >아동 도서</a>
                     <ul style="display: none;" class="layer">
-                        <li><a href="${path}/sellbookController/bookadong03.do">한국 그림책 (0~3세)</a></li>
-                        <li><a href="${path}/sellbookController/bookadong032.do">외국 그림책 (0~3세)</a></li>
-                        <li><a href="${path}/sellbookController/bookadong47.do">한국 그림책 (4~7세)</a></li>
-                        <li><a href="${path}/sellbookController/bookadong472.do">외국 그림책 (4~7세)</a></li>
-                        <li><a href="${path}/sellbookController/bookadong99.do">외국 그림책 (공통)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310010010">한국 그림책 (0~3세)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310010020">외국 그림책 (0~3세)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310020010">한국 그림책 (4~7세)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310020020">외국 그림책 (4~7세)</a></li>
+                        
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310040030">국내 창작 동화(유아)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310040020">한국 전래 동화(유아)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310040010">세계 명작 동화(유아)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=310040040">다른나라 그림책(유아)</a></li>
                         
                     </ul>
                 </li> 
                 <li class="main_sub_title">
-                    <a href="${path}/sellbookController/bookchodongdonghwa12.do" class="atag" >초등 도서</a>
+                    <a href="${path}/sellbookController/pageBookSearch.do?categoryCode=320040010" class="atag" >초등 도서</a>
                     <ul style="display: none;" class="layer">
-                        <li><a href="${path}/sellbookController/bookchodongdonghwa12.do">초등 동화(1~2학년)</a></li>
-                        <li><a href="${path}/sellbookController/bookchodongdonghwa34.do">초등 동화(3~4학년)</a></li>
-                        <li><a href="${path}/sellbookController/bookchodongdonghwa56.do">초등 동화(5~6학년)</a></li>
-                        <li><a href="${path}/sellbookController/bookchodongdonghwa99.do">초등 동화(공통)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=320010010">초등 동화(1~2학년)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=320020010">초등 동화(3~4학년)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=320030010">초등 동화(5~6학년)</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=320040010">초등 동화(공통)</a></li>
                     </ul>
                 </li> 
                 <li class="main_sub_title" >
-                    <a href="${path}/sellbookController/bookjoongdong.do" class="atag" >중등 도서</a>
+                    <a href="${path}/sellbookController/pageBookSearch.do?categoryCode=300050" class="atag" >중등 도서</a>
                     <ul style="display: none;" class="layer">
-                        <li><a href="${path}/sellbookController/bookjoongdong.do">중등 문학</a></li>
-                        <li><a href="${path}/sellbookController/bookjoongdongworld.do">세계 문학</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=300050">청소년 문학</a></li>
                     </ul>
                 </li> 
                 <li class="main_sub_title" >
-                    <a href="${path}/sellbookController/bookgojunkorea.do" class="atag" >고전 도서</a>
+                    <a href="${path}/sellbookController/pageBookSearch.do?categoryCode=100020020" class="atag" >고전 도서</a>
                     <ul style="display: none;" class="layer">
-                        <li><a href="${path}/sellbookController/bookgojunkorea.do">한국 고전</a></li>
-                        <li><a href="${path}/sellbookController/bookgojunworld.do">세계 고전</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=100020020">세계문학</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=100020030">세계고전</a></li>
+                        <li><a href="${path}/sellbookController/pageBookSearch.do?categoryCode=100020010">한국고전소설</a></li>
                     </ul>
-                </li> 
+                </li>
            
             </ul>
         </div>

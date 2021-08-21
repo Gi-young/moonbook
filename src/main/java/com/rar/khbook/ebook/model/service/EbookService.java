@@ -114,4 +114,8 @@ public interface EbookService {
 	
 	int countLoved(Map param);
 	
+	List<HashMap> getCategoriesForPaperBook(Map param);
+	
+	List<HashMap> newSearchForPaperBook(Map param);
+	
 }
