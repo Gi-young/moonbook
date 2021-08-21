@@ -30,7 +30,7 @@ div.main-boundary-box {
 }
 
 div.info-box {
-	border: 1px solid silver;
+	border: 2px solid rgba(88,40,16,0.5);
 	flex-grow: 1;
 	width: 100%;
 	margin-top: 7px;
@@ -41,19 +41,23 @@ div.info-box {
 	justify-content: center;
 	box-sizing: border-box;
 	padding: 5px;
+	background-color: white;
+	background-image: url("../../img/sellLev1/boximg.png");
 }
 
 .ebookTitle {
 	margin-top: 7px;
-	font-size: 13px;
+	font-size: 15px;
 	text-align: center;
 	font-weight: bold;
+	
 }
 
 .ebookAuthor {
 	font-size: 13px;
 	text-align: center;
-	margin-top: 3px;
+	margin-top: 17px;
+	margin-bottom: 5px;
 }
 
 #searchFrm {
@@ -66,9 +70,11 @@ div.info-box {
 	flex-direction: column;
 	flex-wrap: nowrap;
 	width: 100%;
-	border: 1px solid silver;
-	border-radius: 5px;
+	border: 2px solid rgba(88,40,16,0.6);
 	padding: 7px;
+	background-color:rgba(88,40,16,0.1);
+	font-family: '한컴 말랑말랑';
+	align-items: center;
 }
 
 #searchFrm>div {
@@ -80,21 +86,23 @@ div.info-box {
 
 .ebookItem {
 	padding: 10px;
-	border: 1px solid silver;
-	border-radius: 10px;
+	border: 3px solid rgba(88,40,16,0.6);
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
+	background-color:white;
+	
 }
 
 .ebookItem:hover {
 	cursor: pointer;
+	border: 5px solid rgba(88,40,16,1);
 }
 
 div.cover-img-box {
-	border: 1px solid silver;
+	border: 3px solid rgba(88,40,16,0.6);
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -103,8 +111,15 @@ div.cover-img-box {
 	height: 180px;
 	overflow: hidden;
 	width: 100%;
+	background-image:url("../../img/sellLev1/bookimgback.png");
 }
-
+.searchBar>select{
+		font-family: '한컴 말랑말랑';
+}
+.searchBar>input{
+	text-align: center;
+		font-family: '한컴 말랑말랑';
+}
 div.cover-img-box>img {
 	height: 90%;
 }
@@ -116,19 +131,20 @@ div.cover-img-box>img {
 
 div.searchBar {
 	justify-content: center;
-	width: 100%;
+	width: 70%;
 	margin-top: 10px;
 }
 
 div.searchBar input[type=submit] {
-	background-color: white;
+	background-color: rgba(88,40,16,0.1);
 	font-weight: bold;
-	border: 1px solid silver;
+	border: 1px solid rgba(88,40,16,1);
 	padding: 5px 10px;
+	color:rgba(88,40,16,1);
 }
 
 div.searchBar input[type=submit]:hover {
-	background-color: black;
+	background-color: rgba(88,40,16,1);
 	color: white;
 	cursor: pointer;
 }
@@ -170,7 +186,7 @@ div.order-container>div {
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
-	border-right: 1px dotted silver;
+	border-right: 1px dotted rgba(88,40,16,0.6);
 }
 
 div.order-container>div>div {
@@ -202,14 +218,13 @@ div.order-container input[type=number] {
 div.search-box {
 	box-sizing: border-box;
 	width: 100%;
-	border: 1px solid silver;
-	border-radius: 5px;
+	border-left: 2px solid rgba(88,40,16,0.5);
+	border-right: 2px solid rgba(88,40,16,0.5);
 	padding: 10px;
 }
 
 div.search-result {
-	border: 1px solid silver;
-	border-radius: 5px;
+	border: 2px solid rgba(88,40,16,0.6);
 	margin-top: 10px;
 	padding: 10px;
 	display: grid;
@@ -219,6 +234,7 @@ div.search-result {
 	align-content: center;
 	justify-items: center;
 	justify-content: center;
+	background-color: rgba(88,40,16,0.1);
 }
 
 div.banner-box {
@@ -265,21 +281,39 @@ div.page-bar ul {
 	list-style: none;
 	font-size: 13px;
 	font-weight: bold;
+	color:rgba(88,40,16,1);
 }
 
 div.page-bar li {
-	border: 1px solid silver;
+	border: 2px solid rgba(88,40,16,0.6);
 	padding: 3px 10px;
 	margin-right: 2px;
 	background-color: white;
+	color:rgba(88,40,16,1);
+}
+div.page-bar li {
+	border: 2px solid rgba(88,40,16,0.6);
+	padding: 3px 10px;
+	margin-right: 2px;
+	background-color: white;
+	color:rgba(88,40,16,1);
+}
+div.page-bar a {
+	color:rgba(88,40,16,1);
 }
 
 div.page-bar li:hover {
 	cursor: pointer;
+	background-color: rgba(88,40,16,1);
+	color:white;
+}
+div.page-bar li:hover a {
+	color:white;
 }
 
 div.page-bar li.active {
-	background-color: black;
+	background-color: rgba(88,40,16,1);
+	color:white;
 }
 
 div.page-bar li.active>a {
@@ -287,5 +321,5 @@ div.page-bar li.active>a {
 }
 
 div.page-bar li.disabled>a {
-	color: lightgray;
+	color: rgba(88,40,16,0.2);
 }

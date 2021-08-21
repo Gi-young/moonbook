@@ -44,5 +44,7 @@ public interface SellbookDao {
 	int updateStock(SqlSession session, Map param);
 	
 	int updateMemberPoint(SqlSession session, Map param);
+
+	int insertReviewBook(SqlSession session, HashMap map);
 	
 }

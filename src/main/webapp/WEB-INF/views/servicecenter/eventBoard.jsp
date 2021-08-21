@@ -20,16 +20,20 @@
 		<div class="service-box2">
 		<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><img src="${path }/resources/img/sellLev1/event.png" alt="이벤트"></div>
 			<div style="display:flex; justify-content:flex-end; margin-right:5px; margin-bottom:8px;">
-        	<button class="reviewBtn" style="width:120px; height:40px; border:1px solid black; background-color:#E5E2DB;" onclick="window.open('<%=request.getContextPath()%>/ServiceboardController/insertEventBoard.do', '이벤트 작성!', 'width=500, height=600')">이벤트 작성하기</button>
+			<c:if test="${loginMember.memberId eq 'admin'}">
+        	<button class="reviewBtn"style="width:110px; height:40px; border:3px solid rgba(88,40,16,1); font-weight:bold; font-family:'한컴 말랑말랑'; font-size:19px;" onclick="window.open('<%=request.getContextPath()%>/ServiceboardController/insertEventBoard.do', '이벤트 작성!', 'width=500, height=600')">작성하기</button>
+			</c:if>        
         </div>
-          <div class="service-box2" style="board:none;">
+          <div class="service-box2" style="border:none;">
            <table class="review-exp review-board" id="targetTable" style="width:770px;">
                <tr>
             <th style='width:50px;'>번호</th>
-            <th style='width:480px;'>제목</th>
+            <th style='width:498px;'>제목</th>
             <th style='width:110px;'>작성자</th>
             <th style='width:110px;'>작성일</th>
+            <c:if test="${loginMember.memberId eq 'admin'}">
             <th style='width:50px;'>삭제</th>
+            </c:if>
             </tr>
             <c:forEach var="e" items="${event }">
             <tr class='review-text review-tr'>
@@ -41,7 +45,9 @@
 		   	    </td>
 		   	    <td class='review-writer'>${e.memberId}</td>
 		   	    <td class='review-date'>${e.eventboardDate}</td>
-		   	    <td><button type="button" id="deleteBtn" onclick="location.assign('<%=request.getContextPath()%>/ServiceboardController/deleteEventBoard.do?eventboardNo='+${e.eventboardNo})">삭제</button>
+		   	    <c:if test="${loginMember.memberId eq 'admin'}">
+		   	    <td><button type="button" id="deleteBtn" style="background-color:white; color:rgba(88,40,16,1); font-family:'한컴 말랑말랑';" onclick="location.assign('<%=request.getContextPath()%>/ServiceboardController/deleteEventBoard.do?eventboardNo='+${e.eventboardNo})">삭제</button></td>
+		   	    </c:if>
 	   	    </tr>
 	   	   </c:forEach>
            </table>		

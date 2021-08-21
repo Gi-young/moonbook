@@ -35,9 +35,12 @@ public class shopingListController {
 	@RequestMapping("/shopingList/shopingList.do") 
 	public ModelAndView shopingList(@RequestParam Map param, ModelAndView mv) {
 
-		//System.out.println("이거파람인데 : "+param);
+		System.out.println("이거파람인데 : "+param);
 		mv.addObject("shopingList",service.insertShopingList(param));
-		
+
+		System.out.println("이거파람인데sdsdsd : "+param);
+		mv.addObject("msg","장바구니에 등록되었습니다.");
+		mv.setViewName("servicecenter/msgShopList");
 		return mv;
 		
 	}

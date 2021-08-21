@@ -167,8 +167,8 @@
 		INSERT INTO SHOPING_LIST VALUES('B', #{memberId}, SYSDATE)
 	</insert>
 	 -->
-	<insert id="insertShopingListBook">
-		INSERT INTO BOOK_SHOPING_LIST VALUES (#{shopingListNo},#{bBindNo},#{shopingListCount})
+	<insert id="insertShopingList">
+		INSERT INTO BOOK_SHOPING_LIST VALUES (#{memberId},#{bBindNo},#{sellStock},SYSDATE)
 	</insert>
 
 	<select id="selectMyShopingListB" resultMap="bookShopingListMap">

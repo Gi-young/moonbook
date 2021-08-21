@@ -62,7 +62,6 @@ function searchEbook(cPage, numPerPage) {
 		data: searchData,
 		dataType: "json",
 		success: data => {
-			console.log(data);
 			
 			let searchResult = document.querySelector("div.search-result");
 			let emptyNotice = document.querySelector("div.empty-notice");
@@ -83,7 +82,7 @@ function searchEbook(cPage, numPerPage) {
 					ebookItem.classList.add("ebookItem");
 				
 					ebookItem.addEventListener("click", () => {
-						alert("반장님 이벤트 리스너를 연결해주세요");
+						location.assign(contextPath + "/sellpart/bookDetail.do?bindNo="+v.BIND_NO);
 					});
 					
 					let coverImgBox = document.createElement("div");

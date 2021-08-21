@@ -155,15 +155,25 @@ function searchHotnew(searchData) {
 	let bestsellerimg1=$(".bestsellerimg1");
 	let bestsellerimg2=$(".bestsellerimg2");
 	let bestsellerimg3=$(".bestsellerimg3");
-	let bestsellerimg4=$(".bestsellerimg4");
+
+	/* 상세보기 연동 */
+	let bsimgLink0=$(".bsimgLink0");
+	let bsimgLink1=$(".bsimgLink1");
+	let bsimgLink2=$(".bsimgLink2");
+	let bsimgLink3=$(".bsimgLink3");
 	
-	
+	let addr ="http://localhost:9090/21PM_moonbook_final/sellpart/bookDetail.do?bindNo=";
 	 /* 가장 인기있는 아이템 도서 타이틀 1-5 */
 	let bestsellertitle0=$(".bestsellertitle0");
 	let bestsellertitle1=$(".bestsellertitle1");
 	let bestsellertitle2=$(".bestsellertitle2");
 	let bestsellertitle3=$(".bestsellertitle3");
-	let bestsellertitle4=$(".bestsellertitle4");
+	
+	/* 인기있는 가격 */
+	let bprice0=$(".bprice0");
+	let bprice1=$(".bprice1");
+	let bprice2=$(".bprice2");
+	let bprice3=$(".bprice3");
 	 
 
 	$.ajax({
@@ -179,23 +189,31 @@ function searchHotnew(searchData) {
 			$(bestsellerimg1).attr('src',data[1].image );
 			$(bestsellerimg2).attr('src',data[2].image );
 			$(bestsellerimg3).attr('src',data[3].image );
-			$(bestsellerimg4).attr('src',data[4].image );
+
+			/* 상세보기 연동 */
+			$(bsimgLink0).attr('href',addr+data[0].bindNo );
+			$(bsimgLink1).attr('href',addr+data[1].bindNo );
+			$(bsimgLink2).attr('href',addr+data[2].bindNo );
+			$(bsimgLink3).attr('href',addr+data[3].bindNo );
 			
 			/* 베스트셀러 타이틀 ( 괄호 앞 잘라내기 */
-			console.log(data[0].title);
+			console.log("여기 데이터 뭐야?"+data[0].title);
 			
 			var bstitle0=(data[0].title).split('(');
 			var bstitle1=(data[1].title).split('(');
 			var bstitle2=(data[2].title).split('(');
 			var bstitle3=(data[3].title).split('(');
-			var bstitle4=(data[4].title).split('(');
-			console.log(bstitle0[0]+"왼쪽은 스플릿이후"+bstitle4[0]);
 			
 			$(bestsellertitle0).html(bstitle0[0] );
 			$(bestsellertitle1).html(bstitle1[0] );
 			$(bestsellertitle2).html(bstitle2[0] );
 			$(bestsellertitle3).html(bstitle3[0] );
-			$(bestsellertitle4).html(bstitle4[0] );
+			
+			/* 가격 */
+		 	$(bprice0).html(data[0].price+"원");
+		 	$(bprice1).html(data[1].price+"원");
+		 	$(bprice2).html(data[2].price+"원");
+		 	$(bprice3).html(data[3].price+"원");
 
 		
 		}
@@ -205,7 +223,14 @@ function searchHotnew(searchData) {
 </script>
 
 <style>
-
+.content_body2_book div{
+font-size:13px;
+width:80px;
+}
+.content_body2_book{
+display:flex;
+justify-content:space-around;
+}
 a{
     text-decoration: none;
 }
@@ -832,9 +857,7 @@ transition: all 0.2s linear;
     padding: 10px;
     border: 1px solid #dadada;
 }
-.content_body2_book>div{
-    margin-left: 25px;
-}
+
 .content_body2_book div img{
     width: 92px;
     height: 132px;
@@ -1126,32 +1149,24 @@ transition: all 0.2s linear;
                     <a href="#" class="contenttitle"><span style="color:red;">HOT!</span> 국내 창작동화</a><span class="moreview">더보기 +</span>
                      <div class="content_body2_book line">
                          <div>
-                            <img src="#" class="bestsellerimg0" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
+                            <a class="bsimgLink0" href="#"><img src="#" class="bestsellerimg0" alt=""></a>
+                            <p class="bestsellertitle0">책 제목 넣기</p>
+                            <div class="bprice0">700원</div>      
                         </div>
                         <div>
-                            <img src="#" class="bestsellerimg1" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
+                            <a class="bsimgLink1" href="#"><img src="#" class="bestsellerimg1" alt=""></a>
+                            <p class="bestsellertitle1">책 제목 넣기</p>
+                            <div class="bprice1">700원</div>      
                         </div>
                         <div>
-                            <img src="#" class="bestsellerimg2" alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
+                            <a class="bsimgLink2" href="#"><img src="#" class="bestsellerimg2" alt=""></a>
+                            <p class="bestsellertitle2">책 제목 넣기</p>
+                            <div class="bprice2">700원</div>      
                         </div>
                         <div>
-                            <img src="#"  class="bestsellerimg3"alt="">
-                            <div class="bcategory">[category]</div>
-                            <strong class="btitle">책 제목 넣기</strong>
-                            <div class="bcontent">책 내용 20자 </div>
-                            <div class="bprice">700원</div>      
+                            <a class="bsimgLink3" href="#"><img src="#"  class="bestsellerimg3"alt=""></a>
+                            <p class="bestsellertitle3">책 제목 넣기</p>
+                            <div class="bprice3">700원</div>      
                         </div>                 
              
                      </div>
