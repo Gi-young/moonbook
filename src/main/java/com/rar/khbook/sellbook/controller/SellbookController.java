@@ -24,6 +24,9 @@ import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.sellbook.model.service.SellbookService;
 import com.rar.khbook.sellbook.model.vo.BookBoard;
 import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
+import com.rar.khbook.serviceboard.model.vo.EventBoard;
+import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
+import com.rar.khbook.servicecenter.model.service.ServiceCenterService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,10 +37,22 @@ public class SellbookController {
 	@Autowired
 	private SellbookService service;
 	
+	@Autowired
+	private ServiceCenterService service2;
+	
 	@RequestMapping("/sellbookController/sellbook.do")
-	public String sellbook() {
+	public ModelAndView sellbook(ModelAndView mv) {
 		System.out.println("나와라이놈아2");
-		return "sellpart/level1";
+		List<EventBoard> eb= service2.searchEventBoardList();
+		System.out.println("이게 왜 널이야? 있는데? : "+eb);
+		if(eb != null) {
+			System.out.println("보드리스트가져오기 성공이잖아");
+		}else {
+			System.out.println("보드리스트가져오기 실패패패패!");
+		}
+		mv.addObject("event",eb);
+		mv.setViewName("sellpart/level1");
+		return mv;
 		
 	}
 
@@ -172,7 +187,7 @@ public class SellbookController {
 	public ModelAndView bigview(int bindNo, ModelAndView mv) {
 		System.out.println("페이지이동");
 		mv.addObject("bigview",service.selectBigView(bindNo));
-		mv.setViewName("bigview");
+		mv.setViewName("sellpart/bigView");
 		return mv;
 		
 	}
@@ -219,7 +234,7 @@ public class SellbookController {
 		return result;
 	}
 	
-	@RequestMapping("/SellbookController/insertReview.do")
+	@RequestMapping("/SellbookControll/insertReview.do")
 	public ModelAndView insertReview(int bindNo, ModelAndView mv) {
 		SellbookDatabind b = service.bookOne(bindNo);
 		mv.addObject("b", b);

@@ -9,10 +9,7 @@
 </jsp:include>
 
 
-	<link rel="stylesheet" type="text/css" href="${path}/resources/css/ebook/home/ebookHome.css">
-	<jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
-<jsp:param name="" value=""/>
-</jsp:include>
+	<link rel="stylesheet" type="text/css" href="${path}/resources/css/book/bookHome.css">
 <main>
 		<form id="searchFrm">
 			<div>

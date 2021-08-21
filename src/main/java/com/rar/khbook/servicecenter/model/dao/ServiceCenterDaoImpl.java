@@ -45,8 +45,20 @@ public class ServiceCenterDaoImpl implements ServiceCenterDao {
 	@Override
 	public List<Faq> searchFaq(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		RowBounds rb = new RowBounds(0, 3);
-		return session.selectList("serviceBoard.searchEventBoardList",null,rb);
+		
+		return session.selectList("admin.searchFaq",param);
+	}
+
+	@Override
+	public NoticeBoard searchNoticeBoardDetail(SqlSession session, int noticeboardNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("serviceBoard.searchNoticeBoardDetail",noticeboardNo);
+	}
+
+	@Override
+	public EventBoard searchEventBoardDetail(SqlSession session, int eventboardNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("serviceBoard.searchEventBoardDetail", eventboardNo);
 	}
 
 	

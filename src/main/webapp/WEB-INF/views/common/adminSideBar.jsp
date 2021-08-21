@@ -29,7 +29,7 @@
 			<li><p onclick="location.assign('${path}/admin/addProductPage.do')" class="adminColor2">등록</p></li>
 			<li><p onclick="location.assign('${path}/admin/inputProductPage2.do')" class="adminColor2">입고</p></li>
 			<li><p onclick="location.assign('${path}/admin/removeProductPage.do')" class="adminColor2">출고</p></li>
-			<li><p onclick="location.assign('${path}/admin/stockProductPage.do')" class="adminColor2">재고현황</p></li>
+			<li><p onclick="location.assign('${path}/admin/stockProductPage.do')" class="adminColor2">재고 현황</p></li>
 		</ul>
 			</li>
 		<li class="sub-menu3">
@@ -49,13 +49,13 @@
 				<p onclick="" class="adminColor">고객센터</a>
 			
 			<ul class="sub_content4">
-			<li><p onclick="" class="adminColor2">공지사항</p></li>
-			<li><p onclick="" class="adminColor2">이벤트</p></li>
-			<li><p onclick="location.assign('${path}/admin/managementFaq.do')" class="adminColor2">FAQ관리</p></li>
+			<!-- <li><p onclick="" class="adminColor2">공지사항</p></li>
+			<li><p onclick="" class="adminColor2">이벤트</p></li> -->
+			<li><p onclick="location.assign('${path}/admin/managementFaq.do')" class="adminColor2">FAQ 관리</p></li>
 		</ul>
 			</li>
 		<li class="sub-menu5">
-			<p onclick="" class="adminColor">쿠폰관리</a>
+			<p onclick="" class="adminColor">쿠폰 관리</a>
 			<ul class="sub_content5">
 				<li><p onclick="location.assign('${path}/admin/addCouponPage.do')" class="adminColor2">등록</p></li>
 			<li><p onclick="location.assign('${path}/admin/inputCouponPage.do')" class="adminColor2">발급</p></li>
@@ -63,13 +63,13 @@
 			</ul>
 		</li>
 		<li class="sub-menu6">
-			<p onclick="" class="adminColor">경매관리</a>
+			<p onclick="" class="adminColor">경매 관리</a>
 			<ul class="sub_content6">
 				<li><p onclick="location.assign('${path}/admin/adminAuctionCatePage.do')" class="adminColor2">카테고리 등록</p></li>
 			</ul>
 		</li>
 		<li class="sub-menu7">
-			<p onclick="location.assign('${path}/admin/deliveryManagementPage.do')" class="adminColor">배송관리</a>
+			<p onclick="location.assign('${path}/admin/deliveryManagementPage.do')" class="adminColor">배송 관리</a>
 		</li>
 	</ul>
 </div>

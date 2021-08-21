@@ -88,15 +88,15 @@
 	<insert id="insertPayment">
 		INSERT INTO PAYMENT VALUES (#{paymentId},#{merchantUid},#{payMethod}, #{paidAmount}, #{paidAt}, #{pgProvide}, #{receiptUrl}, #{merchantUid})
 	</insert>
-	
 	<!-- 회원 구매금액 증가  -->
 	<update id="updateMemberTotalSale">
 		UPDATE MEMBER SET MEMBER_TOTAL_SALE = MEMBER_TOTAL_SALE + #{paidAmount} WHERE MEMBER_ID=#{memberId}
 	</update>
-	<!-- 책 판매량 증가, 재고량 감소  -->
+	<!-- 책 판매량 증가  -->
 	<update id="updateSalesVolume">
 		UPDATE BOOK_EBOOK_DATABIND SET SALES_VOLUME = SALES_VOLUME + #{orderVolume} WHERE BIND_NO = #{bindNo}
 	</update>
+	<!-- 책 재고량 감소 -->
 	<update id="updateStock">
 		UPDATE BOOK_EBOOK_DATABIND SET STOCK = STOCK - #{orderVolume} WHERE BIND_NO = #{bindNo}
 	</update>

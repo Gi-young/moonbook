@@ -99,8 +99,8 @@
 			<beans:bean class="com.rar.khbook.common.interceptor.AdminCheckInterceptor2"/>		
 		</interceptor>
 		<interceptor>
-		<mapping path="/SellbookController/insertReview.do*"/>
-			<beans:bean class="com.rar.khbook.common.interceptor.GiftLoginCheckInterceptor"/>		
+		<mapping path="/SellbookControll/insertReview.do*"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.ClosedInterceptor"/>		
 		</interceptor>
 		
 		<!-- 낄껴 좀 하겠습니다. -->
@@ -115,6 +115,10 @@
 		<interceptor>
 			<mapping path="/gift/shopingList.do*"/>
 			<beans:bean class="com.rar.khbook.common.interceptor.GSLLoginCheckInterceptor"/>		
+		</interceptor>
+		<interceptor>
+			<mapping path="/gift/myCoupon.do*"/>
+			<beans:bean class="com.rar.khbook.common.interceptor.CouponLoginCheck"/>		
 		</interceptor>
 	</interceptors>
 	

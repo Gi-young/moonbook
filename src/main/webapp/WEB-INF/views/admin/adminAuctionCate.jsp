@@ -39,7 +39,7 @@
 									<input type="text" name="type10"> 
 								</td>
 								<td class="search-box">
-									<input type="submit" value="추가"/>
+									<input type="submit" value="추가" class="adminBtn"/>
 									<!-- <button onclick="addAuctionCate(event)">추가</button>  -->
 								</td>
 							</tr>
@@ -57,7 +57,7 @@
 									<input type="text" name="type21"> 
 								</td>
 								<td class="search-box">
-									<input type="button" value="삭제" onclick="deleteAuctionCate('deleteAuctionCate.do');"/>
+									<input type="button" value="삭제" onclick="deleteAuctionCate('deleteAuctionCate.do');" class="adminBtn"/>
 								</td>
 							</tr>
 						</table>

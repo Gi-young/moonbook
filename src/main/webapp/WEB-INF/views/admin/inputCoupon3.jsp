@@ -79,7 +79,7 @@
 						</tr> -->
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="발급" onclick="return checkCouponNum(event);">
+								<input type="submit" value="발급" onclick="return checkCouponNum(event);" class="adminBtn">
 							</td>
 						</tr>
 					</table>

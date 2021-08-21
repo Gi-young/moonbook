@@ -34,10 +34,11 @@
 
 	<p class="title-font">리뷰 작성</p>
 	<form class="review-form" action="${path }/gift/reviewWrite.do" method="post" encType="multipart/form-data">
-	  <p class="review-font">구매하신 <p style="font-weight:800; color=#582810; font-size:20px;">${g.gift_title }</p>은(는) 어떠셨나요?</p>
-		<textarea cols="5" rows="20" id="content" name="content">
+	  <p class="review-font"><p style="font-weight:800; color=#582810; font-size:20px;">${g.gift_title }</p>은(는) 어떠셨나요?</p>
+		<textarea cols="5" rows="10" id="content" name="content">
 		</textarea>
 	  	<p class="review-font">상품 사진</p>
+	  	<img src="${g.gift_img }" style="width:120px; height:80px; border:1px solid black; margin-bottom:8px;">
 		<input type="file" class="fileBtn" name="file">	
 		<p class="review-font">상품 만족도</p>	
 		<div class="score-div">

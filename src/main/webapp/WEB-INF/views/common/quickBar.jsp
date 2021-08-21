@@ -170,7 +170,7 @@
             </button>
             <!-- 상담문의, 관리자 연결 -->
                 <button class="help">
-                    <a href="${path }/service/servicePage.do"><img src="${path }/resources/images/상담문의.png" alt="상담문의" class="helpImg"></a>
+                    <a href="${path }/service/serviceMain.do"><img src="${path }/resources/images/상담문의.png" alt="상담문의" class="helpImg"></a>
                 </button>
                 <button class="chatting">
                     <img src="${path }/resources/images/chat.png" alt="채팅">

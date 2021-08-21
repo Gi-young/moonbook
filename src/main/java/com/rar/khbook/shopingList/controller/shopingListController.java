@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,11 +50,11 @@ public class shopingListController {
 	
 	@RequestMapping("/shopingList/shopingListView.do")
 	public ModelAndView shopingListView(String memberId, ModelAndView mv) {
-		System.out.println("장바구니 param : "+memberId);
+//		System.out.println("장바구니 param : "+memberId);
 		
-		List paramB = new ArrayList();// 상품번호 담는 리스트
-		List paramE = new ArrayList();// 얘도 황도
-		List paramG = new ArrayList();// ? 얘도?
+//		List<Integer> paramB = new ArrayList();// 상품번호 담는 리스트
+//		List<Integer> paramE = new ArrayList();// 얘도 황도
+//		List<Integer> paramG = new ArrayList();// ? 얘도?
 		
 		List<BookShopingList> bList = service.selectMyShopingListB(memberId);
 		//System.out.println("bList 뽑아옴 "+bList.get(0).getBindNoB());
@@ -68,24 +69,29 @@ public class shopingListController {
 		
 		for(int i=0; i<bList.size(); i++) {
 			arr1[i] = String.valueOf(bList.get(i).getBindNoB());
-			//paramB.add(bList.get(i).getBindNoB());
+			//paramB.add(bList.get(i).getShopingListCount());
+			//paramB.add(bList.get(i).getBindNoB());		
+//			System.out.println(arr1[i]);
+//			System.out.println(bList.get(i).getBindNoB());
 		}
-		System.out.println(paramB);
+//		System.out.println(paramB);
 		for(int i=0; i<eList.size(); i++) {	
 			arr2[i] = String.valueOf(eList.get(i).getBindNoE());
+			//paramE.add(eList.get(i).getShopingListCount());
 			//paramE.add(eList.get(i).getBindNoE());
 		}
-		System.out.println(paramB);
+//		System.out.println(paramB);
 		for(int i=0; i<gList.size(); i++) {
 			arr3[i] = String.valueOf(gList.get(i).getGiftNo());
+			//paramG.add(gList.get(i).getShopingListCount());
 			//paramG.add(gList.get(i).getGiftNo());
 		}
-		System.out.println(paramB);
+//		System.out.println(paramB);
 	
 		
-		System.out.println("test : " +String.join(",",arr1));
-		System.out.println("test : " +String.join(",",arr2));
-		System.out.println("test : " +String.join(",",arr3));
+//		System.out.println("test : " +String.join(",",arr1));
+//		System.out.println("test : " +String.join(",",arr2));
+//		System.out.println("test : " +String.join(",",arr3));
 		
 		String str1 = (String)String.join(",",arr1);
 		String str2 = (String)String.join(",",arr2);
@@ -102,12 +108,15 @@ public class shopingListController {
 		List<EbookDatabind> eBook = service.myShopingListE(param2);
 		List<Ngift> gift = service.myShopingListG(param3);
 		
+//		mv.addObject(paramB);
+//		mv.addObject(paramE);
+//		mv.addObject(paramG);
 		mv.addObject("book", book);
-		System.out.println("book ::::::"+book );
+//		System.out.println("book ::::::"+book );
 		mv.addObject("eBook", eBook);
-		System.out.println("ebook ::::::"+eBook );
+//		System.out.println("ebook ::::::"+eBook );
 		mv.addObject("gift", gift);
-		System.out.println("gift ::::::"+gift );
+//		System.out.println("gift ::::::"+gift );
 		mv.addObject("bList", bList);
 		mv.addObject("eList", eList);
 		mv.addObject("gList", gList);

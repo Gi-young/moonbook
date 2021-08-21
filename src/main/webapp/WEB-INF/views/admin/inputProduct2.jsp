@@ -57,7 +57,7 @@
 						</tr> 
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="입고">
+								<input type="submit" value="입고" class="adminBtn">
 							</td>
 						</tr>
 					</table>
@@ -88,7 +88,7 @@
 						</tr> 
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="입고">
+								<input type="submit" value="입고" class="adminBtn">
 							</td>
 						</tr>
 					</table>

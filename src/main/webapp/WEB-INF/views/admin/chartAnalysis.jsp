@@ -22,17 +22,17 @@
 		<div class="admin-box2">
 		<c:forEach var="e" items="${list1 }"> 
 			<%-- <input type="hidden" value="${fn:split(e.btitle,'(')}" name="bTitle"> --%>
-			<input type="hidden" value="${e.btitle}" name="bTitle">
-			<input type="hidden" value="${e.btotalcost}" name="bTotalCost">
-			<input type="hidden" value="${e.bprofit}" name="bProfit">
+			<input type="hidden" value="${e.btitle}" name="btitle">
+			<input type="hidden" value="${e.btotalcost}" name="btotalcost">
+			<input type="hidden" value="${e.bprofit}" name="bprofit">
 			<input type="hidden" value="${e.bcost}" name="bcost">
 			
 		</c:forEach> 
 		<c:forEach var="e" items="${list2 }"> 
 			<%-- <input type="hidden" value="${fn:split(e.btitle,'(')}" name="bTitle"> --%>
-			<input type="hidden" value="${e.ebtitle}" name="ebTitle">
-			<input type="hidden" value="${e.ebtotalcost}" name="ebTotalCost">
-			<input type="hidden" value="${e.ebprofit}" name="ebProfit">
+			<input type="hidden" value="${e.ebtitle}" name="ebtitle">
+			<input type="hidden" value="${e.ebtotalcost}" name="ebtotalcost">
+			<input type="hidden" value="${e.ebprofit}" name="ebprofit">
 			<input type="hidden" value="${e.ebcost}" name="ebcost">
 			
 		</c:forEach> 
@@ -79,7 +79,9 @@
 </style>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <script type="text/javascript">
+
 	google.charts.load('current', {'packages':['bar']});
 	google.charts.setOnLoadCallback(drawChart);
 	google.charts.load('current', {'packages':['bar']});
@@ -87,49 +89,23 @@
 	google.charts.load('current', {'packages':['bar']});
 	google.charts.setOnLoadCallback(drawChart3);
 	
-	/* $.ajax({
-		drawChart(arr1, arr2, arr3,arr4)
-	}) */
-	/* $.ajax({
-		url: "${path}/admin/getChartTopBook.do",
-		data: {
-			
-		},
-		success: data => {
-			
-			drawChart(arr1, arr2, arr3,arr4);
-		}
-	}); */
 	function drawChart2() {
-		let EB_TITLE1 = document.getElementsByName("ebTitle")[0].value.split('(');
-		let EB_TITLE2 = document.getElementsByName("ebTitle")[1].value.split('(');
-		let EB_TITLE3 = document.getElementsByName("ebTitle")[2].value.split('(');
+		let EB_TITLE1 = document.getElementsByName("ebtitle")[0].value.split('(');
+		let EB_TITLE2 = document.getElementsByName("ebtitle")[1].value.split('(');
+		let EB_TITLE3 = document.getElementsByName("ebtitle")[2].value.split('(');
 		
-		let EB_TOTAL_COST1 = document.getElementsByName("ebTotalCost")[0].value;
-		let EB_TOTAL_COST2 = document.getElementsByName("ebTotalCost")[1].value;
-		let EB_TOTAL_COST3 = document.getElementsByName("ebTotalCost")[2].value;
+		let EB_TOTAL_COST1 = document.getElementsByName("ebtotalcost")[0].value;
+		let EB_TOTAL_COST2 = document.getElementsByName("ebtotalcost")[1].value;
+		let EB_TOTAL_COST3 = document.getElementsByName("ebtotalcost")[2].value;
 		
-		let EB_PROFIT1 = document.getElementsByName("ebProfit")[0].value;
-		let EB_PROFIT2 = document.getElementsByName("ebProfit")[1].value;
-		let EB_PROFIT3 = document.getElementsByName("ebProfit")[2].value;
+		let EB_PROFIT1 = document.getElementsByName("ebprofit")[0].value;
+		let EB_PROFIT2 = document.getElementsByName("ebprofit")[1].value;
+		let EB_PROFIT3 = document.getElementsByName("ebprofit")[2].value;
 		
 		let EBCOST1 = document.getElementsByName("ebcost")[0].value;
 		let EBCOST2 = document.getElementsByName("ebcost")[1].value;
 		let EBCOST3 = document.getElementsByName("ebcost")[2].value;
-		console.log("test");
-		console.log(EB_TITLE1[0]);
 		
-		console.log(typeof EB_TOTAL_COST1);
-		
-		console.log(typeof EB_PROFIT1);
-		
-	 /*  var data = google.visualization.arrayToDataTable([
-	    ['e북제목', '매출액', '이익', '판매량'],
-	    [EB_TITLE1[0], EB_TOTAL_COST1, EB_PROFIT1, ESALES_VOLUME1],
-	    [EB_TITLE2[0], EB_TOTAL_COST2, EB_PROFIT2, ESALES_VOLUME2],
-	    [EB_TITLE3[0], EB_TOTAL_COST3, EB_PROFIT3, ESALES_VOLUME3]
-	    
-	  ]); */
 	  
 	  var data = google.visualization.arrayToDataTable([
 		    ['e북제목', '매출액', '이익', '비용'],
@@ -142,8 +118,6 @@
 	  var options = {
 	    chart: {
 	      	title: '매출이 높은 E북 TOP 3'
-	      /* subtitle: 'Sales, Expenses, and Profit: book-title', */
-	    	
 	    }
 	  };
 	
@@ -154,17 +128,17 @@
 	/* Ebook */
 	
 	function drawChart() {
-		let B_TITLE1 = document.getElementsByName("bTitle")[0].value.split('(');
-		let B_TITLE2 = document.getElementsByName("bTitle")[1].value.split('(');
-		let B_TITLE3 = document.getElementsByName("bTitle")[2].value.split('(');
+		let B_TITLE1 = document.getElementsByName("btitle")[0].value.split('(');
+		let B_TITLE2 = document.getElementsByName("btitle")[1].value.split('(');
+		let B_TITLE3 = document.getElementsByName("btitle")[2].value.split('(');
 		
-		let B_TOTAL_COST1 = document.getElementsByName("bTotalCost")[0].value;
-		let B_TOTAL_COST2 = document.getElementsByName("bTotalCost")[1].value;
-		let B_TOTAL_COST3 = document.getElementsByName("bTotalCost")[2].value;
+		let B_TOTAL_COST1 = document.getElementsByName("btotalcost")[0].value;
+		let B_TOTAL_COST2 = document.getElementsByName("btotalcost")[1].value;
+		let B_TOTAL_COST3 = document.getElementsByName("btotalcost")[2].value;
 		
-		let B_PROFIT1 = document.getElementsByName("bProfit")[0].value;
-		let B_PROFIT2 = document.getElementsByName("bProfit")[1].value;
-		let B_PROFIT3 = document.getElementsByName("bProfit")[2].value;
+		let B_PROFIT1 = document.getElementsByName("bprofit")[0].value;
+		let B_PROFIT2 = document.getElementsByName("bprofit")[1].value;
+		let B_PROFIT3 = document.getElementsByName("bprofit")[2].value;
 		
 		let BCOST1 = document.getElementsByName("bcost")[0].value;
 		let BCOST2 = document.getElementsByName("bcost")[1].value;
@@ -182,8 +156,7 @@
 	
 	  var options = {
 	    chart: {
-	      title: '매출이 높은 책 TOP 3',
-	      /* subtitle: 'Sales, Expenses, and Profit: book-title', */
+	      title: '매출이 높은 책 TOP 3'
 	    }
 	  };
 	

@@ -23,7 +23,7 @@
 		</div>
 		
 		<div class="search1Ver-container">
-			<form action="${path}/member/searchPw.do">
+			<form action="${path}/member/searchPw.do" method="post">
 				<table class="search1Ver">
 					<tr>
 						<th class="search-Th">
@@ -52,7 +52,7 @@
 		</div>
 		
 		<div class="search2Ver-container">
-			<form action="${path}/member/searchPw2.do">
+			<form action="${path}/member/searchPw2.do" method="post">
 			<table class="searchVer2">
 				<tr>
 						<th class="search-Th">

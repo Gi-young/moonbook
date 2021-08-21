@@ -33,19 +33,19 @@
 						<tr>
 							<th>한국고전소설</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=308')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=100020010')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>세계문학</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1167')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=100020020')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>세계고전</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1142')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=100020030')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -54,7 +54,7 @@
 						<tr>
 							<th>청소년 문학</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1073')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=300050')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -63,13 +63,13 @@
 						<tr>
 							<th>한국그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=319')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=310010010')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>외국그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=422')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=310010020')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -78,13 +78,13 @@
 						<tr>
 							<th>한국그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1016')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=310020010')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>외국그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1220')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=310020020')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -93,25 +93,25 @@
 						<tr>
 							<th>세계 명작 동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=761')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=310040010')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>한국 전래 동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=264')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=310040020')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>국내 창작 동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=493')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=310040030')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>다른나라 그림책</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=397')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=310040040')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -120,7 +120,7 @@
 						<tr>
 							<th>어린이동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1113')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=320010010')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -129,7 +129,7 @@
 						<tr>
 							<th>어린이동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=1163')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=320020010')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -138,7 +138,7 @@
 						<tr>
 							<th>어린이동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=746')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=320030010')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -147,7 +147,7 @@
 						<tr>
 							<th>어린이동화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=829')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage2.do?categoryCode=320040010')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						
@@ -160,24 +160,24 @@
 						<tr>
 							<th>전자기기</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage3.do?categoryCode=9')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage3.do?categoryCode=9')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>수납/정리</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage3.do?categoryCode=10')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage3.do?categoryCode=10')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>독서 필수템</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage3.do?categoryCode=11')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage3.do?categoryCode=11')" value="등록" class="adminBtn">
 							</td>
 						</tr><tr>
 							<th>잡화</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/addProductPage3.do?categoryCode=12')" value="등록">
+								<input type="button" onclick="location.assign('${path}/admin/addProductPage3.do?categoryCode=12')" value="등록" class="adminBtn">
 							</td>
 						</tr>
 						

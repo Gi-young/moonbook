@@ -37,7 +37,7 @@
 	                    <h2>가격 정보</h2>
 	                    <p>경매 시작가: <span>${a.startPrice } </span></p>
 	                    <p>응찰 단위: <span>${a.priceUnit } </span></p>
-	                    <p>즉시 구매가격: <span class="auction_buy_now">10000 </span>원</p>
+	                    <p>즉시 구매가격: <span class="auction_buy_now">${a.buyNow }</span>원</p>
 	                </div>
 	                
 	                <div>

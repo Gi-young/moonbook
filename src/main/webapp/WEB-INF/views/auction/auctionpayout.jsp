@@ -42,7 +42,7 @@
 						
 						<p>최소 만원 이상부터 출금이 가능합니다.</p>
 						<p>수수료를 제외한 금액이 입급됩니다</p> 
-					<input type="submit" value="보내라">
+					<input type="submit" value="출금신청하기">
 					</div>			
 				</form>
 			</div>

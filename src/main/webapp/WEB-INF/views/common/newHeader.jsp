@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -176,7 +175,7 @@
 					<ul class="flex" style="align-items: center;">
 						<c:if test="${loginMember==null }">
 							<li class="login"><a href="${path }/member/loginPage.do">로그인</a></li>
-							<li><a href="${path }/member/enrollPage.do">회원가입</a></li>
+							<li class="headerF-li"><a href="${path }/member/enrollPage.do">회원가입</a></li>
 						</c:if>
 						<c:if test="${loginMember!=null }">
 							<li class="headerF-li" id="user"><a
@@ -200,7 +199,6 @@
 						<c:if test="${loginMember.memberId.equals('admin') }">
 							<li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
 						</c:if>
-
 						<li><a href="${path }/service/serviceMain.do">고객센터</a></li>
 					</ul>
 				</div>
@@ -227,7 +225,6 @@
 				tab.css('display', "none");
 			})
 		});
-
 		/* 문곰e북 */
 		$(function() {
 			let item = $('#eBooks');
@@ -246,7 +243,6 @@
 				tab.css('display', "none");
 			})
 		});
-
 		/* 문곰도서 */
 		$(function() {
 			let item = $('#books');
@@ -265,7 +261,6 @@
 				tab.css('display', "none");
 			})
 		});
-
 		/* 마이페이지, 장바구니 */
 		$(function() {
 			let item = $('#user');

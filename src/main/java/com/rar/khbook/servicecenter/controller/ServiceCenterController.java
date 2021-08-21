@@ -35,6 +35,34 @@ public class ServiceCenterController {
 		mv.setViewName("servicecenter/serviceMain");
 		return mv;
 	}
+	@RequestMapping("/service/noticeBoardDetail.do")
+	public ModelAndView noticeBoardDetail(int noticeboardNo, ModelAndView mv) {
+		System.out.println("Detail 보드리스트 가져오는 컨트롤러 실행");
+		NoticeBoard nb= service.searchNoticeBoardDetail(noticeboardNo);
+		System.out.println("Detail 보드리스트 받아온 결과물 : "+nb);
+		if(nb != null) {
+			System.out.println("Detail 보드리스트가져오기 성공!");
+		}else {
+			System.out.println("Detail 보드리스트가져오기 실패패패패!");
+		}
+		mv.addObject("notice",nb);
+		mv.setViewName("servicecenter/noticeDetail");
+		return mv;
+	}
+	@RequestMapping("/service/eventBoardDetail.do")
+	public ModelAndView eventBoardDetail(int eventboardNo, ModelAndView mv) {
+		System.out.println("event 보드리스트 가져오는 컨트롤러 실행");
+		EventBoard eb= service.searchEventBoardDetail(eventboardNo);
+		System.out.println("event 보드리스트 받아온 결과물 : "+eb);
+		if(eb != null) {
+			System.out.println("event 보드리스트가져오기 성공!");
+		}else {
+			System.out.println("event 보드리스트가져오기 실패패패패!");
+		}
+		mv.addObject("event",eb);
+		mv.setViewName("servicecenter/eventDetail");
+		return mv;
+	}
 
 	@RequestMapping("/service/eventBoard.do")
 	public ModelAndView eventPage(ModelAndView mv) {
