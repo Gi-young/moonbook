@@ -69,6 +69,12 @@ public class ServiceCenterServiceImpl implements ServiceCenterService {
 		return dao.searchEventBoardDetail(session,eventboardNo);
 	}
 
+	@Override
+	public int searchAvgRating(Map param) {
+		// TODO Auto-generated method stub
+		return dao.searchAvgRating(session, param);
+	}
+
 	
 	
 }

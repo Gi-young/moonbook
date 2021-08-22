@@ -78,6 +78,22 @@ public class ServiceCenterController {
 			mv.setViewName("/servicecenter/eventBoard");
 		return mv;
 	}
+	@RequestMapping("/service/searchAvgRating.do")
+	@ResponseBody
+	public ModelAndView searchAvgRating(@RequestParam Map param, ModelAndView mv) {
+		System.out.println("이벤트리스트 가져오는 컨트롤러 실행");
+		System.out.println("파람입니다."+param);
+		int rt= service.searchAvgRating(param);
+		System.out.println("이벤트리스트 받아온 결과물 : "+rt);
+		/*
+		 * if(rt != null) { System.out.println("이벤트리스트가져오기 성공!"); }else {
+		 * System.out.println("이벤트리스트가져오기 실패패패패!"); }
+		 */
+		mv.addObject("rating",rt);
+		mv.setViewName("/");
+		return mv;
+	}
+
 	
 	//faq 시작
 	@RequestMapping("/service/faqPage.do")
