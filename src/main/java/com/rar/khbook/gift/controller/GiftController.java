@@ -378,6 +378,7 @@ public class GiftController {
 	@ResponseBody
 	public int writePurchaseLog(@RequestParam Map param) {
 			
+		System.out.println("쿠폰 번호 "+param.get("couponNo"));
 		int resultF = service.writeOrderT(param);
 		
 		if(resultF>0) {
