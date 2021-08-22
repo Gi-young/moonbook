@@ -269,6 +269,10 @@
     font-weight: 900;
     cursor: pointer;
     font-size: 14px;
+    text-align: center;
+    height: 70px;
+    vertical-align: middle;
+    font-weight: lighter;
 }
 .review-exp{
     display: flex;
@@ -287,13 +291,26 @@
     border-bottom: 1px solid silver;
     text-align: center;
 }
-.review-exp td{
+.review-exp td:not(.gpa){
     text-align: center; 
     height: 70px;
     vertical-align: middle;
     font-weight: lighter;
 }
 .gpa{
+	text-align: center;
+    height:70px;
+    vertical-align: middle;
+    font-weight: lighter;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gpa-re{
+	text-align: center;
+    height:180px;
+    vertical-align: middle;
+    font-weight: lighter;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -318,12 +335,13 @@
     width: 370px;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
+}
+.review-title-a{
+	cursor:pointer;
 }
 .review_qna{
 	display: block;
     width: 500px;
-    text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
@@ -333,6 +351,29 @@
     justify-content: center;
     align-content: center;
     align-items: center;
+}
+.review-writer{
+	text-align: center;
+    height: 70px;
+    vertical-align: middle;
+    font-weight: lighter;
+}
+.review-date{
+	text-align: center;
+    height: 70px;
+    vertical-align: middle;
+    font-weight: lighter;
+}
+.review-toggle{
+	word-break: break-all;
+	height:200px;	
+	background-color: #E5E2DB;
+}
+.review-gpa{
+	height:180px;
+}
+.review-tr{
+	transition: all ease 0.2s;
 }
 
 /* 알려드립니다 클릭시 */

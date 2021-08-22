@@ -2,7 +2,10 @@ package com.rar.khbook.shopingList.controller;
 
 
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
@@ -76,18 +80,26 @@ public class shopingListController {
 			//paramB.add(bList.get(i).getBindNoB());		
 //			System.out.println(arr1[i]);
 //			System.out.println(bList.get(i).getBindNoB());
+//			System.out.println(bList.get(i).getShopingListCount());
+			
 		}
 //		System.out.println(paramB);
 		for(int i=0; i<eList.size(); i++) {	
 			arr2[i] = String.valueOf(eList.get(i).getBindNoE());
 			//paramE.add(eList.get(i).getShopingListCount());
 			//paramE.add(eList.get(i).getBindNoE());
+//			System.out.println(arr2[i]);
+//			System.out.println(eList.get(i).getBindNoE());
+//			System.out.println(eList.get(i).getShopingListCount());
 		}
 //		System.out.println(paramB);
 		for(int i=0; i<gList.size(); i++) {
 			arr3[i] = String.valueOf(gList.get(i).getGiftNo());
 			//paramG.add(gList.get(i).getShopingListCount());
 			//paramG.add(gList.get(i).getGiftNo());
+//			System.out.println(arr3[i]);
+//			System.out.println(gList.get(i).getGiftNo());
+//			System.out.println(gList.get(i).getShopingListCount());
 		}
 //		System.out.println(paramB);
 	
@@ -126,5 +138,48 @@ public class shopingListController {
 		mv.setViewName("shopingList/shopingList");
 		return mv;
 	}
+	
+	@RequestMapping("/shopingList/buyShopingList.do")
+	public ModelAndView insertList(ModelAndView mv, 
+			@RequestParam Map param) {
+		
+		int result = service.insertList(param);
+		
+		return mv;
+	}
+
+	@RequestMapping(value = "/shopingList/getMerchantUid.do")
+	@ResponseBody
+	public String getMerchantUid() {
+		
+		String merchantUid = "ORD-EB-";
+		
+		Calendar cal = Calendar.getInstance();
+		
+		Date today = new Date(cal.getTimeInMillis());
+		
+		int rndNum=(int)(Math.random()*10000);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		merchantUid += sdf.format(today) + "-" + rndNum;
+		
+		return merchantUid;
+	}
+	
+	@RequestMapping("/shopingList/writePurchaseLog.do")
+	@ResponseBody
+	public int writePurchaseLog(@RequestParam Map param) {
+			
+		int resultF = service.writeOrderT(param);
+		
+		if(resultF>0) {
+//			int result = service.writePurchaseLog(param);		
+//			return result;
+		}else {
+			return 0;
+		}
+		return 1;
+	}
+	
 }
 

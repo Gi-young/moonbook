@@ -172,15 +172,15 @@
 	</insert>
 
 	<select id="selectMyShopingListB" resultMap="bookShopingListMap">
-		SELECT * FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+		SELECT * FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId} ORDER BY B_BIND_NO DESC
 	</select>
 	
 	<select id="selectMyShopingListE" resultMap="eBookShopingListMap">
-		SELECT * FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+		SELECT * FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId} ORDER BY E_BIND_NO DESC
 	</select>
 	
 	<select id="selectMyShopingListG" resultMap="giftShopingListMap">
-		SELECT * FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId}
+		SELECT * FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId} ORDER BY NGIFT_NO DESC
 	</select>
 	
 	<select id="myShopingListB" resultMap="sellbookDatabindMap">
@@ -192,7 +192,8 @@
 			<otherwise>
 				WHERE 1=2
 			</otherwise>
-		</choose>			  
+		</choose>	
+		ORDER BY BIND_NO DESC		  
 	</select>
 	
 	<select id="myShopingListE" resultMap="ebookDatabindMap">
@@ -205,18 +206,22 @@
 				WHERE 1=2
 			</otherwise>
 		</choose>
+		ORDER BY BIND_NO DESC
 	</select>
 	
 	<select id="myShopingListG" resultMap="giftMap">
-		SELECT * FROM NGIFT
+		SELECT * FROM NGIFT 
 		<choose>
 			<when test="arr != ''">
-				WHERE NGIFT_NO IN (${arr})
+				WHERE NGIFT_NO IN (${arr}) 
 			</when>
 			<otherwise>
 				WHERE 1=2
 			</otherwise>
 		</choose>
+		ORDER BY NGIFT_NO DESC
 	</select>
+	
+	
 	
 </mapper>

@@ -323,7 +323,7 @@ input:focus{
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    min-width: 950px;
+    min-width: 1200px;
 }
 .header-bottom a:hover{
     color: #F9C4A4;
@@ -332,7 +332,7 @@ input:focus{
 }
 .header-bottom-div{
     min-width: 1200px;
-    /* width:100%; */
+    /* width:100%; */ 
     display: flex;
     justify-content: space-around;
 }

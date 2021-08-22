@@ -16,6 +16,8 @@ import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.order.model.vo.GiftOrderList;
+import com.rar.khbook.order.model.vo.Order;
 import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
@@ -150,7 +152,7 @@ public class GiftServiceImpl implements GiftService {
 	
 //		판매량에 구매수량만큼 추가
 		int result1 = dao.updateSalesVolume(session, param);
-		System.out.println(result1);
+		/* System.out.println(result1); */
 		if(result1>0) {
 //			상품재고 - 구매수량
 			int result2 = dao.updateStock(session, param);
@@ -162,6 +164,8 @@ public class GiftServiceImpl implements GiftService {
 			int result5 = dao.updatePurchaseList(session, param);
 //			쿠폰 사용시 쿠폰도 추가
 			//int cpNum = param.get("couponNo");
+			//int result = dao.updateOrderT(session, param);
+			//System.out.println("주문시 쿠폰 사용하면 쿠폰도 추가"+result);
 			if(Integer.valueOf((String)param.get("couponNo"))>0) {
 				int result6 = dao.updateCoupon(session, param);
 			}
@@ -230,6 +234,18 @@ public class GiftServiceImpl implements GiftService {
 		// TODO Auto-generated method stub
 		List<Ngift> list = dao.searchGift(session, param);
 		return list;
+	}
+
+	@Override
+	public List<Order> memberOrderList(String memberId) {
+		
+		return dao.memberOrderList(session, memberId);
+	}
+
+	@Override
+	public List<GiftOrderList> giftOrderList(int giftNo) {
+		// TODO Auto-generated method stub
+		return dao.giftOrderList(session, giftNo);
 	}
 	
 	
