@@ -109,9 +109,9 @@ public class GiftController {
 		double begin = (Math.random()*90); // 0~90
 
 		int num = (int)begin;
-		//(int)Math.floor(Math.random()*101);
-		//System.out.println("랜덤 맞음??"+num);
-		//System.out.println(list);
+		
+		//List<Coupon> coupon = service.searchCoupon(memberId);
+		
 		mv.addObject("begin",num);
 		mv.addObject("list", list);
 		mv.addObject("gift", g);
@@ -133,7 +133,7 @@ public class GiftController {
 		//System.out.println("너는 뭘로 넘어오니 ?? ㄱㄺㄹ : "+cl);
 		mv.addObject("couponlist", cl);
 		mv.addObject("member", m);
-		mv.addObject("coupon", c);
+		//mv.addObject("coupon", c);
 		mv.setViewName("gift/myCoupon");
 		return mv;
 	}

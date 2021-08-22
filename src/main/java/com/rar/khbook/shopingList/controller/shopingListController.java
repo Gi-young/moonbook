@@ -39,10 +39,10 @@ public class shopingListController {
 	@RequestMapping("/shopingList/shopingList.do") 
 	public ModelAndView shopingList(@RequestParam Map param, ModelAndView mv) {
 
-		System.out.println("이거파람인데 : "+param);
+		//System.out.println("이거파람인데 : "+param);
 		mv.addObject("shopingList",service.insertShopingList(param));
 
-		System.out.println("이거파람인데sdsdsd : "+param);
+		//System.out.println("이거파람인데sdsdsd : "+param);
 		mv.addObject("msg","장바구니에 등록되었습니다.");
 		mv.setViewName("servicecenter/msgShopList");
 		return mv;
@@ -166,20 +166,64 @@ public class shopingListController {
 		return merchantUid;
 	}
 	
+	
+	@RequestMapping("/shopingList/deleteBook.do")
+	@ResponseBody
+	public int deleteBook(@RequestParam Map param) {
+		//System.out.println("북 지우기 위한 파람 : "+param);
+		int result = service.deleteBook(param);
+		
+		return result;
+	}
+	
+	@RequestMapping("/shopingList/deleteEbook.do")
+	@ResponseBody
+	public int deleteEbook(@RequestParam Map param) {
+		//System.out.println("이북 지우기 위한 파람 : "+param);
+		int result = service.deleteEbook(param);
+		
+		return result;
+	}
+	
+	@RequestMapping("/shopingList/deleteGift.do")
+	@ResponseBody
+	public int deleteGift(@RequestParam Map param) {
+		//System.out.println("기프트 지우기 위한 파람 : "+param);
+		int result = service.deleteGift(param);
+		
+		return result;
+	}
+	
+	
 	@RequestMapping("/shopingList/writePurchaseLog.do")
 	@ResponseBody
 	public int writePurchaseLog(@RequestParam Map param) {
-			
-		int resultF = service.writeOrderT(param);
-		
-		if(resultF>0) {
-//			int result = service.writePurchaseLog(param);		
-//			return result;
+		//System.out.println("결제 전 여기로 들어오는지");
+		//System.out.println("어뗘 잘 들어오는가? "+param);
+		//System.out.println("멀천트 유아이디 "+param.get("merchantUid"));
+		int result = service.writePurchaseLog(param);
+		System.out.println(result);
+		if(result > 0) {
+			return result;
 		}else {
 			return 0;
 		}
-		return 1;
+		
 	}
+	
+	
+	@RequestMapping("/shopingList/salesVolumeAdd.do")
+	@ResponseBody
+	public int salesVolumeAdd(@RequestParam Map param) {
+		System.out.println("여기 들어옴??");
+		System.out.println("장바구니 결제 로직 마지막 메소드로 넘어오는 파람: "+param);
+		
+		int result = service.salesVolumeAdd(param);
+		
+		return result;
+	}
+	
+	
 	
 }
 

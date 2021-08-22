@@ -31,6 +31,15 @@ public class GiftServiceImpl implements GiftService {
 	@Autowired
 	private SqlSession session;
 	
+	
+	
+	
+//	@Override
+//	public List<Coupon> searchCoupon(String memberId) {
+//		// TODO Auto-generated method stub
+//		return dao.searchCoupon(session, memberId);
+//	}
+
 	@Override
 	public Member searchMember(String memberId) {
 		Member m = dao.searchMember(memberId, session);

@@ -1,11 +1,11 @@
-
+IMP.init("imp26745696");
 	
 $(".btnPay").click(e=> {
 
 //  북 정보들, 고른 개수들
 	let bookNo = document.getElementsByClassName("bookNo");
+	
 	let bookCount = document.getElementsByClassName("bookCount");
-	console.log(bookNo);
 //  이북
 	let eBookNo = document.getElementsByClassName("eBookNo");
 //  기프트 정보들, 고른 개수들
@@ -27,22 +27,27 @@ $(".btnPay").click(e=> {
 	let totalPrice = document.getElementById("totalPrice").value;
 	
 	let point = originPrice*0.1;
-	
-	console.log(originPrice);
-	console.log(bookNo);
-	console.log(bookCount);
-	console.log(eBookNo);
-	console.log(giftNo);
-	console.log(giftCount);
-	console.log(point);
-	console.log(deliveryFee);
-	//console.log(contextPath);
-	console.log(totalPrice);
+
+
+	console.log("도서 번호 "+bookNo[0].value);
+	console.log("도서 개수 "+bookCount[0].value);
+	if(!eBookNo[0].value === ""){
+		console.log("널");
+	}else{
+		console.log("이북 번호 "+eBookNo[0].value);
+	}
+	console.log("기프트 번호 "+giftNo[0].value);
+	console.log("기프트 개수 "+giftCount[0].value);
+	console.log("적립할 포인트"+point);
+	console.log("배송비 "+deliveryFee);
+	console.log(contextPath);
+	console.log("총 원가 "+originPrice);
+	console.log("배송비 포함 총 가격 "+totalPrice);
 	//console.log(stock);
 	//console.log(sellStock);
 	//console.log(Number(stock)<=Number(sellStock));
 	
-	if(!(Number(stock)<=Number(sellStock))){
+	if(false){
 		//console.log("stock==="+Number(stock));
 		//console.log("sellStock==="+Number(sellStock));
 		alert('주문 가능한 수량을 초과하였습니다.');
@@ -66,7 +71,7 @@ $(".btnPay").click(e=> {
         memberId: loginMember
         },
         success: data => {
-        
+        console.log("실례하겠습니다");
         //console.log("수량"+sellStock);
 		//console.log("할인가"+bookPrice09);
 		//console.log("총금액"+totalPrice);
@@ -77,7 +82,7 @@ $(".btnPay").click(e=> {
             buyerEmail = data.memberEmail;
 
             $.ajax({
-                url: contextPath + "/shopingList/getMerchantUid.do",
+                url: contextPath + "/eBook/getMerchantUid.do",
                 type: "POST",               
                 success: data => {
                     merchant_uid = data;
@@ -105,17 +110,20 @@ $(".btnPay").click(e=> {
 						                paidAt: rsp.paid_at,
 						                pgProvider: rsp.pg_provider,
 						                receiptUrl: rsp.receipt_url,
-						                deliveryFee: deliveryFee,
-						                stock: stock,
+						                deliveryFee: deliveryFee,  
 						                totalPrice: totalPrice,
 						                point: point
-					                },
+					                },        
                                     success: data => {
                                     	$.ajax({
-                                    		url: contextPath + "/gift/salesVolumeAdd.do",
+                                    		url: contextPath + "/shopingList/salesVolumeAdd.do",
                                     		type: "POST",
                                     		data: {
-                                    			stock: stock,
+                                    			
+                                    			bookNo: bookNo,
+                                    			bookCount: bookCount,
+                                    			eBookNo: eBookNo,
+                                    			giftCount: giftCount,
                                     			giftNo: giftNo,
                                     			memberId: loginMember,
                                     			totalPrice: totalPrice,

@@ -6,6 +6,7 @@ IMP.init("imp26745696");
 
 	
 $(".btnPay").click(e=> {
+	
 	let couponNo = document.getElementById("couponNo").value;
 	let couponAmount = document.getElementById("couponAmount").value;
 	let originPrice = document.getElementById("originPrice").value;
