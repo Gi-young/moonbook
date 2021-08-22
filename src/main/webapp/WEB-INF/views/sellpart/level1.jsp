@@ -223,6 +223,9 @@ function searchHotnew(searchData) {
 </script>
 
 <style>
+.leftlongbanner a{
+color:rgba(88,40,16,1);
+}
 .content_body2_book div{
 font-size:13px;
 width:80px;

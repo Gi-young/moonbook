@@ -16,6 +16,16 @@
 		<result column="EVENTBOARD_DATE" property="eventboardDate"/>
 		<result column="MEMBER_ID" property="memberId"/>
 	</resultMap>
+	<resultMap id="bookReview" type="bookReview">
+		<id column="BIND_NO" property="bindNo"/>
+		<result column="BOOK_REVIEW_NO" property="bookReviewNo"/>
+		<result column="BOOK_CONTENT" property="bookContent"/>
+		<result column="MEMBER_ID" property="memverId"/>
+		<result column="WRITE_DATE" property="writeDate"/>
+		<result column="GROUP_ORD" property="groupOrd"/>
+		<result column="GROUP_LAYER" property="groupLayer"/>
+		<result column="BOOK_SCORE" property="bookScore"/>
+	</resultMap>
 	
 	<insert id="noticeBoardWrite">
 		INSERT INTO NOTICEBOARD VALUES (SEQ_NOTICEBOARD_NO.NEXTVAL,#{noticeTitle},#{noticeContent},SYSDATE,#{memberId})
@@ -40,5 +50,8 @@
 	</select>
 	<select id="searchEventBoardDetail" resultMap="eventBoard">
 		SELECT * FROM EVENTBOARD WHERE EVENTBOARD_NO = #{eventboardNo}
+	</select>
+	<select id="searchAvgRating" resultMap="bookReview">
+		SELECT ROUND(AVG(BOOK_SCORE),1) FROM BOOK_REVIEW WHERE BIND_NO=#{bindNo0}
 	</select>
 </mapper>

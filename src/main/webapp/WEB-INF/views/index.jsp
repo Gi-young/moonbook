@@ -352,7 +352,33 @@ function searchHotnew(searchData) {
 			$(bestratingauthor2).html(data[2].author );
 			$(bestratingauthor3).html(data[3].author );
 			$(bestratingauthor4).html(data[4].author );
+
+			var bindNo0=data[0].bindNo;
+			var bindNo1=data[1].bindNo;
+			var bindNo2=data[2].bindNo;
+			var bindNo3=data[3].bindNo;
+			var bindNo4=data[4].bindNo;
 			
+			
+			$.ajax({
+				url:"/service/searchAvgRating.do",
+				data:{
+					bindNo0:bindNo0,
+					bindNo1:bindNo1,
+					bindNo2:bindNo2,
+					bindNo3:bindNo3,
+					bindNo4:bindNo4,
+				success: data=>{
+					$(khloverscore0).html(data[0].bookScore);
+					$(khloverscore1).html(data[1].bookScore);
+					$(khloverscore2).html(data[2].bookScore);
+					$(khloverscore3).html(data[3].bookScore);
+					$(khloverscore4).html(data[4].bookScore);
+				}
+				
+				}
+				
+			})
 		}
 	})
 }   
@@ -396,7 +422,7 @@ li{
     line-height: 35px;
 }
 .bottomline{
-    border-bottom: rgb(48, 48, 48) 1px solid;
+    border-bottom: rgba(88,40,16,0.2) 2px solid;
 }
 /* .trigger1:hover{
     background-color: #582810;
@@ -1315,6 +1341,25 @@ padding-bottom: 5px;
   .flex5{
  display:flex; 
   }
+  
+  
+  .trigger1{
+   background-color:white;
+   color:rgba(88,40,16,1);
+  }
+  .trigger1:hover{
+   background-color:rgba(88,40,16,1);
+   color:white;
+  }
+  .trigger2{
+   background-color:white;
+   color:rgba(88,40,16,1);
+  }
+  .trigger2:hover{
+   background-color:rgba(88,40,16,1);
+   color:white;
+  }
+  
 </style>
 <link rel="stylesheet" href="${path }/resources/css/index/stickymenu.css">
 <!-- ////////////////////////상위배너/////////////////////// -->
@@ -1651,20 +1696,20 @@ padding-bottom: 5px;
             </div>
             <div class="bestSeller_right">
                 <div class="flex sectionfirst">
-                    <p class="trigger1 mouseoverbtn mouseoverbtnbg bottomline">
+                    <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><p class="trigger1 mouseoverbtn mouseoverbtnbg bottomline">
                     문곰이추천
-                    </p>
-                    <p class="trigger2 mouseoverbtn mouseoverbtnbg bottomline">인기eBook</p>
+                    </p></a>
+                    <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><p class="trigger2 mouseoverbtn mouseoverbtnbg bottomline">인기eBook</p></a>
                 </div>
                 <div class="basicform booktubercontainer" style="background-image: url('${path}/resources/img/main/icon/gomchu.png'); margin-top: 99px;">
 
 
                     <div class="booktubercontainer textalign margintop50">
-                        <a href="#" class="bsLink5"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller12"></a>
+                        <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/ebook.jpg" class="bestseller12"></a>
                     </div>
-                    <div class="title "><p class="margintop20 ">[북튜버의 책방]</p></div>
-                    <div class="comment">
-                        <a href="#" class="bsLink5"><p class="margintop10">[로그노트] 어지러운 집 정리하는 꿀팁</p></a>
+                    <div class="title"><p class="margintop20" style="font-weight:bold;">신비한 동물 사전</p></div>
+                    <div class="comment" style="text-align:center;">
+                        <a href="#"><p class="margintop10">J.K.롤링</p></a>
                     </div>
                     <ul>
                         <li>
@@ -1679,19 +1724,19 @@ padding-bottom: 5px;
                 </div>
                 <div class="hiddenform booktubercontainer hidden">
                     <div class="booktubercontainer textalign margintop50">
-                        <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12"></a>
+                        <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/ebook.png" class="bestseller12"></a>
                     </div>
-                    <div class="title"><p class="margintop20">[유튜버의 책방]</p></div>
+                    <div class="title"><p class="margintop20">신비한 동물 사전</p></div>
                     <div class="comment">
-                        <a href="#"><p class="margintop10">[로그노트] 어지러운 집 정리하는 꿀팁</p></a>
+                        <a href="#"><p class="margintop10">J.K.롤링</p></a>
                     </div>
                     <ul>
                         <li>
                             <div class="booktubercontainer textalign margintop50">
-                                <img alt="booktuber" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
+                                <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/ebook.png" class="bestseller12"></a>
                             </div>
                             <div class="title">
-                                <a href="#"><p class="margintop20">책의 제목자리</p></a>
+                                <a href="#"><p class="margintop20">신비한 동물 사전</p></a>
                             </div>
                         </li>
                     </ul>

@@ -123,8 +123,6 @@ public class SellbookServiceImpl implements SellbookService {
 			System.out.println("서비스 결제실패했습니다");
 		}
 		
-		
-		
 		return result;
 	}
 

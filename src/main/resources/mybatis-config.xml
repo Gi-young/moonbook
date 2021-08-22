@@ -111,7 +111,10 @@
 	
 		<!-- top3 gift-->
 		<typeAlias type="com.rar.khbook.adminchart.model.vo.GiftTopThree" alias="gifttopthree"/>
-	
+		
+		<!-- BookReview -->
+		<typeAlias type="com.rar.khbook.serviceboard.model.vo.BookReview" alias="bookReview"/>
+		
 		<!-- faq -->
 		<typeAlias type="com.rar.khbook.servicecenter.model.vo.Faq" alias="faq"/>
 		<typeAlias type="com.rar.khbook.servicecenter.model.vo.FaqCg" alias="faqcg"/>
