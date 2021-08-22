@@ -15,6 +15,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -88,6 +89,7 @@ public class MemberController {
 				session.setAttribute("loginMember", m);
 //				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
 				List<OrderWithCoupon> c = service.getCoupon(m);
+				System.out.println(c.get(0).getCouponNo());
 				session.setAttribute("coupon", c);
 //				로그인한 멤버의 회원등급도 Session에 넣어줌
 				Membergrade mg = service.getMembergrade(m);
