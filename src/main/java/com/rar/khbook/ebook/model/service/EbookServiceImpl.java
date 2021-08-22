@@ -309,4 +309,54 @@ public class EbookServiceImpl implements EbookService {
 		return dao.newSearchForPaperBook(session, param);
 	}
 	
+	@Override
+	public HashMap getReadingRecord(Map param) {
+		return dao.getReadingRecord(session, param);
+	}
+	
+	@Override
+	public int writeBoard(Map param) {
+		return dao.writeBoard(session, param);
+	}
+	
+	@Override
+	public List<HashMap> loadBoard(Map param) {
+		return dao.loadBoard(session, param);
+	}
+	
+	@Override
+	public int addBoardVisit(Map param) {
+		return dao.addBoardVisit(session, param);
+	}
+	
+	@Override
+	public int nextDate(Map param) {
+		return dao.nextDate(session, param);
+	}
+	
+	@Override
+	public HashMap checkBindNo(Map param) {
+		return dao.checkBindNo(session, param);
+	}
+	
+	@Override
+	public int nextEbook(Map param) {
+		return dao.nextEbook(session, param);
+	}
+	
+	@Override
+	public HashMap loadNextDebate(Map param) {
+		return dao.loadNextDebate(session, param);
+	}
+	
+	@Override
+	public HashMap getEbook(Map param) {
+		return dao.getEbook(session, param);
+	}
+	
+	@Override
+	public int debateEnd(Map param) {
+		return dao.debateEnd(session, param);
+	}
+	
 }

@@ -121,4 +121,24 @@ public interface EbookService {
 
 	
 	
+	HashMap getReadingRecord(Map param);
+	
+	int writeBoard(Map param);
+	
+	List<HashMap> loadBoard(Map param);
+	
+	int addBoardVisit(Map param);
+	
+	int nextDate(Map param);
+	
+	HashMap checkBindNo(Map param);
+	
+	int nextEbook(Map param);
+	
+	HashMap loadNextDebate(Map param);
+	
+	HashMap getEbook(Map param);
+	
+	int debateEnd(Map param);
+	
 }

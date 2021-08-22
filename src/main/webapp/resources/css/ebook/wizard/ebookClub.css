@@ -2,6 +2,7 @@
 /* 전체 */
 div#container {
     grid-template-columns: 1fr;
+    background-color: ivory;
 }
 
 header {
@@ -9,10 +10,22 @@ header {
 }
 
 section {
-    display: grid;
     overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+section::-webkit-scrollbar {
+    display: none;
+}
+
+div.grid-container {
+    display: grid;
     grid-template-columns: repeat(7, 200px);
-    grid-template-rows: repeat(5, 150px);
+    grid-template-rows: repeat(6, 130px);
     grid-gap: 5px;
     align-items: center;
     justify-items: center;
@@ -20,17 +33,14 @@ section {
     justify-content: center;
 }
 
-section::-webkit-scrollbar {
-    display: none;
-}
-
-section>div {
+div.grid-container>div {
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding: 10px;
+    padding: 10px 20px;
     margin: 0;
     border: 1px solid silver;
+    background-color: #fafaeb;
     border-radius: 5px;
     overflow-y: scroll;
     display: flex;
@@ -38,110 +48,579 @@ section>div {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
+    font-size: 14px;
 }
 
-section>div::-webkit-scrollbar {
+div.grid-container>div::-webkit-scrollbar {
     display: none;
+}
+
+div.grid-container input[type=button] {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    padding: 1px 7px 3px 7px;
+}
+
+div.grid-container input[type=button]:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+p.title {
+    font-weight: bold;
 }
 
 /* 그리드 조정 */
 div.create-club {
-    grid-column: 1;
-    grid-row: 1;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
 }
 
 div.join-club {
-    grid-column: 2;
-    grid-row: 1;
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
 }
 
 div.club-box {
     grid-column: 1 / 4;
-    grid-row: 2 / 4;
+    grid-row: 1 / 4;
 }
 
 div.club-notice {
+    grid-column: 5 / 8;
+    grid-row: 1 / 3;
+}
+
+div.club-board {
+    grid-column: 1 / 4;
+    grid-row: 4 / 7;
+}
+
+div.next-ebook {
     grid-column: 4 / 6;
-    grid-row: 2 / 4;
+    grid-row: 3 / 4;
 }
 
-/* 세부 */
+div.next-date {
+    grid-column: 6 / 7;
+    grid-row: 3 / 4;
+}
+
+div.reading-record {
+    grid-column: 7 / 8;
+    grid-row: 3 / 4;
+}
+
+div.club-debate {
+    grid-column: 4 / 8;
+    grid-row: 4 / 7;
+}
+
+/* div.create-club */
 div.create-club p {
-    font-size: 15px;
-    font-weight: bold;
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
     text-align: center;
 }
 
-div.create-club>div:first-child {
-    margin-bottom: 5px;
-}
-
-div.create-club>div:nth-of-type(2) {
+div.create-club input {
     margin-top: 5px;
+    width: 100%;
 }
 
+div.create-club input[type=text] {
+    width: 158px;
+}
+
+div.create-club input[type=text] {
+    width: 150px;
+}
+
+/* div.join-club */
 div.join-club p {
-    font-size: 15px;
-    font-weight: bold;
     margin: 0 0 10px 0;
     text-align: center;
-}
-
-div.join-club>div:first-child {
     margin-bottom: 5px;
 }
 
-div.join-club>div:nth-of-type(2) {
+div.join-club input {
     margin-top: 5px;
+    width: 100%;
 }
 
-div.club-box p {
-    font-size: 15px;
-    font-weight: bold;
-    margin: 0 0 10px 0;
-    text-align: center;
+div.join-club input[type=text] {
+    width: 150px;
+}
+
+/* div.club-box */
+div.club-box-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+div.club-box-header select {
+    margin-left: 7px;
+    margin-top: 2px;
+}
+
+div.club-box-header>div {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 div.club-box table {
     border-collapse: collapse;
     margin-top: 5px;
-    border-top: 1px solid black;
+    border-top: 1px solid silver;
+    width: 100%;
+}
+
+.append-tr {
+    text-align: center;
+}
+
+.append-tr:hover {
+    cursor: pointer;
 }
 
 div.club-box table th {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid silver;
     padding: 5px;
     text-align: center;
 }
 
-div.club-box table td {
-    border-bottom: 1px solid black;
+div.club-box table>tbody>tr>td {
+    border-bottom: 1px solid silver;
     padding: 5px;
     text-align: center;
 }
 
-div.delete-club {
-    padding-top: 15px;
-    text-align: center;
+div.club-box table button {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+
+div.club-box table button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+div.club-box>div {
+    overflow-y: scroll;
+}
+
+div.club-box>div::-webkit-scrollbar {
+    display: none;
+}
+
+/* div.club-notice */
+div.club-notice {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
 }
 
 div.club-notice>p {
-    font-size: 15px;
-    font-weight: bold;
     margin: 10px 0 10px 0;
     text-align: center;
 }
 
-div.club-notice div#noticeBoard {
+#noticeBoard {
+    box-sizing: border-box;
     border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
     min-height: 150px;
     background-color: white;
-    padding: 7px;
+    padding: 7px 15px;
     font-size: 13px;
+    flex-grow: 1;
+    overflow: scroll;
     font-weight: bold;
 }
 
-div.club-notice div#noticeBoard button {
+#noticeBoard>div {
+    margin-bottom: 5px;
+}
+
+#noticeBoard::-webkit-scrollbar {
+    display: none;
+}
+
+#noticeBoard button {
     margin-left: 7px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
+
+#noticeBoard button:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+/* div.club-board */
+div.club-board {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+div.club-board>div {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+}
+
+div.club-board>div:first-of-type {
+    flex-grow: 1;
+}
+
+div.club-board>div:last-of-type {
+    height: 100px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+div.club-board-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+div.club-board-header-left {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+div.club-board-header select {
+    margin-left: 7px;
+}
+
+div.club-board table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+div.club-board table th {
+    border: 1px solid lightgrey;
+}
+
+div.club-board table th:nth-of-type(1) {
+    width: 50px;
+}
+
+div.club-board table th:nth-of-type(2) {
+    width: 200px;
+}
+
+div.club-board table th:nth-of-type(3) {
+    width: 70px;
+}
+
+div.club-board table th:nth-of-type(4) {
+    width: 70px;
+}
+
+div.club-board table th:nth-of-type(5) {
+    width: 50px;
+}
+
+div.club-board table td {
+    border: 1px solid lightgrey;
+}
+
+div.club-board table td:nth-of-type(1) {
+    width: 50px;
+}
+
+div.club-board table td:nth-of-type(2) {
+    width: 250px;
+}
+
+div.club-board table td:nth-of-type(3) {
+    width: 100px;
+}
+
+div.club-board table td:nth-of-type(4) {
+    width: 100px;
+}
+
+div.club-board table td:nth-of-type(5) {
+    width: 50px;
+}
+
+/* div.next-ebook */
+div.grid-container>div.next-ebook {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+div.cover-img-box {
+    flex-grow: 1;
+    border: 1px solid silver;
+    border-radius: 5px;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+}
+
+div.cover-img-box img {
+    height: 90%;
+}
+
+.next-ebook-title {
+    font-size: 12px;
+    width: 80px;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.bind-no-box {
+    width: 100px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    margin-left: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+div.bind-no-box>input[type=number] {
+    width: 60px;
+    margin-top: 5px;
+}
+
+div.bind-no-box>input[type=button] {
+    margin-top: 5px;
+    width: 68%;
+}
+
+/* div.next-date */
+div.next-date>p {
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+div.next-date input {
+    margin-top: 5px;
+    width: 100%;
+}
+
+div.next-date input[type=button] {
+    margin-top: 10px;
+}
+
+/* div.reading-record */
+div.reading-record>p {
+    margin-bottom: 3px;
+}
+
+div.reading-record>div {
+    margin-top: 5px;
+}
+
+div.reading-record span.record {
+    font-weight: bold;
+}
+
+/* div.club-debate */
+div.grid-container>div.club-debate {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+div.club-debate>div {
+    height: 100%;
+}
+
+div.debate-box {
+    box-sizing: border-box;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+div.debate-member {
+    box-sizing: border-box;
+    margin-left: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    width: 170px;
+    padding: 10px;
+    overflow: scroll;
+    background-color: white;
+}
+
+div.debate-member::-webkit-scrollbar {
+    display: none;
+}
+
+#debateBoard {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    flex-grow: 1;
+    background-color: white;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+#debateBoard::-webkit-scrollbar {
+    display: none;
+}
+
+div.debate-controller {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+div.debate-controller input[type=file] {
+    display: none;
+}
+
+div.debate-controller input[type=text] {
+    height: 20px;
+    flex-grow: 1;
+}
+
+div.debate-controller input[type=button] {
+    margin-left: 5px;
+}
+
+div.debate-controller label {
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 3px;
+    margin-left: 5px;
+}
+
+div.debate-controller label:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+#remaining {
+    position: absolute;
+    left: 110px;
+    top: 170px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    height: fit-content;
+    width: 600px;
+}
+
+.pseudo-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.debate-feed {
+    width: fit-content;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.pseudo-box-for-me {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.debate-feed-from-me {
+    width: fit-content;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.sender {
+    font-weight: bold;
+    margin-right: 10px;
 }
