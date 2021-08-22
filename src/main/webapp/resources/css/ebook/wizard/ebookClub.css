@@ -516,6 +516,7 @@ div.debate-member::-webkit-scrollbar {
     flex-grow: 1;
     background-color: white;
     overflow-y: scroll;
+    padding: 10px;
 }
 
 #debateBoard::-webkit-scrollbar {
@@ -569,4 +570,57 @@ div.debate-controller label:hover {
     text-align: center;
     height: fit-content;
     width: 600px;
+}
+
+.pseudo-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.debate-feed {
+    width: fit-content;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.pseudo-box-for-me {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.debate-feed-from-me {
+    width: fit-content;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 10px;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.sender {
+    font-weight: bold;
+    margin-right: 10px;
 }

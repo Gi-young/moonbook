@@ -73,6 +73,12 @@ ul.portal>li {
 	margin-right: 10px;
 }
 
+div.portal-boundary-box li.none-react:hover {
+	cursor: default;
+	color: white;
+	background-color: #582810;
+}
+
 ul.management {
 	flex-grow: 1;
 	display: flex;

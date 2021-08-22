@@ -596,6 +596,8 @@ function designateNextDate() {
             },
             success: data => {
                 openSesame();
+
+                sockWizard.send("change," + selectClub);
             }
         });
     } else {
@@ -651,6 +653,8 @@ function designateNextEbook() {
 
                                 coverImgBox.appendChild(img);
                                 coverImgBox.appendChild(title);
+
+                                sockWizard.send("change," + selectClub);
                             } else {
                                 alert("다음 토론의 책 지정에 실패하였습니다. 다시 시도해주세요");
                             }
@@ -852,6 +856,22 @@ document.getElementById("debateEnd").addEventListener("click", () => {
         },
         success: data => {
             openSesame();
+
+            sockWizard.send("change," + selectClub);
         }
     });
+});
+
+document.getElementById("debateSubmit").addEventListener("click", () => {
+    let selectClub = document.getElementById("selectClub").value;
+    let message = document.getElementById("debateText").value;
+
+    if (message !== "") {
+        sockWizard.send("debate," + loginMemberId + "," + selectClub + "," + message);
+    } else {
+        alert("메시지를 입력해주세요");
+    }
+
+    document.getElementById("debateText").value = "";
+    document.getElementById("debateText").focus();
 });
