@@ -116,7 +116,7 @@
         <div class="space"></div>
     </div>
     <div class="slide-wrapper">
-        <div class="slider" style="padding-left:200px;">
+        <div class="slider">
         <c:forEach var="e" items="${list }" begin="0" end="1000">
             <div>
             <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}">
