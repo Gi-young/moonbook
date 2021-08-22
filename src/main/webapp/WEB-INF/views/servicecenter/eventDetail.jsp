@@ -21,7 +21,7 @@
 			<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><p style="font-size:30px;">공지사항</p></div>
 			<div style="display:flex; justify-content:flex-end; margin-right:5px; margin-bottom:5px;">
         </div>
-          <div class="service-box2">
+          <div class="service-box2" style="border:none;">
            <table class="review-exp review-board" id="targetTable" style="width:770px;">
 	            <tr>
 	            <th style='width:70px;'>${event.eventboardNo}</th>

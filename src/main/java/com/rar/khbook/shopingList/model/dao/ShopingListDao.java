@@ -38,6 +38,16 @@ public interface ShopingListDao {
 
 	List<Ngift> myShopingListG(SqlSession session, Map param);
 
+	int insertMember(SqlSession session, Map param);
+
+	int insertBook(SqlSession session, Map param);
+
+	int insertEbook(SqlSession session, Map param);
+
+	int insertGift(SqlSession session, Map param);
+
+	int writeOrderT(SqlSession session, Map param);
+
 
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.dao.MemberDao;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
@@ -83,7 +84,7 @@ public class MemberServiceImpl implements MemberService {
 
 //	회원의 쿠폰 가져오기
 	@Override
-	public List<Coupon> getCoupon(Member m) {
+	public List<OrderWithCoupon> getCoupon(Member m) {
 		// TODO Auto-generated method stub
 		return dao.getCoupon(session, m);
 	}
@@ -123,6 +124,20 @@ public class MemberServiceImpl implements MemberService {
 		return dao.couponlist(session);
 	}
 
+//	사용한 쿠폰 개수 가져옴
+	@Override
+	public int couponCount(Member m) {
+		// TODO Auto-generated method stub
+		return dao.couponCount(session, m);
+	}
+	
+//	사용한 쿠폰 가져옴
+	@Override
+	public List<OrderWithCoupon> getUsedCoupon(int cPage, int numPerpage, Member m) {
+		// TODO Auto-generated method stub
+		return dao.getUsedCoupon(session, cPage, numPerpage, m);
+	}
+	
 //	회원 정보 수정
 	@Override
 	public int updateMemberEnd(Member m) {
@@ -197,5 +212,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int createShopingList(Member m) {
 		return dao.createShopingList(session, m);
+	}
+	
+//	주문 상세 보기
+	@Override
+	public Order getOneOrder(String orderNo) {
+		// TODO Auto-generated method stub
+		return dao.getOneOrder(session, orderNo);
 	}
 }

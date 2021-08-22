@@ -1,38 +1,50 @@
-IMP.init("imp26745696");
-
-
-
-
 
 	
 $(".btnPay").click(e=> {
+
+//  북 정보들, 고른 개수들
+	let bookNo = document.getElementsByClassName("bookNo");
+	let bookCount = document.getElementsByClassName("bookCount");
+	console.log(bookNo);
+//  이북
+	let eBookNo = document.getElementsByClassName("eBookNo");
+//  기프트 정보들, 고른 개수들
+	let giftNo = document.getElementsByClassName("giftNo");
+	let giftCount = document.getElementsByClassName("giftCount");
+
 	let originPrice = document.getElementById("originPrice").value;
+	
 	let deliveryFee = document.getElementById("deliveryFee").value;
-	let giftNo = document.getElementById("giftNo").value;
+	
 	let btnPay = document.getElementsByClassName("btnPay");
-	let refundBtn = document.getElementById("refundBtn");
-	let loginMember = document.getElementById("loginMember").value;
+	
+	//let refundBtn = document.getElementById("refundBtn");
+	
+	let loginMember = document.getElementById("loginMemberId").value;
+	
 	let contextPath = document.getElementById("contextPath").value;
-	let sellStock = document.getElementById("sellStock").value;
-	// 주문가능수량 (반장님거 가지고 오다가 stock이랑 바꿔버림.)
-	let stock = document.getElementById("stock").value;
-	// 주문수량 (혹시 헷갈릴까봐 써놓음.)
+	
 	let totalPrice = document.getElementById("totalPrice").value;
+	
 	let point = originPrice*0.1;
 	
 	console.log(originPrice);
+	console.log(bookNo);
+	console.log(bookCount);
+	console.log(eBookNo);
 	console.log(giftNo);
+	console.log(giftCount);
 	console.log(point);
 	console.log(deliveryFee);
-	console.log(contextPath);
+	//console.log(contextPath);
 	console.log(totalPrice);
-	console.log(stock);
-	console.log(sellStock);
+	//console.log(stock);
+	//console.log(sellStock);
 	//console.log(Number(stock)<=Number(sellStock));
 	
 	if(!(Number(stock)<=Number(sellStock))){
-		console.log("stock==="+Number(stock));
-		console.log("sellStock==="+Number(sellStock));
+		//console.log("stock==="+Number(stock));
+		//console.log("sellStock==="+Number(sellStock));
 		alert('주문 가능한 수량을 초과하였습니다.');
 	}else{
 		e.preventDefault();
@@ -65,7 +77,7 @@ $(".btnPay").click(e=> {
             buyerEmail = data.memberEmail;
 
             $.ajax({
-                url: contextPath + "/ebook/getMerchantUid.do",
+                url: contextPath + "/shopingList/getMerchantUid.do",
                 type: "POST",               
                 success: data => {
                     merchant_uid = data;
@@ -77,12 +89,12 @@ $(".btnPay").click(e=> {
                             merchant_uid: merchant_uid,
                             buyer_name: buyerName,
                             buyer_email: buyerEmail,
-                            name: "문곰템",
-                            amount: 100
+                            name: "문곰책방",
+                            amount: totalPrice
                         }, function(rsp) {                       	                 	
                             if (rsp.success) {
                                 $.ajax({                                                     
-                                    url: contextPath + "/gift/writePurchaseLog.do",
+                                    url: contextPath + "/shopingList/writePurchaseLog.do",
                                     type: "POST",
                                     data: {
 					                	impUid: rsp.imp_uid,

@@ -41,11 +41,12 @@
 		<input type="file" class="fileBtn" name="file">	
 		<p class="review-font">상품 만족도</p>	
 		<div class="score-div">
-			<input type="radio" id="score-1" name="score" value="1"><label for="score-1">1</label>
+			<input type="radio" id="score-0" name="score" value="0"><label for="score-0">0</label>
 			<input type="radio" id="score-2" name="score" value="2"><label for="score-2">2</label>
-			<input type="radio" id="score-3" name="score" value="3"><label for="score-3">3</label>
 			<input type="radio" id="score-4" name="score" value="4"><label for="score-4">4</label>
-			<input type="radio" id="score-5" name="score" value="5"><label for="score-5">5</label>	
+			<input type="radio" id="score-6" name="score" value="6"><label for="score-6">6</label>
+			<input type="radio" id="score-8" name="score" value="8"><label for="score-8">8</label>	
+			<input type="radio" id="score-10" name="score" value="10"><label for="score-10">10</label>	
 		</div>
 		<input type="hidden" value="${b.bindNo }" id="bindNo" name="bindNo">
 		<input type="hidden" value="${loginMember.memberId }" id="loginMember" name="loginMember">

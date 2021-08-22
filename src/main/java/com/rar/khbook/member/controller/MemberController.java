@@ -15,13 +15,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,6 +32,7 @@ import com.google.gson.Gson;
 import com.rar.khbook.common.PageFactory;
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
@@ -70,7 +69,6 @@ public class MemberController {
 
 		String saveId = (String) param.get("saveId");
 		String memberId = (String) param.get("memberId");
-		System.out.println(param.get("memberPw"));
 		if (saveId != null) {
 			Cookie c = new Cookie("saveId", memberId);
 			c.setMaxAge(7 * 24 * 60 * 60);
@@ -83,15 +81,14 @@ public class MemberController {
 		}
 
 		Member m = service.selectOneMember(param);
-		System.out.println(m);
 		String msg = "";
 		if (m != null) {
 
 			if (pwEncoder.matches((String) param.get("memberPw"), m.getMemberPw())) {
 				session.setAttribute("loginMember", m);
-				System.out.println("아니 여기" + param.get("memberPw") + "ddd" + m.getMemberPw());
 //				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
-				List<Coupon> c = service.getCoupon(m);
+				List<OrderWithCoupon> c = service.getCoupon(m);
+				System.out.println(c.get(0).getCouponNo());
 				session.setAttribute("coupon", c);
 //				로그인한 멤버의 회원등급도 Session에 넣어줌
 				Membergrade mg = service.getMembergrade(m);
@@ -100,8 +97,6 @@ public class MemberController {
 				// 최근 로그인한 날짜 구하기
 				// 컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
 				// 컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
-				System.out.print(m.getMemberToday().toString());
-				System.out.println("today :" + today);
 				if (!m.getMemberToday().toString().equals(today)) {
 					int memberVisit = service.updateMemberVisit(param);
 					int memberToday = service.updateMemberToday(param);
@@ -158,12 +153,10 @@ public class MemberController {
 
 	public String memberEnrollEnd(Member m, Model model, HttpSession session) {
 
-		System.out.println(m);
 		log.debug("암호화전 : {}", m.getMemberPw());
 		log.debug("암호화 후 : {}", pwEncoder.encode(m.getMemberPw()));
 		m.setMemberPw(pwEncoder.encode(m.getMemberPw()));
 
-		System.out.println("testtest : " + m.getMemberBirth());
 
 		int result = service.insertMember(m);
 		String msg = "";
@@ -188,9 +181,7 @@ public class MemberController {
 
 	@RequestMapping("/member/checkId.do")
 	public void checkId(@RequestParam Map param, Writer out) {
-		System.out.println(param);
 		Member m = service.selectOneMember(param);
-		System.out.println("testtest : " + m);
 		new Gson().toJson(m == null ? "true" : "false", out);
 	}
 
@@ -214,7 +205,6 @@ public class MemberController {
 
 		m.getMemberName();
 		m.getMemberPhone();
-		System.out.println(m);
 		Member m2 = service.searchId1(m);
 
 		String msg = "";
@@ -245,7 +235,6 @@ public class MemberController {
 
 		String msg = "";
 		String loc = "";
-		System.out.println(m2);
 		if (m2 == null) {
 			msg = "해당하는 데이터가 없습니다.";
 			loc = "/member/searchIdPwPage.do";
@@ -312,9 +301,7 @@ public class MemberController {
 		m.getMemberEmail();
 
 		// 일단 아이디, 이름과 이메일로 회원이 맞는지 확인
-		System.out.println(m);
 		Member m3 = service.searchId4(m);
-		System.out.println(m3);
 		String msg = "";
 		String loc = "";
 
@@ -364,11 +351,9 @@ public class MemberController {
 		if (resultPw > 0) {
 			msg = "비밀번호가 정상적으로 변경되었습니다.";
 			loc = "/member/resultIdPage2.do?resultPw=" + resultPw;
-			System.out.println(resultPw);
 		} else {
 			msg = "비밀번호가 변경 실패";
 			loc = "/member/searchIdPwPage.do";
-			System.out.println(resultPw);
 		}
 
 		mv.addObject("msg", msg);
@@ -422,7 +407,6 @@ public class MemberController {
 		List<Membergrade> mg = service.memberGrade();
 		m.addAttribute("allMembergrade", mg);
 		List<Couponlist> cl = service.couponlist();
-		System.out.println(cl);
 		m.addAttribute("allCouponlist", cl);
 
 		return "member/memberGrade";
@@ -442,13 +426,37 @@ public class MemberController {
 
 //	쿠폰함 페이지
 	@RequestMapping("/member/myroom/coupon.do")
-	public String couponBox(Model m) {
+	public String couponBox(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, Model m, HttpSession session) {
 
+		int totalData = service.couponCount((Member)session.getAttribute("loginMember"));
 		List<Membergrade> mg = service.memberGrade();
+		List<OrderWithCoupon> uc = service.getUsedCoupon(cPage, numPerpage, (Member)session.getAttribute("loginMember"));;
+		System.out.println(totalData);
+		for(int i = 0; i < uc.size(); i++) {
+			
+			System.out.println(uc.get(i).getOrderDate());
+		}
 		m.addAttribute("allMembergrade", mg);
-		m.addAttribute("pageBar", PageFactory.getOwnPageBar(10, 1, 5, "adMemberPage.do"));
+		m.addAttribute("uc", uc);
+		m.addAttribute("pageBar", PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "adMemberPage.do", 0));
 
 		return "myroom/couponBox";
+	}
+	
+//	사용한 쿠폰 조회
+	@RequestMapping("/member/myroom/usedCoupon.do")
+	@ResponseBody
+	public Map usedCoupon(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, HttpSession session) {
+		
+		Map param = new HashMap();
+		int totalData = service.couponCount((Member)session.getAttribute("loginMember"));
+		List<OrderWithCoupon> uc = service.getUsedCoupon(cPage, numPerpage, (Member)session.getAttribute("loginMember"));
+		param.put("list", uc);
+		param.put("pageBar", PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "adMemberPage.do", 0));
+		
+		return param;
 	}
 
 //	회원정보수정 페이지
@@ -587,7 +595,7 @@ public class MemberController {
 		param.put("memberId", (String) m.getMemberId());
 		int totalData = service.bookPurchaseCount(param);
 		List<Order> list = service.bookPurchaseList(param, cPage, numPerpage);
-		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/payList.do");
+		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "payList.do");
 		mv.addObject("list", list);
 		List date = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
@@ -624,7 +632,7 @@ public class MemberController {
 		param.put("memberId", (String) m.getMemberId());
 		int totalData = service.ebookPurchaseCount(param);
 		List<Order> list = service.ebookPurchaseList(param, cPage, numPerpage);
-		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/ebookPayList.do");
+		String pageBar = PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "ebookPayList.do", 0);
 		List dateList = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
 			String tm = ((Payment) list.get(i)).getPayAt() + "000";
@@ -659,7 +667,7 @@ public class MemberController {
 		param.put("memberId", (String) m.getMemberId());
 		int totalData = service.giftPurchaseCount(param);
 		List<Order> list = service.giftPurchaseList(param, cPage, numPerpage);
-		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/giftPayList.do");
+		String pageBar = PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "giftPayList.do", 1);
 		List dateList = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
 			String tm = ((Payment) list.get(i)).getPayAt() + "000";
@@ -675,5 +683,17 @@ public class MemberController {
 		param.put("pageBar", pageBar);
 
 		return param;
+	}
+	
+//	도서 주문 리스트 받기
+	@RequestMapping("/member/myroom/orderDetail.do")
+	public String orderDetail(String orderNo, Model m) {
+		
+		System.out.println(orderNo);
+		Order o = service.getOneOrder(orderNo);
+		System.out.println(o);
+		m.addAttribute("order", o);
+		
+		return "myroom/orderDetail";
 	}
 }

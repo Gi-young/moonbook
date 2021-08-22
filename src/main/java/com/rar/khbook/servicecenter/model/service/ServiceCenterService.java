@@ -24,4 +24,8 @@ public interface ServiceCenterService {
 
 	EventBoard searchEventBoardDetail(int eventboardNo);
 
+	int searchAvgRating(Map param);
+
+
+
 }

@@ -25,12 +25,12 @@
 					<span> <input type="date" id="startDay">
 					</span> - <span> <input type="date" id="endDay">
 					</span>
-					<button class="btn">조회</button>
+					<!-- <button class="btn">조회</button> -->
 				</div>
 			</div>
 			<div class="optionBox">
-				<select class="selectBox">
-					<option>---진행상황---</option>
+				 <select class="selectBox">
+					<option>--- 맥거핀 ---</option>
 				</select>
 			</div>
 			<div class="content_title">
@@ -60,7 +60,7 @@
 									<div id="img">
 										<img src="${bl.getBookOrderList().get(0).getImage()}">
 									</div>
-									<a href="#" class="margin_top15p">
+									<a href="${path }/member/myroom/orderDetail.do?orderNo=${bl.getOrderNo()}" class="margin_top15p margin_left10">
 										<div id="name">${bl.getBookOrderList().get(0).getTitle()}<c:if
 												test="${bl.getBookOrderList().size() > 1 }">, 외 ${bl.getBookOrderList().size() }건</c:if>
 										</div>
@@ -113,12 +113,12 @@
 			success:function(data){
 				var trlength = $("#tbl tr").length;
 				for(var t = 1; t < trlength; t++){
-					$("#tbl tr")[t].remove();
+					$("#tbl tr")[1].remove();
 				}
 				
 				for(var i = 0; i < data.list.length; i++){
 					 $("#tbl").append('<tr><td><div class="flex"><div id="img"><img src="'+ data.list[i].bookOrderList[0].image+
-							 '"/></div><a href="#" class="margin_top15p"><div id="name">'+data.list[i].bookOrderList[0].title+'<c:if test="'
+							 '"/></div><a href="${path }/member/myroom/orderDetail.do?orderNo='+data.list[i].orderNo+'" class="margin_top15p margin_left10"><div id="name">'+data.list[i].bookOrderList[0].title+'<c:if test="'
 							 +data.list.length+'>1">, 외'+ data.list.length+'건</c:if></div></a></div></td><td style="width:12%">'
 							 +data.list[i].paidAmount+'</td><td id="date" class="fs11">'+data.date[i]+'</td><td id="state" class="fs11">'
 							 +data.list[i].orderStatus+'</td>');
@@ -153,7 +153,7 @@
 				
 				for(var i = 0; i < data.list.length; i++){
 					 $("#tbl").append('<tr><td><div class="flex"><div id="img"><img style="width:79px;height:122px;" src="'+ data.list[i].giftOrderList[0].gift_img+
-							 '"/></div><a href="#" class="margin_top15p"><div id="name">'+data.list[i].giftOrderList[0].gift_title+'<c:if test="'
+							 '"/></div><a href="${path }/member/myroom/orderDetail.do?orderNo='+data.list[i].orderNo+'" class="margin_top15p margin_left10"><div id="name">'+data.list[i].giftOrderList[0].gift_title+'<c:if test="'
 							 +data.list.length+'>1">, 외'+ data.list.length+'건</c:if></div></a></div></td><td style="width:12%">'
 							 +data.list[i].paidAmount+'</td><td id="date" class="fs11">'+data.date[i]+'</td><td id="state" class="fs11">'
 							 +data.list[i].orderStatus+'</td>');
@@ -167,6 +167,71 @@
 			}
 		})
 	});
+	
+	function fn_paging2(cPage){
+		var param = new Object();
+		param.startDate=$("#startDate").val();
+		param.finishDate=$("#finishDate").val();
+		param.cPage=cPage;
+		$.ajax({
+			url: '${path}/member/myroom/ebookPayList.do',
+			type:'POST',
+			dataType:'json',
+			data:param,
+			success:function(data){
+				var trlength = $("#tbl tr").length;
+				for(var t = 1; t < trlength; t++){
+					$("#tbl tr")[1].remove();
+				}
+				
+				for(var i = 0; i < data.list.length; i++){
+					 $("#tbl").append('<tr><td><div class="flex"><div id="img"><img src="'+ data.list[i].bookOrderList[0].image+
+							 '"/></div><a href="${path }/member/myroom/orderDetail.do?orderNo='+data.list[i].orderNo+'" class="margin_top15p margin_left10"><div id="name">'+data.list[i].bookOrderList[0].title+'<c:if test="'
+							 +data.list.length+'>1">, 외'+ data.list.length+'건</c:if></div></a></div></td><td style="width:12%">'
+							 +data.list[i].paidAmount+'</td><td id="date" class="fs11">'+data.date[i]+'</td><td id="state" class="fs11">'
+							 +data.list[i].orderStatus+'</td>');
+				}
+				$("#pageBar").children().remove();
+				$("#pageBar").append(data.pageBar);
+			},
+			error:error=>{
+				console.log(error);
+			}
+		})
+	}
+		
+	function fn_paging3(cPage){
+		var param = new Object();
+		param.startDate=$("#startDate").val();
+		param.finishDate=$("#finishDate").val();
+		param.cPage=cPage;
+		$.ajax({
+			url: '${path}/member/myroom/giftPayList.do',
+			type:'POST',
+			dataType:'json',
+			data:param,
+			success:function(data){
+				var trlength = $("#tbl tr").length;
+				for(var t = 1; t < trlength; t++){
+					$("#tbl tr")[1].remove();
+				}
+				
+				for(var i = 0; i < data.list.length; i++){
+					 $("#tbl").append('<tr><td><div class="flex"><div id="img"><img style="width:79px;height:122px;" src="'+ data.list[i].giftOrderList[0].gift_img+
+							 '"/></div><a href="${path }/member/myroom/orderDetail.do?orderNo='+data.list[i].orderNo+'" class="margin_top15p margin_left10"><div id="name">'+data.list[i].giftOrderList[0].gift_title+'<c:if test="'
+							 +data.list.length+'>1">, 외'+ data.list.length+'건</c:if></div></a></div></td><td style="width:12%">'
+							 +data.list[i].paidAmount+'</td><td id="date" class="fs11">'+data.date[i]+'</td><td id="state" class="fs11">'
+							 +data.list[i].orderStatus+'</td>');
+				}				
+				console.log($("#pageBar").children());
+				$("#pageBar").children().remove();
+				$("#pageBar").append(data.pageBar);
+			},
+			error:error=>{
+				console.log(error);
+			}
+		})
+	}
 </script>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />

@@ -12,6 +12,8 @@ import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.GiftOrder;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.order.model.vo.GiftOrderList;
+import com.rar.khbook.order.model.vo.Order;
 import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
@@ -80,4 +82,11 @@ public interface GiftDao {
 	List<Ngift> giftReading(SqlSession session);
 
 	List<Ngift> searchGift(SqlSession session, Map param);
+
+
+	List<Order> memberOrderList(SqlSession session, String memberId);
+
+	List<GiftOrderList> giftOrderList(SqlSession session, int giftNo);
+
+	//int updateOrderT(SqlSession session, Map param);
 }

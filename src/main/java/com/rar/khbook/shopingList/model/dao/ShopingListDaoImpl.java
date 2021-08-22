@@ -22,11 +22,19 @@ import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 @Repository
 public class ShopingListDaoImpl implements ShopingListDao {
 
+	
+	
+
+	@Override
+	public int writeOrderT(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("shopingList.", param);
+	}
 
 	@Override
 	public int insertShopingList(SqlSession session, @RequestParam Map param) {
 		// TODO Auto-generated method stub
-		return session.update("shopingList.insertShopingList",param);
+		return session.insert("shopingList.insertShopingList",param);
 	}
 
 	@Override
@@ -70,6 +78,30 @@ public class ShopingListDaoImpl implements ShopingListDao {
 	public List<Ngift> myShopingListG(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
 		return session.selectList("shopingList.myShopingListG", param);
+	}
+
+	@Override
+	public int insertMember(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertBook(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertEbook(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertGift(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

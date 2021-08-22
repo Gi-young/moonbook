@@ -13,6 +13,8 @@
 		<result column="order_paidmethod" property="orderPaidMethod" />
 		<result column="order_status" property="orderStatus" />
 		<result column="order_point" property="orderPoint" />
+		<result column="order_date" property="orderDate" />
+		<result column="order_coupon_no" property="orderCouponNo" />
 		<collection property="bookOrderList" ofType="bookOrderList">
 			<id column="order_no" property="orderNo" />
 			<result column="bind_no" property="bindNo" />
@@ -73,6 +75,22 @@
 		<result column="order_volume" property="orderVolume" />
 	</resultMap>
 
+	<!-- 이북결제 정보 VO -->
+	<resultMap type="ebookOrderList" id="ebookOrderListMap"
+		extends="ebookDatabindMap">
+		<id column="order_no" property="orderNo" />
+		<result column="bind_no" property="bindNo" />
+		<result column="order_volume" property="orderVolume" />
+	</resultMap>
+
+	<!-- 기프트결제 정보 VO -->
+	<resultMap type="giftOrderList" id="giftOrderListMap"
+		extends="giftMap">
+		<id column="order_no" property="orderNo" />
+		<result column="ngift_no" property="ngiftNo" />
+		<result column="order_volume" property="orderVolume" />
+	</resultMap>
+
 	<!-- 결제 정보 VO -->
 	<resultMap type="payment" id="paymentMap" extends="orderMap">
 		<result column="payment_id" property="paymentId" />
@@ -106,6 +124,27 @@
 		<association property="ebook" javaType="ebook">
 			<id column="EBOOK_NO" property="ebookNo" />
 			<result column="FILEPATH" property="filepath" />
+		</association>
+	</resultMap>
+
+	<resultMap type="nGift" id="giftMap">
+		<id column="NGIFT_NO" property="gift_no" />
+		<result column="NGIFT_TITLE" property="gift_title" />
+		<result column="NGIFT_IMG" property="gift_img" />
+		<result column="NGIFT_PRICE" property="gift_price" />
+		<result column="NGIFT_BRAND" property="gift_brand" />
+		<result column="NGIFT_MAKER" property="gift_maker" />
+		<result column="NGIFT_COUNT" property="gift_count" />
+		<result column="NGIFT_PRODUCT_TYPE" property="gift_productType" />
+		<result column="NGIFT_ROWPRICE" property="gift_rowPrice" />
+		<result column="NGIFT_DISCOUNT" property="gift_discount" />
+		<result column="NGIFT_SALESVOLUME" property="gift_salesVolume" />
+		<association javaType="giftCate" property="gift_category">
+			<id column="NGIFT_CATE_CODE" property="giftCateCode" />
+			<result column="GIFTCATE_NAME" property="giftCateName" />
+			<result column="GIFTCATE_FIRSTREF" property="giftCateFirstRef" />
+			<result column="GIFTCATE_SECONDREF"
+				property="giftCateSecondRef" />
 		</association>
 	</resultMap>
 
@@ -143,8 +182,10 @@
 	<select id="ebookPurchaseCount" resultType="int">
 		SELECT COUNT(*) FROM
 		ORDERT O
-		LEFT JOIN EBOOK_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO LEFT JOIN
-		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN BOOK_EBOOK_DATABIND BED ON
+		LEFT JOIN EBOOK_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO LEFT
+		JOIN
+		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN BOOK_EBOOK_DATABIND BED
+		ON
 		BO.BIND_NO = BED.BIND_NO
 		WHERE ORDER_MEMBER_ID=#{memberId} AND PAY_AT
 		BETWEEN
@@ -156,8 +197,10 @@
 	<select id="bookPurchaseCount" resultType="int">
 		SELECT COUNT(*) FROM
 		ORDERT O
-		LEFT JOIN BOOK_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO LEFT JOIN
-		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN BOOK_EBOOK_DATABIND BED ON
+		LEFT JOIN BOOK_ORDER_LIST BO ON O.ORDER_NO = BO.ORDER_NO LEFT
+		JOIN
+		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN BOOK_EBOOK_DATABIND BED
+		ON
 		BO.BIND_NO = BED.BIND_NO
 		WHERE ORDER_MEMBER_ID=#{memberId} AND PAY_AT
 		BETWEEN
@@ -169,9 +212,11 @@
 	<select id="giftPurchaseCount" resultType="int">
 		SELECT COUNT(*) FROM
 		ORDERT O
-		LEFT JOIN NGIFT_ORDER_LIST GO ON O.ORDER_NO = GO.ORDER_NO LEFT JOIN
+		LEFT JOIN NGIFT_ORDER_LIST GO ON O.ORDER_NO = GO.ORDER_NO LEFT
+		JOIN
 		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN NGIFT G ON
-		GO.NGIFT_NO = G.NGIFT_NO
+		GO.NGIFT_NO =
+		G.NGIFT_NO
 		WHERE ORDER_MEMBER_ID=#{memberId} AND PAY_AT
 		BETWEEN
 		#{startDate} AND
@@ -210,10 +255,39 @@
 		ORDERT O
 		LEFT JOIN NGIFT_ORDER_LIST GO ON O.ORDER_NO = GO.ORDER_NO LEFT JOIN
 		PAYMENT P ON O.ORDER_NO = P.ORDER_NO JOIN NGIFT G ON
-		GO.NGIFT_NO = G.NGIFT_NO
+		GO.NGIFT_NO =
+		G.NGIFT_NO
 		WHERE ORDER_MEMBER_ID=#{memberId} AND PAY_AT
 		BETWEEN
 		#{startDate} AND
 		#{finishDate}
+	</select>
+
+	<!-- 주문 상세보기 -->
+	<select id="getOneOrder" resultMap="paymentMap">
+		SELECT * FROM
+		ORDERT O
+		JOIN
+		PAYMENT P ON O.ORDER_NO = P.ORDER_NO
+		WHERE
+		O.ORDER_NO=#{orderNo}
+	</select>
+
+	<!-- 주문 테이블에 넣어줄 도서주문 리스트 -->
+	<select id="getBookOrderList" resultMap="bookOrderListMap">
+		SELECT * FROM
+		BOOK_ORDER_LIST BO JOIN BOOK_EBOOK_DATABIND BED ON BO.BIND_NO = BED.BIND_NO WHERE ORDER_NO = #{orderNo}
+	</select>
+
+	<!-- 주문 테이블에 넣어줄 이북주문 리스트 -->
+	<select id="getEbookOrderList" resultMap="ebookOrderListMap">
+		SELECT * FROM
+		EBOOK_ORDER_LIST EBO JOIN BOOK_EBOOK_DATABIND BED ON EBO.BIND_NO = BED.BIND_NO WHERE ORDER_NO = #{orderNo}
+	</select>
+
+	<!-- 주문 테이블에 넣어줄 기프트주문 리스트 -->
+	<select id="getGiftOrderList" resultMap="giftOrderListMap">
+		SELECT * FROM
+		NGIFT_ORDER_LIST GO JOIN NGIFT G ON GO.NGIFT_NO = G.NGIFT_NO WHERE ORDER_NO = #{orderNo}
 	</select>
 </mapper>

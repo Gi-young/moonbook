@@ -31,7 +31,9 @@
 		<!-- 기프트 결제내역 -->
 		<typeAlias alias="giftOrderList"
 			type="com.rar.khbook.order.model.vo.GiftOrderList" />
-
+		<!-- 쿠폰과 주문테이블 연결 -->
+		<typeAlias alias="orderWithCoupon"
+			type="com.rar.khbook.coupon.model.vo.OrderWithCoupon" />
 		<!-- 고객센터 게시판 -->
 		<typeAlias alias="noticeBoard"
 			type="com.rar.khbook.serviceboard.model.vo.NoticeBoard" />
@@ -87,7 +89,7 @@
 			alias="eBookShopingList" />
 		<typeAlias
 			type="com.rar.khbook.shopingList.model.vo.GiftShopingList"
-			alias="giftShopingList" />		
+			alias="giftShopingList" />
 
 		<!-- 기프트 -->
 		<typeAlias type="com.rar.khbook.gift.model.vo.Ngift"
@@ -96,8 +98,8 @@
 			alias="giftCate" />
 		<typeAlias type="com.rar.khbook.gift.model.vo.GiftBoard"
 			alias="giftBoard" />
-		<typeAlias type="com.rar.khbook.gift.model.vo.GiftOrder" 
-			alias="giftOrder" />	
+		<typeAlias type="com.rar.khbook.gift.model.vo.GiftOrder"
+			alias="giftOrder" />
 
 		<!-- 배송 -->
 		<typeAlias type="com.rar.khbook.delivery.model.vo.Delivery"
@@ -111,10 +113,15 @@
 	
 		<!-- top3 gift-->
 		<typeAlias type="com.rar.khbook.adminchart.model.vo.GiftTopThree" alias="gifttopthree"/>
-	
+		
+		<!-- BookReview -->
+		<typeAlias type="com.rar.khbook.serviceboard.model.vo.BookReview" alias="bookReview"/>
+		
 		<!-- faq -->
-		<typeAlias type="com.rar.khbook.servicecenter.model.vo.Faq" alias="faq"/>
-		<typeAlias type="com.rar.khbook.servicecenter.model.vo.FaqCg" alias="faqcg"/>
+		<typeAlias type="com.rar.khbook.servicecenter.model.vo.Faq"
+			alias="faq" />
+		<typeAlias
+			type="com.rar.khbook.servicecenter.model.vo.FaqCg" alias="faqcg" />
 
 	</typeAliases>
 </configuration>

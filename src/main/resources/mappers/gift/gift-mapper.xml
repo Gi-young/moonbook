@@ -2,6 +2,74 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="gift">
 
+	<resultMap type="order" id="orderMap">
+		<result column="order_no" property="orderNo" />
+		<result column="order_count" property="orderCount" />
+		<result column="order_price" property="orderPrice" />
+		<result column="order_deliveryfee" property="orderDeliveryfee" />
+		<result column="order_paymentid" property="orderPaymentId" />
+		<result column="order_paidat" property="orderPaidat" />
+		<result column="order_paidmethod" property="orderPaidMethod" />
+		<result column="order_status" property="orderStatus" />
+		<result column="order_point" property="orderPoint" />
+		<collection property="bookOrderList" ofType="bookOrderList">
+			<id column="order_no" property="orderNo" />
+			<result column="bind_no" property="bindNo" />
+			<result column="order_volume" property="orderVolume" />
+			<result column="TITLE" property="title" />
+			<result column="AUTHOR" property="author" />
+			<result column="IMAGE" property="image" />
+			<result column="PRICE" property="price" />
+			<result column="ISBN" property="isbn" />
+			<result column="PUBDATE" property="pubdate" />
+			<result column="PUBLISHER" property="publisher" />
+			<result column="DESCRIPTION" property="description" />
+			<result column="LINK" property="link" />
+			<result column="CATEGORY_CODE" property="categoryCode" />
+			<result column="STOCK" property="stock" />
+			<result column="SALES_VOLUME" property="salesVolume" />
+			<result column="RATING" property="rating" />
+			<result column="EBOOK_RATING" property="ebookRating" />
+			<result column="EBOOK_SALES_VOLUME"
+				property="ebookSalesVolume" />
+			<result column="PRIME_COST" property="primeCost" />
+			<association property="ebook" javaType="ebook">
+				<id column="EBOOK_NO" property="ebookNo" />
+				<result column="FILEPATH" property="filepath" />
+			</association>
+		</collection>
+		<collection property="giftOrderList" ofType="giftOrderList">
+			<id column="order_no" property="orderNo" />
+			<result column="NGIFT_NO" property="gift_no" />
+			<result column="order_volume" property="orderVolume" />
+			<result column="NGIFT_TITLE" property="gift_title" />
+			<result column="NGIFT_IMG" property="gift_img" />
+			<result column="NGIFT_PRICE" property="gift_price" />
+			<result column="NGIFT_BRAND" property="gift_brand" />
+			<result column="NGIFT_MAKER" property="gift_maker" />
+			<result column="NGIFT_COUNT" property="gift_count" />
+			<result column="NGIFT_PRODUCT_TYPE"
+				property="gift_productType" />
+			<result column="NGIFT_ROWPRICE" property="gift_rowPrice" />
+			<result column="NGIFT_DISCOUNT" property="gift_discount" />
+			<result column="NGIFT_SALESVOLUME" property="gift_salesVolume" />
+			<association javaType="giftCate" property="gift_category">
+				<id column="NGIFT_CATE_CODE" property="giftCateCode" />
+				<result column="GIFTCATE_NAME" property="giftCateName" />
+				<result column="GIFTCATE_FIRSTREF"
+					property="giftCateFirstRef" />
+				<result column="GIFTCATE_SECONDREF"
+					property="giftCateSecondRef" />
+			</association>
+		</collection>
+	</resultMap>
+
+	<resultMap id="giftOrderListMap" type="giftOrderList">
+		<id column="ORDER_NO" property="orderNo"/>
+		<result column="NGIFT_NO" property="ngiftNo"/>
+		<result column="ORDER_VOLUME" property="orderVolume"/>
+	</resultMap>
+	
 	<resultMap id="noticeBoard" type="noticeBoard">
 		<id column="NOTICEBOARD_NO" property="noticeboardNo"/>
 		<result column="NOTICEBOARD_TITLE" property="noticeboardTitle"/>
@@ -152,7 +220,16 @@
 	
 	<!-- OrderT 테이블에 컬럼 추가 -->
 	<insert id="writeOrderT">
-		INSERT INTO ORDERT VALUES(#{merchantUid}, #{stock}, #{deliveryFee}, #{memberId}, null, '결제완료', #{point}, #{totalPrice}, SYSDATE, null, null, null, null)
+		INSERT INTO ORDERT VALUES(#{merchantUid}, #{stock}, #{deliveryFee}, #{memberId},
+		 <choose>
+			<when test="couponNo != null">
+				#{couponNo}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		 </choose>
+		 , '결제완료', #{point}, #{totalPrice}, SYSDATE, null, null, null, null)
 	</insert>
 	
 	<!-- 결제테이블에 컬럼 추가 -->
@@ -174,8 +251,7 @@
 	<update id="updateMemberPP">
 		UPDATE MEMBER SET MEMBER_TOTAL_SALE=MEMBER_TOTAL_SALE+#{totalPrice} WHERE MEMBER_ID=#{memberId}
 	</update>
-	
-	
+
 	<!-- 회원의 포인트를 구매금액의 10%만큼 추가 -->
 	<update id="updateMemberPoint">
 		UPDATE MEMBER SET MEMBER_POINT=MEMBER_POINT+#{point} WHERE MEMBER_ID=#{memberId}
@@ -198,9 +274,18 @@
 	<update id="updateCoupon">
 		UPDATE COUPON SET COUPON_CANUSE='N' WHERE COUPON_COUPONLIST_NO=#{couponNo} AND COUPON_MEMBER_ID=#{memberId}
 	</update>
-	
-	
+		
 	<select id="searchGift" resultMap="giftMap">
 		SELECT * FROM NGIFT WHERE NGIFT_TITLE LIKE '%${keyword}%'
 	</select>
+
+	
+	<select id="memberOrderList" resultMap="orderMap">
+		SELECT * FROM ORDERT WHERE ORDER_MEMBER_ID = #{memberId}
+	</select>
+	
+	<select id="giftOrderList" resultMap="giftOrderListMap">
+		SELECT * FROM NGIFT_ORDER_LIST WHERE NGIFT_NO=#{giftNo}
+	</select>
+	
 </mapper>

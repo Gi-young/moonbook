@@ -717,6 +717,7 @@ public class EbookController {
 			param.put("numPerPage", "12");
 		}
 		
+		
 		return service.newSearchForPaperBook(param);
 	}
 	

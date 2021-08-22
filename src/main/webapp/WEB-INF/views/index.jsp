@@ -48,6 +48,7 @@ window.onload = function() {
 		pubdateOrder: "DESC",
 		salesOrder: "DESC",
 		priceOrder: "DESC",
+		ratingOrder: "DESC",
 		importancePubdate: "3",
 		importanceSales: "2",
 		importanceRating: "1",
@@ -276,7 +277,13 @@ function searchHotnew(searchData) {
 	let ratingLink2=$(".ratingLink2");
 	let ratingLink3=$(".ratingLink3");
 	let ratingLink4=$(".ratingLink4"); 
-	
+
+	/* 평점 입력 */
+	let khloverscore0=$(".khloverscore0"); 
+	let khloverscore1=$(".khloverscore1"); 
+	let khloverscore2=$(".khloverscore2"); 
+	let khloverscore3=$(".khloverscore3"); 
+	let khloverscore4=$(".khloverscore4"); 
 	
 	 /* 가장 평점 높은 도서 타이틀 1-5 */
 	let bestratingtitle0=$(".bestratingtitle0");
@@ -308,6 +315,13 @@ function searchHotnew(searchData) {
 			$(bestratingimg3).attr('src',data[3].image );
 			$(bestratingimg4).attr('src',data[4].image );
 			
+			/* 평접 입력 */
+			/* $(khloverscore0).html(data[0].rating);
+			$(khloverscore1).html(data[1].rating);
+			$(khloverscore2).html(data[2].rating);
+			$(khloverscore3).html(data[3].rating);
+			$(khloverscore4).html(data[4].rating); */
+			
 			/* 평점 좋은 Link */
 			$(ratingLink0).attr('href',src+data[0].bindNo);
 			$(ratingLink1).attr('href',src+data[1].bindNo);
@@ -338,7 +352,33 @@ function searchHotnew(searchData) {
 			$(bestratingauthor2).html(data[2].author );
 			$(bestratingauthor3).html(data[3].author );
 			$(bestratingauthor4).html(data[4].author );
+
+			var bindNo0=data[0].bindNo;
+			var bindNo1=data[1].bindNo;
+			var bindNo2=data[2].bindNo;
+			var bindNo3=data[3].bindNo;
+			var bindNo4=data[4].bindNo;
 			
+			
+			$.ajax({
+				url:"/service/searchAvgRating.do",
+				data:{
+					bindNo0:bindNo0,
+					bindNo1:bindNo1,
+					bindNo2:bindNo2,
+					bindNo3:bindNo3,
+					bindNo4:bindNo4,
+				success: data=>{
+					$(khloverscore0).html(data[0].bookScore);
+					$(khloverscore1).html(data[1].bookScore);
+					$(khloverscore2).html(data[2].bookScore);
+					$(khloverscore3).html(data[3].bookScore);
+					$(khloverscore4).html(data[4].bookScore);
+				}
+				
+				}
+				
+			})
 		}
 	})
 }   
@@ -382,7 +422,7 @@ li{
     line-height: 35px;
 }
 .bottomline{
-    border-bottom: rgb(48, 48, 48) 1px solid;
+    border-bottom: rgba(88,40,16,0.2) 2px solid;
 }
 /* .trigger1:hover{
     background-color: #582810;
@@ -1301,6 +1341,25 @@ padding-bottom: 5px;
   .flex5{
  display:flex; 
   }
+  
+  
+  .trigger1{
+   background-color:white;
+   color:rgba(88,40,16,1);
+  }
+  .trigger1:hover{
+   background-color:rgba(88,40,16,1);
+   color:white;
+  }
+  .trigger2{
+   background-color:white;
+   color:rgba(88,40,16,1);
+  }
+  .trigger2:hover{
+   background-color:rgba(88,40,16,1);
+   color:white;
+  }
+  
 </style>
 <link rel="stylesheet" href="${path }/resources/css/index/stickymenu.css">
 <!-- ////////////////////////상위배너/////////////////////// -->
@@ -1376,7 +1435,7 @@ padding-bottom: 5px;
         <div class="flex alignitems">
             <div class="footerheadline">
                 <p style="font-weight: bold;">따끈따끈 신작</p></div>
-                <a href="#"><img  src="#"></a>
+                <a href="#"><img  src="${path}/resources/img/main/icon/plusicon.png"></a>
         </div>
         <div class="hotNewsearchBox-slideBox boxsetNew">
             <div class="hotNewslide_btn_prev btnNewleftposition"></div>
@@ -1489,7 +1548,7 @@ padding-bottom: 5px;
             </ul>
             <div class="hotNewslide_btn_next btnNewrightposition"></div>
         </div>
-            <div class="hotNewslide_pagination flex" style="height: 50px;  justify-content: center;" >
+            <div class="hotNewslide_pagination flex" style="height: 50px;  justify-content: center; display:none;" >
             </div>
             
             
@@ -1512,11 +1571,11 @@ padding-bottom: 5px;
     <div class="widebg partition">
         <div class="flex">
             <div class="risingStar1">
-                <p class="hotfont">&nbsp;&nbsp;&nbsp;급상승문곰북★</p>
-                <p class="hotfontinner">HOT템!</p>                
+                <p class="hotfont" style="font-family:'한컴 말랑말랑';">&nbsp;&nbsp;&nbsp;급상승★</p>
+                <p class="hotfontinner" style="font-family:'한컴 말랑말랑'; font-size:50px;">it템</p>                
             </div>
             <div class="hotsearchBox-slideBox boxset">
-                <div class="hotslide_btn_prev btnleftposition"></div>
+                <div class="hotslide_btn_prev btnleftposition" style="display:none;"></div>
                 <div class="hotslide_list hotListflex" style="margin-top: 30px;">
                     <div class="hotslide_content">
                         <img alt="banner1" src="${path}/resources/img/main/risingstar/risingstar.png">
@@ -1525,10 +1584,10 @@ padding-bottom: 5px;
                         <img alt="banner2" src="${path}/resources/img/main/risingstar/risingstar2.png">
                     </div>
                 </div>
-                <div class="hotslide_pagination flex" style="height: 50px;  justify-content: center;" >
+                <div class="hotslide_pagination flex" style="height: 50px; display:none; justify-content: center;" >
                 </div>
                 
-                <div class="hotslide_btn_next btnrightposition"></div>
+                <div class="hotslide_btn_next btnrightposition" style="display:none;"></div>
             </div>
         </div>
     </div> 
@@ -1553,19 +1612,20 @@ padding-bottom: 5px;
         <div class="flex">
             <div class="bestSeller_main ">
                 <ul class="bestsellerlist" style="margin-top: 5px;">
-                    <li class="best1" style="padding-left: 0px;">
-                        <div class="icon iconred">
+                <div style="width:700px; height:220px; justify-content:space-around; display:flex; margin-left:10px; margin-top:20px;">
+                    <li class="best1" style="border:2px solid rgba(88,40,16,0.2); width:120px;" >
+                        <div class="icon iconred" >
                             <strong class="rankwhite">01</strong>
                         </div>
                         <div class="cover ">
-                            <a href="#" class="bsLink0"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12 bestsellerimg0"></a>
+                            <a href="#" class="bsLink0"><img alt="bestseller1" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12 bestsellerimg0" style="width:70px; height:70px;"></a>
                         </div>
                         <div class="title ">
                             <a href="#" class="bsLink0"><p class="hotnewtitle bestsellertitle0"></p></a>
                         </div>
                         <div class="author bestsellerauthor0">박원재</div>
                     </li>
-                    <li class="best2">
+                    <li class="best2" style="border:2px solid rgba(88,40,16,0.2); width:120px;">
                         <div class="icon">
                             <strong class="rank">02</strong>
                         </div>
@@ -1578,7 +1638,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="author bestsellerauthor1">박원재</div>
                     </li>
-                    <li class="best3">
+                    <li class="best3" style="border:2px solid rgba(88,40,16,0.2); width:120px;">
                         <div class="icon">
                             <strong class="rank">03</strong>
                         </div>
@@ -1590,7 +1650,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="author bestsellerauthor2">박원재</div>
                     </li>
-                    <li class="best4">
+                    <li class="best4" style="border:2px solid rgba(88,40,16,0.2); width:120px;">
                         <div class="icon">
                             <strong class="rank">04</strong>
                         </div>
@@ -1602,7 +1662,7 @@ padding-bottom: 5px;
                         </div>
                         <div class="author bestsellerauthor3">박원재</div>
                     </li>
-                    <li class="best5">
+                    <li class="best5" style="border:2px solid rgba(88,40,16,0.2); width:120px;">
                         <div class="icon">
                             <strong class="rank">05</strong>
                         </div>
@@ -1614,88 +1674,42 @@ padding-bottom: 5px;
                         </div>
                         <div class="author bestsellerauthor4">박원재</div>
                     </li>
+                    </div>
                 </ul>
                
 			<!-- 기프트 1~5위 -->
                 <ul class="bestsellerlist">
-                    <li class="best1">
-                        <div class="icon icongray">
-                            <strong class="rankgray ">01</strong>
-                        </div>
-                        <div class="cover ">
-                            <a href="#"><img alt="bestseller1" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller12"></a>
-                        </div>
-                        <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
-                        </div>
-                        <div class="author">박원재</div>
-                    </li>
-                    <li class="best2">
-                        <div class="icon">
-                            <strong class="rank">02</strong>
-                        </div>
-                        <div class="cover">
-                            <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
+                <div style="width:700px; justify-content:space-around; display:flex; margin-left:10px;" >
+                    <c:forEach var="ng" items="${gift }" begin="141" end="145">
+                    <li class="best1" style="border:2px solid rgba(88,40,16,0.2); width:120px; ">
+                        <div class="cover " style="margin-top:15px;">
+                            <a href="${path}/gift/giftDetail.do?giftNo=${ng.gift_no }&loginMember=${loginMember.memberId } "><img alt="bestseller1" src="${ng.gift_img }" class="bestseller12"></a>
                         </div>
                         <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
+                            <a href="${path}/gift/giftDetail.do?giftNo=${ng.gift_no }&loginMember=${loginMember.memberId } "><p class="hotnewtitle">${ng.gift_title }</p></a>
                         </div>
-                        <div class="author">박원재</div>
+                        <div class="author">${ng.gift_brand }</div>
                     </li>
-                    <li class="best3">
-                        <div class="icon">
-                            <strong class="rank">03</strong>
-                        </div>
-                        <div class="cover">
-                            <a href="#"><img alt="bestseller3" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
-                        </div>
-                        <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
-                        </div>
-                        <div class="author">박원재</div>
-                    </li>
-                    <li class="best4">
-                        <div class="icon">
-                            <strong class="rank">04</strong>
-                        </div>
-                        <div class="cover">
-                            <a href="#"><img alt="bestseller4" src="${path}/resources/img/main/bestseller/bestseller310.png" class="bestseller310"></a>
-                        </div>
-                        <div class="title ">
-                            <a href="#"><p class="hotnewtitle">먹어야 산다</p></a>
-                        </div>
-                        <div class="author">박원재</div>
-                    </li>
-                    <li class="best05">
-                        <div class="icon">
-                            <strong class="rank">05</strong>
-                        </div>
-                        <div class="cover">
-                            <a href="#"><img alt="bestseller05" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
-                        </div>
-                        <div class="title ">
-                            <a href="#"><p class="hotnewtitle ">먹어야 산다</p></a>
-                        </div>
-                        <div class="author">박원재</div>
-                    </li>
+                    </c:forEach>
+                </div>
                 </ul>
             </div>
             <div class="bestSeller_right">
                 <div class="flex sectionfirst">
-                    <p class="trigger1 mouseoverbtn mouseoverbtnbg bottomline">
+                    <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><p class="trigger1 mouseoverbtn mouseoverbtnbg bottomline">
                     문곰이추천
-                    </p>
-                    <p class="trigger2 mouseoverbtn mouseoverbtnbg bottomline">인기eBook</p>
+                    </p></a>
+                    <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><p class="trigger2 mouseoverbtn mouseoverbtnbg bottomline">인기eBook</p></a>
                 </div>
                 <div class="basicform booktubercontainer" style="background-image: url('${path}/resources/img/main/icon/gomchu.png'); margin-top: 99px;">
 
 
                     <div class="booktubercontainer textalign margintop50">
-                        <a href="#" class="bsLink5"><img alt="bestseller2" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller12"></a>
+                        <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/ebook.jpg" class="bestseller12"></a>
                     </div>
-                    <div class="title "><p class="margintop20 ">[북튜버의 책방]</p></div>
-                    <div class="comment">
-                        <a href="#" class="bsLink5"><p class="margintop10">[로그노트] 어지러운 집 정리하는 꿀팁</p></a>
+                    <div class="title"><p class="margintop20" style="font-weight:bold;">신비한 동물 사전</p></div>
+                    <div class="comment" style="text-align:center;">
+                        <a href="#"><p class="margintop10">J.K.롤링</p></a>
                     </div>
                     <ul>
                         <li>
@@ -1710,19 +1724,19 @@ padding-bottom: 5px;
                 </div>
                 <div class="hiddenform booktubercontainer hidden">
                     <div class="booktubercontainer textalign margintop50">
-                        <a href="#"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/bestseller12.png" class="bestseller12"></a>
+                        <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/ebook.png" class="bestseller12"></a>
                     </div>
-                    <div class="title"><p class="margintop20">[유튜버의 책방]</p></div>
+                    <div class="title"><p class="margintop20">신비한 동물 사전</p></div>
                     <div class="comment">
-                        <a href="#"><p class="margintop10">[로그노트] 어지러운 집 정리하는 꿀팁</p></a>
+                        <a href="#"><p class="margintop10">J.K.롤링</p></a>
                     </div>
                     <ul>
                         <li>
                             <div class="booktubercontainer textalign margintop50">
-                                <img alt="booktuber" src="${path}/resources/img/main/dummybooks/dummy1.jpg" class="bestseller310"></a>
+                                <a href="${path }/ebook/pageEbook.do?currentFocus=ebook"><img alt="bestseller2" src="${path}/resources/img/main/bestseller/ebook.png" class="bestseller12"></a>
                             </div>
                             <div class="title">
-                                <a href="#"><p class="margintop20">책의 제목자리</p></a>
+                                <a href="#"><p class="margintop20">신비한 동물 사전</p></a>
                             </div>
                         </li>
                     </ul>
@@ -1740,6 +1754,7 @@ padding-bottom: 5px;
             <div class="flex alignitems">
                 <div class="footerheadline">
                     <p style="font-weight: bold;">MG평점좋은책</p>
+                    
                     </div>
                     <a href="#"><img src="${path}/resources/img/main/icon/plusicon.png"></a>
             </div>
@@ -1747,7 +1762,6 @@ padding-bottom: 5px;
                 <div class="content">
                     <div class="khloverList flex">
                         <div class="khloverinner1">
-                            <p>오늘의 발견</p>
                             <ul>
                                 <li>
                                     <div class="cover weekbookcontent khloverbg1">
@@ -1757,12 +1771,12 @@ padding-bottom: 5px;
                                         </div>
                                         <div class="author bestratingauthor0">박원재</div>
                                         <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                        <p class="khloverscore">9.9</p>
+                                        <p class="khloverscore0">9.9</p>
                                     </div>
                                 </li>
                             </ul>
                         </div>
-                        <div class="flex khloverbg2 outline">
+                        <div class="flex  outline">
                             <ul class="flex khloverul">
                                 <li>
                                     <div class="cover khloverright ">
@@ -1772,7 +1786,7 @@ padding-bottom: 5px;
                                             <a href="#" class="ratingLink1"><p class="hotnewtitle bestratingtitle1">먹어야 산다</p></a>
                                             <div class="author bestratingauthor1">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                                <p class="khloverscore">9.7</p>
+                                                <p class="khloverscore1">9.7</p>
                                         </div>
                                     </div>
                                 </li>
@@ -1784,7 +1798,7 @@ padding-bottom: 5px;
                                             <a href="#" class="ratingLink2"><p class="hotnewtitle bestratingtitle2">먹어야 산다</p></a>
                                             <div class="author bestratingauthor2">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                                <p class="khloverscore">9.5</p>
+                                                <p class="khloverscore2">9.5</p>
                                         </div>
                                     </div>
                                 </li>
@@ -1796,7 +1810,7 @@ padding-bottom: 5px;
                                             <a href="#" class="ratingLink3"><p class="hotnewtitle bestratingtitle3">먹어야 산다</p></a>
                                             <div class="author bestratingauthor3">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                                <p class="khloverscore">9.3</p>
+                                                <p class="khloverscore3">9.3</p>
                                         </div>
                                     </div>
                                 </li>
@@ -1807,7 +1821,7 @@ padding-bottom: 5px;
                                             <a href="#" class="ratingLink4"><p class="hotnewtitle bestratingtitle4">먹어야 산다</p></a>
                                             <div class="author bestratingauthor4">박원재</div>
                                             <img src="${path}/resources/img/main/khlover/mark.png" style="margin-top: 10px;">
-                                            <p class="khloverscore">9.3</p>
+                                            <p class="khloverscore4">9.3</p>
                                         </div>
                                     </div>
                                 </li>
@@ -1841,12 +1855,12 @@ padding-bottom: 5px;
                         </div>   
                 <div class="footerslide-pagination""></div>
                 <div>
-                    <button class="footerslide-button-prev footerbtn"></button>
-                    <button class="footerslide-button-next footerbtn"></button>
+                    <button class="footerslide-button-prev footerbtn" style="display:none;"></button>
+                    <button class="footerslide-button-next footerbtn" style="display:none;"></button>
                 </div>    
             </div>
                 <div class="flex5">
-                    <p class="borderright footerp" style="text-align: center;">당첨</p>
+                    <p class="borderright footerp" style="text-align: center;">이벤트</p>
                         <div class="footernoticebox-slideContent flex footerbox">
                         
                             <ul class="footerslide2-List" style="margin-left: 20px;">
@@ -1858,8 +1872,8 @@ padding-bottom: 5px;
                         </div>   
                 <div class="footerslide2-pagination"></div>
                 <div>
-                    <button class="footerslide2-button-prev footerbtn"></button>
-                    <button class="footerslide2-button-next footerbtn"></button>
+                    <button class="footerslide2-button-prev footerbtn" style="display:none;"></button>
+                    <button class="footerslide2-button-next footerbtn" style="display:none;"></button>
                 </div>
             </div>
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 import com.rar.khbook.order.model.vo.Order;
@@ -27,7 +28,7 @@ public interface MemberService {
 	int updateMemberPw(Member m);
 
 //	회원의 쿠폰 가져옴
-	List<Coupon> getCoupon(Member m);
+	List<OrderWithCoupon> getCoupon(Member m);
 
 //	회원의 회원등급 가져옴
 	Membergrade getMembergrade(Member m);
@@ -37,6 +38,12 @@ public interface MemberService {
 
 //	전체 쿠폰리스트 가져옴
 	List<Couponlist> couponlist();
+	
+//	사용한 쿠폰 개수 가져옴
+	int couponCount(Member m);
+	
+//	사용한 쿠폰 가져옴
+	List<OrderWithCoupon> getUsedCoupon(int cPage, int numPerpage, Member m);
 
 //	회원 정보 수정
 	int updateMemberEnd(Member m);
@@ -76,4 +83,7 @@ public interface MemberService {
 	
 //  회원가입 성공시 장바구니 만들기
 	int createShopingList(Member m);
+	
+//	주문 상세보기
+	Order getOneOrder(String orderNo);
 }

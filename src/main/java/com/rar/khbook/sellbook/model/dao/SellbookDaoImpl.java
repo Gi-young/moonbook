@@ -68,6 +68,13 @@ public class SellbookDaoImpl implements SellbookDao {
 		return session.insert("SellbookDatabind.insertReview", map);
 	}
 
+	
+	@Override
+	public int insertReviewBook(SqlSession session, HashMap map) {
+		// TODO Auto-generated method stub
+		return session.update("SellbookDatabind.insertReviewBook", map);
+	}
+
 	@Override
 	public int selectReviewAll(SqlSession session, int bindNo) {
 		// TODO Auto-generated method stub

@@ -1,11 +1,13 @@
 package com.rar.khbook.order.model.vo;
 
+import com.rar.khbook.ebook.model.vo.EbookDatabind;
+
 import lombok.Data;
 
 @Data
-public class EbookOrderList {
+public class EbookOrderList extends EbookDatabind {
 
 	private String orderNo;
-	private String bindNo;
+	private int bindNo;
 	private int orderVolume;
 }

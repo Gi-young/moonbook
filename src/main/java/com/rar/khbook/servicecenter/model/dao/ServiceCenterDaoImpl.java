@@ -61,5 +61,11 @@ public class ServiceCenterDaoImpl implements ServiceCenterDao {
 		return session.selectOne("serviceBoard.searchEventBoardDetail", eventboardNo);
 	}
 
+	@Override
+	public int searchAvgRating(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.selectOne("serviceBoard.searchAvgRating", param);
+	}
+
 	
 }

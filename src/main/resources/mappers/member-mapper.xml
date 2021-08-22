@@ -124,6 +124,22 @@
 		<result column="coupon_img" property="couponImg" />
 	</resultMap>
 
+	<!-- 쿠폰을 상속받는 주문 VO -->
+	<resultMap type="orderWithCoupon" id="owcMap"
+		extends="couponMap">
+		<result column="order_no" property="orderNo" />
+		<result column="order_count" property="orderCount" />
+		<result column="order_price" property="orderPrice" />
+		<result column="order_deliveryfee" property="orderDeliveryfee" />
+		<result column="order_paymentid" property="orderPaymentId" />
+		<result column="order_paidat" property="orderPaidat" />
+		<result column="order_paidmethod" property="orderPaidMethod" />
+		<result column="order_status" property="orderStatus" />
+		<result column="order_point" property="orderPoint" />
+		<result column="order_date" property="orderDate" />
+		<result column="order_coupon_no" property="orderCouponNo" />
+	</resultMap>
+
 	<select id="selectOneMember" resultMap="memberMap">
 		SELECT * FROM MEMBER
 		WHERE MEMBER_ID=#{memberId}
@@ -157,11 +173,26 @@
 	</update>
 
 	<!-- 쿠폰 조인해서 가져오기 -->
-	<select id="getCoupon" resultMap="couponMap">
+	<select id="getCoupon" resultMap="owcMap">
 		SELECT * FROM COUPON LEFT JOIN
 		COUPONLIST ON COUPON_COUPONLIST_NO =
-		COUPONLIST_NO WHERE
-		COUPON_MEMBER_ID=#{memberId} ORDER BY COUPONLIST_MEMBERGRADE_NO DESC
+		COUPONLIST_NO LEFT JOIN ORDERT ON
+		ORDER_COUPON_NO = COUPONLIST_NO WHERE
+		COUPON_MEMBER_ID=#{memberId} ORDER BY
+		COUPONLIST_MEMBERGRADE_NO DESC
+	</select>
+
+	<!-- 주문에 사용된 쿠폰 조인해서 가져오기 -->
+	<select id="getUsedCoupon" resultMap="owcMap">
+		SELECT * FROM COUPON LEFT
+		JOIN
+		COUPONLIST ON COUPON_COUPONLIST_NO =
+		COUPONLIST_NO LEFT JOIN ORDERT
+		ON
+		ORDER_COUPON_NO = COUPONLIST_NO WHERE
+		COUPON_MEMBER_ID=#{memberId} ORDER
+		BY
+		COUPONLIST_MEMBERGRADE_NO DESC
 	</select>
 
 	<!-- 회원의 회원등급 가져오기 -->
@@ -181,6 +212,16 @@
 		SELECT * FROM COUPONLIST LEFT
 		JOIN MEMBERGRADE ON COUPONLIST_MEMBERGRADE_NO
 		= MEMBERGRADE_NO
+	</select>
+
+	<!-- 사용한 쿠폰 개수 가져옴 -->
+	<select id="couponCount" resultType="int">
+		SELECT COUNT(*) FROM COUPON
+		LEFT JOIN COUPONLIST ON COUPON_COUPONLIST_NO =
+		COUPONLIST_NO LEFT JOIN
+		ORDERT ON ORDER_COUPON_NO = COUPON_NO WHERE
+		COUPON_MEMBER_ID =
+		#{memberId} AND COUPON_CANUSE = 'N'
 	</select>
 
 	<!-- 회원가입한 회원에게 기본 쿠폰 넣어주기 -->

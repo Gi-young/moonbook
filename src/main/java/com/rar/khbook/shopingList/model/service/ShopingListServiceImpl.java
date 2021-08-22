@@ -23,20 +23,31 @@ import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 @Service
 public class ShopingListServiceImpl implements ShopingListService {
 
+	
+
 	@Autowired
 	private ShopingListDao dao;
 	
 	@Autowired
 	private SqlSession session;
 
+	
+	@Override
+	public int writeOrderT(Map param) {
+		// TODO Auto-generated method stub
+		
+		int result = dao.writeOrderT(session, param);
+		return result;
+	}
 
 	@Override
 	public int insertShopingList(@RequestParam Map param) {
 		// TODO Auto-generated method stub
 		System.out.println("없어이건"+param);
-		
-		try {
-			int result=dao.insertShopingList(session, param);
+		int result=dao.insertShopingList(session, param);
+		System.out.println("없긴 뭐가없어! 1나와라! : "+result);
+		return result;
+/*		try {
 			System.out.println("두번째파람"+param);
 				if(result>0) {
 					result=dao.insertShopingListBook(session, param);
@@ -47,9 +58,9 @@ public class ShopingListServiceImpl implements ShopingListService {
 			}catch(RuntimeException e) {
 
 			}
-			return 1;
+			return 1;*/
 		}
-
+		
 	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public List<BookShopingList> selectMyShopingListB(String memberId) {
@@ -127,6 +138,19 @@ public class ShopingListServiceImpl implements ShopingListService {
 		// TODO Auto-generated method stub
 		List<Ngift> gift = dao.myShopingListG(session, param);
 		return gift;
+	}
+
+	@Override
+	public int insertList(Map param) {
+		// TODO Auto-generated method stub
+		
+		int resultB = dao.insertBook(session, param);
+		int resultE = dao.insertEbook(session, param);
+		int resultG = dao.insertGift(session, param);
+
+		int resultM = dao.insertMember(session, param);
+		
+		return 0;
 	}
 	
 

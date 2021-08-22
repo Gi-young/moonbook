@@ -28,4 +28,6 @@ public interface ServiceCenterDao {
 
 	EventBoard searchEventBoardDetail(SqlSession session, int eventboardNo);
 
+	int searchAvgRating(SqlSession session, Map param);
+
 }

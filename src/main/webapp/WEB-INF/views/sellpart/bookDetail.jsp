@@ -852,6 +852,41 @@ ul {
    text-align: center;
    transition: all .2s;
 }
+
+.booktext>p{
+font-size:20px;
+}
+
+.bookbtn button{
+width:200px;
+height: 70px;
+font-size:25px;
+font-family:'한컴 말랑말랑';
+background-color: white;
+color: rgba(88,40,16,1);
+border:2px solid rgba(88,40,16,1);
+}
+.bookbtn button:hover{
+background-color: rgba(88,40,16,1);
+color: white;
+border:2px solid rgba(88,40,16,1);
+}
+
+.barActive{
+background-color:rgba(88,40,16,1);
+}
+
+.proDetail-bar{
+border:2px solid rgba(88,40,16,1);
+font-family:'한컴 말랑말랑';
+color: red;
+}
+
+.reviewWrite{
+background-color:rgba(88,40,16,1);
+border:2px solid rgba(88,40,16,1);
+}
+
 </style>
 <section id="content">
 
@@ -878,8 +913,8 @@ ul {
 							onclick="window.open(this.href, '_blank', 'width=600, height=800'); return false;">크게보기</a>
 					</div>
 				</div>
-				<div class="bookView_order" style="margin-left: 50px;">
-					<div>
+				<div class="bookView_order booktext" style="margin-left: 50px;">
+					<div class="booktext">
 						<h2>
 							<span style="font-size: 30px;">${book.title } <c:if
 									test="${shopinglistCate  == 'E'}">
@@ -899,11 +934,10 @@ ul {
 							ISBN : <span>${book.isbn }</span><br> <br>
 						<p>
 							리뷰점수: <span>${book.rating }</span>
-							<button>평점주기:</button>
 						</p>
 						<br> <br> <br>
 					</div>
-					<div>
+					<div class="booktext">
 						<br> <br>
 						<p>
 							정가 : <span><fmt:formatNumber value="${book.price}"
@@ -921,7 +955,7 @@ ul {
 						</c:if>
 						<br> <br>
 					</div>
-					<div>
+					<div class="booktext">
 						<br> <br>
 						<p>
 							쿠폰사용 :
@@ -942,23 +976,23 @@ ul {
 						<br> <br>
 
 					</div>
-					<div>
+					<div >
 						<br> <br>
-						<p>알림</p>
+						<p style="font-size:20px;">알림</p>
 						<p>
 							<br> <br> 도서정보가 달라질 수 있습니다. 이 점 양해 부탁드립니다.<br> <br>
 							<br> <br>
 						</p>
 					</div>
 
-					<div>
-						<br> <br> <span>주문가능수량</span> <input type="number"
-							id="stock" name="stock" value="${book.stock }" readonly><br>
-						<br> <span>&nbsp;&nbsp;&nbsp;&nbsp;주문수량&nbsp;&nbsp;</span> <input
-							type="text" id="sellStock" name="sellStock" value="1"><br>
+					<div class="booktext">
+						<br> <br> <span style="font-size:20px;">주문가능수량</span> <input type="number"
+							id="stock" name="stock" value="${book.stock }"  style="margin-left:10px;" readonly><br>
+						<br> <span style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;주문수량&nbsp;&nbsp;</span> <input
+							type="number"  style="margin-left:10px; id="sellStock" name="sellStock" value="1"><br>
 						<br> <br> <br>
 					</div>
-					<div
+					<div class="bookbtn"
 						style="display: flex; justify-content: center; padding-bottom: 30px; justify-content: space-around;">
 						<button id="slBtn" onclick="shoppingList()">장바구니담기</button>
 						<button id="buyBtn" type="button">바로구매</button>
