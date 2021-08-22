@@ -183,6 +183,18 @@
 		SELECT * FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId} ORDER BY NGIFT_NO DESC
 	</select>
 	
+	<delete id="deleteBook">
+		DELETE FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND B_BIND_NO=${bookNo}
+	</delete>
+	
+	<delete id="deleteEbook">
+		DELETE FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND E_BIND_NO=${eBookNo}
+	</delete>
+	
+	<delete id="deleteGift">
+		DELETE FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND NGIFT_NO=${giftNo}
+	</delete>
+	
 	<select id="myShopingListB" resultMap="sellbookDatabindMap">
 		SELECT * FROM BOOK_EBOOK_DATABIND
 		<choose>
@@ -221,6 +233,23 @@
 		</choose>
 		ORDER BY NGIFT_NO DESC
 	</select>
+	
+	<insert id="writeOrderT">
+		INSERT INTO ORDERT VALUES(#{merchantUid}, null, #{deliveryFee}, #{memberId},
+		 <choose>
+			<when test="couponNo != null">
+				#{couponNo}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		 </choose>
+		 , '결제완료', #{point}, #{totalPrice}, SYSDATE, null, null, null, null)
+	</insert>
+	
+	<insert id="writePurchaseLog">
+		INSERT INTO PAYMENT VALUES(#{impUid}, #{merchantUid}, #{payMethod}, #{paidAmount}, #{paidAt}, #{pgProvider}, #{receiptUrl}, #{merchantUid})
+	</insert>
 	
 	
 	

@@ -88,5 +88,7 @@ public interface GiftDao {
 
 	List<GiftOrderList> giftOrderList(SqlSession session, int giftNo);
 
+	//List<Coupon> searchCoupon(SqlSession session, String memberId);
+
 	//int updateOrderT(SqlSession session, Map param);
 }

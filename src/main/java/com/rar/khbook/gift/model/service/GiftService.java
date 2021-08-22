@@ -69,7 +69,9 @@ public interface GiftService {
 
 	List<Order> memberOrderList(String memberId);
 
-	List<GiftOrderList> giftOrderList(int giftNo);	
+	List<GiftOrderList> giftOrderList(int giftNo);
+
+	//List<Coupon> searchCoupon(String memberId);	
 }
 
 
