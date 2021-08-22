@@ -222,7 +222,7 @@
 	<insert id="writeOrderT">
 		INSERT INTO ORDERT VALUES(#{merchantUid}, #{stock}, #{deliveryFee}, #{memberId},
 		 <choose>
-			<when test="couponNo != ''">
+			<when test="couponNo != null">
 				#{couponNo}
 			</when>
 			<otherwise>
