@@ -25,7 +25,7 @@
 							<a href="javascript:openEbookWizard();"><i class="fas fa-book-open"></i><b>e북 마법사</b></a>
 						</li>
 						<li>
-							<a href="${path}/shopingList/shopingList.do"><i class="fas fa-cart-plus"></i><b>장바구니</b></a>
+							<a href="${path}/shopingList/shopingListView.do"><i class="fas fa-cart-plus"></i><b>장바구니</b></a>
 						</li>
 					</ul>
 				</div>
@@ -46,7 +46,7 @@
 							<li onclick="login();">로그인</li>
 						</c:if>
 						<c:if test="${sessionScope.loginMember != null}">
-							<li onclick="location.assign('${path}/member/myroom/main.do')">
+							<li class="none-react">
 								<c:out value="${sessionScope.loginMember.memberId}"/>님, 환영합니다
 							</li>
 							<li onclick="logout();">로그아웃</li>

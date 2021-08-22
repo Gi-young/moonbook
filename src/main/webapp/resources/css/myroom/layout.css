@@ -134,7 +134,7 @@ h1 a, h3 a {
 }
 
 .fs8 {
-	font-size: 8px;
+	font-size: 8px!important;
 }
 
 .fs11 {

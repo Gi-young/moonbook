@@ -15,7 +15,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,12 +30,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.rar.khbook.common.PageFactory;
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
-import com.rar.khbook.order.model.vo.BookOrderList;
 import com.rar.khbook.order.model.vo.Order;
 import com.rar.khbook.order.model.vo.Payment;
 
@@ -427,13 +426,37 @@ public class MemberController {
 
 //	쿠폰함 페이지
 	@RequestMapping("/member/myroom/coupon.do")
-	public String couponBox(Model m) {
+	public String couponBox(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, Model m, HttpSession session) {
 
+		int totalData = service.couponCount((Member)session.getAttribute("loginMember"));
 		List<Membergrade> mg = service.memberGrade();
+		List<OrderWithCoupon> uc = service.getUsedCoupon(cPage, numPerpage, (Member)session.getAttribute("loginMember"));;
+		System.out.println(totalData);
+		for(int i = 0; i < uc.size(); i++) {
+			
+			System.out.println(uc.get(i).getOrderDate());
+		}
 		m.addAttribute("allMembergrade", mg);
-		m.addAttribute("pageBar", PageFactory.getOwnPageBar(10, 1, 5, "adMemberPage.do"));
+		m.addAttribute("uc", uc);
+		m.addAttribute("pageBar", PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "adMemberPage.do", 0));
 
 		return "myroom/couponBox";
+	}
+	
+//	사용한 쿠폰 조회
+	@RequestMapping("/member/myroom/usedCoupon.do")
+	@ResponseBody
+	public Map usedCoupon(@RequestParam(value = "cPage", defaultValue = "1") int cPage,
+			@RequestParam(value = "numPerpage", defaultValue = "5") int numPerpage, HttpSession session) {
+		
+		Map param = new HashMap();
+		int totalData = service.couponCount((Member)session.getAttribute("loginMember"));
+		List<OrderWithCoupon> uc = service.getUsedCoupon(cPage, numPerpage, (Member)session.getAttribute("loginMember"));
+		param.put("list", uc);
+		param.put("pageBar", PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "adMemberPage.do", 0));
+		
+		return param;
 	}
 
 //	회원정보수정 페이지

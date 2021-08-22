@@ -33,7 +33,7 @@
 			            </div>
 			        </c:if>
 		        </c:forEach>    
-        	</form>   
+        	</form>
             <%-- <div class="couponView">  
                 <img src="${path }/resources/images/gift/silverbear.png" alt="">
                 <p>보유 실버 쿠폰</p><p class="cp-count"></p>

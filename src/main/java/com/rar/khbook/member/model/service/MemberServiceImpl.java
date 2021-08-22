@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.dao.MemberDao;
@@ -123,6 +124,20 @@ public class MemberServiceImpl implements MemberService {
 		return dao.couponlist(session);
 	}
 
+//	사용한 쿠폰 개수 가져옴
+	@Override
+	public int couponCount(Member m) {
+		// TODO Auto-generated method stub
+		return dao.couponCount(session, m);
+	}
+	
+//	사용한 쿠폰 가져옴
+	@Override
+	public List<OrderWithCoupon> getUsedCoupon(int cPage, int numPerpage, Member m) {
+		// TODO Auto-generated method stub
+		return dao.getUsedCoupon(session, cPage, numPerpage, m);
+	}
+	
 //	회원 정보 수정
 	@Override
 	public int updateMemberEnd(Member m) {

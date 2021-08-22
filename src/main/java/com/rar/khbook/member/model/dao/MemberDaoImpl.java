@@ -92,6 +92,22 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectList("member.couponlist");
 	}
 
+//	사용한 쿠폰 개수 가져옴
+	@Override
+	public int couponCount(SqlSession session, Member m) {
+		// TODO Auto-generated method stub
+		return session.selectOne("member.couponCount", m);
+	}
+	
+//	사용한 쿠폰 가져옴
+	@Override
+	public List<OrderWithCoupon> getUsedCoupon(SqlSession session, int cPage, int numPerpage, Member m) {
+		// TODO Auto-generated method stub
+		RowBounds row = new RowBounds((cPage-1)*numPerpage, numPerpage);
+		
+		return session.selectList("member.getUsedCoupon", m, row);
+	}
+	
 	@Override
 	public int updateMemberVisit(SqlSession session, Map param) {
 		// TODO Auto-generated method stub

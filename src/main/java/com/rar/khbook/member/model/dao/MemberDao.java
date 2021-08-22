@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.vo.Member;
@@ -40,6 +41,12 @@ public interface MemberDao {
 //	전체 쿠폰리스트 가져오기
 	List<Couponlist> couponlist(SqlSession session);
 
+//	사용한 쿠폰 개수 가져옴
+	int couponCount(SqlSession session, Member m);
+	
+//	사용한 쿠폰 가져오기
+	List<OrderWithCoupon> getUsedCoupon(SqlSession session, int cPage, int numPerpage, Member m);
+	
 //	회원가입 감사 쿠폰 발급
 	int insertCoupon(SqlSession session, Member m);
 

@@ -3,6 +3,7 @@ package com.rar.khbook.member.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.vo.Member;
@@ -37,6 +38,12 @@ public interface MemberService {
 
 //	전체 쿠폰리스트 가져옴
 	List<Couponlist> couponlist();
+	
+//	사용한 쿠폰 개수 가져옴
+	int couponCount(Member m);
+	
+//	사용한 쿠폰 가져옴
+	List<OrderWithCoupon> getUsedCoupon(int cPage, int numPerpage, Member m);
 
 //	회원 정보 수정
 	int updateMemberEnd(Member m);
