@@ -47,6 +47,7 @@
 					</c:forEach>
 				</tr>
 			</table>
+			${coupon }
 			<div class="content_middle padding10 bold margin_top2e">
 				<h3>사용한 쿠폰내역</h3>
 			</div>

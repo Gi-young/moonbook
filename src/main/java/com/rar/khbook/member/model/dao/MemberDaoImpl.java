@@ -8,8 +8,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 import com.rar.khbook.order.model.vo.Order;
@@ -65,7 +65,7 @@ public class MemberDaoImpl implements MemberDao {
 
 //	회원의 쿠폰 가져오기
 	@Override
-	public List<Coupon> getCoupon(SqlSession session, Member m) {
+	public List<OrderWithCoupon> getCoupon(SqlSession session, Member m) {
 		// TODO Auto-generated method stub
 		return session.selectList("member.getCoupon", m);
 	}

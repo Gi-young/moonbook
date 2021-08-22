@@ -3,8 +3,8 @@ package com.rar.khbook.member.model.service;
 import java.util.List;
 import java.util.Map;
 
-import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
 import com.rar.khbook.order.model.vo.Order;
@@ -27,7 +27,7 @@ public interface MemberService {
 	int updateMemberPw(Member m);
 
 //	회원의 쿠폰 가져옴
-	List<Coupon> getCoupon(Member m);
+	List<OrderWithCoupon> getCoupon(Member m);
 
 //	회원의 회원등급 가져옴
 	Membergrade getMembergrade(Member m);

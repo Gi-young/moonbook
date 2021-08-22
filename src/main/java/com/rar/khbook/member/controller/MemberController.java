@@ -15,13 +15,11 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,8 +30,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.rar.khbook.common.PageFactory;
-import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
@@ -90,7 +88,7 @@ public class MemberController {
 				session.setAttribute("loginMember", m);
 				System.out.println("아니 여기" + param.get("memberPw") + "ddd" + m.getMemberPw());
 //				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
-				List<Coupon> c = service.getCoupon(m);
+				List<OrderWithCoupon> c = service.getCoupon(m);
 				session.setAttribute("coupon", c);
 //				로그인한 멤버의 회원등급도 Session에 넣어줌
 				Membergrade mg = service.getMembergrade(m);
@@ -586,7 +584,7 @@ public class MemberController {
 		param.put("memberId", (String) m.getMemberId());
 		int totalData = service.bookPurchaseCount(param);
 		List<Order> list = service.bookPurchaseList(param, cPage, numPerpage);
-		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/payList.do");
+		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "payList.do");
 		mv.addObject("list", list);
 		List date = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
@@ -623,7 +621,7 @@ public class MemberController {
 		param.put("memberId", (String) m.getMemberId());
 		int totalData = service.ebookPurchaseCount(param);
 		List<Order> list = service.ebookPurchaseList(param, cPage, numPerpage);
-		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/ebookPayList.do");
+		String pageBar = PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "ebookPayList.do", 0);
 		List dateList = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
 			String tm = ((Payment) list.get(i)).getPayAt() + "000";
@@ -658,7 +656,7 @@ public class MemberController {
 		param.put("memberId", (String) m.getMemberId());
 		int totalData = service.giftPurchaseCount(param);
 		List<Order> list = service.giftPurchaseList(param, cPage, numPerpage);
-		String pageBar = PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "/member/myroom/giftPayList.do");
+		String pageBar = PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "giftPayList.do", 1);
 		List dateList = new ArrayList();
 		for (int i = 0; i < list.size(); i++) {
 			String tm = ((Payment) list.get(i)).getPayAt() + "000";
