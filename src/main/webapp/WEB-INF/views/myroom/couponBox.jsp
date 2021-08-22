@@ -47,6 +47,10 @@
 					</c:forEach>
 				</tr>
 			</table>
+			<c:forEach var="cl2" items="${coupon }">
+			${cl2.getCouponNo() }
+			</c:forEach>
+			${coupon }
 			<div class="content_middle padding10 bold margin_top2e">
 				<h3>사용한 쿠폰내역</h3>
 			</div>

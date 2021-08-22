@@ -88,7 +88,8 @@ $(".btnPay").click(e=> {
 						                deliveryFee: deliveryFee,
 						                stock: stock,
 						                totalPrice: totalPrice,
-						                point: point
+						                point: point,
+						                couponNo: couponNo
 					                },
                                     success: data => {
                                     	$.ajax({

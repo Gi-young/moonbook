@@ -7,8 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rar.khbook.coupon.model.vo.Coupon;
 import com.rar.khbook.coupon.model.vo.Couponlist;
+import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.dao.MemberDao;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
@@ -83,7 +83,7 @@ public class MemberServiceImpl implements MemberService {
 
 //	회원의 쿠폰 가져오기
 	@Override
-	public List<Coupon> getCoupon(Member m) {
+	public List<OrderWithCoupon> getCoupon(Member m) {
 		// TODO Auto-generated method stub
 		return dao.getCoupon(session, m);
 	}
@@ -197,5 +197,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int createShopingList(Member m) {
 		return dao.createShopingList(session, m);
+	}
+	
+//	주문 상세 보기
+	@Override
+	public Order getOneOrder(String orderNo) {
+		// TODO Auto-generated method stub
+		return dao.getOneOrder(session, orderNo);
 	}
 }

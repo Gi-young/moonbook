@@ -70,6 +70,7 @@
                  <div class="discount-price">
                     <p class="discount" id="ds"></p>                
                     <p class="price" id="totalPrice"><fmt:formatNumber type="number" value="${gift.gift_price }"/>원</p>
+                	<input type="hidden" value="${gift.gift_price }" id="totalP">
                 </div>
                 <div class="crossLine2"></div>
                 <div class="purBtn-box">
@@ -176,8 +177,7 @@
      
           <script>
         /* 상품리뷰, 상품문의 */
-    	    var btnR = document.getElementById("bar2");
-    	    
+    	    var btnR = document.getElementById("bar2");   	    
     	    var giftNo = document.getElementById("giftNo").value; 	     
  	    
     	   	let pageBar = document.getElementById("pageBar");
@@ -220,7 +220,7 @@
             		/* dataType: "json", */
             		success: data => {
             			
-            			console.log("페이지바 넘겨온 데이터"+data);
+            			//console.log("페이지바 넘겨온 데이터"+data);
             			pageBar.innerHTML = data;
             		} 
             	}); // pageBar ajax
@@ -240,17 +240,20 @@
               		
               		exp[0].appendChild(tb).appendChild(tr2);
               		data.forEach((v, i) => {   
-						 console.log("어떻게 나왔지 ?? "+v.rownum);
+						 //console.log("어떻게 나왔지 ?? "+v.rownum);
+						 
               			 let html = ""; /* 테이블 본문 내용 */
               		     html += "<tr class='review-text review-tr'>";   
                  	     html += "<td class='review-num'>"+v.rownum+"</td>";
                  	     html += "<td class='gpa'>";
                  	     html += "<div class='gpa-circle'>";
                  	     html += "<p class='gpa-circle-a'>"+v.gift_score+"</p></div></td>";
-                 	     html += "<td><div class='review'><a class='review-title-a'>"+v.gift_board_content+"</a></div></td>";
+                 	     html += "<td><div class='review'><a class='review-title-a' onclick='reviewDetail("+i+");'>"+v.gift_board_content+"</a></div></td>";
                  	     html += " <td class='review-writer'>"+v.writer+"</td>";
                  	     html += "<td class='review-date'>"+v.write_date+"</td></tr>";
-     
+                 	     
+                 	    var reviewA = document.getElementsByClassName("review-title-a"); 
+                 	    // console.log(reviewA);
                  	    tr = document.createElement('tr'); 
                			tr.classList.add('review-text');
                  	    tr.classList.add('review-tr');
@@ -259,7 +262,7 @@
                  	    pager = document.createElement('div');
                  	    pager.innerHTML = pageBar;
                  	    
-                 	    console.log(tb);
+                 	    //console.log(tb);
                  	    
                  	    exp[0].appendChild(tb).appendChild(tr);
                  	                	    
@@ -270,7 +273,20 @@
               }); // 1번째 ajax 끝
                        
          }
-             		  			
+          
+         function reviewDetail(i){
+        	 let gpa = document.getElementsByClassName("gpa")[i];
+        	 //let review = document.getElementsByClassName("review")[i];
+        	 let reviewTr = document.getElementsByClassName("review-tr")[i];
+        	 let reviewTitle = document.getElementsByClassName("review-title-a")[i];      	 
+        	 reviewTr.classList.toggle("review-toggle"); 
+     		 /* if(gpa.classList){
+        	 gpa.classList.add();
+     			 
+     		 } */
+     		 gpa.classList.toggle("gpa-re");
+         }        
+     	          		  			
         </script>
      
         <div class="notify">
@@ -398,20 +414,14 @@
     	})
     });
    
-    let reviewTitle = document.getElementsByClassName("review-title-a");
-    
-    console.log(reviewTitle);
-    
-    /* reviewTitle.addEventListener("click", function(e){
-    	alert("나와라");
-    }); */
-    
+
     function openWindow(){
     	let memberId=document.getElementById("loginMemberId").value;
     	console.log(memberId);
-    	window.name="giftDetail";
+    	window.name="쿠폰함";
     	window.open("<c:url value='/gift/myCoupon.do?memberId="+memberId+"'/>",'myCoupon','width=800, height=700, location=no, status=no, scrollbars=yes');
     }
+  
     
 </script>
 
