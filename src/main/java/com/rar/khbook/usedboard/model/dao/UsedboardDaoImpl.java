@@ -21,7 +21,11 @@ public class UsedboardDaoImpl implements UsedboardDao {
 		// TODO Auto-generated method stub
 		return session.selectList("usedboard.selectUsedboardList",map,new RowBounds((cPage-1)*numPerpage,numPerpage));
 	}
-
+	@Override
+	public List<Usedboard> selectUsedboardList2(SqlSession session) {
+		// TODO Auto-generated method stub
+		return session.selectList("usedboard.selectUsedboardList2");
+	}
 	@Override
 	public int selectUsedboardCount(SqlSession session,Map<String,Object> map) {
 		// TODO Auto-generated method stub

@@ -2,35 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="usedboard">
 	<select id="selectUsedboardList" resultMap="usedboardMap">
-		SELECT * FROM USEDBOARD B LEFT JOIN USEDBOARDFILE A ON B.USEDBOARD_NO=A.USEDBOARD_NO 
+		SELECT * FROM USEDBOARD 
 		<trim prefix="WHERE" prefixOverrides="AND|OR">
 			<if test="keyword2 != null and keyword2 != '' ">
 					<if test="searchType2 =='memberId'">
-						AND B.MEMBER_ID=${keyword2}
+						AND MEMBER_ID=${keyword2}
 					</if>
 					<if test="searchType2 =='catagory'">
-						AND B.USEDBOARD_CATEGORY LIKE '%'||${keyword2}||'%'
+						AND USEDBOARD_CATEGORY LIKE '%'||${keyword2}||'%'
 					</if>
 			</if>
 			<if test="keyword != null and keyword != '' ">
 				<if test="searchType=='title'">
-					AND B.USEDBOARD_TITLE like '%'||${keyword}||'%'
+					AND USEDBOARD_TITLE like '%'||${keyword}||'%'
 				</if>
 				<if test="searchType=='bookTitle'">
-					AND B.USEDBOARD_BOOKTITLE like '%'||${keyword}||'%'
+					AND USEDBOARD_BOOKTITLE like '%'||${keyword}||'%'
 				</if>
 				<if test="searchType=='memberid'">
-					AND B.MEMBER_ID like '%'||${keyword}||'%'
+					AND MEMBER_ID like '%'||${keyword}||'%'
 				</if>
 				<if test="searchType=='topPrice'">
-					AND B.USEDBOARD_PRICE &gt;= ${keyword}
+					AND USEDBOARD_PRICE &gt;= ${keyword}
 				</if>
 				<if test="searchType=='botPrice'">
-					AND B.USEDBOARD_PRICE &lt;= ${keyword}
+					AND USEDBOARD_PRICE &lt;= ${keyword}
 				</if>
       		</if>
 		</trim>
-		ORDER BY B.USEDBOARD_NO DESC
+		ORDER BY USEDBOARD_NO DESC
+	</select>
+	<select id="selectUsedboardList2" resultMap="usedboardfileMap">
+		SELECT * FROM USEDBOARDFILE
 	</select>
 	<resultMap type="usedboard" id="usedboardMap">
 		<id column="usedboard_No" property="usedboard_No"/>
