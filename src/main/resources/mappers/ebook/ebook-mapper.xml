@@ -328,6 +328,7 @@
 		SELECT * FROM BOOK_EBOOK_DATABIND D, MEMBER_EBOOK_LIST L
 		WHERE D.BIND_NO=L.EBOOK_NO
 		AND L.MEMBER_ID=#{memberId}
+		ORDER BY TO_NUMBER(D.CATEGORY_CODE) ASC
 	</select>
 	
 	<select id="getEbookFilepath" resultType="string">
@@ -384,19 +385,19 @@
 	</select>
 	
 	<select id="getTodayRecord" resultType="hashmap">
-		SELECT * FROM EBOOK_PLANNER WHERE MEMBER_ID=#{memberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
+		SELECT * FROM EBOOK_READING_RECORD WHERE MEMBER_ID=#{memberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
 	</select>
 	
 	<insert id="insertTodayRecord">
-		INSERT INTO EBOOK_PLANNER VALUES(SEQ_EBOOK_PLANNER.NEXTVAL,#{loginMemberId},DEFAULT,DEFAULT,DEFAULT)
+		INSERT INTO EBOOK_READING_RECORD VALUES(SEQ_EBOOK_READING_RECORD.NEXTVAL,#{loginMemberId},DEFAULT,DEFAULT,DEFAULT)
 	</insert>
 	
 	<update id="countReadPage">
-		UPDATE EBOOK_PLANNER SET READ_PAGE=READ_PAGE+2 WHERE MEMBER_ID=#{loginMemberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
+		UPDATE EBOOK_READING_RECORD SET READ_PAGE=READ_PAGE+2 WHERE MEMBER_ID=#{loginMemberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
 	</update>
 	
 	<update id="countReadTime">
-		UPDATE EBOOK_PLANNER SET READ_TIME_IN_MINUTES=READ_TIME_IN_MINUTES+1 WHERE MEMBER_ID=#{loginMemberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
+		UPDATE EBOOK_READING_RECORD SET READ_TIME_IN_MINUTES=READ_TIME_IN_MINUTES+1 WHERE MEMBER_ID=#{loginMemberId} AND TO_CHAR(RECORD_DATE,'YYYYMMDD')=TO_CHAR(SYSDATE,'YYYYMMDD')
 	</update>
 	
 	<select id="getBasicBookMarks" resultType="hashmap">
@@ -778,5 +779,46 @@
 			</otherwise>
 		</choose>
 	</select>
+	
+	<select id="getReadingRecord" resultType="hashmap">
+		SELECT SUM(READ_TIME_IN_MINUTES) AS TOTAL_READ_TIME_IN_MINUTES, SUM(READ_PAGE) AS TOTAL_READ_PAGE
+		FROM EBOOK_READING_RECORD WHERE MEMBER_ID=#{loginMemberId}
+	</select>
+	
+	<insert id="writeBoard">
+		INSERT INTO EBOOK_CLUB_BOARD VALUES(SEQ_EBOOK_CLUB_BOARD.NEXTVAL,#{loginMemberId},#{content},DEFAULT,DEFAULT,#{clubName},#{title})
+	</insert>
+	
+	<select id="loadBoard" resultType="hashmap">
+		SELECT * FROM EBOOK_CLUB_BOARD WHERE CLUB_NAME=#{clubName}
+	</select>
+	
+	<update id="addBoardVisit">
+		UPDATE EBOOK_CLUB_BOARD SET VISIT=VISIT+1 WHERE BOARD_NO=#{boardNo}
+	</update>
+	
+	<update id="nextDate">
+		UPDATE READING_CLUB_DEBATE SET DEBATE_DATE=#{nextTime} WHERE CLUB_NAME=#{clubName} 
+	</update>
+	
+	<select id="checkBindNo" resultType="hashmap">
+		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+	
+	<update id="nextEbook">
+		UPDATE READING_CLUB_DEBATE SET EBOOK_NO=#{bindNo} WHERE CLUB_NAME=#{clubName}
+	</update>
+	
+	<select id="loadNextDebate" resultType="hashmap">
+		SELECT * FROM READING_CLUB_DEBATE WHERE CLUB_NAME=#{clubName}
+	</select>
+	
+	<select id="getEbook" resultType="hashmap">
+		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
+	</select>
+	
+	<update id="debateEnd">
+		UPDATE READING_CLUB_DEBATE SET EBOOK_NO=NULL, DEBATE_DATE=NULL WHERE CLUB_NAME=#{clubName}
+	</update>
 
 </mapper>

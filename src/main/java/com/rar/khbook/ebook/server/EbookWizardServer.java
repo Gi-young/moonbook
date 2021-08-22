@@ -183,7 +183,6 @@ public class EbookWizardServer extends TextWebSocketHandler{
 				}
 			}
 			
-			
 		}
 		
 	}
@@ -203,6 +202,10 @@ public class EbookWizardServer extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println("afterConnectionClosed: " + session + " / " + status);
+		
+		String userId = getId(session);
+		
+		clients.remove(userId);
 	}
 	
 }

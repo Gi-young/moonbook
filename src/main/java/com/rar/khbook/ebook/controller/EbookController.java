@@ -135,6 +135,13 @@ public class EbookController {
 		return "ebook/wizard/ebookClub";
 	}
 	
+	@RequestMapping(value="/ebook/openWriteBoard.do")
+	public String openWriteBoard(@RequestParam String clubName, Model model) {
+		model.addAttribute("clubName", clubName);
+		
+		return "ebook/wizard/writeBoard";
+	}
+	
 	@RequestMapping(value = "/ebook/getBookDataFromAPI.do", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String getEBooksFromAPI(
@@ -711,6 +718,95 @@ public class EbookController {
 		}
 		
 		return service.newSearchForPaperBook(param);
+	}
+	
+	@RequestMapping(value = "/ebook/getReadingRecord.do")
+	@ResponseBody
+	public HashMap getReadingRecord(@RequestParam Map param) {
+		return service.getReadingRecord(param);
+	}
+	
+	@RequestMapping(value = "/ebook/writeBoard.do")
+	@ResponseBody
+	public int writeBoard(@RequestParam Map param) {
+		return service.writeBoard(param);
+	}
+	
+	@RequestMapping(value = "/ebook/loadBoard.do")
+	@ResponseBody
+	public List<HashMap> loadBoard(@RequestParam Map param) {
+		return service.loadBoard(param);
+	}
+	
+	@RequestMapping(value = "/ebook/addBoardVisit.do")
+	@ResponseBody
+	public int addBoardVisit(@RequestParam Map param, HttpServletRequest request, HttpServletResponse response) {
+		boolean visitFlag = false;
+		String logString = "";
+		
+		Cookie[] cookies = request.getCookies();
+		
+		if(cookies != null) {
+			for(Cookie c:cookies) {
+				if(c.getName().equals("boardVisitLog")) {
+					if(c.getValue().contains("|" + param.get("boardNo") + "|")) visitFlag=true;
+					
+					logString=c.getValue();
+					
+					break;
+				}
+			}
+		}
+		
+		if(!visitFlag) {
+			Cookie c=new Cookie("boardVisitLog", logString + "|" + param.get("boardNo") + "|");
+			
+			c.setMaxAge(60*60*24);
+			
+			response.addCookie(c);
+		}
+		
+		if(!visitFlag) {
+			return service.addBoardVisit(param);
+		} else {
+			return 0;
+		}
+	}
+	
+	@RequestMapping(value = "/ebook/nextDate.do")
+	@ResponseBody
+	public int nextDate(@RequestParam Map param) {
+		return service.nextDate(param);
+	}
+	
+	@RequestMapping(value = "/ebook/checkBindNo.do")
+	@ResponseBody
+	public HashMap checkBindNo(@RequestParam Map param) {
+		return service.checkBindNo(param);
+	}
+	
+	@RequestMapping(value = "/ebook/nextEbook.do")
+	@ResponseBody
+	public int nextEbook(@RequestParam Map param) {
+		return service.nextEbook(param);
+	}
+	
+	@RequestMapping(value = "/ebook/loadNextDebate.do")
+	@ResponseBody
+	public HashMap loadNextDebate(@RequestParam Map param) {
+		return service.loadNextDebate(param);
+	}
+	
+	@RequestMapping(value = "/ebook/getEbook.do")
+	@ResponseBody
+	public HashMap getEbook(@RequestParam Map param) {
+		return service.getEbook(param);
+	}
+	
+	@RequestMapping(value = "/ebook/debateEnd.do")
+	@ResponseBody
+	public int debateEnd(@RequestParam Map param) {
+		return service.debateEnd(param);
 	}
 	
 }
