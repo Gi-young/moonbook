@@ -121,7 +121,8 @@
 			</c:if>
 			<div class="orderInfoBox margin_bottom3em">
 				<div class="tbl_box">
-					<table class="tbl_payment">
+					<form id="refundtable">
+					<table class="tbl_payment" >
 						<tr class="tbl_first">
 							<td>합산 금액</td>
 							<td id="originPrice">${order.getPaidAmount() }</td>
@@ -138,17 +139,29 @@
 							<td id="totalfee"></td>
 						</tr>
 					</table>
+<%-- 						<input type="hidden" name="impUid" value="${Payment.paymentId }"/>
+						<input type="hidden" name="memberId" value="${loginMember.memberId }"/>
+						<input type="hidden" name="bindNo" value="${order.bindNo  }"/> --%>
+					</form>
 				</div>
 			</div>
 			<div class="btnCenter">
-				<button class="btnPay">환불하기</button>
+				<button id="refund" class="btnPay">환불하기</button>
 			</div>
 
 		</div>
 	</div>
 </div>
 </div>
+<script>
+/* let refund=document.getElementById('refund');
+let refundtable=document.getElementById('refundtable');
+refund.addEventListener('click',function(){
+	refundtable.attr("action","${path}/SellbookController/cancelPayment.do");
+	refundtable.submit();
+}); */
 
+</script>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>

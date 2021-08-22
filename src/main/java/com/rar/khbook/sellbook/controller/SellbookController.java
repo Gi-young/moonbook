@@ -2,6 +2,7 @@ package com.rar.khbook.sellbook.controller;
 
 
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,12 @@ import com.rar.khbook.sellbook.model.vo.SellbookDatabind;
 import com.rar.khbook.serviceboard.model.vo.EventBoard;
 import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.servicecenter.model.service.ServiceCenterService;
+import com.rar.khbook.usedboard.model.service.UsedboardService;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.request.CancelData;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +46,9 @@ public class SellbookController {
 	
 	@Autowired
 	private ServiceCenterService service2;
+	
+	@Autowired
+	private UsedboardService service3;
 	
 	@RequestMapping("/sellbookController/sellbook.do")
 	public ModelAndView sellbook(ModelAndView mv) {
@@ -313,5 +323,52 @@ public class SellbookController {
 		System.out.println("정상작동됐으면 1나옴 0이면 호구ㅋㅋ :"+result);
 		return ""+result;
 	}	
+	
+	//환불
+	
+	@RequestMapping("/SellbookController/cancelPayment.do")
+	public ModelAndView cancelPayment(ModelAndView mv, String impUid, String memberId, int no) {
+		
+		IamportClient client=new IamportClient("5164314186471457",
+		"95ea6ac5da33dc78645a3ef90f370cf47dcbfe6fa206a035d511d0211ff20e7e8e9825a4ff41c1ee"
+		);
+		  
+		CancelData cancelData = new CancelData(impUid, true);
+		  
+		try { 
+			IamportResponse<Payment> paymentResponse =
+					client.cancelPaymentByImpUid(cancelData); 
+		} catch(IamportResponseException e){ 
+			
+		System.out.println(e.getMessage());
+		  
+		switch(e.getHttpStatusCode()) {
+		case 401: break;
+		  
+		case 500: break; 
+		} 
+		} catch(IOException e) {
+			e.printStackTrace(); 
+		}
+		
+		int result=service3.cancelPayment(no);
+		String msg="";
+		if(result>0) {
+			msg="환불성공";
+		}else {
+			msg="환불실패";
+		}
+		mv.addObject("msg",msg);
+		/*
+		 * if(state==1) { mv.addObject("loc","/member/myroom/payList.do"); }else
+		 * if(state==2) {
+		 * mv.addObject("loc","/usedboard/usedboardPayList.do?memberId="+memberId); }
+		 */
+		mv.addObject("log","/");
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	
 	
 }

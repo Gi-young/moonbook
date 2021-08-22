@@ -33,4 +33,6 @@ public interface SellbookService {
 	
 //	주문, 결제
 	int orderOne(Map param);
+	
+	int cancelPayment(int no);
 }

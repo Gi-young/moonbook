@@ -1060,7 +1060,7 @@ border:2px solid rgba(88,40,16,1);
         </div>
         <div class="product-review">
             <div class="writeBox">
-                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/SellbookControll/insertReview.do?bindNo=${book.bindNo }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
+                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/SellbookControll/insertReview.do?bindNo=${book.bindNo }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=800')">상품 리뷰 작성하기</button>
             </div>
            <table class="review-exp review-board" id="targetTable">
             <!-- 아약스로 테이블 생성 -->
