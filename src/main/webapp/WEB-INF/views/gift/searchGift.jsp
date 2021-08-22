@@ -24,7 +24,7 @@
     </jsp:include> 
         <div class="category-box">
             <div class="main-title">
-                <p class="main">검색결과</p>
+                <p class="main">${keyword }을(를) 찾아봤어요.</p>
             </div>
             <div class="sub-title">
                 <p class="sub">찾으시는 물건이 있나요?</p>

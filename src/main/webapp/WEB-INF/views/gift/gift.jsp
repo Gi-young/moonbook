@@ -69,7 +69,7 @@
      		</p> 
 	            <!-- 리스트 안 각각의 컨텐츠  -->	         
 	            <div class="first">
-	            	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+	            	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
 	            		<img src="${i.gift_img }" alt="${i.gift_title }">
 	            	</a>
 	            </div> 	                
@@ -184,14 +184,14 @@
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
                                     <c:forEach var="i" items="${list }" begin="5" end="5">
-                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">  
                             <c:forEach var="i" items="${list }" begin="6" end="7">                      
-                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
+                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}"><img src="${i.gift_img }" /></a></li>
                             </c:forEach>	
                             	                       
                             </ul>
@@ -210,14 +210,14 @@
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
                                     <c:forEach var="i" items="${list }" begin="282" end="282">
-                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
                             	<c:forEach var="i" items="${list }" begin="284" end="285">                      
-                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
+                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}"><img src="${i.gift_img }" /></a></li>
                             </c:forEach>                       
                             </ul>
                         </div>
@@ -235,14 +235,14 @@
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
                                     <c:forEach var="i" items="${list }" begin="645" end="645">
-                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
                             	<c:forEach var="i" items="${list }" begin="646" end="647">                      
-                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" /></a></li>
+                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}"><img src="${i.gift_img }" /></a></li>
                             </c:forEach>                        
                             </ul>
                         </div>
@@ -260,14 +260,14 @@
                                         <p class="gf-left-date">2022.00.00 ~ 2022.00.00</p>
                                     </div>
                                     <c:forEach var="i" items="${list }" begin="780" end="780">
-                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
+                                    <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}"><img src="${i.gift_img }" alt="" class="gf-content-leftImg"></a>
                                     </c:forEach>
                                 </div>
                             </a>
                         <div class="gf-content-right">
                             <ul id="gf-right">                         
                             	<c:forEach var="i" items="${list }" begin="781" end="782">                      
-                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}"><img src="${i.gift_img }" ></a></li>
+                            	<li><a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}""><img src="${i.gift_img }" ></a></li>
                             </c:forEach>                        
                             </ul>
                         </div>
@@ -292,7 +292,7 @@
                     <div class="toSale-main">
                         <div style="width: 350px;">
                         <c:forEach var="i" items="${list }" begin="123" end="123">
-                            <a href='${path }/gift/giftDetail.do?giftNo=${i.gift_no}'>
+                            <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
                                 <img src="${i.gift_img }" alt="${i.gift_title }" class="toSale-mainImg">
                                 <div class="freeship-wrap">
                                    <!--  <span class="freeship">무료배송</span> -->
@@ -308,7 +308,7 @@
                             <ul class="toSale-ul">
                             <c:forEach var="i" items="${list }" begin="124" end="127">
                                 <li>
-                                	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+                                	<a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
 	                                    <img src="${i.gift_img }" alt="${i.gift_title}">
 	                                   <!--  <p class="toSale-dc">할인율</p> -->
                                     </a>
@@ -342,7 +342,7 @@
                          <c:forEach var="i" begin="284" end="288" items="${list }">
                          	<c:set var="o" value="${o+1 }"/>
 	                            <li>
-	                                <a href="#" class="todayPop-contentTop">
+	                                <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}" class="todayPop-contentTop">
 	                                    <p style="font-style: italic; font-weight: 900;">${o }</p>
 	                                    <img src="${i.gift_img }" alt="${i.gift_title }">
 	                                    <div class="todayPop-contentEnd">
@@ -498,7 +498,7 @@
                                 <div class="img-container" style="justify-content:space-around;">
                                 <li>
                                 <c:forEach var="i" items="${list }" begin="189" end="190">
-                                        <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+                                        <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
                                             <div class="cont3-img-info">
                                                 <img src="${i.gift_img}" alt="" class="cont3-img"> 
                                                 <div class="img-info dis-none">
@@ -514,7 +514,7 @@
                                     </li> 
                                     <li>
                                 <c:forEach var="i" items="${list }" begin="257" end="258">
-                                        <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+                                        <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
                                             <div class="cont3-img-info">
                                                 <img src="${i.gift_img}" alt="" class="cont3-img"> 
                                                 <div class="img-info dis-none">
@@ -550,7 +550,7 @@
                 <ul class="reco-product-ul">
 	                <c:forEach var="i" begin="579" end="582" items="${list }">
 	                    <li>
-	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
 	                            <div>
 	                                <img src="${i.gift_img }" alt="" class="reco-img">
 	                            </div> 
@@ -606,7 +606,7 @@
                 <ul class="reco-product-ul">    
                     <c:forEach var="i" begin="434" end="437" items="${list }">
                     <li>
-                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
                             <div>
                                 <img src="${i.gift_img }" alt="" class="reco-img">
                             </div> 
@@ -662,7 +662,7 @@
                 <ul class='reco-product-ul'>                    
                     <c:forEach var="i" begin="12" end="15" items="${list }">
 	                    <li>
-	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+	                        <a class="reco-a" href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
 	                            <div>
 	                                <img src="${i.gift_img }" alt="" class="reco-img">
 	                            </div> 
@@ -870,7 +870,7 @@
             </div>
             <div class="season-img" id="seasonElecImg">
             <c:forEach var="i" items="${list }" begin="18" end="18">
-              <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+              <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
                 <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
@@ -884,7 +884,7 @@
             </div>
             <div class="season-img" id="seasonStorageImg" style="display:none;">
             <c:forEach var="i" items="${list }" begin="305" end="305">
-           	  <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+           	  <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
                 <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
@@ -898,7 +898,7 @@
             </div>
             <div class="season-img" id="seasonReadingImg" style="display:none;">
                 <c:forEach var="i" items="${list }" begin="599" end="599">
-                <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+                <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
                 <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">
@@ -913,7 +913,7 @@
           
             <div class="season-img" id="seasonEtcImg" style="display:none;">
                 <c:forEach var="i" items="${list }" begin="785" end="785">
-                <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}">
+                <a href="${path }/gift/giftDetail.do?giftNo=${i.gift_no}&memberId=${loginMember.memberId}">
                 <img src="${i.gift_img }" alt="" >
                 <div class="season-imgExplan">
                     <div class="flex" style="justify-content: flex-end;">

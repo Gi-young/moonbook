@@ -9,6 +9,8 @@ import com.rar.khbook.coupon.model.vo.Couponlist;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.order.model.vo.GiftOrderList;
+import com.rar.khbook.order.model.vo.Order;
 import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
@@ -63,7 +65,11 @@ public interface GiftService {
 
 	List<Ngift> giftReading();
 
-	List<Ngift> searchGift(Map param);	
+	List<Ngift> searchGift(Map param);
+
+	List<Order> memberOrderList(String memberId);
+
+	List<GiftOrderList> giftOrderList(int giftNo);	
 }
 
 
