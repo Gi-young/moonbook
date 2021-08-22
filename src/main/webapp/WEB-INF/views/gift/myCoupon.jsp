@@ -22,7 +22,7 @@
 	        	<c:forEach var="i" items="${couponlist }" varStatus="status">  
 		        	<c:if test="${i.couponlistForuse eq 'Y'}">
 			            <div class="couponView" style="width:500px;"> 
-			                <img src="${path }/resources/images/upload/admin/${i.couponImg}" alt="">			       
+			                <img src="${path }/resources/upload/admin/${i.couponImg}" alt="">			       
 			                <p>${i.couponlistName }</p>
 			                <p>${i.couponlistAmount }원</p>
 			                <%-- <p style="font-weight:900;">${i.couponlistForuse eq 'Y'?"사용가능":"기간만료"}</p> --%>

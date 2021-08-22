@@ -85,5 +85,8 @@ public interface MemberDao {
 
 	// 회원가입 후 장바구니 
 	int createShopingList(SqlSession session, Member m);
+	
+//	주문 상세보기
+	Order getOneOrder(SqlSession session, String orderNo);
 
 }

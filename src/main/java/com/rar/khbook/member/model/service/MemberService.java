@@ -76,4 +76,7 @@ public interface MemberService {
 	
 //  회원가입 성공시 장바구니 만들기
 	int createShopingList(Member m);
+	
+//	주문 상세보기
+	Order getOneOrder(String orderNo);
 }

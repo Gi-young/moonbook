@@ -35,6 +35,7 @@ import com.rar.khbook.coupon.model.vo.OrderWithCoupon;
 import com.rar.khbook.member.model.service.MemberService;
 import com.rar.khbook.member.model.vo.Member;
 import com.rar.khbook.member.model.vo.Membergrade;
+import com.rar.khbook.order.model.vo.BookOrderList;
 import com.rar.khbook.order.model.vo.Order;
 import com.rar.khbook.order.model.vo.Payment;
 
@@ -657,5 +658,17 @@ public class MemberController {
 		param.put("pageBar", pageBar);
 
 		return param;
+	}
+	
+//	도서 주문 리스트 받기
+	@RequestMapping("/member/myroom/orderDetail.do")
+	public String orderDetail(String orderNo, Model m) {
+		
+		System.out.println(orderNo);
+		Order o = service.getOneOrder(orderNo);
+		System.out.println(o);
+		m.addAttribute("order", o);
+		
+		return "myroom/orderDetail";
 	}
 }

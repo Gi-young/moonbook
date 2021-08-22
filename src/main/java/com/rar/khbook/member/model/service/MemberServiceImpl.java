@@ -198,4 +198,11 @@ public class MemberServiceImpl implements MemberService {
 	public int createShopingList(Member m) {
 		return dao.createShopingList(session, m);
 	}
+	
+//	주문 상세 보기
+	@Override
+	public Order getOneOrder(String orderNo) {
+		// TODO Auto-generated method stub
+		return dao.getOneOrder(session, orderNo);
+	}
 }

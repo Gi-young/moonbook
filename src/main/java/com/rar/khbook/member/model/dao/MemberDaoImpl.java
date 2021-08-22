@@ -213,7 +213,15 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 	
-	
-	
-
+//	주문 상세보기
+	@Override
+	public Order getOneOrder(SqlSession session, String orderNo) {
+		// TODO Auto-generated method stub
+		Order o = session.selectOne("order.getOneOrder", orderNo);
+		o.setBookOrderList(session.selectList("order.getBookOrderList", orderNo));
+		o.setEbookOrderList(session.selectList("order.getEbookOrderList", orderNo));
+		o.setGiftOrderList(session.selectList("order.getGiftOrderList", orderNo));
+		
+		return o;
+	}
 }
