@@ -100,9 +100,10 @@ public class UsedboardController {
 			mv.setViewName("usedboard/usedboardList");
 		}else if(catagory==null) {
 			mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
+			mv.addObject("list2",service.selectUsedboardList2());
 			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);
-			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardList.do"));
+			mv.addObject("pageBar",PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "usedboardList.do"));
 			
 			mv.setViewName("usedboard/usedboardList");
 		}else {
