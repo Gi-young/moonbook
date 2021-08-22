@@ -98,7 +98,7 @@
 							<tr class="tbl_first">
 								<th colspan="2">문곰템정보</th>
 								<th class="fs8 width10p">문곰템금액</th>
-								<th class="fs8 width10p">결제날짜</th>
+								<th class="fs8">결제날짜</th>
 								<th class="fs8 width10p">주문수량</th>
 								<th class="fs8 width10p">결제금액</th>
 							</tr>
@@ -109,7 +109,7 @@
 									<td>${g.gift_title }</td>
 									<td><fmt:formatNumber value="${g.gift_price }"
 											type="number" /></td>
-									<td>${order.getOrderDate() }</td>
+									<td class="fs8">${order.getOrderDate() }</td>
 									<td>${g.orderVolume }</td>
 									<td class="giftPrice"><fmt:formatNumber
 											value="${g.gift_price }" type="number" /></td>
@@ -125,17 +125,19 @@
 						<tr class="tbl_first">
 							<td>합산 금액</td>
 							<td id="originPrice">${order.getPaidAmount() }</td>
-							<td></td>
 							<td>적립금</td>
 							<td id="delifee">${order.getOrderPoint() }</td>
 							<td>쿠폰사용</td>
 							<c:if test="${order.orderCouponNo != 0 }">
-								<td>${order.orderCouponNo }</td>
+								<c:forEach var="cl" items="${coupon }">
+									<c:if test="${cl.orderNo == order.orderNo }">
+										<td class="fs8">${cl.couponlistName }</td>
+									</c:if>
+								</c:forEach>
 							</c:if>
 							<c:if test="${order.orderCouponNo == 0 }">
 								<td>X</td>
 							</c:if>
-							<td id="totalfee"></td>
 						</tr>
 					</table>
 				</div>

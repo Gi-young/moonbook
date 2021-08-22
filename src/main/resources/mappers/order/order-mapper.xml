@@ -13,6 +13,8 @@
 		<result column="order_paidmethod" property="orderPaidMethod" />
 		<result column="order_status" property="orderStatus" />
 		<result column="order_point" property="orderPoint" />
+		<result column="order_date" property="orderDate" />
+		<result column="order_coupon_no" property="orderCouponNo" />
 		<collection property="bookOrderList" ofType="bookOrderList">
 			<id column="order_no" property="orderNo" />
 			<result column="bind_no" property="bindNo" />

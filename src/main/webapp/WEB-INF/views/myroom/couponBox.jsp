@@ -47,47 +47,66 @@
 					</c:forEach>
 				</tr>
 			</table>
-			<c:forEach var="cl2" items="${coupon }">
-			${cl2.getCouponNo() }
-			</c:forEach>
-			${coupon }
 			<div class="content_middle padding10 bold margin_top2e">
 				<h3>사용한 쿠폰내역</h3>
 			</div>
-			<table class="tbl_nextGrade">
+			<table class="tbl_nextGrade" id="tbl">
 				<tr>
-					<th>결제내역</th>
+					<th>주문번호</th>
 					<th>사용한쿠폰</th>
 					<th>사용날짜</th>
 				</tr>
-				<tr>
-					<td>결제내역</td>
-					<td>골드곰 등업 축하 쿠폰</td>
-					<td><fmt:formatDate value="<%=new java.util.Date()%>"
-							pattern="yyyy.MM.dd HH:mm:ss" /></td>
-				</tr>
-				<%-- <tr>
-					<td>결제내역</td>
-					<td>골드곰 등업 축하 쿠폰</td>
-					<td><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy.MM.dd HH:mm:ss"/></td>
-				</tr>
-				<tr>
-					<td>결제내역</td>
-					<td>골드곰 등업 축하 쿠폰</td>
-					<td><fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy.MM.dd HH:mm:ss"/></td>
-				</tr> --%>
+				<c:forEach var="useC" items="${uc }">
+					<c:if test="${useC.couponCanuse == 'N' }">
+						<tr>
+							<td class="fs8"><a href="${path }/member/myroom/orderDetail.do?orderNo=${useC.orderNo}">${useC.getOrderNo() }</a></td>
+							<td class="fs11">${useC.couponlistName }</td>
+							<td><fmt:formatDate value="${useC.orderDate }"
+									pattern="yyyy.MM.dd" /></td>
+						</tr>
+					</c:if>
+				</c:forEach>
+
 			</table>
-			<!-- <ul class="pageBar_ul">
-				<li class="pageBar_li disabled"><a href="#">이전</a></li>
-				<li class="pageBar_li active"><a href="#" class="pageBar_a">1</a></li>
-				<li class="pageBar_li"><a href="#">2</a></li>
-				<li class="pageBar_li"><a href="#">3</a></li>
-				<li class="pageBar_li"><a href="#">다음</a></li>
-			</ul> -->
-			${pageBar }
+			<div id="pageBar">${pageBar }</div>
 		</div>
 	</div>
 </div>
+<script>
+	function fn_paging2(pageNo) {
+		var param = new Objec();
+		param.pageNo = pageNo;
+		$.ajax({
+			url : "${path}/member/myroom/usedCoupon.do",
+			type : 'POST',
+			dataType : 'json',
+			data : param,
+			success : function(data) {
+				var trlength = $("#tbl tr").length;
+				for (var t = 1; t < trlength; t++) {
+					$("#tbl tr")[1].remove();
+				}
+
+				for (var i = 0; i < data.list.length; i++) {
+					if (data.list[i].couponCanuse == 'N') {
+
+						$("#tbl").append(
+								'<tr><td class="fs8"><a href="${path}/member/myroom/orderDetail.do?orderNo="'+data.list[i].orderNo+'>' + data.list[i].orderNo
+										+ '</a></td><td class="fs11">'
+										+ data.list[i].couponlistName
+										+ '</td><td>' + data.list[i].orderDate
+										+ '</td></tr>');
+					}
+				}
+				$("#pageBar").children().remove();
+				$("#pageBar").append(data.pageBar);
+			}, 
+			error:error=>{
+				console.log(error);
+			}
+		})
+	}
+</script>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 	<jsp:param name="" value="" />
 </jsp:include>
