@@ -30,6 +30,8 @@ import com.rar.khbook.gift.model.service.GiftService;
 import com.rar.khbook.gift.model.vo.GiftBoard;
 import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
+import com.rar.khbook.order.model.vo.GiftOrderList;
+import com.rar.khbook.order.model.vo.Order;
 import com.rar.khbook.serviceboard.model.vo.NoticeBoard;
 import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 
@@ -66,12 +68,30 @@ public class GiftController {
 
 //	기프트 상세페이지 이동
 	@RequestMapping("/gift/giftDetail.do")
-	public ModelAndView giftDetail(int giftNo, ModelAndView mv) {
+	public ModelAndView giftDetail(int giftNo, ModelAndView mv, String memberId) {
+		/* System.out.println("멤버아이디"+memberId); */
+		
+		if(memberId != null) {
+			List<Order> order = service.memberOrderList(memberId);
+			List<GiftOrderList> gOrder = service.giftOrderList(giftNo);
+			
+			for(int i=0; i<gOrder.size(); i++) {
+				System.out.println("밤엔 아무도 없었다?"+gOrder.get(i).getOrderNo());
+				
+			}
+			for(int i=0; i<order.size(); i++) {
+				System.out.println("밤엔 아무도 오지 않았다."+order.get(i).getOrderNo());
+				//String.valueOf(Integer.parseInt(order.get(i).getOrderNo()));
+			}
+			
+			
+			mv.addObject("order",order);
+		}
 		/* System.out.println(giftNo); */
 		/* System.out.println(Integer.parseInt(giftNo)); */
 		Ngift g = service.giftOne(giftNo);
 		List<Ngift> list= new ArrayList();
-		System.out.println("카테고리 코드"+g.getGift_category().getGiftCateCode());
+		//System.out.println("카테고리 코드"+g.getGift_category().getGiftCateCode());
 		//System.out.println("기프트 타이틀 "+g.getGift_title());
 		
 		
@@ -357,16 +377,7 @@ public class GiftController {
 	@RequestMapping("/gift/writePurchaseLog.do")
 	@ResponseBody
 	public int writePurchaseLog(@RequestParam Map param) {
-		
-//		System.out.println(" 이엠피아이디 : "+param.get("impUid"));
-//		System.out.println(" 멀천트아이디 : "+param.get("merchantUid"));
-//		System.out.println(" 멤버아이디 : "+param.get("memberId"));
-//		System.out.println(" 결제방법 : "+param.get("payMethod"));
-//		System.out.println(" 결제금액 : "+param.get("paidAmount"));
-//		System.out.println(" 에이티? : "+param.get("paidAt"));
-//		System.out.println(" pg 제공 : "+param.get("pgProvider"));
-//		System.out.println(" 환불주소 : "+param.get("receiptUrl"));
-		
+			
 		int resultF = service.writeOrderT(param);
 		
 		if(resultF>0) {
@@ -445,8 +456,18 @@ public class GiftController {
 		
 		System.out.println("오우 이건 뭐야??"+list);
 		mv.addObject("list",list);
+		mv.addObject("keyword", param.get("keyword"));
 		mv.setViewName("gift/searchGift");
 		return mv;
 	}
 
+	@RequestMapping("/gift/reviewDetail.do")
+	public ModelAndView reivewDetail (ModelAndView mv, int giftNo, int rowNum) {
+		
+		System.out.println("기프트 넘버"+giftNo);
+		System.out.println("리뷰 넘버"+rowNum);
+		
+		return mv;
+	}
+	
 }

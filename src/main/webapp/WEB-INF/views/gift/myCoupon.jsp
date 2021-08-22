@@ -22,7 +22,7 @@
 	        	<c:forEach var="i" items="${couponlist }" varStatus="status">  
 		        	<c:if test="${i.couponlistForuse eq 'Y'}">
 			            <div class="couponView" style="width:500px;"> 
-			                <img src="${path }/resources/images/gift/${i.couponImg}" alt="">
+			                <img src="${path }/resources/images/upload/admin/${i.couponImg}" alt="">			       
 			                <p>${i.couponlistName }</p>
 			                <p>${i.couponlistAmount }원</p>
 			                <%-- <p style="font-weight:900;">${i.couponlistForuse eq 'Y'?"사용가능":"기간만료"}</p> --%>
@@ -57,16 +57,28 @@
         let cpNo = document.getElementsByClassName("couponNo")[i].value;   
         let cpName = document.getElementsByClassName("couponName")[i].value; 
         let ci = document.getElementsByClassName("couponAmount")[i].value;
-        
-        if(confirm(cpName+"을 사용하시겠습니까?")){
-        	opener.document.getElementById("couponNo").value=cpNo;
-        	opener.document.getElementById("couponAmount").value=ci;
-        	opener.document.getElementById("ds").innerHTML=cpAmount+"원 <br>할인이 적용됩니다.";
-        	window.close();
-        	return true;
+        let totalPrice = opener.document.getElementById("totalP").value;
+        console.log(totalPrice); // 물건가격 260
+        console.log(cpAmount); // 쿠폰가격 2000
+        console.log(Number(cpAmount) > Number(totalPrice)); 
+        //            2000   >    260    = ?
+        if(Number(cpAmount) > Number(totalPrice)){
+        	alert("할인금액이 상품가격보다 많거나 같을 수 없습니다.");
         }else{
-        	return false;
+        	if(confirm(cpName+"을 사용하시겠습니까?")){
+        		opener.document.getElementById("couponNo").value=cpNo;
+            	opener.document.getElementById("couponAmount").value=ci;
+            	opener.document.getElementById("ds").innerHTML=cpAmount+"원 <br>할인이 적용됩니다.";
+            	window.close();
+            	return true;
+            }else{
+            	return false;
+            }
+        	
         }
+            	
+        
+        
         
     }
  	

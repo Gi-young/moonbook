@@ -26,5 +26,9 @@ public interface ShopingListService {
 	List<EbookDatabind> myShopingListE(Map param);
 
 	List<Ngift> myShopingListG(Map param);
+
+	int insertList(Map param);
+
+	int writeOrderT(Map param);
 	
 }
