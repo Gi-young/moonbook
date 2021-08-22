@@ -19,11 +19,11 @@
 		
 		<div class="searchIdType">
 			<input class="howIdSearch" type="radio" name="searchHow" id="phone" value="phone" checked><label for="phone">휴대폰</label>
-			<input class="howIdSearch2" type="radio" name="searchHow" id="email" value="email"><label for="email">이메일</label>
+			<!-- <input class="howIdSearch2" type="radio" name="searchHow" id="email" value="email"><label for="email">이메일</label> -->
 		</div>
 		
 		<div class="search1Ver-container">
-			<form action="${path}/member/searchId.do">
+			<form action="${path}/member/searchId.do" method="post">
 				<table class="search1Ver">
 					<tr>
 						<th class="search-Th">

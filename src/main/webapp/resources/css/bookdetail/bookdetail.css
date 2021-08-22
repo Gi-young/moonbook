@@ -282,10 +282,11 @@
 .review-exp th{
     width: 190px;
     font-weight: 800;
-    background-color: #E5E2DB;
+    background-color: rgba(88,40,16,1);
     padding: 20px 0px 20px 0px;
     border-bottom: 1px solid silver;
     text-align: center;
+    color:white;
 }
 .review-exp td{
     text-align: center; 
@@ -455,7 +456,22 @@
     margin-bottom: 20px;
     padding-right: 20px;
 }
-
+.service-box2>tr{
+background-color:rgba(88,40,16,0.5);
+}
+.reviewBtn{
+background-color:white;
+color:rgba(88,40,16,1);
+cursor:pointer;
+}
+.reviewBtn:hover{
+background-color:rgba(88,40,16,1);
+color:white;
+cursor:pointer;
+}
+#deleteBtn{
+cursor:pointer;
+}
 
 /* .slickTest{
     display: flex;

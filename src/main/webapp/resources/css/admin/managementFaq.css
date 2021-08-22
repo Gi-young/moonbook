@@ -40,11 +40,17 @@
 }
 .FAQlist-container{
 	height: 100%;
-	overflow-x:scroll;
+	/* overflow-x:scroll; */
 	display: flex;
 	flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    overflow: scroll; 
+	-ms-overflow-style: none; 
+}
+.FAQlist-container::-webkit-scrollbar { 
+    display: none;
+    
 }
 .service-box4{
 	/* border: 1px solid black; */
@@ -112,10 +118,14 @@
 	text-align: center;
 	width:727px;
 	height:450px;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
+	overflow: scroll; 
+	-ms-overflow-style: none;
 	
-	
-	
+}
+.faqList-box1::-webkit-scrollbar { 
+    display: none;
+    
 }
 .faqList-box1 ul li{
 	
@@ -156,9 +166,10 @@
 	line-height: 25px;
 }
 .replyFaq{
-	margin-right:10px;
+	margin-left:10px;
 	background-color: #008080;
 	color:white;
+	cursor: pointer;
 }
 .deleteFaq{
 	background-color: #ff8080;
@@ -166,6 +177,7 @@
 	font-weight: bold;
 	margin-left:10px;
 	margin-right:10px;
+	cursor: pointer;
 }
 .faqFont-box{
 	float:left;

@@ -57,7 +57,8 @@ public class MemberController {
 
 		return "member/login";
 	}
-
+	
+	
 	@RequestMapping("/member/login.do")
 	public String login(@RequestParam Map param, Model model, HttpSession session, HttpServletResponse res) {
 
@@ -67,7 +68,6 @@ public class MemberController {
 
 		String saveId = (String) param.get("saveId");
 		String memberId = (String) param.get("memberId");
-		System.out.println(param.get("memberPw"));
 		if (saveId != null) {
 			Cookie c = new Cookie("saveId", memberId);
 			c.setMaxAge(7 * 24 * 60 * 60);
@@ -80,13 +80,11 @@ public class MemberController {
 		}
 
 		Member m = service.selectOneMember(param);
-		System.out.println(m);
 		String msg = "";
 		if (m != null) {
 
 			if (pwEncoder.matches((String) param.get("memberPw"), m.getMemberPw())) {
 				session.setAttribute("loginMember", m);
-				System.out.println("아니 여기" + param.get("memberPw") + "ddd" + m.getMemberPw());
 //				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
 				List<OrderWithCoupon> c = service.getCoupon(m);
 				session.setAttribute("coupon", c);
@@ -97,8 +95,6 @@ public class MemberController {
 				// 최근 로그인한 날짜 구하기
 				// 컬럼에 있는 가장 최근 로그인 날짜 ==오늘 ->아무것도 안함
 				// 컬럼에 있는 가장 최근 로그인 날짜 !==오늘 ->방문 횟수 +1 ,최근 로그인 날짜 =오늘날짜
-				System.out.print(m.getMemberToday().toString());
-				System.out.println("today :" + today);
 				if (!m.getMemberToday().toString().equals(today)) {
 					int memberVisit = service.updateMemberVisit(param);
 					int memberToday = service.updateMemberToday(param);
@@ -155,12 +151,10 @@ public class MemberController {
 
 	public String memberEnrollEnd(Member m, Model model, HttpSession session) {
 
-		System.out.println(m);
 		log.debug("암호화전 : {}", m.getMemberPw());
 		log.debug("암호화 후 : {}", pwEncoder.encode(m.getMemberPw()));
 		m.setMemberPw(pwEncoder.encode(m.getMemberPw()));
 
-		System.out.println("testtest : " + m.getMemberBirth());
 
 		int result = service.insertMember(m);
 		String msg = "";
@@ -185,9 +179,7 @@ public class MemberController {
 
 	@RequestMapping("/member/checkId.do")
 	public void checkId(@RequestParam Map param, Writer out) {
-		System.out.println(param);
 		Member m = service.selectOneMember(param);
-		System.out.println("testtest : " + m);
 		new Gson().toJson(m == null ? "true" : "false", out);
 	}
 
@@ -211,7 +203,6 @@ public class MemberController {
 
 		m.getMemberName();
 		m.getMemberPhone();
-		System.out.println(m);
 		Member m2 = service.searchId1(m);
 
 		String msg = "";
@@ -242,7 +233,6 @@ public class MemberController {
 
 		String msg = "";
 		String loc = "";
-		System.out.println(m2);
 		if (m2 == null) {
 			msg = "해당하는 데이터가 없습니다.";
 			loc = "/member/searchIdPwPage.do";
@@ -309,9 +299,7 @@ public class MemberController {
 		m.getMemberEmail();
 
 		// 일단 아이디, 이름과 이메일로 회원이 맞는지 확인
-		System.out.println(m);
 		Member m3 = service.searchId4(m);
-		System.out.println(m3);
 		String msg = "";
 		String loc = "";
 
@@ -361,11 +349,9 @@ public class MemberController {
 		if (resultPw > 0) {
 			msg = "비밀번호가 정상적으로 변경되었습니다.";
 			loc = "/member/resultIdPage2.do?resultPw=" + resultPw;
-			System.out.println(resultPw);
 		} else {
 			msg = "비밀번호가 변경 실패";
 			loc = "/member/searchIdPwPage.do";
-			System.out.println(resultPw);
 		}
 
 		mv.addObject("msg", msg);
@@ -419,7 +405,6 @@ public class MemberController {
 		List<Membergrade> mg = service.memberGrade();
 		m.addAttribute("allMembergrade", mg);
 		List<Couponlist> cl = service.couponlist();
-		System.out.println(cl);
 		m.addAttribute("allCouponlist", cl);
 
 		return "member/memberGrade";

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -139,12 +138,12 @@
 						<li id="books" class="headerF-li"><a
 							href="${path}/sellbookController/sellbook.do">문곰도서▼</a>
 							<ul class="book">
-								<li><a href="${path }/sellbookController/bookadong99.do">아동도서(공통)</a></li>
+								<li><a href="${path }/sellbookController/pageBookSearch.do?categoryCode=310040010">아동도서</a></li>
 								<li><a
-									href="${path }/sellbookController/bookchodongdonghwa99.do">초등도서(공통)</a></li>
+									href="${path }/sellbookController/pageBookSearch.do?categoryCode=320040010">초등도서</a></li>
 								<li><a
-									href="${path }/sellbookController/bookjoongdongworld.do">중등도서(세계문학)</a></li>
-								<li><a href="${path }/sellbookController/bookgojunkorea.do">고전도서(한국)</a></li>
+									href="${path }/sellbookController/pageBookSearch.do?categoryCode=300050">중등도서</a></li>
+								<li><a href="${path }/sellbookController/pageBookSearch.do?categoryCode=100020020">고전도서</a></li>
 							</ul></li>
 						<li id="eBooks" class="headerF-li"><a
 							href="${path}/ebook/pageEbook.do">문곰e북 ▼</a>
@@ -200,7 +199,6 @@
 						<c:if test="${loginMember.memberId.equals('admin') }">
 							<li><a href="${path }/admin/adminPage.do">관리자페이지가기</a></li>
 						</c:if>
-
 						<li><a href="${path }/service/serviceMain.do">고객센터</a></li>
 					</ul>
 				</div>
@@ -227,7 +225,6 @@
 				tab.css('display', "none");
 			})
 		});
-
 		/* 문곰e북 */
 		$(function() {
 			let item = $('#eBooks');
@@ -246,7 +243,6 @@
 				tab.css('display', "none");
 			})
 		});
-
 		/* 문곰도서 */
 		$(function() {
 			let item = $('#books');
@@ -265,7 +261,6 @@
 				tab.css('display', "none");
 			})
 		});
-
 		/* 마이페이지, 장바구니 */
 		$(function() {
 			let item = $('#user');

@@ -9,4 +9,5 @@ public class BookTopThree {
 	private int btotalcost;
 	private int bprofit;
 	private int bcost;
+	/* private int bsalesVolume; */
 }

@@ -1,23 +1,71 @@
 @charset "UTF-8";
-/* common */
-aside a {
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
+/* 전체 */
+div#container {
+    grid-template-columns: 1fr;
 }
 
-aside li {
-    margin-bottom: 30px;
-    list-style: none;
+header {
+    grid-column: 1 / 2;
 }
 
-/* club manager */
-div.create-club {
-    border: 1px solid black;
+section {
+    display: grid;
+    overflow: scroll;
+    grid-template-columns: repeat(7, 200px);
+    grid-template-rows: repeat(5, 150px);
+    grid-gap: 5px;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+section::-webkit-scrollbar {
+    display: none;
+}
+
+section>div {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     padding: 10px;
-    width: fit-content;
+    margin: 0;
+    border: 1px solid silver;
+    border-radius: 5px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
+section>div::-webkit-scrollbar {
+    display: none;
+}
+
+/* 그리드 조정 */
+div.create-club {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+div.join-club {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+div.club-box {
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+}
+
+div.club-notice {
+    grid-column: 4 / 6;
+    grid-row: 2 / 4;
+}
+
+/* 세부 */
 div.create-club p {
     font-size: 15px;
     font-weight: bold;
@@ -33,13 +81,6 @@ div.create-club>div:nth-of-type(2) {
     margin-top: 5px;
 }
 
-div.join-club {
-    margin-top: 10px;
-    border: 1px solid black;
-    padding: 10px;
-    width: fit-content;
-}
-
 div.join-club p {
     font-size: 15px;
     font-weight: bold;
@@ -53,13 +94,6 @@ div.join-club>div:first-child {
 
 div.join-club>div:nth-of-type(2) {
     margin-top: 5px;
-}
-
-div.club-box {
-    padding: 10px;
-    border: 1px solid black;
-    width: fit-content;
-    margin-top: 10px;
 }
 
 div.club-box p {
@@ -87,18 +121,9 @@ div.club-box table td {
     text-align: center;
 }
 
-div.deleteClub {
+div.delete-club {
     padding-top: 15px;
     text-align: center;
-}
-
-div.club-notice {
-    border: 1px solid black;
-    margin-top: 10px;
-    min-width: 300px;
-    min-height: 200px;
-    width: fit-content;
-    padding: 0 10px 10px 10px;
 }
 
 div.club-notice>p {
@@ -119,11 +144,4 @@ div.club-notice div#noticeBoard {
 
 div.club-notice div#noticeBoard button {
     margin-left: 7px;
-}
-
-/* club debate */
-#debateBox {
-    background-color: white;
-    width: 600px;
-    height: 400px;
 }

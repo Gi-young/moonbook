@@ -72,6 +72,9 @@
 	<insert id="insertReview">
 		INSERT INTO BOOK_REVIEW VALUES(#{bindNo}, SEQ_BOOK_REVIEW.NEXTVAL, #{content}, #{memberId}, SYSDATE, null,null,#{score})
 	</insert>
+	<update id="insertReviewBook">
+		UPDATE BOOK_EBOOK_DATABIND SET RATING=RATING+#{score} WHERE BIND_NO=#{bindNo}
+	</update>
 	
 	<select id="selectReviewAll" resultType="int">
 		SELECT COUNT(*) FROM BOOK_REVIEW WHERE BIND_NO=#{bindNo}

@@ -34,9 +34,10 @@ public class ShopingListServiceImpl implements ShopingListService {
 	public int insertShopingList(@RequestParam Map param) {
 		// TODO Auto-generated method stub
 		System.out.println("없어이건"+param);
-		
-		try {
-			int result=dao.insertShopingList(session, param);
+		int result=dao.insertShopingList(session, param);
+		System.out.println("없긴 뭐가없어! 1나와라! : "+result);
+		return result;
+/*		try {
 			System.out.println("두번째파람"+param);
 				if(result>0) {
 					result=dao.insertShopingListBook(session, param);
@@ -47,9 +48,9 @@ public class ShopingListServiceImpl implements ShopingListService {
 			}catch(RuntimeException e) {
 
 			}
-			return 1;
+			return 1;*/
 		}
-
+		
 	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public List<BookShopingList> selectMyShopingListB(String memberId) {

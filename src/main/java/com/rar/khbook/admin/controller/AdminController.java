@@ -208,7 +208,6 @@ public class AdminController {
 		mv.addObject("totalContents",totalData);
 		mv.addObject("pageBar",PageFactoryAdmin.getOwnPageBar(totalData, cPage, numPerpage, "adSalePage.do"));
 		
-		System.out.println(list);
 		mv.addObject("list",list);
 		mv.setViewName("admin/adminSalePage"); 
 		return mv;
@@ -366,8 +365,6 @@ public class AdminController {
 		//select  stock의 정수값
 		
 		
-		System.out.println("출고전 재고 체크:" +result);
-		System.out.println("출고전 output할 stock 체크:" +stock);
 		
 		if(result.getStock()>=stock) { 
 			return true;
@@ -382,8 +379,6 @@ public class AdminController {
 		
 		Ngift result=service.checkStock3(gift_no);
 		
-		System.out.println("출고전 재고 체크:" +result);
-		System.out.println("출고전 output할 stock 체크:" +gift_count);
 		
 		if(result.getGift_count()>=gift_count) { 
 			return true;
@@ -530,8 +525,6 @@ public class AdminController {
 		int stockNum2 = Integer.parseInt((String)param.get("stockNum2"));
 		param.put("stockNum2", stockNum2);
 		
-		System.out.println("재고 정렬 book:"+param.get("cPage"));
-		System.out.println("재고 정렬 book:"+param.get("numPerpage"));
 		
 		
 		
@@ -637,8 +630,6 @@ public class AdminController {
 		
 		int totalContents=service.getPageBarTextStockList(param);
 		
-		System.out.println("검색바에서"+param.get("cPage"));
-		System.out.println("검색바에서"+param.get("numPerpage"));
 		
 		String[] resultArr = new String[2];
 		
@@ -800,7 +791,6 @@ public class AdminController {
 			}
 		}
 		
-		System.out.println("couponImg"+couponImg);
 
 		int result=service.addCouponList(param);
 				//service.addCouponList();
@@ -1540,7 +1530,6 @@ public class AdminController {
 			msg="등록이 실패 되었습니다.";
 		}
 		
-		System.out.println(param);
 		
 		String faqNo=(String)param.get("faqNo");
 		
@@ -1558,7 +1547,6 @@ public class AdminController {
 		
 		String faqNo=(String)param.get("faqNo");
 		param.put("faqNo",faqNo);
-		System.out.println(faqNo);
 		int result=service.deleteFaq(param);
 	
 		String msg="";
@@ -1603,9 +1591,6 @@ public class AdminController {
 		param.put("search", search);
 		
 
-		System.out.println("검색바에서"+param.get("cPage"));
-		System.out.println("검색바에서"+param.get("numPerpage"));
-		
 		
 		int cPage = Integer.parseInt((String)param.get("cPage"));
 		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));
@@ -1639,9 +1624,6 @@ public class AdminController {
 		param.put("searchSaleDate1", searchSaleDate1);
 		param.put("searchSaleDate2", searchSaleDate2);
 		param.put("searchSaleDate3", searchSaleDate3);
-		System.out.println(searchSaleDate1);
-		System.out.println(searchSaleDate2);
-		System.out.println(searchSaleDate3);
 		
 		
 		List<Order> list=service.orderSaleList(param);
@@ -1651,6 +1633,15 @@ public class AdminController {
 	@RequestMapping("/admin/getPageBarorderSaleList.do")
 	@ResponseBody
 	public String[] getPageBarorderSaleList(@RequestParam Map param) {
+		
+		String type = (String)param.get("type");
+		param.put("type", type);
+		String searchSaleDate1 = (String)param.get("searchSaleDate1");
+		String searchSaleDate2 = (String)param.get("searchSaleDate2");
+		String searchSaleDate3 = (String)param.get("searchSaleDate3");
+		param.put("searchSaleDate1", searchSaleDate1);
+		param.put("searchSaleDate2", searchSaleDate2);
+		param.put("searchSaleDate3", searchSaleDate3);
 		
 		int cPage = Integer.parseInt((String)param.get("cPage"));
 		int numPerpage = Integer.parseInt((String)param.get("numPerpage"));

@@ -1,0 +1,325 @@
+@charset "UTF-8";
+.wrapper {
+	display: grid;
+	grid-template-rows: 100px 50px 50px 1fr 170px;
+	grid-template-areas: 'header' 'portalnav' 'navbar' 'main' 'footer';
+	width: 100%;
+}
+
+main {
+	background-color: white;
+	display: grid;
+	grid-template-columns: repeat(4, 200px);
+	grid-template-columns: 100px;
+	grid-auto-rows: 250px;
+	grid-auto-rows: minmax(250px, auto);
+	grid-gap: 1rem;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+}
+
+div.main-boundary-box {
+	width: 950px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+div.info-box {
+	border: 2px solid rgba(88,40,16,0.5);
+	flex-grow: 1;
+	width: 100%;
+	margin-top: 7px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 5px;
+	background-color: white;
+	background-image: url("../../img/sellLev1/boximg.png");
+}
+
+.ebookTitle {
+	margin-top: 7px;
+	font-size: 15px;
+	text-align: center;
+	font-weight: bold;
+	
+}
+
+.ebookAuthor {
+	font-size: 13px;
+	text-align: center;
+	margin-top: 17px;
+	margin-bottom: 5px;
+}
+
+#searchFrm {
+	grid-column: 1/5;
+}
+
+#searchFrm {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	width: 100%;
+	border: 2px solid rgba(88,40,16,0.6);
+	padding: 7px;
+	background-color:rgba(88,40,16,0.1);
+	font-family: '한컴 말랑말랑';
+	align-items: center;
+}
+
+#searchFrm>div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+}
+
+.ebookItem {
+	padding: 10px;
+	border: 3px solid rgba(88,40,16,0.6);
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	background-color:white;
+	
+}
+
+.ebookItem:hover {
+	cursor: pointer;
+	border: 5px solid rgba(88,40,16,1);
+}
+
+div.cover-img-box {
+	border: 3px solid rgba(88,40,16,0.6);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;
+	height: 180px;
+	overflow: hidden;
+	width: 100%;
+	background-image:url("../../img/sellLev1/bookimgback.png");
+}
+.searchBar>select{
+		font-family: '한컴 말랑말랑';
+}
+.searchBar>input{
+	text-align: center;
+		font-family: '한컴 말랑말랑';
+}
+div.cover-img-box>img {
+	height: 90%;
+}
+
+.books {
+	display: flex;
+	height: 20%;
+}
+
+div.searchBar {
+	justify-content: center;
+	width: 70%;
+	margin-top: 10px;
+}
+
+div.searchBar input[type=submit] {
+	background-color: rgba(88,40,16,0.1);
+	font-weight: bold;
+	border: 1px solid rgba(88,40,16,1);
+	padding: 5px 10px;
+	color:rgba(88,40,16,1);
+}
+
+div.searchBar input[type=submit]:hover {
+	background-color: rgba(88,40,16,1);
+	color: white;
+	cursor: pointer;
+}
+
+.itemBox {
+	/* border:1px solid #F1CB63; */
+	padding: 10px;
+	height: 100%;
+	text-align: center;
+}
+
+.itemBox div {
+	padding: 3px;
+}
+
+#searchType {
+	margin-right: 5px;
+}
+
+#category {
+	margin-right: 5px;
+}
+
+#keyword {
+	flex-grow: 1;
+	margin-right: 5px;
+}
+
+div.order-container {
+	width: 100%;
+	font-size: 13px;
+	height: 20px;
+}
+
+div.order-container>div {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	border-right: 1px dotted rgba(88,40,16,0.6);
+}
+
+div.order-container>div>div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+div.order-container>div:first-of-type {
+	margin-right: 5px;
+}
+
+div.order-container>div:last-of-type {
+	border-right: none;
+}
+
+div.order-container p {
+	margin-right: 10px;
+	font-weight: bold;
+}
+
+div.order-container input[type=number] {
+	width: 25px;
+	margin-left: 10px;
+}
+
+div.search-box {
+	box-sizing: border-box;
+	width: 100%;
+	border-left: 2px solid rgba(88,40,16,0.5);
+	border-right: 2px solid rgba(88,40,16,0.5);
+	padding: 10px;
+}
+
+div.search-result {
+	border: 2px solid rgba(88,40,16,0.6);
+	margin-top: 10px;
+	padding: 10px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-auto-rows: 300px;
+	align-items: center;
+	align-content: center;
+	justify-items: center;
+	justify-content: center;
+	background-color: rgba(88,40,16,0.1);
+}
+
+div.banner-box {
+	box-sizing: border-box;
+	border: 1px solid silver;
+	border-radius: 5px;
+	width: 100%;
+	height: 300px;
+	margin-bottom: 5px;
+	padding: 10px;
+}
+
+div.slide-banner {
+	box-sizing: border-box;
+	border: 1px solid silver;
+	border-radius: 5px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.empty-notice {
+	grid-column: 1 / 5;
+	font-weight: bold;
+}
+
+div.page-bar {
+	margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+div.page-bar ul {
+	margin-bottom: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	padding-left: 0;
+	align-items: center;
+	justify-content: center;
+	list-style: none;
+	font-size: 13px;
+	font-weight: bold;
+	color:rgba(88,40,16,1);
+}
+
+div.page-bar li {
+	border: 2px solid rgba(88,40,16,0.6);
+	padding: 3px 10px;
+	margin-right: 2px;
+	background-color: white;
+	color:rgba(88,40,16,1);
+}
+div.page-bar li {
+	border: 2px solid rgba(88,40,16,0.6);
+	padding: 3px 10px;
+	margin-right: 2px;
+	background-color: white;
+	color:rgba(88,40,16,1);
+}
+div.page-bar a {
+	color:rgba(88,40,16,1);
+}
+
+div.page-bar li:hover {
+	cursor: pointer;
+	background-color: rgba(88,40,16,1);
+	color:white;
+}
+div.page-bar li:hover a {
+	color:white;
+}
+
+div.page-bar li.active {
+	background-color: rgba(88,40,16,1);
+	color:white;
+}
+
+div.page-bar li.active>a {
+	color: white;
+}
+
+div.page-bar li.disabled>a {
+	color: rgba(88,40,16,0.2);
+}

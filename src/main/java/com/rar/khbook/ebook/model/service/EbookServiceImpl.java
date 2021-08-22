@@ -299,4 +299,14 @@ public class EbookServiceImpl implements EbookService {
 		return dao.countLoved(session, param);
 	}
 	
+	@Override
+	public List<HashMap> getCategoriesForPaperBook(Map param) {
+		return dao.getCategoriesForPaperBook(session, param);
+	}
+	
+	@Override
+	public List<HashMap> newSearchForPaperBook(Map param) {
+		return dao.newSearchForPaperBook(session, param);
+	}
+	
 }

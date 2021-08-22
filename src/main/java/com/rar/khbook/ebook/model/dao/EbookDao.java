@@ -116,4 +116,8 @@ public interface EbookDao {
 	
 	int countLoved(SqlSession session, Map param);
 	
+	List<HashMap> getCategoriesForPaperBook(SqlSession session, Map param);
+	
+	List<HashMap> newSearchForPaperBook(SqlSession session, Map param);
+	
 }

@@ -80,6 +80,8 @@ public class SellbookServiceImpl implements SellbookService {
 	public int reviewWrite(HashMap map) {
 		// TODO Auto-generated method stub
 		int result = dao.reviewWrite(session,map);
+		int result2 = dao.insertReviewBook(session,map);
+		System.out.println("평점저장되니? :"+result2);
 		return result;
 	}
 
@@ -124,6 +126,14 @@ public class SellbookServiceImpl implements SellbookService {
 		
 		
 		return result;
+	}
+
+
+
+	@Override
+	public int insertReviewBook(HashMap map) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

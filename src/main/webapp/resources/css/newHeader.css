@@ -9,8 +9,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -20,8 +20,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;	
 }
-
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -66,7 +65,6 @@ button{
     font-size: 15px;
     font-weight: 600;
 }
-
 /* .flex li{
 	height: 50px;
 	display: flex;
@@ -154,7 +152,7 @@ button{
 .searchBox-box{
     width: 460px;
     height: 40px;
-    border: 2px solid #5e6b9e;
+    border: 2px solid #5E6B9E;
     border-radius: 50px;
     display: flex;
     justify-content: space-around;
@@ -244,10 +242,10 @@ input:focus{
 .slide-box{
     width: 250px;
     position: relative;
-    overflow: hidden; 
-    display: flex; 
+    overflow: hidden;
+    display: flex;
     margin-left: 24px;
-}    
+}
 .slide-list{
     float: left;
     display: flex;
@@ -322,7 +320,7 @@ input:focus{
     background-color: #582810;
     width: 100%;
     height: 50px;
-    margin-top: 20px;  
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     min-width: 950px;
@@ -336,7 +334,7 @@ input:focus{
     min-width: 1200px;
     /* width:100%; */
     display: flex;
-    justify-content: space-around;  
+    justify-content: space-around;
 }
 .header-menuBar1{
     display: flex;
@@ -356,7 +354,7 @@ input:focus{
     color: silver;
     font-size: 13px;
     font-weight: 500;
-    margin-left: 300px;
+    /* margin-left: 300px; */
     font-family: "한컴 말랑말랑";
 }
 .header-menuBar2>ul li:not(:last-child){
@@ -381,7 +379,7 @@ input:focus{
     flex-direction: column;
     justify-content: space-around;
     align-content: space-around;
-    display: none; 
+    display: none;
 }
 .eBook li{
     background-color: #E5E2DB;
@@ -470,9 +468,7 @@ input:focus{
     color: #582810;
     font-weight: 900;
 }
-
 /* 헤더에서 기프트메뉴 호버시 */
-
 .giftTab{
     position: absolute;
     top: 50%;

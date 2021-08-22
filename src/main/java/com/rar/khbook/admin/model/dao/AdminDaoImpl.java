@@ -590,7 +590,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int getPageBarorderSaleList(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.selectOne("admin.getPageBarorderSaleList");
+		return session.selectOne("admin.getPageBarorderSaleList",param);
 	}
 	
 	

@@ -114,7 +114,7 @@
 						
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="등록" onclick="return checkImgLong(event);">
+								<input type="submit" value="등록" onclick="return checkImgLong(event);" class="adminBtn">
 							</td>
 						</tr>
 					</table>

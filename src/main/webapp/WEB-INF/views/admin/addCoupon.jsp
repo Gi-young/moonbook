@@ -41,7 +41,7 @@
 						<tr>
 							<th>할인금액</th>
 							<td>
-								<input type="number" min="1000" name="couponlistAmount">
+								<input type="number" min="1000" name="couponlistAmount" step="1000" max="3000">
 							</td>
 						</tr> 
 						<tr>
@@ -60,7 +60,8 @@
 						<tr>
 							<th>쿠폰이미지</th>
 							<td>
-								<input type="file" class="" name="couponImg" id="couponImg">
+								<input type="file" class="adminFile" name="couponImg" id="couponImg">
+								<!-- <label class="custom-file-label" for="couponImg">파일을 선택하세요</label> -->
 							</td>
 						</tr>
 						<!-- <tr>
@@ -72,7 +73,7 @@
 						
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="등록">
+								<input type="submit" value="등록" class="adminBtn">
 							</td>
 						</tr>
 					</table>
@@ -103,7 +104,12 @@
 		})
 	});
 	
-
+	$(function(){
+		$("[type=file]").on("change",e=>{
+			const fileName=$(e.target).prop("files")[0].name;
+			$(e.target).next('.custom-file-label').html(fileName);
+		});
+	})
 	
 </script>
 

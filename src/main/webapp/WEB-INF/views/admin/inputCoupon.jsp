@@ -33,25 +33,25 @@
 						<tr>
 							<th>브론즈 등급</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/inputCoupon3Page.do?memberGrade=1')" value="발급">
+								<input type="button" onclick="location.assign('${path}/admin/inputCoupon3Page.do?memberGrade=1')" value="발급" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>실버 등급</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/inputCoupon3Page.do?memberGrade=2')" value="발급">
+								<input type="button" onclick="location.assign('${path}/admin/inputCoupon3Page.do?memberGrade=2')" value="발급" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>골드 등록</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/inputCoupon3Page.do?memberGrade=3')" value="발급">
+								<input type="button" onclick="location.assign('${path}/admin/inputCoupon3Page.do?memberGrade=3')" value="발급" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
 							<th>플래티넘 등록</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/inputCoupon3Page.do?memberGrade=4')" value="발급">
+								<input type="button" onclick="location.assign('${path}/admin/inputCoupon3Page.do?memberGrade=4')" value="발급" class="adminBtn">
 							</td>
 						</tr>
 						<tr>
@@ -60,7 +60,7 @@
 						<tr>
 							<th>개인 회원</th>
 							<td class="Ch-td">
-								<input type="button" onclick="location.assign('${path}/admin/inputCoupon2.do')" value="발급">
+								<input type="button" onclick="location.assign('${path}/admin/inputCoupon2.do')" value="발급" class="adminBtn">
 							</td>
 						</tr>
 						

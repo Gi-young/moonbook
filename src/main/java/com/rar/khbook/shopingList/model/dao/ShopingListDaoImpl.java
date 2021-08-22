@@ -26,7 +26,7 @@ public class ShopingListDaoImpl implements ShopingListDao {
 	@Override
 	public int insertShopingList(SqlSession session, @RequestParam Map param) {
 		// TODO Auto-generated method stub
-		return session.update("shopingList.insertShopingList",param);
+		return session.insert("shopingList.insertShopingList",param);
 	}
 
 	@Override

@@ -40,7 +40,7 @@
 										이상 </span><input type="number" style="width: 60px; height: 27px;"
 									min="1" name="stockNum2"><span> 미만 </span></td>
 								<td><input type="button" value="조회하기"
-									onclick="return orderList3(1,10);"></td>
+									onclick="return orderList3(1,10);" class="adminBtn"></td>
 							</tr>
 							<tr>
 								<th>검색하기</th>
@@ -274,7 +274,8 @@ $("#pagebar-container2 li,#pagebar-container1 a").click(e=>{
 }) */
 
 function adStockDelete(event){
-	let bindNo=event.target.parentElement.parentElement.children[0].children[0].value;
+	let bindNo=event.target.parentElement.parentElement.
+	children[0].children[0].value;
 	
 	$.ajax({
 		url:"${path}/admin/stockTDelete.do",
@@ -333,6 +334,10 @@ function changeStockV(event){
 			categoryCode:categoryCode
 		},
 		success: data=>{
+			console.log("data : " + data);
+			console.log(typeof data);
+			console.log(!data);
+			
 			if(data){
 				alert("book 수정이 정상적으로 성공 하였습니다");
 				
@@ -361,6 +366,10 @@ function changeStockV2(event){
 			gift_category : gift_category
 		},
 		success: data=>{
+			console.log("data : " + data);
+			console.log(typeof data);
+			console.log(!data);
+			
 			if(data){
 				alert("gift 수정이 정상적으로 성공 하였습니다");
 				
@@ -430,12 +439,12 @@ function searchStockT(cPage, numPerpage){
 					table.appendChild(tr);
 					
 				}
-				document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
+				/* document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
 					v.addEventListener("click", function() {changeStockV(event)});
 				});
 				document.querySelectorAll(".stockT td>img.deleteImg").forEach((v, i) => {
 					v.addEventListener("click", function() {adStockDelete(event)});
-				});
+				}); */
 			}
 			
 		});
@@ -498,12 +507,12 @@ function searchStockT(cPage, numPerpage){
 					table.appendChild(tr);
 					
 				}
-				document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
+				/* document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
 					v.addEventListener("click", function() {changeStockV2(event)});
 				});
 				document.querySelectorAll(".stockT2 td>img.deleteImg").forEach((v, i) => {
 					v.addEventListener("click", function() {adStockDelete2(event)});
-				});
+				}); */
 			}
 			
 		});
@@ -585,12 +594,12 @@ function orderList3(cPage, numPerpage) {
 						table.appendChild(tr);
 						
 					}
-					document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
+					/* document.querySelectorAll(".stockT td>img.updateImg").forEach((v, i) => {
 						v.addEventListener("click", function() {changeStockV(event)});
 					});
 					document.querySelectorAll(".stockT td>img.deleteImg").forEach((v, i) => {
 						v.addEventListener("click", function() {adStockDelete(event)});
-					});
+					}); */
 				}
 			});
 			
@@ -658,12 +667,12 @@ function orderList3(cPage, numPerpage) {
 						table.appendChild(tr);
 						
 					}
-					document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
+					/* document.querySelectorAll(".stockT2 td>img.updateImg").forEach((v, i) => {
 						v.addEventListener("click", function() {changeStockV2(event)});
 					});
 					document.querySelectorAll(".stockT2 td>img.deleteImg").forEach((v, i) => {
 						v.addEventListener("click", function() {adStockDelete2(event)});
-					});
+					}); */
 				}
 			});
 			$.ajax({

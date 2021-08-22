@@ -160,3 +160,19 @@
 .chooseBookAdd6{
 	margin-left:5px;
 }
+.adminBtn{
+	background-color: #582810;
+    color: white;
+    cursor: pointer;
+    width: 200px;
+    height: 30px;
+    font-weight: bold;
+}
+.adminBtn:hover{
+	background-color: #800000;
+	color: white;
+    cursor: pointer;
+    width: 200px;
+    height: 30px;
+    font-weight: bold;
+}

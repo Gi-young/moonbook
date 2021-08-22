@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="${path}/resources/css/login/reset.css">
 <link rel="stylesheet" href="${path}/resources/css/service/serviceMain.css">
 <link rel="stylesheet" href="${path }/resources/css/bookdetail/bookdetail.css">
+
 <body>
 <div class="service-container">
 	<div class="service-box1">
@@ -20,17 +21,21 @@
 		<div class="service-box2" style="display:flex;">
 			<div style="display:flex; justify-content:center; margin-top:20px; margin-bottom:30px;" ><img src="${path }/resources/img/sellLev1/notice.png" alt="공지사항"></div>
 			<div style="display:flex; justify-content:flex-end; margin-right:5px; margin-bottom:5px;">
-        	<button class="reviewBtn" style="width:110px; height:40px; border:1px solid black; background-color:#E5E2DB;" onclick="window.open('<%=request.getContextPath()%>/ServiceboardController/insertNoticeBoard.do', '공지사항 작성!', 'width=500, height=600')">공지 작성하기</button>
+        	<c:if test="${loginMember.memberId eq 'admin'}">
+        	 <button class="reviewBtn" style="width:110px; height:40px; border:3px solid rgba(88,40,16,1); font-weight:bold; font-family:'한컴 말랑말랑'; font-size:19px;" onclick="window.open('<%=request.getContextPath()%>/ServiceboardController/insertNoticeBoard.do', '공지사항 작성!', 'width=500, height=600')">작성하기</button>
+        	</c:if>
         </div>
-          <div class="service-box2" style="board:none; ">
+          <div class="service-box2" style="border:none; ">
            <table class="review-exp review-board" id="targetTable" style="width:770px;">
             
             <tr>
             <th style='width:50px;'>번호</th>
-            <th style='width:480px;'>제목</th>
+            <th style='width:498px;'>제목</th>
             <th style='width:110px;'>작성자</th>
             <th style='width:110px;'>작성일</th>
-            <th style='width:50px;'>삭제</th>
+            <c:if test="${loginMember.memberId eq 'admin'}">
+            	<th style='width:50px;'>삭제</th>
+            </c:if>
             </tr>
             <c:forEach var="n" items="${notice }">
             <tr class='review-text review-tr'>
@@ -42,7 +47,9 @@
 		   	    </td>
 		   	    <td class='review-writer'>${n.memberId}</td>
 		   	    <td class='review-date'>${n.noticeboardDate}</td>
-		   	    <td><button type="button" id="deleteBtn" onclick="location.assign('<%=request.getContextPath()%>/ServiceboardController/deleteNoticeBoard.do?noticeboardNo='+${n.noticeboardNo})">삭제</button>
+		   	    <c:if test="${loginMember.memberId eq 'admin'}">
+		   	    <td><button type="button" id="deleteBtn" style="background-color:white; color:rgba(88,40,16,1); font-family:'한컴 말랑말랑';" onclick="location.assign('<%=request.getContextPath()%>/ServiceboardController/deleteNoticeBoard.do?noticeboardNo='+${n.noticeboardNo})">삭제</button></td>
+		   		</c:if>
 	   	    </tr>
 	   	   </c:forEach>
            </table>		

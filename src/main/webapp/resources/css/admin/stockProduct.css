@@ -78,6 +78,7 @@
 }
 .search-box img:hover{
 	opacity: 0.5;
+	cursor:pointer;
 }
 .search-box {
 /* 	display: flex; */
@@ -263,4 +264,12 @@
 .Dodo1{
 	border:1px solid black;
 	/* border-radius: 30%; */
+}
+.adminBtn{
+	background-color: #582810;
+	color:white;
+}
+.adminBtn:hover{
+	background-color: #800000;
+	color:white;
 }

@@ -110,10 +110,6 @@ function searchEbook(cPage, numPerPage) {
 		searchData.cPage = cPage;
 		searchData.numPerPage = numPerPage;
 	}
-
-	console.log("searchData");
-	console.log(typeof searchData);
-	console.log(searchData);
 	
 	$.ajax({
 		url: contextPath + "/ebook/newSearch.do",

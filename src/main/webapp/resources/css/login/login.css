@@ -153,6 +153,7 @@
 }
 .loginSubmit>input{
 	color:white;
+	cursor: pointer;
 }
 .loginSubmit{
 	margin-left:7px; 
@@ -188,6 +189,23 @@
 	height:70px;
 	background-color:#582810;
 	border: 1px #0362ad solid;
+	cursor: pointer;
+}
+.searchIdPwd{
+	font-weight: bold;
+	color:#353f67;
+}
+.searchIdPwd:hover{
+	cursor: pointer;
+	color:#0000ff;
+	
+}
+.loginSubmit>input:hover{
+	width:70px;
+	height:70px;
+	background-color: #800000;
+	border: 1px #0362ad solid;
+	cursor: pointer;
 }
 /* 네이버 id로 가입/로그인 */
 .logintext3>input:nth-child(1){

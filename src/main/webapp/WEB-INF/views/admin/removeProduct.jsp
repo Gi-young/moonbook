@@ -58,7 +58,7 @@
 						
 						<tr>
 							<td colspan="2">
-								<input type="submit" onclick="return checkStock(event);" value="출고">
+								<input type="submit" onclick="return checkStock(event);" value="출고" class="adminBtn">
 							</td>
 						</tr>
 					</table>
@@ -89,7 +89,7 @@
 						
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="출고">
+								<input type="submit" value="출고" class="adminBtn">
 							</td>
 						</tr>
 					</table>
@@ -120,7 +120,7 @@
 						
 						<tr>
 							<td colspan="2">
-								<input type="submit" value="출고" onclick="checkStock3(event);">
+								<input type="submit" value="출고" onclick="checkStock3(event);" class="adminBtn">
 							</td>
 						</tr>
 					</table>

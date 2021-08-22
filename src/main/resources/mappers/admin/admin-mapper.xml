@@ -679,41 +679,52 @@
   	
   	<!-- 차트 book top3 -->
   	<select id="bookTopThree" resultMap="booktopthreeMap">
- <!--  		SELECT ROWNUM,b_title,b_total_cost,b_profit,sales_volume
+		SELECT ROWNUM,b_title,b_total_cost,b_profit,b_cost
   		FROM(
-  			SELECT TITLE AS B_TITLE ,(PRICE-PRIME_COST)*SALES_VOLUME AS B_TOTAL_COST ,PRICE-PRIME_COST AS B_PROFIT, SALES_VOLUME 
+  			SELECT TITLE AS B_TITLE ,(PRICE-PRIME_COST)*SALES_VOLUME AS B_TOTAL_COST ,PRICE-PRIME_COST AS B_PROFIT, PRICE*SALES_VOLUME AS B_COST
 			FROM BOOK_EBOOK_DATABIND ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME DESC NULLS LAST
   		)B
-  		WHERE ROWNUM &lt; 4  -->
-  	        		SELECT TITLE AS bTitle ,(PRICE-PRIME_COST)*SALES_VOLUME AS btotalcost ,PRICE-PRIME_COST AS BPROFIT, PRICE*SALES_VOLUME AS bcost 
+  		WHERE ROWNUM <![CDATA[<]]> 4 
+  	        <!-- SELECT TITLE AS bTitle ,(PRICE-PRIME_COST)*SALES_VOLUME AS btotalcost ,PRICE-PRIME_COST AS BPROFIT, PRICE*SALES_VOLUME AS bcost 
 			FROM BOOK_EBOOK_DATABIND where rownum &lt;4 ORDER BY (PRICE-PRIME_COST)*SALES_VOLUME DESC NULLS LAST 
-  		
+  		 -->
   	</select>
   	<resultMap type="com.rar.khbook.adminchart.model.vo.BookTopThree" id="booktopthreeMap">
-		<result column="SALES_VOLUME" property="bsalesVolume" />	
+		<result column="B_TITLE" property="btitle"/>
+  		<result column="B_TOTAL_COST" property="btotalcost"/>
+  		<result column="B_PROFIT" property="bprofit"/>
+		<result column="B_COST" property="bcost" />	
 	</resultMap>
   	
   	<resultMap type="ebooktopthree" id="ebooktopthreeMap">
-  		<result column="EBTITLE" property="ebtitle"/>
-  		<result column="EBTOTALCOST" property="ebtotalcost"/>
-  		<result column="EBPROFIT" property="ebprofit"/>
-		<result column="EBCOST" property="ebcost" />	
+  		<result column="EB_TITLE" property="ebtitle"/>
+  		<result column="EB_TOTAL_COST" property="ebtotalcost"/>
+  		<result column="EB_PROFIT" property="ebprofit"/>
+		<result column="EB_COST" property="ebcost" />	
 	</resultMap>
   	
   	<select id="ebookTopThree" resultMap="ebooktopthreeMap">
-  		SELECT TITLE AS ebTitle ,(PRICE-PRIME_COST)*EBOOK_SALES_VOLUME AS ebtotalcost ,PRICE-PRIME_COST AS eBPROFIT, PRICE*EBOOK_SALES_VOLUME AS EBCOST
-			FROM BOOK_EBOOK_DATABIND where rownum &lt;4 ORDER BY (PRICE-PRIME_COST)*EBOOK_SALES_VOLUME DESC NULLS LAST
+  		SELECT ROWNUM,eb_title,eb_total_cost,eb_profit,eb_cost
+  		FROM(
+  			SELECT TITLE AS EB_TITLE ,(PRICE-PRIME_COST)*EBOOK_SALES_VOLUME AS EB_TOTAL_COST ,PRICE-PRIME_COST AS EB_PROFIT, PRICE*EBOOK_SALES_VOLUME AS EB_COST
+			FROM BOOK_EBOOK_DATABIND ORDER BY (PRICE-PRIME_COST)*EBOOK_SALES_VOLUME DESC NULLS LAST
+  		)B
+  		WHERE ROWNUM <![CDATA[<]]> 4 
   	</select> 
   	
   	<resultMap type="gifttopthree" id="gifttopthreeMap">
-  		<result column="NGTITLE" property="ngtitle"/>
-  		<result column="NGIFTTOTALCOST" property="ngiftTotalcost"/>
-  		<result column="NGIFTPROFIT" property="ngiftProfit"/>
-		<result column="NGIFTCOST" property="ngiftCost" />	
+  		<result column="NGIFT_TITLE" property="ngtitle"/>
+  		<result column="ngift_Totalcost" property="ngiftTotalcost"/>
+  		<result column="ngift_Profit" property="ngiftProfit"/>
+		<result column="ngift_Cost" property="ngiftCost" />	
 	</resultMap>
   	<select id="giftTopThree" resultMap="gifttopthreeMap">
-  		SELECT NGIFT_TITLE AS ngtitle ,(NGIFT_PRICE-NGIFT_COUNT)*NGIFT_SALESVOLUME AS ngiftTotalcost ,NGIFT_PRICE-NGIFT_COUNT AS ngiftProfit, NGIFT_PRICE*NGIFT_SALESVOLUME AS NGIFTCOST
-			FROM NGIFT where rownum &lt;4 ORDER BY (NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME DESC NULLS LAST 
+  		SELECT ROWNUM,NGIFT_TITLE,ngift_Totalcost,ngift_Profit,ngift_Cost
+  		FROM(
+  			SELECT NGIFT_TITLE ,(NGIFT_PRICE-NGIFT_COUNT)*NGIFT_SALESVOLUME AS ngift_Totalcost ,NGIFT_PRICE-NGIFT_COUNT AS ngift_Profit, NGIFT_PRICE*NGIFT_SALESVOLUME AS NGIFT_COST
+			FROM NGIFT ORDER BY (NGIFT_PRICE-NGIFT_ROWPRICE)*NGIFT_SALESVOLUME DESC NULLS LAST
+  		)B
+  		WHERE ROWNUM <![CDATA[<]]> 4 
   	</select>
   	<resultMap type="faq" id="faqMap">
   		<id column="FAQ_NO" property="faqNo"/>
@@ -805,39 +816,39 @@
 		SELECT COUNT(*) FROM ORDERT WHERE
 		<choose>
 			<when test="type51 == 'orderMemberId'">
-				ORDER_MEMBER_ID LIKE '%'||#{search}||'%'
+				ORDER_MEMBER_ID LIKE '%'||#{search}||'%' ORDER BY ORDER_DATE DESC
 			</when>
 			<when test="type51 == 'orderNo'">
-				ORDER_NO=#{search}
+				ORDER_NO=#{search} ORDER BY ORDER_DATE DESC
 			</when>
 			<when test="type51 == 'orderStatus'">
-				ORDER_STATUS LIKE '%'||#{search}||'%'
+				ORDER_STATUS LIKE '%'||#{search}||'%' ORDER BY ORDER_DATE DESC
 			</when>
 		</choose>
 	</select>
 	<!-- 판매내역 정렬 리스트 -->
 	
-	<!--재고 book 정렬 -->
+	<!--판매내역 정렬 리스트 -->
   	<select id="orderSaleList" resultMap="orderMap">
   		SELECT * FROM ORDERT
   		WHERE 1=1
-  		<if test="type =='day'">
-  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') = #{searchSaleDate1}
+  		<if test="type =='Day'">
+  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') = #{searchSaleDate1} ORDER BY ORDER_DATE DESC
   		</if>
-  		<if test="type =='days'">
-  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[>=]]> #{searchSaleDate2} AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[<=]]> #{searchSaleDate3}
+  		<if test="type =='Day2'">
+  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[>=]]> #{searchSaleDate2} AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[<=]]> #{searchSaleDate3} ORDER BY ORDER_DATE DESC
   		</if>
   	</select>
   	
-  	<!-- 재고 book 페이지바 정렬 -->
+  	<!-- 판매내역 정렬 리스트 페이지바 정렬 -->
   	<select id="getPageBarorderSaleList" resultType="_int">
   		SELECT COUNT(*) FROM ORDERT
   		WHERE 1=1
-  		<if test="type =='day'">
-  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') = #{searchSaleDate1}
+  		<if test="type =='Day'">
+  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') = #{searchSaleDate1} ORDER BY ORDER_DATE DESC
   		</if>
-  		<if test="type =='days'">
-  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[>=]]> #{searchSaleDate2} AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[<=]]> #{searchSaleDate3}
+  		<if test="type =='Day2'">
+  		 	AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[>=]]> #{searchSaleDate2} AND TO_CHAR(ORDER_DATE,'YYYY-MM-DD') <![CDATA[<=]]> #{searchSaleDate3} ORDER BY ORDER_DATE DESC
   		</if>
   	</select>
 	

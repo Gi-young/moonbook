@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.rar.khbook.ebook.model.vo.Ebook;
 import com.rar.khbook.ebook.model.vo.EbookDatabind;
+import com.rar.khbook.gift.model.vo.Ngift;
 import com.rar.khbook.member.model.vo.Member;
 
 public interface EbookService {
@@ -113,5 +114,11 @@ public interface EbookService {
 	List<HashMap> getCategories(Map param);
 	
 	int countLoved(Map param);
+	
+	List<HashMap> getCategoriesForPaperBook(Map param);
+	
+	List<HashMap> newSearchForPaperBook(Map param);
+
+	
 	
 }
