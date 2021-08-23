@@ -30,6 +30,7 @@
 			</div>
 			<div class="optionBox">
 				 <select class="selectBox">
+					<option>-------------</option>
 					<option>--- 맥거핀 ---</option>
 				</select>
 			</div>

@@ -88,7 +88,6 @@ public class MemberController {
 				session.setAttribute("loginMember", m);
 //				로그인한 멤버의 쿠폰도 SESSION에 넣어줌
 				List<OrderWithCoupon> c = service.getCoupon(m);
-				System.out.println(c.get(0).getCouponNo());
 				session.setAttribute("coupon", c);
 //				로그인한 멤버의 회원등급도 Session에 넣어줌
 				Membergrade mg = service.getMembergrade(m);
@@ -431,12 +430,7 @@ public class MemberController {
 
 		int totalData = service.couponCount((Member)session.getAttribute("loginMember"));
 		List<Membergrade> mg = service.memberGrade();
-		List<OrderWithCoupon> uc = service.getUsedCoupon(cPage, numPerpage, (Member)session.getAttribute("loginMember"));;
-		System.out.println(totalData);
-		for(int i = 0; i < uc.size(); i++) {
-			
-			System.out.println(uc.get(i).getOrderDate());
-		}
+		List<OrderWithCoupon> uc = service.getUsedCoupon(cPage, numPerpage, (Member)session.getAttribute("loginMember"));
 		m.addAttribute("allMembergrade", mg);
 		m.addAttribute("uc", uc);
 		m.addAttribute("pageBar", PageFactory.getOwnPageBarAjax(totalData, cPage, numPerpage, "adMemberPage.do", 0));
@@ -689,9 +683,7 @@ public class MemberController {
 	@RequestMapping("/member/myroom/orderDetail.do")
 	public String orderDetail(String orderNo, Model m) {
 		
-		System.out.println(orderNo);
 		Order o = service.getOneOrder(orderNo);
-		System.out.println(o);
 		m.addAttribute("order", o);
 		
 		return "myroom/orderDetail";
