@@ -13,8 +13,8 @@ document.querySelectorAll("header li").forEach((v, i) => {
     }
 });
 
-//let sockWizard = new SockJS("http://rclass.iptime.org:9999" + contextPath + "/wizard");
-let sockWizard = new SockJS("http://localhost:9090" + contextPath + "/wizard");
+let sockWizard = new SockJS("http://rclass.iptime.org:9999" + contextPath + "/wizard");
+//let sockWizard = new SockJS("http://localhost:9090" + contextPath + "/wizard");
 
 sockWizard.onopen = e => {
     console.log(e);
