@@ -1,11 +1,11 @@
-
+IMP.init("imp26745696");
 	
 $(".btnPay").click(e=> {
 
 //  북 정보들, 고른 개수들
 	let bookNo = document.getElementsByClassName("bookNo");
+	
 	let bookCount = document.getElementsByClassName("bookCount");
-	console.log(bookNo);
 //  이북
 	let eBookNo = document.getElementsByClassName("eBookNo");
 //  기프트 정보들, 고른 개수들
@@ -27,37 +27,34 @@ $(".btnPay").click(e=> {
 	let totalPrice = document.getElementById("totalPrice").value;
 	
 	let point = originPrice*0.1;
-	
-	console.log(originPrice);
-	console.log(bookNo);
-	console.log(bookCount);
-	console.log(eBookNo);
-	console.log(giftNo);
-	console.log(giftCount);
-	console.log(point);
-	console.log(deliveryFee);
+
+for(let n=0; n<giftNo.length; n++){
+	if(giftNo[n].value != undefined){
+		console.log(giftNo.value);
+		console.log(giftNo[n].value);
+	}else{
+	 	console.log("기프트 언디파인드");
+	}
+}
+	//console.log("이북 번호 "+eBookNo);
+	//console.dir(eBookNo);
+	//console.log("도서 번호 "+bookNo[0].value);
+	//console.log("도서 개수 "+bookCount[0].value);
+	//console.log("기프트 번호 "+giftNo[0].value);
+	//console.log("기프트 개수 "+giftCount[0].value);
+	//console.log("적립할 포인트"+point);
+	//console.log("배송비 "+deliveryFee);
 	//console.log(contextPath);
-	console.log(totalPrice);
+	//console.log("총 원가 "+originPrice);
+	//console.log("배송비 포함 총 가격 "+totalPrice);
 	//console.log(stock);
 	//console.log(sellStock);
 	//console.log(Number(stock)<=Number(sellStock));
 	
-	if(!(Number(stock)<=Number(sellStock))){
-		//console.log("stock==="+Number(stock));
-		//console.log("sellStock==="+Number(sellStock));
+	if(false){
 		alert('주문 가능한 수량을 초과하였습니다.');
 	}else{
 		e.preventDefault();
-	    //let totalPrice = Number(document.getElementById("totalPrice").innerText);
-	    //let purchaseArr = new Array();
-	    //document.querySelectorAll("input[name=selectEbook]").forEach((v, i) => {
-	    //   if (v.checked) {
-	    //     purchaseArr.push(v.value);
-	    //    }
-	    //}); 
-		//let sellStock = document.getElementById("sellStock").value;
-		//let bookPrice09 = document.getElementById("bookPrice09").value;
-		//let totalPrice = bookVolume * bookPrice09;
 	
     $.ajax({
         url: contextPath + "/sellpart/checkMember.do",
@@ -66,10 +63,6 @@ $(".btnPay").click(e=> {
         memberId: loginMember
         },
         success: data => {
-        
-        //console.log("수량"+sellStock);
-		//console.log("할인가"+bookPrice09);
-		//console.log("총금액"+totalPrice);
             let buyerName;
             let buyerEmail;
             let merchant_uid;
@@ -77,11 +70,10 @@ $(".btnPay").click(e=> {
             buyerEmail = data.memberEmail;
 
             $.ajax({
-                url: contextPath + "/shopingList/getMerchantUid.do",
+                url: contextPath + "/ebook/getMerchantUid.do",
                 type: "POST",               
                 success: data => {
                     merchant_uid = data;
-                    console.log(merchant_uid);
                     IMP.request_pay(
                         {
                             pg: "html5_inicis",
@@ -105,18 +97,21 @@ $(".btnPay").click(e=> {
 						                paidAt: rsp.paid_at,
 						                pgProvider: rsp.pg_provider,
 						                receiptUrl: rsp.receipt_url,
-						                deliveryFee: deliveryFee,
-						                stock: stock,
+						                deliveryFee: deliveryFee,  
 						                totalPrice: totalPrice,
 						                point: point
-					                },
+					                },        
                                     success: data => {
+                                 for(let i=0; i<bookNo.length; i++){
+                                  if(bookNo[i].value != undefined){
+	                                  console.log("도서 있음");
                                     	$.ajax({
-                                    		url: contextPath + "/gift/salesVolumeAdd.do",
+                                    		url: contextPath + "/shopingList/salesVolumeAddBook.do",
                                     		type: "POST",
                                     		data: {
-                                    			stock: stock,
-                                    			giftNo: giftNo,
+                                    			
+                                    			bookNo: bookNo[i].value,
+                                    			bookCount: bookCount[i].value,                              
                                     			memberId: loginMember,
                                     			totalPrice: totalPrice,
                                     			merchantUid: rsp.merchant_uid,
@@ -128,6 +123,113 @@ $(".btnPay").click(e=> {
 		                                       	history.go(-4);                                                                  		
                                     		}
                                     	});
+                                    
+                                 }  else{
+                                 		console.log("도서 없음");
+                                 	$.ajax({
+                                    		url: contextPath + "/shopingList/salesVolumeAddBook.do",
+                                    		type: "POST",
+                                    		data: {
+                                    			
+                                    			bookNo: 123456, 
+                                    			bookCount: 0,                              
+                                    			memberId: loginMember,
+                                    			totalPrice: totalPrice,
+                                    			merchantUid: rsp.merchant_uid,
+                                    			point: point
+                                    		},
+                                    		success: data => {
+		                                        console.log("결제 로그 추가 결과 : " + data);
+		                                        alert("결제에 성공했습니다. 감사합니다");   
+		                                       	history.go(-4);                                                                  		
+                                    		}
+                                    	});
+                                 }	
+                                } 
+                                   for(let e=0; e<eBookNo.length; e++){
+	                                 if(eBookNo[e].value != undefined){
+                                 			console.log("이북 있음");
+                                    	$.ajax({
+                                    		url: contextPath + "/shopingList/salesVolumeAddEbook.do",
+                                    		type: "POST",
+                                    		data: {	
+                                    			eBookNo: eBookNo[e].value,
+                                    			memberId: loginMember,
+                                    			totalPrice: totalPrice,
+                                    			merchantUid: rsp.merchant_uid,
+                                    			point: point
+                                    		},
+                                    		success: data => {
+		                                        console.log("결제 로그 추가 결과 : " + data);
+		                                        alert("결제에 성공했습니다. 감사합니다");   
+		                                       	history.go(-4);                                                                  		
+                                    		}
+                                    	});
+                                    
+                                  }else{
+                                  console.log("이북 없음");
+                                  	$.ajax({
+                                    		url: contextPath + "/shopingList/salesVolumeAddEbook.do",
+                                    		type: "POST",
+                                    		data: {	
+                                    			
+                                    			memberId: loginMember,
+                                    			totalPrice: totalPrice,
+                                    			merchantUid: rsp.merchant_uid,
+                                    			point: point
+                                    		},
+                                    		success: data => {
+		                                        alert("결제에 성공했습니다. 감사합니다");   
+		                                       	history.go(-4);                                                                  		
+                                    		}
+                                    	});
+                                  } 	
+                                }  
+                                for(let g=0; g<giftNo.length; g++){
+                                  if(giftNo[g].value != undefined){
+                                 	console.log("기프트있음"+giftNo[g].value);
+                                 	console.log("개수도있음"+giftCount[g].value);
+                                    	$.ajax({
+                                    		url: contextPath + "/shopingList/salesVolumeAddGift.do",
+                                    		type: "POST",
+                                    		data: {
+                                    		
+                                    			giftNo: giftNo[g].value,
+                                    			giftCount: giftCount[g].value,
+                                    			memberId: loginMember,
+                                    			totalPrice: totalPrice,
+                                    			merchantUid: rsp.merchant_uid,
+                                    			point: point
+                                    		},
+                                    		success: data => {
+                                    			console.log("기프트 통과"+data);
+		                                        console.log("결제 로그 추가 결과 : " + data);
+		                                        alert("결제에 성공했습니다. 감사합니다");   
+		                                        history.go(-4);                                                                  		
+                                    		}
+                                    	});
+                                      
+                                     }else{
+                                      console.log("기프트 없음");
+                                     	$.ajax({
+                                    		url: contextPath + "/shopingList/salesVolumeAddGift.do",
+                                    		type: "POST",
+                                    		data: {
+                                    			giftNo: 123456,
+                                    			giftCount: 0,		
+                                    			memberId: loginMember,
+                                    			totalPrice: totalPrice,
+                                    			merchantUid: rsp.merchant_uid,
+                                    			point: point
+                                    		},
+                                    		success: data => {
+		                                        console.log("결제 로그 추가 결과 : " + data);
+		                                        alert("결제에 성공했습니다. 감사합니다");   
+		                                       	window.location.reload();                                                           		
+                                    		}
+                                    	});
+                                     } 
+                                   }   
                                     }
                                 });
                             } else {
@@ -143,16 +245,3 @@ $(".btnPay").click(e=> {
     }
 });
 
-
-//refundBtn.addEventListener("click", () => {
-//    $.ajax({
-//        url: contextPath + "/ebook/cancelPayment.do",
-//       type: "POST",
-//      data: {
-//           impUid: "imp_223195009712"
-//      },
-//      success: () => {
-//          console.log("환불 성공");
-//       }
-//   });
-// });

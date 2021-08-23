@@ -1050,17 +1050,17 @@ border:2px solid rgba(88,40,16,1);
             <a id="bar4">알려드립니다</a>
         </div>
         <input type="hidden" value="${book.bindNo }" id="bindNo"/>         
-
+		<div class="product-exp">
+            <img src="${path }/resources/img/a3.png" alt="">
+            <img src="${path }/resources/img/a2.png" alt="">
+            <img src="${path }/resources/img/a1.png" alt="">
+        </div>
       
         <div class="product-exp">
-            <%-- <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt=""> --%>
         </div>
         <div class="product-review">
             <div class="writeBox">
-                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/SellbookControll/insertReview.do?bindNo=${book.bindNo }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=600')">상품 리뷰 작성하기</button>
+                <button class="reviewWrite" onclick="window.open('<%=request.getContextPath()%>/SellbookControll/insertReview.do?bindNo=${book.bindNo }&loginMember=${loginMember.memberId }', '리뷰를 남겨주세요!', 'width=500, height=800')">상품 리뷰 작성하기</button>
             </div>
            <table class="review-exp review-board" id="targetTable">
             <!-- 아약스로 테이블 생성 -->
@@ -1079,12 +1079,6 @@ border:2px solid rgba(88,40,16,1);
     	   	let pager = "";
     	    let exp = document.getElementsByClassName('review-board');
 
-    	    /*  console.log("exp");
-    	    console.log(exp);
-    	    console.log(exp[0]);
-    	    console.log(exp[0].lastChild); */
-    	    
-  
     	   // let tb = document.getElementsByTagName("tbody");
     	    
     	   let tb = document.createElement('tbody');
@@ -1120,21 +1114,10 @@ border:2px solid rgba(88,40,16,1);
             			pageBar.innerHTML = data;
             		} 
             	}); // pageBar ajax
-            	 /* console.log(exp[0].children[0].children);
-            	 console.log(exp[0].firstChild); */
-            	 /*  console.log(exp[0].lastChild.childNodes);
-            	 console.log($(".review-board").children(".review-text")); */
-            	 /* console.log(tr); */
-            	 /*  console.log(exp[0].child[0]);
-            	 console.log(exp[0].child); */
-            	 /* exp[0].children[0].html(); */
-            	 /* exp[0].children.html(); */
             	    
-            	 /*  exp[0].children[0].children.html();  */
          	 exp[0].lastChild.innerHTML = "";
             	 
          	 /* console.log(exp[0].lastChild.childNodes); */
-         	 console.log("================= ajax 실행 후 ==================");
          	$.ajax({
               	type: 'post',
               	url: '${path}/SellbookController/productReview.do',
@@ -1171,13 +1154,6 @@ border:2px solid rgba(88,40,16,1);
                  	    
                  	    exp[0].appendChild(tb).appendChild(tr);
 
-                 	 //exp[0].appendChild(tb[0]).appendChild(tr);
-                 	    //exp[0].appendChild(tr);
-                 	    // document.getElementById("targetTable").appendChild(tr);
-                 	    /*  console.log("tb 입니다 ; ->>>>"+tb);
-                 	    console.log(tb);
-                 	    console.log(tb[0]); */
-                 	    //exp[0].appendChild(pager);    
              		 });    
               		
               	  } 
@@ -1195,26 +1171,10 @@ border:2px solid rgba(88,40,16,1);
             <table class="review-exp" id="qna-exp">
                 <tr>
                     <th style="width:105px;">번호</th>
-                    <!-- <th style="width:145px;"></th> -->
                     <th style="width:515px;">질문내용</th>
                     <th style="width:165px;">작성자</th>
                     <th style="width:165px;">작성일</th>
                 </tr>
-             <!-- <tr class="review-text">
-                    <td>0</td>
-                    <td class="gpa">
-                     <div class="gpa-circle">
-                         <p>3</p>
-                     </div>    
-                 </td>
-                     <td>
-                        <div class="review_qna">
-                         제목X 내용이 곧 제목, 20자 이상이면 ...으로 처리 쿠쿠루삥뽕빵삥뿡       
-                        </div>
-                     </td>
-                    <td>관리자</td>
-                    <td>SYSDATE or 수정일</td>
-                 </tr>     -->
 							</table>
 						</div>
 						<div class="notify">
@@ -1226,28 +1186,6 @@ border:2px solid rgba(88,40,16,1);
 						</div>
 					</div>
 				</div>
-				<!-- <div class="slide-wrap">
-        <div class="product-slide">
-            <ul class="slickTest">
-                <li>slide1</li>
-                <li>slide2</li>
-                <li>slide3</li>
-                 <li class="product-slideContent">
-                    <div class="reco-product">
-                        <img src="" alt="">
-                    </div>
-                    <div class="reco-product">
-                        
-                    </div>
-                    <div class="reco-product">
-                        
-                    </div>
-                    <div class="reco-product">
-                        
-                    </div>
-                </li>
-            </ul>
-        </div> -->
 				<input type="hidden" value="${path }" id="contextPath">
 
 
@@ -1320,7 +1258,6 @@ border:2px solid rgba(88,40,16,1);
 							url: '${path}/kakaopay.do',
 							dataType: 'json',
 							success: function (data) {
-								console.log("정상 실행 : " + data.tid);
 								window.open(data.next_redirect_pc_url);
 							},
 							error: function (error) {
@@ -1333,12 +1270,6 @@ border:2px solid rgba(88,40,16,1);
 					let reviewTitle = document.getElementsByClassName("review-title-a");
 
 					console.log(reviewTitle);
-					/* reviewTitle.addEventListener("click", function(e){
-					alert("나와라");
-				}); */
-		
-		
-		
 	</script>	
 <script>
 	$("#slBtn").click(function(){
@@ -1389,7 +1320,6 @@ border:2px solid rgba(88,40,16,1);
 	$("#sellStock").click(e =>{
 		console.log('${shopinglistCate}');
 		if(${shopinglistCate=='E'}){
-			console.log("dd");
 			alert("e-Book 도서는 1개만 구입 가능합니다.");
 			$("#sellStock").val(1);
 		}

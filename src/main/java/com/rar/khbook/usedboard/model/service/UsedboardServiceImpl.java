@@ -31,7 +31,11 @@ public class UsedboardServiceImpl implements UsedboardService {
 		// TODO Auto-generated method stub
 		return dao.selectUsedboardList(session,cPage,numPerpage,map);
 	}
-	
+	@Override
+	public List<Usedboard> selectUsedboardList2() {
+		// TODO Auto-generated method stub
+		return dao.selectUsedboardList2(session);
+	}
 	@Override
 	public int selectUsedboardCount(Map<String,Object> map) {
 		// TODO Auto-generated method stub

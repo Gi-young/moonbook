@@ -48,6 +48,42 @@ public interface ShopingListDao {
 
 	int writeOrderT(SqlSession session, Map param);
 
+	int writePurchaseLog(SqlSession session, Map param);
+
+//	int bookSalesVolumeAdd(SqlSession session, Map param);
+//
+//	int eBookSalesVolumeAdd(SqlSession session, Map param);
+//
+//	int giftSalesVolumeAdd(SqlSession session, Map param);
+
+	int deleteBook(SqlSession session, Map param);
+
+	int deleteEbook(SqlSession session, Map param);
+
+	int deleteGift(SqlSession session, Map param);
+
+	int salesVolumeAddBook(SqlSession session, Map param);
+
+	int updateStockB(SqlSession session, Map param);
+
+	int updateMemberPP(SqlSession session, Map param);
+
+	int updateMemberPoint(SqlSession session, Map param);
+
+	int updatePurchaseListB(SqlSession session, Map param);
+
+	int salesVolumeAddEbook(SqlSession session, Map param);
+
+	int updatePurchaseListE(SqlSession session, Map param);
+
+	int salesVolumeAddGift(SqlSession session, Map param);
+
+	int updateStockG(SqlSession session, Map param);
+
+	int updatePurchaseListG(SqlSession session, Map param);
+
+
+
 
 
 }

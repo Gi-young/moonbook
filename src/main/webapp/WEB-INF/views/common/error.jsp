@@ -9,13 +9,14 @@
 </jsp:include>
 
    <section id="content">
-         <h1 style="color:red;"><%=exception.getMessage()%></h1>
-         <h3>3초 후 메인화면으로 이동합니다</h3>
+   		<div style="display:flex; justify-content:center; margin-top:50px; margin-bottom:30px;">
+         <img src="${path }/resources/img/common/errorPage2.png" alt="errorPage">
+        </div>
          <script>
             setTimeout(()=>{
                location.replace('${path}');
             },3000);
          </script>
    </section>
-      
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

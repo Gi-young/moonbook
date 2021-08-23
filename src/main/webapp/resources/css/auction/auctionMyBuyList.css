@@ -55,8 +55,9 @@ th{
 
 .buylisttr td{
 	vertical-align: middle;
+	padding: 10px;
 }
 #buylertable>tbody>tr{
-	border-bottom: 1px dotted black;
+	border-bottom: 1px solid black;
 	
 }

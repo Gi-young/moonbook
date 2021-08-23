@@ -217,11 +217,11 @@ public class AuctionController {
 	@RequestMapping("/auction/auctionmyselllist.do")
 	public String auctionMylist(@RequestParam Map param,Model m,
 			@RequestParam(value="cPage",defaultValue ="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage,
+			@RequestParam(value="numPerpage",defaultValue ="10") int numPerpage,
 			@RequestParam(value="memberId",defaultValue ="") String memberId) {
 		String query="&memberId="+memberId;
 		int totalData=service.auctionStateCount(param);
-		List<Auction> list=service.selectStateList(param);
+		List<Auction> list=service.selectStateList(param,cPage,numPerpage);
 		int Y=0;
 		int S=0;
 		int N=0;
@@ -250,16 +250,20 @@ public class AuctionController {
 	@RequestMapping("/auction/auctionmybuylist.do")
 	public String auctionMyBuylist(@RequestParam Map param,Model m,
 			@RequestParam(value="cPage",defaultValue ="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage,
-			HttpSession session) {
+			@RequestParam(value="numPerpage",defaultValue ="10") int numPerpage,
+			HttpSession session,
+			@RequestParam(value="bidId",defaultValue ="") String bidId) {
 		
 		int totalData=service.auctionStateCount(param);
 		if(session.getAttribute("loginMember")!=null){
 		param.put("bidId", ((Member) session.getAttribute("loginMember")).getMemberId());
 		m.addAttribute("member",service.selectbidMember(param));
 		}
+		String query="";
+		query="&numPerpage="+numPerpage;
+		query+="&bidId="+bidId;
 		m.addAttribute("totaldata",totalData);
-		List<Auction> list=service.selectStateList(param);
+		List<Auction> list=service.selectStateList(param,cPage,numPerpage);
 		int Y=0;
 		int S=0;
 		int N=0;
@@ -285,7 +289,7 @@ public class AuctionController {
 		m.addAttribute("S",S);
 		m.addAttribute("B",B);
 		m.addAttribute("auction", list);
-		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totalData, cPage, numPerpage, "auctionmylist.do",""));
+		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totalData, cPage, numPerpage, "auctionmybuylist.do",query));
 		
 		return "auction/auctionMyBuyList";
 	}
@@ -336,19 +340,19 @@ public class AuctionController {
 			@RequestParam(value="numPerpage",defaultValue ="5") int numPerpage,
 			@RequestParam(value="auctionState",defaultValue="") String auctionState,
 			@RequestParam(value="buysellState",defaultValue="") String buysellState,
-			@RequestParam(value="order",defaultValue="") String order,
+			@RequestParam(value="order",defaultValue="auction_no") String order,
 			@RequestParam(value="type",defaultValue="") String type,
 			@RequestParam(value="keyword",defaultValue="") String keyword
 			) {
-		
+		System.out.println(param);
 		int totaldata=service.auctionAdmintotal(param);
 		String query="";
 		query="&numPerpage="+numPerpage;
-		query+="&auctionState"+auctionState;
-		query+="&buysellState"+buysellState;
-		query+="&order"+order;
-		query+="&type"+type;
-		query+="&keyword"+keyword;					
+		query+="&auctionState="+auctionState;
+		query+="&buysellState="+buysellState;
+		query+="&order="+order;
+		query+="&type="+type;
+		query+="&keyword="+keyword;					
 		m.addAttribute("totaldata",totaldata);
 		m.addAttribute("auction",service.auctionAdmin(param,cPage,numPerpage));
 		m.addAttribute("pageBar",PageFactoryAuction.getOwnPageBar(totaldata, cPage, numPerpage, "auctionAdmin",query));

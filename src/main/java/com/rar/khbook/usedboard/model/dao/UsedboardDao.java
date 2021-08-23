@@ -14,7 +14,7 @@ import com.rar.khbook.usedboard.model.vo.Usedcomment;
 public interface UsedboardDao {
 	
 	List<Usedboard> selectUsedboardList(SqlSession session, int cPage, int numPerpage,Map<String,Object> map);
-	
+	List<Usedboard> selectUsedboardList2(SqlSession session);
 	int selectUsedboardCount(SqlSession session,Map<String,Object> map);
 	
 	Usedboard selectUsedboardOne(SqlSession session, int no);

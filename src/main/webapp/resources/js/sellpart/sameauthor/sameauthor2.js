@@ -17,7 +17,5 @@ window.onload = function() {
 		dataVolume: 4
 	});
 	
-	console.log("author : " + author);
 }
 
-console.log("author : " + author);

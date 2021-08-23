@@ -159,10 +159,9 @@
 
       
         <div class="product-exp">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
-            <img src="${path }/resources/images/gift/상품상세이미지.jpg" alt="">
+            <img src="${path }/resources/images/gift/item1.png" alt="">
+            <img src="${path }/resources/images/gift/item2.png" alt="">
+            <img src="${path }/resources/images/gift/item3.png" alt="">     
         </div>
         <div class="product-review">
             <div class="writeBox">

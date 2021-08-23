@@ -41,8 +41,6 @@
 
         $(window).scroll(function() {
             var window = $(this).scrollTop();
-        /* console.log("엘엔비"+lnb);
-        console.log("윈도우"+window); */
             if( 300 <= window) {
             $(".stickycontainer").addClass("fixed");
             $(".stickycontainer").css("display","flex");

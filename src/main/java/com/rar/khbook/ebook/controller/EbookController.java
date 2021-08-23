@@ -257,7 +257,6 @@ public class EbookController {
 	@ResponseBody
 	public List<EbookDatabind> search(@RequestParam Map param) {
 		
-		System.out.println("search.do : " + param);
 		
 		List<EbookDatabind> list = service.search(param);
 		
@@ -375,7 +374,7 @@ public class EbookController {
 		return list;
 	}
 	
-	@RequestMapping(value = "/ebook/getMerchantUid.do")
+	@RequestMapping("/ebook/getMerchantUid.do")
 	@ResponseBody
 	public String getMerchantUid() {
 		String merchantUid = "ORD-EB-";

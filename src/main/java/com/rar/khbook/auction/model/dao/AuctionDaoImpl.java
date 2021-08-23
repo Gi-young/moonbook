@@ -59,8 +59,9 @@ public class AuctionDaoImpl implements AuctionDao {
 	}
 
 	@Override
-	public List<Auction> selectStateList(SqlSession session, Map param) {
-		return session.selectList("auction.selectStateList",param);
+	public List<Auction> selectStateList(SqlSession session, Map param,int cPage, int numPerpage) {
+		RowBounds row=new RowBounds((cPage-1)*numPerpage, numPerpage);
+		return session.selectList("auction.selectStateList",param,row);
 	}
 
 	@Override

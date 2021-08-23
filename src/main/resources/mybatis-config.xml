@@ -76,7 +76,8 @@
 			alias="sellbookDatabind" />
 		<typeAlias type="com.rar.khbook.sellbook.model.vo.BookBoard"
 			alias="bookBoard" />
-
+		<typeAlias
+			type="com.rar.khbook.usedboard.model.vo.Usedboard" alias="usedboard" />
 		<!-- 장바구니 -->
 		<typeAlias
 			type="com.rar.khbook.shopingList.model.vo.ShopingList"

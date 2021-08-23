@@ -8,7 +8,9 @@
     align-content: center;
     justify-content: center;
 }
-
+.slick-arrow{
+	display: none;
+}
 .hotTracks{
     width: 950px;
     height: 50px;

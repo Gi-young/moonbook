@@ -24,11 +24,114 @@ public class ShopingListDaoImpl implements ShopingListDao {
 
 	
 	
+	
+	
+	@Override
+	public int salesVolumeAddBook(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.addBook",param);
+	}
+
+	@Override
+	public int updateStockB(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.updateStockB",param);
+	}
+
+	@Override
+	public int updateMemberPP(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.updateMemberPP",param);
+	}
+
+	@Override
+	public int updateMemberPoint(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.updateMemberPoint",param);
+	}
+
+	@Override
+	public int updatePurchaseListB(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.updateListB",param);
+	}
+
+	@Override
+	public int salesVolumeAddEbook(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.addEbook",param);
+	}
+
+	@Override
+	public int updatePurchaseListE(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.updateListE",param);
+	}
+
+	@Override
+	public int salesVolumeAddGift(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.addGift",param);
+	}
+
+	@Override
+	public int updateStockG(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.updateStockG",param);
+	}
+
+	@Override
+	public int updatePurchaseListG(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.update("shopingList.updateListG",param);
+	}
+
+	@Override
+	public int deleteBook(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("shopingList.deleteBook", param);
+	}
+
+	@Override
+	public int deleteEbook(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("shopingList.deleteEbook", param);
+	}
+
+	@Override
+	public int deleteGift(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.delete("shopingList.deleteGift", param);
+	}
+
+//	@Override
+//	public int bookSalesVolumeAdd(SqlSession session, Map param) {
+//		// TODO Auto-generated method stub
+//		return session.insert("shopingList.bookSalesAdd",param);
+//	}
+//
+//	@Override
+//	public int eBookSalesVolumeAdd(SqlSession session, Map param) {
+//		// TODO Auto-generated method stub
+//		return session.insert("shopingList.eBookSalesAdd",param);
+//	}
+//
+//	@Override
+//	public int giftSalesVolumeAdd(SqlSession session, Map param) {
+//		// TODO Auto-generated method stub
+//		return session.insert("shopingList.giftSalesAdd",param);
+//	}
+
+	@Override
+	public int writePurchaseLog(SqlSession session, Map param) {
+		// TODO Auto-generated method stub
+		return session.insert("shopingList.writePurchaseLog",param);
+	}
 
 	@Override
 	public int writeOrderT(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		return session.insert("shopingList.", param);
+		return session.insert("shopingList.writeOrderT", param);
 	}
 
 	@Override

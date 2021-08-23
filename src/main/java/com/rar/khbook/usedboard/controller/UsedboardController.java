@@ -100,9 +100,10 @@ public class UsedboardController {
 			mv.setViewName("usedboard/usedboardList");
 		}else if(catagory==null) {
 			mv.addObject("list",service.selectUsedboardList(cPage,numPerpage,map));
+			mv.addObject("list2",service.selectUsedboardList2());
 			int totalData=service.selectUsedboardCount(map);
 			mv.addObject("totalContents",totalData);
-			mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardList.do"));
+			mv.addObject("pageBar",PageFactory.getOwnPageBar(totalData, cPage, numPerpage, "usedboardList.do"));
 			
 			mv.setViewName("usedboard/usedboardList");
 		}else {
@@ -355,12 +356,12 @@ public class UsedboardController {
 	
 	@RequestMapping("/usedboard/usedboardMyPayment.do")
 	public ModelAndView usedboardMyPayment(@RequestParam(value="cPage", defaultValue="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue="10") int numPerpage,
+			@RequestParam(value="numPerpage",defaultValue="8") int numPerpage,
 			ModelAndView mv,HttpServletRequest request,String memberId) {
 		mv.addObject("list",service.usedboardMyPaymentList(cPage,numPerpage,memberId));
 		int totalData=service.usedboardMyPaymentCount(memberId);
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardMyPayment.do"));
+		mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage, "usedboardMyPayment.do?memberId="+memberId));
 		mv.setViewName("usedboard/usedboardMyPayment");
 		return mv;
 	}
@@ -469,9 +470,9 @@ public class UsedboardController {
 			msg="환불실패";
 		}
 		mv.addObject("msg",msg);
-		if(state==1) {
+		if(state==2) {
 			mv.addObject("loc","/usedboard/usedboardMyPayment.do?memberId="+memberId);
-		}else if(state==2) {
+		}else if(state==1) {
 			mv.addObject("loc","/usedboard/usedboardPayList.do?memberId="+memberId);
 		}
 		mv.setViewName("common/msg");
@@ -480,12 +481,12 @@ public class UsedboardController {
 	
 	@RequestMapping("/usedboard/usedboardPayList.do")
 	public ModelAndView usedboardPayList(@RequestParam(value="cPage", defaultValue="1") int cPage,
-			@RequestParam(value="numPerpage",defaultValue="5") int numPerpage,
+			@RequestParam(value="numPerpage",defaultValue="8") int numPerpage,
 			ModelAndView mv,HttpServletRequest request,String memberId) {
 		mv.addObject("list",service.usedboardPayList(cPage,numPerpage,memberId));
 		int totalData=service.usedboardPayCount(memberId);
 		mv.addObject("totalContents",totalData);
-		mv.addObject("pageBar",PageFactory.getPageBar(totalData, cPage, numPerpage, "usedboardPayList.do"));
+		mv.addObject("pageBar",PageFactory.getUsedboardPageBar(totalData, cPage, numPerpage, "usedboardPayList.do?memberId="+memberId));
 		
 		mv.setViewName("usedboard/usedboardPayList");
 		return mv;

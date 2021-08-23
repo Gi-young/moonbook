@@ -47,4 +47,8 @@ public interface SellbookDao {
 
 	int insertReviewBook(SqlSession session, HashMap map);
 	
+	int cancelPayment(SqlSession session,int no);
+	
+	int cancelPaymentUpdate(SqlSession session,int no);
+	
 }

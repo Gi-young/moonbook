@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <link rel="stylesheet" href="${path }/resources/css/mainCss.css">
 <link rel="stylesheet" href="${path }/resources/css/order/layout.css">
-
+<script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <style>
 .shopListHeader{
 	font-weight: 800;
@@ -53,6 +53,7 @@
 						     <p>재고부족</p>
 						   </c:otherwise>
 						</c:choose>
+						<button class="deleteBook" onclick="deleteBook(${b.bindNo });">삭제</button>
 					</td>
 				 	<c:choose>
 				 	  <c:when test="${b.stock >= bList[status.index].getShopingListCount() }">
@@ -64,13 +65,6 @@
 				 	</c:choose>
 				 </tr> 
 				</c:forEach> 			 
-<%-- <td><img src="${s.image }"></td>
-					<td>${s.title }</td>
-					<td><fmt:formatNumber value="${s.price*0.9 }" type="currency"/></td>
-					<td>${s.stock } 개</td>
-					<td>${sellStock } 개</td>
-					<td><fmt:formatNumber value="${(s.price*0.9)*sellStock }" type="currency"/></td> --%>
-				<%-- </c:forEach> --%>
 			</table>
 		</div>
 	</div>
@@ -89,14 +83,20 @@
 				</tr>			  		
 			  <c:forEach var="e" items="${eBook }" varStatus="status">						
 				<tr>
+			
 					<input type="hidden" class="eBookNo" value="${e.bindNo }" name="eBookNo${status.index }">				
+				
 					<td><img src="${e.image }" alt="${e.title }"/></td>
 					<td>${e.title }</td>
 					<td><fmt:formatNumber value="${e.price }"  type="number"/></td>
 					<td>${e.stock }</td>
 					<td>1</td>
-					<td class="eBookPrice"><fmt:formatNumber value="${e.price }"  type="number"/></td>								
+					<td class="eBookPrice">
+						<fmt:formatNumber value="${e.price }"  type="number"/>
+						<button class="deleteEbook" onclick="deleteEbook(${e.bindNo});">삭제</button>
+					</td>								
 				 	<input type="hidden" value="${e.price }" class="eBookP">
+				 	
 				</tr>
 			  </c:forEach>			
 			</table>
@@ -126,13 +126,15 @@
 						<c:choose>
 						  <c:when test="${g.gift_count >= gList[status.index].getShopingListCount() }">
 							<fmt:formatNumber value="${g.gift_price*gList[status.index].getShopingListCount()  }"  type="number"/>
-						    <input type="hidden" class="giftNo" value="${g.gift_no }" name="giftNo${status.index }">
-							<input type="hidden" class="giftCount" value="${gList[status.index].getShopingListCount() }" name="giftCount${status.index }">
+						   	   	<input type="hidden" class="giftNo" value="${g.gift_no }">
+							
+							<input type="hidden" class="giftCount" value="${gList[status.index].getShopingListCount() }">
 						  </c:when>
 						  <c:otherwise>
 						    <p>재고부족</p>
 						  </c:otherwise>
 						</c:choose>
+						<button class="deleteGift" onclick="deleteGift(${g.gift_no});">삭제</button>
 					</td>
 					<c:choose>
 						<c:when test="${g.gift_count >= gList[status.index].getShopingListCount() }">
@@ -152,7 +154,7 @@
 				<div class="infoTitle" style="display: flex; align-items: flex-end; margin-top: 1.3em; justify-content: space-between;">								  								   
 					<h3>결제 정보</h3>
 					<div class="deliFeeChoice">
-						<input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="openWindow()">
+						<!-- <input type="button" value="내 쿠폰" name="coupon" id="coupon" onclick="openWindow()"> -->
 						<input type="radio" value="advance" name="delifee" id="advance" checked/>
 						<label for="advance">선불</label>
 						<input type="radio" value="later" name="delifee" id="later"/>
@@ -182,28 +184,74 @@
 </section>
 <!-- 주문자 -->
 <input type="hidden" value="${loginMember.memberId }" id="loginMemberId">
-<!-- 상품번호 -->
-<!-- <input type="hidden" id="giftNo" value="">
-<input type="hidden" id="bookNo" value="">
-<input type="hidden" id="eBookNo" value=""> -->
-<!-- 상품개수 -->
-<!-- <input type="hidden" id="giftCount" value="">
-<input type="hidden" id="bookCount" value="">
-<input type="hidden" id="eBookCount" value="" -->
-<!-- 상품재고 -->
-<!-- <input type="hidden" id="giftStock" value="">
-<input type="hidden" id="bookStock" value="">
-<input type="hidden" id="eBookStock" value=""> -->
-<!-- 쓰게 된다면 쿠폰 사용 유무 -->
-<input type="hidden" id="" value="">
-<input type="hidden" id="" value="">
-
-<input type="hidden" id="" value="">
 <input type="hidden" id="contextPath" value="${path }">
 <input type="hidden" id="originPrice" value="">
 <input type="hidden" id="deliveryFee" value="">
 <input type="hidden" id="totalPrice" value="">
 <input type="hidden" id="op" value="">
+
+<script>
+let dBook = document.getElementsByClassName("deleteBook");
+let bookNo = document.getElementsByClassName("bookNo");
+
+let dEbook = document.getElementsByClassName("deleteEbook");
+let eBookNo = document.getElementsByClassName("eBookNo");
+
+let dGift = document.getElementsByClassName("deleteGift");
+let giftNo = document.getElementsByClassName("giftNo");
+
+let loginMember = document.getElementById("loginMemberId").value;
+let contextPath = document.getElementById("contextPath").value;
+
+function deleteBook(bookNo){
+
+	$.ajax({
+			url: contextPath + "/shopingList/deleteBook.do",
+			type: "POST",
+			data: {
+				bookNo: bookNo,
+				loginMember: loginMember
+			},
+			success: data =>{
+				alert("삭제되었습니다.");
+				window.location.reload();
+			}		
+		})
+	}
+
+function deleteEbook(eBookNo){
+
+	$.ajax({
+			url: contextPath + "/shopingList/deleteEbook.do",
+			type: "POST",
+			data: {
+				eBookNo: eBookNo,
+				loginMember: loginMember
+			},
+			success: data =>{
+				alert("삭제되었습니다.");
+				window.location.reload();
+			}		
+		})
+	}
+
+function deleteGift(giftNo){
+
+	$.ajax({
+			url: contextPath + "/shopingList/deleteGift.do",
+			type: "POST",
+			data: {
+				giftNo: giftNo,
+				loginMember: loginMember
+			},
+			success: data =>{
+				alert("삭제되었습니다.");
+				window.location.reload();
+			}		
+		})
+	}	
+</script>
+
 <script>
 	let bookPriceLength = document.getElementsByClassName("bookP").length;
 	let bookPrice = document.getElementsByClassName("bookP");
@@ -252,13 +300,13 @@
 	 
 	 deliFee.innerText = html;
 	 totalFee.innerText = "₩"+total3000.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-	 totalPrice.value = total;
+	 totalPrice.value = total3000;
 	 deliveryFee.value = Number(3000);
 	 
 	 advance.addEventListener('click', ()=>{
 		 deliFee.innerText = html;
 		 totalFee.innerText = "₩"+total3000.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-		 totalPrice.value = total;
+		 totalPrice.value = total3000;
 		 deliveryFee.value = Number(3000);
 	 })
 	 
@@ -277,5 +325,11 @@
     }
 	 
 </script>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <script src="${path}/resources/js/shopingList/shopingListBuy.js"></script>
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp"/>

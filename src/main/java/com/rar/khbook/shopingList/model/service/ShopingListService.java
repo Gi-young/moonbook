@@ -29,6 +29,18 @@ public interface ShopingListService {
 
 	int insertList(Map param);
 
-	int writeOrderT(Map param);
+	int writePurchaseLog(Map param);
+
+	int deleteBook(Map param);
+
+	int deleteEbook(Map param);
+
+	int deleteGift(Map param);
+
+	int salesVolumeAddBook(Map param);
+
+	int salesVolumeAddEbook(Map param);
+
+	int salesVolumeAddGift(Map param);
 	
 }

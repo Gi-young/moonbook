@@ -38,7 +38,7 @@ public interface AuctionService {
 
 	int auctionStateCount(Map param);//마이리스트
 
-	List<Auction> selectStateList(Map param);
+	List<Auction> selectStateList(Map param, int cPage, int numPerpage);
 
 	Member selectbidMember(Map param);
 

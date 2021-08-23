@@ -145,11 +145,13 @@
 			                        <c:forEach var="d" items="${b.usedboardfiles }">
 			                             <c:set var="i" value="${i+1 }"/>
 			                             
-			                             <c:if test="${b.usedboardfiles[i-1].memberId==null }">
 			                             
-				                            <img src="${path }/resources/upload/usedboard/${b.usedboardfiles[i-1].usedboardfile_Rename}" onerror="" >
-				                        
-			                             </c:if>
+			                             <c:forEach var="d" items="${list2 }">
+			                             <c:if test="${d.usedboard_No==b.usedboard_No&&d.memberId==null }">
+				                            <img src="${path }/resources/upload/usedboard/${d.usedboardfile_Rename}" onerror="" >
+				                           </c:if>
+				                         </c:forEach>	
+			                             
 			                             </c:forEach></div>
 				                    	
 				                        

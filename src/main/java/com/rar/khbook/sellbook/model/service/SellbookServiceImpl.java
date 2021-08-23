@@ -81,7 +81,6 @@ public class SellbookServiceImpl implements SellbookService {
 		// TODO Auto-generated method stub
 		int result = dao.reviewWrite(session,map);
 		int result2 = dao.insertReviewBook(session,map);
-		System.out.println("평점저장되니? :"+result2);
 		return result;
 	}
 
@@ -97,26 +96,16 @@ public class SellbookServiceImpl implements SellbookService {
 	@Override
 	public int orderOne(Map param) {
 		// TODO Auto-generated method stub
-		 System.out.println("서비스 들어왔습니다 파람이 뭔지 볼까? : "+param);
-//		 Object addPoint=param.get("paidAmount");
-//		 System.out.println("애드포인트다 욘석아 : "+addPoint);
 		int result = dao.insertOrder(session,param);
 		if(result>0) {
 			//결제성공
-			System.out.println("서비스 결제성공했습니다");
 			result = dao.insertBookOrderList(session,param);
-			System.out.println("insertBookOrderList는 1이어야한다 : "+result);
 			if(result>0) {
 				result = dao.insertPayment(session,param);
-				System.out.println("insertPayment는 1이어야한다 : "+result);
 				result = dao.updateMemberTotalSale(session,param);
-				System.out.println("updateMemberTotalSale는 1이어야한다 : "+result);
 				result = dao.updateSalesVolume(session,param);
-				System.out.println("updateSalesVolume는 1이어야한다 : "+result+" 이고 "+param.get("bindNo"));
 				result = dao.updateStock(session,param);
-				System.out.println("updateStock는 1이어야한다 : "+result+" 이고 "+param.get("bindNo"));
 				result = dao.updateMemberPoint(session,param);
-				System.out.println("updateMemberPoint는 1이어야한다 : "+result);
 			}
 		}else {
 			//결제 실패
@@ -134,6 +123,11 @@ public class SellbookServiceImpl implements SellbookService {
 		return 0;
 	}
 	
-	
+	@Override
+	public int cancelPayment(int no) {
+		// TODO Auto-generated method stub
+		dao.cancelPaymentUpdate(session,no);
+		return dao.cancelPayment(session,no);
+	}
 	
 }

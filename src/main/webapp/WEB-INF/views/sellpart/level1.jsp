@@ -87,8 +87,6 @@ function searchHotnew(searchData) {
 		data: searchData,
 		dataType: "json",
 		success: data => {
-			console.log("여기부터 보면 됩니다.");
-			console.log(data);
 			/* 따끈따끈신작 이미지 */
 			$(hotnewimg0).attr('src',data[0].image );
 			$(hotnewimg1).attr('src',data[1].image );
@@ -182,8 +180,6 @@ function searchHotnew(searchData) {
 		data: searchData,
 		dataType: "json",
 		success: data=>{
-			console.log("베스트셀러인데 어떻게 못나올까요?");
-			console.log(data[0].title+"구분할수있는문자열");
 			/* 베스트셀러 이미지 */
 			$(bestsellerimg0).attr('src',data[0].image );
 			$(bestsellerimg1).attr('src',data[1].image );
@@ -197,7 +193,6 @@ function searchHotnew(searchData) {
 			$(bsimgLink3).attr('href',addr+data[3].bindNo );
 			
 			/* 베스트셀러 타이틀 ( 괄호 앞 잘라내기 */
-			console.log("여기 데이터 뭐야?"+data[0].title);
 			
 			var bstitle0=(data[0].title).split('(');
 			var bstitle1=(data[1].title).split('(');
@@ -709,23 +704,6 @@ transition: all 0.2s linear;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*배너 박스 만들기*/
 #banner_container{
     position: relative;
@@ -953,8 +931,6 @@ transition: all 0.2s linear;
 
 
 
-
-
 /*===========*/
 
 /*이벤트*/
@@ -1006,12 +982,6 @@ transition: all 0.2s linear;
 <section id="content">
 
 
-
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
-
- 
    <div class="wrap">
 <jsp:include page="/WEB-INF/views/sellpart/stickymenu/stickybook.jsp">
 <jsp:param name="" value=""/>
@@ -1110,12 +1080,6 @@ transition: all 0.2s linear;
                                 <li><a class="banner_cho_hover">안녕~</a></li>
                             </ul>
                         </li>
-                        <!-- <li><a class="banner_cho_hover">버즈/수혐</a>
-                            <ul class="banner_cho_box2">
-                                <li><a class="banner_cho_hover">안녕~</a></li>
-                                <li><a class="banner_cho_hover">안녕~</a></li>
-                            </ul>
-                        </li> -->
                     </ul>
 
                  </div>    
@@ -1236,15 +1200,6 @@ transition: all 0.2s linear;
     </div>
 </div>
 
-    <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-     -->
 
 <script>
 
@@ -1257,7 +1212,6 @@ transition: all 0.2s linear;
 			data: searchData,
 			dataType: "json",
 			success: data => {
-				console.log(data+"dddddddddddddddd");
 			}
 		})
 	}
@@ -1318,21 +1272,17 @@ transition: all 0.2s linear;
      //배너 슬라이드 
     $(function(){
         const banner = $("#banner_container");
-        console.log($("#banner_container").outerWidth());
         const bannerWidth = $("#banner_container").children(0).outerWidth();
         const bannerHeight = $("#banner_container").children(0).outerHeight();
         const bannerlength = $("#banner_container").children("a").length;
-        console.log(bannerHeight+'안녕'+bannerWidth+"개수"+bannerlength)
         var movingwidth=0;
         var bannercount=0;
         $("#prev").click(e=>{
            bannercount--; 
-           console.log(bannercount)
             if(bannercount<=0){
                 bannercount=bannerlength;
                 
                 movingwidth=(bannerlength-1)*bannerWidth;
-                console.log(movingwidth)
                 banner.animate({
                     right:movingwidth
                 },1000)               
@@ -1346,11 +1296,9 @@ transition: all 0.2s linear;
 
         $("#next").click(e=>{
             bannercount++; 
-            console.log(bannercount)
             if(bannercount>=bannerlength){
                 bannercount=0;
                 movingwidth=0;
-                console.log(movingwidth)
                 banner.animate({
                     right:movingwidth
                 },1000)

@@ -46,6 +46,20 @@
 		<result column="BOOK_SCORE" property="book_score"/>
 	</resultMap>
 	
+	<resultMap type="usedboard" id="usedboardMap">
+		<id column="usedboard_No" property="usedboard_No"/>
+		<result column="usedboard_Title" property="usedboard_Title"/>
+		<result column="usedboard_Content" property="usedboard_Content"/>
+		<result column="usedboard_Date" property="usedboard_Date"/>
+		<result column="usedboard_Price" property="usedboard_Price"/>
+		<result column="usedboard_State" property="usedboard_State"/>
+		<result column="usedboard_Category" property="usedboard_Category" typeHandler="strArr"/>
+		<result column="member_Id" property="member_Id"/>
+		<result column="usedboard_BookTitle" property="usedboard_BookTitle"/>
+		<collection property="usedboardfiles" resultMap="usedboardfileMap"></collection>
+	</resultMap>
+	
+	
 	<select id="selectSellbookDatabind" resultMap="SellbookDatabind">
 		SELECT * FROM BOOK_EBOOK_DATABIND WHERE BIND_NO=#{bindNo}
 	</select>
@@ -106,6 +120,15 @@
 	<!-- 멤버 구매포인트 증가 -->
 	<update id="updateMemberPoint">
 		UPDATE MEMBER SET MEMBER_POINT = MEMBER_POINT + #{addPoint} WHERE MEMBER_ID = #{memberId}
+	</update>
+	
+	<!-- 환불 -->
+	<update id="cancelPayment">
+		UPDATE USEDBOARDPAYMENT SET USEDBOARDPAYMENT_CANCEL='y' WHERE USEDBOARDPAYMENT_BOARDNO='${value}'
+	</update>
+	
+	<update id="cancelPaymentUpdate">
+		UPDATE USEDBOARD SET USEDBOARD_STATE='y' WHERE USEDBOARD_NO='${value}'
 	</update>
 	
 </mapper>

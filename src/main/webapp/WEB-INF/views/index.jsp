@@ -56,15 +56,8 @@ window.onload = function() {
 		dataVolume: 5
 	});
 	
-/* 	searchNoticeBoard({
-		noticeboardNo: 1
-	}); */
 	
 }
-<%-- function searchNoticeBoard(){
-	location.assign(<%=request.getContextPath()%>/);
-	$("#notice1").text()
-} --%>
 
 function searchHotnew(searchData) {
 	/* 따끈따끈신작 이미지 */
@@ -118,8 +111,6 @@ function searchHotnew(searchData) {
 		data: searchData,
 		dataType: "json",
 		success: data => {
-			console.log("여기부터 보면 됩니다.");
-			console.log(data);
 			/* 따끈따끈 Link */
 			$(hotnewLink0).attr('href',src+data[0].bindNo);
 			$(hotnewLink1).attr('href',src+data[1].bindNo);
@@ -143,8 +134,6 @@ function searchHotnew(searchData) {
 			$(hotnewimg7).attr('src',data[7].image );
 			
 			/* 따끈따끈신작 타이틀 */
-			console.log(hotnewtitle0);
-			console.log(data[0].title);
 			var hntitle0=(data[0].title).split('(');
 			var hntitle1=(data[1].title).split('(');
 			var hntitle2=(data[2].title).split('(');
@@ -218,8 +207,6 @@ function searchHotnew(searchData) {
 		data: searchData,
 		dataType: "json",
 		success: data=>{
-			console.log("나와라뿅뿅");
-			console.log(data[0].title+"구분할수있는문자열");
 			/* 베스트셀러 이미지 */
 			$(bestsellerimg0).attr('src',data[0].image );
 			$(bestsellerimg1).attr('src',data[1].image );
@@ -236,14 +223,12 @@ function searchHotnew(searchData) {
 			/*  $(bsLink5).attr('href',src+data[5].bindNo); */
 			
 			/* 베스트셀러 타이틀 ( 괄호 앞 잘라내기 */
-			console.log(data[0].title);
 			
 			var bstitle0=(data[0].title).split('(');
 			var bstitle1=(data[1].title).split('(');
 			var bstitle2=(data[2].title).split('(');
 			var bstitle3=(data[3].title).split('(');
 			var bstitle4=(data[4].title).split('(');
-			console.log(bstitle0[0]+"왼쪽은 스플릿이후"+bstitle4[0]);
 			
 			$(bestsellertitle0).html(bstitle0[0] );
 			$(bestsellertitle1).html(bstitle1[0] );
@@ -306,8 +291,6 @@ function searchHotnew(searchData) {
 		data: searchData,
 		dataType: "json",
 		success: data=>{
-			console.log("나와라뿅뿅");
-			console.log(data[0].title+"구분할수있는문자열");
 			/* 평점 좋은 이미지 */
 			$(bestratingimg0).attr('src',data[0].image );
 			$(bestratingimg1).attr('src',data[1].image );
@@ -331,14 +314,12 @@ function searchHotnew(searchData) {
 			
 			
 			/* 평점 좋은 타이틀 ( 괄호 앞 잘라내기 */
-			console.log(data[0].title);
 			
 			var brtitle0=(data[0].title).split('(');
 			var brtitle1=(data[1].title).split('(');
 			var brtitle2=(data[2].title).split('(');
 			var brtitle3=(data[3].title).split('(');
 			var brtitle4=(data[4].title).split('(');
-			console.log(brtitle0[0]+"왼쪽은 스플릿이후"+brtitle4[0]);
 			
 			$(bestratingtitle0).html(brtitle0[0] );
 			$(bestratingtitle1).html(brtitle1[0] );
@@ -1386,20 +1367,20 @@ padding-bottom: 5px;
                 <a href="#"><img alt="banner2" src="${path}/resources/img/main/banner/1300add2.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner3">
-                <a href="#"><img alt="banner3" src="${path}/resources/img/main/banner/1300400.png"></a>
+                <a href="#"><img alt="banner3" src="${path}/resources/img/main/banner/moongom.png"></a>
             </div>
-            <div class="mainsearchBox-slideContent mainbanner4">
+            <%-- <div class="mainsearchBox-slideContent mainbanner4">
                 <a href="#"><img alt="banner4" src="${path}/resources/img/main/banner/1300add3.png"></a>
-            </div>
+            </div> --%>
             <div class="mainsearchBox-slideContent mainbanner5">
                 <a href="#"><img alt="banner5" src="${path}/resources/img/main/banner/1300add4.png"></a>
             </div>
-            <div class="mainsearchBox-slideContent mainbanner6">
+            <%-- <div class="mainsearchBox-slideContent mainbanner6">
                 <a href="#"><img alt="banner6" src="${path}/resources/img/main/banner/1300400.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner7">
                 <a href="#"><img alt="banner7" src="${path}/resources/img/main/banner/1300add3.png"></a>
-            </div>
+            </div> --%>
         </div>
         
         <ul class="mainslide-pagination" style="width: 20px; height: 10px; display: none;">
@@ -1409,18 +1390,6 @@ padding-bottom: 5px;
 <button class="mainsearchBox-slideBtn-prev">다음</button>
 </div>
 </div>
-<!-- <div class="flex">
-        <p class="maintrigger1 mouseoverbtn mouseoverbtnbg " style="background-color: #582810; color: white;"></p>
-        <p class="maintrigger2 mouseoverbtn mouseoverbtnbg "></p>
-        <p class="maintrigger3 mouseoverbtn mouseoverbtnbg "></p>
-        <p class="maintrigger4 mouseoverbtn mouseoverbtnbg "></p>
-        <p class="maintrigger5 mouseoverbtn mouseoverbtnbg "></p>
-        <p class="maintrigger6 mouseoverbtn mouseoverbtnbg "></p>
-        <p class="maintrigger7 mouseoverbtn mouseoverbtnbg "></p>
-    </div> -->
-
-
-    
     </div>
     
 
@@ -1457,9 +1426,6 @@ padding-bottom: 5px;
                     <div class="author hotnewauthor0">박원재</div>
                     </div>
                   
-                    
-                    
-                    
                     <div class="hotnewinner hotnewjccenter">
                         <div>
                             <a href="#" class="hotnewLink1"><img class="hotnewimg1 hotnewimgsize" src="#" alt=""></a>
@@ -1492,7 +1458,6 @@ padding-bottom: 5px;
                                 </div>
                 </li>
 
-
                 <li class="hotNewslide_content hotnewbox">
                     <div class="hotnewinner hotnewjccenter">
                         <div>
@@ -1504,7 +1469,6 @@ padding-bottom: 5px;
                             <a href="#" class="hotnewLink4"><p class="hotnewtitle hotnewtitle4"></p></a></div>
                             <div class="author hotnewauthor4">박원재</div>
                         </div>   
-                        
 
            <div class="hotnewinner hotnewjccenter">
                 <div>
@@ -1516,9 +1480,6 @@ padding-bottom: 5px;
                     <a href="#" class="hotnewLink5"><p class="hotnewtitle hotnewtitle5"></p></a></div>
                     <div class="author hotnewauthor5">박원재</div>
                 </div>   
-
-
-
 
                 <div class="hotnewinner hotnewjccenter">
                     <div>
@@ -1540,10 +1501,6 @@ padding-bottom: 5px;
                             <a href="#" class="hotnewLink7"><p class="hotnewtitle hotnewtitle7"></p></a></div>
                             <div class="author hotnewauthor7">박원재</div>
                  </div>
-              
-
-                    
-                
 
             </ul>
             <div class="hotNewslide_btn_next btnNewrightposition"></div>
@@ -1551,19 +1508,8 @@ padding-bottom: 5px;
             <div class="hotNewslide_pagination flex" style="height: 50px;  justify-content: center; display:none;" >
             </div>
             
-            
         </div>
 
-
-
-
-        <!-- <div class="flex" style="width: 1000px;">
-            <div class="hotnewObj">제품1</div>
-            <div class="hotnewObj">제품2</div>
-            <div class="hotnewObj">제품3</div>
-            <div class="hotnewObj">제품4</div>
-        </div> -->
-    </div>
 
 
 <!-- ////////////////////////라이징스타/////////////////////// -->
@@ -1578,10 +1524,10 @@ padding-bottom: 5px;
                 <div class="hotslide_btn_prev btnleftposition" style="display:none;"></div>
                 <div class="hotslide_list hotListflex" style="margin-top: 30px;">
                     <div class="hotslide_content">
-                        <img alt="banner1" src="${path}/resources/img/main/risingstar/risingstar.png">
+                        <a href="${path }/gift/giftDetail.do?giftNo=1184"><img alt="banner1" src="${path}/resources/img/main/risingstar/11.png"></a>
                     </div>
                     <div class="hotslide_content">
-                        <img alt="banner2" src="${path}/resources/img/main/risingstar/risingstar2.png">
+                       <a href="${path }/gift/giftDetail.do?giftNo=435"><img alt="banner2" src="${path}/resources/img/main/risingstar/22.png"></a>
                     </div>
                 </div>
                 <div class="hotslide_pagination flex" style="height: 50px; display:none; justify-content: center;" >
@@ -2233,18 +2179,8 @@ padding-bottom: 5px;
 
 </script>
 
-
-
-
-
 </body>
 
-
-
-
-
-    <!-- <script src="${path}/resources/js/header.js"></script>
-	<script src="${path}/resources/js/header(2).js"></script> -->
 	<script src="${path}/resources/js/jquery-3.6.0.min.js"></script>
 
   <script src="${path}/resources/js/mainsellpart/main.js"></script>
@@ -2256,183 +2192,6 @@ padding-bottom: 5px;
   <script src="${path}/resources/js/mainsellpart/todaylev2.js"></script> 
   <script src="${path}/resources/js/mainsellpart/todaylev3.js"></script>
   <script src="${path}/resources/js/mainsellpart/todaylev4.js"></script> 
-  <!--<script src="${path}/resources/js/todaylev5.js"></script> 
-  <script src="${path}/resources/js/todaylev6.js"></script>  -->
-	
-
-
-<%-- <%-- 
-    <div class="wrap">
-    <div class="flex bannerwrap">
-    <div class="mainbanner flex">
-        <div class="mainbanner_obj1">
-            <div class="mainbanner_objleft btndown">
-            <img alt="banner1" src="${path }/resources/img/main/banner/banner.png">
-            <div class="mainbanner_objcontainer flex ">
-            </div>
-        </div>
-        <button class="mainbanner_objinner">버튼2</button>
-        <button class="mainbanner_objinner">버튼3</button>
-        <button class="mainbanner_objinner">버튼4</button>
-        <button class="mainbanner_objinner">버튼5</button>
-        <button class="mainbanner_objinner">버튼6</button>
-        <button class="mainbanner_objinner">버튼7</button>
-        </div>
-        <div class="mainbanner_obj2">출판사 북캐스트</div>   
-    </div>
-    <div>
-        <div class="mainbanner_add">북뉴스</div>
-        <div class="mainbanner_add">광고</div>
-    </div>
-    </div>
-
-    <div class="todaybooks">
-        <div class="flex">
-            <div class="todaybooks21">오늘의책</div>
-            <div class="todaybooks22">더보기</div>
-        </div>
-        <div class="flex">
-            <div class="container2">
-                <div class="flex">
-                    <div class="todaybooksadd1">광고1</div>
-                    <div class="todaybooksadd2">광고2</div>
-                </div>
-            </div>
-            <div class="container2">
-                <div class="todaybooksadd3">광고3</div>
-                <div class="todaybooksadd4">광고4</div>
-            </div>
-        </div>
-    </div>
-    <div class="hotnew todaybooks">
-        <div class="flex">
-            <div class="todaybooks21">화제의 신간</div>
-            <div class="todaybooks22">더보기</div>
-        </div>
-        <div class="flex">
-            <div class="hotnewObj">제품1</div>
-            <div class="hotnewObj">제품2</div>
-            <div class="hotnewObj">제품3</div>
-            <div class="hotnewObj">제품4</div>
-        </div>
-    </div>
-    <div class="risingStarBg">
-        <div class="flex">
-            <div class="risingStar1">지금뜨는HOT템</div>
-            <div class="risingStar2">광고영역 </div>
-        </div>
-    </div>
-    <div class="bestSeller_chart">
-        <div class="flex">
-            <div class="todaybooks21">베스트셀러</div>
-            <div class="todaybooks22">더보기</div>
-        </div>
-        <div class="flex">
-            <div class="bestSeller_main">
-                <div class="flex">
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                </div>
-                <div class="flex">
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                    <div class="bestSellerContainer">책들어갈곳</div>
-                </div>
-            </div>
-            <div class="bestSeller_right">
-                <div class="flex">
-                    <div class="minibtn">북튜버책방</div>
-                    <div class="minibtn">추천eBook</div>
-                </div>
-                <div class="bestSeller_innerRight ">추천책1</div>
-                <div class="bestSeller_innerRight">추천책2</div>
-            </div>
-        </div>
-        <div class="weekBookBg">
-            <div class="weekBookBg">
-            <div class="todaybooks21">이주의 책</div>
-            <div class="weekBookContainer flex">
-                <div class="weekBookObj">
-                    <div class="weekBookInnerContainer">책들어갈곳</div>
-                    책설명쓰기
-                </div>
-                <div class="weekBookObj">
-                    <div class="weekBookInnerContainer">책들어갈곳</div>
-                    책설명쓰기
-                </div>
-                <div class="weekBookObj">
-                    <div class="weekBookInnerContainer">책들어갈곳</div>
-                    책설명쓰기
-                </div>
-                <div class="weekBookObj">
-                    <div class="weekBookInnerContainer">책들어갈곳</div>
-                    책설명쓰기
-                </div>               
-                <div class="weekBookAdd">광고</div>
-            </div>
-            </div>
-        </div>
-        <div class="khloverBg">
-            <div class="flex">
-                <div class="todaybooks21">KHLover평점좋은책</div>
-                <div class="todaybooks22">더보기</div>
-            </div>
-            <div class="flex">
-                <div class="khlover_container1">
-                    <div class="khlover_obj0">책그림0</div>
-                    책설명
-                </div>
-                <div class="khlover_container2 flex">
-                    <div class="khlover_right">
-                        <div class="khlover_obj">책그림1</div>
-                        책설명
-                    </div>
-                    <div class="khlover_right">
-                        <div class="khlover_obj">책그림2</div>
-                        책설명
-                    </div>
-                    <div class="khlover_right">
-                        <div class="khlover_obj">책그림3</div>
-                        책설명
-                    </div>
-                    <div class="khlover_right">
-                        <div class="khlover_obj">책그림4</div>
-                        책설명
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="upFooterBg">
-            <div class="flex">
-                <div class="upFooter_upSide">공지사항</div>
-                <div class="upFooter_upSide">당첨</div>
-            </div>
-            <div class="flex">
-                <div class="upFooter_downSide">회원혜택</div>
-                <div class="upFooter_downSide">쇼핑TIP</div>
-                <div class="upFooter_downSide">빠른서비스</div>
-                <div class="upFooter_downSide">문곰책방소식</div>
-                <div class="upFooter_downSide">FAQ</div>
-            </div>
-            <div class="flex">
-                <div class="btnFooter">모바일교보문고</div>
-                <div class="btnFooter">바로 찾는 바로드림</div>
-                <div class="btnFooter">중고장터 스마트비교</div>
-                <div class="btnFooter">교보문고 기프트카드</div>
-                <div class="btnFooter">매장 안내</div>
-            </div>
-        </div>
-    </div>
-    </div>
-    
-    <script src="${path }/resources/js/header.js"></script>
-	<script src="${path }/resources/js/header(2).js"></script> --%>
 
 <jsp:include page="/WEB-INF/views/common/newFooter.jsp">
 <jsp:param name="" value=""/>

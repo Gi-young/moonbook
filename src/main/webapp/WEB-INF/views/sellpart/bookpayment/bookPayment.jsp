@@ -232,7 +232,7 @@ tp.setAttribute("id","totalPrice");
 tp.value="${(book.price*0.9)*sellStock+3000 }";
 divHidden.appendChild(tp);
 
-if(${shopinglistCate=='E'}){
+/* if(${shopinglistCate=='E'}){
 	$("#pay").click(e=>{
 		$.ajax({
              url: "${path}/ebook/getMerchantUid.do",
@@ -247,7 +247,6 @@ if(${shopinglistCate=='E'}){
                 	buyer_name:"${loginMember.memberName}",
                 	buyer_email:"${loginMember.memberEmail}",
                 	name:"${book.title}",
-                	/* amount:Number("${book.price}") */
                 	amount:100
                 	}, function(rsp){
                 		if(rsp.success){               				
@@ -288,14 +287,17 @@ if(${shopinglistCate=='E'}){
 			}
 		});
 	});
-}
+} */
 if(${shopinglistCate=='B'}){
-	$("#pay").click(e=>{
+	$(".btnPay").click(e=>{
+		let totalPrice = Number(document.getElementById("totalPrice").value);
+		
+		console.log("totalPrice : " + totalPrice);
 		$.ajax({
              url: "${path}/ebook/getMerchantUid.do",
              type: "POST",
              success: data => {
-                merchant_uid = data;
+                let merchant_uid = data;
                 console.log(data);
                 IMP.request_pay({
                 	pg:"html5_inicis",
@@ -304,8 +306,7 @@ if(${shopinglistCate=='B'}){
                 	buyer_name:"${loginMember.memberName}",
                 	buyer_email:"${loginMember.memberEmail}",
                 	name:"${book.title}",
-                	/* amount:Number("${book.price}") */
-                	amount:100
+                	amount:totalPrice
                 	}, function(rsp){
                 		if(rsp.success){               				
 							$.ajax({

@@ -48,7 +48,7 @@
 			                <c:if test="${member.memberId=='admin' }">
 								<div class="btn_coll admin_controller">
 									<p>Administrator Only</p>
-									<button onclick="location.assign('${path}/auction/auctionAdmin')">경매 관리 하기</button>
+									<button onclick="location.assign('${path}/auction/auctionAdmin?order=auction_no')">경매 관리 하기</button>
 									<button onclick="location.assign('${path}/auction/auctionAdminBank')">회원 입출금 하기</button>
 								</div>
 							</c:if>
@@ -244,8 +244,8 @@
 			window.open('${path}/auction/actionbuyNow.do?auctionNo=' + auctionNo,'auctionbuynow', status);
 		}
 		//웹소켓
-		
-		let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
+		let sockAuction = new SockJS("http://rclass.iptime.org:9999" + "${path}" + "/auction");
+		//let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
 		
 		sockAuction.onopen = (e) => {
 			console.log(e);
@@ -264,7 +264,7 @@
 			let date =new Date();
 			let now=moment(date).format('YYYY-MM-DD HH:mm');
 			let bannerData=now+"::"+maindata[1]+"에"+maindata[2]+"님이"+maindata[3]+"원 으로 최고입찰 하셨습니다.";
-			$("#banner_list").prepend($("<div>").css("height","36.67px").append("<p>").css({
+			$("#banner_list").prepend($("<div>").css("height","15.57px").append("<p>").css({
 				"display":"none",
 				"padding":"10px",
 				

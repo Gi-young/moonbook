@@ -64,8 +64,8 @@ public class AuctionServiceImpl implements AuctionService {
 	}
 
 	@Override
-	public List<Auction> selectStateList(Map param) {
-		return dao.selectStateList(session,param);
+	public List<Auction> selectStateList(Map param,int cPage, int numPerpage) {
+		return dao.selectStateList(session,param,cPage,numPerpage);
 	}
 
 	@Override
