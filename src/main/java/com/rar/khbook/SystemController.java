@@ -27,15 +27,8 @@ public class SystemController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, ModelAndView mv) {
-			System.out.println("보드리스트 가져오는 컨트롤러 실행");
 			List<NoticeBoard> nb= service.searchNoticeBoardList();
 			List<EventBoard> eb= service.searchEventBoardList();
-			System.out.println("보드리스트 받아온 결과물 : "+nb);
-			if(nb != null && eb != null) {
-				System.out.println("보드리스트가져오기 성공!");
-			}else {
-				System.out.println("보드리스트가져오기 실패패패패!");
-			}
 			List<Ngift> ng = service2.giftAll();
 			
 			mv.addObject("gift",ng);

@@ -1,7 +1,3 @@
-	// .product-exp
-    // .product-review
-    // .product-q_a
-    // .notify
 $(function(){  
       
     const exp = $(".product-exp");

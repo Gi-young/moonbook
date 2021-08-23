@@ -56,7 +56,6 @@ public class ShopingListServiceImpl implements ShopingListService {
 		// TODO Auto-generated method stub
 		
 		
-		System.out.println("결제로직 찐 마지막 애들 추가"+param);
 		
 		int result1 = dao.bookSalesVolumeAdd(session, param);
 		int result2 = dao.eBookSalesVolumeAdd(session, param);
@@ -86,9 +85,6 @@ public class ShopingListServiceImpl implements ShopingListService {
 	
 		if(result1 > 0) {
 			int result = dao.writePurchaseLog(session, param);
-			//System.out.println(dao.writeOrderT(session, param));
-			//System.out.println(result1);
-			//System.out.println(result);
 			return 1;
 		}else {
 			return 0;
@@ -100,39 +96,16 @@ public class ShopingListServiceImpl implements ShopingListService {
 	@Override
 	public int insertShopingList(@RequestParam Map param) {
 		// TODO Auto-generated method stub
-		//System.out.println("없어이건"+param);
 		int result=dao.insertShopingList(session, param);
-		//System.out.println("없긴 뭐가없어! 1나와라! : "+result);
 		return result;
-/*		try {
-			System.out.println("두번째파람"+param);
-				if(result>0) {
-					result=dao.insertShopingListBook(session, param);
-					System.out.println("세번째파람"+param);
-					
-				}else return -1;
-					
-			}catch(RuntimeException e) {
-
-			}
-			return 1;*/
 		}
 		
 	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public List<BookShopingList> selectMyShopingListB(String memberId) {
-//		Map<String,Object> param = new HashMap();
-//		List<Object> list = new ArrayList<Object>();
 		
 		List<BookShopingList> bList = dao.selectMyShopingListB(session, memberId);
 	
-//		for(int i=0; i<bList.size(); i++) {
-//			//bList.get(i).getBindNoB();
-//			param.put("bNum"+i, bList.get(i).getBindNoB());
-//		}
-			
-			//List<SellbookDatabind> book= dao.myShopingListB(session, param);	
-		
 		return bList;
 	}
 
@@ -140,38 +113,15 @@ public class ShopingListServiceImpl implements ShopingListService {
 	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public List<EbookShopingList> selectMyShopingListE(String memberId) {
-//		Map<String,Object> param = new HashMap();
-//		List<Object> list = new ArrayList<Object>();
 		
 		List<EbookShopingList> eList = dao.selectMyShopingListE(session, memberId);
-		
-//		for(int i=0; i<eList.size(); i++) {
-//			param.put("eNum"+i, eList.get(i).getBindNoE());
-//		}	
-		//List<EbookDatabind> eBook = dao.myShopingListE(session, param);
-					
 		return eList;
 	}
 
 	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public List<GiftShopingList> selectMyShopingListG(String memberId) {
-//		Map<String,Object> param = new HashMap();
-//		List<Object> list = new ArrayList<Object>();
-		
 		List<GiftShopingList> gList = dao.selectMyShopingListG(session, memberId);
-			//System.out.println("기프트리스트 영번째 기프트넘버 : "+gList.get(0).getGiftNo());
-//		for(int i=0; i<gList.size(); i++) {
-//			param.put("gNum"+i, gList.get(i).getGiftNo());
-//		}
-		
-//		if(gList != null) {
-//			List<Ngift> gift = dao.myShopingListG(session, param);
-//			list.addAll(gList);
-//			list.addAll(gift);
-//		}else {
-//			System.out.println("접근 오류");
-//		}
 		
 		return gList;
 	}

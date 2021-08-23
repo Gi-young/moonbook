@@ -23,42 +23,21 @@ public class ServiceCenterController {
 	
 	@RequestMapping("/service/serviceMain.do")
 	public ModelAndView servicePage(ModelAndView mv) {
-		System.out.println("보드리스트 가져오는 컨트롤러 실행");
 		List<NoticeBoard> nb= service.searchNoticeBoardList();
-		System.out.println("보드리스트 받아온 결과물 : "+nb);
-		if(nb != null) {
-			System.out.println("보드리스트가져오기 성공!");
-		}else {
-			System.out.println("보드리스트가져오기 실패패패패!");
-		}
 		mv.addObject("notice",nb);
 		mv.setViewName("servicecenter/serviceMain");
 		return mv;
 	}
 	@RequestMapping("/service/noticeBoardDetail.do")
 	public ModelAndView noticeBoardDetail(int noticeboardNo, ModelAndView mv) {
-		System.out.println("Detail 보드리스트 가져오는 컨트롤러 실행");
 		NoticeBoard nb= service.searchNoticeBoardDetail(noticeboardNo);
-		System.out.println("Detail 보드리스트 받아온 결과물 : "+nb);
-		if(nb != null) {
-			System.out.println("Detail 보드리스트가져오기 성공!");
-		}else {
-			System.out.println("Detail 보드리스트가져오기 실패패패패!");
-		}
 		mv.addObject("notice",nb);
 		mv.setViewName("servicecenter/noticeDetail");
 		return mv;
 	}
 	@RequestMapping("/service/eventBoardDetail.do")
 	public ModelAndView eventBoardDetail(int eventboardNo, ModelAndView mv) {
-		System.out.println("event 보드리스트 가져오는 컨트롤러 실행");
 		EventBoard eb= service.searchEventBoardDetail(eventboardNo);
-		System.out.println("event 보드리스트 받아온 결과물 : "+eb);
-		if(eb != null) {
-			System.out.println("event 보드리스트가져오기 성공!");
-		}else {
-			System.out.println("event 보드리스트가져오기 실패패패패!");
-		}
 		mv.addObject("event",eb);
 		mv.setViewName("servicecenter/eventDetail");
 		return mv;
@@ -66,14 +45,7 @@ public class ServiceCenterController {
 
 	@RequestMapping("/service/eventBoard.do")
 	public ModelAndView eventPage(ModelAndView mv) {
-			System.out.println("이벤트리스트 가져오는 컨트롤러 실행");
 			List<EventBoard> ev= service.searchEventBoardList();
-			System.out.println("이벤트리스트 받아온 결과물 : "+ev);
-			if(ev != null) {
-				System.out.println("이벤트리스트가져오기 성공!");
-			}else {
-				System.out.println("이벤트리스트가져오기 실패패패패!");
-			}
 			mv.addObject("event",ev);
 			mv.setViewName("/servicecenter/eventBoard");
 		return mv;
@@ -81,14 +53,7 @@ public class ServiceCenterController {
 	@RequestMapping("/service/searchAvgRating.do")
 	@ResponseBody
 	public ModelAndView searchAvgRating(@RequestParam Map param, ModelAndView mv) {
-		System.out.println("이벤트리스트 가져오는 컨트롤러 실행");
-		System.out.println("파람입니다."+param);
 		int rt= service.searchAvgRating(param);
-		System.out.println("이벤트리스트 받아온 결과물 : "+rt);
-		/*
-		 * if(rt != null) { System.out.println("이벤트리스트가져오기 성공!"); }else {
-		 * System.out.println("이벤트리스트가져오기 실패패패패!"); }
-		 */
 		mv.addObject("rating",rt);
 		mv.setViewName("/");
 		return mv;
@@ -100,7 +65,6 @@ public class ServiceCenterController {
 	public ModelAndView faqPage(ModelAndView mv) {
 		List<Faq> list=service.selectFaqList();
 		mv.addObject("list", list);
-		System.out.println(list);
 		mv.setViewName("servicecenter/faqPage");
 		return mv;
 	}

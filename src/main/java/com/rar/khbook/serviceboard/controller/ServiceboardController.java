@@ -30,13 +30,7 @@ public class ServiceboardController {
 	}
 	@RequestMapping("/ServiceboardController/deleteNoticeBoard.do")
 	private String deleteNoticeBoard(int noticeboardNo) {
-		System.out.println("공지 삭제전 게시물 넘버 번호 : "+noticeboardNo);
 		int result = service.deleteNoticeBoard(noticeboardNo);
-		if(result>0) {
-			System.out.println("deleteNoticeBoard는 1이어야해 : "+result);
-		}else {
-			System.out.println("deleteNoticeBoard 실패ㅐㅐㅐㅐ : "+result);
-		}
 		
 		return "servicecenter/msg2";
 	}
@@ -48,16 +42,9 @@ public class ServiceboardController {
 		map.put("noticeContent", noticeContent);
 		map.put("noticeTitle", noticeTitle);
 		
-		System.out.println("넘어오는 자료 : "+map);
 		
 		int result = service.noticeBoardWrite(map);
 		
-		if(result>0) {
-			System.out.println("공지사항 작성 성공입니다.");
-			
-		}else {
-			System.out.println("공지사항 작성 실패입니다.");
-		}
 		
 		mv.setViewName("servicecenter/msg");
 		
@@ -73,13 +60,7 @@ public class ServiceboardController {
 	}
 	@RequestMapping("/ServiceboardController/deleteEventBoard.do")
 	private String deleteEventBoard(int eventboardNo) {
-		System.out.println("공지 삭제전 게시물 넘버 번호 : "+eventboardNo);
 		int result = service.deleteEventBoard(eventboardNo);
-		if(result>0) {
-			System.out.println("deleteNoticeBoard는 1이어야해 : "+result);
-		}else {
-			System.out.println("deleteNoticeBoard 실패ㅐㅐㅐㅐ : "+result);
-		}
 		
 		return "servicecenter/msg2";
 	}
@@ -92,16 +73,9 @@ public class ServiceboardController {
 		map.put("eventContent", eventContent);
 		map.put("eventTitle", eventTitle);
 		
-		System.out.println("넘어오는 자료 : "+map);
 		
 		int result = service.eventBoardWrite(map);
 		
-		if(result>0) {
-			System.out.println("이벤트 작성 성공입니다.");
-			
-		}else {
-			System.out.println("이벤트 작성 실패입니다.");
-		}
 		
 		mv.setViewName("servicecenter/msg");
 		

@@ -63,38 +63,9 @@
 
 </body>
 <script>
-		/* 작성 삭제버튼 */
-		function fn_deleteNoticeBoard(){
-			
-		} 
-		
-		
-		/* let deleteBtn = document.getElementById("#deleteBtn");
-		
-		deleteBtn.addEventListener('click',function(){
-			$.ajax{
-				url:"${path}/ServiceboardController/deleteNoticeBoard.do",
-				data: ,
-				success:data=>{
-					
-				}
-					
-				
-			}
-			
-		}) */
-		
-		
-		
-		
-		
-		
-		
-		
 		
         /* 상품리뷰, 상품문의 */
     	    var noticeBtn = document.getElementById("noticeBtn");
-            console.log("noticeBtn은 나와야한다 : "+noticeBtn);
     	    var eventBtn = document.getElementById("eventBtn");
     	    var faqBtn = document.getElementById("faqBtn");
     	         
@@ -130,25 +101,11 @@
             		/* dataType: "json", */
             		success: data => {
             			
-            			console.log("페이지바 넘겨온 데이터"+data);
             			pageBar.innerHTML = data;
             		} 
             	}); // pageBar ajax
-            	 /* console.log(exp[0].children[0].children);
-            	 console.log(exp[0].firstChild); */
-            	 /*  console.log(exp[0].lastChild.childNodes);
-            	 console.log($(".review-board").children(".review-text")); */
-            	 /* console.log(tr); */
-            	 /*  console.log(exp[0].child[0]);
-            	 console.log(exp[0].child); */
-            	 /* exp[0].children[0].html(); */
-            	 /* exp[0].children.html(); */
-            	    
-            	 /*  exp[0].children[0].children.html();  */
          	 exp[0].lastChild.innerHTML = "";
             	 
-         	 /* console.log(exp[0].lastChild.childNodes); */
-         	 console.log("================= ajax 실행 후 ==================");
          	$.ajax({
               	type: 'post',
               	url: '${path}/SellbookController/productReview.do',
@@ -181,17 +138,9 @@
                  	    pager = document.createElement('div');
                  	    pager.innerHTML = pageBar;
                  	    
-                 	    console.log(tb);
                  	    
                  	    exp[0].appendChild(tb).appendChild(tr);
 
-                 	 //exp[0].appendChild(tb[0]).appendChild(tr);
-                 	    //exp[0].appendChild(tr);
-                 	    // document.getElementById("targetTable").appendChild(tr);
-                 	    /*  console.log("tb 입니다 ; ->>>>"+tb);
-                 	    console.log(tb);
-                 	    console.log(tb[0]); */
-                 	    //exp[0].appendChild(pager);    
              		 });    
               		
               	  } 

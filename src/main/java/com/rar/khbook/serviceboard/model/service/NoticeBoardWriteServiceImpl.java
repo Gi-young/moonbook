@@ -31,7 +31,6 @@ public class NoticeBoardWriteServiceImpl implements NoticeBoardWriteService {
 	@Override
 	public int eventBoardWrite(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		System.out.println("service단계의 맵-이벤트 : "+ map);
 		return dao.eventBoardWrite(session, map);
 	}
 	

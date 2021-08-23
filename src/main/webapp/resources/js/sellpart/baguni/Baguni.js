@@ -12,25 +12,10 @@ $(".btnPay").click(e=> {
 	let sellStock = document.getElementById("sellStock").value;
 	let stock = document.getElementById("stock").value;
 	let totalPrice = document.getElementById("totalPrice").value;
-	console.log(totalPrice);
 	if(Number(stock)<Number(sellStock)){
-	console.log("stock==="+Number(stock));
-	console.log("sellStock==="+Number(sellStock));
 		alert('주문 가능한 수량을 초과하였습니다.');
 	}else{
 	e.preventDefault();
-    //let totalPrice = Number(document.getElementById("totalPrice").innerText);
-
-    //let purchaseArr = new Array();
-    //document.querySelectorAll("input[name=selectEbook]").forEach((v, i) => {
-     //   if (v.checked) {
-       //     purchaseArr.push(v.value);
-    //    }
-    //});
-    
-	//let sellStock = document.getElementById("sellStock").value;
-	//let bookPrice09 = document.getElementById("bookPrice09").value;
-	//let totalPrice = bookVolume * bookPrice09;
 	
 	
     $.ajax({
@@ -41,9 +26,6 @@ $(".btnPay").click(e=> {
         },
         success: data => {
         
-        console.log("수량"+sellStock);
-		console.log("할인가"+bookPrice09);
-		//console.log("총금액"+totalPrice);
             let buyerName;
             let buyerEmail;
             let merchant_uid;
@@ -55,7 +37,6 @@ $(".btnPay").click(e=> {
                 type: "POST",
                 success: data => {
                     merchant_uid = data;
-                    console.log(merchant_uid);
                     IMP.request_pay(
                         {
                             pg: "html5_inicis",
@@ -82,7 +63,6 @@ $(".btnPay").click(e=> {
                                         purchaseEbookNoList: "1,2"
                                     },
                                     success: data => {
-                                        console.log("결제 로그 추가 결과 : " + data);
                                         alert("결제에 성공했습니다. 감사합니다");
                                         let sellStockInt = document.getElementById("sellStock").value;
                                         
@@ -93,7 +73,6 @@ $(".btnPay").click(e=> {
                                     			sellstockInt : Number(sellStockInt),
                                     			bindNo : Number(bindNo)
                                     		}, success: data => {
-                                    			console.log(result);
                                     			alert("판매량 추가 완료");
                                     		
                                     		}
@@ -113,17 +92,3 @@ $(".btnPay").click(e=> {
     });
     }
 });
-
-
-//refundBtn.addEventListener("click", () => {
-//    $.ajax({
-//        url: contextPath + "/ebook/cancelPayment.do",
- //       type: "POST",
-  //      data: {
- //           impUid: "imp_223195009712"
-  //      },
-  //      success: () => {
-  //          console.log("환불 성공");
- //       }
- //   });
-// });

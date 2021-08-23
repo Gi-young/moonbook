@@ -23,7 +23,6 @@ public class SellbookDaoImpl implements SellbookDao {
 
 	@Override
 	public Member checkMember(SqlSession session, String memberId) {
-		System.out.println("DAO임");
 		
 		return session.selectOne("SellbookDatabind.checkMember",memberId);
 	}
@@ -64,7 +63,6 @@ public class SellbookDaoImpl implements SellbookDao {
 
 	@Override
 	public int reviewWrite(SqlSession session, HashMap map) {
-		System.out.println("dao에서 리뷰쓰는 map정보임 : "+map);
 		return session.insert("SellbookDatabind.insertReview", map);
 	}
 
@@ -84,7 +82,6 @@ public class SellbookDaoImpl implements SellbookDao {
 	@Override
 	public int insertOrder(SqlSession session, Map param) {
 		// TODO Auto-generated method stub
-		System.out.println("Dao 진행중---");
 		return session.insert("SellbookDatabind.insertOrder", param);
 	}
 

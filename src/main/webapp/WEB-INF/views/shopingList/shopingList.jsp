@@ -65,13 +65,6 @@
 				 	</c:choose>
 				 </tr> 
 				</c:forEach> 			 
-<%-- <td><img src="${s.image }"></td>
-					<td>${s.title }</td>
-					<td><fmt:formatNumber value="${s.price*0.9 }" type="currency"/></td>
-					<td>${s.stock } 개</td>
-					<td>${sellStock } 개</td>
-					<td><fmt:formatNumber value="${(s.price*0.9)*sellStock }" type="currency"/></td> --%>
-				<%-- </c:forEach> --%>
 			</table>
 		</div>
 	</div>

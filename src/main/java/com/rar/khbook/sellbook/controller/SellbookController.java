@@ -52,14 +52,7 @@ public class SellbookController {
 	
 	@RequestMapping("/sellbookController/sellbook.do")
 	public ModelAndView sellbook(ModelAndView mv) {
-		System.out.println("나와라이놈아2");
 		List<EventBoard> eb= service2.searchEventBoardList();
-		System.out.println("이게 왜 널이야? 있는데? : "+eb);
-		if(eb != null) {
-			System.out.println("보드리스트가져오기 성공이잖아");
-		}else {
-			System.out.println("보드리스트가져오기 실패패패패!");
-		}
 		mv.addObject("event",eb);
 		mv.setViewName("sellpart/level1");
 		return mv;
@@ -68,7 +61,6 @@ public class SellbookController {
 	
 	@RequestMapping("/sellbookController/pageBookSearch.do")
 	public String pageBookSearch(@RequestParam String categoryCode, Model model) {
-		System.out.println("categoryCode : " + categoryCode);
 		
 		model.addAttribute("categoryCode", categoryCode);
 		
@@ -77,31 +69,26 @@ public class SellbookController {
 
 	@RequestMapping("/sellbookController/bookadong03.do")
 	public String bookadong03() {
-		System.out.println("한국그림책");
 		return "sellpart/bookadong/bookadong03";
 		
 	}
 	@RequestMapping("/sellbookController/bookadong032.do")
 	public String bookadong032() {
-		System.out.println("한국그림책");
 		return "sellpart/bookadong/bookadong032";
 		
 	}
 	@RequestMapping("/sellbookController/bookadong47.do")
 	public String bookadong47() {
-		System.out.println("한국그림책");
 		return "sellpart/bookadong/bookadong47";
 		
 	}
 	@RequestMapping("/sellbookController/bookadong472.do")
 	public String bookadong472() {
-		System.out.println("한국그림책");
 		return "sellpart/bookadong/bookadong472";
 		
 	}
 	@RequestMapping("/sellbookController/bookadong99.do")
 	public String bookadong99() {
-		System.out.println("한국그림책");
 		return "sellpart/bookadong/bookadong99";
 		
 	}
@@ -110,7 +97,6 @@ public class SellbookController {
 	
 	@RequestMapping("/sellbookController/bookadongdonghwa.do")
 	public String bookadongdonghwa() {
-		System.out.println("아동동화");
 		return "sellpart/bookadong/bookadongdonghwa";
 		
 	}
@@ -118,39 +104,33 @@ public class SellbookController {
 	
 	@RequestMapping("/sellbookController/sellbookDetail.do")
 	public String sellbookDetail() {
-		System.out.println("나와라이놈아2");
 		return "sellpart/bookDetail";
 		
 	}
 	
 	@RequestMapping("/sellbookController/bookpayment.do")
 	public String order() {
-		System.out.println("북페이먼트까지 성공");
 		return "sellpart/bookpayment/bookPayment";
 	}
 	
 
 	@RequestMapping("/sellbookController/bookchodongdonghwa12.do")
 	public String bookchodongdonghwa12() {
-		System.out.println("초등동화");
 		return "sellpart/bookchodong/bookchodongdonghwa12";
 		
 	}
 	@RequestMapping("/sellbookController/bookchodongdonghwa34.do")
 	public String bookchodongdonghwa34() {
-		System.out.println("초등동화");
 		return "sellpart/bookchodong/bookchodongdonghwa34";
 		
 	}
 	@RequestMapping("/sellbookController/bookchodongdonghwa56.do")
 	public String bookchodongdonghwa56() {
-		System.out.println("초등동화");
 		return "sellpart/bookchodong/bookchodongdonghwa56";
 		
 	}
 	@RequestMapping("/sellbookController/bookchodongdonghwa99.do")
 	public String bookchodongdonghwa99() {
-		System.out.println("초등동화");
 		return "sellpart/bookchodong/bookchodongdonghwa99";
 		
 	}
@@ -158,7 +138,6 @@ public class SellbookController {
 	
 	@RequestMapping("/sellbookController/bookjoongdong.do")
 	public String bookjoongdongmoonhak() {
-		System.out.println("중등문학");
 		return "sellpart/bookjoongdong/bookjoongdong";
 		
 	}
@@ -168,7 +147,6 @@ public class SellbookController {
 	
 	@RequestMapping("/sellbookController/bookjoongdongworld.do")
 	public String bookworldmoonhak() {
-		System.out.println("세계문학");
 		return "sellpart/bookjoongdong/bookjoongdongworld";
 		
 	}
@@ -180,14 +158,12 @@ public class SellbookController {
 	
 	@RequestMapping("/sellbookController/bookgojunkorea.do")
 	public String bookgojunkorea() {
-		System.out.println("한국고전");
 		return "sellpart/bookgojun/bookgojunkorea";
 		
 	}
 	
 	@RequestMapping("/sellbookController/bookgojunworld.do")
 	public String bookgojunworld() {
-		System.out.println("세계고전");
 		return "sellpart/bookgojun/bookgojunworld";
 		
 	}
@@ -201,10 +177,15 @@ public class SellbookController {
 		mv.setViewName("sellpart/bookDetail");
 		return mv;
 	}
+	@RequestMapping(value="/sellpart/reviewPage.do")
+	public ModelAndView reviewPage(ModelAndView mv) {
+		
+		mv.setViewName("sellpart/bookDetail");
+		return mv;
+	}
 	
 	@RequestMapping("/sellbookController/bigview.do") 
 	public ModelAndView bigview(int bindNo, ModelAndView mv) {
-		System.out.println("페이지이동");
 		mv.addObject("bigview",service.selectBigView(bindNo));
 		mv.setViewName("sellpart/bigView");
 		return mv;
@@ -212,22 +193,16 @@ public class SellbookController {
 	}
 	@RequestMapping("/SellbookController/bookpayment.do") 
 	public ModelAndView bookpayment(int bindNo, String sellStock, ModelAndView mv) {
-		System.out.println("결제할 책 데이터 넘기기 여긴가");
-		System.out.println(bindNo+100000);
-		System.out.println("판매수량"+sellStock);
 		SellbookDatabind sd = service.selectBookPayment(bindNo);
-		System.out.println("야야 이거 나오니???????????? : "+sd);
 		mv.addObject("book", sd);
 		mv.addObject("shopinglistCate","B");
 		mv.addObject("sellStock",sellStock);
 		mv.setViewName("sellpart/bookpayment/bookPayment");
-		System.out.println("mv임"+mv);
 		return mv;
 	}
 	
 	@RequestMapping("/SellbookController/order.do") 
 	public String order2() {
-		System.out.println("결제할 책 데이터 넘기기");
 		return "order/main";
 	}
 	
@@ -235,10 +210,7 @@ public class SellbookController {
 	@RequestMapping(value = "/sellpart/checkMember.do")
 	@ResponseBody
 	public Member checkMember(String memberId) {
-		System.out.println("DAO이전입니다.");
 		Member member = service.checkMember(memberId);
-		System.out.println("DAO이후입니다.");
-		System.out.println("멤버 넘어오니?" + member);
 		return member;
 	}
 
@@ -246,8 +218,6 @@ public class SellbookController {
 	@RequestMapping("/SellbookController/salesVolumeAdd.do") 
 	@ResponseBody
 	public int salesVolumeAdd(@RequestParam Map param) {
-		System.out.println("판매량수치 넘기기");
-		System.out.println("판매수량"+param);
 		int result = service.updateSalesVolumeAdd(param);
 		
 		return result;
@@ -265,9 +235,7 @@ public class SellbookController {
 	@RequestMapping("/SellbookController/productReview.do")
 	@ResponseBody
 	public List<BookBoard> review(@RequestParam Map param, Model m) {
-		System.out.println("param 이다 이게바로 : "+param);
 		List<BookBoard> bb = service.selectReview(param);
-		System.out.println("bb다 이게바로 : "+bb);
 		return bb;
 	}
 	
@@ -279,20 +247,12 @@ public class SellbookController {
 
 		int totalData = service.selectReviewAll(bindNo);
 		
-		System.out.println("totalData" + totalData);
-
 		String getOwnPageBar = PageFactory.getWonJaePageBar(totalData, cPage, numPerpage);
-		System.out.println(getOwnPageBar);
 		return getOwnPageBar;
 	}
 //	insertReview.jsp 에서 넘어오는 폼 값을 받는 컨트롤러
 	@RequestMapping("/SellbookController/reviewWrite.do")
 	public ModelAndView reviewWrite(int bindNo, ModelAndView mv, String content, MultipartFile file, int score, String loginMember) {
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + bindNo);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + content);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + file);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + score);
-		System.out.println("리뷰 작성하기 위해 넘어가는 : " + loginMember);
 
 		HashMap<String, Object> map = new HashMap<>();
 		
@@ -303,12 +263,8 @@ public class SellbookController {
 		map.put("memberId", loginMember);
 			
 		int result = service.reviewWrite(map);
-
-		/*
-		 * mv.addObject("msg", ); mv.addObject("loc", ); mv.setViewName("");
-		 */
-		
-		mv.setViewName("sellpart/bookDetail.do?bindNo="+bindNo);
+		mv.addObject("msg","리뷰가 등록되었습니다.");
+		mv.setViewName("servicecenter/msgReview");
 		return mv;
 	}
 	
@@ -317,10 +273,8 @@ public class SellbookController {
 	@ResponseBody()
 	private String orderOne(@RequestParam Map param, @SessionAttribute("loginMember")Member m) {
 		//포인트 보류, 세션어디다쓰는지 질문
-		System.out.println("들어갑니다~ :"+param);
 		param.put("addPoint", Math.round((Integer.parseInt((String)param.get("paidAmount"))*0.1)));
 		int result = service.orderOne(param);
-		System.out.println("정상작동됐으면 1나옴 0이면 호구ㅋㅋ :"+result);
 		return ""+result;
 	}	
 	
@@ -340,7 +294,6 @@ public class SellbookController {
 					client.cancelPaymentByImpUid(cancelData); 
 		} catch(IamportResponseException e){ 
 			
-		System.out.println(e.getMessage());
 		  
 		switch(e.getHttpStatusCode()) {
 		case 401: break;
@@ -359,11 +312,6 @@ public class SellbookController {
 			msg="환불실패";
 		}
 		mv.addObject("msg",msg);
-		/*
-		 * if(state==1) { mv.addObject("loc","/member/myroom/payList.do"); }else
-		 * if(state==2) {
-		 * mv.addObject("loc","/usedboard/usedboardPayList.do?memberId="+memberId); }
-		 */
 		mv.addObject("log","/");
 		mv.setViewName("common/msg");
 		return mv;
