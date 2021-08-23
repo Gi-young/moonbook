@@ -1038,19 +1038,19 @@
                 <p class="htTitle">문곰책방 서비스</p>
                 <ul class="ht-ul">
                     <li class="footer-hotTracksImg">
-                        <a href="#">
+                        <a href="${path }/service/serviceMain.do">
                             <img src="${path }/resources/images/gift/free-icon-gps-73364.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
                             <p class="htFont">매장안내</p>
                         </a>
                     </li>
                     <li class="footer-hotTracksImg">
-                        <a href="#">
+                        <a href="${path }/service/serviceMain.do">
                             <img src="${path }/resources/images/gift/vip.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
                             <p class="htFont">멤버십 혜택</p>
                         </a>
                     </li>
                     <li class="footer-hotTracksImg">
-                        <a href="#">
+                        <a href="${path }/service/serviceMain.do">
                             <img src="${path }/resources/images/gift/대량구매.svg" alt="" style="width: 60px; height: 60px;" class="htImg">
                             <p class="htFont">대량구매</p>
                         </a>

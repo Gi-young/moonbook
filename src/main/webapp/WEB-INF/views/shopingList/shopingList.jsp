@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="${path }/resources/css/order/layout.css">
 <script src="${path }/resources/js/jquery-3.6.0.min.js"></script>
 <style>
+.giftPrice{
+	width:125px;
+}
 .shopListHeader{
 	font-weight: 800;
 	font-size: 22px;
@@ -217,7 +220,7 @@ function deleteBook(bookNo){
 			type: "POST",
 			data: {
 				bookNo: bookNo,
-				loginMember: loginMember
+				memberId: loginMember
 			},
 			success: data =>{
 				alert("삭제되었습니다.");
@@ -233,7 +236,7 @@ function deleteEbook(eBookNo){
 			type: "POST",
 			data: {
 				eBookNo: eBookNo,
-				loginMember: loginMember
+				memberId: loginMember
 			},
 			success: data =>{
 				alert("삭제되었습니다.");
@@ -249,7 +252,7 @@ function deleteGift(giftNo){
 			type: "POST",
 			data: {
 				giftNo: giftNo,
-				loginMember: loginMember
+				memberId: loginMember
 			},
 			success: data =>{
 				alert("삭제되었습니다.");
