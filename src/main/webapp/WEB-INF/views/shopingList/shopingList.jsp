@@ -126,9 +126,8 @@
 						<c:choose>
 						  <c:when test="${g.gift_count >= gList[status.index].getShopingListCount() }">
 							<fmt:formatNumber value="${g.gift_price*gList[status.index].getShopingListCount()  }"  type="number"/>
-						    
-						    <input type="hidden" class="giftNo" value="${g.gift_no }">
-					
+						   	   	<input type="hidden" class="giftNo" value="${g.gift_no }">
+							
 							<input type="hidden" class="giftCount" value="${gList[status.index].getShopingListCount() }">
 						  </c:when>
 						  <c:otherwise>

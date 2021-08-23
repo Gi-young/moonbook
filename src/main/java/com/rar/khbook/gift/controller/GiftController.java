@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,16 +72,18 @@ public class GiftController {
 	public ModelAndView giftDetail(int giftNo, ModelAndView mv, String memberId) {
 		/* System.out.println("멤버아이디"+memberId); */
 		
+		List<Order> one = new ArrayList();
+		List<GiftOrderList> two = new ArrayList();
+		
 		if(memberId != null) {
 			List<Order> order = service.memberOrderList(memberId);
 			List<GiftOrderList> gOrder = service.giftOrderList(giftNo);
 			
 			for(int i=0; i<gOrder.size(); i++) {
-				System.out.println("밤엔 아무도 없었다?"+gOrder.get(i).getOrderNo());
-				
+				System.out.println("기프트 구매내역"+gOrder.get(i).getOrderNo());	
 			}
 			for(int i=0; i<order.size(); i++) {
-				System.out.println("밤엔 아무도 오지 않았다."+order.get(i).getOrderNo());
+				System.out.println("통합 구매내역"+order.get(i).getOrderNo());
 				//String.valueOf(Integer.parseInt(order.get(i).getOrderNo()));
 			}
 			
@@ -272,14 +275,9 @@ public class GiftController {
 //	    @RequestMapping("/gift/insertGift.do")  
 //	    @ResponseBody
 //	    public int insertGift(@RequestParam Map param) {
-//	    	
-//	    	System.out.println("============== ajax로 넘어온 값 : "+param.get("title"));
-//	    	
-//	    	
+//
 //	    	int result = service.insertGift(param);
-//	    	
-//	    	System.out.println("============== 결과 : "+result);
-//	    	
+//	    	   	
 //	    	return result;
 //	    }
 

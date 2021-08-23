@@ -34,6 +34,71 @@ public class ShopingListServiceImpl implements ShopingListService {
 	
 	
 	@Override
+	public int salesVolumeAddBook(Map param) {
+		// TODO Auto-generated method stub
+		
+		int result = dao.salesVolumeAddBook(session, param);
+		if(result>0) {
+//			다회용 재고 업데이트
+			int result2 = dao.updateStockB(session, param);
+//			일회용 = 멤버에 추가라서 한번만 실행
+			int result3 = dao.updateMemberPP(session, param);
+//			일회용 = 멤버에 추가라서 한번만 
+			int result4 = dao.updateMemberPoint(session, param);
+//			다회용 = 각 구매내역에 추가
+			int result5 = dao.updatePurchaseListB(session, param);
+			
+			int result6 = dao.deleteBook(session, param);
+			
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int salesVolumeAddEbook(Map param) {
+		// TODO Auto-generated method stub
+		
+		int result = dao.salesVolumeAddEbook(session,param);
+		if(result>0) {
+//			ebook은 재고 없음
+			
+//			다회용 = 각 구매내역에 추가
+			int result5 = dao.updatePurchaseListE(session, param);
+			
+			int result6 = dao.deleteEbook(session, param);
+			return 1;
+		}else {
+			return 0;
+			
+		}
+	}
+
+	@Override
+	public int salesVolumeAddGift(Map param) {
+		// TODO Auto-generated method stub
+		
+		int result = dao.salesVolumeAddGift(session, param);
+	    System.out.println("제발 그만"+result);
+		if(result>0) {
+//			다회용 재고 업데이트
+			int result2 = dao.updateStockG(session, param);
+			System.out.println(result2);
+//			다회용 = 각 구매내역에 추가
+			int result5 = dao.updatePurchaseListG(session, param);
+			System.out.println(result5);
+			int result6 = dao.deleteGift(session, param);
+			System.out.println(result6);
+			return 1;
+		}else {
+			
+			return 0;
+			
+		}
+	}
+
+	@Override
 	public int deleteBook(Map param) {
 		// TODO Auto-generated method stub
 		return dao.deleteBook(session, param);
@@ -51,31 +116,6 @@ public class ShopingListServiceImpl implements ShopingListService {
 		return dao.deleteGift(session, param);
 	}
 
-	@Override
-	public int salesVolumeAdd(Map param) {
-		// TODO Auto-generated method stub
-		
-		
-		
-		int result1 = dao.bookSalesVolumeAdd(session, param);
-		int result2 = dao.eBookSalesVolumeAdd(session, param);
-		int result3 = dao.giftSalesVolumeAdd(session, param);
-		
-		if(result1>0 && result2>0 && result3>0) {
-			
-			int delete1 = dao.deleteBook(session, param);
-			int delete2 = dao.deleteEbook(session, param);
-			int delete3 = dao.deleteGift(session, param);
-			
-			return 1;
-			
-		}else {
-			
-			return 0;
-		}
-		
-		
-	}
 
 	@Override
 	public int writePurchaseLog(Map param) {

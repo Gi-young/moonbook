@@ -169,18 +169,38 @@ public class shopingListController {
 	}
 	
 	
-	@RequestMapping("/shopingList/salesVolumeAdd.do")
+	@RequestMapping("/shopingList/salesVolumeAddBook.do")
 	@ResponseBody
-	public int salesVolumeAdd(@RequestParam Map param) {
+	public int salesVolumeAddBook(@RequestParam Map param) {
 		System.out.println("여기 들어옴??");
 		System.out.println("장바구니 결제 로직 마지막 메소드로 넘어오는 파람: "+param);
 		
-		int result = service.salesVolumeAdd(param);
+		int result = service.salesVolumeAddBook(param);
 		
 		return result;
 	}
 	
+	@RequestMapping("/shopingList/salesVolumeAddEbook.do")
+	@ResponseBody
+	public int salesVolumeAddEbook(@RequestParam Map param) {
+		System.out.println("여기 들어옴??");
+		System.out.println("장바구니 결제 로직 마지막 메소드로 넘어오는 파람: "+param);
+		
+		int result = service.salesVolumeAddEbook(param);
+		
+		return result;
+	}
 	
+	@RequestMapping(value = "/shopingList/salesVolumeAddGift.do")
+	@ResponseBody
+	public int salesVolumeAddGift(@RequestParam Map param) {
+		System.out.println("여기 들어옴??");
+		System.out.println("장바구니 결제 로직 마지막 메소드로 넘어오는 파람: "+param);
+		
+		int result = service.salesVolumeAddGift(param);
+		
+		return result;
+	}
 	
 }
 
