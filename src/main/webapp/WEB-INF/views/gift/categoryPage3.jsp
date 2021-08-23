@@ -163,10 +163,11 @@
 
     // slick slide
     $('.slider').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToShow: 4,
+        slidesToScroll: 2,
         autoplay: true,
-        autoplaySpeed: 2000
+        autoplaySpeed: 2000,
+        arrows : false
     });
    
 </script>

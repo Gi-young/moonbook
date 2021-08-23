@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -274,14 +275,9 @@ public class GiftController {
 //	    @RequestMapping("/gift/insertGift.do")  
 //	    @ResponseBody
 //	    public int insertGift(@RequestParam Map param) {
-//	    	
-//	    	System.out.println("============== ajax로 넘어온 값 : "+param.get("title"));
-//	    	
-//	    	
+//
 //	    	int result = service.insertGift(param);
-//	    	
-//	    	System.out.println("============== 결과 : "+result);
-//	    	
+//	    	   	
 //	    	return result;
 //	    }
 
