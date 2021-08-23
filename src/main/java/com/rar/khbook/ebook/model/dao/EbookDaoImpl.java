@@ -1,5 +1,6 @@
 package com.rar.khbook.ebook.model.dao;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -350,14 +351,30 @@ public class EbookDaoImpl implements EbookDao {
 	
 	@Override
 	public HashMap checkBindNo(SqlSession session, Map param) {
-		return session.selectOne("ebook.checkBindNo", param);
+		HashMap result = null;
+		
+		try {
+			result = session.selectOne("ebook.checkBindNo", param);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	@Override
 	public int nextEbook(SqlSession session, Map param) {
+		int result = 0;
+		
 		param.put("bindNo",Integer.parseInt((String)param.get("bindNo")));
 		
-		return session.update("ebook.nextEbook", param);
+		try{
+			result = session.update("ebook.nextEbook", param);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	@Override

@@ -336,7 +336,7 @@
 	</select>
 	
 	<insert id="createSort">
-		INSERT INTO MEMBER_EBOOK_LIST VALUES(#{memberId},NULL,#{sortName})
+		INSERT INTO MEMBER_EBOOK_LIST VALUES(#{memberId},NULL,#{sortName},DEFAULT)
 	</insert>
 	
 	<select id="listMySorts" resultType="string">

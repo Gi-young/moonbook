@@ -429,8 +429,10 @@ function loadBoard() {
                 success: data => {
                     console.log(data);
 
-                    for(let i = 0; i < tbody.children.length; i ++) {
-                        tbody.children[i].remove();
+                    let repeatNum = tbody.children.length;
+
+                    for(let i = 0; i < repeatNum; i ++) {
+                        tbody.lastElementChild.remove();
                     }
 
                     data.forEach((v, i) => {
@@ -501,10 +503,11 @@ function loadBoard() {
                 success: data => {
                     console.log(data);
 
-                    for(let i = 0; i < tbody.children.length; i ++) {
-                        tbody.children[i].remove();
-                    }
+                    let repeatNum = tbody.children.length;
 
+                    for(let i = 0; i < repeatNum; i ++) {
+                        tbody.lastElementChild.remove();
+                    }
                     data.forEach((v, i) => {
                         let tr = document.createElement("tr");
                         tr.classList.add("append-tr");

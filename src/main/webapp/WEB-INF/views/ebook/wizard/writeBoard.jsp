@@ -150,6 +150,8 @@
 					},
 					success: data => {
 						if (data > 0) {
+							opener.showMyClubList();
+							
 							window.close();
 						} else {
 							write.innerText = "작성에 실패하였습니다. 다시 시도해주세요";

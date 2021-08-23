@@ -108,7 +108,7 @@
 				</div>
 				
 				<div class="bind-no-box">
-					<label for="bindNo">일련번호</label>
+					<label for="bindNo">책 일련번호</label>
 					<input type="number" id="bindNo">
 					
 					<input type="button" value="확정" onclick="designateNextEbook();">
