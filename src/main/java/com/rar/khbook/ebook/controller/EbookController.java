@@ -257,7 +257,6 @@ public class EbookController {
 	@ResponseBody
 	public List<EbookDatabind> search(@RequestParam Map param) {
 		
-		System.out.println("search.do : " + param);
 		
 		List<EbookDatabind> list = service.search(param);
 		
