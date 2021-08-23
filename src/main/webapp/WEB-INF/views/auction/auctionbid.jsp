@@ -131,7 +131,8 @@
 	<script>
 		// gi-young
 
-		let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");		
+			let sockAuction = new SockJS("http://rclass.iptime.org:9999" + "${path}" + "/auction");
+		//let sockAuction = new SockJS("http://localhost:9090" + "${path}" + "/auction");
 
 		
 		sockAuction.onopen = (e) => {
@@ -225,9 +226,11 @@
 				{
 				alert("즉시 구매가 보다 높습니다")
 				return false;
+			}else if(parseInt($("#bidhighPrice").val())>=parseInt(myprice)){
+				alert("최고입찰기록보단 높아야합니다.")
+				return false;
 			}
 			sendMainMessage2();
-			return false;
 		}
 		
 		

@@ -45,7 +45,7 @@ public interface AuctionDao {
 
 	int auctionStateCount(SqlSession session,Map param);
 
-	List<Auction> selectStateList(SqlSession session, Map param);
+	List<Auction> selectStateList(SqlSession session, Map param, int cPage, int numPerpage);
 
 	Member selectbidMember(SqlSession session, Map param);
 

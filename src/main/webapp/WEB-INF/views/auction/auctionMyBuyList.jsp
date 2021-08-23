@@ -52,24 +52,26 @@
 							<td>${a.auctionbid[0].bidPrice }</td>
 							<td>
 							<c:if test="${a.auctionState eq 'S' && a.state eq '낙찰'}">				
-									<span style="color:blue">낙찰</span>
+									<p style="color:blue">낙찰</p>
 									<c:if test="${a.buylerState eq 'N'}">
 									<button onclick="openAuctionBPage(${a.auctionNo},'${a.memberId }');">배송 확인하기</button>	
 									</c:if>
 									<c:if test="${a.buylerState eq 'Y'}">
-									<span style="color:blue;">배송 확인</span>	
+									<p style="color:blue;">배송 확인</p>	
 									</c:if>
 																						
 							</c:if>
 							<c:if test="${a.auctionState eq 'S' && a.state eq '유찰'}">				
-									<span style="color:red">유찰</span>
+									<p style="color:red">유찰</p>
 									<c:forEach items="${a.auctionbid }" var="bid">
 							
 									<c:if test="${bid.bidId eq member.memberId && bid.bidCheck eq 'N'}">
-										<span>${bid.bidPrice }<button onclick="location.replace('${path}/auction/auctionbidCollect?memberId=${member.memberId }&bidNo=${bid.bidNo }&memberPoint=${bid.bidPrice }')">포인트 돌려받기</button></span>
+										<span>${bid.bidPrice }</span>
+										<button onclick="location.replace('${path}/auction/auctionbidCollect?memberId=${member.memberId }&bidNo=${bid.bidNo }&memberPoint=${bid.bidPrice }')">포인트 돌려받기</button>
 									</c:if>
 									<c:if test="${bid.bidId eq member.memberId && bid.bidCheck eq 'Y'}">
-										<p>${bid.bidPrice }<span style="color:blue;">회수완료</span></p>
+										<span>${bid.bidPrice }</span>
+										<p style="color:blue;">회수완료</p>
 									</c:if>
 									</c:forEach>														
 							</c:if>

@@ -8,9 +8,8 @@
 <jsp:include page="/WEB-INF/views/common/newHeader.jsp">
 	<jsp:param name="" value=""/>
 </jsp:include>
-
+	
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/auction/auctionMySellList.css">
-
 	<div id="wrap">
 		<div id="container">
 			<div style="margin-bottom:30px;">
@@ -71,7 +70,7 @@
 								마감
 							</c:when>
 							<c:when test="${a.auctionState eq 'S' }">
-								<span>낙찰</span>
+								<p>낙찰</p>
 								<c:if test="${a.sellerState eq 'N' }">
 								<button onclick="openAuctionSpage(${a.auctionNo},'${a.auctionbid[0].bidId }');">배송 확인하기</button>
 								</c:if>
