@@ -19,11 +19,9 @@ public class GiftLoginCheckInterceptor  implements HandlerInterceptor{
 		if(loginMember!=null) {
 			return true;
 		}else {
-			response.setContentType("text/html; charset=euc-kr");
-			PrintWriter out = response.getWriter();
-			out.println("<script>window.close();</script>");
+			
 			request.setAttribute("msg","로그인 후 이용해주세요");
-			request.setAttribute("loc","/");
+			
 			request.getRequestDispatcher("/WEB-INF/views/gift/msg.jsp").forward(request, response);
 			return false;
 		}

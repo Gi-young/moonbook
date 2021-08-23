@@ -65,7 +65,7 @@
             <div style="word-break:break-all;">
             	<c:forEach var="e" items="${list }" begin="${num }" end="${num+2 }"> 
             	
-                <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}" class="thing9-a">
+                <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}&memberId=${logimMember.memberId}" class="thing9-a">
                     <div class="inner-a none">
                         <div class="inner-div">
                             <p class="explan">${e.gift_title }</p>
@@ -82,7 +82,7 @@
              <div>
                 <c:forEach var="e" items="${list }" begin="${num+3 }" end="${(num+3)+2 }"> 
                 
-                <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}" class="thing9-a">
+                <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}&memberId=${logimMember.memberId}" class="thing9-a">
                     <div class="inner-a none">
                         <div class="inner-div">
                             <p class="explan">${e.gift_title }</p>
@@ -98,7 +98,7 @@
             </div>
             <div>
                 <c:forEach var="e" items="${list }" begin="${num+5 }" end="${(num+5)+2}"> 
-                <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}" class="thing9-a">
+                <a href="${path }/gift/giftDetail.do?giftNo=${e.gift_no}&memberId=${logimMember.memberId}" class="thing9-a">
                     <div class="inner-a none">
                         <div class="inner-div">
                             <p class="explan">${e.gift_title }</p>

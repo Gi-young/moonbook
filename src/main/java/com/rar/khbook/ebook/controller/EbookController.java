@@ -375,7 +375,7 @@ public class EbookController {
 		return list;
 	}
 	
-	@RequestMapping(value = "/eBook/getMerchantUid.do")
+	@RequestMapping("/ebook/getMerchantUid.do")
 	@ResponseBody
 	public String getMerchantUid() {
 		String merchantUid = "ORD-EB-";

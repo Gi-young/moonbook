@@ -153,8 +153,54 @@
 			</association>
 		</association>
 	</resultMap> -->
+
+	<!-- 멤버 구매금액 수정 -->
+	<update id="updateMemberPP">
+		UPDATE MEMBER SET MEMBER_TOTAL_SALE=MEMBER_TOTAL_SALE+#{totalPrice} WHERE MEMBER_ID=#{loginMember}
+	</update>
+	<!-- 멤버 포인트 수정 -->
+	<update id="updateMemberPoint">
+		UPDATE MEMBER SET MEMBER_POINT=MEMBER_POINT+#{point} WHERE MEMBER_ID=#{loginMember}
+	</update>
 	
-			
+	
+	<!-- 도서 판매량에 구매수량 추가 -->
+	<update id="addBook">
+		UPDATE BOOK_EBOOK_DATABIND SET EBOOK_SALES_VOLUME=EBOOK_SALES_VOLUME+#{bookCount} WHERE BIND_NO=#{bookNo}
+	</update>
+	<!-- 도서 재고 수정 -->
+	<update id="updateStockB">
+		UPDATE BOOK_EBOOK_DATABIND SET STOCK=STOCK-#{bookCount} WHERE BIND_NO=#{bookNo}
+	</update> 
+	<!-- 도서 구매내역 추가 -->
+	<insert id="updateListB">
+		INSERT INTO BOOK_ORDER_LIST VALUES (#{merchantUid}, #{bookNo}, #{bookCount})
+	</insert>
+	
+	<update id="addEbook">
+		UPDATE BOOK_EBOOK_DATABIND SET EBOOK_SALES_VOLUME=EBOOK_SALES_VOLUME+1 WHERE BIND_NO=#{eBookNo}
+	</update>
+	<!-- 이북 구매내역 추가 -->
+	<insert id="updateListE">
+		INSERT INTO EBOOK_ORDER_LIST VALUES (#{merchantUid}, #{eBookNo}, 1)
+	</insert>
+	
+
+	<!-- 기프트 판매량에 구매수량 추가 -->
+	<update id="addGift">
+		UPDATE NGIFT SET NGIFT_SALESVOLUME=NGIFT_SALESVOLUME+#{giftCount} WHERE NGIFT_NO=#{giftNo}
+	</update>
+	<!-- 기프트 재고 수정 -->
+	<update id="updateStockG">
+		UPDATE NGIFT SET NGIFT_COUNT=NGIFT_COUNT-#{giftCount} WHERE NGIFT_NO=#{giftNo}
+	</update>
+	<!-- 기프트 구매내역 추가 -->
+	<insert id="updateListG">
+		INSERT INTO NGIFT_ORDER_LIST VALUES (#{merchantUid}, #{giftNo}, #{giftCount})
+	</insert>
+	
+		
+		
 	<insert id="createShopingList">
 		INSERT INTO SHOPING_LIST VALUES('G', #{memberId})
 	</insert>
@@ -183,17 +229,19 @@
 		SELECT * FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId} ORDER BY NGIFT_NO DESC
 	</select>
 	
+	<!-- 구매 후 장바구니에서 삭제 -->
 	<delete id="deleteBook">
-		DELETE FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND B_BIND_NO=${bookNo}
+		DELETE FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND B_BIND_NO=#{bookNo}
 	</delete>
-	
+	<!-- 구매 후 장바구니에서 삭제 -->
 	<delete id="deleteEbook">
-		DELETE FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND E_BIND_NO=${eBookNo}
+		DELETE FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND E_BIND_NO=#{eBookNo}
+	</delete>
+	<!-- 구매 후 장바구니에서 삭제 -->
+	<delete id="deleteGift">
+		DELETE FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND NGIFT_NO=#{giftNo}
 	</delete>
 	
-	<delete id="deleteGift">
-		DELETE FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND NGIFT_NO=${giftNo}
-	</delete>
 	
 	<select id="myShopingListB" resultMap="sellbookDatabindMap">
 		SELECT * FROM BOOK_EBOOK_DATABIND
