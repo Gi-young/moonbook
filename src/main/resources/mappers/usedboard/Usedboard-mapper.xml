@@ -152,7 +152,7 @@
 	</insert>
 	
 	<select id="usedboardMyPaymentList" resultType="usedboardpayment">
-		SELECT * FROM USEDBOARDPAYMENT WHERE MEMBER_ID='${value}'
+		SELECT * FROM USEDBOARDPAYMENT WHERE MEMBER_ID='${value}' ORDER BY USEDBOARDPAYMENT_NO DESC
 	</select>
 	
 	<select id="usedboardMyPaymentCount" resultType="_int">
@@ -227,7 +227,7 @@
 	</update>
 	
 	<select id="usedboardPayList" resultType="usedboardpayment">
-		SELECT * FROM USEDBOARDPAYMENT WHERE SALE_ID='${value}'
+		SELECT * FROM USEDBOARDPAYMENT WHERE SALE_ID='${value}' ORDER BY USEDBOARDPAYMENT_NO DESC
 	</select>
 	
 	<select id="usedboardPayCount" resultType="_int">
