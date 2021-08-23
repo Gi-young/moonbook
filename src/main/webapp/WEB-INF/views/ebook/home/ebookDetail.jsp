@@ -37,6 +37,8 @@
 			
 			<p><b>출판사 :</b> <c:out value="${ebookDatabind.publisher}"/></p>
 			
+			<p><b>일련번호 :</b> <c:out value="${ebookDatabind.bindNo}"/></p>
+			
 			<p class="description">&emsp;<c:out value="${ebookDatabind.description}"/>&nbsp;
 				<a onclick="openNaverDetailPage(event,'${ebookDatabind.link}');">더보기</a>
 			</p>

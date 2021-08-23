@@ -48,6 +48,22 @@ public interface ShopingListDao {
 
 	int writeOrderT(SqlSession session, Map param);
 
+	int writePurchaseLog(SqlSession session, Map param);
+
+	int bookSalesVolumeAdd(SqlSession session, Map param);
+
+	int eBookSalesVolumeAdd(SqlSession session, Map param);
+
+	int giftSalesVolumeAdd(SqlSession session, Map param);
+
+	int deleteBook(SqlSession session, Map param);
+
+	int deleteEbook(SqlSession session, Map param);
+
+	int deleteGift(SqlSession session, Map param);
+
+
+
 
 
 }

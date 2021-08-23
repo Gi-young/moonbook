@@ -236,6 +236,52 @@ sockWizard.onmessage = i => {
             }
         }
     }
+
+    if (arr[0] === "debate") {
+        let selectClub = document.getElementById("selectClub").value;
+        let debateBoard = document.getElementById("debateBoard");
+
+        if (selectClub === arr[2]) {
+            let pseudoBox = document.createElement("pseudoBox");
+            
+            if (loginMemberId === arr[1]) {
+                pseudoBox.classList.add("pseudo-box-for-me");
+            } else {
+                pseudoBox.classList.add("pseudo-box");
+            }
+
+            let debateFeed = document.createElement("div");
+
+            if (loginMemberId === arr[1]) {
+                debateFeed.classList.add("debate-feed-from-me");
+            } else {
+                debateFeed.classList.add("debate-feed");
+            }
+           
+            let sender = document.createElement("div");
+            sender.classList.add("sender");
+            sender.innerText = arr[1];
+
+            let message = document.createElement("div");
+            message.classList.add("message");
+            message.innerText = arr[3];
+
+            debateFeed.appendChild(sender);
+            debateFeed.appendChild(message);
+            pseudoBox.appendChild(debateFeed);
+            debateBoard.appendChild(pseudoBox);
+        }
+    }
+
+    if (arr[0] === "change") {
+        let selectClub = document.getElementById("selectClub").value;
+
+        if (selectClub === arr[1]) {
+            loadNextDebate();
+
+            openSesame();
+        }
+    }
 }
 
 sockWizard.onclose = e => {

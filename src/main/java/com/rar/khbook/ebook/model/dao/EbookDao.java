@@ -120,4 +120,24 @@ public interface EbookDao {
 	
 	List<HashMap> newSearchForPaperBook(SqlSession session, Map param);
 	
+	HashMap getReadingRecord(SqlSession session, Map param);
+	
+	int writeBoard(SqlSession session, Map param);
+	
+	List<HashMap> loadBoard(SqlSession session, Map param);
+	
+	int addBoardVisit(SqlSession session, Map param);
+	
+	int nextDate(SqlSession session, Map param);
+	
+	HashMap checkBindNo(SqlSession session, Map param);
+	
+	int nextEbook(SqlSession sessino, Map param);
+	
+	HashMap loadNextDebate(SqlSession session, Map param);
+	
+	HashMap getEbook(SqlSession session, Map param);
+	
+	int debateEnd(SqlSession session, Map param);
+	
 }

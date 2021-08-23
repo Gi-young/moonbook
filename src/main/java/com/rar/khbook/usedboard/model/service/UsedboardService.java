@@ -11,7 +11,7 @@ import com.rar.khbook.usedboard.model.vo.Usedcomment;
 
 public interface UsedboardService {
 	List<Usedboard> selectUsedboardList(int cPage, int numPerpage,Map<String,Object> map);
-	
+	List<Usedboard> selectUsedboardList2();
 	int selectUsedboardCount(Map<String,Object> map);
 	
 	Usedboard selectUsedboardOne(int no);

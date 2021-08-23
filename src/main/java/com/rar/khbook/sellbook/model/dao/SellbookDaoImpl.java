@@ -124,6 +124,16 @@ public class SellbookDaoImpl implements SellbookDao {
 		return session.update("SellbookDatabind.updateMemberPoint",param);
 	}
 
-
+	@Override
+	public int cancelPayment(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("SellbookDatabind.cancelPayment",no);
+	}
+	
+	@Override
+	public int cancelPaymentUpdate(SqlSession session, int no) {
+		// TODO Auto-generated method stub
+		return session.update("SellbookDatabind.cancelPaymentUpdate",no);
+	}
 	
 }

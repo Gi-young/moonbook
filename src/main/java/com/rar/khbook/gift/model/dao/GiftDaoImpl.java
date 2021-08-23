@@ -23,6 +23,13 @@ import com.rar.khbook.shopingList.model.vo.GiftShopingList;
 public class GiftDaoImpl implements GiftDao {
 
 
+	
+
+//	@Override
+//	public List<Coupon> searchCoupon(SqlSession session, String memberId) {
+//		// TODO Auto-generated method stub
+//		return session.selectList("gift.");
+//	}
 
 	@Override
 	public Member searchMember(String memberId, SqlSession session) {	

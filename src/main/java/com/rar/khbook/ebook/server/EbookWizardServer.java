@@ -182,8 +182,32 @@ public class EbookWizardServer extends TextWebSocketHandler{
 					clients.get(nextMember).sendMessage(new TextMessage(message.getPayload()));
 				}
 			}
+		}
+		
+		if (messageArr[0].equals("debate")) {
+			String loginMemberId = messageArr[1];
+			String clubName = messageArr[2];
+			String debate = messageArr[3];
 			
+			Set<String> keySet = clients.keySet();
+			Iterator<String> itr = keySet.iterator();
 			
+			while (itr.hasNext()) {
+				String nextMember = itr.next();
+				clients.get(nextMember).sendMessage(new TextMessage(message.getPayload()));
+			}
+		}
+		
+		if (messageArr[0].equals("change")) {
+			String clubName = messageArr[1];
+			
+			Set<String> keySet = clients.keySet();
+			Iterator<String> itr = keySet.iterator();
+			
+			while (itr.hasNext()) {
+				String nextMember = itr.next();
+				clients.get(nextMember).sendMessage(new TextMessage(message.getPayload()));
+			}
 		}
 		
 	}
@@ -203,6 +227,10 @@ public class EbookWizardServer extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println("afterConnectionClosed: " + session + " / " + status);
+		
+		String userId = getId(session);
+		
+		clients.remove(userId);
 	}
 	
 }

@@ -134,6 +134,11 @@ public class SellbookServiceImpl implements SellbookService {
 		return 0;
 	}
 	
-	
+	@Override
+	public int cancelPayment(int no) {
+		// TODO Auto-generated method stub
+		dao.cancelPaymentUpdate(session,no);
+		return dao.cancelPayment(session,no);
+	}
 	
 }

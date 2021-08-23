@@ -306,8 +306,8 @@
     justify-content: center;
     align-items: center;
     border: 2px solid #AAB1C7;
-    background-color: #E5BEA0;
-    color: #FFFFFF;
+    background-color: rgba(88,40,16,1);
+    color: white;
     border-radius: 100px;
     font-weight: 800;
 }

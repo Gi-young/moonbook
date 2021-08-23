@@ -14,6 +14,9 @@ input[type=text], input[type= email]{
 	font-weight: 600;
 	margin-top: 1.3em;
 }
+.orderInfoBox{
+	width:950px;
+}
 
 .tbl_box {
 	margin-top: 1.3em;

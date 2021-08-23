@@ -323,4 +323,56 @@ public class EbookDaoImpl implements EbookDao {
 		return session.selectList("ebook.newSearchForPaperBook", param, rb);
 	}
 	
+	@Override
+	public HashMap getReadingRecord(SqlSession session, Map param) {
+		return session.selectOne("ebook.getReadingRecord", param);
+	}
+	
+	@Override
+	public int writeBoard(SqlSession session, Map param) {
+		return session.insert("ebook.writeBoard", param);
+	}
+	
+	@Override
+	public List<HashMap> loadBoard(SqlSession session, Map param) {
+		return session.selectList("ebook.loadBoard", param);
+	}
+	
+	@Override
+	public int addBoardVisit(SqlSession session, Map param) {
+		return session.update("ebook.addBoardVisit", param);
+	}
+	
+	@Override
+	public int nextDate(SqlSession session, Map param) {
+		return session.update("ebook.nextDate", param);
+	}
+	
+	@Override
+	public HashMap checkBindNo(SqlSession session, Map param) {
+		return session.selectOne("ebook.checkBindNo", param);
+	}
+	
+	@Override
+	public int nextEbook(SqlSession session, Map param) {
+		param.put("bindNo",Integer.parseInt((String)param.get("bindNo")));
+		
+		return session.update("ebook.nextEbook", param);
+	}
+	
+	@Override
+	public HashMap loadNextDebate(SqlSession session, Map param) {
+		return session.selectOne("ebook.loadNextDebate", param);
+	}
+	
+	@Override
+	public HashMap getEbook(SqlSession session, Map param) {
+		return session.selectOne("ebook.getEbook", param);
+	}
+	
+	@Override
+	public int debateEnd(SqlSession session, Map param) {
+		return session.update("ebook.debateEnd", param);
+	}
+	
 }
