@@ -1386,20 +1386,20 @@ padding-bottom: 5px;
                 <a href="#"><img alt="banner2" src="${path}/resources/img/main/banner/1300add2.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner3">
-                <a href="#"><img alt="banner3" src="${path}/resources/img/main/banner/1300400.png"></a>
+                <a href="#"><img alt="banner3" src="${path}/resources/img/main/banner/moongom.png"></a>
             </div>
-            <div class="mainsearchBox-slideContent mainbanner4">
+            <%-- <div class="mainsearchBox-slideContent mainbanner4">
                 <a href="#"><img alt="banner4" src="${path}/resources/img/main/banner/1300add3.png"></a>
-            </div>
+            </div> --%>
             <div class="mainsearchBox-slideContent mainbanner5">
                 <a href="#"><img alt="banner5" src="${path}/resources/img/main/banner/1300add4.png"></a>
             </div>
-            <div class="mainsearchBox-slideContent mainbanner6">
+            <%-- <div class="mainsearchBox-slideContent mainbanner6">
                 <a href="#"><img alt="banner6" src="${path}/resources/img/main/banner/1300400.png"></a>
             </div>
             <div class="mainsearchBox-slideContent mainbanner7">
                 <a href="#"><img alt="banner7" src="${path}/resources/img/main/banner/1300add3.png"></a>
-            </div>
+            </div> --%>
         </div>
         
         <ul class="mainslide-pagination" style="width: 20px; height: 10px; display: none;">
@@ -1578,10 +1578,10 @@ padding-bottom: 5px;
                 <div class="hotslide_btn_prev btnleftposition" style="display:none;"></div>
                 <div class="hotslide_list hotListflex" style="margin-top: 30px;">
                     <div class="hotslide_content">
-                        <img alt="banner1" src="${path}/resources/img/main/risingstar/risingstar.png">
+                        <a href="${path }/gift/giftDetail.do?giftNo=1184"><img alt="banner1" src="${path}/resources/img/main/risingstar/11.png"></a>
                     </div>
                     <div class="hotslide_content">
-                        <img alt="banner2" src="${path}/resources/img/main/risingstar/risingstar2.png">
+                       <a href="${path }/gift/giftDetail.do?giftNo=435"><img alt="banner2" src="${path}/resources/img/main/risingstar/22.png"></a>
                     </div>
                 </div>
                 <div class="hotslide_pagination flex" style="height: 50px; display:none; justify-content: center;" >
