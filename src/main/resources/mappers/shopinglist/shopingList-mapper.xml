@@ -231,15 +231,15 @@
 	
 	<!-- 구매 후 장바구니에서 삭제 -->
 	<delete id="deleteBook">
-		DELETE FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND B_BIND_NO=#{bookNo}
+		DELETE FROM BOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId} AND B_BIND_NO=#{bookNo}
 	</delete>
 	<!-- 구매 후 장바구니에서 삭제 -->
 	<delete id="deleteEbook">
-		DELETE FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND E_BIND_NO=#{eBookNo}
+		DELETE FROM EBOOK_SHOPING_LIST WHERE MEMBER_ID=#{memberId} AND E_BIND_NO=#{eBookNo}
 	</delete>
 	<!-- 구매 후 장바구니에서 삭제 -->
 	<delete id="deleteGift">
-		DELETE FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{loginMember} AND NGIFT_NO=#{giftNo}
+		DELETE FROM NGIFT_SHOPING_LIST WHERE MEMBER_ID=#{memberId} AND NGIFT_NO=#{giftNo}
 	</delete>
 	
 	

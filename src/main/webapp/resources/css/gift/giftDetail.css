@@ -270,7 +270,7 @@
     cursor: pointer;
     font-size: 14px;
     text-align: center;
-    height: 70px;
+    /* height: 70px; */
     vertical-align: middle;
     font-weight: lighter;
 }
